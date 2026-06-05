@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nick Carbone</title>
+  <meta name="description" content="Published works and reference pages by Nick Carbone — journalist and media intelligence professional based in Old Town, Alexandria.">
+  <meta property="og:title" content="Nick Carbone">
+  <meta property="og:description" content="Journalist · Media Intelligence · Old Town, Alexandria">
+  <meta property="og:url" content="https://nickcarbone.github.io">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@nickcarbone">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:          #09090e;
+      --surface:     #0e0e16;
+      --surface2:    #14141f;
+      --border:      #1c1c2c;
+      --border-hi:   #2c2c42;
+      --amber:       #c8832a;
+      --amber-lt:    #e09a40;
+      --amber-dim:   rgba(200,131,42,.08);
+      --cream:       #e8e2d4;
+      --cream-dim:   rgba(232,226,212,.55);
+      --text:        #d8d4c8;
+      --text-dim:    #8a8478;
+      --text-muted:  #4a4640;
+      --mono:        'DM Mono', monospace;
+      --sans:        'DM Sans', sans-serif;
+      --serif:       'Cormorant Garamond', Georgia, serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── NOISE GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background-size: 180px;
+      pointer-events: none;
+      z-index: 999;
+      opacity: .6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 40px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(9,9,14,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-mark {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .nav-mark span { color: var(--amber); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--amber-lt); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 140px 40px 80px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp .6s ease forwards;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(64px, 10vw, 108px);
+      font-weight: 600;
+      line-height: .92;
+      color: var(--cream);
+      letter-spacing: -.01em;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp .6s ease .1s forwards;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream-dim);
+    }
+
+    .hero-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--amber);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: expandRule .8s ease .25s forwards;
+    }
+
+    @keyframes expandRule {
+      from { width: 0; opacity: 0; }
+      to   { width: 60px; opacity: 1; }
+    }
+
+    .hero-bio {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-dim);
+      max-width: 480px;
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp .6s ease .35s forwards;
+    }
+
+    .hero-bio a {
+      color: var(--text-dim);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: var(--border-hi);
+      transition: color .15s;
+    }
+    .hero-bio a:hover { color: var(--amber-lt); }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp .5s ease .5s forwards;
+    }
+
+    .section-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .section-count {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--amber);
+    }
+
+    .section-spacer { flex: 1; }
+
+    .section-updated {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 620px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 22px 24px 20px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      transition: border-color .2s, background .2s, transform .2s;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeUp .5s ease forwards;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--border-hi);
+      transition: background .2s;
+    }
+
+    .card:hover {
+      border-color: var(--border-hi);
+      background: var(--surface2);
+      transform: translateY(-2px);
+    }
+
+    .card:hover::before {
+      background: var(--amber);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .card-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: .06em;
+    }
+
+    .card-arrow {
+      font-size: 12px;
+      color: var(--text-muted);
+      transition: color .2s, transform .2s;
+      line-height: 1;
+    }
+
+    .card:hover .card-arrow {
+      color: var(--amber);
+      transform: translate(2px, -2px);
+    }
+
+    .card-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.15;
+      letter-spacing: -.01em;
+      margin-bottom: 8px;
+      flex: 1;
+    }
+
+    .card-desc {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 18px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-date {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: .04em;
+    }
+
+    .card-link {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    /* ── SKELETON ── */
+    .skeleton-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 620px) {
+      .skeleton-grid { grid-template-columns: 1fr; }
+    }
+
+    .skeleton-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 22px 24px 20px;
+      height: 160px;
+    }
+
+    .skel {
+      background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.6s infinite;
+      border-radius: 2px;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .skel-line { height: 10px; margin-bottom: 10px; }
+    .skel-title { height: 20px; width: 65%; margin-bottom: 14px; }
+    .skel-text  { height: 9px; width: 90%; margin-bottom: 8px; }
+    .skel-text2 { height: 9px; width: 70%; }
+
+    /* ── EMPTY / ERROR ── */
+    .state-msg {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+    .state-msg h3 {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+    }
+    .state-msg p {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .06em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: .06em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .footer-links a:hover { color: var(--amber-lt); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE NAV ── */
+    @media (max-width: 520px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 110px 20px 60px; }
+      .content { padding: 0 20px 80px; }
+      footer { padding: 24px 20px; flex-direction: column; gap: 16px; align-items: flex-start; }
+      .nav-links { gap: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-mark"><span>Nick</span>Carbone</div>
+  <ul class="nav-links">
+    <li><a href="https://x.com/nickcarbone" target="_blank" rel="noopener">@nickcarbone</a></li>
+    <li><a href="publish.html">Publisher →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Old Town, Alexandria · VA</p>
+  <h1 class="hero-name"><em>Nick</em><br>Carbone</h1>
+  <div class="hero-rule"></div>
+  <p class="hero-bio">
+    Journalist and media intelligence professional. These are reference pages, guides, and working documents — published for easy access and sharing.
+  </p>
+</section>
+
+<!-- CONTENT -->
+<main class="content">
+
+  <div class="section-header">
+    <span class="section-title">Published Pages</span>
+    <span class="section-count" id="count"></span>
+    <span class="section-spacer"></span>
+    <span class="section-updated" id="last-updated"></span>
+  </div>
+
+  <div id="repo-container">
+    <!-- Skeleton loading state -->
+    <div class="skeleton-grid" id="skeleton">
+      <div class="skeleton-card">
+        <div class="skel skel-line" style="width:30%"></div>
+        <div class="skel skel-title"></div>
+        <div class="skel skel-text"></div>
+        <div class="skel skel-text2"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skel skel-line" style="width:30%"></div>
+        <div class="skel skel-title"></div>
+        <div class="skel skel-text"></div>
+        <div class="skel skel-text2"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skel skel-line" style="width:30%"></div>
+        <div class="skel skel-title"></div>
+        <div class="skel skel-text"></div>
+        <div class="skel skel-text2"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skel skel-line" style="width:30%"></div>
+        <div class="skel skel-title"></div>
+        <div class="skel skel-text"></div>
+        <div class="skel skel-text2"></div>
+      </div>
+    </div>
+    <!-- Grid populated by JS -->
+    <div class="grid" id="grid" style="display:none"></div>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-copy">nickcarbone.github.io</span>
+  <ul class="footer-links">
+    <li><a href="https://github.com/nickcarbone" target="_blank" rel="noopener">GitHub</a></li>
+    <li><a href="https://x.com/nickcarbone" target="_blank" rel="noopener">Twitter / X</a></li>
+    <li><a href="publish.html">Publisher</a></li>
+  </ul>
+</footer>
+
+<script>
+'use strict';
+
+const OWNER   = 'nickcarbone';
+const EXCLUDE = ['nickcarbone.github.io'];
+
+// ── Helpers ──────────────────────────────────────────────────
+
+function deSlug(s) {
+  const UP = { nola:'NOLA', nyc:'NYC', dc:'DC', la:'LA', usa:'USA', uk:'UK', ai:'AI' };
+  return s.split('-')
+    .map(w => UP[w.toLowerCase()] || (w.charAt(0).toUpperCase() + w.slice(1)))
+    .join(' ');
+}
+
+function relTime(iso) {
+  const d = Math.floor((Date.now() - new Date(iso)) / 86400000);
+  if (d === 0) return 'Today';
+  if (d === 1) return 'Yesterday';
+  if (d < 7)  return `${d}d ago`;
+  if (d < 30) return `${Math.floor(d/7)}w ago`;
+  if (d < 365) return `${Math.floor(d/30)}mo ago`;
+  return `${Math.floor(d/365)}y ago`;
+}
+
+function isAutoDesc(s) {
+  if (!s) return true;
+  return s.includes('Published via Publisher') || s === '';
+}
+
+function pad2(n) { return String(n).padStart(2, '0'); }
+
+// ── Fetch repos ──────────────────────────────────────────────
+
+async function loadRepos() {
+  const token = localStorage.getItem('nc_pub_token');
+  const headers = {
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+
+  // Paginate to get all repos (handles > 100)
+  let all = [], page = 1;
+  while (true) {
+    const res = await fetch(
+      `https://api.github.com/users/${OWNER}/repos?type=public&per_page=100&sort=pushed&page=${page}`,
+      { headers }
+    );
+    if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+    const batch = await res.json();
+    all = all.concat(batch);
+    if (batch.length < 100) break;
+    page++;
+  }
+
+  return all
+    .filter(r => r.has_pages && !EXCLUDE.includes(r.name))
+    .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+}
+
+// ── Render ───────────────────────────────────────────────────
+
+function renderCard(repo, index) {
+  const url   = `https://${OWNER}.github.io/${repo.name}/`;
+  const title = deSlug(repo.name);
+  const desc  = isAutoDesc(repo.description) ? '' : repo.description;
+  const date  = relTime(repo.pushed_at);
+  const num   = pad2(index + 1);
+  const delay = (0.55 + index * 0.06).toFixed(2);
+
+  const a = document.createElement('a');
+  a.href    = url;
+  a.target  = '_blank';
+  a.rel     = 'noopener noreferrer';
+  a.className = 'card';
+  a.style.animationDelay = `${delay}s`;
+
+  a.innerHTML = `
+    <div class="card-top">
+      <span class="card-num">${num}</span>
+      <span class="card-arrow">↗</span>
+    </div>
+    <div class="card-title">${title}</div>
+    ${desc ? `<p class="card-desc">${desc}</p>` : ''}
+    <div class="card-footer">
+      <span class="card-date">${date}</span>
+      <span class="card-link">View →</span>
+    </div>
+  `;
+
+  return a;
+}
+
+function showEmpty() {
+  document.getElementById('skeleton').style.display = 'none';
+  document.getElementById('grid').style.display = 'none';
+  document.getElementById('repo-container').innerHTML = `
+    <div class="state-msg">
+      <h3>Nothing published yet.</h3>
+      <p>Use the Publisher to deploy your first page.</p>
+    </div>
+  `;
+}
+
+function showError(msg) {
+  document.getElementById('skeleton').style.display = 'none';
+  document.getElementById('grid').style.display = 'none';
+  document.getElementById('repo-container').innerHTML = `
+    <div class="state-msg">
+      <h3>Couldn't load pages.</h3>
+      <p>${msg}</p>
+    </div>
+  `;
+}
+
+// ── Init ─────────────────────────────────────────────────────
+
+(async () => {
+  try {
+    const repos = await loadRepos();
+
+    document.getElementById('skeleton').style.display = 'none';
+
+    if (!repos.length) { showEmpty(); return; }
+
+    document.getElementById('count').textContent = `${repos.length} item${repos.length !== 1 ? 's' : ''}`;
+    document.getElementById('last-updated').textContent =
+      `Updated ${relTime(repos[0].pushed_at).toLowerCase()}`;
+
+    const grid = document.getElementById('grid');
+    repos.forEach((repo, i) => grid.appendChild(renderCard(repo, i)));
+    grid.style.display = 'grid';
+
+  } catch (err) {
+    showError(err.message || 'GitHub API request failed.');
+  }
+})();
+</script>
+
+</body>
+</html>
