@@ -1,7 +1,23 @@
 {
-  "generated": "2026-06-09T09:56:27.915Z",
-  "count": 31,
+  "generated": "2026-06-09T15:18:15.158Z",
+  "count": 33,
   "pages": [
+    {
+      "slug": "hidden-carry",
+      "url": "https://nickcarbone.github.io/hidden-carry/",
+      "title": "Hidden Carry",
+      "description": "nickcarbone.github.io/hidden-carry/",
+      "updated": "2026-06-09T12:19:53Z",
+      "created": "2026-06-09T12:19:45Z"
+    },
+    {
+      "slug": "private-dining",
+      "url": "https://nickcarbone.github.io/private-dining/",
+      "title": "Private Dining",
+      "description": "nickcarbone.github.io/private-dining/",
+      "updated": "2026-06-09T12:18:57Z",
+      "created": "2026-06-09T12:18:48Z"
+    },
     {
       "slug": "2026-family-calendar",
       "url": "https://nickcarbone.github.io/2026-family-calendar/",
