@@ -1,7 +1,23 @@
 {
-  "generated": "2026-06-09T20:13:43.142Z",
-  "count": 33,
+  "generated": "2026-06-10T04:17:46.710Z",
+  "count": 35,
   "pages": [
+    {
+      "slug": "white-wine",
+      "url": "https://nickcarbone.github.io/white-wine/",
+      "title": "White Wine",
+      "description": "nickcarbone.github.io/white-wine/",
+      "updated": "2026-06-10T01:45:17Z",
+      "created": "2026-06-10T01:45:09Z"
+    },
+    {
+      "slug": "mobile-field-guide",
+      "url": "https://nickcarbone.github.io/mobile-field-guide/",
+      "title": "Mobile Field Guide",
+      "description": "nickcarbone.github.io/mobile-field-guide/",
+      "updated": "2026-06-10T01:44:58Z",
+      "created": "2026-06-10T01:44:51Z"
+    },
     {
       "slug": "hidden-carry",
       "url": "https://nickcarbone.github.io/hidden-carry/",
