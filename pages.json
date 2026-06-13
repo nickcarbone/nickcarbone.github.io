@@ -1,7 +1,15 @@
 {
-  "generated": "2026-06-13T14:13:30.660Z",
-  "count": 36,
+  "generated": "2026-06-13T19:44:59.213Z",
+  "count": 37,
   "pages": [
+    {
+      "slug": "gonzo-decemberists",
+      "url": "https://nickcarbone.github.io/gonzo-decemberists/",
+      "title": "Gonzo Decemberists",
+      "description": "nickcarbone.github.io/gonzo-decemberists/",
+      "updated": "2026-06-13T14:37:09Z",
+      "created": "2026-06-13T14:37:02Z"
+    },
     {
       "slug": "fathers-day-guide",
       "url": "https://nickcarbone.github.io/fathers-day-guide/",
