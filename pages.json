@@ -1,7 +1,15 @@
 {
-  "generated": "2026-06-12T20:19:33.224Z",
-  "count": 35,
+  "generated": "2026-06-13T04:21:18.453Z",
+  "count": 36,
   "pages": [
+    {
+      "slug": "fathers-day-guide",
+      "url": "https://nickcarbone.github.io/fathers-day-guide/",
+      "title": "Fathers Day Guide",
+      "description": "nickcarbone.github.io/fathers-day-guide/",
+      "updated": "2026-06-12T20:24:45Z",
+      "created": "2026-06-12T20:24:35Z"
+    },
     {
       "slug": "white-wine",
       "url": "https://nickcarbone.github.io/white-wine/",
