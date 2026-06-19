@@ -1,7 +1,23 @@
 {
-  "generated": "2026-06-19T15:33:14.988Z",
-  "count": 38,
+  "generated": "2026-06-19T19:55:53.634Z",
+  "count": 40,
   "pages": [
+    {
+      "slug": "hop-guide-v1",
+      "url": "https://nickcarbone.github.io/hop-guide-v1/",
+      "title": "Hop Guide V1",
+      "description": "nickcarbone.github.io/hop-guide-v1/",
+      "updated": "2026-06-19T18:40:44Z",
+      "created": "2026-06-19T18:40:36Z"
+    },
+    {
+      "slug": "arete",
+      "url": "https://nickcarbone.github.io/arete/",
+      "title": "Arete",
+      "description": "nickcarbone.github.io/arete/",
+      "updated": "2026-06-19T17:51:27Z",
+      "created": "2026-06-19T17:51:19Z"
+    },
     {
       "slug": "pink-panthers",
       "url": "https://nickcarbone.github.io/pink-panthers/",
@@ -70,7 +86,7 @@
       "slug": "rotisserie",
       "url": "https://nickcarbone.github.io/rotisserie/",
       "title": "Rotisserie",
-      "description": "Published via Publisher �� nickcarbone.github.io/rotisserie/",
+      "description": "nickcarbone.github.io/rotisserie/",
       "updated": "2026-06-07T23:55:20Z",
       "created": "2026-06-07T23:55:13Z"
     },
