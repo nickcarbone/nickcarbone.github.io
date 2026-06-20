@@ -1,7 +1,15 @@
 {
-  "generated": "2026-06-19T19:55:53.634Z",
-  "count": 40,
+  "generated": "2026-06-20T04:14:17.777Z",
+  "count": 41,
   "pages": [
+    {
+      "slug": "hop-guide-v2",
+      "url": "https://nickcarbone.github.io/hop-guide-v2/",
+      "title": "Hop Guide V2",
+      "description": "nickcarbone.github.io/hop-guide-v2/",
+      "updated": "2026-06-19T23:03:51Z",
+      "created": "2026-06-19T23:03:46Z"
+    },
     {
       "slug": "hop-guide-v1",
       "url": "https://nickcarbone.github.io/hop-guide-v1/",
