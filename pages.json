@@ -1,7 +1,15 @@
 {
-  "generated": "2026-06-21T14:24:18.182Z",
-  "count": 42,
+  "generated": "2026-06-21T19:52:10.271Z",
+  "count": 43,
   "pages": [
+    {
+      "slug": "dark-floors",
+      "url": "https://nickcarbone.github.io/dark-floors/",
+      "title": "Dark Floors",
+      "description": "nickcarbone.github.io/dark-floors/",
+      "updated": "2026-06-21T14:53:03Z",
+      "created": "2026-06-21T14:52:54Z"
+    },
     {
       "slug": "wirecard",
       "url": "https://nickcarbone.github.io/wirecard/",
