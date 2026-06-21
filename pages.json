@@ -1,7 +1,15 @@
 {
-  "generated": "2026-06-21T09:58:30.548Z",
-  "count": 41,
+  "generated": "2026-06-21T14:24:18.182Z",
+  "count": 42,
   "pages": [
+    {
+      "slug": "wirecard",
+      "url": "https://nickcarbone.github.io/wirecard/",
+      "title": "Wirecard",
+      "description": "nickcarbone.github.io/wirecard/",
+      "updated": "2026-06-21T14:20:03Z",
+      "created": "2026-06-21T14:19:55Z"
+    },
     {
       "slug": "hop-guide-v2",
       "url": "https://nickcarbone.github.io/hop-guide-v2/",
