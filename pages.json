@@ -1,7 +1,15 @@
 {
-  "generated": "2026-06-27T19:37:19.470Z",
-  "count": 43,
+  "generated": "2026-06-28T04:22:36.233Z",
+  "count": 44,
   "pages": [
+    {
+      "slug": "mobile-concepts",
+      "url": "https://nickcarbone.github.io/mobile-concepts/",
+      "title": "Mobile Concepts",
+      "description": "nickcarbone.github.io/mobile-concepts/",
+      "updated": "2026-06-27T22:11:23Z",
+      "created": "2026-06-27T22:11:15Z"
+    },
     {
       "slug": "dark-floors",
       "url": "https://nickcarbone.github.io/dark-floors/",
