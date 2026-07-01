@@ -1,7 +1,23 @@
 {
-  "generated": "2026-06-30T20:06:14.185Z",
-  "count": 47,
+  "generated": "2026-07-01T04:25:10.284Z",
+  "count": 49,
   "pages": [
+    {
+      "slug": "performance-spaces",
+      "url": "https://nickcarbone.github.io/performance-spaces/",
+      "title": "Performance Spaces",
+      "description": "nickcarbone.github.io/performance-spaces/",
+      "updated": "2026-07-01T02:24:15Z",
+      "created": "2026-07-01T02:24:06Z"
+    },
+    {
+      "slug": "europe-pieds-a-terre-2",
+      "url": "https://nickcarbone.github.io/europe-pieds-a-terre-2/",
+      "title": "Europe Pieds A Terre 2",
+      "description": "nickcarbone.github.io/europe-pieds-a-terre-2/",
+      "updated": "2026-07-01T02:13:07Z",
+      "created": "2026-07-01T02:09:19Z"
+    },
     {
       "slug": "europe-pieds-a-terre",
       "url": "https://nickcarbone.github.io/europe-pieds-a-terre/",
