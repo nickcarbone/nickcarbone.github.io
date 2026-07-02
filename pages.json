@@ -1,7 +1,23 @@
 {
-  "generated": "2026-07-01T20:03:41.832Z",
-  "count": 49,
+  "generated": "2026-07-02T04:04:09.335Z",
+  "count": 51,
   "pages": [
+    {
+      "slug": "europe-flats",
+      "url": "https://nickcarbone.github.io/europe-flats/",
+      "title": "Europe Flats",
+      "description": "nickcarbone.github.io/europe-flats/",
+      "updated": "2026-07-02T01:12:08Z",
+      "created": "2026-07-02T01:11:58Z"
+    },
+    {
+      "slug": "slop-bowl",
+      "url": "https://nickcarbone.github.io/slop-bowl/",
+      "title": "Slop Bowl",
+      "description": "nickcarbone.github.io/slop-bowl/",
+      "updated": "2026-07-01T20:38:04Z",
+      "created": "2026-07-01T20:37:54Z"
+    },
     {
       "slug": "performance-spaces",
       "url": "https://nickcarbone.github.io/performance-spaces/",
