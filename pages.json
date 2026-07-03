@@ -1,7 +1,15 @@
 {
-  "generated": "2026-07-02T19:41:00.430Z",
-  "count": 51,
+  "generated": "2026-07-03T03:50:39.630Z",
+  "count": 52,
   "pages": [
+    {
+      "slug": "brewing-itinerary",
+      "url": "https://nickcarbone.github.io/brewing-itinerary/",
+      "title": "Brewing Itinerary",
+      "description": "nickcarbone.github.io/brewing-itinerary/",
+      "updated": "2026-07-03T01:39:59Z",
+      "created": "2026-07-03T01:39:50Z"
+    },
     {
       "slug": "europe-flats",
       "url": "https://nickcarbone.github.io/europe-flats/",
