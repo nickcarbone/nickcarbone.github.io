@@ -6,6 +6,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://nickcarbone.github.io/elsewhere-location-analysis/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://nickcarbone.github.io/brewing-itinerary/</loc>
     <lastmod>2026-07-03</lastmod>
     <priority>0.8</priority>

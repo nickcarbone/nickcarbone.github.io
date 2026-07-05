@@ -1,7 +1,15 @@
 {
-  "generated": "2026-07-05T13:53:03.093Z",
-  "count": 52,
+  "generated": "2026-07-05T19:26:29.720Z",
+  "count": 53,
   "pages": [
+    {
+      "slug": "elsewhere-location-analysis",
+      "url": "https://nickcarbone.github.io/elsewhere-location-analysis/",
+      "title": "Elsewhere Location Analysis",
+      "description": "nickcarbone.github.io/elsewhere-location-analysis/",
+      "updated": "2026-07-05T18:42:28Z",
+      "created": "2026-07-05T18:42:21Z"
+    },
     {
       "slug": "brewing-itinerary",
       "url": "https://nickcarbone.github.io/brewing-itinerary/",
