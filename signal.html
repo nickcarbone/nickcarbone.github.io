@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIGNAL — Global Situational Awareness</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #0B0F14;
+  --panel: #11161C;
+  --panel-alt: #161C24;
+  --panel-raised: #1B222B;
+  --border: #232B34;
+  --border-soft: #1A2129;
+  --text-primary: #E6EBF0;
+  --text-muted: #7C8B99;
+  --text-dim: #4B5762;
+  --accent-info: #4C8DFF;
+  --accent-low: #3ECF8E;
+  --accent-mid: #E8A33D;
+  --accent-high: #E5484D;
+  --accent-space: #A78BFA;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--panel); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+a { color: var(--accent-info); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+button, input {
+  font-family: var(--font-body);
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 3px;
+}
+
+button:focus-visible, input:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent-info);
+  outline-offset: 1px;
+}
+
+/* ============ HEADER ============ */
+header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  flex-shrink: 0;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.logo .dot { color: var(--accent-info); }
+
+#waveform {
+  flex: 1;
+  height: 32px;
+  min-width: 120px;
+}
+
+.header-stat {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.3;
+}
+.header-stat b { color: var(--text-primary); font-size: 13px; }
+
+.health-strip {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.health-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--text-dim);
+  flex-shrink: 0;
+}
+.health-dot.live { background: var(--accent-low); box-shadow: 0 0 6px var(--accent-low); }
+.health-dot.stale { background: var(--accent-mid); }
+.health-dot.error { background: var(--accent-high); }
+.health-strip-wrap { position: relative; display:flex; align-items:center; }
+.health-tip {
+  position: absolute; top: 20px; right: 0;
+  background: var(--panel-raised); border: 1px solid var(--border);
+  padding: 8px 10px; border-radius: 4px; font-size: 11px;
+  font-family: var(--font-mono); white-space: nowrap;
+  display: none; z-index: 3000; color: var(--text-muted);
+}
+/* z-index was 50 — lower than the map's own internal panes (~200-700) and
+   the layer toggle panel (500), so the left portion of this tooltip was
+   rendering BEHIND them rather than being clipped by any overflow. Not a
+   width/positioning bug — a stacking-order one. */
+.health-strip-wrap:hover .health-tip, .health-tip.open { display: block; }
+.health-tip div { display:flex; justify-content:space-between; gap:12px; padding:1px 0; }
+
+/* ============ MAIN GRID ============ */
+main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 300px 1fr 340px;
+  transition: grid-template-columns 0.22s ease;
+  gap: 1px;
+  background: var(--border);
+  min-height: 0;
+}
+
+section.panel {
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.panel-head {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-soft);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.panel-head .count {
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  background: var(--panel-raised);
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+.ph-label { flex: 1; }
+.collapse-btn {
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  flex-shrink: 0;
+  padding: 0;
+}
+.collapse-btn:hover { color: var(--text-primary); border-color: var(--accent-info); }
+
+/* Column-level collapse: whole rail narrows to a slim tab, label rotates */
+.panel.is-collapsed { overflow: hidden; }
+.panel.is-collapsed .search-box { display: none; }
+.panel.is-collapsed .panel-head {
+  flex-direction: column;
+  height: 100%;
+  padding: 12px 6px;
+  gap: 10px;
+  justify-content: flex-start;
+  border-bottom: none;
+}
+.panel.is-collapsed .panel-head .ph-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+.panel.is-collapsed .panel-head .count { display: none; }
+.panel.is-collapsed .collapse-btn { writing-mode: horizontal-tb; }
+
+.panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+/* ============ LEFT: CRITICAL RAIL ============ */
+.crit-card {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--text-dim);
+  background: var(--panel);
+  border-radius: 3px;
+  padding: 9px 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.crit-card:hover { border-color: var(--accent-info); }
+.crit-card.sev-high { border-left-color: var(--accent-high); }
+.crit-card.sev-mid { border-left-color: var(--accent-mid); }
+.crit-card.sev-low { border-left-color: var(--accent-low); }
+
+/* "New" highlight glow — applied for HIGHLIGHT_MS after an item is first
+   seen this session, then removed on the next render as it ages out. */
+@keyframes newGlow {
+  0%, 100% { box-shadow: 0 0 0 1px var(--accent-info), 0 0 12px rgba(76,141,255,0.35); }
+  50% { box-shadow: 0 0 0 1px var(--accent-info), 0 0 4px rgba(76,141,255,0.15); }
+}
+.crit-card.is-new, .tl-item.is-new {
+  animation: newGlow 1.8s ease-in-out infinite;
+  border-radius: 3px;
+}
+.tl-item.is-new { padding-left: 6px; padding-right: 6px; margin: 0 -6px; }
+
+/* Map marker pulse — same "new" window, breathing halo on the marker's own
+   stroke (Leaflet circleMarkers render as SVG <path>, so stroke-width /
+   stroke-opacity are the properties that animate reliably cross-browser). */
+@keyframes markerPulse {
+  0%, 100% { stroke-width: 1.2px; stroke-opacity: 1; }
+  50% { stroke-width: 7px; stroke-opacity: 0.2; }
+}
+.leaflet-interactive.marker-pulse {
+  animation: markerPulse 1.4s ease-in-out infinite;
+}
+
+/* Toast stack — transient "just arrived" banners, independent of the
+   longer-lived glow above. Stacks top-down, newest on top. */
+.toast-stack {
+  position: fixed;
+  top: 56px;
+  right: 14px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 320px;
+  pointer-events: none;
+}
+@keyframes toastIn {
+  from { transform: translateX(24px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.toast {
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-info);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 12px;
+  animation: toastIn 0.25s ease-out;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.toast.sev-high { border-left-color: var(--accent-high); }
+.toast.sev-mid { border-left-color: var(--accent-mid); }
+.toast.sev-low { border-left-color: var(--accent-low); }
+.toast-src {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+}
+.toast-title { color: var(--text-primary); line-height: 1.3; }
+
+.crit-card .src-badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.crit-card .title { font-size: 13px; margin: 3px 0 4px; line-height: 1.35; }
+.crit-card .meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+}
+.empty-note {
+  color: var(--text-dim);
+  font-size: 12px;
+  padding: 16px 10px;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+/* ============ CENTER: MAP ============ */
+.map-wrap { position: relative; flex: 1; min-height: 0; }
+#map { position: absolute; inset: 0; background: #0B0F14; }
+
+.layer-toggles {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 500;
+  background: rgba(17, 22, 28, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  backdrop-filter: blur(4px);
+  max-width: 230px;
+}
+.layer-toggles .lt-title {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 9px;
+  margin-bottom: 6px;
+}
+.layer-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+  color: var(--text-muted);
+  position: relative;
+}
+.layer-row-main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  cursor: pointer;
+  min-width: 0;
+}
+.layer-row-main:hover, .layer-row-main:hover ~ .info-btn { color: var(--text-primary); }
+.layer-row input { accent-color: var(--accent-info); cursor: pointer; flex-shrink: 0; }
+.layer-swatch { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.layer-label { flex: 1; white-space: nowrap; }
+.notify-check { margin-left: 4px; accent-color: var(--accent-mid) !important; }
+
+.info-btn {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--panel-alt);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-style: italic;
+  font-size: 10px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+}
+.info-btn:hover { color: var(--accent-info); border-color: var(--accent-info); }
+
+/* Shown on hover (desktop) via CSS, and toggled with .open (tap, any device)
+   via JS — covers both input modes, unlike a native title attribute which
+   has no hover event to trigger it on touch devices at all. */
+.info-tip {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 4px;
+  z-index: 20;
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 10px;
+  width: 210px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-muted);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+.info-btn:hover + .info-tip,
+.info-tip.open {
+  display: block;
+}
+
+.map-footnote {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  z-index: 500;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  background: rgba(17,22,28,0.85);
+  padding: 3px 8px;
+  border-radius: 3px;
+  max-width: 60%;
+}
+
+/* ============ RIGHT: TIMELINE / FILTER ============ */
+.search-box {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-soft);
+  flex-shrink: 0;
+}
+.search-box input {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+.tl-item {
+  border-bottom: 1px solid var(--border-soft);
+  padding: 9px 4px;
+  font-size: 12px;
+}
+.tl-item .row1 { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
+.tl-item .src {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1px 5px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.tl-item .time { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); white-space:nowrap; }
+.tl-item .title { margin-top: 4px; line-height: 1.4; color: var(--text-primary); }
+.tl-item .verify {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-dim);
+}
+.tl-item .verify.unverified { color: #A98A45; }
+.tl-item a.src-link { font-size: 10px; }
+
+/* source badge colors */
+.badge-usgs { background: #1F3A2E; color: var(--accent-low); }
+.badge-emsc { background: #1F3A2E; color: var(--accent-low); }
+.badge-gdacs { background: #3A2A1F; color: var(--accent-mid); }
+.badge-firms { background: #3A241F; color: #E8703D; }
+.badge-nws { background: #2A2A3A; color: var(--accent-info); }
+.badge-launch { background: #2E2640; color: var(--accent-space); }
+.badge-gdelt { background: #262A30; color: var(--text-muted); }
+.badge-reliefweb { background: #262A30; color: var(--text-muted); }
+
+/* ============ BOTTOM TICKER ============ */
+.ticker-wrap {
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+  height: 34px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.ticker-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent-high);
+  background: var(--panel);
+  padding: 0 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+  letter-spacing: 0.08em;
+  z-index: 2;
+}
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker-scroll 90s linear infinite;
+  will-change: transform;
+}
+/* Pausing on hover is necessary, not cosmetic — a headline scrolling past
+   at speed can't realistically be clicked otherwise. */
+.ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+.ticker-track a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.ticker-track a:hover { color: var(--text-primary); text-decoration: underline; }
+.ticker-track a b { color: var(--text-primary); font-weight: 500; }
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; overflow-x: auto; }
+}
+
+/* Leaflet dark popup overrides */
+.leaflet-popup-content-wrapper {
+  background: var(--panel-raised);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  font-family: var(--font-body);
+  font-size: 12px;
+}
+.leaflet-popup-tip { background: var(--panel-raised); }
+.leaflet-popup-content { margin: 10px 12px; line-height: 1.5; }
+.leaflet-popup-content .pop-src { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); text-transform:uppercase; }
+.leaflet-popup-content .pop-title { font-weight: 600; margin: 4px 0; }
+.leaflet-popup-content .pop-meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+.leaflet-container a.leaflet-popup-close-button { color: var(--text-muted); }
+
+@media (max-width: 980px) {
+  main { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }
+  .map-wrap { min-height: 320px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">SIGNAL<span class="dot">.</span></div>
+  <canvas id="waveform"></canvas>
+  <div class="health-strip-wrap">
+    <div class="health-strip" id="healthStrip"></div>
+    <div class="health-tip" id="healthTip"></div>
+  </div>
+  <div class="header-stat">
+    <span>ACTIVE EVENTS</span>
+    <b id="statEventCount">—</b>
+  </div>
+  <div class="header-stat">
+    <span>UTC</span>
+    <b id="statClock">—</b>
+  </div>
+</header>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<main id="mainGrid">
+  <section class="panel" id="leftRail">
+    <div class="panel-head">
+      <span class="ph-label">Highest-Priority Signals</span>
+      <span class="count" id="critCount">0</span>
+      <button class="collapse-btn" id="btnToggleLeft" title="Collapse panel">−</button>
+    </div>
+    <div class="panel-body" id="critList"></div>
+  </section>
+
+  <section class="panel map-wrap">
+    <div id="map"></div>
+    <div class="layer-toggles" id="layerToggles"></div>
+    <div class="map-footnote">Raw feed — no composite scoring. Severity shown is each source's own native field.</div>
+  </section>
+
+  <section class="panel" id="rightRail">
+    <div class="panel-head">
+      <span class="ph-label">Timeline</span>
+      <span class="count" id="tlCount">0</span>
+      <button class="collapse-btn" id="btnToggleTimeline" title="Collapse panel">−</button>
+    </div>
+    <div class="search-box" id="tlSearchBox"><input id="searchInput" placeholder="Filter by keyword, country, source…"></div>
+    <div class="panel-body" id="tlList" style="flex: 2;"></div>
+    <div class="panel-head" style="border-top: 1px solid var(--border-soft);">
+      <span class="ph-label">Upcoming</span>
+      <span class="count" id="upCount">0</span>
+      <button class="collapse-btn" id="btnToggleUpcoming" title="Collapse panel">−</button>
+    </div>
+    <div class="panel-body" id="upList" style="flex: 1; max-height: 240px;"></div>
+  </section>
+</main>
+
+<div class="ticker-wrap">
+  <div class="ticker-label">LIVE FEED</div>
+  <div class="ticker-track" id="tickerTrack"><span>Initializing sources…</span></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+// ============================================================
+// SIGNAL — configuration
+// ============================================================
+const CONFIG = {
+  // Free MAP_KEY from https://firms.modaps.eosdis.nasa.gov/api/map_key/
+  // Sign up with your email — arrives in minutes, no cost, no card.
+  FIRMS_MAP_KEY: "PASTE_YOUR_FREE_FIRMS_KEY_HERE",
+
+  // ReliefWeb now requires a pre-approved appname (policy changed Nov 2025).
+  // Request one at https://apidoc.reliefweb.int/parameters#appname — once
+  // approved, paste it below and set RELIEFWEB_ENABLED to true.
+  RELIEFWEB_ENABLED: false,
+  RELIEFWEB_APPNAME: "",
+
+  REFRESH: {
+    usgs: 60_000,
+    emsc: 60_000,
+    gdacs: 5 * 60_000,
+    firms: 10 * 60_000,
+    nws: 2 * 60_000,
+    launch: 30 * 60_000,
+    gdelt: 60_000,
+    reliefweb: 5 * 60_000,
+  }
+};
+
+const STATE = {
+  events: [],
+  sourceStatus: {},
+  activeLayers: {},
+  waveformHistory: [],
+  searchTerm: "",
+  collapsed: { left: false, timeline: false, upcoming: false },
+  // Per-source "alert me on new" toggle. Defaults on for sources that carry
+  // a real severity field (i.e. things that behave like alerts); off for
+  // scheduled/unverified sources where "new" doesn't mean "urgent" —
+  // toggleable per-source in the UI either way.
+  notifyEnabled: { usgs: true, emsc: true, gdacs: true, firms: true, nws: true, launch: false, gdelt: false, reliefweb: false },
+  seenIds: new Map(),   // event id -> first-seen timestamp (ms), persists across refreshes this session
+  toasts: [],           // transient toast queue: {id, title, source, severity, expiresAt}
+};
+
+const SOURCES = {
+  usgs:      { label: "USGS",       badge: "badge-usgs",      color: "#3ECF8E", verified: "Instrumented — automatic", describes: "Earthquakes worldwide — instrumented, near real-time (US Geological Survey)" },
+  emsc:      { label: "EMSC",       badge: "badge-emsc",      color: "#3ECF8E", verified: "Instrumented — automatic", describes: "Earthquakes, Europe/Mediterranean focus — instrumented, near real-time (Euro-Med Seismological Centre)" },
+  gdacs:     { label: "GDACS",      badge: "badge-gdacs",     color: "#E8A33D", verified: "Expert-reviewed (GDO)", describes: "Multi-hazard disasters — cyclones, floods, volcanoes, drought, wildfire (expert-reviewed alert levels)" },
+  firms:     { label: "FIRMS",      badge: "badge-firms",     color: "#E8703D", verified: "Satellite thermal detection", describes: "Wildfire / heat-source detections via satellite (NASA FIRMS)" },
+  nws:       { label: "NWS",        badge: "badge-nws",       color: "#4C8DFF", verified: "Official government alert", describes: "Severe weather alerts — tornadoes, floods, storms — US only (National Weather Service)" },
+  launch:    { label: "LAUNCH",     badge: "badge-launch",    color: "#A78BFA", verified: "Official schedule (LL2)", describes: "Scheduled rocket launches worldwide (The Space Devs / Launch Library 2)" },
+  gdelt:     { label: "GDELT",      badge: "badge-gdelt",     color: "#7C8B99", verified: "Auto-coded from news — unverified", describes: "Global news headlines — auto-coded from worldwide media, not human-verified (GDELT)" },
+  reliefweb: { label: "RELIEFWEB",  badge: "badge-reliefweb", color: "#7C8B99", verified: "Curated humanitarian report", describes: "Humanitarian/crisis reports, curated (ReliefWeb) — pending your API approval" },
+};
+
+for (const key of Object.keys(SOURCES)) {
+  STATE.sourceStatus[key] = { status: "pending", lastFetch: null, error: null };
+  STATE.activeLayers[key] = true;
+}
+
+function uid(prefix, raw) {
+  return prefix + "_" + String(raw).replace(/[^a-zA-Z0-9]/g, "").slice(0, 40);
+}
+function timeAgo(ts) {
+  // Bidirectional: handles both past events ("3h ago") and future-scheduled
+  // ones like rocket launches ("in 3h"). The previous version assumed ts was
+  // always in the past and printed raw negative seconds for future times.
+  const deltaMs = ts - Date.now();
+  const future = deltaMs >= 0;
+  const s = Math.floor(Math.abs(deltaMs) / 1000);
+  let unit;
+  if (s < 60) unit = s + "s";
+  else if (s < 3600) unit = Math.floor(s / 60) + "m";
+  else if (s < 86400) unit = Math.floor(s / 3600) + "h";
+  else if (s < 2592000) unit = Math.floor(s / 86400) + "d";
+  else unit = Math.floor(s / 2592000) + "mo";
+  return future ? ("in " + unit) : (unit + " ago");
+}
+function fmtUTC(ts) {
+  return new Date(ts).toISOString().replace('T', ' ').substring(0, 19) + " UTC";
+}
+async function safeFetch(url, opts) {
+  opts = opts || {};
+  const res = await fetch(url, opts);
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  return res;
+}
+function markStatus(key, status, error) {
+  STATE.sourceStatus[key] = { status: status, lastFetch: Date.now(), error: error || null };
+  renderHealthStrip();
+}
+
+// Default: a high/mid-severity signal stops counting as "highest priority"
+// after this long, unless a source-specific rule (see GDACS below) says
+// otherwise. This is a blanket safety net, not the primary mechanism.
+const DEFAULT_CRITICAL_WINDOW_MS = 7 * 86400000;
+
+async function fetchUSGS() {
+  const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson";
+  const res = await safeFetch(url);
+  const data = await res.json();
+  return data.features.map(function(f) {
+    const p = f.properties;
+    let severity = "low";
+    if (p.alert === "red" || p.mag >= 6.5) severity = "high";
+    else if (p.alert === "orange" || p.alert === "yellow" || p.mag >= 5.5) severity = "mid";
+    return {
+      id: uid("usgs", f.id),
+      source: "usgs",
+      lat: f.geometry.coordinates[1],
+      lon: f.geometry.coordinates[0],
+      time: p.time,
+      title: "Earthquake M" + p.mag.toFixed(1) + " — " + p.place,
+      url: p.url,
+      severity: severity,
+      meta: "M" + p.mag.toFixed(1) + " · depth " + f.geometry.coordinates[2].toFixed(0) + "km" + (p.alert ? " · PAGER: " + p.alert : ""),
+      criticalWindowEnd: p.time + 3 * 86400000, // earthquakes: 72h aftermath window
+    };
+  });
+}
+
+async function fetchEMSC() {
+  const url = "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&limit=75&orderby=time&minmag=3.5";
+  const res = await safeFetch(url);
+  const data = await res.json();
+  return (data.features || []).map(function(f) {
+    const p = f.properties;
+    let severity = "low";
+    if (p.mag >= 6.0) severity = "high";
+    else if (p.mag >= 4.5) severity = "mid";
+    const t = new Date(p.time).getTime();
+    return {
+      id: uid("emsc", f.id),
+      source: "emsc",
+      lat: p.lat,
+      lon: p.lon,
+      time: t,
+      title: "Earthquake M" + p.mag + " — " + p.flynn_region,
+      url: "https://www.seismicportal.eu/eventdetail/" + p.unid + ".html",
+      severity: severity,
+      meta: "M" + p.mag + " " + p.magtype + " · depth " + p.depth + "km · " + p.auth,
+      criticalWindowEnd: t + 3 * 86400000,
+    };
+  });
+}
+
+// GDACS gives each event TWO severity fields: `alertlevel` is the event's
+// all-time PEAK severity and never downgrades, while `episodealertlevel` is
+// its CURRENT severity for the active episode. Using the former is what
+// caused resolved, year-old events to still display as "Red" indefinitely.
+// It also gives an authoritative `iscurrent` flag and a `todate` (expected
+// end). Relevance windows below are grace periods AFTER an event stops
+// being "current", sized to how long real-world impact/response typically
+// continues for that hazard type — not arbitrary.
+const GDACS_TYPE_LABEL = { EQ: "Earthquake", TC: "Tropical Cyclone", FL: "Flood", DR: "Drought", VO: "Volcanic Activity", WF: "Wildfire" };
+const GDACS_GRACE_MS = {
+  EQ: 3 * 86400000,    // 72h  — aftermath/aftershock window
+  TC: 5 * 86400000,    // 5d   — storms take days to fully pass + assess
+  FL: 5 * 86400000,    // 5d
+  WF: 4 * 86400000,    // 4d
+  VO: 14 * 86400000,   // 14d  — volcanic risk lingers longer
+  DR: 14 * 86400000,
+};
+const GDACS_HARD_CUTOFF_MS = 30 * 86400000; // absolute backstop regardless of type
+
+async function fetchGDACS() {
+  // Bound the query server-side too (last 30 days) rather than pulling
+  // GDACS's entire multi-year archive on every poll.
+  const to = new Date();
+  const from = new Date(to.getTime() - GDACS_HARD_CUTOFF_MS);
+  const fmt = (d) => d.toISOString().slice(0, 10);
+  const url = `https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?fromDate=${fmt(from)}&toDate=${fmt(to)}`;
+  const res = await safeFetch(url);
+  const data = await res.json();
+  return (data.features || []).map(function(f) {
+    const p = f.properties;
+    const episodeColor = (p.episodealertlevel || p.alertlevel || "").toLowerCase();
+    let severity = "low";
+    if (episodeColor === "red") severity = "high";
+    else if (episodeColor === "orange") severity = "mid";
+    const coords = f.geometry && f.geometry.coordinates;
+    if (!coords) return null;
+
+    const fromMs = p.fromdate ? new Date(p.fromdate).getTime() : Date.now();
+    const refMs = p.todate ? new Date(p.todate).getTime() : fromMs;
+    const grace = GDACS_GRACE_MS[p.eventtype] || DEFAULT_CRITICAL_WINDOW_MS;
+    const isOngoing = p.iscurrent === "true";
+    let criticalWindowEnd = isOngoing ? (Date.now() + 3600000) : (refMs + grace);
+    if (Date.now() - fromMs > GDACS_HARD_CUTOFF_MS) criticalWindowEnd = 0; // hard backstop
+
+    const typeLabel = GDACS_TYPE_LABEL[p.eventtype] || p.eventtype;
+    return {
+      id: uid("gdacs", p.eventid + "_" + p.episodeid),
+      source: "gdacs",
+      lat: coords[1],
+      lon: coords[0],
+      time: fromMs,
+      title: p.name || p.eventname || typeLabel, // p.name is GDACS's own plain-English label, e.g. "Tropical Cyclone BAVI-26"
+      url: (p.url && p.url.report) || "https://www.gdacs.org",
+      severity: severity,
+      meta: typeLabel + " · current alert: " + (p.episodealertlevel || "n/a") + (isOngoing ? " (ongoing)" : " (resolved)"),
+      criticalWindowEnd: criticalWindowEnd,
+    };
+  }).filter(Boolean);
+}
+
+async function fetchFIRMS() {
+  if (!CONFIG.FIRMS_MAP_KEY || CONFIG.FIRMS_MAP_KEY.indexOf("PASTE_") === 0) {
+    throw new Error("No FIRMS key configured");
+  }
+  const url = "https://firms.modaps.eosdis.nasa.gov/api/area/csv/" + CONFIG.FIRMS_MAP_KEY + "/VIIRS_SNPP_NRT/world/1";
+  const res = await safeFetch(url);
+  const text = await res.text();
+  const lines = text.trim().split("\n");
+  if (lines.length < 2) return [];
+  const header = lines[0].split(",");
+  const latIdx = header.indexOf("latitude");
+  const lonIdx = header.indexOf("longitude");
+  const confIdx = header.indexOf("confidence");
+  const frpIdx = header.indexOf("frp");
+  const dateIdx = header.indexOf("acq_date");
+  const timeIdx = header.indexOf("acq_time");
+  const rows = lines.slice(1);
+  // Sample the top ~1500 detections by radiative power (FRP) rather than by
+  // row position. The old approach (every Nth row) let the same fire pixel
+  // drift in and out of the sample between polls just because total row
+  // count shifted slightly — which would have caused it to falsely fire a
+  // "new" notification repeatedly. Sorting by FRP keeps genuinely
+  // significant, persistent fires consistently in the sample across polls.
+  const parsed = rows.map(function(r) { return r.split(","); });
+  parsed.sort(function(a, b) { return (parseFloat(b[frpIdx]) || 0) - (parseFloat(a[frpIdx]) || 0); });
+  const sampled = parsed.slice(0, 1500);
+  const out = [];
+  for (const cols of sampled) {
+    const conf = cols[confIdx];
+    const frp = parseFloat(cols[frpIdx]) || 0;
+    let severity = "low";
+    if (conf === "h" || frp > 50) severity = "mid";
+    if (frp > 150) severity = "high";
+    const timeStr = String(cols[timeIdx]).padStart(4, "0").replace(/(\d{2})(\d{2})/, "$1:$2");
+    const t = new Date(cols[dateIdx] + "T" + timeStr + ":00Z").getTime();
+    out.push({
+      id: uid("firms", cols[latIdx] + cols[lonIdx] + cols[dateIdx] + cols[timeIdx]),
+      source: "firms",
+      lat: parseFloat(cols[latIdx]),
+      lon: parseFloat(cols[lonIdx]),
+      time: t,
+      // "Thermal anomaly" rather than "Wildfire" is deliberate: VIIRS detects
+      // heat signatures, which include gas flares, volcanoes, and industrial
+      // sites, not only fires. Overclaiming this as a confirmed wildfire
+      // would be a factual precision issue, not just a wording nitpick.
+      title: "Thermal anomaly (possible fire) — confidence " + conf,
+      url: "https://firms.modaps.eosdis.nasa.gov/map/",
+      severity: severity,
+      meta: "FRP " + frp.toFixed(1) + "MW · confidence " + conf,
+      criticalWindowEnd: t + 2 * 86400000, // 48h — satellite detections are point-in-time
+    });
+  }
+  return out;
+}
+
+async function fetchNWS() {
+  const url = "https://api.weather.gov/alerts/active?severity=Extreme,Severe";
+  const res = await safeFetch(url, { headers: { "Accept": "application/geo+json" } });
+  const data = await res.json();
+  return (data.features || []).map(function(f) {
+    const p = f.properties;
+    let lat, lon;
+    if (f.geometry && f.geometry.type === "Polygon") {
+      const ring = f.geometry.coordinates[0];
+      lat = ring.reduce(function(s, c) { return s + c[1]; }, 0) / ring.length;
+      lon = ring.reduce(function(s, c) { return s + c[0]; }, 0) / ring.length;
+    } else {
+      return null;
+    }
+    return {
+      id: uid("nws", p.id),
+      source: "nws",
+      lat: lat, lon: lon,
+      time: new Date(p.sent).getTime(),
+      title: p.event + " — " + (p.areaDesc || "").split(";")[0],
+      url: "https://alerts.weather.gov",
+      severity: p.severity === "Extreme" ? "high" : "mid",
+      meta: p.severity + " · " + p.urgency + " · " + p.certainty,
+      // NWS alerts carry their own authoritative expiry — use it directly
+      // rather than guessing a window.
+      criticalWindowEnd: p.expires ? new Date(p.expires).getTime() : (Date.now() + 6 * 3600000),
+    };
+  }).filter(Boolean);
+}
+
+async function fetchLaunch() {
+  const url = "https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=15";
+  const res = await safeFetch(url);
+  const data = await res.json();
+  return (data.results || []).filter(function(l) { return l.pad && l.pad.latitude; }).map(function(l) {
+    return {
+      id: uid("launch", l.id),
+      source: "launch",
+      lat: parseFloat(l.pad.latitude),
+      lon: parseFloat(l.pad.longitude),
+      time: new Date(l.net).getTime(),
+      title: l.name,
+      url: l.url,
+      severity: null,
+      meta: (l.pad.location ? l.pad.location.name : "") + " · " + (l.status ? l.status.name : ""),
+    };
+  });
+}
+
+let gdeltLastCall = 0;
+async function fetchGDELT() {
+  const sinceLast = Date.now() - gdeltLastCall;
+  if (sinceLast < 5500) await new Promise(function(r) { setTimeout(r, 5500 - sinceLast); });
+  gdeltLastCall = Date.now();
+  const url = "https://api.gdeltproject.org/api/v2/doc/doc?query=sourcelang:english&mode=artlist&maxrecords=40&format=json&timespan=3h&sort=datedesc";
+  const res = await safeFetch(url);
+  const text = await res.text();
+  let data;
+  try { data = JSON.parse(text); }
+  catch (e) { throw new Error("GDELT throttled or non-JSON response"); }
+  return (data.articles || []).map(function(a) {
+    let t = Date.now();
+    if (a.seendate) {
+      const iso = a.seendate.replace(/(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z/, "$1-$2-$3T$4:$5:$6Z");
+      t = Date.parse(iso);
+    }
+    return {
+      id: uid("gdelt", a.url),
+      source: "gdelt",
+      lat: null, lon: null,
+      time: t,
+      title: a.title,
+      url: a.url,
+      severity: null,
+      meta: a.domain || "",
+    };
+  });
+}
+
+async function fetchReliefWeb() {
+  if (!CONFIG.RELIEFWEB_ENABLED || !CONFIG.RELIEFWEB_APPNAME) {
+    throw new Error("ReliefWeb disabled — needs approved appname, see CONFIG");
+  }
+  const url = "https://api.reliefweb.int/v2/reports?appname=" + CONFIG.RELIEFWEB_APPNAME + "&limit=25&sort[]=date:desc&fields[include][]=title&fields[include][]=url&fields[include][]=date&fields[include][]=country";
+  const res = await safeFetch(url);
+  const data = await res.json();
+  return (data.data || []).map(function(d) {
+    return {
+      id: uid("reliefweb", d.id),
+      source: "reliefweb",
+      lat: null, lon: null,
+      time: new Date((d.fields.date && d.fields.date.created) || Date.now()).getTime(),
+      title: d.fields.title,
+      url: d.fields.url,
+      severity: null,
+      meta: (d.fields.country || []).map(function(c) { return c.name; }).join(", "),
+    };
+  });
+}
+
+const FETCHERS = {
+  usgs: fetchUSGS, emsc: fetchEMSC, gdacs: fetchGDACS, firms: fetchFIRMS,
+  nws: fetchNWS, launch: fetchLaunch, gdelt: fetchGDELT, reliefweb: fetchReliefWeb,
+};
+
+const HIGHLIGHT_MS = 30_000;    // how long the "new" glow lasts on cards + map markers
+const TOAST_DISPLAY_MS = 8_000; // how long an individual toast bubble stays visible (shorter than
+                                 // the glow on purpose — a stack of 30s toasts would clutter fast
+                                 // if several alerts land close together; the persistent glow on
+                                 // the card/marker itself is what lasts the full 30s)
+let firstBoot = true; // suppress a wall of toasts for everything already-current on initial load
+
+function markSeenAndQueueToasts(key, events) {
+  events.forEach(function(e) {
+    const wasUnseen = !STATE.seenIds.has(e.id);
+    if (wasUnseen) {
+      // On first load everything is technically "unseen" this session, but
+      // it isn't actually new — it's the existing world state. Backdating
+      // firstSeenAt to 0 here means isRecentlyNew() correctly evaluates to
+      // false immediately, so the initial data dump doesn't glow/toast as
+      // if 300+ events all just happened at once.
+      STATE.seenIds.set(e.id, firstBoot ? 0 : Date.now());
+    }
+    e.firstSeenAt = STATE.seenIds.get(e.id);
+    if (wasUnseen && !firstBoot && STATE.notifyEnabled[key]) {
+      STATE.toasts.push({
+        id: e.id, title: e.title, source: key, severity: e.severity,
+        expiresAt: Date.now() + TOAST_DISPLAY_MS,
+      });
+    }
+  });
+}
+
+async function refreshSource(key) {
+  try {
+    const events = await FETCHERS[key]();
+    markSeenAndQueueToasts(key, events);
+    STATE.events = STATE.events.filter(function(e) { return e.source !== key; }).concat(events);
+    markStatus(key, "live");
+  } catch (err) {
+    markStatus(key, "error", err.message);
+  }
+  renderAll();
+}
+
+function scheduleSource(key) {
+  refreshSource(key);
+  setInterval(function() { refreshSource(key); }, CONFIG.REFRESH[key]);
+}
+
+function renderAll() {
+  renderCritical();
+  renderTimeline();
+  renderUpcoming();
+  renderMap();
+  renderTicker();
+  renderStats();
+  renderToasts();
+}
+
+// The "new" glow on cards/markers is time-based (now - firstSeenAt < HIGHLIGHT_MS),
+// so it needs to fade even between actual data refreshes, not just when new
+// data arrives. This tick re-renders the affected views on a short interval
+// purely so the highlight visibly decays in real time.
+setInterval(function() {
+  renderCritical();
+  renderTimeline();
+  renderUpcoming();
+  renderMap();
+  renderToasts();
+}, 2000);
+
+function renderStats() {
+  document.getElementById("statEventCount").textContent = STATE.events.length;
+}
+setInterval(function() {
+  document.getElementById("statClock").textContent = new Date().toISOString().substring(11, 19) + " Z";
+}, 1000);
+
+function renderHealthStrip() {
+  const strip = document.getElementById("healthStrip");
+  const tip = document.getElementById("healthTip");
+  strip.innerHTML = "";
+  tip.innerHTML = "";
+  for (const key in STATE.sourceStatus) {
+    const s = STATE.sourceStatus[key];
+    const dot = document.createElement("div");
+    dot.className = "health-dot " + (s.status === "live" ? "live" : s.status === "error" ? "error" : "");
+    strip.appendChild(dot);
+    const row = document.createElement("div");
+    const label = SOURCES[key].label;
+    const statusText = s.status === "live" ? timeAgo(s.lastFetch) : (s.error || "pending");
+    row.innerHTML = "<span>" + label + "</span><span>" + statusText + "</span>";
+    tip.appendChild(row);
+  }
+}
+
+const waveCanvas = document.getElementById("waveform");
+const waveCtx = waveCanvas.getContext("2d");
+function resizeWave() {
+  waveCanvas.width = waveCanvas.clientWidth * devicePixelRatio;
+  waveCanvas.height = waveCanvas.clientHeight * devicePixelRatio;
+}
+window.addEventListener("resize", resizeWave);
+resizeWave();
+
+let lastEventCountForWave = 0;
+setInterval(function() {
+  const delta = Math.max(0, STATE.events.length - lastEventCountForWave);
+  lastEventCountForWave = STATE.events.length;
+  STATE.waveformHistory.push(delta);
+  if (STATE.waveformHistory.length > 120) STATE.waveformHistory.shift();
+  drawWave();
+}, 2000);
+
+function drawWave() {
+  const w = waveCanvas.width, h = waveCanvas.height;
+  waveCtx.clearRect(0, 0, w, h);
+  const hist = STATE.waveformHistory;
+  if (hist.length < 2) return;
+  const max = Math.max.apply(null, [4].concat(hist));
+  const stepX = w / (hist.length - 1);
+  waveCtx.beginPath();
+  waveCtx.strokeStyle = "#4C8DFF";
+  waveCtx.lineWidth = 1.5 * devicePixelRatio;
+  hist.forEach(function(v, i) {
+    const x = i * stepX;
+    const y = h - (v / max) * (h * 0.85) - 2;
+    if (i === 0) waveCtx.moveTo(x, y); else waveCtx.lineTo(x, y);
+  });
+  waveCtx.stroke();
+  waveCtx.globalAlpha = 0.12;
+  waveCtx.lineTo(w, h); waveCtx.lineTo(0, h); waveCtx.closePath();
+  waveCtx.fillStyle = "#4C8DFF";
+  waveCtx.fill();
+  waveCtx.globalAlpha = 1;
+}
+
+function isStillCritical(e) {
+  const windowEnd = (typeof e.criticalWindowEnd === "number") ? e.criticalWindowEnd : (e.time + DEFAULT_CRITICAL_WINDOW_MS);
+  return Date.now() <= windowEnd;
+}
+
+function isRecentlyNew(e) {
+  return typeof e.firstSeenAt === "number" && (Date.now() - e.firstSeenAt) < HIGHLIGHT_MS;
+}
+
+function renderCritical() {
+  const list = STATE.events
+    .filter(function(e) { return (e.severity === "high" || e.severity === "mid") && isStillCritical(e); })
+    .sort(function(a, b) {
+      const ra = a.severity === "high" ? 0 : 1;
+      const rb = b.severity === "high" ? 0 : 1;
+      return ra - rb || b.time - a.time;
+    })
+    .slice(0, 40);
+
+  document.getElementById("critCount").textContent = list.length;
+  const el = document.getElementById("critList");
+  if (list.length === 0) {
+    el.innerHTML = '<div class="empty-note">No high/moderate-severity signals from live sources right now.</div>';
+    return;
+  }
+  el.innerHTML = list.map(function(e) {
+    return '<div class="crit-card sev-' + e.severity + (isRecentlyNew(e) ? ' is-new' : '') + '" onclick="window.open(\'' + e.url + '\',\'_blank\')">' +
+      '<div class="src-badge">' + SOURCES[e.source].label + '</div>' +
+      '<div class="title">' + escapeHtml(e.title) + '</div>' +
+      '<div class="meta"><span>' + (e.meta || "") + '</span><span>' + timeAgo(e.time) + '</span></div>' +
+    '</div>';
+  }).join("");
+}
+
+// Timeline shows things that have already happened / are actively ongoing,
+// in reverse-chronological order. Future-scheduled items (currently only
+// rocket launches) are deliberately excluded here — see renderUpcoming()
+// below — because mixing "X ago" and "in X" in one reverse-chron list reads
+// as broken, not as two different kinds of information.
+function renderTimeline() {
+  let list = STATE.events.filter(function(e) { return e.time <= Date.now(); }).sort(function(a, b) { return b.time - a.time; });
+  if (STATE.searchTerm) {
+    const t = STATE.searchTerm.toLowerCase();
+    list = list.filter(function(e) {
+      return e.title.toLowerCase().indexOf(t) !== -1 ||
+        (e.meta || "").toLowerCase().indexOf(t) !== -1 ||
+        SOURCES[e.source].label.toLowerCase().indexOf(t) !== -1;
+    });
+  }
+  list = list.slice(0, 150);
+  document.getElementById("tlCount").textContent = list.length;
+  const el = document.getElementById("tlList");
+  el.innerHTML = list.map(function(e) {
+    const src = SOURCES[e.source];
+    const unverified = src.verified.toLowerCase().indexOf("unverified") !== -1;
+    return '<div class="tl-item' + (isRecentlyNew(e) ? ' is-new' : '') + '">' +
+      '<div class="row1"><span class="src ' + src.badge + '">' + src.label + '</span><span class="time">' + timeAgo(e.time) + '</span></div>' +
+      '<div class="title">' + escapeHtml(e.title) + '</div>' +
+      '<div class="verify ' + (unverified ? "unverified" : "") + '">' + src.verified + '</div>' +
+      '<a class="src-link" href="' + e.url + '" target="_blank" rel="noopener">source →</a>' +
+    '</div>';
+  }).join("");
+}
+
+// Separate panel for genuinely future-dated items (launch schedules), sorted
+// soonest-first, so "in 3d" reads naturally instead of being buried in a
+// feed that otherwise means "already happened".
+function renderUpcoming() {
+  const list = STATE.events
+    .filter(function(e) { return e.time > Date.now(); })
+    .sort(function(a, b) { return a.time - b.time; })
+    .slice(0, 30);
+  document.getElementById("upCount").textContent = list.length;
+  const el = document.getElementById("upList");
+  if (list.length === 0) {
+    el.innerHTML = '<div class="empty-note">No upcoming scheduled events.</div>';
+    return;
+  }
+  el.innerHTML = list.map(function(e) {
+    const src = SOURCES[e.source];
+    return '<div class="tl-item' + (isRecentlyNew(e) ? ' is-new' : '') + '">' +
+      '<div class="row1"><span class="src ' + src.badge + '">' + src.label + '</span><span class="time">' + timeAgo(e.time) + '</span></div>' +
+      '<div class="title">' + escapeHtml(e.title) + '</div>' +
+      '<div class="verify">' + (e.meta || "") + '</div>' +
+      '<a class="src-link" href="' + e.url + '" target="_blank" rel="noopener">source →</a>' +
+    '</div>';
+  }).join("");
+}
+
+document.getElementById("searchInput").addEventListener("input", function(ev) {
+  STATE.searchTerm = ev.target.value;
+  renderTimeline();
+});
+
+function renderTicker() {
+  // Ticker is a "what just happened" readout, so future-dated items are
+  // excluded here too, same reasoning as the Timeline.
+  const list = STATE.events.filter(function(e) { return e.time <= Date.now(); }).sort(function(a, b) { return b.time - a.time; }).slice(0, 30);
+  const track = document.getElementById("tickerTrack");
+  if (list.length === 0) return;
+  const items = list.map(function(e) {
+    return '<a href="' + e.url + '" target="_blank" rel="noopener"><b>' + SOURCES[e.source].label + '</b> ' + escapeHtml(e.title) + '</a>';
+  }).join("");
+  track.innerHTML = items + items;
+}
+
+let map, layerGroups = {};
+function initMap() {
+  // zoomControl lives bottom-right so it never overlaps the layer toggle
+  // panel, which stays top-left.
+  map = L.map("map", { zoomControl: false, worldCopyJump: true, attributionControl: true }).setView([20, 10], 2);
+  L.control.zoom({ position: "bottomright" }).addTo(map);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+    attribution: '© OpenStreetMap, © CARTO',
+    maxZoom: 18,
+  }).addTo(map);
+
+  for (const key of Object.keys(SOURCES)) {
+    layerGroups[key] = L.layerGroup().addTo(map);
+  }
+  renderLayerToggles();
+}
+
+function renderLayerToggles() {
+  const el = document.getElementById("layerToggles");
+  let html = '<div class="lt-title">Layers <span class="lt-title-r">Alert</span></div>';
+  for (const key in SOURCES) {
+    const s = SOURCES[key];
+    html += '<div class="layer-row">' +
+      '<label class="layer-row-main">' +
+        '<input type="checkbox" ' + (STATE.activeLayers[key] ? "checked" : "") + ' data-layer="' + key + '">' +
+        '<span class="layer-swatch" style="background:' + s.color + '"></span>' +
+        '<span class="layer-label">' + s.label + '</span>' +
+      '</label>' +
+      '<button type="button" class="info-btn" data-info="' + key + '" aria-label="What does ' + s.label + ' cover?">i</button>' +
+      '<div class="info-tip" id="infoTip-' + key + '">' + s.describes + '</div>' +
+      '<input type="checkbox" class="notify-check" title="Alert me when ' + s.label + ' has a new item" ' +
+        (STATE.notifyEnabled[key] ? "checked" : "") + ' data-notify="' + key + '">' +
+    '</div>';
+  }
+  el.innerHTML = html;
+  el.querySelectorAll("input[data-layer]").forEach(function(inp) {
+    inp.addEventListener("change", function() {
+      const key = inp.dataset.layer;
+      STATE.activeLayers[key] = inp.checked;
+      if (inp.checked) map.addLayer(layerGroups[key]);
+      else map.removeLayer(layerGroups[key]);
+    });
+  });
+  // Info tooltip: works on hover (desktop, via CSS) AND tap (mobile/touch,
+  // via this click handler) — a native `title` attribute tooltip has no
+  // hover event to trigger it at all on touch devices, so it silently never
+  // appears there. A dedicated button also avoids fighting with the
+  // checkbox's own click-to-toggle behavior.
+  el.querySelectorAll(".info-btn").forEach(function(btn) {
+    btn.addEventListener("click", function(ev) {
+      ev.stopPropagation();
+      const tip = document.getElementById("infoTip-" + btn.dataset.info);
+      const wasOpen = tip.classList.contains("open");
+      el.querySelectorAll(".info-tip.open").forEach(function(t) { t.classList.remove("open"); });
+      if (!wasOpen) tip.classList.add("open");
+    });
+  });
+  document.addEventListener("click", function() {
+    el.querySelectorAll(".info-tip.open").forEach(function(t) { t.classList.remove("open"); });
+  });
+  el.querySelectorAll("input[data-notify]").forEach(function(inp) {
+    inp.addEventListener("change", function() {
+      STATE.notifyEnabled[inp.dataset.notify] = inp.checked;
+    });
+  });
+}
+
+function sevColor(sev, fallback) {
+  if (sev === "high") return "#E5484D";
+  if (sev === "mid") return "#E8A33D";
+  if (sev === "low") return "#3ECF8E";
+  return fallback;
+}
+
+function renderMap() {
+  if (!map) return;
+  for (const key in layerGroups) layerGroups[key].clearLayers();
+  STATE.events.forEach(function(e) {
+    if (e.lat == null || e.lon == null || isNaN(e.lat) || isNaN(e.lon)) return;
+    const color = sevColor(e.severity, SOURCES[e.source].color);
+    const radius = e.severity === "high" ? 7 : e.severity === "mid" ? 5.5 : 4;
+    const markerOpts = { radius: radius, color: color, fillColor: color, fillOpacity: 0.55, weight: 1.2 };
+    if (isRecentlyNew(e)) markerOpts.className = "marker-pulse";
+    const marker = L.circleMarker([e.lat, e.lon], markerOpts);
+    marker.bindPopup(
+      '<div class="pop-src">' + SOURCES[e.source].label + '</div>' +
+      '<div class="pop-title">' + escapeHtml(e.title) + '</div>' +
+      '<div class="pop-meta">' + (e.meta || "") + '</div>' +
+      '<div class="pop-meta">' + fmtUTC(e.time) + '</div>' +
+      '<a href="' + e.url + '" target="_blank" rel="noopener">Open source →</a>'
+    );
+    layerGroups[e.source].addLayer(marker);
+  });
+}
+
+function renderToasts() {
+  STATE.toasts = STATE.toasts.filter(function(t) { return t.expiresAt > Date.now(); });
+  const el = document.getElementById("toastStack");
+  el.innerHTML = STATE.toasts.map(function(t) {
+    const src = SOURCES[t.source];
+    return '<div class="toast sev-' + (t.severity || "none") + '">' +
+      '<span class="toast-src ' + src.badge + '">' + src.label + '</span>' +
+      '<span class="toast-title">' + escapeHtml(t.title) + '</span>' +
+    '</div>';
+  }).join("");
+}
+
+function escapeHtml(str) {
+  const d = document.createElement("div");
+  d.textContent = str || "";
+  return d.innerHTML;
+}
+
+// ============================================================
+// PANEL COLLAPSE — lets the map reclaim space from either rail.
+// Left rail is a single panel, so collapsing it narrows its whole grid
+// column. The right rail holds two independent sub-panels (Timeline,
+// Upcoming); collapsing one just frees vertical space for the other, and
+// the column itself only narrows once BOTH are collapsed.
+// ============================================================
+function applyCollapseDOM() {
+  const c = STATE.collapsed;
+
+  document.getElementById("leftRail").classList.toggle("is-collapsed", c.left);
+  document.getElementById("critList").style.display = c.left ? "none" : "";
+  document.getElementById("btnToggleLeft").textContent = c.left ? "+" : "−";
+
+  document.getElementById("tlList").style.display = c.timeline ? "none" : "";
+  document.getElementById("tlSearchBox").style.display = c.timeline ? "none" : "";
+  document.getElementById("btnToggleTimeline").textContent = c.timeline ? "+" : "−";
+
+  document.getElementById("upList").style.display = c.upcoming ? "none" : "";
+  document.getElementById("btnToggleUpcoming").textContent = c.upcoming ? "+" : "−";
+
+  const rightBothCollapsed = c.timeline && c.upcoming;
+  document.getElementById("rightRail").classList.toggle("is-collapsed", rightBothCollapsed);
+
+  const leftW = c.left ? "40px" : "300px";
+  const rightW = rightBothCollapsed ? "40px" : "340px";
+  document.getElementById("mainGrid").style.gridTemplateColumns = leftW + " 1fr " + rightW;
+
+  // Leaflet needs to know its container size changed, or it'll render into
+  // stale tile bounds until the next manual pan/zoom.
+  if (map) setTimeout(function() { map.invalidateSize(); }, 260);
+}
+
+document.getElementById("btnToggleLeft").addEventListener("click", function() {
+  STATE.collapsed.left = !STATE.collapsed.left;
+  applyCollapseDOM();
+});
+document.getElementById("btnToggleTimeline").addEventListener("click", function() {
+  STATE.collapsed.timeline = !STATE.collapsed.timeline;
+  applyCollapseDOM();
+});
+document.getElementById("btnToggleUpcoming").addEventListener("click", function() {
+  STATE.collapsed.upcoming = !STATE.collapsed.upcoming;
+  applyCollapseDOM();
+});
+
+initMap();
+renderHealthStrip();
+for (const key in SOURCES) {
+  if (key === "reliefweb" && !CONFIG.RELIEFWEB_ENABLED) {
+    markStatus(key, "error", "disabled — needs approved appname");
+    continue;
+  }
+  scheduleSource(key);
+}
+// Give every source's initial fetch time to land before treating new
+// arrivals as genuinely new (see markSeenAndQueueToasts).
+setTimeout(function() { firstBoot = false; }, 12000);
+
+// Same tap-support fix as the layer info tooltips: a hover-only tooltip has
+// no trigger at all on touch devices.
+document.querySelector(".health-strip-wrap").addEventListener("click", function(ev) {
+  ev.stopPropagation();
+  document.getElementById("healthTip").classList.toggle("open");
+});
+document.addEventListener("click", function() {
+  document.getElementById("healthTip").classList.remove("open");
+});
+</script>
+</body>
+</html>
