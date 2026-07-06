@@ -1,7 +1,15 @@
 {
-  "generated": "2026-07-05T19:26:29.720Z",
-  "count": 53,
+  "generated": "2026-07-06T04:07:32.174Z",
+  "count": 54,
   "pages": [
+    {
+      "slug": "reading-list",
+      "url": "https://nickcarbone.github.io/reading-list/",
+      "title": "Reading List",
+      "description": "nickcarbone.github.io/reading-list/",
+      "updated": "2026-07-06T02:46:31Z",
+      "created": "2026-07-06T02:46:24Z"
+    },
     {
       "slug": "elsewhere-location-analysis",
       "url": "https://nickcarbone.github.io/elsewhere-location-analysis/",
