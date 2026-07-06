@@ -24,6 +24,7 @@
   --accent-mid: #E8A33D;
   --accent-high: #E5484D;
   --accent-space: #A78BFA;
+  --accent-weather: #5EC8D8;
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'IBM Plex Sans', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
@@ -412,6 +413,23 @@ section.panel {
   display: block;
 }
 
+.btn-query {
+  width: 100%;
+  text-align: left;
+  padding: 5px 7px;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.btn-query:hover { color: var(--text-primary); border-color: var(--accent-weather); }
+.btn-query.active {
+  color: var(--accent-weather);
+  border-color: var(--accent-weather);
+  background: rgba(94, 200, 216, 0.1);
+}
+
 .map-footnote {
   position: absolute;
   bottom: 8px;
@@ -473,6 +491,21 @@ section.panel {
 .badge-launch { background: #2E2640; color: var(--accent-space); }
 .badge-gdelt { background: #262A30; color: var(--text-muted); }
 .badge-reliefweb { background: #262A30; color: var(--text-muted); }
+.badge-weather { background: #1E3238; color: var(--accent-weather); }
+
+/* Weather markers carry a permanent temperature readout instead of a popup-only
+   label — ambient conditions are a constant reference layer, not a discrete
+   event, so the number should be visible at a glance without a click. */
+.wx-tooltip {
+  background: rgba(17, 22, 28, 0.88) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 10px !important;
+  padding: 1px 5px !important;
+  box-shadow: none !important;
+}
+.wx-tooltip::before { display: none; }
 
 /* ============ BOTTOM TICKER ============ */
 .ticker-wrap {
@@ -584,7 +617,7 @@ section.panel {
   <section class="panel map-wrap">
     <div id="map"></div>
     <div class="layer-toggles" id="layerToggles"></div>
-    <div class="map-footnote">Raw feed — no composite scoring. Severity shown is each source's own native field.</div>
+    <div class="map-footnote">Raw feed — no composite scoring. Severity shown is each source's own native field. Weather markers show ambient conditions, not scored events.</div>
   </section>
 
   <section class="panel" id="rightRail">
@@ -634,7 +667,34 @@ const CONFIG = {
     launch: 30 * 60_000,
     gdelt: 60_000,
     reliefweb: 5 * 60_000,
-  }
+    weather: 15 * 60_000, // ambient conditions change slowly relative to events; models themselves only update hourly-ish
+  },
+
+  // Curated reference points for the ambient weather layer — a mix of
+  // capitals and strategic chokepoints (shipping lanes, canals) rather than
+  // an arbitrary "biggest cities" list, to match the dashboard's own
+  // consequence-over-popularity philosophy. Click-to-query (below) covers
+  // anywhere not on this list.
+  WEATHER_LOCATIONS: [
+    { name: "Washington, DC", lat: 38.9072, lon: -77.0369 },
+    { name: "London", lat: 51.5074, lon: -0.1278 },
+    { name: "Moscow", lat: 55.7558, lon: 37.6173 },
+    { name: "Kyiv", lat: 50.4501, lon: 30.5234 },
+    { name: "Beijing", lat: 39.9042, lon: 116.4074 },
+    { name: "Taipei", lat: 25.0330, lon: 121.5654 },
+    { name: "Tokyo", lat: 35.6762, lon: 139.6503 },
+    { name: "New Delhi", lat: 28.6139, lon: 77.2090 },
+    { name: "Tel Aviv", lat: 32.0853, lon: 34.7818 },
+    { name: "Cairo", lat: 30.0444, lon: 31.2357 },
+    { name: "Lagos", lat: 6.5244, lon: 3.3792 },
+    { name: "São Paulo", lat: -23.5505, lon: -46.6333 },
+    { name: "Jakarta", lat: -6.2088, lon: 106.8456 },
+    { name: "Manila", lat: 14.5995, lon: 120.9842 },
+    { name: "Strait of Hormuz", lat: 26.5667, lon: 56.25 },
+    { name: "Suez Canal", lat: 30.5852, lon: 32.2654 },
+    { name: "Panama Canal", lat: 9.08, lon: -79.68 },
+    { name: "Strait of Malacca", lat: 2.5, lon: 101.5 },
+  ],
 };
 
 const STATE = {
@@ -651,6 +711,8 @@ const STATE = {
   notifyEnabled: { usgs: true, emsc: true, gdacs: true, firms: true, nws: true, launch: false, gdelt: false, reliefweb: false },
   seenIds: new Map(),   // event id -> first-seen timestamp (ms), persists across refreshes this session
   toasts: [],           // transient toast queue: {id, title, source, severity, expiresAt}
+  weatherLocations: [], // current-conditions snapshot for CONFIG.WEATHER_LOCATIONS, refreshed on a timer
+  queryMode: false,     // true while "Click map for conditions" is toggled on
 };
 
 const SOURCES = {
@@ -662,6 +724,10 @@ const SOURCES = {
   launch:    { label: "LAUNCH",     badge: "badge-launch",    color: "#A78BFA", verified: "Official schedule (LL2)", describes: "Scheduled rocket launches worldwide (The Space Devs / Launch Library 2)" },
   gdelt:     { label: "GDELT",      badge: "badge-gdelt",     color: "#7C8B99", verified: "Auto-coded from news — unverified", describes: "Global news headlines — auto-coded from worldwide media, not human-verified (GDELT)" },
   reliefweb: { label: "RELIEFWEB",  badge: "badge-reliefweb", color: "#7C8B99", verified: "Curated humanitarian report", describes: "Humanitarian/crisis reports, curated (ReliefWeb) — pending your API approval" },
+  // Ambient conditions, not scored events — no severity field, no "new"
+  // concept, so it skips the FETCHERS/STATE.events pipeline entirely and
+  // is rendered/refreshed by its own dedicated functions (see below).
+  weather:   { label: "WX",         badge: "badge-weather",   color: "#5EC8D8", verified: "Model blend (Open-Meteo)", describes: "Ambient temperature, wind, and conditions from a multi-model forecast blend — curated points plus click-to-query anywhere (Open-Meteo). Not an alert." },
 };
 
 for (const key of Object.keys(SOURCES)) {
@@ -1025,6 +1091,7 @@ function renderAll() {
   renderTimeline();
   renderUpcoming();
   renderMap();
+  renderWeatherLayer();
   renderTicker();
   renderStats();
   renderToasts();
@@ -1214,6 +1281,139 @@ function renderTicker() {
   track.innerHTML = items + items;
 }
 
+// ============================================================
+// AMBIENT WEATHER LAYER (Open-Meteo) — deliberately separate from the
+// scored-event pipeline above. Two independent paths:
+//   1. Curated locations, fetched in ONE batched request on a timer.
+//   2. Click-to-query, fetched on demand for a single clicked point.
+// Deliberately NOT part of STATE.events: this is ambient/contextual data,
+// not a scored intelligence signal, and mixing it into the critical rail or
+// timeline would undercut the dashboard's own "importance over noise"
+// premise (a mild breeze in Cairo is not "news").
+// ============================================================
+const WMO_CODES = {
+  0: "Clear sky", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast",
+  45: "Fog", 48: "Depositing rime fog",
+  51: "Light drizzle", 53: "Moderate drizzle", 55: "Dense drizzle",
+  56: "Light freezing drizzle", 57: "Dense freezing drizzle",
+  61: "Slight rain", 63: "Moderate rain", 65: "Heavy rain",
+  66: "Light freezing rain", 67: "Heavy freezing rain",
+  71: "Slight snow", 73: "Moderate snow", 75: "Heavy snow", 77: "Snow grains",
+  80: "Slight rain showers", 81: "Moderate rain showers", 82: "Violent rain showers",
+  85: "Slight snow showers", 86: "Heavy snow showers",
+  95: "Thunderstorm", 96: "Thunderstorm, slight hail", 99: "Thunderstorm, heavy hail",
+};
+function wxLabel(code) { return WMO_CODES[code] !== undefined ? WMO_CODES[code] : "Conditions unavailable"; }
+function degToCompass(deg) {
+  if (deg == null || isNaN(deg)) return "";
+  const dirs = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+  return dirs[Math.round(deg / 22.5) % 16];
+}
+const WX_CURRENT_PARAMS = "temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m";
+
+async function fetchWeatherBatch() {
+  const locs = CONFIG.WEATHER_LOCATIONS;
+  const lats = locs.map(function(l) { return l.lat; }).join(",");
+  const lons = locs.map(function(l) { return l.lon; }).join(",");
+  const url = "https://api.open-meteo.com/v1/forecast?latitude=" + lats + "&longitude=" + lons +
+    "&current=" + WX_CURRENT_PARAMS + "&timezone=UTC";
+  const res = await safeFetch(url);
+  const data = await res.json();
+  // Open-Meteo returns an array when multiple comma-separated coordinates
+  // are requested, and a single object for one location — normalize both.
+  const rows = Array.isArray(data) ? data : [data];
+  return rows.map(function(d, i) {
+    const loc = locs[i];
+    const c = d.current || {};
+    let t = Date.now();
+    if (c.time) { t = Date.parse(c.time + "Z"); if (isNaN(t)) t = Date.now(); }
+    return {
+      name: loc.name, lat: loc.lat, lon: loc.lon,
+      temp: c.temperature_2m, feelsLike: c.apparent_temperature,
+      humidity: c.relative_humidity_2m, precip: c.precipitation,
+      code: c.weather_code, windSpeed: c.wind_speed_10m, windDir: c.wind_direction_10m,
+      time: t,
+    };
+  });
+}
+
+async function refreshWeather() {
+  try {
+    STATE.weatherLocations = await fetchWeatherBatch();
+    markStatus("weather", "live");
+  } catch (err) {
+    markStatus("weather", "error", err.message);
+  }
+  renderWeatherLayer();
+}
+
+function scheduleWeather() {
+  refreshWeather();
+  setInterval(refreshWeather, CONFIG.REFRESH.weather);
+}
+
+function wxPopupHtml(labelLine, c, timeMs) {
+  const temp = c.temp != null ? Math.round(c.temp) : "—";
+  const feels = c.feelsLike != null ? Math.round(c.feelsLike) : "—";
+  const precipLine = c.precip > 0 ? (" · precip " + c.precip + "mm") : "";
+  return '<div class="pop-src">WEATHER · ' + labelLine + '</div>' +
+    '<div class="pop-title">' + wxLabel(c.code) + '</div>' +
+    '<div class="pop-meta">' + temp + '°C (feels ' + feels + '°C) · humidity ' + (c.humidity != null ? c.humidity : "—") + '%</div>' +
+    '<div class="pop-meta">wind ' + Math.round(c.windSpeed || 0) + 'km/h ' + degToCompass(c.windDir) + precipLine + '</div>' +
+    '<div class="pop-meta">' + fmtUTC(timeMs) + ' · Open-Meteo model blend</div>';
+}
+
+function renderWeatherLayer() {
+  if (!map || !layerGroups.weather) return;
+  layerGroups.weather.clearLayers();
+  (STATE.weatherLocations || []).forEach(function(w) {
+    if (w.temp == null) return;
+    const marker = L.circleMarker([w.lat, w.lon], {
+      radius: 5, color: SOURCES.weather.color, fillColor: SOURCES.weather.color,
+      fillOpacity: 0.5, weight: 1.2,
+    });
+    marker.bindTooltip(Math.round(w.temp) + "°", {
+      permanent: true, direction: "top", offset: [0, -5], className: "wx-tooltip",
+    });
+    marker.bindPopup(wxPopupHtml(escapeHtml(w.name), w, w.time));
+    layerGroups.weather.addLayer(marker);
+  });
+}
+
+let queryMarker = null;
+function toggleQueryMode(force) {
+  STATE.queryMode = typeof force === "boolean" ? force : !STATE.queryMode;
+  const mapEl = document.getElementById("map");
+  mapEl.style.cursor = STATE.queryMode ? "crosshair" : "";
+  const btn = document.getElementById("btnQueryMode");
+  if (btn) btn.classList.toggle("active", STATE.queryMode);
+}
+
+async function queryPointWeather(lat, lon) {
+  if (queryMarker) { map.removeLayer(queryMarker); queryMarker = null; }
+  const marker = L.circleMarker([lat, lon], {
+    radius: 6, color: "#fff", fillColor: SOURCES.weather.color, fillOpacity: 0.85, weight: 2,
+  }).addTo(map);
+  const coordLabel = lat.toFixed(2) + ", " + lon.toFixed(2);
+  marker.bindPopup('<div class="pop-src">WEATHER · ' + coordLabel + '</div><div class="pop-title">Loading…</div>').openPopup();
+  queryMarker = marker;
+  try {
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat.toFixed(4) + "&longitude=" + lon.toFixed(4) +
+      "&current=" + WX_CURRENT_PARAMS + "&timezone=UTC";
+    const res = await safeFetch(url);
+    const data = await res.json();
+    const c = data.current || {};
+    let t = Date.now();
+    if (c.time) { t = Date.parse(c.time + "Z"); if (isNaN(t)) t = Date.now(); }
+    marker.setPopupContent(wxPopupHtml(coordLabel, {
+      temp: c.temperature_2m, feelsLike: c.apparent_temperature, humidity: c.relative_humidity_2m,
+      precip: c.precipitation, code: c.weather_code, windSpeed: c.wind_speed_10m, windDir: c.wind_direction_10m,
+    }, t));
+  } catch (err) {
+    marker.setPopupContent('<div class="pop-src">WEATHER · ' + coordLabel + '</div><div class="pop-title">Query failed</div><div class="pop-meta">' + escapeHtml(err.message) + '</div>');
+  }
+}
+
 let map, layerGroups = {};
 function initMap() {
   // zoomControl lives bottom-right so it never overlaps the layer toggle
@@ -1229,6 +1429,14 @@ function initMap() {
     layerGroups[key] = L.layerGroup().addTo(map);
   }
   renderLayerToggles();
+
+  // Click-to-query weather: only acts while STATE.queryMode is on (toggled
+  // via the "Click map for conditions" button), so it never fights with
+  // normal map panning or clicking existing markers to open their popups.
+  map.on("click", function(ev) {
+    if (!STATE.queryMode) return;
+    queryPointWeather(ev.latlng.lat, ev.latlng.lng);
+  });
 }
 
 function renderLayerToggles() {
@@ -1248,7 +1456,9 @@ function renderLayerToggles() {
         (STATE.notifyEnabled[key] ? "checked" : "") + ' data-notify="' + key + '">' +
     '</div>';
   }
+  html += '<button type="button" class="btn-query" id="btnQueryMode">◎ Click map for conditions</button>';
   el.innerHTML = html;
+  document.getElementById("btnQueryMode").addEventListener("click", function() { toggleQueryMode(); });
   el.querySelectorAll("input[data-layer]").forEach(function(inp) {
     inp.addEventListener("change", function() {
       const key = inp.dataset.layer;
@@ -1290,7 +1500,14 @@ function sevColor(sev, fallback) {
 
 function renderMap() {
   if (!map) return;
-  for (const key in layerGroups) layerGroups[key].clearLayers();
+  // "weather" is skipped here deliberately — it isn't populated from
+  // STATE.events, so clearing it here would wipe it out with nothing to
+  // redraw it until the next 15-minute refresh. It's managed entirely by
+  // renderWeatherLayer(), called separately.
+  for (const key in layerGroups) {
+    if (key === "weather") continue;
+    layerGroups[key].clearLayers();
+  }
   STATE.events.forEach(function(e) {
     if (e.lat == null || e.lon == null || isNaN(e.lat) || isNaN(e.lon)) return;
     const color = sevColor(e.severity, SOURCES[e.source].color);
@@ -1376,12 +1593,14 @@ document.getElementById("btnToggleUpcoming").addEventListener("click", function(
 initMap();
 renderHealthStrip();
 for (const key in SOURCES) {
+  if (key === "weather") continue; // has its own fetch shape (Open-Meteo), not part of FETCHERS/STATE.events
   if (key === "reliefweb" && !CONFIG.RELIEFWEB_ENABLED) {
     markStatus(key, "error", "disabled — needs approved appname");
     continue;
   }
   scheduleSource(key);
 }
+scheduleWeather();
 // Give every source's initial fetch time to land before treating new
 // arrivals as genuinely new (see markSeenAndQueueToasts).
 setTimeout(function() { firstBoot = false; }, 12000);
