@@ -956,7 +956,14 @@ async function fetchNWS() {
       lat: lat, lon: lon,
       time: new Date(p.sent).getTime(),
       title: p.event + " — " + (p.areaDesc || "").split(";")[0],
-      url: "https://alerts.weather.gov",
+      // alerts.weather.gov was permanently decommissioned by NWS on Dec 2, 2025
+      // (Service Change Notice 25-73); it now returns NXDOMAIN. NWS's own
+      // decommissioning notice directs users to weather.gov instead. There is
+      // no per-alert deep link available on the replacement page — it's a
+      // client-rendered shell with no URL-addressable anchor per record — so
+      // this points to the live active-alerts listing rather than a dead or
+      // fabricated per-item URL.
+      url: "https://www.weather.gov/alerts",
       severity: p.severity === "Extreme" ? "high" : "mid",
       meta: p.severity + " · " + p.urgency + " · " + p.certainty,
       // NWS alerts carry their own authoritative expiry — use it directly
