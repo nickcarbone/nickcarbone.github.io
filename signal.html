@@ -43,7 +43,12 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh; /* fallback for browsers without JS or before first paint */
+  /* iOS Safari's 100vh includes the space behind the collapsible address
+     bar, which clips content at the bottom until the user scrolls. --vh is
+     set in JS from window.innerHeight (kept in sync on resize/orientation
+     change) so the layout always matches the actually-visible viewport. */
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -577,9 +582,121 @@ section.panel {
 .leaflet-popup-content .pop-meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
 .leaflet-container a.leaflet-popup-close-button { color: var(--text-muted); }
 
-@media (max-width: 980px) {
-  main { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }
-  .map-wrap { min-height: 320px; }
+/* ============================================================
+   MOBILE (phone) LAYOUT
+   Below 900px this replaces the 3-column grid with a single full-screen
+   panel at a time (Map / Alerts / Timeline), switched via a bottom tab
+   bar — the desktop per-column collapse buttons don't map cleanly to a
+   phone, so the tab bar is the mobile equivalent of that affordance.
+   ============================================================ */
+@media (max-width: 900px) {
+  header { padding: 8px 10px; gap: 8px; }
+  .logo { font-size: 16px; }
+  /* Event-velocity sparkline is supplementary, not load-bearing information
+     (the ACTIVE EVENTS count already conveys volume) — dropped first on
+     narrow screens so the header doesn't overflow or wrap. */
+  #waveform { display: none; }
+  .header-stat { font-size: 8px; }
+  .header-stat b { font-size: 11px; }
+  .health-dot { width: 6px; height: 6px; }
+  .health-strip { gap: 4px; }
+  .health-tip { left: 0; right: auto; }
+
+  main {
+    display: block;
+    position: relative;
+  }
+  /* Only one panel occupies the screen at a time; .mobile-active (toggled
+     by the tab bar's click handler) is what decides which. */
+  main .panel {
+    display: none;
+    position: absolute;
+    inset: 0;
+  }
+  main .panel.mobile-active { display: flex; }
+
+  /* The desktop rail-collapse feature has no mobile equivalent — the tab
+     bar already controls full-panel visibility — so it's neutralized here
+     rather than left in a half-working, inaccessible state (its trigger
+     button is hidden below). */
+  .collapse-btn { display: none; }
+  .panel.is-collapsed { display: none; }
+  .panel.is-collapsed.mobile-active { display: flex; }
+  .panel.is-collapsed .panel-head {
+    flex-direction: row; height: auto; padding: 10px 14px;
+    border-bottom: 1px solid var(--border-soft); justify-content: space-between;
+  }
+  .panel.is-collapsed .ph-label { writing-mode: horizontal-tb; text-orientation: initial; }
+  .panel.is-collapsed .count { display: inline-block; }
+  .panel.is-collapsed .search-box { display: block; }
+  .panel.is-collapsed .panel-body { display: block; }
+
+  /* Larger tap targets — the desktop sizes (15-20px) sit below Apple's
+     ~44px recommended hit area for anything that isn't already wrapped in
+     a bigger tappable label (the layer checkboxes are exempt: their whole
+     row is a <label>, so the visible box can stay small). */
+  .info-btn { width: 24px; height: 24px; font-size: 13px; }
+  .notify-check { width: 20px; height: 20px; }
+  .layer-row { padding: 8px 0; }
+
+  /* Layer panel: collapsed to a single tappable title bar by default so it
+     doesn't permanently cover a large fraction of a phone-sized map; tapping
+     expands it into a scrollable sheet. */
+  .layer-toggles { left: 8px; right: 8px; top: 8px; max-width: none; }
+  .layer-toggles .lt-title { cursor: pointer; }
+  .layer-toggles:not(.expanded) .layer-row,
+  .layer-toggles:not(.expanded) .btn-query { display: none; }
+  .layer-toggles.expanded { max-height: 65vh; overflow-y: auto; }
+
+  .map-footnote { left: 8px; right: 8px; max-width: none; font-size: 9.5px; line-height: 1.3; }
+
+  /* Bottom tab bar — hidden entirely above the phone breakpoint. */
+  .mobile-tabbar { display: flex; }
+}
+/* display is set only by the two media queries above/below the 900px
+   breakpoint (never here) so this rule's position in the stylesheet can't
+   accidentally win a specificity tie and override them regardless of
+   viewport width. */
+.mobile-tabbar {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.mobile-tabbar button {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 9px 4px 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  position: relative;
+}
+.mobile-tabbar button .tab-icon { font-size: 16px; line-height: 1; }
+.mobile-tabbar button.active { color: var(--text-primary); }
+.mobile-tabbar button.active .tab-icon { color: var(--accent-info); }
+.mobile-tabbar button .tab-count {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  background: var(--panel-raised);
+  border-radius: 8px;
+  padding: 0 5px;
+  color: var(--text-dim);
+  min-width: 8px;
+  text-align: center;
+}
+.mobile-tabbar button.active .tab-count { color: var(--text-primary); }
+@media (min-width: 901px) {
+  .mobile-tabbar { display: none; }
 }
 </style>
 </head>
@@ -614,7 +731,7 @@ section.panel {
     <div class="panel-body" id="critList"></div>
   </section>
 
-  <section class="panel map-wrap">
+  <section class="panel map-wrap mobile-active" id="mapPanel">
     <div id="map"></div>
     <div class="layer-toggles" id="layerToggles"></div>
     <div class="map-footnote">Raw feed — no composite scoring. Severity shown is each source's own native field. Weather markers show ambient conditions, not scored events.</div>
@@ -641,6 +758,18 @@ section.panel {
   <div class="ticker-label">LIVE FEED</div>
   <div class="ticker-track" id="tickerTrack"><span>Initializing sources…</span></div>
 </div>
+
+<nav class="mobile-tabbar" id="mobileTabbar">
+  <button type="button" data-tab="map" class="active">
+    <span class="tab-icon">◎</span><span>Map</span>
+  </button>
+  <button type="button" data-tab="alerts">
+    <span class="tab-icon">▲</span><span>Alerts</span><span class="tab-count" id="tabAlertsCount">0</span>
+  </button>
+  <button type="button" data-tab="timeline">
+    <span class="tab-icon">≡</span><span>Timeline</span><span class="tab-count" id="tabTimelineCount">0</span>
+  </button>
+</nav>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -696,6 +825,16 @@ const CONFIG = {
     { name: "Strait of Malacca", lat: 2.5, lon: 101.5 },
   ],
 };
+
+// Keeps body's height in sync with the actually-visible viewport on iOS
+// Safari, where 100vh otherwise includes space hidden behind the address
+// bar (see the --vh usage in the CSS above).
+function setVhVar() {
+  document.documentElement.style.setProperty("--vh", (window.innerHeight * 0.01) + "px");
+}
+setVhVar();
+window.addEventListener("resize", setVhVar);
+window.addEventListener("orientationchange", setVhVar);
 
 const STATE = {
   events: [],
@@ -1202,6 +1341,7 @@ function renderCritical() {
     .slice(0, 40);
 
   document.getElementById("critCount").textContent = list.length;
+  document.getElementById("tabAlertsCount").textContent = list.length;
   const el = document.getElementById("critList");
   if (list.length === 0) {
     el.innerHTML = '<div class="empty-note">No high/moderate-severity signals from live sources right now.</div>';
@@ -1255,6 +1395,8 @@ function renderUpcoming() {
     .sort(function(a, b) { return a.time - b.time; })
     .slice(0, 30);
   document.getElementById("upCount").textContent = list.length;
+  const tlShown = parseInt(document.getElementById("tlCount").textContent, 10) || 0;
+  document.getElementById("tabTimelineCount").textContent = tlShown + list.length;
   const el = document.getElementById("upList");
   if (list.length === 0) {
     el.innerHTML = '<div class="empty-note">No upcoming scheduled events.</div>';
@@ -1466,6 +1608,20 @@ function renderLayerToggles() {
   html += '<button type="button" class="btn-query" id="btnQueryMode">◎ Click map for conditions</button>';
   el.innerHTML = html;
   document.getElementById("btnQueryMode").addEventListener("click", function() { toggleQueryMode(); });
+  // On mobile this panel is collapsed to just its title bar by default (see
+  // CSS) to avoid permanently covering a large fraction of a phone-sized
+  // map; tapping the title expands it into a scrollable sheet. Harmless on
+  // desktop, where the collapsed/expanded CSS states don't apply at all.
+  const ltTitle = el.querySelector(".lt-title");
+  if (ltTitle) {
+    ltTitle.addEventListener("click", function(ev) {
+      ev.stopPropagation();
+      el.classList.toggle("expanded");
+    });
+  }
+  document.addEventListener("click", function(ev) {
+    if (!el.contains(ev.target)) el.classList.remove("expanded");
+  });
   el.querySelectorAll("input[data-layer]").forEach(function(inp) {
     inp.addEventListener("change", function() {
       const key = inp.dataset.layer;
@@ -1597,6 +1753,30 @@ document.getElementById("btnToggleUpcoming").addEventListener("click", function(
   applyCollapseDOM();
 });
 
+// ============================================================
+// MOBILE TAB BAR — below the 900px breakpoint, exactly one of these three
+// panels is shown at a time (see CSS); this just toggles which. Harmless
+// no-op above the breakpoint since .mobile-tabbar is display:none there
+// and its buttons are never clicked.
+// ============================================================
+const MOBILE_TAB_PANELS = { map: "mapPanel", alerts: "leftRail", timeline: "rightRail" };
+function setMobileTab(tab) {
+  for (const t in MOBILE_TAB_PANELS) {
+    document.getElementById(MOBILE_TAB_PANELS[t]).classList.toggle("mobile-active", t === tab);
+  }
+  document.querySelectorAll("#mobileTabbar button").forEach(function(btn) {
+    btn.classList.toggle("active", btn.dataset.tab === tab);
+  });
+  // Leaflet caches its container size; a map shown after being display:none
+  // reports stale dimensions until told to re-measure.
+  if (tab === "map" && map) {
+    setTimeout(function() { map.invalidateSize(); }, 60);
+  }
+}
+document.querySelectorAll("#mobileTabbar button").forEach(function(btn) {
+  btn.addEventListener("click", function() { setMobileTab(btn.dataset.tab); });
+});
+
 initMap();
 renderHealthStrip();
 for (const key in SOURCES) {
@@ -1608,6 +1788,7 @@ for (const key in SOURCES) {
   scheduleSource(key);
 }
 scheduleWeather();
+setTimeout(function() { if (map) map.invalidateSize(); }, 200);
 // Give every source's initial fetch time to land before treating new
 // arrivals as genuinely new (see markSeenAndQueueToasts).
 setTimeout(function() { firstBoot = false; }, 12000);
