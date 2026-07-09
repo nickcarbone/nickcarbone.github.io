@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SIGNAL — Global Situational Awareness</title>
+<meta name="theme-color" content="#0B0F14">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Signal">
+<!-- These three apple-mobile-web-app-* tags only matter if this page is
+     added to an iPhone Home Screen (Share -> Add to Home Screen); they make
+     it launch full-screen without Safari's chrome, matching the dark theme
+     instead of a flash of white on launch. They're inert/no-op otherwise. -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -196,6 +204,13 @@ section.panel {
   padding: 0;
 }
 .collapse-btn:hover { color: var(--text-primary); border-color: var(--accent-info); }
+.mob-caret {
+  display: none; /* shown only under the mobile media query below */
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  font-size: 11px;
+  transition: transform 0.15s ease;
+}
 
 /* Column-level collapse: whole rail narrows to a slim tab, label rotates */
 .panel.is-collapsed { overflow: hidden; }
@@ -279,6 +294,10 @@ section.panel {
   from { transform: translateX(24px); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
+@keyframes toastOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(24px); opacity: 0; }
+}
 .toast {
   background: var(--panel-raised);
   border: 1px solid var(--border);
@@ -288,6 +307,9 @@ section.panel {
   font-size: 12px;
   animation: toastIn 0.25s ease-out;
   box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.toast.toast-leaving {
+  animation: toastOut 0.2s ease-in forwards;
 }
 .toast.sev-high { border-left-color: var(--accent-high); }
 .toast.sev-mid { border-left-color: var(--accent-mid); }
@@ -352,6 +374,26 @@ section.panel {
   letter-spacing: 0.06em;
   font-size: 9px;
   margin-bottom: 6px;
+  cursor: pointer;
+}
+.layer-toggles .lt-title:hover { color: var(--text-muted); }
+.lt-caret {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  margin-left: 2px;
+  transition: transform 0.15s ease;
+}
+/* Collapsed to just the title bar by default, at every screen size — an
+   expanded 9-source list can cover a meaningful chunk of the map even on a
+   desktop-sized viewport, not only on a phone. */
+.layer-toggles:not(.expanded) { margin-bottom: 0; }
+.layer-toggles:not(.expanded) .layer-row,
+.layer-toggles:not(.expanded) .btn-query,
+.layer-toggles:not(.expanded) .lt-title-r { display: none; }
+.layer-toggles.expanded {
+  max-height: 70vh;
+  overflow-y: auto;
 }
 .layer-row {
   display: flex;
@@ -496,6 +538,8 @@ section.panel {
 .badge-launch { background: #2E2640; color: var(--accent-space); }
 .badge-gdelt { background: #262A30; color: var(--text-muted); }
 .badge-reliefweb { background: #262A30; color: var(--text-muted); }
+.badge-cems { background: #362E17; color: #C9A227; }
+.badge-effis { background: #1B3021; color: #4C9A5B; }
 .badge-weather { background: #1E3238; color: var(--accent-weather); }
 
 /* Weather markers carry a permanent temperature readout instead of a popup-only
@@ -589,6 +633,115 @@ section.panel {
    bar — the desktop per-column collapse buttons don't map cleanly to a
    phone, so the tab bar is the mobile equivalent of that affordance.
    ============================================================ */
+/* ============ IN-APP SOURCE CARD ============
+   Tapping a critical-signal card or a timeline "source →" link opens this
+   instead of navigating straight to the external URL — the external link
+   is now a deliberate, explicitly-labeled action inside the card, not the
+   default outcome of a tap. */
+.source-card-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  background: rgba(4, 6, 9, 0.7);
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+.source-card-overlay.open { display: flex; }
+.source-card {
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  width: 100%;
+  max-width: 460px;
+  max-height: 78vh;
+  overflow-y: auto;
+  padding: 18px 18px calc(16px + env(safe-area-inset-bottom, 0px));
+  position: relative;
+  box-shadow: 0 -8px 30px rgba(0,0,0,0.5);
+}
+.sc-close {
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+.sc-close:hover { color: var(--text-primary); border-color: var(--accent-info); }
+.sc-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+.sc-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.4;
+  margin: 0 30px 10px 0;
+  color: var(--text-primary);
+}
+.sc-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.sc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 7px 0;
+  border-top: 1px solid var(--border-soft);
+  font-size: 12.5px;
+}
+.sc-k {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.sc-v { color: var(--text-primary); text-align: right; }
+.sc-actions { display: flex; gap: 8px; margin-top: 18px; }
+.sc-btn {
+  flex: 1;
+  text-align: center;
+  padding: 11px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  background: var(--panel);
+}
+.sc-btn:hover { border-color: var(--accent-info); text-decoration: none; }
+.sc-btn-primary { background: var(--accent-info); border-color: var(--accent-info); color: #071019; font-weight: 600; }
+.sc-btn-primary:hover { filter: brightness(1.08); }
+@media (min-width: 901px) {
+  .source-card-overlay { align-items: center; }
+  .source-card { border-radius: 8px; border-bottom: 1px solid var(--border); max-height: 68vh; }
+}
+
 @media (max-width: 900px) {
   header { padding: 8px 10px; gap: 8px; }
   .logo { font-size: 16px; }
@@ -639,16 +792,25 @@ section.panel {
   .notify-check { width: 20px; height: 20px; }
   .layer-row { padding: 8px 0; }
 
-  /* Layer panel: collapsed to a single tappable title bar by default so it
-     doesn't permanently cover a large fraction of a phone-sized map; tapping
-     expands it into a scrollable sheet. */
+  /* On mobile the expanded panel becomes a full-width sheet instead of a
+     fixed 230px box (the collapse/expand mechanics themselves are defined
+     once, above, and apply at every screen size). */
   .layer-toggles { left: 8px; right: 8px; top: 8px; max-width: none; }
-  .layer-toggles .lt-title { cursor: pointer; }
-  .layer-toggles:not(.expanded) .layer-row,
-  .layer-toggles:not(.expanded) .btn-query { display: none; }
-  .layer-toggles.expanded { max-height: 65vh; overflow-y: auto; }
+  .layer-toggles.expanded { max-height: 65vh; }
 
   .map-footnote { left: 8px; right: 8px; max-width: none; font-size: 9.5px; line-height: 1.3; }
+
+  /* iOS Safari auto-zooms the page when a focused text input's computed
+     font-size is under 16px — 16px here isn't a stylistic choice. */
+  .search-box input { font-size: 16px; }
+
+  /* Upcoming defaults to collapsed on mobile (see JS) — it was eating space
+     that Timeline needs more; the caret + cursor signal it's tappable to
+     expand back open. Desktop is untouched: its own collapse button/column
+     mechanism still works exactly as before. */
+  #upcomingHead { cursor: pointer; }
+  .mob-caret { display: inline-block; }
+  #upList.mobile-collapsed { display: none; }
 
   /* Bottom tab bar — hidden entirely above the phone breakpoint. */
   .mobile-tabbar { display: flex; }
@@ -745,9 +907,10 @@ section.panel {
     </div>
     <div class="search-box" id="tlSearchBox"><input id="searchInput" placeholder="Filter by keyword, country, source…"></div>
     <div class="panel-body" id="tlList" style="flex: 2;"></div>
-    <div class="panel-head" style="border-top: 1px solid var(--border-soft);">
+    <div class="panel-head" id="upcomingHead" style="border-top: 1px solid var(--border-soft);">
       <span class="ph-label">Upcoming</span>
       <span class="count" id="upCount">0</span>
+      <span class="mob-caret" id="upCaret">▸</span>
       <button class="collapse-btn" id="btnToggleUpcoming" title="Collapse panel">−</button>
     </div>
     <div class="panel-body" id="upList" style="flex: 1; max-height: 240px;"></div>
@@ -771,6 +934,13 @@ section.panel {
   </button>
 </nav>
 
+<div class="source-card-overlay" id="sourceCardOverlay">
+  <div class="source-card" id="sourceCard">
+    <button type="button" class="sc-close" id="scClose" aria-label="Close">×</button>
+    <div id="sourceCardBody"></div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 // ============================================================
@@ -787,6 +957,18 @@ const CONFIG = {
   RELIEFWEB_ENABLED: false,
   RELIEFWEB_APPNAME: "",
 
+  // EFFIS (European Forest Fire Information System) — curl-confirmed live
+  // and its JSON shape is exactly what fetchEFFIS() expects, but the server
+  // sends NO Access-Control-Allow-Origin header, so a browser fetch() is
+  // blocked reading the response from any origin — hosted on GitHub Pages
+  // or opened as a local file, doesn't matter. This is a different failure
+  // mode than GDELT's (which is plausibly a file:// testing artifact) —
+  // EFFIS's block is server-side and permanent until something sits in
+  // front of it that can grant CORS, e.g. a small serverless proxy or a
+  // Cloudflare Worker. The fetcher is written and correct; it only runs
+  // once this is flipped to true AND a proxy URL is substituted in.
+  EFFIS_ENABLED: false,
+
   REFRESH: {
     usgs: 60_000,
     emsc: 60_000,
@@ -796,6 +978,8 @@ const CONFIG = {
     launch: 30 * 60_000,
     gdelt: 60_000,
     reliefweb: 5 * 60_000,
+    copernicus_ems: 10 * 60_000, // activations update over hours/days between products, not seconds
+    effis: 10 * 60_000,
     weather: 15 * 60_000, // ambient conditions change slowly relative to events; models themselves only update hourly-ish
   },
 
@@ -847,7 +1031,7 @@ const STATE = {
   // a real severity field (i.e. things that behave like alerts); off for
   // scheduled/unverified sources where "new" doesn't mean "urgent" —
   // toggleable per-source in the UI either way.
-  notifyEnabled: { usgs: true, emsc: true, gdacs: true, firms: true, nws: true, launch: false, gdelt: false, reliefweb: false },
+  notifyEnabled: { usgs: true, emsc: true, gdacs: true, firms: true, nws: true, launch: false, gdelt: false, reliefweb: false, copernicus_ems: true, effis: false },
   seenIds: new Map(),   // event id -> first-seen timestamp (ms), persists across refreshes this session
   toasts: [],           // transient toast queue: {id, title, source, severity, expiresAt}
   weatherLocations: [], // current-conditions snapshot for CONFIG.WEATHER_LOCATIONS, refreshed on a timer
@@ -863,6 +1047,16 @@ const SOURCES = {
   launch:    { label: "LAUNCH",     badge: "badge-launch",    color: "#A78BFA", verified: "Official schedule (LL2)", describes: "Scheduled rocket launches worldwide (The Space Devs / Launch Library 2)" },
   gdelt:     { label: "GDELT",      badge: "badge-gdelt",     color: "#7C8B99", verified: "Auto-coded from news — unverified", describes: "Global news headlines — auto-coded from worldwide media, not human-verified (GDELT)" },
   reliefweb: { label: "RELIEFWEB",  badge: "badge-reliefweb", color: "#7C8B99", verified: "Curated humanitarian report", describes: "Humanitarian/crisis reports, curated (ReliefWeb) — pending your API approval" },
+  // Every event here was REQUESTED by a named national or EU civil-protection
+  // authority for a real disaster — a materially higher trust tier than
+  // GDACS's automated satellite/model triggers. No native severity field, so
+  // (per this dashboard's own "no composite scoring" rule) severity stays
+  // null rather than invented — same treatment as GDELT/ReliefWeb/Launch.
+  copernicus_ems: { label: "CEMS", badge: "badge-cems", color: "#C9A227", verified: "Official EU civil-protection activation", describes: "Copernicus Emergency Management Service — satellite mapping activations authorized by national/EU civil-protection authorities for confirmed disasters (wildfires, floods, earthquakes, storms). Global coverage, heavy European share." },
+  // Confirmed LIVE via curl, but confirmed via curl to send no CORS header —
+  // a browser can't read the response from any origin, hosted or local. Left
+  // wired and correct, disabled at CONFIG.EFFIS_ENABLED until a proxy exists.
+  effis: { label: "EFFIS", badge: "badge-effis", color: "#4C9A5B", verified: "Official EU burnt-area record (JRC/Copernicus)", describes: "European Forest Fire Information System — expert-confirmed burnt-area perimeters for Europe/Mediterranean/MENA. Currently disabled: verified via curl that the API sends no CORS header, so it can't be fetched directly from a browser. Needs a proxy — see CONFIG.EFFIS_ENABLED." },
   // Ambient conditions, not scored events — no severity field, no "new"
   // concept, so it skips the FETCHERS/STATE.events pipeline entirely and
   // is rendered/refreshed by its own dedicated functions (see below).
@@ -1182,9 +1376,65 @@ async function fetchReliefWeb() {
   });
 }
 
+// Copernicus EMS Rapid Mapping — confirmed live via curl against
+// https://rapidmapping.emergency.copernicus.eu/backend/dashboard-api/public-activations-info/
+// (real activations returned, e.g. an active French wildfire) AND confirmed
+// CORS-open (access-control-allow-origin: *), so this is a genuine no-proxy
+// drop-in, unlike EFFIS below.
+async function fetchCopernicusEMS() {
+  const url = "https://rapidmapping.emergency.copernicus.eu/backend/dashboard-api/public-activations-info/?limit=60";
+  const res = await safeFetch(url);
+  const data = await res.json();
+  return (data.results || []).map(function(a) {
+    // centroid arrives as WKT text, e.g. "POINT (5.338 44.702)" — lon then lat.
+    const m = /POINT\s*\(\s*([-\d.]+)\s+([-\d.]+)\s*\)/.exec(a.centroid || "");
+    if (!m) return null;
+    const lon = parseFloat(m[1]), lat = parseFloat(m[2]);
+    const t = new Date(a.eventTime || a.activationTime).getTime();
+    return {
+      id: uid("cems", a.code),
+      source: "copernicus_ems",
+      lat: lat, lon: lon,
+      time: t,
+      title: a.name,
+      // Confirmed via curl redirect chain: /{code} -> /activations/{code}/
+      url: "https://mapping.emergency.copernicus.eu/activations/" + a.code + "/",
+      severity: null, // no native severity field on this source — see SOURCES comment
+      meta: a.category + " · " + (a.countries || []).join(", ") + " · " + (a.closed ? "closed" : "active") + " · " + a.n_products + " product" + (a.n_products === 1 ? "" : "s"),
+      criticalWindowEnd: a.closed ? (t + 3 * 86400000) : (Date.now() + 3600000),
+    };
+  }).filter(Boolean);
+}
+
+// EFFIS — see CONFIG.EFFIS_ENABLED for the full CORS finding. Fetcher is
+// correct and endpoint-verified; it only runs once that flag is flipped.
+async function fetchEFFIS() {
+  if (!CONFIG.EFFIS_ENABLED) throw new Error("EFFIS disabled — API confirmed CORS-blocked, needs a proxy (see CONFIG.EFFIS_ENABLED)");
+  const url = "https://api.effis.emergency.copernicus.eu/rest/2/burntareas/current/?format=json&limit=200&ordering=-firedate";
+  const res = await safeFetch(url);
+  const data = await res.json();
+  return (data.results || []).map(function(f) {
+    const t = new Date(f.firedate).getTime();
+    const lat = f.centroid && f.centroid.coordinates ? f.centroid.coordinates[1] : null;
+    const lon = f.centroid && f.centroid.coordinates ? f.centroid.coordinates[0] : null;
+    return {
+      id: uid("effis", f.id),
+      source: "effis",
+      lat: lat, lon: lon,
+      time: t,
+      title: "Wildfire — " + (f.commune || f.province || f.countryful),
+      url: "https://forest-fire.emergency.copernicus.eu/apps/effis_current_situation_test/",
+      severity: null, // no native severity field on this source — see SOURCES comment
+      meta: (f.area_ha != null ? f.area_ha : "?") + " ha burnt · " + f.province + ", " + f.countryful,
+      criticalWindowEnd: t + 4 * 86400000, // burnt-area records: relevance fades over ~4d post-fire
+    };
+  }).filter(function(e) { return e.lat != null && e.lon != null; });
+}
+
 const FETCHERS = {
   usgs: fetchUSGS, emsc: fetchEMSC, gdacs: fetchGDACS, firms: fetchFIRMS,
   nws: fetchNWS, launch: fetchLaunch, gdelt: fetchGDELT, reliefweb: fetchReliefWeb,
+  copernicus_ems: fetchCopernicusEMS, effis: fetchEFFIS,
 };
 
 const HIGHLIGHT_MS = 30_000;    // how long the "new" glow lasts on cards + map markers
@@ -1330,6 +1580,18 @@ function isRecentlyNew(e) {
   return typeof e.firstSeenAt === "number" && (Date.now() - e.firstSeenAt) < HIGHLIGHT_MS;
 }
 
+// Distinguishes "nothing has arrived from any source yet" (still loading)
+// from "sources reported in and there's genuinely nothing to show" — on
+// first paint, before any fetch resolves, the lists would otherwise render
+// an empty-state message that reads as "there is no data" rather than
+// "data is on its way", which is a misleading first impression for a
+// consumer-facing app.
+function sourcesStillLoading() {
+  return STATE.events.length === 0 && Object.keys(STATE.sourceStatus).every(function(k) {
+    return STATE.sourceStatus[k].status === "pending";
+  });
+}
+
 function renderCritical() {
   const list = STATE.events
     .filter(function(e) { return (e.severity === "high" || e.severity === "mid") && isStillCritical(e); })
@@ -1344,11 +1606,13 @@ function renderCritical() {
   document.getElementById("tabAlertsCount").textContent = list.length;
   const el = document.getElementById("critList");
   if (list.length === 0) {
-    el.innerHTML = '<div class="empty-note">No high/moderate-severity signals from live sources right now.</div>';
+    el.innerHTML = sourcesStillLoading()
+      ? '<div class="empty-note">Connecting to live sources…</div>'
+      : '<div class="empty-note">No high/moderate-severity signals from live sources right now.</div>';
     return;
   }
   el.innerHTML = list.map(function(e) {
-    return '<div class="crit-card sev-' + e.severity + (isRecentlyNew(e) ? ' is-new' : '') + '" onclick="window.open(\'' + e.url + '\',\'_blank\')">' +
+    return '<div class="crit-card sev-' + e.severity + (isRecentlyNew(e) ? ' is-new' : '') + '" onclick="openSourceCard(\'' + e.id + '\')">' +
       '<div class="src-badge">' + SOURCES[e.source].label + '</div>' +
       '<div class="title">' + escapeHtml(e.title) + '</div>' +
       '<div class="meta"><span>' + (e.meta || "") + '</span><span>' + timeAgo(e.time) + '</span></div>' +
@@ -1374,6 +1638,14 @@ function renderTimeline() {
   list = list.slice(0, 150);
   document.getElementById("tlCount").textContent = list.length;
   const el = document.getElementById("tlList");
+  if (list.length === 0) {
+    el.innerHTML = sourcesStillLoading()
+      ? '<div class="empty-note">Connecting to live sources…</div>'
+      : (STATE.searchTerm
+        ? '<div class="empty-note">No timeline items match "' + escapeHtml(STATE.searchTerm) + '".</div>'
+        : '<div class="empty-note">No timeline items right now.</div>');
+    return;
+  }
   el.innerHTML = list.map(function(e) {
     const src = SOURCES[e.source];
     const unverified = src.verified.toLowerCase().indexOf("unverified") !== -1;
@@ -1381,7 +1653,7 @@ function renderTimeline() {
       '<div class="row1"><span class="src ' + src.badge + '">' + src.label + '</span><span class="time">' + timeAgo(e.time) + '</span></div>' +
       '<div class="title">' + escapeHtml(e.title) + '</div>' +
       '<div class="verify ' + (unverified ? "unverified" : "") + '">' + src.verified + '</div>' +
-      '<a class="src-link" href="' + e.url + '" target="_blank" rel="noopener">source →</a>' +
+      '<a class="src-link" href="#" onclick="openSourceCard(\'' + e.id + '\'); return false;">source →</a>' +
     '</div>';
   }).join("");
 }
@@ -1399,7 +1671,9 @@ function renderUpcoming() {
   document.getElementById("tabTimelineCount").textContent = tlShown + list.length;
   const el = document.getElementById("upList");
   if (list.length === 0) {
-    el.innerHTML = '<div class="empty-note">No upcoming scheduled events.</div>';
+    el.innerHTML = sourcesStillLoading()
+      ? '<div class="empty-note">Connecting to live sources…</div>'
+      : '<div class="empty-note">No upcoming scheduled events.</div>';
     return;
   }
   el.innerHTML = list.map(function(e) {
@@ -1408,7 +1682,7 @@ function renderUpcoming() {
       '<div class="row1"><span class="src ' + src.badge + '">' + src.label + '</span><span class="time">' + timeAgo(e.time) + '</span></div>' +
       '<div class="title">' + escapeHtml(e.title) + '</div>' +
       '<div class="verify">' + (e.meta || "") + '</div>' +
-      '<a class="src-link" href="' + e.url + '" target="_blank" rel="noopener">source →</a>' +
+      '<a class="src-link" href="#" onclick="openSourceCard(\'' + e.id + '\'); return false;">source →</a>' +
     '</div>';
   }).join("");
 }
@@ -1588,9 +1862,16 @@ function initMap() {
   });
 }
 
+function updateLayerPanelCaret() {
+  const el = document.getElementById("layerToggles");
+  const caret = document.getElementById("ltCaret");
+  if (!caret) return;
+  caret.textContent = el.classList.contains("expanded") ? "▾" : "▸";
+}
+
 function renderLayerToggles() {
   const el = document.getElementById("layerToggles");
-  let html = '<div class="lt-title">Layers <span class="lt-title-r">Alert</span></div>';
+  let html = '<div class="lt-title"><span>Layers <span class="lt-caret" id="ltCaret">▸</span></span><span class="lt-title-r">Alert</span></div>';
   for (const key in SOURCES) {
     const s = SOURCES[key];
     html += '<div class="layer-row">' +
@@ -1608,19 +1889,24 @@ function renderLayerToggles() {
   html += '<button type="button" class="btn-query" id="btnQueryMode">◎ Click map for conditions</button>';
   el.innerHTML = html;
   document.getElementById("btnQueryMode").addEventListener("click", function() { toggleQueryMode(); });
-  // On mobile this panel is collapsed to just its title bar by default (see
-  // CSS) to avoid permanently covering a large fraction of a phone-sized
-  // map; tapping the title expands it into a scrollable sheet. Harmless on
-  // desktop, where the collapsed/expanded CSS states don't apply at all.
+  // Layer panel is collapsed to just its title bar by default — at any
+  // viewport, not only mobile — since a fully expanded 9-source list can
+  // cover a meaningful chunk of the map regardless of screen size. Tapping
+  // the title expands it into a scrollable panel; clicking anywhere outside
+  // it collapses it again.
   const ltTitle = el.querySelector(".lt-title");
   if (ltTitle) {
     ltTitle.addEventListener("click", function(ev) {
       ev.stopPropagation();
       el.classList.toggle("expanded");
+      updateLayerPanelCaret();
     });
   }
   document.addEventListener("click", function(ev) {
-    if (!el.contains(ev.target)) el.classList.remove("expanded");
+    if (!el.contains(ev.target)) {
+      el.classList.remove("expanded");
+      updateLayerPanelCaret();
+    }
   });
   el.querySelectorAll("input[data-layer]").forEach(function(inp) {
     inp.addEventListener("change", function() {
@@ -1652,6 +1938,7 @@ function renderLayerToggles() {
       STATE.notifyEnabled[inp.dataset.notify] = inp.checked;
     });
   });
+  updateLayerPanelCaret();
 }
 
 function sevColor(sev, fallback) {
@@ -1689,16 +1976,38 @@ function renderMap() {
   });
 }
 
+// Toasts are only added to / removed from the DOM here — never wholesale
+// rebuilt. The previous version replaced toastStack.innerHTML on every
+// call, including the 2s glow-decay tick; since that ran several times
+// during a single toast's ~8s lifetime, it kept recreating the same toast's
+// DOM node, which re-triggered its slide-in animation each time — reading
+// as the toast "sticking and repeating" rather than sliding in once and
+// sitting still until it expires.
+const toastEls = new Map(); // toast id -> live DOM node
 function renderToasts() {
-  STATE.toasts = STATE.toasts.filter(function(t) { return t.expiresAt > Date.now(); });
+  const now = Date.now();
+  STATE.toasts = STATE.toasts.filter(function(t) { return t.expiresAt > now; });
   const el = document.getElementById("toastStack");
-  el.innerHTML = STATE.toasts.map(function(t) {
+  const liveIds = new Set(STATE.toasts.map(function(t) { return t.id; }));
+
+  toastEls.forEach(function(node, id) {
+    if (liveIds.has(id)) return;
+    node.classList.add("toast-leaving");
+    node.addEventListener("animationend", function() { node.remove(); }, { once: true });
+    toastEls.delete(id);
+  });
+
+  STATE.toasts.forEach(function(t) {
+    if (toastEls.has(t.id)) return; // already on screen, animating or settled — leave it alone
     const src = SOURCES[t.source];
-    return '<div class="toast sev-' + (t.severity || "none") + '">' +
+    const node = document.createElement("div");
+    node.className = "toast sev-" + (t.severity || "none");
+    node.innerHTML =
       '<span class="toast-src ' + src.badge + '">' + src.label + '</span>' +
-      '<span class="toast-title">' + escapeHtml(t.title) + '</span>' +
-    '</div>';
-  }).join("");
+      '<span class="toast-title">' + escapeHtml(t.title) + '</span>';
+    el.insertBefore(node, el.firstChild); // newest on top
+    toastEls.set(t.id, node);
+  });
 }
 
 function escapeHtml(str) {
@@ -1706,6 +2015,53 @@ function escapeHtml(str) {
   d.textContent = str || "";
   return d.innerHTML;
 }
+
+// ============================================================
+// IN-APP SOURCE CARD — shows an event's full detail (title, meta,
+// verification level, timestamp, coordinates) in place, with the external
+// link demoted to an explicit "Open source" button rather than the
+// immediate result of a tap.
+// ============================================================
+function findEventById(id) {
+  return STATE.events.find(function(e) { return e.id === id; });
+}
+
+function openSourceCard(id) {
+  const e = findEventById(id);
+  if (!e) return; // event aged out of the live feed between render and tap — rare, fails silently
+  const src = SOURCES[e.source];
+  const hasCoords = e.lat != null && e.lon != null && !isNaN(e.lat) && !isNaN(e.lon);
+  document.getElementById("sourceCardBody").innerHTML =
+    '<div class="sc-badge ' + src.badge + '">' + src.label + '</div>' +
+    '<div class="sc-title">' + escapeHtml(e.title) + '</div>' +
+    (e.meta ? '<div class="sc-meta">' + escapeHtml(e.meta) + '</div>' : '') +
+    '<div class="sc-row"><span class="sc-k">Verification</span><span class="sc-v">' + escapeHtml(src.verified) + '</span></div>' +
+    '<div class="sc-row"><span class="sc-k">Timestamp</span><span class="sc-v">' + fmtUTC(e.time) + ' &middot; ' + timeAgo(e.time) + '</span></div>' +
+    (hasCoords ? '<div class="sc-row"><span class="sc-k">Coordinates</span><span class="sc-v">' + e.lat.toFixed(3) + ', ' + e.lon.toFixed(3) + '</span></div>' : '') +
+    '<div class="sc-actions">' +
+      (hasCoords ? '<button type="button" class="sc-btn" id="scViewMap">View on map</button>' : '') +
+      '<a class="sc-btn sc-btn-primary" href="' + e.url + '" target="_blank" rel="noopener">Open source ↗</a>' +
+    '</div>';
+  document.getElementById("sourceCardOverlay").classList.add("open");
+  if (hasCoords) {
+    const btn = document.getElementById("scViewMap");
+    if (btn) btn.addEventListener("click", function() {
+      closeSourceCard();
+      setMobileTab("map");
+      if (map) map.setView([e.lat, e.lon], Math.max(map.getZoom(), 6));
+    });
+  }
+}
+function closeSourceCard() {
+  document.getElementById("sourceCardOverlay").classList.remove("open");
+}
+document.getElementById("scClose").addEventListener("click", closeSourceCard);
+document.getElementById("sourceCardOverlay").addEventListener("click", function(ev) {
+  if (ev.target === this) closeSourceCard();
+});
+document.addEventListener("keydown", function(ev) {
+  if (ev.key === "Escape") closeSourceCard();
+});
 
 // ============================================================
 // PANEL COLLAPSE — lets the map reclaim space from either rail.
@@ -1777,12 +2133,38 @@ document.querySelectorAll("#mobileTabbar button").forEach(function(btn) {
   btn.addEventListener("click", function() { setMobileTab(btn.dataset.tab); });
 });
 
+// ============================================================
+// UPCOMING PANEL — mobile-only collapse. Independent of the desktop
+// STATE.collapsed system (which narrows a whole rail column); this just
+// hides/shows #upList in place, defaulting to hidden on mobile since it was
+// crowding out Timeline, which is the more time-sensitive of the two. The
+// matchMedia guard means this listener is a harmless no-op on desktop,
+// where the existing collapse button keeps working exactly as before.
+STATE.mobileUpcomingExpanded = false;
+function applyMobileUpcomingCollapse() {
+  const upList = document.getElementById("upList");
+  const caret = document.getElementById("upCaret");
+  if (!upList || !caret) return;
+  upList.classList.toggle("mobile-collapsed", !STATE.mobileUpcomingExpanded);
+  caret.textContent = STATE.mobileUpcomingExpanded ? "▾" : "▸";
+}
+document.getElementById("upcomingHead").addEventListener("click", function() {
+  if (!window.matchMedia("(max-width: 900px)").matches) return;
+  STATE.mobileUpcomingExpanded = !STATE.mobileUpcomingExpanded;
+  applyMobileUpcomingCollapse();
+});
+applyMobileUpcomingCollapse();
+
 initMap();
 renderHealthStrip();
 for (const key in SOURCES) {
   if (key === "weather") continue; // has its own fetch shape (Open-Meteo), not part of FETCHERS/STATE.events
   if (key === "reliefweb" && !CONFIG.RELIEFWEB_ENABLED) {
     markStatus(key, "error", "disabled — needs approved appname");
+    continue;
+  }
+  if (key === "effis" && !CONFIG.EFFIS_ENABLED) {
+    markStatus(key, "error", "disabled — CORS-blocked, needs a proxy");
     continue;
   }
   scheduleSource(key);
