@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>\n    <link rel="icon" type="image/svg+xml" href="/favicon.svg">\n    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">\n    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">\n    <link rel="shortcut icon" href="/favicon.ico">\n    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nick Carbone</title>
@@ -511,7 +516,17 @@
 
 const OWNER   = 'nickcarbone';
 const EXCLUDE = ['nickcarbone.github.io'];
-
+// Pages that live as a file inside THIS repo (not a separate GitHub Pages
+// repo), so they're invisible to the has_pages auto-discovery below.
+// Each entry renders identically to an auto-discovered card.
+const MANUAL_CARDS = [
+  {
+    name: 'Signal',
+    url: `https://${OWNER}.github.io/signal.html`,
+    desc: 'Global situational-awareness dashboard — consequence-ranked events from live feeds (USGS, GDACS, NASA FIRMS, and more).',
+    dateLabel: 'Actively updated'
+  }
+];
 // ── Helpers ──────────────────────────────────────────────────
 
 function deSlug(s) {
@@ -597,6 +612,33 @@ function renderCard(repo, index) {
     </div>
   `;
 
+return a;
+}
+
+function renderManualCard(item, index) {
+  const num   = pad2(index + 1);
+  const delay = (0.55 + index * 0.06).toFixed(2);
+
+  const a = document.createElement('a');
+  a.href    = item.url;
+  a.target  = '_blank';
+  a.rel     = 'noopener noreferrer';
+  a.className = 'card';
+  a.style.animationDelay = `${delay}s`;
+
+  a.innerHTML = `
+    <div class="card-top">
+      <span class="card-num">${num}</span>
+      <span class="card-arrow">↗</span>
+    </div>
+    <div class="card-title">${item.name}</div>
+    ${item.desc ? `<p class="card-desc">${item.desc}</p>` : ''}
+    <div class="card-footer">
+      <span class="card-date">${item.dateLabel}</span>
+      <span class="card-link">View →</span>
+    </div>
+  `;
+
   return a;
 }
 
@@ -625,24 +667,30 @@ function showError(msg) {
 // ── Init ─────────────────────────────────────────────────────
 
 (async () => {
+  document.getElementById('skeleton').style.display = 'none';
+  const grid = document.getElementById('grid');
+
+  let repos = [];
   try {
-    const repos = await loadRepos();
-
-    document.getElementById('skeleton').style.display = 'none';
-
-    if (!repos.length) { showEmpty(); return; }
-
-    document.getElementById('count').textContent = `${repos.length} item${repos.length !== 1 ? 's' : ''}`;
-    document.getElementById('last-updated').textContent =
-      `Updated ${relTime(repos[0].pushed_at).toLowerCase()}`;
-
-    const grid = document.getElementById('grid');
-    repos.forEach((repo, i) => grid.appendChild(renderCard(repo, i)));
-    grid.style.display = 'grid';
-
+    repos = await loadRepos();
   } catch (err) {
-    showError(err.message || 'GitHub API request failed.');
+    // Even if the GitHub API call fails (rate limit, network), the manually
+    // pinned cards should still render — they don't depend on that call.
+    if (!MANUAL_CARDS.length) { showError(err.message || 'GitHub API request failed.'); return; }
   }
+
+  const total = repos.length + MANUAL_CARDS.length;
+  if (!total) { showEmpty(); return; }
+
+  document.getElementById('count').textContent = `${total} item${total !== 1 ? 's' : ''}`;
+  document.getElementById('last-updated').textContent = repos.length
+    ? `Updated ${relTime(repos[0].pushed_at).toLowerCase()}`
+    : '';
+
+  let idx = 0;
+  MANUAL_CARDS.forEach(item => grid.appendChild(renderManualCard(item, idx++)));
+  repos.forEach(repo => grid.appendChild(renderCard(repo, idx++)));
+  grid.style.display = 'grid';
 })();
 </script>
 
