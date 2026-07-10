@@ -1,7 +1,15 @@
 {
-  "generated": "2026-07-10T09:46:10.288Z",
-  "count": 55,
+  "generated": "2026-07-10T14:41:10.071Z",
+  "count": 56,
   "pages": [
+    {
+      "slug": "scoop-tracker",
+      "url": "https://nickcarbone.github.io/scoop-tracker/",
+      "title": "Scoop Tracker",
+      "description": "",
+      "updated": "2026-07-10T14:03:10Z",
+      "created": "2026-07-10T01:19:16Z"
+    },
     {
       "slug": "sms-blaster",
       "url": "https://nickcarbone.github.io/sms-blaster/",
