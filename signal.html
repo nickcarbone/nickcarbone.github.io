@@ -1,3 +1,4 @@
+<!-- SIGNAL_BUILD_UTC: 1970-01-01T00:00:00Z (placeholder — deploy.sh overwrites this on every push; if you're seeing this literal placeholder, the file was saved/uploaded outside deploy.sh) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1042,6 +1043,8 @@ const STATE = {
   toasts: [],           // transient toast queue: {id, title, source, severity, expiresAt}
   weatherLocations: [], // current-conditions snapshot for CONFIG.WEATHER_LOCATIONS, refreshed on a timer
   queryMode: false,     // true while "Click map for conditions" is toggled on
+  openPopupEventId: null, // event id whose map popup is currently open, so renderMap() can
+                          // reopen it on the freshly-rebuilt marker instead of silently closing it
 };
 
 const SOURCES = {
@@ -1088,6 +1091,23 @@ for (const key of Object.keys(SOURCES)) {
   STATE.sourceStatus[key] = { status: "pending", lastFetch: null, error: null };
   STATE.activeLayers[key] = true;
 }
+
+// Reads the SIGNAL_BUILD_UTC marker from the HTML comment at the very top
+// of the file (see line 1). deploy.sh rewrites that comment's timestamp on
+// every push, so this is a live, unfakeable "which build is actually
+// running" check — logged to console AND surfaced in the health tooltip
+// (see renderHealthStrip) so it's visible without opening DevTools.
+function getBuildTimestamp() {
+  for (const node of document.childNodes) {
+    if (node.nodeType === 8 && node.textContent.indexOf("SIGNAL_BUILD_UTC") !== -1) {
+      const m = /SIGNAL_BUILD_UTC:\s*(\S+)/.exec(node.textContent);
+      return m ? m[1] : null;
+    }
+  }
+  return null;
+}
+const BUILD_TIMESTAMP = getBuildTimestamp();
+console.log("SIGNAL build: " + (BUILD_TIMESTAMP || "unknown (no build marker found)"));
 
 function uid(prefix, raw) {
   return prefix + "_" + String(raw).replace(/[^a-zA-Z0-9]/g, "").slice(0, 40);
@@ -1662,6 +1682,14 @@ function renderHealthStrip() {
   const tip = document.getElementById("healthTip");
   strip.innerHTML = "";
   tip.innerHTML = "";
+
+  const buildRow = document.createElement("div");
+  buildRow.style.borderBottom = "1px solid var(--border)";
+  buildRow.style.marginBottom = "4px";
+  buildRow.style.paddingBottom = "4px";
+  buildRow.innerHTML = "<span>BUILD</span><span>" + (BUILD_TIMESTAMP || "unknown") + "</span>";
+  tip.appendChild(buildRow);
+
   for (const key in STATE.sourceStatus) {
     const s = STATE.sourceStatus[key];
     const dot = document.createElement("div");
@@ -2095,6 +2123,23 @@ function sevColor(sev, fallback) {
 
 function renderMap() {
   if (!map) return;
+  // This function runs on a 2s interval (purely to fade the "new" glow —
+  // see setInterval above) as well as on every genuine data refresh. Every
+  // call clears and rebuilds ALL markers from scratch. That was silently
+  // killing any popup the user had just opened by clicking a marker:
+  // clicking opens the popup, then the very next 2s tick tears down that
+  // marker object and replaces it with a fresh one, and Leaflet closes a
+  // popup when its owning layer is removed. The result read as "opens,
+  // then vanishes a moment later" with no consistent delay, since it
+  // depended on how the click happened to line up with the tick.
+  //
+  // Fix: remember which event's popup was open before the rebuild, and if
+  // that event still exists after rebuilding, reopen its popup on the new
+  // marker in this same synchronous pass — before the browser paints — so
+  // visually it never actually closes.
+  const reopenId = STATE.openPopupEventId;
+  let reopenMarker = null;
+
   // "weather" is skipped here deliberately — it isn't populated from
   // STATE.events, so clearing it here would wipe it out with nothing to
   // redraw it until the next 15-minute refresh. It's managed entirely by
@@ -2117,8 +2162,18 @@ function renderMap() {
       '<div class="pop-meta">' + fmtUTC(e.time) + '</div>' +
       '<a href="' + e.url + '" target="_blank" rel="noopener">Open source →</a>'
     );
+    // Track open/close on THIS event's id (not the marker object, which
+    // gets thrown away every render) so a rebuild elsewhere in this
+    // function knows whether this one needs to be reopened.
+    marker.on("popupopen", function() { STATE.openPopupEventId = e.id; });
+    marker.on("popupclose", function() {
+      if (STATE.openPopupEventId === e.id) STATE.openPopupEventId = null;
+    });
     layerGroups[e.source].addLayer(marker);
+    if (e.id === reopenId) reopenMarker = marker;
   });
+
+  if (reopenMarker) reopenMarker.openPopup();
 }
 
 // Toasts are only added to / removed from the DOM here — never wholesale
