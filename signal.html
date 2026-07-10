@@ -1050,6 +1050,7 @@ const STATE = {
   toasts: [],           // transient toast queue: {id, title, source, severity, expiresAt}
   weatherLocations: [], // current-conditions snapshot for CONFIG.WEATHER_LOCATIONS, refreshed on a timer
   queryMode: false,     // true while "Click map for conditions" is toggled on
+  openPopupEventId: null, // event id whose map popup is currently open — see renderMap()
 };
 
 const SOURCES = {
@@ -2125,6 +2126,23 @@ function sevColor(sev, fallback) {
 
 function renderMap() {
   if (!map) return;
+  // This function is called on a 2s interval (purely to fade the "new"
+  // glow — see setInterval above) as well as on every genuine data refresh.
+  // Every call clears and rebuilds ALL markers from scratch. That was
+  // silently killing any popup the user had just opened by clicking a
+  // marker: clicking opens the popup, then the very next 2s tick tears
+  // down that marker object and replaces it with a fresh one, and Leaflet
+  // closes a popup when its owning layer is removed. The result read as
+  // "opens, then vanishes a moment later" with no consistent delay, since
+  // it depended on how the click happened to line up with the tick.
+  //
+  // Fix: remember which event's popup was open before the rebuild, and if
+  // that event still exists after rebuilding, reopen its popup on the new
+  // marker in this same synchronous pass — before the browser paints —
+  // so visually it never actually closes.
+  const reopenId = STATE.openPopupEventId;
+  let reopenMarker = null;
+
   // "weather" is skipped here deliberately — it isn't populated from
   // STATE.events, so clearing it here would wipe it out with nothing to
   // redraw it until the next 15-minute refresh. It's managed entirely by
@@ -2147,8 +2165,18 @@ function renderMap() {
       '<div class="pop-meta">' + fmtUTC(e.time) + '</div>' +
       '<a href="' + e.url + '" target="_blank" rel="noopener">Open source →</a>'
     );
+    // Track open/close on THIS event's id (not the marker object, which
+    // gets thrown away every render) so a rebuild elsewhere in the map
+    // knows whether this one needs to be reopened.
+    marker.on("popupopen", function() { STATE.openPopupEventId = e.id; });
+    marker.on("popupclose", function() {
+      if (STATE.openPopupEventId === e.id) STATE.openPopupEventId = null;
+    });
     layerGroups[e.source].addLayer(marker);
+    if (e.id === reopenId) reopenMarker = marker;
   });
+
+  if (reopenMarker) reopenMarker.openPopup();
 }
 
 // Toasts are only added to / removed from the DOM here — never wholesale
