@@ -537,7 +537,6 @@ section.panel {
 .badge-nws { background: #2A2A3A; color: var(--accent-info); }
 .badge-launch { background: #2E2640; color: var(--accent-space); }
 .badge-gdelt { background: #262A30; color: var(--text-muted); }
-.badge-reliefweb { background: #262A30; color: var(--text-muted); }
 .badge-cems { background: #362E17; color: #C9A227; }
 .badge-effis { background: #1B3021; color: #4C9A5B; }
 .badge-eonet { background: #223A17; color: #8BC34A; }
@@ -954,12 +953,6 @@ const CONFIG = {
   // Sign up with your email — arrives in minutes, no cost, no card.
   FIRMS_MAP_KEY: "b6dccc9bfc5eacdb6c57f1ccd2713e9b",
 
-  // ReliefWeb now requires a pre-approved appname (policy changed Nov 2025).
-  // Request one at https://apidoc.reliefweb.int/parameters#appname — once
-  // approved, paste it below and set RELIEFWEB_ENABLED to true.
-  RELIEFWEB_ENABLED: false,
-  RELIEFWEB_APPNAME: "",
-
   // EFFIS (European Forest Fire Information System) — curl-confirmed live
   // and its JSON shape is exactly what fetchEFFIS() expects, but the server
   // sends NO Access-Control-Allow-Origin header, so a browser fetch() is
@@ -988,7 +981,6 @@ const CONFIG = {
     nws: 2 * 60_000,
     launch: 30 * 60_000,
     gdelt: 60_000,
-    reliefweb: 5 * 60_000,
     copernicus_ems: 10 * 60_000, // activations update over hours/days between products, not seconds
     effis: 10 * 60_000,
     eonet: 15 * 60_000,  // NASA's own curation cadence is slow relative to raw satellite feeds
@@ -1045,12 +1037,11 @@ const STATE = {
   // a real severity field (i.e. things that behave like alerts); off for
   // scheduled/unverified sources where "new" doesn't mean "urgent" —
   // toggleable per-source in the UI either way.
-  notifyEnabled: { usgs: true, emsc: true, gdacs: true, firms: true, nws: true, launch: false, gdelt: false, reliefweb: false, copernicus_ems: true, effis: false, eonet: false, swpc: true, odin: false },
+  notifyEnabled: { usgs: true, emsc: true, gdacs: true, firms: true, nws: true, launch: false, gdelt: false, copernicus_ems: true, effis: false, eonet: false, swpc: true, odin: false },
   seenIds: new Map(),   // event id -> first-seen timestamp (ms), persists across refreshes this session
   toasts: [],           // transient toast queue: {id, title, source, severity, expiresAt}
   weatherLocations: [], // current-conditions snapshot for CONFIG.WEATHER_LOCATIONS, refreshed on a timer
   queryMode: false,     // true while "Click map for conditions" is toggled on
-  openPopupEventId: null, // event id whose map popup is currently open — see renderMap()
 };
 
 const SOURCES = {
@@ -1061,12 +1052,11 @@ const SOURCES = {
   nws:       { label: "NWS",        badge: "badge-nws",       color: "#4C8DFF", verified: "Official government alert", describes: "Severe weather alerts — tornadoes, floods, storms — US only (National Weather Service)" },
   launch:    { label: "LAUNCH",     badge: "badge-launch",    color: "#A78BFA", verified: "Official schedule (LL2)", describes: "Scheduled rocket launches worldwide (The Space Devs / Launch Library 2)" },
   gdelt:     { label: "GDELT",      badge: "badge-gdelt",     color: "#7C8B99", verified: "Auto-coded from news — unverified", describes: "Global news headlines — auto-coded from worldwide media, not human-verified (GDELT)" },
-  reliefweb: { label: "RELIEFWEB",  badge: "badge-reliefweb", color: "#7C8B99", verified: "Curated humanitarian report", describes: "Humanitarian/crisis reports, curated (ReliefWeb) — pending your API approval" },
   // Every event here was REQUESTED by a named national or EU civil-protection
   // authority for a real disaster — a materially higher trust tier than
   // GDACS's automated satellite/model triggers. No native severity field, so
   // (per this dashboard's own "no composite scoring" rule) severity stays
-  // null rather than invented — same treatment as GDELT/ReliefWeb/Launch.
+  // null rather than invented — same treatment as GDELT/Launch.
   copernicus_ems: { label: "CEMS", badge: "badge-cems", color: "#C9A227", verified: "Official EU civil-protection activation", describes: "Copernicus Emergency Management Service — satellite mapping activations authorized by national/EU civil-protection authorities for confirmed disasters (wildfires, floods, earthquakes, storms). Global coverage, heavy European share." },
   // Confirmed LIVE via curl, but the server sends no CORS header — a browser
   // can't read the response from any origin, hosted or local. Routed through
@@ -1398,27 +1388,6 @@ async function fetchGDELT() {
   });
 }
 
-async function fetchReliefWeb() {
-  if (!CONFIG.RELIEFWEB_ENABLED || !CONFIG.RELIEFWEB_APPNAME) {
-    throw new Error("ReliefWeb disabled — needs approved appname, see CONFIG");
-  }
-  const url = "https://api.reliefweb.int/v2/reports?appname=" + CONFIG.RELIEFWEB_APPNAME + "&limit=25&sort[]=date:desc&fields[include][]=title&fields[include][]=url&fields[include][]=date&fields[include][]=country";
-  const res = await safeFetch(url);
-  const data = await res.json();
-  return (data.data || []).map(function(d) {
-    return {
-      id: uid("reliefweb", d.id),
-      source: "reliefweb",
-      lat: null, lon: null,
-      time: new Date((d.fields.date && d.fields.date.created) || Date.now()).getTime(),
-      title: d.fields.title,
-      url: d.fields.url,
-      severity: null,
-      meta: (d.fields.country || []).map(function(c) { return c.name; }).join(", "),
-    };
-  });
-}
-
 // Copernicus EMS Rapid Mapping — confirmed live via curl against
 // https://rapidmapping.emergency.copernicus.eu/backend/dashboard-api/public-activations-info/
 // (real activations returned, e.g. an active French wildfire) AND confirmed
@@ -1505,7 +1474,7 @@ async function fetchEONET() {
       // Prefer the original curating source's own link (e.g. IRWIN, GDACS,
       // InciWeb) over EONET's own JSON API endpoint, which isn't human-readable.
       url: (e.sources && e.sources[0] && e.sources[0].url) || e.link,
-      severity: null, // no native severity field — same treatment as GDELT/ReliefWeb/CEMS/EFFIS
+      severity: null, // no native severity field — same treatment as GDELT/CEMS/EFFIS
       meta: catLabel + mag + (e.closed ? " · closed" : " · ongoing"),
       criticalWindowEnd: e.closed ? (Date.parse(e.closed) + EONET_GRACE_MS) : (Date.now() + 3600000),
     };
@@ -1607,7 +1576,7 @@ async function fetchODIN() {
 
 const FETCHERS = {
   usgs: fetchUSGS, emsc: fetchEMSC, gdacs: fetchGDACS, firms: fetchFIRMS,
-  nws: fetchNWS, launch: fetchLaunch, gdelt: fetchGDELT, reliefweb: fetchReliefWeb,
+  nws: fetchNWS, launch: fetchLaunch, gdelt: fetchGDELT,
   copernicus_ems: fetchCopernicusEMS, effis: fetchEFFIS,
   eonet: fetchEONET, swpc: fetchSWPC, odin: fetchODIN,
 };
@@ -2126,23 +2095,6 @@ function sevColor(sev, fallback) {
 
 function renderMap() {
   if (!map) return;
-  // This function is called on a 2s interval (purely to fade the "new"
-  // glow — see setInterval above) as well as on every genuine data refresh.
-  // Every call clears and rebuilds ALL markers from scratch. That was
-  // silently killing any popup the user had just opened by clicking a
-  // marker: clicking opens the popup, then the very next 2s tick tears
-  // down that marker object and replaces it with a fresh one, and Leaflet
-  // closes a popup when its owning layer is removed. The result read as
-  // "opens, then vanishes a moment later" with no consistent delay, since
-  // it depended on how the click happened to line up with the tick.
-  //
-  // Fix: remember which event's popup was open before the rebuild, and if
-  // that event still exists after rebuilding, reopen its popup on the new
-  // marker in this same synchronous pass — before the browser paints —
-  // so visually it never actually closes.
-  const reopenId = STATE.openPopupEventId;
-  let reopenMarker = null;
-
   // "weather" is skipped here deliberately — it isn't populated from
   // STATE.events, so clearing it here would wipe it out with nothing to
   // redraw it until the next 15-minute refresh. It's managed entirely by
@@ -2165,18 +2117,8 @@ function renderMap() {
       '<div class="pop-meta">' + fmtUTC(e.time) + '</div>' +
       '<a href="' + e.url + '" target="_blank" rel="noopener">Open source →</a>'
     );
-    // Track open/close on THIS event's id (not the marker object, which
-    // gets thrown away every render) so a rebuild elsewhere in the map
-    // knows whether this one needs to be reopened.
-    marker.on("popupopen", function() { STATE.openPopupEventId = e.id; });
-    marker.on("popupclose", function() {
-      if (STATE.openPopupEventId === e.id) STATE.openPopupEventId = null;
-    });
     layerGroups[e.source].addLayer(marker);
-    if (e.id === reopenId) reopenMarker = marker;
   });
-
-  if (reopenMarker) reopenMarker.openPopup();
 }
 
 // Toasts are only added to / removed from the DOM here — never wholesale
@@ -2362,10 +2304,6 @@ initMap();
 renderHealthStrip();
 for (const key in SOURCES) {
   if (key === "weather") continue; // has its own fetch shape (Open-Meteo), not part of FETCHERS/STATE.events
-  if (key === "reliefweb" && !CONFIG.RELIEFWEB_ENABLED) {
-    markStatus(key, "error", "disabled — needs approved appname");
-    continue;
-  }
   if (key === "effis" && !CONFIG.EFFIS_ENABLED) {
     markStatus(key, "error", "disabled — CORS-blocked, needs a proxy");
     continue;
