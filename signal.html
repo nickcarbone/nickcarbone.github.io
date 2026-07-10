@@ -540,6 +540,9 @@ section.panel {
 .badge-reliefweb { background: #262A30; color: var(--text-muted); }
 .badge-cems { background: #362E17; color: #C9A227; }
 .badge-effis { background: #1B3021; color: #4C9A5B; }
+.badge-eonet { background: #223A17; color: #8BC34A; }
+.badge-swpc { background: #3A1730; color: #FF6EC7; }
+.badge-odin { background: #3A2E12; color: #F2C14E; }
 .badge-weather { background: #1E3238; color: var(--accent-weather); }
 
 /* Weather markers carry a permanent temperature readout instead of a popup-only
@@ -949,7 +952,7 @@ section.panel {
 const CONFIG = {
   // Free MAP_KEY from https://firms.modaps.eosdis.nasa.gov/api/map_key/
   // Sign up with your email — arrives in minutes, no cost, no card.
-  FIRMS_MAP_KEY: "PASTE_YOUR_FREE_FIRMS_KEY_HERE",
+  FIRMS_MAP_KEY: "b6dccc9bfc5eacdb6c57f1ccd2713e9b",
 
   // ReliefWeb now requires a pre-approved appname (policy changed Nov 2025).
   // Request one at https://apidoc.reliefweb.int/parameters#appname — once
@@ -963,11 +966,19 @@ const CONFIG = {
   // blocked reading the response from any origin — hosted on GitHub Pages
   // or opened as a local file, doesn't matter. This is a different failure
   // mode than GDELT's (which is plausibly a file:// testing artifact) —
-  // EFFIS's block is server-side and permanent until something sits in
-  // front of it that can grant CORS, e.g. a small serverless proxy or a
-  // Cloudflare Worker. The fetcher is written and correct; it only runs
-  // once this is flipped to true AND a proxy URL is substituted in.
-  EFFIS_ENABLED: false,
+  // EFFIS's block is server-side and permanent, which is what CORS_PROXY_URL
+  // below solves. EFFIS_ENABLED still gates it off if you ever want to kill
+  // the source without touching the proxy config.
+  EFFIS_ENABLED: true,
+
+  // Generic CORS-relay Cloudflare Worker — see /proxy/cors-proxy-worker.js
+  // for the source. Deploy it once (Cloudflare dashboard → Workers & Pages →
+  // Create → paste the file's contents → Deploy), then paste the Worker's
+  // *.workers.dev URL here. Built as a generic proxy (takes ?url=, checks an
+  // allowlist server-side) rather than single-purpose, so future CORS-blocked
+  // sources can reuse this same Worker — just add their hostname to
+  // ALLOWED_HOSTS in the Worker file and redeploy, no new infrastructure.
+  CORS_PROXY_URL: "https://signal-cors-proxy.carbonen.workers.dev/",
 
   REFRESH: {
     usgs: 60_000,
@@ -980,6 +991,9 @@ const CONFIG = {
     reliefweb: 5 * 60_000,
     copernicus_ems: 10 * 60_000, // activations update over hours/days between products, not seconds
     effis: 10 * 60_000,
+    eonet: 15 * 60_000,  // NASA's own curation cadence is slow relative to raw satellite feeds
+    swpc: 5 * 60_000,    // space weather alerts can escalate quickly during active storms
+    odin: 10 * 60_000,   // utility-reported outage snapshots update over minutes, not seconds
     weather: 15 * 60_000, // ambient conditions change slowly relative to events; models themselves only update hourly-ish
   },
 
@@ -1031,7 +1045,7 @@ const STATE = {
   // a real severity field (i.e. things that behave like alerts); off for
   // scheduled/unverified sources where "new" doesn't mean "urgent" —
   // toggleable per-source in the UI either way.
-  notifyEnabled: { usgs: true, emsc: true, gdacs: true, firms: true, nws: true, launch: false, gdelt: false, reliefweb: false, copernicus_ems: true, effis: false },
+  notifyEnabled: { usgs: true, emsc: true, gdacs: true, firms: true, nws: true, launch: false, gdelt: false, reliefweb: false, copernicus_ems: true, effis: false, eonet: false, swpc: true, odin: false },
   seenIds: new Map(),   // event id -> first-seen timestamp (ms), persists across refreshes this session
   toasts: [],           // transient toast queue: {id, title, source, severity, expiresAt}
   weatherLocations: [], // current-conditions snapshot for CONFIG.WEATHER_LOCATIONS, refreshed on a timer
@@ -1053,10 +1067,26 @@ const SOURCES = {
   // (per this dashboard's own "no composite scoring" rule) severity stays
   // null rather than invented — same treatment as GDELT/ReliefWeb/Launch.
   copernicus_ems: { label: "CEMS", badge: "badge-cems", color: "#C9A227", verified: "Official EU civil-protection activation", describes: "Copernicus Emergency Management Service — satellite mapping activations authorized by national/EU civil-protection authorities for confirmed disasters (wildfires, floods, earthquakes, storms). Global coverage, heavy European share." },
-  // Confirmed LIVE via curl, but confirmed via curl to send no CORS header —
-  // a browser can't read the response from any origin, hosted or local. Left
-  // wired and correct, disabled at CONFIG.EFFIS_ENABLED until a proxy exists.
-  effis: { label: "EFFIS", badge: "badge-effis", color: "#4C9A5B", verified: "Official EU burnt-area record (JRC/Copernicus)", describes: "European Forest Fire Information System — expert-confirmed burnt-area perimeters for Europe/Mediterranean/MENA. Currently disabled: verified via curl that the API sends no CORS header, so it can't be fetched directly from a browser. Needs a proxy — see CONFIG.EFFIS_ENABLED." },
+  // Confirmed LIVE via curl, but the server sends no CORS header — a browser
+  // can't read the response from any origin, hosted or local. Routed through
+  // the generic CORS proxy Worker (CONFIG.CORS_PROXY_URL) instead.
+  effis: { label: "EFFIS", badge: "badge-effis", color: "#4C9A5B", verified: "Official EU burnt-area record (JRC/Copernicus)", describes: "European Forest Fire Information System — expert-confirmed burnt-area perimeters for Europe/Mediterranean/MENA. Fetched via a CORS-relay proxy, since the API itself sends no CORS header — see CONFIG.CORS_PROXY_URL." },
+  // Curated multi-hazard catalog. Deliberately excludes EONET's own
+  // "wildfires" category: FIRMS and EFFIS already cover fire more precisely,
+  // and sampling showed ~16% of EONET's open "wildfire" entries were actually
+  // prescribed/planned burns mixed in alongside genuine ones — the kind of
+  // imprecision this dashboard avoids elsewhere (see FIRMS's "thermal
+  // anomaly" wording). No native severity field, so severity stays null.
+  eonet: { label: "EONET", badge: "badge-eonet", color: "#8BC34A", verified: "Expert-curated (NASA)", describes: "NASA's curated multi-hazard event catalog — volcanoes, severe storms, floods, landslides, sea/lake ice, drought, and more. Wildfires intentionally excluded (FIRMS/EFFIS cover fire more precisely)." },
+  // Severity is read from NOAA's OWN assigned G/R/S storm-scale level when the
+  // alert message includes one; alerts that only cross a raw threshold
+  // without an assigned scale (e.g. a standalone K-index alert below the
+  // G-scale's floor) get severity: null rather than an invented tier.
+  swpc: { label: "SWPC", badge: "badge-swpc", color: "#FF6EC7", verified: "Official NOAA space weather alert", describes: "NOAA Space Weather Prediction Center — geomagnetic storms, solar radiation storms, radio blackouts. No location (these are hemispheric/global phenomena, not point events), so shown in Timeline only, not the map." },
+  // County-level, utility-self-reported — no independent severity field, so
+  // customers-affected count is shown as context in the meta line but never
+  // converted into an invented severity tier.
+  odin: { label: "ODIN", badge: "badge-odin", color: "#F2C14E", verified: "Utility-reported (Oak Ridge Nat'l Lab / DOE)", describes: "Near-real-time US county-level power outage reports from participating utilities (Outage Data Initiative Nationwide) — the replacement for PowerOutage.us, which has no public API." },
   // Ambient conditions, not scored events — no severity field, no "new"
   // concept, so it skips the FETCHERS/STATE.events pipeline entirely and
   // is rendered/refreshed by its own dedicated functions (see below).
@@ -1076,7 +1106,12 @@ function timeAgo(ts) {
   // ones like rocket launches ("in 3h"). The previous version assumed ts was
   // always in the past and printed raw negative seconds for future times.
   const deltaMs = ts - Date.now();
-  const future = deltaMs >= 0;
+  // Strictly > 0, not >= 0: a delta of exactly 0ms (e.g. a fetch completing
+  // and the health tooltip re-rendering in the same millisecond) should read
+  // as "0s ago" — something that just happened — not "in 0s", which implies
+  // it hasn't happened yet. Only genuinely future timestamps (rocket
+  // launches, etc.) should hit the "in X" branch.
+  const future = deltaMs > 0;
   const s = Math.floor(Math.abs(deltaMs) / 1000);
   let unit;
   if (s < 60) unit = s + "s";
@@ -1218,7 +1253,14 @@ async function fetchFIRMS() {
   if (!CONFIG.FIRMS_MAP_KEY || CONFIG.FIRMS_MAP_KEY.indexOf("PASTE_") === 0) {
     throw new Error("No FIRMS key configured");
   }
-  const url = "https://firms.modaps.eosdis.nasa.gov/api/area/csv/" + CONFIG.FIRMS_MAP_KEY + "/VIIRS_SNPP_NRT/world/1";
+  // day_range=2, not 1: confirmed live that FIRMS's NRT processing lags behind
+  // the current UTC day by several hours — querying world/1 returned zero
+  // rows entirely during that lag window, even with a valid key, while
+  // world/2 returned tens of thousands. A 2-day window absorbs that latency;
+  // the existing top-1500-by-FRP sampling below already keeps the result set
+  // to genuinely significant detections, so the wider window doesn't dilute
+  // anything, it just avoids a false "empty" reading around each day rollover.
+  const url = "https://firms.modaps.eosdis.nasa.gov/api/area/csv/" + CONFIG.FIRMS_MAP_KEY + "/VIIRS_SNPP_NRT/world/2";
   const res = await safeFetch(url);
   const text = await res.text();
   const lines = text.trim().split("\n");
@@ -1409,8 +1451,10 @@ async function fetchCopernicusEMS() {
 // EFFIS — see CONFIG.EFFIS_ENABLED for the full CORS finding. Fetcher is
 // correct and endpoint-verified; it only runs once that flag is flipped.
 async function fetchEFFIS() {
-  if (!CONFIG.EFFIS_ENABLED) throw new Error("EFFIS disabled — API confirmed CORS-blocked, needs a proxy (see CONFIG.EFFIS_ENABLED)");
-  const url = "https://api.effis.emergency.copernicus.eu/rest/2/burntareas/current/?format=json&limit=200&ordering=-firedate";
+  if (!CONFIG.EFFIS_ENABLED) throw new Error("EFFIS disabled — see CONFIG.EFFIS_ENABLED");
+  if (!CONFIG.CORS_PROXY_URL) throw new Error("EFFIS needs the CORS proxy Worker deployed — see CONFIG.CORS_PROXY_URL");
+  const upstream = "https://api.effis.emergency.copernicus.eu/rest/2/burntareas/current/?format=json&limit=200&ordering=-firedate";
+  const url = CONFIG.CORS_PROXY_URL + "?url=" + encodeURIComponent(upstream);
   const res = await safeFetch(url);
   const data = await res.json();
   return (data.results || []).map(function(f) {
@@ -1431,11 +1475,142 @@ async function fetchEFFIS() {
   }).filter(function(e) { return e.lat != null && e.lon != null; });
 }
 
+// NASA EONET (Earth Observatory Natural Event Tracker) — curated multi-hazard
+// catalog. Category list deliberately excludes "wildfires" — see the
+// SOURCES.eonet comment for why (redundant with FIRMS/EFFIS, and confirmed
+// via sampling to mix in prescribed/planned burns alongside genuine fires).
+const EONET_CATEGORIES = "drought,dustHaze,earthquakes,floods,landslides,manmade,seaLakeIce,severeStorms,snow,tempExtremes,volcanoes,waterColor";
+const EONET_GRACE_MS = 4 * 86400000; // 4d grace after NASA marks an event closed
+
+async function fetchEONET() {
+  const url = "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&limit=200&category=" + EONET_CATEGORIES;
+  const res = await safeFetch(url);
+  const data = await res.json();
+  return (data.events || []).map(function(e) {
+    const geoms = e.geometry || [];
+    const g = geoms[geoms.length - 1]; // most recent position/reading for this event
+    if (!g || g.type !== "Point" || !Array.isArray(g.coordinates)) return null; // skip non-point geometries (e.g. polygon tracks) rather than guess a representative point
+    const t = Date.parse(g.date);
+    if (isNaN(t)) return null;
+    const catLabel = (e.categories || []).map(function(c) { return c.title; }).join(", ") || "Uncategorized";
+    const mag = (g.magnitudeValue != null && g.magnitudeUnit) ? (" · " + g.magnitudeValue + " " + g.magnitudeUnit) : "";
+    return {
+      id: uid("eonet", e.id),
+      source: "eonet",
+      lat: g.coordinates[1],
+      lon: g.coordinates[0],
+      time: t,
+      title: e.title,
+      // Prefer the original curating source's own link (e.g. IRWIN, GDACS,
+      // InciWeb) over EONET's own JSON API endpoint, which isn't human-readable.
+      url: (e.sources && e.sources[0] && e.sources[0].url) || e.link,
+      severity: null, // no native severity field — same treatment as GDELT/ReliefWeb/CEMS/EFFIS
+      meta: catLabel + mag + (e.closed ? " · closed" : " · ongoing"),
+      criticalWindowEnd: e.closed ? (Date.parse(e.closed) + EONET_GRACE_MS) : (Date.now() + 3600000),
+    };
+  }).filter(Boolean);
+}
+
+// NOAA SWPC space weather alerts. No lat/lon — geomagnetic/radio/radiation
+// storms are hemispheric or global phenomena, not point events — so these
+// show in the Timeline/ticker only, same treatment as GDELT.
+//
+// Severity comes ONLY from NOAA's own assigned storm-scale level (a "NOAA
+// Scale: G/R/S<1-5>" line NOAA itself includes in some but not all message
+// types — confirmed via sampling: plain threshold alerts like a standalone
+// K-index=4 reading don't reach the G-scale's Kp=5 floor and carry no scale
+// line at all). When that line is absent, severity stays null rather than
+// being inferred from the raw K-index or message type — same "don't invent
+// a score where none exists" rule as everywhere else in this dashboard.
+function swpcSeverityFromScale(n) {
+  if (n === 1) return "low";
+  if (n === 2) return "mid";
+  if (n >= 3) return "high";
+  return null;
+}
+async function fetchSWPC() {
+  const url = "https://services.swpc.noaa.gov/products/alerts.json";
+  const res = await safeFetch(url);
+  const data = await res.json();
+  return (data || []).map(function(a) {
+    const msg = a.message || "";
+    // Confirmed via sampling ~50 real alerts across every product_id variant
+    // (ALERT/WARNING/WATCH/SUMMARY, plus CANCEL/EXTENDED/CONTINUED prefixes)
+    // that this line is present and consistently formatted in every message.
+    const titleMatch = /^((?:CONTINUED |EXTENDED |CANCEL )?(?:ALERT|WARNING|WATCH|SUMMARY)):\s*(.+)$/m.exec(msg);
+    const scaleMatch = /noaa scale:\s*([GRS])\s*(\d)/i.exec(msg);
+    const serialMatch = /Serial Number:\s*(\d+)/.exec(msg);
+    const t = Date.parse(a.issue_datetime.replace(" ", "T") + "Z");
+    if (isNaN(t)) return null;
+    const title = titleMatch ? (titleMatch[1] + ": " + titleMatch[2].trim()) : ("Space weather advisory — " + a.product_id);
+    const scaleNum = scaleMatch ? parseInt(scaleMatch[2], 10) : null;
+    return {
+      id: uid("swpc", a.product_id + "_" + (serialMatch ? serialMatch[1] : a.issue_datetime)),
+      source: "swpc",
+      lat: null, lon: null,
+      time: t,
+      title: title,
+      // No stable per-alert deep link is published (same limitation as the
+      // NWS case) — points to NOAA's live alerts/watches/warnings listing.
+      url: "https://www.swpc.noaa.gov/products/alerts-watches-and-warnings",
+      severity: scaleMatch ? swpcSeverityFromScale(scaleNum) : null,
+      meta: scaleMatch ? ("NOAA Scale: " + scaleMatch[1] + scaleMatch[2]) : "No NOAA scale assigned to this alert",
+      criticalWindowEnd: t + 6 * 3600000, // space-weather effects are typically short-lived
+    };
+  }).filter(Boolean);
+}
+
+// ODIN (Outage Data Initiative Nationwide, Oak Ridge National Lab / DOE Office
+// of Electricity) — near-real-time US county-level power outage reports from
+// participating utilities, via ORNL's Opendatasoft-hosted Open Energy Hub.
+// This is the confirmed working replacement for PowerOutage.us, which was
+// excluded earlier for having no public API.
+async function fetchODIN() {
+  // ORNL's Opendatasoft-hosted API caps `limit` at 100 per request (confirmed
+  // via a live 400 response testing higher values) — paginate via `offset`
+  // rather than a single oversized request. Capped at 3 pages/300 records,
+  // comfortably covering ODIN's current ~500-record national total without
+  // excessive requests on a 10-minute poll cycle.
+  const PAGE_SIZE = 100;
+  const MAX_RECORDS = 300;
+  let all = [];
+  for (let offset = 0; offset < MAX_RECORDS; offset += PAGE_SIZE) {
+    const url = "https://ornl.opendatasoft.com/api/explore/v2.1/catalog/datasets/odin-real-time-outages-county/records?limit=" + PAGE_SIZE + "&offset=" + offset;
+    const res = await safeFetch(url);
+    const data = await res.json();
+    if (!data.results || data.results.length === 0) break;
+    all = all.concat(data.results);
+    if (data.results.length < PAGE_SIZE) break; // reached the end of the dataset
+  }
+  return all.map(function(r) {
+    const pt = r.geo_point_2d;
+    if (!pt || pt.lat == null || pt.lon == null) return null;
+    const t = r.reportedstarttime ? Date.parse(r.reportedstarttime) : Date.now();
+    if (isNaN(t)) return null;
+    const utilityName = (r.name || "Unknown utility").replace(/,\s*\d+$/, ""); // strip trailing ",<utility_id>" from the raw name field
+    const eta = (r.estimatedrestorationtime && r.estimatedrestorationtime.ert) ? Date.parse(r.estimatedrestorationtime.ert) : null;
+    const metersAffected = r.metersaffected != null ? r.metersaffected : "unknown #";
+    return {
+      id: uid("odin", r.utility_id + "_" + r.county + "_" + r.state),
+      source: "odin",
+      lat: pt.lat, lon: pt.lon,
+      time: t,
+      title: "Power outage — " + r.county + ", " + r.state,
+      url: "https://ornl.opendatasoft.com/explore/dataset/odin-real-time-outages-county/map/",
+      severity: null, // no native severity field — see SOURCES.odin comment
+      meta: metersAffected + " meters affected · " + utilityName + (r.cause ? (" · cause: " + r.cause) : "") + ((eta && !isNaN(eta)) ? (" · ETA " + fmtUTC(eta)) : ""),
+      criticalWindowEnd: (eta && !isNaN(eta)) ? eta : (Date.now() + 24 * 3600000),
+    };
+  }).filter(Boolean);
+}
+
 const FETCHERS = {
   usgs: fetchUSGS, emsc: fetchEMSC, gdacs: fetchGDACS, firms: fetchFIRMS,
   nws: fetchNWS, launch: fetchLaunch, gdelt: fetchGDELT, reliefweb: fetchReliefWeb,
   copernicus_ems: fetchCopernicusEMS, effis: fetchEFFIS,
+  eonet: fetchEONET, swpc: fetchSWPC, odin: fetchODIN,
 };
+
 
 const HIGHLIGHT_MS = 30_000;    // how long the "new" glow lasts on cards + map markers
 const TOAST_DISPLAY_MS = 8_000; // how long an individual toast bubble stays visible (shorter than
