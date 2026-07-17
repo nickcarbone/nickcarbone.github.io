@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRIVETIME</title>
+<style>
+  /* ---------------------------------------------------------
+     DRIVETIME — passenger seat to elsewhere.
+     Palette: asphalt, sodium-vapor amber, taillight red.
+     --------------------------------------------------------- */
+  :root {
+    --asphalt: #0b0d10;
+    --panel: #13161b;
+    --panel-2: #1a1e25;
+    --line: #262b34;
+    --ink: #e8e4da;
+    --dim: #7a8290;
+    --sodium: #e8a34c;      /* streetlight amber */
+    --taillight: #e4574c;   /* live dot */
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--asphalt);
+    color: var(--ink);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .mono { font-family: "SF Mono", "Cascadia Mono", "Consolas", "Menlo", monospace; }
+
+  /* ---- top bar ---- */
+  header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+  header h1 {
+    font-family: "SF Mono", "Cascadia Mono", "Consolas", "Menlo", monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: var(--sodium);
+    user-select: none;
+  }
+  header .spacer { flex: 1; }
+  select#city {
+    background: var(--panel-2);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    outline: none;
+    max-width: 220px;
+  }
+  select#city:focus-visible { border-color: var(--sodium); }
+
+  /* ---- video ---- */
+  .video-wrap {
+    flex: 1;
+    min-height: 0;
+    background: #000;
+    position: relative;
+  }
+  .video-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* ---- radio deck (the signature: car-stereo presets) ---- */
+  .deck {
+    flex-shrink: 0;
+    background: var(--panel);
+    border-top: 1px solid var(--line);
+    padding: 10px 14px 14px;
+  }
+  .readout {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 10px;
+    min-height: 20px;
+  }
+  .live-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--line);
+    align-self: center;
+    flex-shrink: 0;
+  }
+  .live-dot.on {
+    background: var(--taillight);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse { 50% { opacity: 0.35; } }
+  @media (prefers-reduced-motion: reduce) {
+    .live-dot.on { animation: none; }
+  }
+  #station-name {
+    font-family: "SF Mono", "Cascadia Mono", "Consolas", "Menlo", monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #station-meta {
+    font-family: "SF Mono", "Cascadia Mono", "Consolas", "Menlo", monospace;
+    font-size: 11px;
+    color: var(--dim);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .presets {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .preset {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    color: var(--dim);
+    font-family: "SF Mono", "Cascadia Mono", "Consolas", "Menlo", monospace;
+    font-size: 11px;
+    padding: 8px 4px;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .preset:hover { border-color: var(--dim); color: var(--ink); }
+  .preset:focus-visible { outline: 2px solid var(--sodium); outline-offset: 1px; }
+  .preset.active {
+    border-color: var(--sodium);
+    color: var(--sodium);
+  }
+  .preset .num { display: block; font-size: 9px; opacity: 0.55; margin-bottom: 2px; }
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  button#power {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    color: var(--ink);
+    font-family: "SF Mono", "Cascadia Mono", "Consolas", "Menlo", monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    padding: 8px 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  button#power:hover { border-color: var(--sodium); color: var(--sodium); }
+  button#power:focus-visible { outline: 2px solid var(--sodium); outline-offset: 1px; }
+  input[type="range"] {
+    flex: 1;
+    accent-color: var(--sodium);
+    cursor: pointer;
+  }
+  .status {
+    font-family: "SF Mono", "Cascadia Mono", "Consolas", "Menlo", monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-top: 8px;
+    min-height: 12px;
+  }
+
+  /* Narrow side-screen: everything already stacks; just tighten */
+  @media (max-width: 480px) {
+    .presets { grid-template-columns: repeat(3, 1fr); }
+    header h1 { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>DRIVETIME</h1>
+  <div class="spacer"></div>
+  <label for="city" class="mono" style="font-size:11px;color:var(--dim)">CITY</label>
+  <select id="city" aria-label="Choose a city"></select>
+</header>
+
+<div class="video-wrap">
+  <iframe id="video" title="City drive video"
+    allow="autoplay; encrypted-media; picture-in-picture"
+    allowfullscreen></iframe>
+</div>
+
+<div class="deck">
+  <div class="readout">
+    <span class="live-dot" id="live"></span>
+    <span id="station-name">Pick a city to tune in</span>
+    <span id="station-meta"></span>
+  </div>
+  <div class="presets" id="presets" role="group" aria-label="Station presets"></div>
+  <div class="controls">
+    <button id="power" aria-label="Play or pause radio">▶ TUNE</button>
+    <input type="range" id="volume" min="0" max="100" value="80" aria-label="Volume">
+  </div>
+  <div class="status" id="status"></div>
+</div>
+
+<audio id="radio" preload="none" crossorigin="anonymous"></audio>
+
+<script>
+/* =====================================================================
+   YOUR CITY LIST — this is the only thing you ever need to edit.
+   To add a city:
+     1. Find a drive video on YouTube. Copy the ID from the URL
+        (the part after "watch?v=", e.g. youtube.com/watch?v=ABC123 → "ABC123")
+     2. Add a line below: name, video ID, ISO country code (for radio),
+        and a search term that matches how local stations name themselves.
+   ===================================================================== */
+const CITIES = [
+  { name: "Tokyo",       video: "0HYq9kTOT70", cc: "JP", q: "Tokyo" },
+  { name: "Seoul",       video: "KGAIumGxQeY", cc: "KR", q: "Seoul" },
+  { name: "Bangkok",     video: "63RtKa0hbLs", cc: "TH", q: "Bangkok" },
+  { name: "Mumbai",      video: "kwhhBTHLitI", cc: "IN", q: "Mumbai" },
+  { name: "Istanbul",    video: "RKIPWCWldzE", cc: "TR", q: "Istanbul" },
+  { name: "Tbilisi",     video: "tCeCjV2hJIc", cc: "GE", q: "Tbilisi" },
+  { name: "Lagos",       video: "kSdpFxSkNSg", cc: "NG", q: "Lagos" },
+  { name: "Naples",      video: "z4q85vA1Usg", cc: "IT", q: "Napoli" },
+  { name: "Mexico City", video: "cvoo5xXtiEA", cc: "MX", q: "Mexico" },
+  { name: "New York",    video: "_K23dlJAE4w", cc: "US", q: "New York" },
+];
+
+/* ---- Radio Browser mirrors (free, no key). Tries each until one works. */
+const RB_MIRRORS = [
+  "https://de1.api.radio-browser.info",
+  "https://fi1.api.radio-browser.info",
+  "https://at1.api.radio-browser.info",
+];
+
+const els = {
+  city: document.getElementById("city"),
+  video: document.getElementById("video"),
+  presets: document.getElementById("presets"),
+  name: document.getElementById("station-name"),
+  meta: document.getElementById("station-meta"),
+  live: document.getElementById("live"),
+  power: document.getElementById("power"),
+  volume: document.getElementById("volume"),
+  status: document.getElementById("status"),
+  radio: document.getElementById("radio"),
+};
+
+let stations = [];
+let currentIdx = -1;
+let playing = false;
+
+/* ---- init city dropdown ---- */
+CITIES.forEach((c, i) => {
+  const o = document.createElement("option");
+  o.value = i;
+  o.textContent = c.name;
+  els.city.appendChild(o);
+});
+
+async function rbFetch(path) {
+  for (const base of RB_MIRRORS) {
+    try {
+      const r = await fetch(base + path, { headers: { "Accept": "application/json" } });
+      if (r.ok) return await r.json();
+    } catch (e) { /* try next mirror */ }
+  }
+  throw new Error("All radio mirrors unreachable");
+}
+
+/* ---- fetch stations for a city: name search first, country fallback ---- */
+async function loadStations(city) {
+  els.status.textContent = "SCANNING FREQUENCIES…";
+  stations = [];
+  renderPresets();
+  try {
+    let list = await rbFetch(
+      "/json/stations/search?limit=40&hidebroken=true&order=clickcount&reverse=true" +
+      "&countrycode=" + encodeURIComponent(city.cc) +
+      "&name=" + encodeURIComponent(city.q)
+    );
+    if (!list || list.length < 3) {
+      const byCountry = await rbFetch(
+        "/json/stations/search?limit=40&hidebroken=true&order=clickcount&reverse=true" +
+        "&countrycode=" + encodeURIComponent(city.cc)
+      );
+      const seen = new Set(list.map(s => s.stationuuid));
+      list = list.concat(byCountry.filter(s => !seen.has(s.stationuuid)));
+    }
+    // Prefer https streams (http streams get blocked on secure pages)
+    const https = list.filter(s => (s.url_resolved || "").startsWith("https"));
+    const http = list.filter(s => !(s.url_resolved || "").startsWith("https"));
+    stations = https.concat(http).slice(0, 6);
+    renderPresets();
+    els.status.textContent = stations.length
+      ? stations.length + " STATIONS FOUND · " + city.cc
+      : "NO STATIONS FOUND — TRY ANOTHER CITY";
+    if (stations.length) tune(0);
+  } catch (e) {
+    els.status.textContent = "RADIO SEARCH FAILED — CHECK CONNECTION";
+  }
+}
+
+function renderPresets() {
+  els.presets.innerHTML = "";
+  for (let i = 0; i < 6; i++) {
+    const s = stations[i];
+    const b = document.createElement("button");
+    b.className = "preset" + (i === currentIdx ? " active" : "");
+    b.disabled = !s;
+    b.innerHTML = '<span class="num">' + (i + 1) + "</span>" +
+      (s ? escapeHtml(shortName(s.name)) : "—");
+    if (s) {
+      b.title = s.name;
+      b.addEventListener("click", () => tune(i));
+    }
+    els.presets.appendChild(b);
+  }
+}
+
+function shortName(n) {
+  return (n || "").trim().replace(/\s+/g, " ").slice(0, 16);
+}
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function tune(i) {
+  const s = stations[i];
+  if (!s) return;
+  currentIdx = i;
+  els.name.textContent = s.name.trim();
+  els.meta.textContent = [s.codec, s.bitrate ? s.bitrate + "kbps" : ""]
+    .filter(Boolean).join(" · ");
+  els.radio.src = s.url_resolved || s.url;
+  els.radio.volume = els.volume.value / 100;
+  play();
+  renderPresets();
+}
+
+function play() {
+  els.radio.play().then(() => {
+    playing = true;
+    els.live.classList.add("on");
+    els.power.textContent = "■ STOP";
+    els.status.textContent = "";
+  }).catch(() => {
+    playing = false;
+    els.live.classList.remove("on");
+    els.power.textContent = "▶ TUNE";
+    els.status.textContent = "STREAM BLOCKED OR OFFLINE — TRY THE NEXT PRESET";
+  });
+}
+
+function stop() {
+  els.radio.pause();
+  els.radio.removeAttribute("src");
+  els.radio.load();
+  playing = false;
+  els.live.classList.remove("on");
+  els.power.textContent = "▶ TUNE";
+}
+
+els.power.addEventListener("click", () => {
+  if (playing) stop();
+  else if (currentIdx >= 0) tune(currentIdx);
+  else if (stations.length) tune(0);
+});
+
+els.volume.addEventListener("input", () => {
+  els.radio.volume = els.volume.value / 100;
+});
+
+els.radio.addEventListener("error", () => {
+  if (playing) {
+    els.status.textContent = "STREAM DROPPED — TRY ANOTHER PRESET";
+    els.live.classList.remove("on");
+    playing = false;
+    els.power.textContent = "▶ TUNE";
+  }
+});
+
+/* ---- city change: swap video + rescan radio ---- */
+function setCity(i) {
+  const c = CITIES[i];
+  els.video.src = "https://www.youtube.com/embed/" + c.video +
+    "?autoplay=1&mute=1&rel=0&modestbranding=1&loop=1&playlist=" + c.video;
+  currentIdx = -1;
+  stop();
+  els.name.textContent = "Tuning " + c.name + "…";
+  els.meta.textContent = "";
+  loadStations(c);
+}
+
+els.city.addEventListener("change", e => setCity(+e.target.value));
+
+/* ---- start on a random city for variety ---- */
+const start = Math.floor(Math.random() * CITIES.length);
+els.city.value = start;
+setCity(start);
+</script>
+</body>
+</html>
