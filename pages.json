@@ -1,14 +1,38 @@
 {
-  "generated": "2026-07-17T03:18:40.447Z",
-  "count": 58,
+  "generated": "2026-07-17T08:19:25.789Z",
+  "count": 61,
   "pages": [
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-07-17T01:53:25Z",
+      "updated": "2026-07-17T06:10:56Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "extreme-bars",
+      "url": "https://nickcarbone.github.io/extreme-bars/",
+      "title": "Extreme Bars",
+      "description": "nickcarbone.github.io/extreme-bars/",
+      "updated": "2026-07-17T04:09:01Z",
+      "created": "2026-07-17T04:08:53Z"
+    },
+    {
+      "slug": "contrarian-wine-cellar",
+      "url": "https://nickcarbone.github.io/contrarian-wine-cellar/",
+      "title": "Contrarian Wine Cellar",
+      "description": "nickcarbone.github.io/contrarian-wine-cellar/",
+      "updated": "2026-07-17T04:08:28Z",
+      "created": "2026-07-17T04:08:20Z"
+    },
+    {
+      "slug": "no-service-mvp",
+      "url": "https://nickcarbone.github.io/no-service-mvp/",
+      "title": "No Service Mvp",
+      "description": "nickcarbone.github.io/no-service-mvp/",
+      "updated": "2026-07-17T03:36:09Z",
+      "created": "2026-07-17T03:36:02Z"
     },
     {
       "slug": "m-pesa",
