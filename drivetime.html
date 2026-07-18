@@ -58,6 +58,19 @@
     max-width: 220px;
   }
   select#city:focus-visible { border-color: var(--sodium); }
+  select#view {
+    background: var(--panel-2);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    outline: none;
+    max-width: 140px;
+  }
+  select#view:focus-visible { border-color: var(--sodium); }
   .video-wrap { flex: 1; min-height: 0; background: #000; position: relative; }
   .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .deck {
@@ -167,6 +180,36 @@
   @media (prefers-reduced-motion: reduce) {
     #staticfx.flash { animation: none; }
   }
+
+  /* ---- fullscreen "now tuning" overlay ---- */
+  #fs-overlay {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 18px 16px;
+    background: linear-gradient(transparent, rgba(6,7,9,0.85) 55%);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  #fs-overlay.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  #fs-overlay #fs-needle { transition: transform 0.35s cubic-bezier(.34,1.2,.64,1), stroke 0.3s; transform-origin: 17px 21px; }
+  #fs-overlay.on #fs-needle, #fs-overlay.on #fs-needle-hub { stroke: var(--sodium); }
+  #fs-overlay.on #fs-needle-hub { fill: var(--sodium); }
+  .fs-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  #fs-city {
+    font-size: 11px; letter-spacing: 0.12em; color: var(--sodium);
+    text-transform: uppercase;
+  }
+  #fs-station {
+    font-size: 14px; font-weight: 600; color: var(--ink);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  #fs-overlay .btn { padding: 8px 12px; }
+  @media (prefers-reduced-motion: reduce) { #fs-overlay { transition: none; } }
 </style>
 </head>
 <body>
@@ -185,16 +228,34 @@
   <h1>DRIVETIME</h1>
   <div class="spacer"></div>
   <span class="mono" id="trip" title="Session time" style="font-size:11px;color:var(--dim);letter-spacing:.05em;">TRIP 00:00</span>
+  <label for="view" class="mono" style="font-size:11px;color:var(--dim)">VIEW</label>
+  <select id="view" aria-label="Choose a video variant"></select>
   <label for="city" class="mono" style="font-size:11px;color:var(--dim)">CITY</label>
   <select id="city" aria-label="Choose a city"></select>
 </header>
 
-<div class="video-wrap">
+<div class="video-wrap" id="video-wrap">
   <iframe id="video" title="City drive video"
     allow="autoplay; encrypted-media; picture-in-picture"
     allowfullscreen></iframe>
   <div id="staticfx"></div>
+  <div id="fs-overlay">
+    <svg id="fs-gauge" width="30" height="21" viewBox="0 0 34 24" aria-hidden="true">
+      <path d="M3 21 A14 14 0 0 1 31 21" fill="none" stroke="var(--line)" stroke-width="2"/>
+      <line id="fs-needle" x1="17" y1="21" x2="17" y2="8" stroke="var(--dim)" stroke-width="2" stroke-linecap="round"
+        transform="rotate(-80 17 21)"/>
+      <circle cx="17" cy="21" r="2" fill="var(--dim)" id="fs-needle-hub"/>
+    </svg>
+    <div class="fs-text">
+      <div id="fs-city" class="mono"></div>
+      <div id="fs-station" class="mono"></div>
+    </div>
+    <div class="spacer"></div>
+    <button id="fs-prev" class="btn" aria-label="Previous station">◀</button>
+    <button id="fs-next" class="btn" aria-label="Next station">▶</button>
+  </div>
 </div>
+
 
 <div class="deck">
   <div class="readout">
@@ -212,6 +273,7 @@
   <div class="controls">
     <button id="pauseall" class="btn primary" aria-label="Pause or resume video and radio together">⏸ PAUSE ALL</button>
     <button id="power" class="btn" aria-label="Play or stop radio only">■ RADIO</button>
+    <button id="fullscreen" class="btn" aria-label="Toggle fullscreen">⛶ FULLSCREEN</button>
     <input type="range" id="volume" min="0" max="100" value="80" aria-label="Radio volume">
   </div>
   <div class="status" id="status"></div>
@@ -229,43 +291,43 @@
    city name stations tend to use (q).
    ===================================================================== */
 const CITIES = [
-  { name: "Tokyo", video: "-Xh4BNbxpI8", cc: "JP", q: "Tokyo" }, // 51 min · Relaxing Night Drive in Tokyo / 8K 60fps HDR / S
-  { name: "Osaka", video: "ovD7QlzCCoU", cc: "JP", q: "Osaka" }, // 123 min · Osaka Night Drive 🇯🇵 / 8K 60fps HDR / Relaxing L
-  { name: "Seoul", video: "SRpMapyw6Aw", cc: "KR", q: "Seoul" }, // 63 min · Seoul Night Drive 🌠 | Downtown Vibes | Chill Lof
-  { name: "Taipei", video: "P8Uh9f0EaU8", cc: "TW", q: "Taipei" }, // 102 min · Driving Downtown - Taipei Taiwan 4K HDR
-  { name: "Hong Kong", video: "arbVnYJfZLU", cc: "HK", q: "Hong Kong" }, // 65 min · Hong Kong 4K - Skyscraper City - Driving Downtow
-  { name: "Bangkok", video: "1CFuoKiPT60", cc: "TH", q: "Bangkok" }, // 48 min · Driving Around Bangkok | Relaxing Night Driving 
-  { name: "Ho Chi Minh City", video: "gZWiLrQnb10", cc: "VN", q: "Saigon" }, // 80 min · Ho Chi Minh City, Vietnam - 4K Driving Tour - Ci
-  { name: "Hanoi", video: "l-cQOa5K2X0", cc: "VN", q: "Hanoi" }, // 61 min · Driving in Hanoi Vietnam 4K | Busy City Traffic 
-  { name: "Jakarta", video: "gmDBzijaIAA", cc: "ID", q: "Jakarta" }, // 49 min · Driving Jakarta 4K - Skyscraper Highways - Indon
-  { name: "Manila", video: "1X8SunSuAC4", cc: "PH", q: "Manila" }, // 53 min · Metro Manila's Most Iconic Route?! | EDSA, MOA, 
-  { name: "Singapore", video: "xEx3-9v0-_o", cc: "SG", q: "Singapore" }, // 63 min · Singapore 4K - Tropical Skyscrapers - Scenic Dri
-  { name: "Mumbai", video: "Nm4PtWe8vlE", cc: "IN", q: "Mumbai" }, // 35 min · 4KHDR Drive in Mumbai's Island City District
-  { name: "Delhi", video: "QZPqluJA0OY", cc: "IN", q: "Delhi" }, // 57 min · New Delhi 4K - Sunset Drive - Driving Downtown
-  { name: "Dubai", video: "6RPU08WoaxE", cc: "AE", q: "Dubai" }, // 120 min · Dubai 2024 - Driving Tour in 4K
-  { name: "Istanbul", video: "ALA09uSzD7E", cc: "TR", q: "Istanbul" }, // 104 min · 🇹🇷 Istanbul Driving Tour Turkey in 4K video. Exp
-  { name: "Tbilisi", video: "joszFYjoU5E", cc: "GE", q: "Tbilisi" }, // 38 min · 4K - Tbilisi Virtual Tour, Autumn drive in Georg
-  { name: "Cairo", video: "--I-TdCe2_g", cc: "EG", q: "Cairo" }, // 43 min · Cairo 4K - Driving Downtown - Egypt
-  { name: "Nairobi", video: "C1iN4D1wBiI", cc: "KE", q: "Nairobi" }, // 30 min · Thika to Nairobi in 30 Minutes | 4K Drive | Gear
-  { name: "Lagos", video: "aIuTxasD3uw", cc: "NG", q: "Lagos" }, // 31 min · Driving in Lagos, Nigeria: Lagos Mainland to Lag
-  { name: "Cape Town", video: "5bdCk5AQ9Kw", cc: "ZA", q: "Cape Town" }, // 51 min · Driving Downtown - Cape Town 4K - South Africa S
-  { name: "Casablanca", video: "FXeX-H6Ajy4", cc: "MA", q: "Casablanca" }, // 68 min · CASABLANCA City walking & driving tour - Casabla
-  { name: "Athens", video: "8Hm0rMpapKY", cc: "GR", q: "Athens" }, // 64 min · Athens, Greece 🇬🇷 Scenic Drive, Driving Tour 4K 
-  { name: "Naples", video: "mA0pPRQthnY", cc: "IT", q: "Napoli" }, // 132 min · Exploring the Beauty of Italy | Rome to Naples R
-  { name: "Rome", video: "AdtBRICOD9U", cc: "IT", q: "Roma" }, // 63 min · The Eternal City 4K Driving Tour - Rome Italy Ci
-  { name: "Paris", video: "4TKTqb-TWwQ", cc: "FR", q: "Paris" }, // 71 min · City of Light 4K City Drive - Paris France Drivi
-  { name: "London", video: "AveGRdBeOog", cc: "GB", q: "London" }, // 48 min · London Hottest Day Drive 🚗 June 2026 London Driv
-  { name: "Lisbon", video: "xUZoO-WtyHw", cc: "PT", q: "Lisboa" }, // 52 min · Driving in LISBON (Lisboa) Portugal 🇵🇹 | Scenic 
-  { name: "Madrid", video: "C911U_Fo-QU", cc: "ES", q: "Madrid" }, // 68 min · Madrid 4K - Driving Downtown - Spain
-  { name: "Berlin", video: "lBlKR2ek0w4", cc: "DE", q: "Berlin" }, // 41 min · BERLIN - Germany 🇩🇪 4K Driving Tour | Alexanderp
-  { name: "Warsaw", video: "uJU_DEklaw4", cc: "PL", q: "Warszawa" }, // 35 min · Driving in WARSAW (Warszawa) Poland 🇵🇱 | Old Tow
-  { name: "Buenos Aires", video: "MYOj8ckqVuQ", cc: "AR", q: "Buenos Aires" }, // 91 min · Buenos Aires Drive in 4K
-  { name: "Sao Paulo", video: "fHEaa2ryFnc", cc: "BR", q: "Sao Paulo" }, // 33 min · Driving São Paulo Brazil 🇧🇷 | 4K City Drive
-  { name: "Bogota", video: "N0Qy6oi07W8", cc: "CO", q: "Bogota" }, // 71 min · Bogotá 4K - Driving - Largest Cities in Latin Am
-  { name: "Mexico City", video: "Km6KYN_6vmc", cc: "MX", q: "Mexico" }, // 92 min · Mexico City 4K - Driving Tour in 2024 - Ciudad d
-  { name: "Havana", video: "vCywf9saDlY", cc: "CU", q: "Habana" }, // 53 min · Cuba. 4K Drive Varadero - Havana
-  { name: "New York", video: "7OgQjRn2x1w", cc: "US", q: "New York" }, // 65 min · New York 4K - Driving Tour
-  { name: "Los Angeles", video: "7MR08Jm38is", cc: "US", q: "Los Angeles" }, // 56 min · Driving Los Angeles Sunset 4K - The Valley to Hollywood
+  { name: "Tokyo", cc: "JP", q: "Tokyo", videos: [{ id: "-Xh4BNbxpI8", label: "Default" }, { id: "TUgfiNg06GQ", label: "Day" }, { id: "KXXodw60W9U", label: "Sunset/Night" }] },
+  { name: "Osaka", cc: "JP", q: "Osaka", videos: [{ id: "ovD7QlzCCoU", label: "Default" }, { id: "L07uyRUK8L0", label: "Day" }, { id: "GgOTV7VrlPw", label: "Sunset/Night" }] },
+  { name: "Seoul", cc: "KR", q: "Seoul", videos: [{ id: "SRpMapyw6Aw", label: "Default" }, { id: "KGAIumGxQeY", label: "Day" }, { id: "cEQgFyrbceY", label: "Sunset/Night" }] },
+  { name: "Taipei", cc: "TW", q: "Taipei", videos: [{ id: "P8Uh9f0EaU8", label: "Default" }, { id: "_mzDsL9tcgc", label: "Day" }, { id: "6YOfoE0zqO8", label: "Sunset/Night" }] },
+  { name: "Hong Kong", cc: "HK", q: "Hong Kong", videos: [{ id: "arbVnYJfZLU", label: "Default" }, { id: "PhGJgftOQ1w", label: "Day" }, { id: "gKUclxoRA6c", label: "Sunset/Night" }] },
+  { name: "Bangkok", cc: "TH", q: "Bangkok", videos: [{ id: "1CFuoKiPT60", label: "Default" }, { id: "4BmxX6Ipxpo", label: "Day" }, { id: "dl3sqoz6X3M", label: "Sunset/Night" }] },
+  { name: "Ho Chi Minh City", cc: "VN", q: "Saigon", videos: [{ id: "gZWiLrQnb10", label: "Default" }, { id: "UrVjf2AR5is", label: "Day" }, { id: "uu-SjnZqZf0", label: "Sunset/Night" }] },
+  { name: "Hanoi", cc: "VN", q: "Hanoi", videos: [{ id: "l-cQOa5K2X0", label: "Default" }, { id: "LTuSOk6dFpY", label: "Day" }, { id: "Gb8T3j2H890", label: "Sunset/Night" }] },
+  { name: "Jakarta", cc: "ID", q: "Jakarta", videos: [{ id: "gmDBzijaIAA", label: "Default" }, { id: "GtVGW8jhO9k", label: "Day" }, { id: "CCMIW7x47Cc", label: "Sunset/Night" }] },
+  { name: "Manila", cc: "PH", q: "Manila", videos: [{ id: "1X8SunSuAC4", label: "Default" }, { id: "2tfyoN70EHo", label: "Day" }, { id: "JY-Xyiept88", label: "Sunset/Night" }] },
+  { name: "Singapore", cc: "SG", q: "Singapore", videos: [{ id: "xEx3-9v0-_o", label: "Default" }, { id: "iREkbaP8jlQ", label: "Day" }, { id: "SzCryiXMG_o", label: "Sunset/Night" }] },
+  { name: "Mumbai", cc: "IN", q: "Mumbai", videos: [{ id: "Nm4PtWe8vlE", label: "Default" }, { id: "j_lBv6BSrNo", label: "Day" }, { id: "l3g-OwaIaWE", label: "Sunset/Night" }] },
+  { name: "Delhi", cc: "IN", q: "Delhi", videos: [{ id: "QZPqluJA0OY", label: "Default" }, { id: "J9mpXixJptg", label: "Day" }, { id: "g-c3K8plBxo", label: "Sunset/Night" }] },
+  { name: "Dubai", cc: "AE", q: "Dubai", videos: [{ id: "6RPU08WoaxE", label: "Default" }, { id: "TE2tfavIo3E", label: "Day" }, { id: "n964Hq9QkJk", label: "Sunset/Night" }] },
+  { name: "Istanbul", cc: "TR", q: "Istanbul", videos: [{ id: "ALA09uSzD7E", label: "Default" }, { id: "vFhDtI8dGOA", label: "Day" }, { id: "aTsG9KK_Mkk", label: "Sunset/Night" }] },
+  { name: "Tbilisi", cc: "GE", q: "Tbilisi", videos: [{ id: "joszFYjoU5E", label: "Default" }, { id: "Smk6hpX-OU0", label: "Day" }, { id: "xTssir91CnY", label: "Sunset/Night" }] },
+  { name: "Cairo", cc: "EG", q: "Cairo", videos: [{ id: "--I-TdCe2_g", label: "Default" }, { id: "Esyp2P0uJu4", label: "Day" }, { id: "86pZTI5gJQM", label: "Sunset/Night" }] },
+  { name: "Nairobi", cc: "KE", q: "Nairobi", videos: [{ id: "C1iN4D1wBiI", label: "Default" }, { id: "-UV94iPFRlw", label: "Day" }, { id: "glC6vjGfuAM", label: "Sunset/Night" }] },
+  { name: "Lagos", cc: "NG", q: "Lagos", videos: [{ id: "aIuTxasD3uw", label: "Default" }, { id: "LZJ000F-CLc", label: "Day" }, { id: "KwrMBdnfCfI", label: "Sunset/Night" }] },
+  { name: "Cape Town", cc: "ZA", q: "Cape Town", videos: [{ id: "5bdCk5AQ9Kw", label: "Default" }, { id: "aah7KuwBDzo", label: "Day" }, { id: "rM8rGs_tGYE", label: "Sunset/Night" }] },
+  { name: "Casablanca", cc: "MA", q: "Casablanca", videos: [{ id: "FXeX-H6Ajy4", label: "Default" }, { id: "RN6ioPRXk8A", label: "Day" }, { id: "8qV3p25wsao", label: "Sunset/Night" }] },
+  { name: "Athens", cc: "GR", q: "Athens", videos: [{ id: "8Hm0rMpapKY", label: "Default" }, { id: "TXHbjjPuvmM", label: "Day" }, { id: "f1cIBCZB0P8", label: "Sunset/Night" }] },
+  { name: "Naples", cc: "IT", q: "Napoli", videos: [{ id: "mA0pPRQthnY", label: "Default" }, { id: "FmB2T9xGHk4", label: "Day" }, { id: "IHXZnU2bmc8", label: "Sunset/Night" }] },
+  { name: "Rome", cc: "IT", q: "Roma", videos: [{ id: "AdtBRICOD9U", label: "Default" }, { id: "0m7H6_ZI1iM", label: "Day" }, { id: "zWZEZhUkd0Y", label: "Sunset/Night" }] },
+  { name: "Paris", cc: "FR", q: "Paris", videos: [{ id: "4TKTqb-TWwQ", label: "Default" }, { id: "LoT7kXS7kYg", label: "Day" }, { id: "FBjjYw-xcdg", label: "Sunset/Night" }] },
+  { name: "London", cc: "GB", q: "London", videos: [{ id: "AveGRdBeOog", label: "Default" }, { id: "lCvWZj_kFgo", label: "Day" }, { id: "GSnAjDu3VoM", label: "Sunset/Night" }] },
+  { name: "Lisbon", cc: "PT", q: "Lisboa", videos: [{ id: "xUZoO-WtyHw", label: "Default" }, { id: "dLLqWlOymxg", label: "Day" }, { id: "sTs9aa7Y6lI", label: "Sunset/Night" }] },
+  { name: "Madrid", cc: "ES", q: "Madrid", videos: [{ id: "C911U_Fo-QU", label: "Default" }, { id: "ZQC3fIhnH4o", label: "Day" }, { id: "KC0dMMCV4OM", label: "Sunset/Night" }] },
+  { name: "Berlin", cc: "DE", q: "Berlin", videos: [{ id: "lBlKR2ek0w4", label: "Default" }, { id: "g9T-KwcXqAg", label: "Day" }, { id: "IzZkjS4nBQI", label: "Sunset/Night" }] },
+  { name: "Warsaw", cc: "PL", q: "Warszawa", videos: [{ id: "uJU_DEklaw4", label: "Default" }, { id: "dwtmEnKCP7c", label: "Day" }, { id: "YIQ4Ap9aUMo", label: "Sunset/Night" }] },
+  { name: "Buenos Aires", cc: "AR", q: "Buenos Aires", videos: [{ id: "MYOj8ckqVuQ", label: "Default" }, { id: "-TPJot7-HTs", label: "Day" }, { id: "6Sb0gHrAlLA", label: "Sunset/Night" }] },
+  { name: "Sao Paulo", cc: "BR", q: "Sao Paulo", videos: [{ id: "fHEaa2ryFnc", label: "Default" }, { id: "zje0hghImYQ", label: "Day" }, { id: "WcjGyIjHLDA", label: "Sunset/Night" }] },
+  { name: "Bogota", cc: "CO", q: "Bogota", videos: [{ id: "N0Qy6oi07W8", label: "Default" }, { id: "X6RNJoUo6HQ", label: "Day" }, { id: "AcpHX2aylSk", label: "Sunset/Night" }] },
+  { name: "Mexico City", cc: "MX", q: "Mexico", videos: [{ id: "Km6KYN_6vmc", label: "Default" }, { id: "hwn-nnSqP7Y", label: "Day" }, { id: "JCXH_WyC8A4", label: "Sunset/Night" }] },
+  { name: "Havana", cc: "CU", q: "Habana", videos: [{ id: "vCywf9saDlY", label: "Default" }, { id: "GzBPHZw8j18", label: "Day" }, { id: "IEnv4ZorXmY", label: "Night Walk" }] },
+  { name: "New York", cc: "US", q: "New York", videos: [{ id: "7OgQjRn2x1w", label: "Default" }, { id: "sqsez_oQSQ8", label: "Day" }, { id: "qTCaw64ObUk", label: "Sunset/Night" }] },
+  { name: "Los Angeles", cc: "US", q: "Los Angeles", videos: [{ id: "7MR08Jm38is", label: "Default" }, { id: "eR5vsN1Lq4E", label: "Day" }, { id: "sifq2tZkKMw", label: "Sunset/Night" }] },
 ];
 
 const RB_MIRRORS = [
@@ -276,6 +338,8 @@ const RB_MIRRORS = [
 
 const els = {
   city: document.getElementById("city"),
+  view: document.getElementById("view"),
+  videoWrap: document.getElementById("video-wrap"),
   video: document.getElementById("video"),
   presets: document.getElementById("presets"),
   name: document.getElementById("station-name"),
@@ -287,6 +351,13 @@ const els = {
   staticfx: document.getElementById("staticfx"),
   power: document.getElementById("power"),
   pauseall: document.getElementById("pauseall"),
+  fullscreen: document.getElementById("fullscreen"),
+  fsOverlay: document.getElementById("fs-overlay"),
+  fsNeedle: document.getElementById("fs-needle"),
+  fsCity: document.getElementById("fs-city"),
+  fsStation: document.getElementById("fs-station"),
+  fsPrev: document.getElementById("fs-prev"),
+  fsNext: document.getElementById("fs-next"),
   volume: document.getElementById("volume"),
   status: document.getElementById("status"),
   radio: document.getElementById("radio"),
@@ -310,6 +381,17 @@ CITIES.forEach((c, i) => {
   o.textContent = c.name;
   els.city.appendChild(o);
 });
+
+function populateViewSelect(city) {
+  els.view.innerHTML = "";
+  city.videos.forEach((v, i) => {
+    const o = document.createElement("option");
+    o.value = i;
+    o.textContent = v.label;
+    els.view.appendChild(o);
+  });
+  els.view.value = 0;
+}
 
 async function rbFetch(path) {
   for (const base of RB_MIRRORS) {
@@ -359,17 +441,20 @@ function dedupe(list) {
 /* ---- dash gauge: needle idles low, sweeps toward "full" and wobbles gently while live ---- */
 function setGauge(active) {
   els.gauge.classList.toggle("on", active);
+  els.fsOverlay.classList.toggle("on", active);
   if (active) {
     if (!wobbleTimer) wobble();
   } else {
     clearTimeout(wobbleTimer);
     wobbleTimer = null;
     els.needle.setAttribute("transform", "rotate(-80 17 21)");
+    els.fsNeedle.setAttribute("transform", "rotate(-80 17 21)");
   }
 }
 function wobble() {
   const deg = 25 + Math.random() * 45; // sweeps in the "high signal" arc
   els.needle.setAttribute("transform", `rotate(${deg} 17 21)`);
+  els.fsNeedle.setAttribute("transform", `rotate(${deg} 17 21)`);
   wobbleTimer = setTimeout(wobble, 700 + Math.random() * 900);
 }
 
@@ -539,9 +624,10 @@ function tune(i) {
   currentIdx = i;
   els.name.textContent = s.name.trim();
   els.meta.textContent = [s.codec, s.bitrate ? s.bitrate + "kbps" : ""].filter(Boolean).join(" · ");
+  els.fsStation.textContent = s.name.trim();
   els.radio.src = s.url_resolved || s.url;
   els.radio.volume = els.volume.value / 100;
-  if (changed) { staticBurst(); freqSweep(i, stations.length); }
+  if (changed) { staticBurst(); freqSweep(i, stations.length); fsFlash(); }
   play();
   renderPresets();
 }
@@ -619,19 +705,78 @@ els.radio.addEventListener("error", () => {
 
 function setCity(i) {
   const c = CITIES[i];
-  staticBurst(500);
-  els.video.src = "https://www.youtube.com/embed/" + c.video +
-    "?autoplay=1&mute=1&rel=0&modestbranding=1&enablejsapi=1&loop=1&playlist=" + c.video;
+  populateViewSelect(c);
+  els.fsCity.textContent = c.name;
+  loadVideo(c, 0);
   currentIdx = -1;
   stopRadio();
   allPaused = false;
   syncPauseBtn();
   els.name.textContent = "Tuning " + c.name + "…";
   els.meta.textContent = "";
+  els.fsStation.textContent = "";
   loadStations(c);
 }
 
+function loadVideo(city, variantIdx) {
+  const v = city.videos[variantIdx] || city.videos[0];
+  staticBurst(500);
+  els.video.src = "https://www.youtube.com/embed/" + v.id +
+    "?autoplay=1&mute=1&rel=0&modestbranding=1&enablejsapi=1&loop=1&playlist=" + v.id;
+}
+
 els.city.addEventListener("change", e => setCity(+e.target.value));
+els.view.addEventListener("change", e => {
+  const c = CITIES[+els.city.value];
+  loadVideo(c, +e.target.value);
+});
+
+/* ---- fullscreen: request it on the video container only, so the
+   deck stays hidden and the overlay becomes the only way to see or
+   change the station — mirrors a car head unit's screen. ---- */
+function isFS() { return document.fullscreenElement === els.videoWrap; }
+
+let fsHideTimer = null;
+function fsShow() {
+  if (!isFS()) return;
+  els.fsOverlay.classList.add("show");
+  clearTimeout(fsHideTimer);
+  fsHideTimer = setTimeout(() => els.fsOverlay.classList.remove("show"), 2800);
+}
+function fsFlash() { if (isFS()) fsShow(); }
+
+els.videoWrap.addEventListener("mousemove", fsShow);
+els.videoWrap.addEventListener("mouseenter", fsShow);
+document.addEventListener("fullscreenchange", () => {
+  if (isFS()) fsShow();
+  else { els.fsOverlay.classList.remove("show"); clearTimeout(fsHideTimer); }
+});
+
+els.fullscreen.addEventListener("click", () => {
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  else els.videoWrap.requestFullscreen().catch(() => {});
+});
+
+function fsStep(delta) {
+  if (!stations.length) return;
+  let i = (currentIdx + delta + stations.length) % stations.length;
+  allPaused = false;
+  syncPauseBtn();
+  tune(i);
+}
+els.fsPrev.addEventListener("click", () => fsStep(-1));
+els.fsNext.addEventListener("click", () => fsStep(1));
+
+document.addEventListener("keydown", (e) => {
+  if (!isFS()) return;
+  if (e.key >= "1" && e.key <= "6") {
+    const idx = +e.key - 1;
+    if (stations[idx]) { allPaused = false; syncPauseBtn(); tune(idx); }
+  } else if (e.code === "Space") {
+    e.preventDefault();
+    els.pauseall.click();
+  }
+});
 
 /* ---- ignition: gate everything behind one user gesture so audio
    (both the radio stream and the synthesized static bursts) is
