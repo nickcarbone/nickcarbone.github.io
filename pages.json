@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-18T13:34:34.786Z",
+  "generated": "2026-07-18T19:12:17.744Z",
   "count": 61,
   "pages": [
     {
@@ -7,7 +7,7 @@
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-07-18T12:55:36Z",
+      "updated": "2026-07-18T16:46:29Z",
       "created": "2026-07-10T01:19:16Z"
     },
     {
@@ -198,7 +198,7 @@
       "slug": "gonzo-decemberists",
       "url": "https://nickcarbone.github.io/gonzo-decemberists/",
       "title": "Gonzo Decemberists",
-      "description": "Published via Publisher �� nickcarbone.github.io/gonzo-decemberists/",
+      "description": "nickcarbone.github.io/gonzo-decemberists/",
       "updated": "2026-06-13T14:37:09Z",
       "created": "2026-06-13T14:37:02Z"
     },
