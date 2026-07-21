@@ -219,103 +219,6 @@
   }
   .tool:hover { background: var(--panel-3); color: var(--text); }
 
-  /* ---------- GUIDE TABS ---------- */
-  .guide-tabs {
-    display: flex;
-    gap: 4px;
-    padding: 4px;
-    margin: 0 20px 8px;
-    background: var(--bg);
-    border-radius: 999px;
-  }
-  .gtab {
-    flex: 1;
-    padding: 8px 10px;
-    border-radius: 999px;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--dim);
-    transition: background .15s, color .15s;
-  }
-  .gtab:hover { color: var(--muted); }
-  .gtab.active { background: var(--panel-2); color: var(--text); }
-
-  /* ---------- WATCHLIST ITEMS ---------- */
-  .wl {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    text-align: left;
-    padding: 10px 12px;
-    border-radius: 18px;
-    margin-bottom: 6px;
-    transition: background .13s;
-  }
-  .wl:hover { background: var(--panel-2); }
-  .wl.active { background: var(--panel-2); box-shadow: inset 0 0 0 1.5px rgba(255,122,104,.35); }
-
-  .wl .check {
-    width: 30px; height: 30px;
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--panel-2);
-    color: var(--accent-ink);
-    box-shadow: inset 0 0 0 1.5px var(--panel-3);
-    transition: background .15s, box-shadow .15s;
-  }
-  .wl:hover .check { box-shadow: inset 0 0 0 1.5px var(--dim); }
-  .wl.watched .check { background: var(--accent); box-shadow: none; }
-
-  .wl .meta { min-width: 0; flex: 1; }
-  .wl .name {
-    display: block;
-    font-weight: 600;
-    font-size: 14.5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .wl.watched .name { color: var(--dim); text-decoration: line-through; }
-  .wl .host {
-    display: block;
-    font-size: 11.5px;
-    font-weight: 500;
-    color: var(--dim);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-top: 1px;
-  }
-
-  .wl .tools { display: none; gap: 2px; flex-shrink: 0; }
-  .wl:hover .tools, .wl:focus-within .tools { display: flex; }
-
-  .wl-empty { padding: 26px 18px; color: var(--dim); font-size: 13px; line-height: 1.6; }
-
-  /* embed fallback hint for watchlist playback */
-  .embed-hint {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    z-index: 6;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    padding: 12px 16px;
-    background: linear-gradient(0deg, rgba(0,0,0,.8), transparent);
-  }
-  .embed-hint span {
-    flex: 1;
-    font-size: 12.5px;
-    font-weight: 500;
-    color: rgba(244,241,248,.85);
-    line-height: 1.4;
-  }
-  .embed-hint .pill { flex-shrink: 0; }
-
   .guide-foot {
     padding: 12px 14px 14px;
     display: flex;
@@ -613,18 +516,13 @@
 <div class="shell">
   <aside id="guide">
     <div class="guide-head">
-      <h2 id="guideTitle">Channels</h2>
+      <h2>Channels</h2>
       <span class="count" id="chCount"></span>
     </div>
-    <div class="guide-tabs">
-      <button class="gtab active" id="tabChannels" data-tab="channels">Channels</button>
-      <button class="gtab" id="tabWatchlist" data-tab="watchlist">Watchlist</button>
-    </div>
     <div class="guide-list" id="guideList"></div>
-    <div class="guide-list" id="watchList" style="display:none"></div>
     <div class="guide-foot">
-      <button class="foot-btn" id="exportBtn" title="Download your channels and watchlist as a file">Export</button>
-      <button class="foot-btn" id="importBtn" title="Restore channels and watchlist from a file">Import</button>
+      <button class="foot-btn" id="exportBtn" title="Download your channels as a file">Export</button>
+      <button class="foot-btn" id="importBtn" title="Restore channels from a file">Import</button>
       <input type="file" id="importFile" accept="application/json" hidden>
     </div>
   </aside>
@@ -674,7 +572,7 @@
 <div class="overlay" id="syncOverlay">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="syncTitle">
     <h3 id="syncTitle">Sync across devices</h3>
-    <p class="sub">Your channels and watchlist can live in a private GitHub Gist so every device shows the same lineup. Enter just the Sync ID on devices you only watch on; add the access token on the one device you manage from.</p>
+    <p class="sub">Your channels can live in a private GitHub Gist so every device shows the same lineup. Enter just the Sync ID on devices you only watch on; add the access token on the one device you manage from.</p>
     <div class="sync-status" id="syncStatus"><span class="s-dot"></span><span id="syncStatusText">Not connected — channels are stored on this device only.</span></div>
     <div class="field">
       <label for="fGist">Sync ID <span style="font-weight:400">(Gist ID)</span></label>
@@ -696,26 +594,6 @@
   </div>
 </div>
 
-<!-- Add / Edit watchlist item -->
-<div class="overlay" id="wlOverlay">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="wlTitle">
-    <h3 id="wlTitle">Add to watchlist</h3>
-    <p class="sub">Paste a link to a show or movie from any streaming service. Primetime will try to play it here — but most services (Netflix, Hulu, Max, Disney+, etc.) block embedding entirely, with no way for the app to detect that in advance. Use "Open in new tab" if the screen stays blank.</p>
-    <div class="field">
-      <label for="wName">Title</label>
-      <input id="wName" type="text" placeholder="e.g. Severance — S2E4" maxlength="80">
-    </div>
-    <div class="field">
-      <label for="wUrl">Link</label>
-      <textarea id="wUrl" placeholder="https://…" spellcheck="false"></textarea>
-    </div>
-    <div class="modal-actions">
-      <button class="pill" id="wlCancel">Cancel</button>
-      <button class="pill accent" id="wlSave">Save</button>
-    </div>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
@@ -724,7 +602,6 @@
 
   /* ---------- constants & state ---------- */
   const LS_CH    = "primetime.channels.v1";
-  const LS_WATCH = "primetime.watchlist.v1";
   const LS_LAST  = "primetime.lastTuned.v1";
   const LS_GIST  = "primetime.gistId.v1";
   const LS_TOKEN = "primetime.token.v1";
@@ -737,12 +614,8 @@
   ];
 
   let channels = [];
-  let watchlist = [];
   let currentId = null;
-  let nowPlaying = null; // { kind: 'channel'|'watchlist', id }
-  let activeTab = "channels"; // channels | watchlist
   let editingId = null;
-  let editingWlId = null;
   let storageOk = true;
   let gistId = "";
   let token = "";
@@ -758,11 +631,39 @@
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) { storageOk = false; } }
   function lsDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
 
+  function normalizeYouTube(url) {
+    try {
+      const u = new URL(url);
+      const host = u.hostname.replace(/^www\./, "");
+      if (host === "youtu.be") {
+        const id = u.pathname.slice(1).split("/")[0];
+        return id ? "https://www.youtube.com/embed/" + id + u.search : url;
+      }
+      if (host === "youtube.com" || host === "m.youtube.com") {
+        if (u.pathname === "/watch") {
+          const v = u.searchParams.get("v");
+          if (v) {
+            u.searchParams.delete("v");
+            const rest = u.searchParams.toString();
+            return "https://www.youtube.com/embed/" + v + (rest ? "?" + rest : "");
+          }
+        }
+        const shorts = u.pathname.match(/^\/shorts\/([^/?]+)/);
+        if (shorts) return "https://www.youtube.com/embed/" + shorts[1] + u.search;
+        const live = u.pathname.match(/^\/live\/([^/?]+)/);
+        if (live) return "https://www.youtube.com/embed/" + live[1] + u.search;
+        // already /embed/... or a channel/live_stream embed — leave as-is
+      }
+    } catch (e) {}
+    return url;
+  }
+
   function extractSrc(input) {
     const t = (input || "").trim();
     if (!t) return "";
     const m = t.match(/src\s*=\s*["']([^"']+)["']/i);
-    return m ? m[1] : t;
+    const raw = m ? m[1] : t;
+    return normalizeYouTube(raw);
   }
   function hostOf(url) {
     try { return new URL(url).hostname.replace(/^www\./, ""); }
@@ -781,26 +682,16 @@
   }
 
   /* ---------- persistence: local + gist ---------- */
-  function loadLocalChannels() {
+  function loadLocal() {
     const raw = lsGet(LS_CH);
     if (raw === null) { lsSet(LS_CH, JSON.stringify(SEEDS)); return SEEDS.slice(); }
     try { const p = JSON.parse(raw); return Array.isArray(p) ? p : []; }
     catch (e) { return []; }
   }
 
-  function loadLocalWatchlist() {
-    const raw = lsGet(LS_WATCH);
-    if (raw === null) { lsSet(LS_WATCH, JSON.stringify([])); return []; }
-    try { const p = JSON.parse(raw); return Array.isArray(p) ? p : []; }
-    catch (e) { return []; }
-  }
+  function saveLocal() { lsSet(LS_CH, JSON.stringify(channels)); }
 
-  function saveLocal() {
-    lsSet(LS_CH, JSON.stringify(channels));
-    lsSet(LS_WATCH, JSON.stringify(watchlist));
-  }
-
-  function sanitizeChannels(data) {
+  function sanitize(data) {
     if (!Array.isArray(data)) return null;
     const clean = data
       .filter(c => c && typeof c.url === "string" && /^https?:\/\//i.test(c.url))
@@ -811,19 +702,6 @@
         url: c.url
       }));
     return clean;
-  }
-
-  function sanitizeWatchlist(data) {
-    if (!Array.isArray(data)) return [];
-    return data
-      .filter(w => w && typeof w.url === "string" && /^https?:\/\//i.test(w.url))
-      .map((w, i) => ({
-        id: typeof w.id === "string" ? w.id : uid(),
-        title: String(w.title || "Untitled " + (i + 1)).slice(0, 80),
-        url: w.url,
-        watched: !!w.watched,
-        addedAt: Number.isFinite(+w.addedAt) ? +w.addedAt : Date.now()
-      }));
   }
 
   async function pullGist() {
@@ -840,14 +718,9 @@
       const raw = await fetch(file.raw_url, { cache: "no-store" });
       content = await raw.text();
     }
-    const parsed = JSON.parse(content);
-    // Legacy format was a bare array of channels; new format is { channels, watchlist }.
-    const chRaw = Array.isArray(parsed) ? parsed : parsed.channels;
-    const wlRaw = Array.isArray(parsed) ? [] : parsed.watchlist;
-    const cleanCh = sanitizeChannels(chRaw);
-    if (cleanCh === null) throw new Error("Channel file is malformed");
-    channels = cleanCh;
-    watchlist = sanitizeWatchlist(wlRaw);
+    const clean = sanitize(JSON.parse(content));
+    if (clean === null) throw new Error("Channel file is malformed");
+    channels = clean;
     saveLocal();
     return true;
   }
@@ -861,7 +734,7 @@
         "Authorization": "Bearer " + token,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ files: { [GIST_FILE]: { content: JSON.stringify({ channels, watchlist }, null, 2) } } })
+      body: JSON.stringify({ files: { [GIST_FILE]: { content: JSON.stringify(channels, null, 2) } } })
     });
     if (!res.ok) throw new Error("Sync save failed (" + res.status + ")");
     return true;
@@ -878,7 +751,7 @@
       body: JSON.stringify({
         description: "Primetime — my channel lineup",
         public: false,
-        files: { [GIST_FILE]: { content: JSON.stringify({ channels, watchlist }, null, 2) } }
+        files: { [GIST_FILE]: { content: JSON.stringify(channels, null, 2) } }
       })
     });
     if (!res.ok) throw new Error("Couldn't create sync (" + res.status + ") — check the token has the gist permission");
@@ -920,44 +793,16 @@
   tickClock();
   setInterval(tickClock, 15000);
 
-  /* ---------- tabs ---------- */
-  function setTab(tab) {
-    activeTab = tab;
-    $("#tabChannels").classList.toggle("active", tab === "channels");
-    $("#tabWatchlist").classList.toggle("active", tab === "watchlist");
-    $("#guideList").style.display = tab === "channels" ? "" : "none";
-    $("#watchList").style.display = tab === "watchlist" ? "" : "none";
-    $("#guideTitle").textContent = tab === "channels" ? "Channels" : "Watchlist";
-    updateCount();
-    updateAddBtnLabel();
-  }
-
-  function updateCount() {
-    if (activeTab === "channels") {
-      $("#chCount").textContent = channels.length || "";
-    } else {
-      const unwatched = watchlist.filter(w => !w.watched).length;
-      $("#chCount").textContent = watchlist.length ? (unwatched + " to watch") : "";
-    }
-  }
-
-  function updateAddBtnLabel() {
-    const btn = $("#addBtn");
-    const plus = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
-    btn.innerHTML = plus + (activeTab === "channels" ? "Add channel" : "Add to watchlist");
-  }
-
   /* ---------- guide ---------- */
   function renderGuide() {
     sortChannels();
     const list = $("#guideList");
     list.innerHTML = "";
-    updateCount();
+    $("#chCount").textContent = channels.length || "";
 
     channels.forEach(ch => {
       const btn = document.createElement("button");
-      const isActive = nowPlaying && nowPlaying.kind === "channel" && nowPlaying.id === ch.id;
-      btn.className = "ch" + (isActive ? " active" : "");
+      btn.className = "ch" + (ch.id === currentId ? " active" : "");
       btn.setAttribute("data-id", ch.id);
       btn.innerHTML =
         '<span class="num">' + esc(String(ch.num)) + "</span>" +
@@ -989,111 +834,17 @@
     if (window.innerWidth <= 880) $("#guide").classList.add("hidden");
   });
 
-  /* ---------- watchlist ---------- */
-  function sortWatchlist() {
-    watchlist.sort((a, b) => {
-      if (a.watched !== b.watched) return a.watched ? 1 : -1;
-      return b.addedAt - a.addedAt;
-    });
-  }
-
-  function renderWatchlist() {
-    sortWatchlist();
-    const list = $("#watchList");
-    list.innerHTML = "";
-    updateCount();
-
-    if (!watchlist.length) {
-      list.innerHTML = '<div class="wl-empty">Nothing on your watchlist yet. Paste a link to a show or movie to add one.</div>';
-      return;
-    }
-
-    watchlist.forEach(w => {
-      const btn = document.createElement("button");
-      const isActive = nowPlaying && nowPlaying.kind === "watchlist" && nowPlaying.id === w.id;
-      btn.className = "wl" + (w.watched ? " watched" : "") + (isActive ? " active" : "");
-      btn.setAttribute("data-id", w.id);
-      btn.innerHTML =
-        '<span class="check" data-act="check" title="Mark watched" role="button" tabindex="0">' +
-          (w.watched ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>' : "") +
-        "</span>" +
-        '<span class="meta"><span class="name">' + esc(w.title) + '</span><span class="host">' + esc(hostOf(w.url)) + "</span></span>" +
-        '<span class="tools">' +
-          '<span class="tool" data-act="del" title="Remove" role="button" tabindex="0">' +
-            '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m2 0v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V6"/></svg>' +
-          "</span>" +
-        "</span>";
-      list.appendChild(btn);
-    });
-  }
-
-  function toggleWatched(id) {
-    const w = watchlist.find(x => x.id === id);
-    if (!w) return;
-    w.watched = !w.watched;
-    commit();
-    renderWatchlist();
-    toast(w.watched ? "Marked as watched" : "Marked as unwatched");
-  }
-
-  function deleteWlItem(id) {
-    const w = watchlist.find(x => x.id === id);
-    if (!w) return;
-    if (!confirm('Remove "' + w.title + '" from your watchlist?')) return;
-    const wasPlaying = nowPlaying && nowPlaying.kind === "watchlist" && nowPlaying.id === id;
-    watchlist = watchlist.filter(x => x.id !== id);
-    commit();
-    renderWatchlist();
-    if (wasPlaying) { nowPlaying = null; renderStage(); }
-    toast("Removed from watchlist");
-  }
-
-  function watchItem(id) {
-    const isSame = nowPlaying && nowPlaying.kind === "watchlist" && nowPlaying.id === id;
-    if (isSame) return;
-    nowPlaying = { kind: "watchlist", id };
-    renderWatchlist();
-    renderGuide();
-    renderStage();
-  }
-
-  $("#watchList").addEventListener("click", (e) => {
-    const act = e.target.closest("[data-act]");
-    const wlEl = e.target.closest(".wl");
-    if (!wlEl) return;
-    const id = wlEl.getAttribute("data-id");
-    if (act) {
-      e.stopPropagation();
-      const kind = act.getAttribute("data-act");
-      if (kind === "check") toggleWatched(id);
-      else deleteWlItem(id);
-      return;
-    }
-    watchItem(id);
-    if (window.innerWidth <= 880) $("#guide").classList.add("hidden");
-  });
-
-  $("#tabChannels").addEventListener("click", () => setTab("channels"));
-  $("#tabWatchlist").addEventListener("click", () => setTab("watchlist"));
-
   /* ---------- stage ---------- */
-  function currentItem() {
-    if (!nowPlaying) return null;
-    return nowPlaying.kind === "channel"
-      ? channels.find(c => c.id === nowPlaying.id)
-      : watchlist.find(w => w.id === nowPlaying.id);
-  }
-
   function renderStage() {
     const stage = $("#stage");
-    const item = currentItem();
+    const ch = channels.find(c => c.id === currentId);
 
-    if (!item) {
+    if (!ch) {
       stage.innerHTML =
         '<div class="empty">' +
           '<div class="orb"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="4"/><path d="m8 2 4 5 4-5"/></svg></div>' +
           "<h1>Nothing playing yet</h1>" +
-          "<p>Add a channel to start your lineup, or paste a link into your watchlist to queue up something to watch.</p>" +
+          "<p>Add a channel to start your lineup. Paste any livestream link — or a full embed snippet — and it slots right in.</p>" +
           '<button class="pill accent" id="emptyAdd">Add your first channel</button>' +
         "</div>";
       $("#nowbar").style.display = "none";
@@ -1103,48 +854,40 @@
       return;
     }
 
-    const isChannel = nowPlaying.kind === "channel";
     stage.innerHTML =
       '<div class="screen">' +
-        '<iframe id="player" src="' + esc(item.url) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>' +
+        '<iframe id="player" src="' + esc(ch.url) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>' +
         '<div class="tune-fade" id="tuneFade"></div>' +
         '<div class="tune-bubble" id="tuneBubble"><span class="b-num"></span><span class="b-name"></span></div>' +
-        (isChannel ? "" :
-          '<div class="embed-hint"><span>Many streaming services block embedding — if this stays blank, open it directly.</span><button class="pill accent" id="hintPopout">Open in new tab</button></div>') +
       "</div>";
 
     $("#nowbar").style.display = "";
-    $(".nowbar .now-label").textContent = isChannel ? "Now playing" : "Now watching";
-    $("#nowName").textContent = isChannel ? item.name : item.title;
-    $("#nowSrc").textContent = hostOf(item.url);
-    setLive(isChannel);
+    $("#nowName").textContent = ch.name;
+    $("#nowSrc").textContent = hostOf(ch.url);
+    setLive(true);
 
     requestAnimationFrame(() => {
       const fade = $("#tuneFade");
       const bub = $("#tuneBubble");
       if (fade) { fade.classList.remove("show"); void fade.offsetWidth; fade.classList.add("show"); }
       if (bub) {
-        bub.querySelector(".b-num").textContent = isChannel ? item.num : "▶";
-        bub.querySelector(".b-name").textContent = isChannel ? item.name : item.title;
+        bub.querySelector(".b-num").textContent = ch.num;
+        bub.querySelector(".b-name").textContent = ch.name;
         bub.classList.remove("show"); void bub.offsetWidth; bub.classList.add("show");
       }
-      const hintBtn = $("#hintPopout");
-      if (hintBtn) hintBtn.addEventListener("click", () => window.open(item.url, "_blank", "noopener"));
     });
   }
 
   function setLive(on) {
     $("#livePill").classList.toggle("on", on);
-    $("#liveText").textContent = on ? (nowPlaying && nowPlaying.kind === "watchlist" ? "Watching" : "Live") : "Off air";
+    $("#liveText").textContent = on ? "Live" : "Off air";
   }
 
   function tune(id) {
-    if (nowPlaying && nowPlaying.kind === "channel" && nowPlaying.id === id) return;
+    if (id === currentId) return;
     currentId = id;
-    nowPlaying = id ? { kind: "channel", id } : null;
     lsSet(LS_LAST, id || "");
     renderGuide();
-    renderWatchlist();
     renderStage();
   }
 
@@ -1190,7 +933,7 @@
       ch.num = finalNum; ch.name = name; ch.url = url;
       commit();
       renderGuide();
-      if (nowPlaying && nowPlaying.kind === "channel" && nowPlaying.id === editingId) {
+      if (editingId === currentId) {
         if (urlChanged) renderStage();
         else { $("#nowName").textContent = ch.name; $("#nowSrc").textContent = hostOf(ch.url); }
       }
@@ -1212,10 +955,8 @@
     if (!confirm('Remove "' + ch.name + '" from your channels?')) return;
     channels = channels.filter(c => c.id !== id);
     commit();
-    const wasPlaying = nowPlaying && nowPlaying.kind === "channel" && nowPlaying.id === id;
-    if (wasPlaying) {
+    if (currentId === id) {
       currentId = null;
-      nowPlaying = null;
       sortChannels();
       if (channels.length) tune(channels[0].id);
       else { renderGuide(); renderStage(); }
@@ -1227,77 +968,32 @@
 
   /* ---------- export / import ---------- */
   function exportLineup() {
-    const blob = new Blob([JSON.stringify({ channels, watchlist }, null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify(channels, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "primetime-data.json";
+    a.download = "primetime-channels.json";
     a.click();
     URL.revokeObjectURL(a.href);
-    toast("Data exported");
+    toast("Channels exported");
   }
 
   function importLineup(file) {
     const reader = new FileReader();
     reader.onload = () => {
       try {
-        const parsed = JSON.parse(reader.result);
-        // Legacy exports were a bare array of channels.
-        const chRaw = Array.isArray(parsed) ? parsed : parsed.channels;
-        const wlRaw = Array.isArray(parsed) ? [] : parsed.watchlist;
-        const cleanCh = sanitizeChannels(chRaw);
-        const cleanWl = sanitizeWatchlist(wlRaw);
-        if (!cleanCh || !cleanCh.length) { toast("No valid channels in that file"); return; }
-        channels = cleanCh;
-        watchlist = cleanWl;
+        const clean = sanitize(JSON.parse(reader.result));
+        if (!clean || !clean.length) { toast("No valid channels in that file"); return; }
+        channels = clean;
         currentId = null;
-        nowPlaying = null;
         commit();
         renderGuide();
-        renderWatchlist();
         tune(channels[0].id);
-        toast("Imported " + cleanCh.length + " channel" + (cleanCh.length === 1 ? "" : "s") +
-          (cleanWl.length ? " and " + cleanWl.length + " watchlist item" + (cleanWl.length === 1 ? "" : "s") : ""));
+        toast("Imported " + clean.length + " channel" + (clean.length === 1 ? "" : "s"));
       } catch (e) {
         toast("Couldn't read that file");
       }
     };
     reader.readAsText(file);
-  }
-
-  /* ---------- watchlist add / edit ---------- */
-  function openWlModal(id) {
-    editingWlId = id;
-    const w = id ? watchlist.find(x => x.id === id) : null;
-    $("#wlTitle").textContent = w ? "Edit watchlist item" : "Add to watchlist";
-    $("#wName").value = w ? w.title : "";
-    $("#wUrl").value = w ? w.url : "";
-    $("#wlOverlay").classList.add("open");
-    setTimeout(() => $("#wName").focus(), 60);
-  }
-  function closeWlModal() { $("#wlOverlay").classList.remove("open"); editingWlId = null; }
-
-  function saveWlItem() {
-    const title = $("#wName").value.trim();
-    const url = extractSrc($("#wUrl").value);
-
-    if (!title) { toast("Give it a title"); $("#wName").focus(); return; }
-    if (!url || !/^https?:\/\//i.test(url)) { toast("That doesn't look like a link — paste a URL or embed code"); $("#wUrl").focus(); return; }
-
-    if (editingWlId) {
-      const w = watchlist.find(x => x.id === editingWlId);
-      w.title = title; w.url = url;
-      commit();
-      renderWatchlist();
-      if (nowPlaying && nowPlaying.kind === "watchlist" && nowPlaying.id === editingWlId) renderStage();
-      toast("Watchlist item updated");
-    } else {
-      const w = { id: uid(), title, url, watched: false, addedAt: Date.now() };
-      watchlist.push(w);
-      commit();
-      renderWatchlist();
-      toast("Added to watchlist");
-    }
-    closeWlModal();
   }
 
   /* ---------- sync modal ---------- */
@@ -1379,13 +1075,12 @@
     const typing = /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
     const chOpen = $("#chOverlay").classList.contains("open");
     const syncOpen = $("#syncOverlay").classList.contains("open");
-    const wlOpen = $("#wlOverlay").classList.contains("open");
 
-    if (chOpen || syncOpen || wlOpen) {
-      if (e.key === "Escape") { chOpen ? closeChModal() : syncOpen ? closeSync() : closeWlModal(); }
+    if (chOpen || syncOpen) {
+      if (e.key === "Escape") { chOpen ? closeChModal() : closeSync(); }
       if (e.key === "Enter" && document.activeElement.tagName !== "TEXTAREA") {
         e.preventDefault();
-        if (chOpen) saveChannel(); else if (syncOpen) connectSync(); else saveWlItem();
+        chOpen ? saveChannel() : connectSync();
       }
       return;
     }
@@ -1414,17 +1109,10 @@
   }
 
   /* ---------- wiring ---------- */
-  $("#addBtn").addEventListener("click", () => {
-    if (activeTab === "channels") openChModal(null);
-    else openWlModal(null);
-  });
+  $("#addBtn").addEventListener("click", () => openChModal(null));
   $("#chCancel").addEventListener("click", closeChModal);
   $("#chSave").addEventListener("click", saveChannel);
   $("#chOverlay").addEventListener("click", (e) => { if (e.target === e.currentTarget) closeChModal(); });
-
-  $("#wlCancel").addEventListener("click", closeWlModal);
-  $("#wlSave").addEventListener("click", saveWlItem);
-  $("#wlOverlay").addEventListener("click", (e) => { if (e.target === e.currentTarget) closeWlModal(); });
 
   $("#syncBtn").addEventListener("click", openSync);
   $("#syncCancel").addEventListener("click", closeSync);
@@ -1446,20 +1134,17 @@
     if (p) { const src = p.src; p.src = "about:blank"; requestAnimationFrame(() => p.src = src); toast("Stream reloaded"); }
   });
   $("#popoutBtn").addEventListener("click", () => {
-    const item = currentItem();
-    if (item) window.open(item.url, "_blank", "noopener");
+    const ch = channels.find(c => c.id === currentId);
+    if (ch) window.open(ch.url, "_blank", "noopener");
   });
 
   /* ---------- boot ---------- */
   async function boot() {
-    channels = loadLocalChannels();
-    watchlist = loadLocalWatchlist();
+    channels = loadLocal();
     gistId = lsGet(LS_GIST) || "";
     token = lsGet(LS_TOKEN) || "";
 
-    updateAddBtnLabel();
     renderGuide();
-    renderWatchlist();
     const last = lsGet(LS_LAST);
     if (last && channels.some(c => c.id === last)) tune(last);
     else if (channels.length) { sortChannels(); tune(channels[0].id); }
@@ -1470,10 +1155,8 @@
         await pullGist();
         setSyncState(token ? "readwrite" : "readonly");
         renderGuide();
-        renderWatchlist();
         if (!channels.some(c => c.id === currentId)) {
           currentId = null;
-          nowPlaying = null;
           sortChannels();
           if (channels.length) tune(channels[0].id); else renderStage();
         }
