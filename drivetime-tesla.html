@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRIVETIME</title>
+<style>
+/* ===================================================================
+   DRIVETIME — EV console build
+   Palette is instrument-cluster vernacular, not decoration:
+     void      screen-off black
+     glass     panel surface
+     glass-hi  raised, touchable control
+     signal    navigation blue — ONLY for route + active state
+     charge    green — ONLY for battery state
+     alert     red — ONLY for live/warning
+   =================================================================== */
+:root {
+  --void: #08090a;
+  --glass: #131417;
+  --glass-hi: #1d1f23;
+  --hairline: #2a2d33;
+  --ink: #f2f3f5;
+  --ink-dim: #85898f;
+  --ink-faint: #55585e;
+  --signal: #3e6ae1;
+  --charge: #17c964;
+  --alert: #e5484d;
+  --r: 10px;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --mono: "SF Mono", "Cascadia Mono", ui-monospace, Consolas, Menlo, monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+button, select, input { font-family: inherit; color: inherit; }
+button { background: none; border: none; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; border-radius: 4px; }
+.lbl {
+  font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-faint); font-weight: 500;
+}
+.num { font-variant-numeric: tabular-nums; }
+.mono { font-family: var(--mono); }
+
+/* ---------- top status strip ---------- */
+.status {
+  flex-shrink: 0;
+  height: 34px;
+  display: flex; align-items: center; gap: 14px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 11.5px; color: var(--ink-dim);
+}
+.status .sep { width: 1px; height: 12px; background: var(--hairline); }
+.status .grow { flex: 1; }
+.status b { color: var(--ink); font-weight: 500; }
+.batt { display: flex; align-items: center; gap: 7px; }
+.batt-shell {
+  width: 26px; height: 12px; border: 1.5px solid var(--ink-dim);
+  border-radius: 3px; position: relative;
+}
+.batt-shell::after {
+  content: ""; position: absolute; right: -4px; top: 3px;
+  width: 2px; height: 4px; background: var(--ink-dim); border-radius: 0 1px 1px 0;
+}
+.batt-fill { height: 100%; background: var(--charge); border-radius: 1px; transition: width .6s linear; }
+.wordmark { letter-spacing: .34em; font-size: 10.5px; font-weight: 600; color: var(--ink); }
+
+/* ---------- windshield ---------- */
+.stage { flex: 1; min-height: 0; position: relative; background: #000; }
+.stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.stage .placeholder {
+  position: absolute; inset: 0; display: none;
+  flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  color: var(--ink-faint);
+}
+.stage.is-empty .placeholder { display: flex; }
+#staticfx {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background: repeating-linear-gradient(0deg, rgba(242,243,245,.22) 0 1px, transparent 1px 3px);
+  mix-blend-mode: overlay;
+}
+#staticfx.flash { animation: flick .45s steps(6, end); }
+@keyframes flick {
+  0%{opacity:.65} 16%{opacity:.08} 33%{opacity:.5} 50%{opacity:.04} 66%{opacity:.35} 83%{opacity:.06} 100%{opacity:0}
+}
+/* fullscreen HUD */
+#fshud {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; gap: 14px;
+  padding: 40px 20px 18px;
+  background: linear-gradient(transparent, rgba(4,5,6,.9) 60%);
+  opacity: 0; pointer-events: none; transform: translateY(8px);
+  transition: opacity .28s, transform .28s;
+}
+#fshud.show { opacity: 1; transform: none; pointer-events: auto; }
+#fshud .fs-speed { font-size: 30px; font-weight: 250; letter-spacing: -.02em; }
+#fshud .fs-station { font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#fshud .grow { flex: 1; }
+
+/* ---------- console ---------- */
+.console {
+  flex-shrink: 0;
+  height: 336px;
+  margin: 10px 10px 12px;
+  background: var(--glass);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  box-shadow: 0 0 0 6px #0c0d0f, 0 18px 40px rgba(0,0,0,.6);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  transition: height .3s ease;
+}
+.console.collapsed { height: 76px; }
+.console.collapsed .console-body,
+.console.collapsed .climate { display: none; }
+.console-body { flex: 1; min-height: 0; display: flex; }
+
+/* gear rail */
+.gear {
+  width: 42px; flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  border-right: 1px solid var(--hairline);
+}
+.gear button {
+  width: 26px; padding: 6px 0; border-radius: 6px;
+  font-size: 13px; font-weight: 600; color: var(--ink-faint);
+  transition: color .2s, background .2s;
+}
+.gear button[aria-pressed="true"] { color: var(--ink); background: var(--glass-hi); }
+.gear button:hover { color: var(--ink-dim); }
+
+/* car card */
+.carcard {
+  width: 178px; flex-shrink: 0;
+  border-right: 1px solid var(--hairline);
+  display: flex; flex-direction: column; align-items: center;
+  padding: 14px 10px 10px;
+  position: relative;
+}
+.speed-read { display: flex; align-items: baseline; gap: 6px; }
+.speed-read .v { font-size: 62px; font-weight: 200; letter-spacing: -.045em; line-height: .92; }
+.speed-read .u { font-size: 11px; color: var(--ink-dim); letter-spacing: .1em; }
+.speed-read .u button { color: inherit; font-size: inherit; letter-spacing: inherit; }
+.roadview { flex: 1; width: 100%; min-height: 0; margin-top: 4px; }
+.roadview svg { width: 100%; height: 100%; display: block; }
+.autopilot-note {
+  font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-faint); padding-top: 4px;
+}
+
+/* center pane (nav / theater) */
+.pane { flex: 1; min-width: 0; position: relative; display: flex; flex-direction: column; }
+.pane-tabs {
+  display: flex; align-items: center; gap: 4px;
+  padding: 9px 10px; border-bottom: 1px solid var(--hairline);
+}
+.tab {
+  padding: 6px 13px; border-radius: 7px; font-size: 11.5px; font-weight: 500;
+  color: var(--ink-dim); letter-spacing: .04em;
+}
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--glass-hi); color: var(--ink); }
+.pane-body { flex: 1; min-height: 0; position: relative; }
+.view { position: absolute; inset: 0; display: none; }
+.view.on { display: block; }
+
+/* nav map */
+#map { width: 100%; height: 100%; display: block; background: #0b0c0e; }
+.turncard {
+  position: absolute; top: 10px; left: 10px;
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(19,20,23,.9);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r);
+  padding: 8px 12px 8px 9px;
+  max-width: calc(100% - 20px);
+  backdrop-filter: blur(8px);
+}
+.turncard .arrow { flex-shrink: 0; }
+.turncard .dist { font-size: 17px; font-weight: 300; letter-spacing: -.01em; }
+.turncard .street {
+  font-size: 12px; color: var(--ink-dim);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.mapfoot {
+  position: absolute; left: 10px; right: 10px; bottom: 10px;
+  display: flex; align-items: flex-end; gap: 12px;
+}
+.mapfoot .eta { display: flex; align-items: baseline; gap: 7px; }
+.mapfoot .eta .t { font-size: 19px; font-weight: 300; }
+.mapfoot .grow { flex: 1; }
+.zoom { display: flex; flex-direction: column; gap: 4px; }
+.zoom button {
+  width: 28px; height: 28px; border-radius: 7px;
+  background: rgba(29,31,35,.9); border: 1px solid var(--hairline);
+  color: var(--ink-dim); font-size: 15px; line-height: 1;
+}
+.zoom button:hover { color: var(--ink); }
+
+/* theater */
+.theater { display: flex; flex-direction: column; height: 100%; }
+.theater-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 10px; border-bottom: 1px solid var(--hairline);
+}
+.theater-bar input[type="text"] {
+  flex: 1; min-width: 0;
+  background: var(--glass-hi); border: 1px solid var(--hairline);
+  border-radius: 7px; padding: 7px 10px; font-size: 12px; outline: none;
+}
+.theater-bar input::placeholder { color: var(--ink-faint); }
+.theater-bar input:focus { border-color: var(--signal); }
+.pill {
+  padding: 7px 12px; border-radius: 7px; font-size: 11.5px; font-weight: 500;
+  background: var(--glass-hi); border: 1px solid var(--hairline); color: var(--ink-dim);
+  white-space: nowrap;
+}
+.pill:hover { color: var(--ink); border-color: var(--ink-faint); }
+.pill.go { background: var(--signal); border-color: var(--signal); color: #fff; }
+.pill.go:hover { color: #fff; filter: brightness(1.1); }
+.pill[disabled] { opacity: .4; cursor: not-allowed; }
+.pill[aria-pressed="true"] { color: var(--ink); border-color: var(--ink-faint); }
+.theater-screen { flex: 1; min-height: 0; position: relative; background: #000; }
+.theater-screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.theater-empty {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; padding: 16px;
+  text-align: center; color: var(--ink-dim); font-size: 12.5px;
+}
+.recents { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 4px; }
+.recents button {
+  font-size: 11px; padding: 4px 9px; border-radius: 6px;
+  background: var(--glass-hi); border: 1px solid var(--hairline); color: var(--ink-dim);
+  max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.recents button:hover { color: var(--ink); }
+
+/* media column */
+.media {
+  width: 268px; flex-shrink: 0;
+  border-left: 1px solid var(--hairline);
+  display: flex; flex-direction: column;
+  padding: 10px 12px 12px;
+}
+.media-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.livedot { width: 6px; height: 6px; border-radius: 50%; background: var(--hairline); flex-shrink: 0; }
+.livedot.on { background: var(--alert); animation: pulse 1.7s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .3; } }
+.station {
+  font-size: 13.5px; font-weight: 500; line-height: 1.25;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.station-meta { font-size: 10.5px; color: var(--ink-faint); margin-top: 1px; }
+.presets { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin: 8px 0; }
+.preset {
+  text-align: left; padding: 7px 9px; border-radius: 7px;
+  background: var(--glass-hi); border: 1px solid transparent;
+  font-size: 11px; color: var(--ink-dim);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.preset:hover:not([disabled]) { color: var(--ink); }
+.preset[aria-pressed="true"] { border-color: var(--signal); color: var(--ink); }
+.preset[disabled] { opacity: .35; cursor: default; }
+.preset i { display: block; font-style: normal; font-size: 9px; color: var(--ink-faint); margin-bottom: 1px; }
+.transport { display: flex; align-items: center; gap: 6px; margin-top: auto; }
+.transport button {
+  width: 34px; height: 34px; border-radius: 8px; background: var(--glass-hi);
+  color: var(--ink-dim); font-size: 12px; display: grid; place-items: center;
+}
+.transport button:hover { color: var(--ink); }
+.transport .wide { width: auto; padding: 0 12px; font-size: 11px; letter-spacing: .05em; }
+.vol { display: flex; align-items: center; gap: 8px; margin-top: 9px; }
+.vol input[type="range"] { flex: 1; accent-color: var(--ink); height: 3px; cursor: pointer; }
+.scan { font-size: 10px; color: var(--ink-faint); margin-top: 7px; min-height: 13px; letter-spacing: .04em; }
+
+/* climate strip */
+.climate {
+  flex-shrink: 0; height: 46px;
+  border-top: 1px solid var(--hairline);
+  display: flex; align-items: center; gap: 6px; padding: 0 10px;
+}
+.climate .stepper { display: flex; align-items: center; gap: 2px; }
+.climate .stepper button { width: 26px; height: 26px; border-radius: 6px; color: var(--ink-faint); font-size: 15px; }
+.climate .stepper button:hover { color: var(--ink); background: var(--glass-hi); }
+.climate .temp { min-width: 46px; text-align: center; font-size: 14px; font-weight: 400; }
+.climate .grow { flex: 1; }
+.chip {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 11px; border-radius: 7px; background: var(--glass-hi);
+  font-size: 11px; color: var(--ink-dim);
+}
+.chip:hover { color: var(--ink); }
+.chip[aria-pressed="true"] { color: var(--signal); }
+
+/* ---------- floating window (in-app picture-in-picture) ---------- */
+#pip {
+  position: fixed; z-index: 40; display: none;
+  width: 380px; background: var(--glass);
+  border: 1px solid var(--hairline); border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.7);
+  overflow: hidden;
+}
+#pip.open { display: block; }
+#pip .bar {
+  display: flex; align-items: center; gap: 8px; padding: 7px 9px;
+  cursor: grab; user-select: none; border-bottom: 1px solid var(--hairline);
+  touch-action: none;
+}
+#pip .bar:active { cursor: grabbing; }
+#pip .bar .t { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+#pip .bar .grow { flex: 1; }
+#pip .bar button { color: var(--ink-faint); font-size: 12px; padding: 2px 5px; border-radius: 5px; }
+#pip .bar button:hover { color: var(--ink); background: var(--glass-hi); }
+#pip .screen { position: relative; aspect-ratio: 16 / 9; background: #000; }
+#pip iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+#pip .grip {
+  position: absolute; right: 0; bottom: 0; width: 16px; height: 16px;
+  cursor: nwse-resize; touch-action: none;
+  background: linear-gradient(135deg, transparent 50%, var(--hairline) 50%);
+}
+
+/* ---------- ignition ---------- */
+#ignition {
+  position: fixed; inset: 0; z-index: 60; background: var(--void);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+}
+#ignition.off { display: none; }
+#ignition .mk { letter-spacing: .5em; font-size: 15px; font-weight: 300; color: var(--ink); padding-left: .5em; }
+#ignition .sub { font-size: 11.5px; color: var(--ink-faint); max-width: 300px; text-align: center; line-height: 1.5; }
+#ignition .start {
+  margin-top: 6px; padding: 13px 30px; border-radius: 999px;
+  background: var(--signal); color: #fff; font-size: 13px; font-weight: 500; letter-spacing: .06em;
+}
+#ignition .start:hover { filter: brightness(1.1); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1080px) {
+  .media { width: 232px; }
+  .carcard { width: 150px; }
+}
+@media (max-width: 900px) {
+  .console { height: auto; max-height: 62vh; }
+  .console-body { flex-wrap: wrap; }
+  .pane { flex: 1 1 100%; order: 3; min-height: 210px; border-top: 1px solid var(--hairline); }
+  .media { width: auto; flex: 1; border-left: 1px solid var(--hairline); }
+  .presets { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (max-width: 620px) {
+  .carcard { width: 128px; }
+  .speed-read .v { font-size: 46px; }
+  .presets { grid-template-columns: 1fr 1fr; }
+  .status .hide-sm, .status .wordmark { display: none; }
+  .status { gap: 8px; padding: 0 10px; }
+  .status select { max-width: 108px; padding: 6px 7px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  #staticfx.flash { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="ignition">
+  <div class="mk">DRIVETIME</div>
+  <div class="sub">Pick a city, borrow its radio, and watch the road go by.</div>
+  <button class="start" id="start">Start the car</button>
+</div>
+
+<div class="status">
+  <div class="batt">
+    <div class="batt-shell"><div class="batt-fill" id="batt-fill" style="width:87%"></div></div>
+    <span class="num" id="batt-pct">87%</span>
+    <span class="num hide-sm" id="range" style="color:var(--ink-faint)">290 mi</span>
+  </div>
+  <div class="sep"></div>
+  <span class="hide-sm">Trip <b class="num" id="odo">0.0</b> mi</span>
+  <div class="sep hide-sm"></div>
+  <span class="hide-sm num" id="triptime">00:00</span>
+  <div class="grow"></div>
+  <span class="wordmark">DRIVETIME</span>
+  <div class="grow"></div>
+  <label for="view" class="lbl hide-sm">View</label>
+  <select id="view" class="pill" aria-label="Which drive video"></select>
+  <label for="city" class="lbl">City</label>
+  <select id="city" class="pill" aria-label="Which city"></select>
+  <div class="sep"></div>
+  <span class="num" id="clock">--:--</span>
+</div>
+
+<div class="stage" id="stage">
+  <iframe id="ws-frame" title="Road view" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  <div class="placeholder"><div class="lbl">Playing in the floating window</div></div>
+  <div id="staticfx"></div>
+  <div id="fshud">
+    <span class="fs-speed num"><span id="fs-speed">0</span> <span class="lbl" id="fs-unit">MPH</span></span>
+    <div style="min-width:0">
+      <div class="lbl" id="fs-city"></div>
+      <div class="fs-station" id="fs-station"></div>
+    </div>
+    <div class="grow"></div>
+    <button class="pill" id="fs-prev" aria-label="Previous station">Prev</button>
+    <button class="pill" id="fs-next" aria-label="Next station">Next</button>
+  </div>
+</div>
+
+<div class="console" id="console">
+  <div class="console-body">
+
+    <div class="gear" role="group" aria-label="Gear">
+      <button data-gear="P" aria-pressed="false">P</button>
+      <button data-gear="R" aria-pressed="false">R</button>
+      <button data-gear="N" aria-pressed="false">N</button>
+      <button data-gear="D" aria-pressed="true">D</button>
+    </div>
+
+    <div class="carcard">
+      <div class="speed-read">
+        <span class="v num" id="speed">0</span>
+        <span class="u"><button id="units" title="Switch units">MPH</button></span>
+      </div>
+      <div class="roadview">
+        <svg viewBox="0 0 120 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <line id="lane-l" x1="26" y1="0" x2="16" y2="150" stroke="var(--signal)" stroke-width="2.5"
+                stroke-dasharray="14 16" stroke-linecap="round" opacity=".55"/>
+          <line id="lane-r" x1="94" y1="0" x2="104" y2="150" stroke="var(--signal)" stroke-width="2.5"
+                stroke-dasharray="14 16" stroke-linecap="round" opacity=".55"/>
+          <g transform="translate(60,84)">
+            <g transform="translate(-30,-56) scale(1.0)">
+              <rect x="1" y="20" width="9" height="17" rx="3.5" fill="#0d0e10"/>
+              <rect x="50" y="20" width="9" height="17" rx="3.5" fill="#0d0e10"/>
+              <rect x="1" y="76" width="9" height="17" rx="3.5" fill="#0d0e10"/>
+              <rect x="50" y="76" width="9" height="17" rx="3.5" fill="#0d0e10"/>
+              <path d="M30 3 C42 3 50 15 52 33 L54 72 C55 96 47 111 30 111 C13 111 5 96 6 72 L8 33 C10 15 18 3 30 3 Z"
+                    fill="#25282d" stroke="#3a3e45" stroke-width="1"/>
+              <path d="M30 16 C39 16 44 24 45 34 L15 34 C16 24 21 16 30 16 Z" fill="#15171a"/>
+              <rect x="15" y="40" width="30" height="34" rx="7" fill="#15171a"/>
+              <path d="M16 84 C20 79 40 79 44 84 L43 96 C38 100 22 100 17 96 Z" fill="#15171a"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="autopilot-note" id="ap-note">Cruising</div>
+    </div>
+
+    <div class="pane">
+      <div class="pane-tabs" role="tablist">
+        <button class="tab" id="tab-nav" role="tab" aria-selected="true" aria-controls="view-nav">Navigate</button>
+        <button class="tab" id="tab-theater" role="tab" aria-selected="false" aria-controls="view-theater">Theater</button>
+        <div style="flex:1"></div>
+        <button class="pill" id="pip-toggle" aria-pressed="false">Float window</button>
+        <button class="pill" id="collapse" title="Collapse the console">Hide dash</button>
+      </div>
+      <div class="pane-body">
+
+        <div class="view on" id="view-nav" role="tabpanel" aria-labelledby="tab-nav">
+          <svg id="map" preserveAspectRatio="xMidYMid slice" aria-label="Simulated navigation map">
+            <g id="map-world">
+              <g id="roads"></g>
+              <path id="route" fill="none" stroke="var(--signal)" stroke-width="5"
+                    stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+            </g>
+            <g id="car-marker">
+              <circle r="13" fill="var(--signal)" opacity=".18"/>
+              <path d="M0,-8 L6.5,7 L0,3.4 L-6.5,7 Z" fill="var(--ink)"/>
+            </g>
+          </svg>
+          <div class="turncard">
+            <svg class="arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path id="turn-arrow" d="M12 20 L12 10 M12 10 L7 15 M12 10 L17 15"
+                    stroke="var(--signal)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div style="min-width:0">
+              <div class="dist num" id="turn-dist">—</div>
+              <div class="street" id="turn-street">Finding a route…</div>
+            </div>
+          </div>
+          <div class="mapfoot">
+            <div>
+              <div class="lbl">Arrives</div>
+              <div class="eta"><span class="t num" id="eta-time">—</span><span class="num" style="color:var(--ink-dim);font-size:12px" id="eta-dist"></span></div>
+            </div>
+            <div class="grow"></div>
+            <div style="text-align:right">
+              <div class="lbl">Destination</div>
+              <div style="font-size:12px;color:var(--ink-dim)" id="dest">—</div>
+            </div>
+            <div class="zoom">
+              <button id="zoom-in" aria-label="Zoom in">+</button>
+              <button id="zoom-out" aria-label="Zoom out">−</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="view" id="view-theater" role="tabpanel" aria-labelledby="tab-theater">
+          <div class="theater">
+            <div class="theater-bar">
+              <input type="text" id="yt-input" placeholder="Paste a YouTube link or video ID" spellcheck="false">
+              <button class="pill go" id="yt-load">Play</button>
+              <button class="pill" id="yt-mute" aria-pressed="true">Sound off</button>
+              <button class="pill" id="yt-clear">Clear</button>
+            </div>
+            <div class="theater-screen" id="theater-screen">
+              <iframe id="th-frame" title="Your video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+              <div class="theater-empty" id="theater-empty">
+                <div>Paste any YouTube link above to play it here.</div>
+                <div style="color:var(--ink-faint);font-size:11px">Links, youtu.be shortlinks, Shorts, and bare IDs all work.</div>
+                <div class="recents" id="recents"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="media">
+      <div class="lbl">Local radio</div>
+      <div class="media-head">
+        <span class="livedot" id="livedot"></span>
+        <div style="min-width:0">
+          <div class="station" id="station">Starting up…</div>
+          <div class="station-meta" id="station-meta"></div>
+        </div>
+      </div>
+      <div class="presets" id="presets" role="group" aria-label="Station presets"></div>
+      <div class="transport">
+        <button id="prev-st" aria-label="Previous station">◀</button>
+        <button id="power" class="wide">Stop</button>
+        <button id="next-st" aria-label="Next station">▶</button>
+        <button id="fullscreen" aria-label="Fullscreen the road view">⛶</button>
+      </div>
+      <div class="vol">
+        <span class="lbl">Vol</span>
+        <input type="range" id="volume" min="0" max="100" value="80" aria-label="Radio volume">
+      </div>
+      <div class="scan" id="scan"></div>
+    </div>
+
+  </div>
+
+  <div class="climate">
+    <div class="stepper">
+      <button id="temp-down" aria-label="Lower cabin temperature">−</button>
+      <span class="temp num" id="temp">70°</span>
+      <button id="temp-up" aria-label="Raise cabin temperature">+</button>
+    </div>
+    <button class="chip" id="ac" aria-pressed="true">Cabin air</button>
+    <button class="chip" id="seat" aria-pressed="false">Seat heat</button>
+    <div class="grow"></div>
+    <span class="lbl" id="city-plate">—</span>
+  </div>
+</div>
+
+<div id="pip" aria-label="Floating video window">
+  <div class="bar" id="pip-bar">
+    <span class="t" id="pip-title">Your video</span>
+    <div class="grow"></div>
+    <button id="pip-swap" title="Swap this with the road view">Swap</button>
+    <button id="pip-close" title="Close">✕</button>
+  </div>
+  <div class="screen">
+    <iframe id="pip-frame" title="Floating video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="grip" id="pip-grip"></div>
+</div>
+
+<audio id="radio" preload="none"></audio>
+
+<script>
+/* =====================================================================
+   CITY LIST — the only block you ever need to edit.
+   Every video was machine-checked: embeddable off-site, 1080p+, 30 min+.
+   To add a city: grab the ID from youtube.com/watch?v=ABC123, add an
+   ISO country code (drives the radio search), a local-language city
+   name that stations actually use in their titles, and a few real
+   street names for the navigation display.
+   ===================================================================== */
+const CITIES = [
+  { name: "Tokyo", cc: "JP", q: "Tokyo",
+    videos: [{ id: "-Xh4BNbxpI8", label: "Default" }, { id: "TUgfiNg06GQ", label: "Day" }, { id: "KXXodw60W9U", label: "Sunset/Night" }],
+    streets: ["Meiji-dori", "Aoyama-dori", "Roppongi-dori", "Yasukuni-dori", "Shuto Expressway"] },
+  { name: "Osaka", cc: "JP", q: "Osaka",
+    videos: [{ id: "ovD7QlzCCoU", label: "Default" }, { id: "L07uyRUK8L0", label: "Day" }, { id: "GgOTV7VrlPw", label: "Sunset/Night" }],
+    streets: ["Midosuji", "Sakaisuji", "Nagahori-dori", "Tanimachi-suji", "Shinmido-suji"] },
+  { name: "Seoul", cc: "KR", q: "Seoul",
+    videos: [{ id: "SRpMapyw6Aw", label: "Default" }, { id: "KGAIumGxQeY", label: "Day" }, { id: "cEQgFyrbceY", label: "Sunset/Night" }],
+    streets: ["Teheran-ro", "Gangnam-daero", "Sejong-daero", "Olympic-daero", "Yeongdong-daero"] },
+  { name: "Taipei", cc: "TW", q: "Taipei",
+    videos: [{ id: "P8Uh9f0EaU8", label: "Default" }, { id: "_mzDsL9tcgc", label: "Day" }, { id: "6YOfoE0zqO8", label: "Sunset/Night" }],
+    streets: ["Zhongxiao E Rd", "Xinyi Rd", "Ren'ai Rd", "Keelung Rd", "Civic Blvd"] },
+  { name: "Hong Kong", cc: "HK", q: "Hong Kong",
+    videos: [{ id: "arbVnYJfZLU", label: "Default" }, { id: "PhGJgftOQ1w", label: "Day" }, { id: "gKUclxoRA6c", label: "Sunset/Night" }],
+    streets: ["Nathan Rd", "Queen's Rd Central", "Connaught Rd", "Gloucester Rd", "Lung Cheung Rd"] },
+  { name: "Bangkok", cc: "TH", q: "Bangkok",
+    videos: [{ id: "1CFuoKiPT60", label: "Default" }, { id: "4BmxX6Ipxpo", label: "Day" }, { id: "dl3sqoz6X3M", label: "Sunset/Night" }],
+    streets: ["Sukhumvit Rd", "Silom Rd", "Rama IV Rd", "Phetchaburi Rd", "Ratchadaphisek Rd"] },
+  { name: "Ho Chi Minh City", cc: "VN", q: "Saigon",
+    videos: [{ id: "gZWiLrQnb10", label: "Default" }, { id: "UrVjf2AR5is", label: "Day" }, { id: "uu-SjnZqZf0", label: "Sunset/Night" }],
+    streets: ["Nguyen Hue", "Le Loi", "Dien Bien Phu", "Vo Van Kiet", "Nam Ky Khoi Nghia"] },
+  { name: "Hanoi", cc: "VN", q: "Hanoi",
+    videos: [{ id: "l-cQOa5K2X0", label: "Default" }, { id: "LTuSOk6dFpY", label: "Day" }, { id: "Gb8T3j2H890", label: "Sunset/Night" }],
+    streets: ["Trang Tien", "Ba Trieu", "Kim Ma", "Nguyen Trai", "Lang Ha"] },
+  { name: "Jakarta", cc: "ID", q: "Jakarta",
+    videos: [{ id: "gmDBzijaIAA", label: "Default" }, { id: "GtVGW8jhO9k", label: "Day" }, { id: "CCMIW7x47Cc", label: "Sunset/Night" }],
+    streets: ["Jl. Sudirman", "Jl. Thamrin", "Jl. Gatot Subroto", "Jl. Rasuna Said", "Jl. Casablanca"] },
+  { name: "Manila", cc: "PH", q: "Manila",
+    videos: [{ id: "1X8SunSuAC4", label: "Default" }, { id: "2tfyoN70EHo", label: "Day" }, { id: "JY-Xyiept88", label: "Sunset/Night" }],
+    streets: ["EDSA", "Roxas Blvd", "Ayala Ave", "Ortigas Ave", "C-5 Rd"] },
+  { name: "Singapore", cc: "SG", q: "Singapore",
+    videos: [{ id: "xEx3-9v0-_o", label: "Default" }, { id: "iREkbaP8jlQ", label: "Day" }, { id: "SzCryiXMG_o", label: "Sunset/Night" }],
+    streets: ["Orchard Rd", "Nicoll Hwy", "Beach Rd", "Shenton Way", "East Coast Pkwy"] },
+  { name: "Mumbai", cc: "IN", q: "Mumbai",
+    videos: [{ id: "Nm4PtWe8vlE", label: "Default" }, { id: "j_lBv6BSrNo", label: "Day" }, { id: "l3g-OwaIaWE", label: "Sunset/Night" }],
+    streets: ["Marine Dr", "Linking Rd", "S.V. Rd", "Eastern Fwy", "Peddar Rd"] },
+  { name: "Delhi", cc: "IN", q: "Delhi",
+    videos: [{ id: "QZPqluJA0OY", label: "Default" }, { id: "J9mpXixJptg", label: "Day" }, { id: "g-c3K8plBxo", label: "Sunset/Night" }],
+    streets: ["Ring Rd", "Janpath", "Kartavya Path", "Aurobindo Marg", "Mathura Rd"] },
+  { name: "Dubai", cc: "AE", q: "Dubai",
+    videos: [{ id: "6RPU08WoaxE", label: "Default" }, { id: "TE2tfavIo3E", label: "Day" }, { id: "n964Hq9QkJk", label: "Sunset/Night" }],
+    streets: ["Sheikh Zayed Rd", "Al Khail Rd", "Jumeirah Rd", "Al Wasl Rd", "Emirates Rd"] },
+  { name: "Istanbul", cc: "TR", q: "Istanbul",
+    videos: [{ id: "ALA09uSzD7E", label: "Default" }, { id: "vFhDtI8dGOA", label: "Day" }, { id: "aTsG9KK_Mkk", label: "Sunset/Night" }],
+    streets: ["Istiklal Cd", "Barbaros Blv", "Buyukdere Cd", "Kennedy Cd", "Tarlabasi Blv"] },
+  { name: "Tbilisi", cc: "GE", q: "Tbilisi",
+    videos: [{ id: "joszFYjoU5E", label: "Default" }, { id: "Smk6hpX-OU0", label: "Day" }, { id: "xTssir91CnY", label: "Sunset/Night" }],
+    streets: ["Rustaveli Ave", "Agmashenebeli Ave", "Chavchavadze Ave", "Vazha-Pshavela Ave", "Kostava St"] },
+  { name: "Cairo", cc: "EG", q: "Cairo",
+    videos: [{ id: "--I-TdCe2_g", label: "Default" }, { id: "Esyp2P0uJu4", label: "Day" }, { id: "86pZTI5gJQM", label: "Sunset/Night" }],
+    streets: ["Corniche El Nil", "Salah Salem", "Ramses St", "Al-Haram St", "Ring Rd"] },
+  { name: "Nairobi", cc: "KE", q: "Nairobi",
+    videos: [{ id: "C1iN4D1wBiI", label: "Default" }, { id: "-UV94iPFRlw", label: "Day" }, { id: "glC6vjGfuAM", label: "Sunset/Night" }],
+    streets: ["Uhuru Hwy", "Thika Rd", "Ngong Rd", "Waiyaki Way", "Mombasa Rd"] },
+  { name: "Lagos", cc: "NG", q: "Lagos",
+    videos: [{ id: "aIuTxasD3uw", label: "Default" }, { id: "LZJ000F-CLc", label: "Day" }, { id: "KwrMBdnfCfI", label: "Sunset/Night" }],
+    streets: ["Third Mainland Bridge", "Awolowo Rd", "Ozumba Mbadiwe", "Ikorodu Rd", "Lekki-Epe Expwy"] },
+  { name: "Cape Town", cc: "ZA", q: "Cape Town",
+    videos: [{ id: "5bdCk5AQ9Kw", label: "Default" }, { id: "aah7KuwBDzo", label: "Day" }, { id: "rM8rGs_tGYE", label: "Sunset/Night" }],
+    streets: ["Adderley St", "Long St", "Victoria Rd", "Kloof Nek Rd", "De Waal Dr"] },
+  { name: "Casablanca", cc: "MA", q: "Casablanca",
+    videos: [{ id: "FXeX-H6Ajy4", label: "Default" }, { id: "RN6ioPRXk8A", label: "Day" }, { id: "8qV3p25wsao", label: "Sunset/Night" }],
+    streets: ["Blvd Mohammed V", "Corniche Ain Diab", "Blvd Zerktouni", "Blvd d'Anfa", "Route d'El Jadida"] },
+  { name: "Athens", cc: "GR", q: "Athens",
+    videos: [{ id: "8Hm0rMpapKY", label: "Default" }, { id: "TXHbjjPuvmM", label: "Day" }, { id: "f1cIBCZB0P8", label: "Sunset/Night" }],
+    streets: ["Syngrou Ave", "Kifisias Ave", "Panepistimiou", "Vasilissis Sofias", "Alexandras Ave"] },
+  { name: "Naples", cc: "IT", q: "Napoli",
+    videos: [{ id: "mA0pPRQthnY", label: "Default" }, { id: "FmB2T9xGHk4", label: "Day" }, { id: "IHXZnU2bmc8", label: "Sunset/Night" }],
+    streets: ["Via Toledo", "Riviera di Chiaia", "Corso Umberto I", "Via Caracciolo", "Tangenziale"] },
+  { name: "Rome", cc: "IT", q: "Roma",
+    videos: [{ id: "AdtBRICOD9U", label: "Default" }, { id: "0m7H6_ZI1iM", label: "Day" }, { id: "zWZEZhUkd0Y", label: "Sunset/Night" }],
+    streets: ["Via del Corso", "Via Nazionale", "Lungotevere", "Via Appia Nuova", "Via Cristoforo Colombo"] },
+  { name: "Paris", cc: "FR", q: "Paris",
+    videos: [{ id: "4TKTqb-TWwQ", label: "Default" }, { id: "LoT7kXS7kYg", label: "Day" }, { id: "FBjjYw-xcdg", label: "Sunset/Night" }],
+    streets: ["Bd Saint-Germain", "Av des Champs-Elysees", "Rue de Rivoli", "Bd Peripherique", "Bd Haussmann"] },
+  { name: "London", cc: "GB", q: "London",
+    videos: [{ id: "AveGRdBeOog", label: "Default" }, { id: "lCvWZj_kFgo", label: "Day" }, { id: "GSnAjDu3VoM", label: "Sunset/Night" }],
+    streets: ["Oxford St", "Victoria Embankment", "A40 Westway", "Kings Rd", "Marylebone Rd"] },
+  { name: "Lisbon", cc: "PT", q: "Lisboa",
+    videos: [{ id: "xUZoO-WtyHw", label: "Default" }, { id: "dLLqWlOymxg", label: "Day" }, { id: "sTs9aa7Y6lI", label: "Sunset/Night" }],
+    streets: ["Av da Liberdade", "Av Almirante Reis", "Av da Republica", "Eixo Norte-Sul", "Av 24 de Julho"] },
+  { name: "Madrid", cc: "ES", q: "Madrid",
+    videos: [{ id: "C911U_Fo-QU", label: "Default" }, { id: "ZQC3fIhnH4o", label: "Day" }, { id: "KC0dMMCV4OM", label: "Sunset/Night" }],
+    streets: ["Gran Via", "Paseo de la Castellana", "Calle de Alcala", "Paseo del Prado", "M-30"] },
+  { name: "Berlin", cc: "DE", q: "Berlin",
+    videos: [{ id: "lBlKR2ek0w4", label: "Default" }, { id: "g9T-KwcXqAg", label: "Day" }, { id: "IzZkjS4nBQI", label: "Sunset/Night" }],
+    streets: ["Unter den Linden", "Kurfurstendamm", "Karl-Marx-Allee", "Frankfurter Allee", "Potsdamer Str"] },
+  { name: "Warsaw", cc: "PL", q: "Warszawa",
+    videos: [{ id: "uJU_DEklaw4", label: "Default" }, { id: "dwtmEnKCP7c", label: "Day" }, { id: "YIQ4Ap9aUMo", label: "Sunset/Night" }],
+    streets: ["Marszalkowska", "Al. Jerozolimskie", "Wislostrada", "Pulawska", "Al. Ujazdowskie"] },
+  { name: "Buenos Aires", cc: "AR", q: "Buenos Aires",
+    videos: [{ id: "MYOj8ckqVuQ", label: "Default" }, { id: "-TPJot7-HTs", label: "Day" }, { id: "6Sb0gHrAlLA", label: "Sunset/Night" }],
+    streets: ["Av 9 de Julio", "Av Corrientes", "Av del Libertador", "Av Rivadavia", "Av Santa Fe"] },
+  { name: "Sao Paulo", cc: "BR", q: "Sao Paulo",
+    videos: [{ id: "fHEaa2ryFnc", label: "Default" }, { id: "zje0hghImYQ", label: "Day" }, { id: "WcjGyIjHLDA", label: "Sunset/Night" }],
+    streets: ["Av Paulista", "Marginal Pinheiros", "Av Faria Lima", "Av 23 de Maio", "Av Reboucas"] },
+  { name: "Bogota", cc: "CO", q: "Bogota",
+    videos: [{ id: "N0Qy6oi07W8", label: "Default" }, { id: "X6RNJoUo6HQ", label: "Day" }, { id: "AcpHX2aylSk", label: "Sunset/Night" }],
+    streets: ["Carrera 7", "Calle 26", "Autopista Norte", "Av Boyaca", "Av Caracas"] },
+  { name: "Mexico City", cc: "MX", q: "Mexico",
+    videos: [{ id: "Km6KYN_6vmc", label: "Default" }, { id: "hwn-nnSqP7Y", label: "Day" }, { id: "JCXH_WyC8A4", label: "Sunset/Night" }],
+    streets: ["Paseo de la Reforma", "Av Insurgentes", "Circuito Interior", "Viaducto", "Periferico"] },
+  { name: "Havana", cc: "CU", q: "Habana",
+    videos: [{ id: "vCywf9saDlY", label: "Default" }, { id: "GzBPHZw8j18", label: "Day" }, { id: "IEnv4ZorXmY", label: "Night Walk" }],
+    streets: ["Malecon", "Calle 23", "Paseo del Prado", "Quinta Avenida", "Via Blanca"] },
+  { name: "New York", cc: "US", q: "New York",
+    videos: [{ id: "7OgQjRn2x1w", label: "Default" }, { id: "sqsez_oQSQ8", label: "Day" }, { id: "qTCaw64ObUk", label: "Sunset/Night" }],
+    streets: ["Broadway", "FDR Dr", "Fifth Ave", "West Side Hwy", "Canal St"] },
+  { name: "Los Angeles", cc: "US", q: "Los Angeles",
+    videos: [{ id: "7MR08Jm38is", label: "Default" }, { id: "eR5vsN1Lq4E", label: "Day" }, { id: "sifq2tZkKMw", label: "Sunset/Night" }],
+    streets: ["Sunset Blvd", "Wilshire Blvd", "Pacific Coast Hwy", "Mulholland Dr", "Santa Monica Blvd"] },
+];
+
+const RB_MIRRORS = [
+  "https://de1.api.radio-browser.info",
+  "https://fi1.api.radio-browser.info",
+  "https://at1.api.radio-browser.info",
+];
+
+const $ = id => document.getElementById(id);
+const el = {
+  city: $("city"), view: $("view"), clock: $("clock"), odo: $("odo"), triptime: $("triptime"),
+  battFill: $("batt-fill"), battPct: $("batt-pct"), range: $("range"),
+  stage: $("stage"), wsFrame: $("ws-frame"), staticfx: $("staticfx"),
+  fshud: $("fshud"), fsSpeed: $("fs-speed"), fsUnit: $("fs-unit"), fsCity: $("fs-city"),
+  fsStation: $("fs-station"), fsPrev: $("fs-prev"), fsNext: $("fs-next"),
+  console: $("console"), collapse: $("collapse"),
+  speed: $("speed"), units: $("units"), laneL: $("lane-l"), laneR: $("lane-r"), apNote: $("ap-note"),
+  tabNav: $("tab-nav"), tabTheater: $("tab-theater"), viewNav: $("view-nav"), viewTheater: $("view-theater"),
+  map: $("map"), mapWorld: $("map-world"), roads: $("roads"), route: $("route"), carMarker: $("car-marker"),
+  turnArrow: $("turn-arrow"), turnDist: $("turn-dist"), turnStreet: $("turn-street"),
+  etaTime: $("eta-time"), etaDist: $("eta-dist"), dest: $("dest"),
+  zoomIn: $("zoom-in"), zoomOut: $("zoom-out"),
+  ytInput: $("yt-input"), ytLoad: $("yt-load"), ytMute: $("yt-mute"), ytClear: $("yt-clear"),
+  thFrame: $("th-frame"), theaterEmpty: $("theater-empty"), recents: $("recents"),
+  livedot: $("livedot"), station: $("station"), stationMeta: $("station-meta"),
+  presets: $("presets"), prevSt: $("prev-st"), nextSt: $("next-st"), power: $("power"),
+  fullscreen: $("fullscreen"), volume: $("volume"), scan: $("scan"), radio: $("radio"),
+  pip: $("pip"), pipBar: $("pip-bar"), pipTitle: $("pip-title"), pipFrame: $("pip-frame"),
+  pipSwap: $("pip-swap"), pipClose: $("pip-close"), pipGrip: $("pip-grip"), pipToggle: $("pip-toggle"),
+  temp: $("temp"), tempUp: $("temp-up"), tempDown: $("temp-down"), ac: $("ac"), seat: $("seat"),
+  cityPlate: $("city-plate"), ignition: $("ignition"), start: $("start"),
+};
+
+const S = {
+  cityIdx: 0, variantIdx: 0,
+  stations: [], stationIdx: -1, playing: false, allPaused: false,
+  speed: 0, target: 0, gear: "D", metric: false,
+  battery: 87, odoMi: 0, tripStart: null,
+  windshield: "drive", pipOpen: false,
+  theaterId: null, theaterMuted: true, recents: [],
+  cabin: 70, audioCtx: null, running: false,
+};
+
+/* ---------------------------------------------------------------
+   RADIO — Radio Browser is free and keyless, but its "is this
+   station alive" metadata is often stale, so every candidate is
+   actually test-loaded in the browser before it earns a preset.
+   --------------------------------------------------------------- */
+async function rbFetch(path) {
+  for (const base of RB_MIRRORS) {
+    try {
+      const r = await fetch(base + path, { headers: { Accept: "application/json" } });
+      if (r.ok) return await r.json();
+    } catch (e) { /* try the next mirror */ }
+  }
+  throw new Error("no mirror reachable");
+}
+
+const GENERIC = new Set(["radio","fm","am","the","la","el","le","los","las","my","new","big","hit","hits","top","city"]);
+const norm = s => (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"");
+const firstTok = s => ((s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+  .split(/[^a-z0-9]+/).filter(Boolean)[0]) || "";
+
+/* One station often appears several times under near-identical names
+   ("Z100 - New York" / "Z100 - WHTZ-FM 100.3"). Drop exact repeats,
+   prefix repeats, and repeated distinctive callsigns — but never treat
+   a generic opener like "Radio" as a callsign. */
+function dedupe(list) {
+  const out = [], seen = new Set(), toks = new Set();
+  for (const s of list) {
+    const full = norm(s.name), tok = firstTok(s.name);
+    if (!full || seen.has(full)) continue;
+    let prefixDupe = false;
+    for (const f of seen) {
+      if (f.length >= 6 && full.length >= 6 && (full.startsWith(f) || f.startsWith(full))) { prefixDupe = true; break; }
+    }
+    if (prefixDupe) continue;
+    if (tok && !GENERIC.has(tok) && tok.length >= 3 && toks.has(tok)) continue;
+    seen.add(full);
+    if (tok && !GENERIC.has(tok)) toks.add(tok);
+    out.push(s);
+  }
+  return out;
+}
+
+function testStream(url, ms = 4500) {
+  return new Promise(resolve => {
+    const a = new Audio();
+    a.preload = "auto";
+    let done = false;
+    const finish = ok => {
+      if (done) return;
+      done = true;
+      a.removeAttribute("src");
+      try { a.load(); } catch (e) {}
+      resolve(ok);
+    };
+    const t = setTimeout(() => finish(false), ms);
+    a.addEventListener("canplay", () => { clearTimeout(t); finish(true); }, { once: true });
+    a.addEventListener("error", () => { clearTimeout(t); finish(false); }, { once: true });
+    try { a.src = url; a.load(); } catch (e) { clearTimeout(t); finish(false); }
+  });
+}
+
+async function testBatch(cands, need, lanes = 5) {
+  const good = [];
+  let i = 0;
+  const worker = async () => {
+    while (i < cands.length && good.length < need) {
+      const s = cands[i++];
+      const url = s.url_resolved || s.url;
+      if (url && await testStream(url)) good.push(s);
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(lanes, cands.length) }, worker));
+  return good;
+}
+
+let scanToken = 0;
+async function loadStations(city) {
+  const token = ++scanToken;
+  el.scan.textContent = "Scanning the dial…";
+  S.stations = []; S.stationIdx = -1;
+  renderPresets();
+  try {
+    let list = await rbFetch(
+      "/json/stations/search?limit=80&hidebroken=true&order=clickcount&reverse=true" +
+      "&countrycode=" + encodeURIComponent(city.cc) + "&name=" + encodeURIComponent(city.q));
+    if (!list || list.length < 6) {
+      const wider = await rbFetch(
+        "/json/stations/search?limit=80&hidebroken=true&order=clickcount&reverse=true" +
+        "&countrycode=" + encodeURIComponent(city.cc));
+      const have = new Set(list.map(s => s.stationuuid));
+      list = list.concat(wider.filter(s => !have.has(s.stationuuid)));
+    }
+    if (token !== scanToken) return;
+    const secure = list.filter(s => (s.url_resolved || "").startsWith("https"));
+    const rest = list.filter(s => !(s.url_resolved || "").startsWith("https"));
+    const cands = dedupe(secure.concat(rest)).slice(0, 24);
+    el.scan.textContent = "Checking which ones are on air…";
+    const live = await testBatch(cands, 6);
+    if (token !== scanToken) return;
+    S.stations = dedupe(live).slice(0, 6);
+    renderPresets();
+    el.scan.textContent = S.stations.length
+      ? S.stations.length + " stations on air in " + city.name
+      : "Nothing on air here right now — try another city";
+    if (S.stations.length && !S.allPaused) tune(0);
+  } catch (e) {
+    if (token === scanToken) el.scan.textContent = "Couldn't reach the station directory — check your connection";
+  }
+}
+
+function renderPresets() {
+  el.presets.innerHTML = "";
+  for (let i = 0; i < 6; i++) {
+    const s = S.stations[i];
+    const b = document.createElement("button");
+    b.className = "preset";
+    b.disabled = !s;
+    b.setAttribute("aria-pressed", String(i === S.stationIdx));
+    b.innerHTML = "<i>" + (i + 1) + "</i>" + (s ? escapeHtml(s.name.trim().replace(/\s+/g, " ").slice(0, 22)) : "—");
+    if (s) { b.title = s.name; b.addEventListener("click", () => { S.allPaused = false; tune(i); }); }
+    el.presets.appendChild(b);
+  }
+}
+const escapeHtml = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+function tune(i) {
+  const s = S.stations[i];
+  if (!s) return;
+  const changed = S.stationIdx !== i;
+  S.stationIdx = i;
+  el.station.textContent = s.name.trim();
+  el.stationMeta.textContent = [s.codec, s.bitrate ? s.bitrate + " kbps" : ""].filter(Boolean).join(" · ");
+  el.fsStation.textContent = s.name.trim();
+  el.radio.src = s.url_resolved || s.url;
+  el.radio.volume = el.volume.value / 100;
+  if (changed) { staticBurst(); if (isFS()) hudShow(); }
+  playRadio();
+  renderPresets();
+}
+
+function playRadio() {
+  el.radio.play().then(() => {
+    S.playing = true;
+    el.livedot.classList.add("on");
+    el.power.textContent = "Stop";
+    el.scan.textContent = "";
+  }).catch(() => {
+    S.playing = false;
+    el.livedot.classList.remove("on");
+    el.power.textContent = "Play";
+    el.scan.textContent = "That stream won't open — try the next preset";
+  });
+}
+
+function stopRadio() {
+  el.radio.pause();
+  el.radio.removeAttribute("src");
+  try { el.radio.load(); } catch (e) {}
+  S.playing = false;
+  el.livedot.classList.remove("on");
+  el.power.textContent = "Play";
+}
+
+function stepStation(d) {
+  if (!S.stations.length) return;
+  S.allPaused = false;
+  tune((S.stationIdx + d + S.stations.length) % S.stations.length);
+}
+
+el.radio.addEventListener("error", () => {
+  if (!S.playing) return;
+  S.playing = false;
+  el.livedot.classList.remove("on");
+  el.power.textContent = "Play";
+  const next = S.stationIdx + 1;
+  if (next < S.stations.length) {
+    el.scan.textContent = "Signal dropped — moving to the next station";
+    tune(next);
+  } else {
+    el.scan.textContent = "Signal dropped, and that was the last preset";
+  }
+});
+el.prevSt.addEventListener("click", () => stepStation(-1));
+el.nextSt.addEventListener("click", () => stepStation(1));
+el.fsPrev.addEventListener("click", () => stepStation(-1));
+el.fsNext.addEventListener("click", () => stepStation(1));
+el.power.addEventListener("click", () => {
+  if (S.playing) stopRadio();
+  else if (S.stationIdx >= 0) tune(S.stationIdx);
+  else if (S.stations.length) tune(0);
+});
+el.volume.addEventListener("input", () => { el.radio.volume = el.volume.value / 100; });
+
+/* ---------------------------------------------------------------
+   VIDEO SLOTS
+   Two places can show a video: the windshield and the floating
+   window. Two sources exist: the city drive and whatever you load
+   in Theater. Swap trades their places. Nothing is ever mounted in
+   two slots at once, which is what keeps audio from doubling up.
+   --------------------------------------------------------------- */
+function embedUrl(id) {
+  return "https://www.youtube.com/embed/" + id +
+    "?autoplay=1&mute=1&rel=0&modestbranding=1&enablejsapi=1&loop=1&playlist=" + id;
+}
+function setFrame(frame, id) {
+  const want = id ? embedUrl(id) : "";
+  if (frame.dataset.cur === want) return;
+  frame.dataset.cur = want;
+  if (want) frame.src = want; else frame.removeAttribute("src");
+}
+function ytCmd(frame, func) {
+  if (!frame.dataset.cur) return;
+  try {
+    frame.contentWindow.postMessage(JSON.stringify({ event: "command", func, args: [] }), "*");
+  } catch (e) { /* frame not ready */ }
+}
+function theaterFrame() {
+  if (S.windshield === "theater") return el.wsFrame;
+  if (S.pipOpen && S.windshield === "drive") return el.pipFrame;
+  return el.thFrame;
+}
+
+function assignVideos() {
+  const city = CITIES[S.cityIdx];
+  const driveId = city.videos[S.variantIdx].id;
+  const other = S.windshield === "drive" ? "theater" : "drive";
+
+  setFrame(el.wsFrame, S.windshield === "drive" ? driveId : S.theaterId);
+  el.stage.classList.toggle("is-empty", S.windshield === "theater" && !S.theaterId);
+
+  if (S.pipOpen) {
+    setFrame(el.pipFrame, other === "drive" ? driveId : S.theaterId);
+    el.pipTitle.textContent = other === "drive" ? city.name + " road view" : "Your video";
+  } else {
+    setFrame(el.pipFrame, null);
+  }
+
+  const theaterElsewhere = S.windshield === "theater" || (S.pipOpen && other === "theater");
+  setFrame(el.thFrame, (S.theaterId && !theaterElsewhere) ? S.theaterId : null);
+  el.theaterEmpty.style.display = (S.theaterId && !theaterElsewhere) ? "none" : "flex";
+  if (S.theaterId && theaterElsewhere) {
+    el.theaterEmpty.firstElementChild.textContent =
+      S.windshield === "theater" ? "Your video is on the main screen." : "Your video is in the floating window.";
+  } else if (!S.theaterId) {
+    el.theaterEmpty.firstElementChild.textContent = "Paste any YouTube link above to play it here.";
+  }
+  applyTheaterSound();
+}
+
+function applyTheaterSound() {
+  if (!S.theaterId) return;
+  const f = theaterFrame();
+  setTimeout(() => ytCmd(f, S.theaterMuted ? "mute" : "unMute"), 700);
+  el.ytMute.textContent = S.theaterMuted ? "Sound off" : "Sound on";
+  el.ytMute.setAttribute("aria-pressed", String(S.theaterMuted));
+}
+
+function staticBurst(ms = 380) {
+  el.staticfx.classList.remove("flash");
+  void el.staticfx.offsetWidth;
+  el.staticfx.classList.add("flash");
+  if (!S.audioCtx) return;
+  try {
+    const ctx = S.audioCtx, n = Math.floor(ctx.sampleRate * ms / 1000);
+    const buf = ctx.createBuffer(1, n, ctx.sampleRate), data = buf.getChannelData(0);
+    for (let i = 0; i < n; i++) data[i] = Math.random() * 2 - 1;
+    const src = ctx.createBufferSource(); src.buffer = buf;
+    const bp = ctx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 1700;
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.045, ctx.currentTime);
+    g.gain.linearRampToValueAtTime(0.001, ctx.currentTime + ms / 1000);
+    src.connect(bp).connect(g).connect(ctx.destination);
+    src.start(); src.stop(ctx.currentTime + ms / 1000);
+  } catch (e) { /* visual flicker still runs */ }
+}
+
+/* ---------------------------------------------------------------
+   NAVIGATION
+   The street grid is generated from a hash of the city name, so a
+   given city always draws the same map. Street names are real; the
+   route through them is invented. Distances assume 1 map unit = 8 m.
+   --------------------------------------------------------------- */
+const GRID = 15, SPACING = 34, U2M = 8;
+const mulberry32 = a => () => {
+  a |= 0; a = a + 0x6D2B79F5 | 0;
+  let t = Math.imul(a ^ a >>> 15, 1 | a);
+  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+  return ((t ^ t >>> 14) >>> 0) / 4294967296;
+};
+function hashStr(s) {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+
+let rng = mulberry32(1), nodes = [], route = null;
+
+function buildCityMap(city) {
+  rng = mulberry32(hashStr(city.name));
+  nodes = [];
+  for (let i = 0; i < GRID; i++) {
+    nodes[i] = [];
+    for (let j = 0; j < GRID; j++) {
+      nodes[i][j] = { x: i * SPACING + (rng() * 11 - 5.5), y: j * SPACING + (rng() * 11 - 5.5), i, j };
+    }
+  }
+  let d = "";
+  const seg = (a, b) => "M" + a.x.toFixed(1) + "," + a.y.toFixed(1) + "L" + b.x.toFixed(1) + "," + b.y.toFixed(1);
+  for (let i = 0; i < GRID; i++) for (let j = 0; j < GRID; j++) {
+    if (i < GRID - 1 && rng() > 0.15) d += seg(nodes[i][j], nodes[i + 1][j]);
+    if (j < GRID - 1 && rng() > 0.15) d += seg(nodes[i][j], nodes[i][j + 1]);
+  }
+  el.roads.innerHTML =
+    '<path d="' + d + '" fill="none" stroke="#282c33" stroke-width="8" stroke-linecap="round"/>' +
+    '<path d="' + d + '" fill="none" stroke="#15181c" stroke-width="4.5" stroke-linecap="round"/>';
+  newRoute(3 + Math.floor(rng() * 8), 3 + Math.floor(rng() * 8), city);
+}
+
+function newRoute(si, sj, city) {
+  const pts = [];
+  let i = si, j = sj, pi = -1, pj = -1;
+  for (let k = 0; k < 26; k++) {
+    pts.push(nodes[i][j]);
+    const opts = [];
+    if (i > 0 && !(i - 1 === pi && j === pj)) opts.push([i - 1, j]);
+    if (i < GRID - 1 && !(i + 1 === pi && j === pj)) opts.push([i + 1, j]);
+    if (j > 0 && !(i === pi && j - 1 === pj)) opts.push([i, j - 1]);
+    if (j < GRID - 1 && !(i === pi && j + 1 === pj)) opts.push([i, j + 1]);
+    if (!opts.length) break;
+    const p = opts[Math.floor(rng() * opts.length)];
+    pi = i; pj = j; i = p[0]; j = p[1];
+  }
+  const segs = [];
+  let total = 0;
+  for (let k = 0; k < pts.length - 1; k++) {
+    const a = pts[k], b = pts[k + 1];
+    const len = Math.hypot(b.x - a.x, b.y - a.y);
+    segs.push({ a, b, len, start: total, head: Math.atan2(b.x - a.x, -(b.y - a.y)),
+                street: city.streets[(k + Math.floor(rng() * 3)) % city.streets.length] });
+    total += len;
+  }
+  route = { pts, segs, total, d: 0, end: [i, j],
+            dest: city.streets[Math.floor(rng() * city.streets.length)] };
+  el.route.setAttribute("d", "M" + pts.map(p => p.x.toFixed(1) + "," + p.y.toFixed(1)).join("L"));
+  el.dest.textContent = route.dest;
+}
+
+function segAt(d) {
+  const s = route.segs;
+  for (let k = 0; k < s.length; k++) if (d < s[k].start + s[k].len) return k;
+  return s.length - 1;
+}
+
+function fmtDist(m) {
+  if (S.metric) return m < 950 ? Math.round(m / 10) * 10 + " m" : (m / 1000).toFixed(1) + " km";
+  const ft = m * 3.28084;
+  return ft < 1000 ? Math.round(ft / 50) * 50 + " ft" : (m / 1609.34).toFixed(1) + " mi";
+}
+
+const ARROWS = {
+  straight: "M12 21 L12 6 M12 6 L7.5 10.5 M12 6 L16.5 10.5",
+  right: "M7 21 L7 13 Q7 8.5 11.5 8.5 L17 8.5 M17 8.5 L12.8 4.6 M17 8.5 L12.8 12.4",
+  left: "M17 21 L17 13 Q17 8.5 12.5 8.5 L7 8.5 M7 8.5 L11.2 4.6 M7 8.5 L11.2 12.4",
+};
+
+let heading = 0;
+function updateNav(dt) {
+  if (!route) return;
+  const mps = S.speed * (S.metric ? 0.27778 : 0.44704);
+  route.d += (mps / U2M) * dt;
+
+  if (route.d >= route.total - 1) {
+    const city = CITIES[S.cityIdx];
+    el.turnStreet.textContent = "Arrived — finding a new route";
+    newRoute(route.end[0], route.end[1], city);
+  }
+
+  const k = segAt(route.d);
+  const seg = route.segs[k];
+  const t = Math.min(1, Math.max(0, (route.d - seg.start) / seg.len));
+  const cx = seg.a.x + (seg.b.x - seg.a.x) * t;
+  const cy = seg.a.y + (seg.b.y - seg.a.y) * t;
+
+  let diff = seg.head - heading;
+  while (diff > Math.PI) diff -= 2 * Math.PI;
+  while (diff < -Math.PI) diff += 2 * Math.PI;
+  heading += diff * Math.min(1, dt * 3.5);
+
+  const z = S.zoom;
+  el.mapWorld.setAttribute("transform",
+    "translate(160,95) scale(" + z.toFixed(3) + ") rotate(" + (-heading * 180 / Math.PI).toFixed(2) + ") translate(" +
+    (-cx).toFixed(2) + "," + (-cy).toFixed(2) + ")");
+
+  const toTurn = (seg.start + seg.len - route.d) * U2M;
+  el.turnDist.textContent = fmtDist(toTurn);
+  const nxt = route.segs[k + 1];
+  if (nxt) {
+    let a = nxt.head - seg.head;
+    while (a > Math.PI) a -= 2 * Math.PI;
+    while (a < -Math.PI) a += 2 * Math.PI;
+    const dir = a > 0.5 ? "right" : a < -0.5 ? "left" : "straight";
+    el.turnArrow.setAttribute("d", ARROWS[dir]);
+    el.turnStreet.textContent = (dir === "straight" ? "Continue on " : dir === "left" ? "Turn left onto " : "Turn right onto ") + nxt.street;
+  } else {
+    el.turnArrow.setAttribute("d", ARROWS.straight);
+    el.turnStreet.textContent = "Continue on " + seg.street;
+  }
+
+  const remain = (route.total - route.d) * U2M;
+  el.etaDist.textContent = fmtDist(remain);
+  const cruise = Math.max(mps, 7);
+  const arrive = new Date(Date.now() + (remain / cruise) * 1000);
+  el.etaTime.textContent = arrive.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+}
+
+/* ---------------------------------------------------------------
+   DRIVE SIMULATION
+   The speed, battery and route position are an invented ambience —
+   nothing here is measured from the video, which has no telemetry.
+   --------------------------------------------------------------- */
+const BANDS = [0, 12, 18, 25, 30, 35, 45, 55];
+let nextShift = 0, laneOffset = 0, lastT = 0;
+
+function pickTarget() {
+  const r = rng();
+  if (S.gear !== "D") return 0;
+  if (r < 0.12) return 0;
+  return BANDS[2 + Math.floor(rng() * (BANDS.length - 2))];
+}
+
+function tick(now) {
+  if (!S.running) return;
+  requestAnimationFrame(tick);
+  const dt = Math.min(0.1, (now - lastT) / 1000 || 0);
+  lastT = now;
+
+  if (now > nextShift) {
+    S.target = pickTarget();
+    nextShift = now + 4000 + rng() * 6000;
+  }
+  const accel = S.speed < S.target ? 3.4 : -6.2;
+  S.speed = Math.max(0, S.speed + accel * dt);
+  if (accel > 0 && S.speed > S.target) S.speed = S.target;
+  if (accel < 0 && S.speed < S.target) S.speed = S.target;
+
+  const shown = Math.round(S.speed * (S.metric ? 1.60934 : 1));
+  el.speed.textContent = shown;
+  el.fsSpeed.textContent = shown;
+
+  laneOffset -= S.speed * dt * 2.6;
+  el.laneL.setAttribute("stroke-dashoffset", laneOffset.toFixed(1));
+  el.laneR.setAttribute("stroke-dashoffset", laneOffset.toFixed(1));
+  const lit = S.speed > 1 ? "0.55" : "0.18";
+  el.laneL.setAttribute("opacity", lit);
+  el.laneR.setAttribute("opacity", lit);
+
+  el.apNote.textContent = S.gear !== "D" ? ({ P: "Parked", R: "Reverse", N: "Neutral" })[S.gear]
+    : S.speed < 1 ? "Stopped at a light" : S.speed < 22 ? "City traffic" : S.speed < 40 ? "Rolling" : "Open road";
+
+  const miles = S.speed * (dt / 3600);
+  S.odoMi += miles;
+  S.battery = Math.max(0, S.battery - miles * (100 / 333));
+  el.odo.textContent = S.odoMi.toFixed(2);
+  el.battPct.textContent = Math.round(S.battery) + "%";
+  el.battFill.style.width = S.battery + "%";
+  el.range.textContent = Math.round(S.battery / 100 * 333 * (S.metric ? 1.60934 : 1)) +
+    (S.metric ? " km" : " mi");
+
+  updateNav(dt);
+  updateTrip();
+}
+
+function updateTrip() {
+  if (!S.tripStart) return;
+  const s = Math.floor((Date.now() - S.tripStart) / 1000);
+  const pad = n => String(n).padStart(2, "0");
+  el.triptime.textContent = s >= 3600
+    ? Math.floor(s / 3600) + ":" + pad(Math.floor(s % 3600 / 60)) + ":" + pad(s % 60)
+    : pad(Math.floor(s / 60)) + ":" + pad(s % 60);
+}
+
+/* ---------------------------------------------------------------
+   THEATER — bring your own video
+   --------------------------------------------------------------- */
+function parseYT(raw) {
+  const s = (raw || "").trim();
+  if (!s) return null;
+  if (/^[\w-]{11}$/.test(s)) return s;
+  const pats = [/[?&]v=([\w-]{11})/, /youtu\.be\/([\w-]{11})/, /\/embed\/([\w-]{11})/,
+                /\/shorts\/([\w-]{11})/, /\/live\/([\w-]{11})/];
+  for (const p of pats) { const m = s.match(p); if (m) return m[1]; }
+  return null;
+}
+
+async function ytTitle(id) {
+  try {
+    const r = await fetch("https://www.youtube.com/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D" + id + "&format=json");
+    if (!r.ok) return null;
+    return (await r.json()).title || null;
+  } catch (e) { return null; }
+}
+
+function renderRecents() {
+  el.recents.innerHTML = "";
+  S.recents.slice(0, 4).forEach(r => {
+    const b = document.createElement("button");
+    b.textContent = r.label;
+    b.title = r.label;
+    b.addEventListener("click", () => loadTheater(r.id));
+    el.recents.appendChild(b);
+  });
+}
+
+async function loadTheater(id) {
+  S.theaterId = id;
+  el.ytInput.value = "";
+  showTab("theater");
+  assignVideos();
+  el.pipToggle.disabled = false;
+  const title = await ytTitle(id);
+  const label = title ? title.slice(0, 40) : id;
+  S.recents = [{ id, label }].concat(S.recents.filter(r => r.id !== id)).slice(0, 4);
+  renderRecents();
+}
+
+el.ytLoad.addEventListener("click", () => {
+  const id = parseYT(el.ytInput.value);
+  if (!id) {
+    el.ytInput.value = "";
+    el.ytInput.placeholder = "That isn't a YouTube link — try again";
+    setTimeout(() => { el.ytInput.placeholder = "Paste a YouTube link or video ID"; }, 2600);
+    return;
+  }
+  loadTheater(id);
+});
+el.ytInput.addEventListener("keydown", e => { if (e.key === "Enter") el.ytLoad.click(); });
+
+el.ytClear.addEventListener("click", () => {
+  S.theaterId = null;
+  if (S.windshield === "theater") S.windshield = "drive";
+  if (S.pipOpen && S.windshield === "drive") setPip(false);
+  el.pipToggle.disabled = true;
+  assignVideos();
+});
+
+el.ytMute.addEventListener("click", () => {
+  S.theaterMuted = !S.theaterMuted;
+  applyTheaterSound();
+  if (!S.theaterMuted && S.playing) {
+    stopRadio();
+    el.scan.textContent = "Radio paused so you can hear your video";
+  } else if (S.theaterMuted && !S.playing && S.stations.length) {
+    tune(S.stationIdx >= 0 ? S.stationIdx : 0);
+  }
+});
+
+function showTab(which) {
+  const nav = which === "nav";
+  el.tabNav.setAttribute("aria-selected", String(nav));
+  el.tabTheater.setAttribute("aria-selected", String(!nav));
+  el.viewNav.classList.toggle("on", nav);
+  el.viewTheater.classList.toggle("on", !nav);
+}
+el.tabNav.addEventListener("click", () => showTab("nav"));
+el.tabTheater.addEventListener("click", () => showTab("theater"));
+
+/* ---------------------------------------------------------------
+   FLOATING WINDOW
+   Browsers can't hand a cross-origin YouTube iframe to the OS-level
+   picture-in-picture API, so this is an in-page floating window:
+   drag it by the bar, resize from the corner, swap it with the road.
+   --------------------------------------------------------------- */
+function setPip(open) {
+  S.pipOpen = open;
+  el.pip.classList.toggle("open", open);
+  el.pipToggle.setAttribute("aria-pressed", String(open));
+  el.pipToggle.textContent = open ? "Close window" : "Float window";
+  if (open && !el.pip.style.left) {
+    el.pip.style.left = Math.max(12, window.innerWidth - 404) + "px";
+    el.pip.style.top = Math.max(12, window.innerHeight - 320) + "px";
+  }
+  assignVideos();
+}
+el.pipToggle.addEventListener("click", () => {
+  if (!S.theaterId) { showTab("theater"); el.ytInput.focus(); return; }
+  setPip(!S.pipOpen);
+});
+el.pipClose.addEventListener("click", () => setPip(false));
+el.pipSwap.addEventListener("click", () => {
+  S.windshield = S.windshield === "drive" ? "theater" : "drive";
+  assignVideos();
+});
+
+(function dragPip() {
+  let dx = 0, dy = 0, on = false;
+  el.pipBar.addEventListener("pointerdown", e => {
+    if (e.target.closest("button")) return;
+    on = true;
+    const r = el.pip.getBoundingClientRect();
+    dx = e.clientX - r.left; dy = e.clientY - r.top;
+    el.pipBar.setPointerCapture(e.pointerId);
+  });
+  el.pipBar.addEventListener("pointermove", e => {
+    if (!on) return;
+    const r = el.pip.getBoundingClientRect();
+    el.pip.style.left = Math.min(window.innerWidth - r.width, Math.max(0, e.clientX - dx)) + "px";
+    el.pip.style.top = Math.min(window.innerHeight - r.height, Math.max(0, e.clientY - dy)) + "px";
+  });
+  el.pipBar.addEventListener("pointerup", e => { on = false; el.pipBar.releasePointerCapture(e.pointerId); });
+})();
+
+(function resizePip() {
+  let x0 = 0, w0 = 0, on = false;
+  el.pipGrip.addEventListener("pointerdown", e => {
+    on = true; x0 = e.clientX; w0 = el.pip.getBoundingClientRect().width;
+    el.pipGrip.setPointerCapture(e.pointerId); e.preventDefault();
+  });
+  el.pipGrip.addEventListener("pointermove", e => {
+    if (!on) return;
+    el.pip.style.width = Math.min(880, Math.max(240, w0 + (e.clientX - x0))) + "px";
+  });
+  el.pipGrip.addEventListener("pointerup", e => { on = false; el.pipGrip.releasePointerCapture(e.pointerId); });
+})();
+
+/* ---------------------------------------------------------------
+   GEAR — P parks everything, D puts it all back in motion
+   --------------------------------------------------------------- */
+function setGear(g) {
+  S.gear = g;
+  document.querySelectorAll(".gear button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.gear === g)));
+  const rolling = g === "D" || g === "N";
+  if (rolling) { ytCmd(el.wsFrame, "playVideo"); ytCmd(el.pipFrame, "playVideo"); }
+  else { ytCmd(el.wsFrame, "pauseVideo"); ytCmd(el.pipFrame, "pauseVideo"); S.target = 0; }
+  if (g === "D") {
+    if (!S.playing && S.stations.length) tune(S.stationIdx >= 0 ? S.stationIdx : 0);
+  } else {
+    stopRadio();
+  }
+}
+document.querySelectorAll(".gear button").forEach(b =>
+  b.addEventListener("click", () => setGear(b.dataset.gear)));
+
+/* ---------------------------------------------------------------
+   CONSOLE CHROME
+   --------------------------------------------------------------- */
+el.collapse.addEventListener("click", () => {
+  const c = el.console.classList.toggle("collapsed");
+  el.collapse.textContent = c ? "Show dash" : "Hide dash";
+});
+el.units.addEventListener("click", () => {
+  S.metric = !S.metric;
+  const u = S.metric ? "KM/H" : "MPH";
+  el.units.textContent = u;
+  el.fsUnit.textContent = u;
+});
+el.zoomIn.addEventListener("click", () => { S.zoom = Math.min(2.4, S.zoom * 1.25); });
+el.zoomOut.addEventListener("click", () => { S.zoom = Math.max(0.55, S.zoom / 1.25); });
+el.tempUp.addEventListener("click", () => { S.cabin = Math.min(82, S.cabin + 1); el.temp.textContent = S.cabin + "°"; });
+el.tempDown.addEventListener("click", () => { S.cabin = Math.max(60, S.cabin - 1); el.temp.textContent = S.cabin + "°"; });
+[el.ac, el.seat].forEach(b => b.addEventListener("click", () =>
+  b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true")));
+
+/* ---------------------------------------------------------------
+   FULLSCREEN ROAD VIEW
+   --------------------------------------------------------------- */
+const isFS = () => document.fullscreenElement === el.stage;
+let hudTimer = null;
+function hudShow() {
+  if (!isFS()) return;
+  el.fshud.classList.add("show");
+  clearTimeout(hudTimer);
+  hudTimer = setTimeout(() => el.fshud.classList.remove("show"), 2800);
+}
+el.stage.addEventListener("mousemove", hudShow);
+el.stage.addEventListener("mouseenter", hudShow);
+document.addEventListener("fullscreenchange", () => {
+  if (isFS()) hudShow();
+  else { el.fshud.classList.remove("show"); clearTimeout(hudTimer); }
+});
+el.fullscreen.addEventListener("click", () => {
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  else el.stage.requestFullscreen().catch(() => {});
+});
+
+document.addEventListener("keydown", e => {
+  const t = e.target;
+  if (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+  if (e.key >= "1" && e.key <= "6") {
+    const i = +e.key - 1;
+    if (S.stations[i]) { S.allPaused = false; tune(i); }
+  } else if (e.code === "Space") {
+    e.preventDefault();
+    setGear(S.gear === "D" ? "P" : "D");
+  } else if (e.key.toLowerCase() === "f") {
+    el.fullscreen.click();
+  }
+});
+
+/* ---------------------------------------------------------------
+   CITY + VARIANT
+   --------------------------------------------------------------- */
+CITIES.forEach((c, i) => {
+  const o = document.createElement("option");
+  o.value = i; o.textContent = c.name;
+  el.city.appendChild(o);
+});
+
+function fillViews(city) {
+  el.view.innerHTML = "";
+  city.videos.forEach((v, i) => {
+    const o = document.createElement("option");
+    o.value = i; o.textContent = v.label;
+    el.view.appendChild(o);
+  });
+  el.view.value = "0";
+}
+
+function setCity(i) {
+  S.cityIdx = i; S.variantIdx = 0;
+  const city = CITIES[i];
+  fillViews(city);
+  staticBurst(500);
+  el.fsCity.textContent = city.name;
+  el.cityPlate.textContent = city.name + " · " + city.cc;
+  el.station.textContent = "Finding stations in " + city.name + "…";
+  el.stationMeta.textContent = "";
+  el.fsStation.textContent = "";
+  stopRadio();
+  buildCityMap(city);
+  assignVideos();
+  loadStations(city);
+}
+el.city.addEventListener("change", e => setCity(+e.target.value));
+el.view.addEventListener("change", e => {
+  S.variantIdx = +e.target.value;
+  staticBurst(400);
+  assignVideos();
+});
+
+/* ---------------------------------------------------------------
+   CLOCK + IGNITION
+   --------------------------------------------------------------- */
+function tickClock() {
+  el.clock.textContent = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+}
+tickClock();
+setInterval(tickClock, 15000);
+
+el.map.setAttribute("viewBox", "0 0 320 190");
+el.carMarker.setAttribute("transform", "translate(160,95)");
+el.pipToggle.disabled = true;
+el.temp.textContent = S.cabin + "°";
+
+el.start.addEventListener("click", () => {
+  try { S.audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+  catch (e) { S.audioCtx = null; }
+  el.ignition.classList.add("off");
+  S.tripStart = Date.now();
+  S.running = true;
+  S.zoom = 1.15;
+  lastT = performance.now();
+  requestAnimationFrame(tick);
+  const start = Math.floor(Math.random() * CITIES.length);
+  el.city.value = start;
+  setCity(start);
+  setGear("D");
+}, { once: true });
+</script>
+</body>
+</html>
