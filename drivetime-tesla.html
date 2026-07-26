@@ -76,6 +76,15 @@ button { background: none; border: none; cursor: pointer; }
 }
 .batt-fill { height: 100%; background: var(--charge); border-radius: 1px; transition: width .6s linear; }
 .wordmark { letter-spacing: .34em; font-size: 10.5px; font-weight: 600; color: var(--ink); }
+.dash-toggle {
+  padding: 5px 10px; border-radius: 6px; font-size: 10.5px; font-weight: 500;
+  background: var(--glass-hi); border: 1px solid var(--hairline); color: var(--ink-dim);
+  letter-spacing: .04em; white-space: nowrap; transition: color .2s;
+}
+.dash-toggle:hover { color: var(--ink); }
+
+/* ---------- main split: windshield + side dash ---------- */
+.main { flex: 1; min-height: 0; display: flex; flex-direction: row; }
 
 /* ---------- windshield ---------- */
 .stage { flex: 1; min-height: 0; position: relative; background: #000; }
@@ -109,32 +118,35 @@ button { background: none; border: none; cursor: pointer; }
 #fshud .fs-station { font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #fshud .grow { flex: 1; }
 
-/* ---------- console ---------- */
+/* ---------- console (side dash) ---------- */
 .console {
   flex-shrink: 0;
-  height: 336px;
-  margin: 10px 10px 12px;
+  width: 320px;
+  margin: 10px 10px 10px 0;
   background: var(--glass);
   border: 1px solid var(--hairline);
   border-radius: 16px;
   box-shadow: 0 0 0 6px #0c0d0f, 0 18px 40px rgba(0,0,0,.6);
   display: flex; flex-direction: column;
   overflow: hidden;
-  transition: height .3s ease;
+  transition: width .3s ease, opacity .25s ease, margin .3s ease;
 }
-.console.collapsed { height: 76px; }
+.console.collapsed {
+  width: 0; margin: 10px 0; opacity: 0; pointer-events: none;
+  border-width: 0; box-shadow: none;
+}
 .console.collapsed .console-body,
 .console.collapsed .climate { display: none; }
-.console-body { flex: 1; min-height: 0; display: flex; }
+.console-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
 
 /* gear rail */
 .gear {
-  width: 42px; flex-shrink: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
-  border-right: 1px solid var(--hairline);
+  width: 100%; height: 44px; flex-shrink: 0;
+  display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 8px;
+  border-bottom: 1px solid var(--hairline);
 }
 .gear button {
-  width: 26px; padding: 6px 0; border-radius: 6px;
+  width: 30px; padding: 7px 0; border-radius: 6px;
   font-size: 13px; font-weight: 600; color: var(--ink-faint);
   transition: color .2s, background .2s;
 }
@@ -143,25 +155,26 @@ button { background: none; border: none; cursor: pointer; }
 
 /* car card */
 .carcard {
-  width: 178px; flex-shrink: 0;
-  border-right: 1px solid var(--hairline);
-  display: flex; flex-direction: column; align-items: center;
-  padding: 14px 10px 10px;
+  width: 100%; height: 148px; flex-shrink: 0;
+  border-bottom: 1px solid var(--hairline);
+  display: flex; flex-direction: row; align-items: center;
+  padding: 10px 16px; gap: 16px;
   position: relative;
 }
+.speed-col { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; flex-shrink: 0; }
 .speed-read { display: flex; align-items: baseline; gap: 6px; }
-.speed-read .v { font-size: 62px; font-weight: 200; letter-spacing: -.045em; line-height: .92; }
+.speed-read .v { font-size: 46px; font-weight: 200; letter-spacing: -.045em; line-height: .92; }
 .speed-read .u { font-size: 11px; color: var(--ink-dim); letter-spacing: .1em; }
 .speed-read .u button { color: inherit; font-size: inherit; letter-spacing: inherit; }
-.roadview { flex: 1; width: 100%; min-height: 0; margin-top: 4px; }
+.roadview { flex: 1; height: 100%; min-width: 0; }
 .roadview svg { width: 100%; height: 100%; display: block; }
 .autopilot-note {
   font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--ink-faint); padding-top: 4px;
+  color: var(--ink-faint);
 }
 
 /* center pane (nav / theater) */
-.pane { flex: 1; min-width: 0; position: relative; display: flex; flex-direction: column; }
+.pane { flex: 1 1 auto; min-width: 0; min-height: 0; position: relative; display: flex; flex-direction: column; }
 .pane-tabs {
   display: flex; align-items: center; gap: 4px;
   padding: 9px 10px; border-bottom: 1px solid var(--hairline);
@@ -247,10 +260,35 @@ button { background: none; border: none; cursor: pointer; }
 }
 .recents button:hover { color: var(--ink); }
 
+/* apps grid (dummy utility apps, shown when Theater has no video loaded) */
+.app-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  margin-top: 8px; width: 100%; max-width: 300px;
+}
+.app-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 12px 8px; border-radius: 10px;
+  background: var(--glass-hi); border: 1px solid var(--hairline);
+  color: var(--ink-dim); font-size: 10.5px; letter-spacing: .03em;
+  transition: color .2s, border-color .2s;
+}
+.app-tile:hover { color: var(--ink); border-color: var(--ink-faint); }
+.app-icon { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; color: inherit; }
+.app-screen {
+  position: absolute; inset: 0; z-index: 5; display: none;
+  flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: var(--void); color: var(--ink-dim); text-align: center; padding: 20px;
+}
+.app-screen.on { display: flex; }
+.app-screen .app-screen-icon { width: 44px; height: 44px; color: var(--signal); }
+.app-screen .app-screen-title { font-size: 15px; font-weight: 500; color: var(--ink); }
+.app-screen .app-screen-note { font-size: 12px; max-width: 260px; line-height: 1.5; }
+.app-screen .pill { margin-top: 6px; }
+
 /* media column */
 .media {
-  width: 268px; flex-shrink: 0;
-  border-left: 1px solid var(--hairline);
+  width: 100%; flex: 0 0 240px;
+  border-top: 1px solid var(--hairline);
   display: flex; flex-direction: column;
   padding: 10px 12px 12px;
 }
@@ -346,20 +384,17 @@ button { background: none; border: none; cursor: pointer; }
 #ignition .start:hover { filter: brightness(1.1); }
 
 /* ---------- responsive ---------- */
-@media (max-width: 1080px) {
-  .media { width: 232px; }
-  .carcard { width: 150px; }
-}
+/* Below this width there isn't room for a side dash, so it drops
+   back under the video, full-width, like a phone dashcam readout. */
 @media (max-width: 900px) {
-  .console { height: auto; max-height: 62vh; }
-  .console-body { flex-wrap: wrap; }
-  .pane { flex: 1 1 100%; order: 3; min-height: 210px; border-top: 1px solid var(--hairline); }
-  .media { width: auto; flex: 1; border-left: 1px solid var(--hairline); }
+  .main { flex-direction: column; }
+  .console { width: auto; height: 58vh; margin: 0 10px 10px; }
+  .console.collapsed { height: 0; width: auto; margin: 0 10px 0; }
   .presets { grid-template-columns: 1fr 1fr 1fr; }
 }
 @media (max-width: 620px) {
-  .carcard { width: 128px; }
-  .speed-read .v { font-size: 46px; }
+  .carcard { height: 128px; padding: 8px 12px; }
+  .speed-read .v { font-size: 38px; }
   .presets { grid-template-columns: 1fr 1fr; }
   .status .hide-sm, .status .wordmark { display: none; }
   .status { gap: 8px; padding: 0 10px; }
@@ -397,9 +432,12 @@ button { background: none; border: none; cursor: pointer; }
   <label for="city" class="lbl">City</label>
   <select id="city" class="pill" aria-label="Which city"></select>
   <div class="sep"></div>
+  <button class="dash-toggle" id="collapse" title="Show or hide the dash">Hide dash</button>
+  <div class="sep"></div>
   <span class="num" id="clock">--:--</span>
 </div>
 
+<div class="main">
 <div class="stage" id="stage">
   <iframe id="ws-frame" title="Road view" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
   <div class="placeholder"><div class="lbl">Playing in the floating window</div></div>
@@ -427,9 +465,12 @@ button { background: none; border: none; cursor: pointer; }
     </div>
 
     <div class="carcard">
-      <div class="speed-read">
-        <span class="v num" id="speed">0</span>
-        <span class="u"><button id="units" title="Switch units">MPH</button></span>
+      <div class="speed-col">
+        <div class="speed-read">
+          <span class="v num" id="speed">0</span>
+          <span class="u"><button id="units" title="Switch units">MPH</button></span>
+        </div>
+        <div class="autopilot-note" id="ap-note">Cruising</div>
       </div>
       <div class="roadview">
         <svg viewBox="0 0 120 150" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -452,7 +493,6 @@ button { background: none; border: none; cursor: pointer; }
           </g>
         </svg>
       </div>
-      <div class="autopilot-note" id="ap-note">Cruising</div>
     </div>
 
     <div class="pane">
@@ -461,7 +501,6 @@ button { background: none; border: none; cursor: pointer; }
         <button class="tab" id="tab-theater" role="tab" aria-selected="false" aria-controls="view-theater">Theater</button>
         <div style="flex:1"></div>
         <button class="pill" id="pip-toggle" aria-pressed="false">Float window</button>
-        <button class="pill" id="collapse" title="Collapse the console">Hide dash</button>
       </div>
       <div class="pane-body">
 
@@ -518,6 +557,14 @@ button { background: none; border: none; cursor: pointer; }
                 <div>Paste any YouTube link above to play it here.</div>
                 <div style="color:var(--ink-faint);font-size:11px">Links, youtu.be shortlinks, Shorts, and bare IDs all work.</div>
                 <div class="recents" id="recents"></div>
+                <div class="lbl" style="margin-top:14px">Apps</div>
+                <div class="app-grid" id="app-grid"></div>
+              </div>
+              <div class="app-screen" id="app-screen">
+                <div class="app-screen-icon" id="app-screen-icon"></div>
+                <div class="app-screen-title" id="app-screen-title"></div>
+                <div class="app-screen-note" id="app-screen-note"></div>
+                <button class="pill" id="app-exit">Exit app</button>
               </div>
             </div>
           </div>
@@ -562,6 +609,7 @@ button { background: none; border: none; cursor: pointer; }
     <div class="grow"></div>
     <span class="lbl" id="city-plate">—</span>
   </div>
+</div>
 </div>
 
 <div id="pip" aria-label="Floating video window">
@@ -724,6 +772,8 @@ const el = {
   zoomIn: $("zoom-in"), zoomOut: $("zoom-out"),
   ytInput: $("yt-input"), ytLoad: $("yt-load"), ytMute: $("yt-mute"), ytClear: $("yt-clear"),
   thFrame: $("th-frame"), theaterEmpty: $("theater-empty"), recents: $("recents"),
+  appGrid: $("app-grid"), appScreen: $("app-screen"), appScreenIcon: $("app-screen-icon"),
+  appScreenTitle: $("app-screen-title"), appScreenNote: $("app-screen-note"), appExit: $("app-exit"),
   livedot: $("livedot"), station: $("station"), stationMeta: $("station-meta"),
   presets: $("presets"), prevSt: $("prev-st"), nextSt: $("next-st"), power: $("power"),
   fullscreen: $("fullscreen"), volume: $("volume"), scan: $("scan"), radio: $("radio"),
@@ -1256,12 +1306,49 @@ function renderRecents() {
   });
 }
 
+/* ---------------------------------------------------------------
+   APPS — decorative utility tiles shown in Theater when no video
+   is loaded. Nothing behind these is functional; they open a static
+   placeholder screen so the console doesn't feel like a dead end.
+   --------------------------------------------------------------- */
+const APP_ICONS = {
+  dashcam: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="7" width="15" height="11" rx="2.5"/><path d="M17 10.5l5-3v9l-5-3"/><circle cx="9.5" cy="12.5" r="2.8"/></svg>',
+  tripplanner: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>',
+  karaoke: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>',
+  sentry: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>',
+};
+const APPS = [
+  { id: "dashcam", label: "Dashcam", note: "Front and rear clips would show up here." },
+  { id: "tripplanner", label: "Trip Planner", note: "Multi-stop routing would show up here." },
+  { id: "karaoke", label: "Karaoke", note: "Synced lyrics would scroll here." },
+  { id: "sentry", label: "Sentry Mode", note: "A live perimeter feed would show up here." },
+];
+function renderAppGrid() {
+  el.appGrid.innerHTML = APPS.map(a =>
+    '<button class="app-tile" data-app="' + a.id + '" title="' + a.label + '">' +
+      '<span class="app-icon">' + APP_ICONS[a.id] + '</span><span>' + a.label + '</span>' +
+    '</button>').join("");
+  el.appGrid.querySelectorAll(".app-tile").forEach(b =>
+    b.addEventListener("click", () => openApp(b.dataset.app)));
+}
+function openApp(id) {
+  const app = APPS.find(a => a.id === id);
+  if (!app) return;
+  el.appScreenIcon.innerHTML = APP_ICONS[id];
+  el.appScreenTitle.textContent = app.label;
+  el.appScreenNote.textContent = app.note;
+  el.appScreen.classList.add("on");
+  staticBurst(300);
+}
+el.appExit.addEventListener("click", () => el.appScreen.classList.remove("on"));
+renderAppGrid();
+
 async function loadTheater(id) {
   S.theaterId = id;
   el.ytInput.value = "";
   showTab("theater");
   assignVideos();
-  el.pipToggle.disabled = false;
+  el.appScreen.classList.remove("on");
   const title = await ytTitle(id);
   const label = title ? title.slice(0, 40) : id;
   S.recents = [{ id, label }].concat(S.recents.filter(r => r.id !== id)).slice(0, 4);
@@ -1284,7 +1371,6 @@ el.ytClear.addEventListener("click", () => {
   S.theaterId = null;
   if (S.windshield === "theater") S.windshield = "drive";
   if (S.pipOpen && S.windshield === "drive") setPip(false);
-  el.pipToggle.disabled = true;
   assignVideos();
 });
 
@@ -1494,7 +1580,6 @@ setInterval(tickClock, 15000);
 
 el.map.setAttribute("viewBox", "0 0 320 190");
 el.carMarker.setAttribute("transform", "translate(160,95)");
-el.pipToggle.disabled = true;
 el.temp.textContent = S.cabin + "°";
 
 el.start.addEventListener("click", () => {
