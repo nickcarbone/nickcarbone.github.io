@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DRIVETIME</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <style>
 /* ===================================================================
    DRIVETIME — EV console build
@@ -199,7 +203,14 @@ button { background: none; border: none; cursor: pointer; }
 .view.on { display: block; }
 
 /* nav map */
-#map { width: 100%; height: 100%; display: block; background: #0b0c0e; }
+#map { width: 100%; height: 100%; background: #0b0c0e; }
+.leaflet-container { background: #0b0c0e; font-family: inherit; }
+.leaflet-control-attribution {
+  background: rgba(11,12,14,.72) !important; color: var(--ink-faint) !important;
+  font-size: 9px !important; padding: 1px 6px !important; border-radius: 4px 0 0 0 !important;
+}
+.leaflet-control-attribution a { color: var(--ink-dim) !important; }
+.car-pin-arrow { transition: transform .15s linear; }
 .turncard {
   position: absolute; top: 10px; left: 10px;
   display: flex; align-items: center; gap: 10px;
@@ -539,17 +550,7 @@ button { background: none; border: none; cursor: pointer; }
       <div class="pane-body">
 
         <div class="view on" id="view-nav" role="tabpanel" aria-labelledby="tab-nav">
-          <svg id="map" preserveAspectRatio="xMidYMid slice" aria-label="Simulated navigation map">
-            <g id="map-world">
-              <g id="roads"></g>
-              <path id="route" fill="none" stroke="var(--signal)" stroke-width="5"
-                    stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
-            </g>
-            <g id="car-marker">
-              <circle r="13" fill="var(--signal)" opacity=".18"/>
-              <path d="M0,-8 L6.5,7 L0,3.4 L-6.5,7 Z" fill="var(--ink)"/>
-            </g>
-          </svg>
+          <div id="map" aria-label="Live map of the selected city"></div>
           <div class="turncard">
             <svg class="arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path id="turn-arrow" d="M12 20 L12 10 M12 10 L7 15 M12 10 L17 15"
@@ -680,123 +681,128 @@ button { background: none; border: none; cursor: pointer; }
    street names for the navigation display.
    ===================================================================== */
 const CITIES = [
-  { name: "Tokyo", cc: "JP", q: "Tokyo",
+  { name: "Tokyo", cc: "JP", q: "Tokyo", lat: 35.6762, lng: 139.6503,
     videos: [{ id: "-Xh4BNbxpI8", label: "Default" }, { id: "TUgfiNg06GQ", label: "Day" }, { id: "KXXodw60W9U", label: "Sunset/Night" }],
     streets: ["Meiji-dori", "Aoyama-dori", "Roppongi-dori", "Yasukuni-dori", "Shuto Expressway"] },
-  { name: "Osaka", cc: "JP", q: "Osaka",
+  { name: "Osaka", cc: "JP", q: "Osaka", lat: 34.6937, lng: 135.5023,
     videos: [{ id: "ovD7QlzCCoU", label: "Default" }, { id: "L07uyRUK8L0", label: "Day" }, { id: "GgOTV7VrlPw", label: "Sunset/Night" }],
     streets: ["Midosuji", "Sakaisuji", "Nagahori-dori", "Tanimachi-suji", "Shinmido-suji"] },
-  { name: "Seoul", cc: "KR", q: "Seoul",
+  { name: "Seoul", cc: "KR", q: "Seoul", lat: 37.5665, lng: 126.978,
     videos: [{ id: "SRpMapyw6Aw", label: "Default" }, { id: "KGAIumGxQeY", label: "Day" }, { id: "cEQgFyrbceY", label: "Sunset/Night" }],
     streets: ["Teheran-ro", "Gangnam-daero", "Sejong-daero", "Olympic-daero", "Yeongdong-daero"] },
-  { name: "Taipei", cc: "TW", q: "Taipei",
+  { name: "Taipei", cc: "TW", q: "Taipei", lat: 25.033, lng: 121.5654,
     videos: [{ id: "P8Uh9f0EaU8", label: "Default" }, { id: "_mzDsL9tcgc", label: "Day" }, { id: "6YOfoE0zqO8", label: "Sunset/Night" }],
     streets: ["Zhongxiao E Rd", "Xinyi Rd", "Ren'ai Rd", "Keelung Rd", "Civic Blvd"] },
-  { name: "Hong Kong", cc: "HK", q: "Hong Kong",
+  { name: "Hong Kong", cc: "HK", q: "Hong Kong", lat: 22.3193, lng: 114.1694,
     videos: [{ id: "arbVnYJfZLU", label: "Default" }, { id: "PhGJgftOQ1w", label: "Day" }, { id: "gKUclxoRA6c", label: "Sunset/Night" }],
     streets: ["Nathan Rd", "Queen's Rd Central", "Connaught Rd", "Gloucester Rd", "Lung Cheung Rd"] },
-  { name: "Bangkok", cc: "TH", q: "Bangkok",
+  { name: "Bangkok", cc: "TH", q: "Bangkok", lat: 13.7563, lng: 100.5018,
     videos: [{ id: "1CFuoKiPT60", label: "Default" }, { id: "4BmxX6Ipxpo", label: "Day" }, { id: "dl3sqoz6X3M", label: "Sunset/Night" }],
     streets: ["Sukhumvit Rd", "Silom Rd", "Rama IV Rd", "Phetchaburi Rd", "Ratchadaphisek Rd"] },
-  { name: "Ho Chi Minh City", cc: "VN", q: "Saigon",
+  { name: "Ho Chi Minh City", cc: "VN", q: "Saigon", lat: 10.7769, lng: 106.7009,
     videos: [{ id: "gZWiLrQnb10", label: "Default" }, { id: "UrVjf2AR5is", label: "Day" }, { id: "uu-SjnZqZf0", label: "Sunset/Night" }],
     streets: ["Nguyen Hue", "Le Loi", "Dien Bien Phu", "Vo Van Kiet", "Nam Ky Khoi Nghia"] },
-  { name: "Hanoi", cc: "VN", q: "Hanoi",
+  { name: "Hanoi", cc: "VN", q: "Hanoi", lat: 21.0285, lng: 105.8542,
     videos: [{ id: "l-cQOa5K2X0", label: "Default" }, { id: "LTuSOk6dFpY", label: "Day" }, { id: "Gb8T3j2H890", label: "Sunset/Night" }],
     streets: ["Trang Tien", "Ba Trieu", "Kim Ma", "Nguyen Trai", "Lang Ha"] },
-  { name: "Jakarta", cc: "ID", q: "Jakarta",
+  { name: "Jakarta", cc: "ID", q: "Jakarta", lat: -6.2088, lng: 106.8456,
     videos: [{ id: "gmDBzijaIAA", label: "Default" }, { id: "GtVGW8jhO9k", label: "Day" }, { id: "CCMIW7x47Cc", label: "Sunset/Night" }],
     streets: ["Jl. Sudirman", "Jl. Thamrin", "Jl. Gatot Subroto", "Jl. Rasuna Said", "Jl. Casablanca"] },
-  { name: "Manila", cc: "PH", q: "Manila",
+  { name: "Manila", cc: "PH", q: "Manila", lat: 14.5995, lng: 120.9842,
     videos: [{ id: "1X8SunSuAC4", label: "Default" }, { id: "2tfyoN70EHo", label: "Day" }, { id: "JY-Xyiept88", label: "Sunset/Night" }],
     streets: ["EDSA", "Roxas Blvd", "Ayala Ave", "Ortigas Ave", "C-5 Rd"] },
-  { name: "Singapore", cc: "SG", q: "Singapore",
+  { name: "Singapore", cc: "SG", q: "Singapore", lat: 1.3521, lng: 103.8198,
     videos: [{ id: "xEx3-9v0-_o", label: "Default" }, { id: "iREkbaP8jlQ", label: "Day" }, { id: "SzCryiXMG_o", label: "Sunset/Night" }],
     streets: ["Orchard Rd", "Nicoll Hwy", "Beach Rd", "Shenton Way", "East Coast Pkwy"] },
-  { name: "Mumbai", cc: "IN", q: "Mumbai",
+  { name: "Mumbai", cc: "IN", q: "Mumbai", lat: 19.076, lng: 72.8777,
     videos: [{ id: "Nm4PtWe8vlE", label: "Default" }, { id: "j_lBv6BSrNo", label: "Day" }, { id: "l3g-OwaIaWE", label: "Sunset/Night" }],
     streets: ["Marine Dr", "Linking Rd", "S.V. Rd", "Eastern Fwy", "Peddar Rd"] },
-  { name: "Delhi", cc: "IN", q: "Delhi",
+  { name: "Delhi", cc: "IN", q: "Delhi", lat: 28.7041, lng: 77.1025,
     videos: [{ id: "QZPqluJA0OY", label: "Default" }, { id: "J9mpXixJptg", label: "Day" }, { id: "g-c3K8plBxo", label: "Sunset/Night" }],
     streets: ["Ring Rd", "Janpath", "Kartavya Path", "Aurobindo Marg", "Mathura Rd"] },
-  { name: "Dubai", cc: "AE", q: "Dubai",
+  { name: "Dubai", cc: "AE", q: "Dubai", lat: 25.2048, lng: 55.2708,
     videos: [{ id: "6RPU08WoaxE", label: "Default" }, { id: "TE2tfavIo3E", label: "Day" }, { id: "n964Hq9QkJk", label: "Sunset/Night" }],
     streets: ["Sheikh Zayed Rd", "Al Khail Rd", "Jumeirah Rd", "Al Wasl Rd", "Emirates Rd"] },
-  { name: "Istanbul", cc: "TR", q: "Istanbul",
+  { name: "Istanbul", cc: "TR", q: "Istanbul", lat: 41.0082, lng: 28.9784,
     videos: [{ id: "ALA09uSzD7E", label: "Default" }, { id: "vFhDtI8dGOA", label: "Day" }, { id: "aTsG9KK_Mkk", label: "Sunset/Night" }],
     streets: ["Istiklal Cd", "Barbaros Blv", "Buyukdere Cd", "Kennedy Cd", "Tarlabasi Blv"] },
-  { name: "Tbilisi", cc: "GE", q: "Tbilisi",
+  { name: "Tbilisi", cc: "GE", q: "Tbilisi", lat: 41.7151, lng: 44.8271,
     videos: [{ id: "joszFYjoU5E", label: "Default" }, { id: "Smk6hpX-OU0", label: "Day" }, { id: "xTssir91CnY", label: "Sunset/Night" }],
     streets: ["Rustaveli Ave", "Agmashenebeli Ave", "Chavchavadze Ave", "Vazha-Pshavela Ave", "Kostava St"] },
-  { name: "Cairo", cc: "EG", q: "Cairo",
+  { name: "Cairo", cc: "EG", q: "Cairo", lat: 30.0444, lng: 31.2357,
     videos: [{ id: "--I-TdCe2_g", label: "Default" }, { id: "Esyp2P0uJu4", label: "Day" }, { id: "86pZTI5gJQM", label: "Sunset/Night" }],
     streets: ["Corniche El Nil", "Salah Salem", "Ramses St", "Al-Haram St", "Ring Rd"] },
-  { name: "Nairobi", cc: "KE", q: "Nairobi",
+  { name: "Nairobi", cc: "KE", q: "Nairobi", lat: -1.2921, lng: 36.8219,
     videos: [{ id: "C1iN4D1wBiI", label: "Default" }, { id: "-UV94iPFRlw", label: "Day" }, { id: "glC6vjGfuAM", label: "Sunset/Night" }],
     streets: ["Uhuru Hwy", "Thika Rd", "Ngong Rd", "Waiyaki Way", "Mombasa Rd"] },
-  { name: "Lagos", cc: "NG", q: "Lagos",
+  { name: "Lagos", cc: "NG", q: "Lagos", lat: 6.5244, lng: 3.3792,
     videos: [{ id: "aIuTxasD3uw", label: "Default" }, { id: "LZJ000F-CLc", label: "Day" }, { id: "KwrMBdnfCfI", label: "Sunset/Night" }],
     streets: ["Third Mainland Bridge", "Awolowo Rd", "Ozumba Mbadiwe", "Ikorodu Rd", "Lekki-Epe Expwy"] },
-  { name: "Cape Town", cc: "ZA", q: "Cape Town",
+  { name: "Cape Town", cc: "ZA", q: "Cape Town", lat: -33.9249, lng: 18.4241,
     videos: [{ id: "5bdCk5AQ9Kw", label: "Default" }, { id: "aah7KuwBDzo", label: "Day" }, { id: "rM8rGs_tGYE", label: "Sunset/Night" }],
     streets: ["Adderley St", "Long St", "Victoria Rd", "Kloof Nek Rd", "De Waal Dr"] },
-  { name: "Casablanca", cc: "MA", q: "Casablanca",
+  { name: "Casablanca", cc: "MA", q: "Casablanca", lat: 33.5731, lng: -7.5898,
     videos: [{ id: "FXeX-H6Ajy4", label: "Default" }, { id: "RN6ioPRXk8A", label: "Day" }, { id: "8qV3p25wsao", label: "Sunset/Night" }],
     streets: ["Blvd Mohammed V", "Corniche Ain Diab", "Blvd Zerktouni", "Blvd d'Anfa", "Route d'El Jadida"] },
-  { name: "Athens", cc: "GR", q: "Athens",
+  { name: "Athens", cc: "GR", q: "Athens", lat: 37.9838, lng: 23.7275,
     videos: [{ id: "8Hm0rMpapKY", label: "Default" }, { id: "TXHbjjPuvmM", label: "Day" }, { id: "f1cIBCZB0P8", label: "Sunset/Night" }],
     streets: ["Syngrou Ave", "Kifisias Ave", "Panepistimiou", "Vasilissis Sofias", "Alexandras Ave"] },
-  { name: "Naples", cc: "IT", q: "Napoli",
+  { name: "Naples", cc: "IT", q: "Napoli", lat: 40.8518, lng: 14.2681,
     videos: [{ id: "mA0pPRQthnY", label: "Default" }, { id: "FmB2T9xGHk4", label: "Day" }, { id: "IHXZnU2bmc8", label: "Sunset/Night" }],
     streets: ["Via Toledo", "Riviera di Chiaia", "Corso Umberto I", "Via Caracciolo", "Tangenziale"] },
-  { name: "Rome", cc: "IT", q: "Roma",
+  { name: "Rome", cc: "IT", q: "Roma", lat: 41.9028, lng: 12.4964,
     videos: [{ id: "AdtBRICOD9U", label: "Default" }, { id: "0m7H6_ZI1iM", label: "Day" }, { id: "zWZEZhUkd0Y", label: "Sunset/Night" }],
     streets: ["Via del Corso", "Via Nazionale", "Lungotevere", "Via Appia Nuova", "Via Cristoforo Colombo"] },
-  { name: "Paris", cc: "FR", q: "Paris",
+  { name: "Paris", cc: "FR", q: "Paris", lat: 48.8566, lng: 2.3522,
     videos: [{ id: "4TKTqb-TWwQ", label: "Default" }, { id: "LoT7kXS7kYg", label: "Day" }, { id: "FBjjYw-xcdg", label: "Sunset/Night" }],
     streets: ["Bd Saint-Germain", "Av des Champs-Elysees", "Rue de Rivoli", "Bd Peripherique", "Bd Haussmann"] },
-  { name: "London", cc: "GB", q: "London",
+  { name: "London", cc: "GB", q: "London", lat: 51.5074, lng: -0.1278,
     videos: [{ id: "AveGRdBeOog", label: "Default" }, { id: "lCvWZj_kFgo", label: "Day" }, { id: "GSnAjDu3VoM", label: "Sunset/Night" }],
     streets: ["Oxford St", "Victoria Embankment", "A40 Westway", "Kings Rd", "Marylebone Rd"] },
-  { name: "Lisbon", cc: "PT", q: "Lisboa",
+  { name: "Lisbon", cc: "PT", q: "Lisboa", lat: 38.7223, lng: -9.1393,
     videos: [{ id: "xUZoO-WtyHw", label: "Default" }, { id: "dLLqWlOymxg", label: "Day" }, { id: "sTs9aa7Y6lI", label: "Sunset/Night" }],
     streets: ["Av da Liberdade", "Av Almirante Reis", "Av da Republica", "Eixo Norte-Sul", "Av 24 de Julho"] },
-  { name: "Madrid", cc: "ES", q: "Madrid",
+  { name: "Madrid", cc: "ES", q: "Madrid", lat: 40.4168, lng: -3.7038,
     videos: [{ id: "C911U_Fo-QU", label: "Default" }, { id: "ZQC3fIhnH4o", label: "Day" }, { id: "KC0dMMCV4OM", label: "Sunset/Night" }],
     streets: ["Gran Via", "Paseo de la Castellana", "Calle de Alcala", "Paseo del Prado", "M-30"] },
-  { name: "Berlin", cc: "DE", q: "Berlin",
+  { name: "Berlin", cc: "DE", q: "Berlin", lat: 52.52, lng: 13.405,
     videos: [{ id: "lBlKR2ek0w4", label: "Default" }, { id: "g9T-KwcXqAg", label: "Day" }, { id: "IzZkjS4nBQI", label: "Sunset/Night" }],
     streets: ["Unter den Linden", "Kurfurstendamm", "Karl-Marx-Allee", "Frankfurter Allee", "Potsdamer Str"] },
-  { name: "Warsaw", cc: "PL", q: "Warszawa",
+  { name: "Warsaw", cc: "PL", q: "Warszawa", lat: 52.2297, lng: 21.0122,
     videos: [{ id: "uJU_DEklaw4", label: "Default" }, { id: "dwtmEnKCP7c", label: "Day" }, { id: "YIQ4Ap9aUMo", label: "Sunset/Night" }],
     streets: ["Marszalkowska", "Al. Jerozolimskie", "Wislostrada", "Pulawska", "Al. Ujazdowskie"] },
-  { name: "Buenos Aires", cc: "AR", q: "Buenos Aires",
+  { name: "Buenos Aires", cc: "AR", q: "Buenos Aires", lat: -34.6037, lng: -58.3816,
     videos: [{ id: "MYOj8ckqVuQ", label: "Default" }, { id: "-TPJot7-HTs", label: "Day" }, { id: "6Sb0gHrAlLA", label: "Sunset/Night" }],
     streets: ["Av 9 de Julio", "Av Corrientes", "Av del Libertador", "Av Rivadavia", "Av Santa Fe"] },
-  { name: "Sao Paulo", cc: "BR", q: "Sao Paulo",
+  { name: "Sao Paulo", cc: "BR", q: "Sao Paulo", lat: -23.5505, lng: -46.6333,
     videos: [{ id: "fHEaa2ryFnc", label: "Default" }, { id: "zje0hghImYQ", label: "Day" }, { id: "WcjGyIjHLDA", label: "Sunset/Night" }],
     streets: ["Av Paulista", "Marginal Pinheiros", "Av Faria Lima", "Av 23 de Maio", "Av Reboucas"] },
-  { name: "Bogota", cc: "CO", q: "Bogota",
+  { name: "Bogota", cc: "CO", q: "Bogota", lat: 4.711, lng: -74.0721,
     videos: [{ id: "N0Qy6oi07W8", label: "Default" }, { id: "X6RNJoUo6HQ", label: "Day" }, { id: "AcpHX2aylSk", label: "Sunset/Night" }],
     streets: ["Carrera 7", "Calle 26", "Autopista Norte", "Av Boyaca", "Av Caracas"] },
-  { name: "Mexico City", cc: "MX", q: "Mexico",
+  { name: "Mexico City", cc: "MX", q: "Mexico", lat: 19.4326, lng: -99.1332,
     videos: [{ id: "Km6KYN_6vmc", label: "Default" }, { id: "hwn-nnSqP7Y", label: "Day" }, { id: "JCXH_WyC8A4", label: "Sunset/Night" }],
     streets: ["Paseo de la Reforma", "Av Insurgentes", "Circuito Interior", "Viaducto", "Periferico"] },
-  { name: "Havana", cc: "CU", q: "Habana",
+  { name: "Havana", cc: "CU", q: "Habana", lat: 23.1136, lng: -82.3666,
     videos: [{ id: "vCywf9saDlY", label: "Default" }, { id: "GzBPHZw8j18", label: "Day" }, { id: "IEnv4ZorXmY", label: "Night Walk" }],
     streets: ["Malecon", "Calle 23", "Paseo del Prado", "Quinta Avenida", "Via Blanca"] },
-  { name: "New York", cc: "US", q: "New York",
+  { name: "New York", cc: "US", q: "New York", lat: 40.7128, lng: -74.006,
     videos: [{ id: "7OgQjRn2x1w", label: "Default" }, { id: "sqsez_oQSQ8", label: "Day" }, { id: "qTCaw64ObUk", label: "Sunset/Night" }],
     streets: ["Broadway", "FDR Dr", "Fifth Ave", "West Side Hwy", "Canal St"] },
-  { name: "Los Angeles", cc: "US", q: "Los Angeles",
+  { name: "Los Angeles", cc: "US", q: "Los Angeles", lat: 34.0522, lng: -118.2437,
     videos: [{ id: "7MR08Jm38is", label: "Default" }, { id: "eR5vsN1Lq4E", label: "Day" }, { id: "sifq2tZkKMw", label: "Sunset/Night" }],
     streets: ["Sunset Blvd", "Wilshire Blvd", "Pacific Coast Hwy", "Mulholland Dr", "Santa Monica Blvd"] },
 ];
 
+/* de1 is a specific, known-good server; the other two mirrors that used
+   to live here (fi1/at1) have been retired and no longer resolve at all,
+   so this list rotted quietly. "all.api.radio-browser.info" is the
+   project's own load-balanced entry point and always points at whichever
+   servers are currently up, so it's a much sturdier fallback than
+   guessing at individual server names. */
 const RB_MIRRORS = [
   "https://de1.api.radio-browser.info",
-  "https://fi1.api.radio-browser.info",
-  "https://at1.api.radio-browser.info",
+  "https://all.api.radio-browser.info",
 ];
 
 const $ = id => document.getElementById(id);
@@ -809,7 +815,6 @@ const el = {
   console: $("console"), collapse: $("collapse"),
   speed: $("speed"), units: $("units"), laneL: $("lane-l"), laneR: $("lane-r"), apNote: $("ap-note"),
   tabNav: $("tab-nav"), tabTheater: $("tab-theater"), viewNav: $("view-nav"), viewTheater: $("view-theater"),
-  map: $("map"), mapWorld: $("map-world"), roads: $("roads"), route: $("route"), carMarker: $("car-marker"),
   turnArrow: $("turn-arrow"), turnDist: $("turn-dist"), turnStreet: $("turn-street"),
   etaTime: $("eta-time"), etaDist: $("eta-dist"), dest: $("dest"),
   zoomIn: $("zoom-in"), zoomOut: $("zoom-out"),
@@ -844,10 +849,13 @@ const S = {
    --------------------------------------------------------------- */
 async function rbFetch(path) {
   for (const base of RB_MIRRORS) {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 6000);
     try {
-      const r = await fetch(base + path, { headers: { Accept: "application/json" } });
+      const r = await fetch(base + path, { headers: { Accept: "application/json" }, signal: ctrl.signal });
       if (r.ok) return await r.json();
     } catch (e) { /* try the next mirror */ }
+    finally { clearTimeout(t); }
   }
   throw new Error("no mirror reachable");
 }
@@ -1115,11 +1123,15 @@ function staticBurst(ms = 380) {
 
 /* ---------------------------------------------------------------
    NAVIGATION
-   The street grid is generated from a hash of the city name, so a
-   given city always draws the same map. Street names are real; the
-   route through them is invented. Distances assume 1 map unit = 8 m.
+   The base map is real (OpenStreetMap tiles via Leaflet), centered on
+   the selected city's actual coordinates. The route drawn through it
+   is invented — this dash has no telemetry tying it to the video —
+   but it's built from a hash of the city name (so a given city always
+   drives the same "route"), labeled with that city's real streets, and
+   plotted at true-to-scale distances onto the real map underneath.
+   Distances assume 1 grid unit = 8 m.
    --------------------------------------------------------------- */
-const GRID = 15, SPACING = 34, U2M = 8;
+const GRID = 15, SPACING = 34, U2M = 8, GRID_ORIGIN = (GRID - 1) / 2 * SPACING;
 const mulberry32 = a => () => {
   a |= 0; a = a + 0x6D2B79F5 | 0;
   let t = Math.imul(a ^ a >>> 15, 1 | a);
@@ -1132,7 +1144,41 @@ function hashStr(s) {
   return h >>> 0;
 }
 
+/* Grid coords are treated as flat local meters (x=east, y=south) around
+   the city's real lat/lng, then converted back to lat/lng for Leaflet. */
+function metersToLatLng(city, dxEast, dyNorth) {
+  const lat = city.lat + dyNorth / 111320;
+  const lng = city.lng + dxEast / (111320 * Math.cos(city.lat * Math.PI / 180));
+  return [lat, lng];
+}
+function gridToLatLng(city, x, y) {
+  return metersToLatLng(city, (x - GRID_ORIGIN) * U2M, -(y - GRID_ORIGIN) * U2M);
+}
+
 let rng = mulberry32(1), nodes = [], route = null;
+let mapInst = null, routeLine = null, carMarker = null;
+
+function initMap() {
+  mapInst = L.map("map", {
+    zoomControl: false, attributionControl: true, zoomSnap: 0, zoomDelta: 0.5,
+    dragging: false, scrollWheelZoom: false, doubleClickZoom: false,
+    boxZoom: false, keyboard: false, touchZoom: false, tap: false, fadeAnimation: false,
+  }).setView([20, 0], 3);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+    subdomains: "abcd", maxZoom: 20,
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
+  }).addTo(mapInst);
+  routeLine = L.polyline([], {
+    color: "#3e6ae1", weight: 5, opacity: .55, lineCap: "round", lineJoin: "round",
+  }).addTo(mapInst);
+  const carIcon = L.divIcon({
+    className: "car-pin", iconSize: [26, 26], iconAnchor: [13, 13],
+    html: '<svg width="26" height="26" viewBox="-13 -13 26 26">' +
+          '<circle r="13" fill="#3e6ae1" opacity=".18"/>' +
+          '<path class="car-pin-arrow" d="M0,-8 L6.5,7 L0,3.4 L-6.5,7 Z" fill="#f2f3f5"/></svg>',
+  });
+  carMarker = L.marker([20, 0], { icon: carIcon, interactive: false }).addTo(mapInst);
+}
 
 function buildCityMap(city) {
   rng = mulberry32(hashStr(city.name));
@@ -1143,15 +1189,7 @@ function buildCityMap(city) {
       nodes[i][j] = { x: i * SPACING + (rng() * 11 - 5.5), y: j * SPACING + (rng() * 11 - 5.5), i, j };
     }
   }
-  let d = "";
-  const seg = (a, b) => "M" + a.x.toFixed(1) + "," + a.y.toFixed(1) + "L" + b.x.toFixed(1) + "," + b.y.toFixed(1);
-  for (let i = 0; i < GRID; i++) for (let j = 0; j < GRID; j++) {
-    if (i < GRID - 1 && rng() > 0.15) d += seg(nodes[i][j], nodes[i + 1][j]);
-    if (j < GRID - 1 && rng() > 0.15) d += seg(nodes[i][j], nodes[i][j + 1]);
-  }
-  el.roads.innerHTML =
-    '<path d="' + d + '" fill="none" stroke="#282c33" stroke-width="8" stroke-linecap="round"/>' +
-    '<path d="' + d + '" fill="none" stroke="#15181c" stroke-width="4.5" stroke-linecap="round"/>';
+  if (mapInst) mapInst.setView([city.lat, city.lng], 16, { animate: false });
   newRoute(3 + Math.floor(rng() * 8), 3 + Math.floor(rng() * 8), city);
 }
 
@@ -1180,7 +1218,7 @@ function newRoute(si, sj, city) {
   }
   route = { pts, segs, total, d: 0, end: [i, j],
             dest: city.streets[Math.floor(rng() * city.streets.length)] };
-  el.route.setAttribute("d", "M" + pts.map(p => p.x.toFixed(1) + "," + p.y.toFixed(1)).join("L"));
+  if (routeLine) routeLine.setLatLngs(pts.map(p => gridToLatLng(city, p.x, p.y)));
   el.dest.textContent = route.dest;
 }
 
@@ -1225,10 +1263,15 @@ function updateNav(dt) {
   while (diff < -Math.PI) diff += 2 * Math.PI;
   heading += diff * Math.min(1, dt * 3.5);
 
-  const z = S.zoom;
-  el.mapWorld.setAttribute("transform",
-    "translate(160,95) scale(" + z.toFixed(3) + ") rotate(" + (-heading * 180 / Math.PI).toFixed(2) + ") translate(" +
-    (-cx).toFixed(2) + "," + (-cy).toFixed(2) + ")");
+  const city = CITIES[S.cityIdx];
+  const latlng = gridToLatLng(city, cx, cy);
+  if (mapInst) {
+    mapInst.panTo(latlng, { animate: false });
+    carMarker.setLatLng(latlng);
+    const markerEl = carMarker.getElement();
+    const arrow = markerEl && markerEl.querySelector(".car-pin-arrow");
+    if (arrow) arrow.setAttribute("transform", "rotate(" + (heading * 180 / Math.PI).toFixed(1) + ")");
+  }
 
   const toTurn = (seg.start + seg.len - route.d) * U2M;
   el.turnDist.textContent = fmtDist(toTurn);
@@ -1435,6 +1478,7 @@ function showTab(which) {
   el.tabTheater.setAttribute("aria-selected", String(!nav));
   el.viewNav.classList.toggle("on", nav);
   el.viewTheater.classList.toggle("on", !nav);
+  if (nav && mapInst) setTimeout(() => mapInst.invalidateSize(), 0);
 }
 el.tabNav.addEventListener("click", () => showTab("nav"));
 el.tabTheater.addEventListener("click", () => showTab("theater"));
@@ -1522,6 +1566,7 @@ document.querySelectorAll(".shifter button").forEach(b =>
 el.collapse.addEventListener("click", () => {
   const c = el.console.classList.toggle("collapsed");
   el.collapse.textContent = c ? "Show dash" : "Hide dash";
+  if (!c && mapInst) setTimeout(() => mapInst.invalidateSize(), 320);
 });
 el.radioExpand.addEventListener("click", () => el.radioApp.classList.add("on"));
 el.radioBack.addEventListener("click", () => el.radioApp.classList.remove("on"));
@@ -1531,8 +1576,14 @@ el.units.addEventListener("click", () => {
   el.units.textContent = u;
   el.fsUnit.textContent = u;
 });
-el.zoomIn.addEventListener("click", () => { S.zoom = Math.min(2.4, S.zoom * 1.25); });
-el.zoomOut.addEventListener("click", () => { S.zoom = Math.max(0.55, S.zoom / 1.25); });
+el.zoomIn.addEventListener("click", () => {
+  S.zoom = Math.min(2.4, S.zoom * 1.25);
+  if (mapInst) mapInst.setZoom(16 + Math.log2(S.zoom), { animate: true });
+});
+el.zoomOut.addEventListener("click", () => {
+  S.zoom = Math.max(0.55, S.zoom / 1.25);
+  if (mapInst) mapInst.setZoom(16 + Math.log2(S.zoom), { animate: true });
+});
 el.tempUp.addEventListener("click", () => { S.cabin = Math.min(82, S.cabin + 1); el.temp.textContent = S.cabin + "°"; });
 el.tempDown.addEventListener("click", () => { S.cabin = Math.max(60, S.cabin - 1); el.temp.textContent = S.cabin + "°"; });
 [el.ac, el.seat].forEach(b => b.addEventListener("click", () =>
@@ -1624,8 +1675,7 @@ function tickClock() {
 tickClock();
 setInterval(tickClock, 15000);
 
-el.map.setAttribute("viewBox", "0 0 320 190");
-el.carMarker.setAttribute("transform", "translate(160,95)");
+initMap();
 el.temp.textContent = S.cabin + "°";
 
 el.start.addEventListener("click", () => {
