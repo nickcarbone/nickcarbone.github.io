@@ -1,14 +1,30 @@
 {
-  "generated": "2026-07-28T19:40:42.979Z",
-  "count": 61,
+  "generated": "2026-07-29T03:16:04.763Z",
+  "count": 63,
   "pages": [
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-07-28T17:21:43Z",
+      "updated": "2026-07-29T01:49:09Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "deadline-clock",
+      "url": "https://nickcarbone.github.io/deadline-clock/",
+      "title": "Deadline Clock",
+      "description": "nickcarbone.github.io/deadline-clock/",
+      "updated": "2026-07-28T23:47:12Z",
+      "created": "2026-07-28T23:47:04Z"
+    },
+    {
+      "slug": "provenance",
+      "url": "https://nickcarbone.github.io/provenance/",
+      "title": "Provenance",
+      "description": "nickcarbone.github.io/provenance/",
+      "updated": "2026-07-28T23:46:44Z",
+      "created": "2026-07-28T23:46:29Z"
     },
     {
       "slug": "extreme-bars",
