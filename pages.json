@@ -1,14 +1,38 @@
 {
-  "generated": "2026-08-01T19:17:36.825Z",
-  "count": 63,
+  "generated": "2026-08-02T03:31:04.478Z",
+  "count": 66,
   "pages": [
+    {
+      "slug": "ad-gallery",
+      "url": "https://nickcarbone.github.io/ad-gallery/",
+      "title": "Ad Gallery",
+      "description": "",
+      "updated": "2026-08-02T02:35:47Z",
+      "created": "2026-08-02T01:43:56Z"
+    },
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-08-01T16:52:16Z",
+      "updated": "2026-08-02T01:55:31Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "1600s-vice-books",
+      "url": "https://nickcarbone.github.io/1600s-vice-books/",
+      "title": "1600s Vice Books",
+      "description": "nickcarbone.github.io/1600s-vice-books/",
+      "updated": "2026-08-02T00:56:49Z",
+      "created": "2026-08-02T00:56:41Z"
+    },
+    {
+      "slug": "far-literature",
+      "url": "https://nickcarbone.github.io/far-literature/",
+      "title": "Far Literature",
+      "description": "nickcarbone.github.io/far-literature/",
+      "updated": "2026-08-01T21:32:33Z",
+      "created": "2026-08-01T21:32:24Z"
     },
     {
       "slug": "deadline-clock",
