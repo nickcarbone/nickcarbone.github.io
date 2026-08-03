@@ -1,14 +1,22 @@
 {
-  "generated": "2026-08-03T09:56:56.934Z",
-  "count": 66,
+  "generated": "2026-08-03T14:52:27.770Z",
+  "count": 67,
   "pages": [
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-08-03T06:53:36Z",
+      "updated": "2026-08-03T14:19:18Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "schengen-showdown-cooking",
+      "url": "https://nickcarbone.github.io/schengen-showdown-cooking/",
+      "title": "Schengen Showdown Cooking",
+      "description": "nickcarbone.github.io/schengen-showdown-cooking/",
+      "updated": "2026-08-03T14:18:48Z",
+      "created": "2026-08-03T14:18:38Z"
     },
     {
       "slug": "ad-gallery",
