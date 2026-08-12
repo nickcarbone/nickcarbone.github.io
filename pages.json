@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-12T13:21:46.879Z",
+  "generated": "2026-08-12T19:08:44.706Z",
   "count": 68,
   "pages": [
     {
@@ -7,7 +7,7 @@
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-08-12T12:48:00Z",
+      "updated": "2026-08-12T16:49:32Z",
       "created": "2026-07-10T01:19:16Z"
     },
     {
@@ -310,7 +310,7 @@
       "slug": "rotisserie",
       "url": "https://nickcarbone.github.io/rotisserie/",
       "title": "Rotisserie",
-      "description": "Published via Publisher �� nickcarbone.github.io/rotisserie/",
+      "description": "nickcarbone.github.io/rotisserie/",
       "updated": "2026-06-07T23:55:20Z",
       "created": "2026-06-07T23:55:13Z"
     },
