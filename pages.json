@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-18T12:55:56.532Z",
+  "generated": "2026-08-18T18:46:05.234Z",
   "count": 68,
   "pages": [
     {
@@ -7,7 +7,7 @@
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-08-18T12:27:27Z",
+      "updated": "2026-08-18T16:22:30Z",
       "created": "2026-07-10T01:19:16Z"
     },
     {
@@ -262,7 +262,7 @@
       "slug": "fathers-day-guide",
       "url": "https://nickcarbone.github.io/fathers-day-guide/",
       "title": "Fathers Day Guide",
-      "description": "Published via Publisher �� nickcarbone.github.io/fathers-day-guide/",
+      "description": "nickcarbone.github.io/fathers-day-guide/",
       "updated": "2026-06-12T20:24:45Z",
       "created": "2026-06-12T20:24:35Z"
     },
