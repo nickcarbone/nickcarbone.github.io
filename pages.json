@@ -1,14 +1,22 @@
 {
-  "generated": "2026-08-21T01:41:40.016Z",
-  "count": 68,
+  "generated": "2026-08-21T06:55:45.617Z",
+  "count": 69,
   "pages": [
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-08-21T00:46:24Z",
+      "updated": "2026-08-21T04:30:25Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "midnight-sun",
+      "url": "https://nickcarbone.github.io/midnight-sun/",
+      "title": "Midnight Sun",
+      "description": "nickcarbone.github.io/midnight-sun/",
+      "updated": "2026-08-21T03:14:14Z",
+      "created": "2026-08-21T03:14:05Z"
     },
     {
       "slug": "the-snug",
