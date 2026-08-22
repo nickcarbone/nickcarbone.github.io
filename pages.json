@@ -1,14 +1,30 @@
 {
-  "generated": "2026-08-21T18:43:55.061Z",
-  "count": 69,
+  "generated": "2026-08-22T01:35:31.100Z",
+  "count": 71,
   "pages": [
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-08-21T16:23:17Z",
+      "updated": "2026-08-22T00:43:58Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "the-long-armistice",
+      "url": "https://nickcarbone.github.io/the-long-armistice/",
+      "title": "The Long Armistice",
+      "description": "nickcarbone.github.io/the-long-armistice/",
+      "updated": "2026-08-21T21:39:30Z",
+      "created": "2026-08-21T21:39:22Z"
+    },
+    {
+      "slug": "pdo-cookbook",
+      "url": "https://nickcarbone.github.io/pdo-cookbook/",
+      "title": "Pdo Cookbook",
+      "description": "nickcarbone.github.io/pdo-cookbook/",
+      "updated": "2026-08-21T21:17:09Z",
+      "created": "2026-08-21T20:58:41Z"
     },
     {
       "slug": "midnight-sun",
