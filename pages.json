@@ -1,11 +1,27 @@
 {
-  "generated": "2026-09-18T04:10:43.848Z",
-  "count": 74,
+  "generated": "2026-09-18T10:57:00.792Z",
+  "count": 75,
   "pages": [
     {
-      "slug": "corner-store-of-the-world",
-      "url": "https://nickcarbone.github.io/corner-store-of-the-world/",
-      "title": "Corner Store Of The World",
+      "slug": "scoop-tracker",
+      "url": "https://nickcarbone.github.io/scoop-tracker/",
+      "title": "Scoop Tracker",
+      "description": "",
+      "updated": "2026-09-18T08:38:25Z",
+      "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "one-tap-nation",
+      "url": "https://nickcarbone.github.io/one-tap-nation/",
+      "title": "One Tap Nation",
+      "description": "nickcarbone.github.io/one-tap-nation/",
+      "updated": "2026-09-18T04:51:03Z",
+      "created": "2026-09-18T04:50:54Z"
+    },
+    {
+      "slug": "corner-stores-of-the-world",
+      "url": "https://nickcarbone.github.io/corner-stores-of-the-world/",
+      "title": "Corner Stores Of The World",
       "description": "nickcarbone.github.io/corner-store-of-the-world/",
       "updated": "2026-09-18T04:07:03Z",
       "created": "2026-09-18T04:06:58Z"
@@ -17,14 +33,6 @@
       "description": "nickcarbone.github.io/fast-food-local-legends/",
       "updated": "2026-09-18T02:42:33Z",
       "created": "2026-09-18T02:42:24Z"
-    },
-    {
-      "slug": "scoop-tracker",
-      "url": "https://nickcarbone.github.io/scoop-tracker/",
-      "title": "Scoop Tracker",
-      "description": "",
-      "updated": "2026-09-18T02:20:02Z",
-      "created": "2026-07-10T01:19:16Z"
     },
     {
       "slug": "menu-cabinet",

@@ -6,17 +6,22 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/corner-store-of-the-world/</loc>
+    <loc>https://nickcarbone.github.io/scoop-tracker/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nickcarbone.github.io/one-tap-nation/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nickcarbone.github.io/corner-stores-of-the-world/</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nickcarbone.github.io/fast-food-local-legends/</loc>
-    <lastmod>2026-09-18</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/scoop-tracker/</loc>
     <lastmod>2026-09-18</lastmod>
     <priority>0.8</priority>
   </url>
