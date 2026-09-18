@@ -1,13 +1,29 @@
 {
-  "generated": "2026-09-17T21:10:36.005Z",
-  "count": 72,
+  "generated": "2026-09-18T04:10:43.848Z",
+  "count": 74,
   "pages": [
+    {
+      "slug": "corner-store-of-the-world",
+      "url": "https://nickcarbone.github.io/corner-store-of-the-world/",
+      "title": "Corner Store Of The World",
+      "description": "nickcarbone.github.io/corner-store-of-the-world/",
+      "updated": "2026-09-18T04:07:03Z",
+      "created": "2026-09-18T04:06:58Z"
+    },
+    {
+      "slug": "fast-food-local-legends",
+      "url": "https://nickcarbone.github.io/fast-food-local-legends/",
+      "title": "Fast Food Local Legends",
+      "description": "nickcarbone.github.io/fast-food-local-legends/",
+      "updated": "2026-09-18T02:42:33Z",
+      "created": "2026-09-18T02:42:24Z"
+    },
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-09-17T19:27:08Z",
+      "updated": "2026-09-18T02:20:02Z",
       "created": "2026-07-10T01:19:16Z"
     },
     {
