@@ -1,14 +1,30 @@
 {
-  "generated": "2026-09-24T21:22:29.859Z",
-  "count": 76,
+  "generated": "2026-09-25T04:25:47.424Z",
+  "count": 78,
   "pages": [
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-09-24T16:12:11Z",
+      "updated": "2026-09-25T02:38:22Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "ten-global-weeknight-dinners",
+      "url": "https://nickcarbone.github.io/ten-global-weeknight-dinners/",
+      "title": "Ten Global Weeknight Dinners",
+      "description": "nickcarbone.github.io/ten-global-weeknight-dinners/",
+      "updated": "2026-09-25T01:00:32Z",
+      "created": "2026-09-25T01:00:23Z"
+    },
+    {
+      "slug": "ten-global-lunches",
+      "url": "https://nickcarbone.github.io/ten-global-lunches/",
+      "title": "Ten Global Lunches",
+      "description": "nickcarbone.github.io/ten-global-lunches/",
+      "updated": "2026-09-25T00:59:52Z",
+      "created": "2026-09-25T00:59:43Z"
     },
     {
       "slug": "schengen-lunch",
