@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-04T21:08:36.990Z",
+  "generated": "2026-10-05T05:04:32.837Z",
   "count": 79,
   "pages": [
     {
@@ -7,7 +7,7 @@
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-10-04T16:13:01Z",
+      "updated": "2026-10-05T03:10:23Z",
       "created": "2026-07-10T01:19:16Z"
     },
     {
@@ -46,7 +46,7 @@
       "slug": "one-tap-nation",
       "url": "https://nickcarbone.github.io/one-tap-nation/",
       "title": "One Tap Nation",
-      "description": "Published via Publisher �� nickcarbone.github.io/one-tap-nation/",
+      "description": "nickcarbone.github.io/one-tap-nation/",
       "updated": "2026-09-18T04:51:03Z",
       "created": "2026-09-18T04:50:54Z"
     },
