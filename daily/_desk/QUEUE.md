@@ -7,6 +7,7 @@ The top idea runs next morning. Order top to bottom is run order. Put new ideas 
 - `Must include:` things the piece has to cover
 - `Avoid:` angles, sources or formats to stay away from
 - `Look:` a steer on design or format (a map, a timetable, an index card, anything)
+- `Review: yes` publishes as normal, but flags the piece for you to check afterwards and opens a review checklist on GitHub
 
 **How to request a correction:** add an idea whose title line starts `CORRECTION:` followed by the link to the piece, and say what's wrong underneath. Corrections run before the day's new piece and don't use up the day.
 
@@ -47,6 +48,7 @@ The Anatomy of a Modern Luxury Crime
 A writer's reference to the environments, methods, and social machinery behind sophisticated contemporary thefts.
 Include: real documented jewel thefts, luxury resale networks, auction houses, private security, identity verification, surveillance evidence, and the distinction between public facts and fictionalized mechanics.
 Finish line: five case studies, a glossary of the luxury trade, and a collection of story-generating contradictions. Pay particular attention to mistaken identity and why video evidence can be misleading.
+Review: yes
 
 The Airport-to-City Reality Index
 The question: Which airports make it easiest to start living like a local immediately after landing, and which quietly consume an hour of your trip?
@@ -120,20 +122,14 @@ Proposed contents
 Visual element: An interactive network map linking cities, institutions, industries, and documented cases. Each connection should explain what is established and cite its source.
 Sources to start with: OCCRP, INTERPOL's stolen works of art database, and the New Yorker's reporting on the Pink Panthers. The latter is particularly useful for understanding how the investigation crossed national borders and why the group's organization remained uncertain. 
 Finish line: Six city profiles, 15–20 documented entities or institutions, a sourced relationship map, and five case studies. Label allegations carefully and avoid implying that ordinary businesses are involved in crime without evidence.
+Review: yes
 
-The World's Most Intriguing Private Addresses
-Research question: Which residential enclaves, buildings, and neighborhoods communicate wealth and social position in ways that an ordinary luxury-property ranking misses?
-This would combine your interest in overlooked European luxury, architectural detail, and the settings of modern geopolitical thrillers.
-Proposed contents
-- 15 residential enclaves across Europe, from coastal villas to urban palazzi and discreet modernist residences.
-- Architectural character, local history, landscape, and relationship to the surrounding city.
-- The difference between conspicuous luxury and understated prestige.
-- Publicly documented examples of notable buildings and their architects.
-- Nearby hotels, restaurants, transport, and public spaces that help explain the area's social geography.
-- A short section on how a fictional character's choice of residence can reveal priorities, without reducing wealth to a single stereotype.
-Visual element: A map-led atlas with filters for architectural style, coastal versus urban setting, historical versus contemporary design, and degree of urban integration.
-Sources to start with: DOCOMOMO International, The World Monuments Fund, ArchDaily, and municipal architectural heritage inventories. Use public listings and published architectural coverage for property examples.
-Finish line: 15 locations, 30 architectural references or images with proper attribution, and a comparative matrix explaining the distinctive character of each enclave.
+Houses That Tell You Who Lived There
+A building-by-building guide to landmark European houses and apartment buildings designed for wealthy clients, and what each one says about how its owners wanted to live. Where The Secret Geography of European Luxury maps districts, this one goes inside single buildings: the commission, the architect, the plan, the materials, and how the design signalled status in its day.
+Include: 15 buildings from about 1890 to the present, favouring ones that are now museums, heritage-listed or thoroughly documented (the level of Villa Tugendhat, Palais Stoclet or Casa Malaparte). Simple drawn plans or sections where they help. For each house, a short note on what it would tell a novelist about a character who lived there.
+Avoid: current private residents, property prices, live listings.
+Look: an architectural monograph or plan book.
+Finish line: 15 building profiles, a timeline of styles, and a comparison matrix of how each house balances privacy against display.
 
 ---
 

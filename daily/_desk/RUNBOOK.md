@@ -109,12 +109,17 @@ For each one:
    `gh api "repos/nickcarbone/nickcarbone.github.io/actions/runs?head_sha=$(git rev-parse origin/main)" --jq '.workflow_runs[] | select(.name=="pages build and deployment") | .status + " " + (.conclusion // "")'`
    `completed success` means the piece is live. Don't use WebFetch on nickcarbone.github.io, because it needs an approval nobody is there to give. If the deployment fails or hasn't finished after ten minutes, say so in the notification; the push succeeded, and Pages will catch up on the next push.
 
+7. **Review flag.** If the brief has a `Review: yes` line, still publish as normal, then open a GitHub issue for Nick:
+   `gh api -X POST repos/nickcarbone/nickcarbone.github.io/issues -f title="Review: Daily No. N · <Headline>" -f body="..." -f "labels[]=daily-review"`
+   The body links the piece, then lists every named person, business and institution with the claim made about each and its source. It also lists every allegation and whether it was proven, plus the claims the fact-checker marked disputed or you were least sure of. Nick closes the issue once he has reviewed the piece, or turns problems into corrections.
+
 ## 9. Notify Nick
 
 Send **one** push notification with PushNotification (status `proactive`): one line, under 200 characters, no markdown.
 
 - **Normal day:** `Daily No. 7 is live: <Headline> · nickcarbone.github.io/daily/` and, when relevant, ` · Queue: 5 left, empty after 24 Oct` and/or ` · 2 correction suggestions to review`.
 - **Queue warning:** whenever fewer than 7 ideas remain after today's piece, always include `Queue: N left, empty after <date>`. The date is TODAY plus N days, in `24 Oct` form. With 0 left, say `Queue empty: tomorrow's idea will be desk-picked`.
+- **Review day:** add ` · Review flagged: <issue link>` to the normal-day line.
 - **Desk-picked day:** say so: `Queue was empty, so the desk picked today's piece: <Headline>`.
 - **Failure:** `Daily didn't publish today: <short reason>. Queue untouched.` (or say which idea was parked).
 
