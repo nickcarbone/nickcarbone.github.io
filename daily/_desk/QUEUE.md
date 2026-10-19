@@ -45,6 +45,17 @@ A guide to why airports work the way they do, how they connect to cities, and ho
 Include: hub structures, airline alliances, rail-air connections, terminal transfers, overnight connections, ground transport, alternative airports, and examples of counterintuitive routes.
 Finish line: five worked journeys showing how to compare total travel time, transfers, ground access, and cost—not merely the headline airfare.
 
+The Cocktail Birthplace Atlas
+A companion to The Hotel Bar Atlas: 20 classic cocktails credited to a specific bar, set against what the record supports and what stands at that address today. Many of the famous claims are shakier than the menus suggest. The Negroni's count is disputed, and the Roosevelt's Sazerac Bar bought its name in 1949, so treat every origin as a claim to test.
+Include: for each drink, the bar and city credited, the claimed creator and year, the earliest printed recipe or reference found, any rival claimants, how the first known spec differs from what's poured now, and what occupies the original site.
+Include: a verdict on a visible four-step scale (documented, credited, contested, legend), defined in the piece, and a status for the room: same room still pouring; moved or rebuilt; a namesake that took the name later; members only; or gone, with what replaced it.
+Include: where the drink can still be ordered at or near its birthplace, a short register in the Hotel Bar Atlas manner: getting in, today's price of the drink checked on the day, best time to go, and whether there's a counter for one.
+Include: spread across at least eight countries and from the 1850s to the 2000s, with at least three modern classics. Candidates to weigh, not a fixed list: Sazerac, Ramos Gin Fizz and Hurricane (New Orleans), Negroni (Florence), Bellini (Venice), Boulevardier (Paris), Piña Colada (San Juan, two rival claims), Pisco Sour (Lima), Irish Coffee (Foynes and San Francisco), Mai Tai (Oakland), Painkiller (Jost Van Dyke), Caesar (Calgary), Jungle Bird (Kuala Lumpur), Penicillin (New York), Gin Basil Smash (Hamburg), Espresso Martini (London).
+Include: a short "too many fathers" note on famous drinks left out because no single bar can claim them (Martini, Margarita, Manhattan, Old Fashioned), and one cautionary tale of an origin story its author later admitted inventing (the Seelbach).
+Avoid: re-profiling the five drinks The Hotel Bar Atlas already covers (Singapore Sling at the Long Bar, Vieux Carré at the Monteleone, Red Snapper at the King Cole Bar, Hanky Panky at the American Bar, Serendipity at Bar Hemingway). Link to that piece and keep them out of the 20. Don't print a bar's own story as fact, and don't call any recipe "the original" unless a period source gives it.
+Look: a register of births, each drink a certificate with its verdict stamped on it, plus a world map of birthplaces.
+Finish line: 20 certificates, a map, a tally of verdicts, and a one-paragraph method for judging any origin claim you meet on a menu.
+
 The Anatomy of a Modern Luxury Crime
 A writer's reference to the environments, methods, and social machinery behind sophisticated contemporary thefts.
 Include: real documented jewel thefts, luxury resale networks, auction houses, private security, identity verification, surveillance evidence, and the distinction between public facts and fictionalized mechanics.
