@@ -104,7 +104,9 @@ For each one:
 3. Remove the idea from `QUEUE.md`, leaving everything else exactly as Nick wrote it.
 4. Append one line to `daily/_desk/LOG.md`: `- TODAY · No. N · <slug> · <form> · <minutes taken> min · <anything notable, decisions made, parked ideas, oddities>`.
 5. Commit: `daily: No. 007 · <Headline>`. Then `git pull --rebase origin main` (a GitHub Action also commits to `main`) and `git push origin main`. If the push is rejected, pull with rebase and push once more. If it still fails, stop and notify.
-6. **Confirm it's live.** GitHub Pages takes one to three minutes. Use WebFetch on the piece URL and check the headline is there. Retry a few times over about ten minutes. If it still isn't live, say so in the notification; the push succeeded and Pages will catch up.
+6. **Confirm it's live.** GitHub Pages takes one to three minutes. Each push also sets off the Rebuild Index Action, which commits on top of yours. That cancels the Pages build for your commit and starts one for the bot's commit, which is normal. Every 30 seconds or so, for up to ten minutes, `git fetch origin main` and check the newest "pages build and deployment" run on that head:
+   `gh api "repos/nickcarbone/nickcarbone.github.io/actions/runs?head_sha=$(git rev-parse origin/main)" --jq '.workflow_runs[] | select(.name=="pages build and deployment") | .status + " " + (.conclusion // "")'`
+   `completed success` means the piece is live. Don't use WebFetch on nickcarbone.github.io, because it needs an approval nobody is there to give. If the deployment fails or hasn't finished after ten minutes, say so in the notification; the push succeeded, and Pages will catch up on the next push.
 
 ## 9. Notify Nick
 
