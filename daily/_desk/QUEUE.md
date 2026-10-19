@@ -24,11 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Hotel Bar Atlas
-A guide to hotel bars as urban third places: where you can sit comfortably, observe a city, meet people, and enjoy a sense of occasion without staying at the hotel.
-Include: 20 bars in cities around the world, architectural identity, neighborhood context, price expectations, solo-visitor friendliness, best time to visit, and public access policies.
-Finish line: a curated directory organized by atmosphere, not just by star rating. Favor places that offer a window into their city over generic luxury interiors.
-
 The Secret Geography of European Luxury
 Investigate where understated wealth actually lives: villa districts, seaside enclaves, resort towns, and overlooked neighborhoods with exceptional architecture and views.
 Include: 10 locations, property styles, local wealth indicators, architectural history, nearby amenities, transport access, and representative properties or streets.

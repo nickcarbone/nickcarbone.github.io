@@ -1,3 +1,21 @@
 {
-  "pieces": []
+  "pieces": [
+    {
+      "no": 1,
+      "slug": "2026-10-19-the-hotel-bar-atlas",
+      "date": "2026-10-19",
+      "title": "The Hotel Bar Atlas",
+      "dek": "Twenty hotel bars around the world where anyone can walk in, take a seat and watch a city, sorted by the kind of evening they offer.",
+      "kind": "Field guide directory",
+      "readingMinutes": 22,
+      "design": "Bodoni Moda, Newsreader and Jost; letterhead cream, claret and bottle green with brass; key-rack index, lobby clocks, ledger-style register cards.",
+      "source": "queue",
+      "brief": "The Hotel Bar Atlas\nA guide to hotel bars as urban third places: where you can sit comfortably, observe a city, meet people, and enjoy a sense of occasion without staying at the hotel.\nInclude: 20 bars in cities around the world, architectural identity, neighborhood context, price expectations, solo-visitor friendliness, best time to visit, and public access policies.\nFinish line: a curated directory organized by atmosphere, not just by star rating. Favor places that offer a window into their city over generic luxury interiors.",
+      "factcheck": {
+        "claims": 185,
+        "fixed": 12
+      },
+      "corrections": []
+    }
+  ]
 }

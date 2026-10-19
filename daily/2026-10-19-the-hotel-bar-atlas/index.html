@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hotel Bar Atlas · Daily</title>
+<meta name="description" content="Twenty hotel bars around the world where anyone can walk in, take a seat and watch a city, sorted by the kind of evening they offer.">
+<meta property="og:title" content="The Hotel Bar Atlas">
+<meta property="og:description" content="Twenty hotel bars around the world where anyone can walk in, take a seat and watch a city, sorted by the kind of evening they offer.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-10-19-the-hotel-bar-atlas/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-10-19-the-hotel-bar-atlas/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Jost:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3ede1; --paper-2:#ebe2d1; --ink:#221b16; --muted:#5b5047; --rule:#cbbca1;
+  --claret:#7a1f2b; --green:#1c3a2f; --on-green:#f3ede1; --brass:#9a7433; --brass-soft:#d9c08a;
+  --card:#f8f4ec; --bad:#8c1d24; --mid:#6b4a12;
+  --display:"Bodoni Moda", "Didot", Georgia, serif;
+  --body:"Newsreader", Georgia, serif;
+  --label:"Jost", "Futura", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111a16; --paper-2:#17231e; --ink:#ece4d4; --muted:#b8ad99; --rule:#334139;
+    --claret:#eaa0a4; --green:#0a110e; --on-green:#ece4d4; --brass:#c9a35a; --brass-soft:#6e5a33;
+    --card:#16211c; --bad:#f0a0a0; --mid:#e2c27e;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111a16; --paper-2:#17231e; --ink:#ece4d4; --muted:#b8ad99; --rule:#334139;
+  --claret:#eaa0a4; --green:#0a110e; --on-green:#ece4d4; --brass:#c9a35a; --brass-soft:#6e5a33;
+  --card:#16211c; --bad:#f0a0a0; --mid:#e2c27e;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6;font-optical-sizing:auto}
+a{color:var(--claret);text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+.narrow{max-width:720px}
+
+/* top strip */
+.strip{background:var(--green);color:var(--on-green);font-family:var(--label);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;flex-wrap:wrap}
+.strip a{color:var(--on-green);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.strip a:hover{text-decoration:underline}
+
+/* masthead */
+.mast{border-bottom:1px solid var(--rule);padding:48px 0 40px;position:relative;overflow:hidden}
+.mast .wrap{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+@media(min-width:860px){.mast .wrap{grid-template-columns:1.35fr 1fr}}
+.kicker{font-family:var(--label);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(48px,10vw,104px);line-height:.95;margin:0;letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--claret)}
+.dek{font-size:clamp(19px,2.4vw,23px);line-height:1.45;margin:22px 0 0;max-width:34em;color:var(--ink)}
+.byline{font-family:var(--label);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:22px}
+.crest{width:100%;max-width:220px;justify-self:center}
+@media(min-width:860px){.crest{max-width:360px}}
+.crest svg{width:100%;height:auto;display:block}
+
+/* intro */
+.intro{padding:40px 0 8px}
+.lede::first-letter{font-family:var(--display);float:left;font-size:4.4em;line-height:.8;padding:6px 10px 0 0;color:var(--claret)}
+.intro p{margin:0 0 1.1em}
+
+/* key rack */
+.rack{margin:28px 0 8px;padding:24px 16px 20px;background:var(--paper-2);border:1px solid var(--rule)}
+.rack h2,.lobby h2,.rules h2,.ledger h2,.sources h2,.corrections h2{font-family:var(--label);font-weight:500;font-size:14px;letter-spacing:.22em;text-transform:uppercase;margin:0 0 16px;color:var(--muted)}
+.rack ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:14px 10px}
+.fob{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:4px 4px 40px 40px;padding:10px 4px 16px;min-height:104px;position:relative;transition:transform .2s ease, border-color .2s ease}
+.fob:hover{border-color:var(--brass);transform:translateY(2px) rotate(-2deg)}
+.fob-hole{width:12px;height:12px;border-radius:50%;border:2px solid var(--brass);margin-bottom:8px}
+.fob-n{font-family:var(--display);font-size:26px;line-height:1;color:var(--claret)}
+.fob-c{font-family:var(--label);font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-align:center;margin-top:6px;line-height:1.25;color:var(--muted)}
+
+/* lobby clocks */
+.lobby{margin:28px 0 0}
+.lobby ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:0;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.lobby li{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.clk-city{font-family:var(--label);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.clk-time{font-family:var(--display);font-size:22px;font-variant-numeric:tabular-nums}
+.lobby .note{font-size:15px;color:var(--muted);margin:10px 0 0}
+
+/* rules */
+.rules{margin:40px 0 0}
+.rules ol{list-style:none;padding:0;margin:0;display:grid;gap:0;grid-template-columns:1fr;counter-reset:r;border-top:2px solid var(--ink)}
+@media(min-width:760px){.rules ol{grid-template-columns:1fr 1fr}}
+.rules li{counter-increment:r;padding:16px 16px 14px 52px;border-bottom:1px solid var(--rule);position:relative}
+.rules li::before{content:counter(r);position:absolute;left:8px;top:10px;font-family:var(--display);font-size:32px;color:var(--brass)}
+.rules h3{font-family:var(--display);font-weight:600;font-size:21px;margin:0 0 4px}
+.rules p{margin:0;font-size:17px}
+
+/* filters */
+.filters{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--rule);margin-top:48px}
+.filters .wrap{display:flex;gap:8px;align-items:center;overflow-x:auto;padding-top:8px;padding-bottom:8px;scrollbar-width:thin}
+.filters .lab{font-family:var(--label);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);white-space:nowrap;margin-right:4px}
+.chip{font-family:var(--label);font-size:14px;letter-spacing:.03em;background:transparent;color:var(--ink);border:1px solid var(--rule);border-radius:0;padding:0 14px;min-height:40px;white-space:nowrap;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.chip.sep{margin-left:8px}
+.count{font-family:var(--label);font-size:13px;color:var(--muted);white-space:nowrap;margin-left:auto;padding-left:8px}
+
+/* sections & entries */
+.atmos{padding-top:40px}
+.atmos-head{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:end;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:8px}
+.numeral{font-family:var(--display);font-size:clamp(56px,9vw,88px);line-height:.8;color:var(--brass)}
+.atmos-head h2{font-family:var(--display);font-weight:400;font-size:clamp(32px,5vw,46px);line-height:1.05;margin:0}
+.atmos-head p{margin:6px 0 0;color:var(--muted);font-size:17px;max-width:44em}
+.entry{border-bottom:1px solid var(--rule);padding:26px 0 24px;scroll-margin-top:64px}
+.entry[hidden],.atmos[hidden]{display:none}
+.entry-head{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:baseline}
+@media(min-width:760px){.entry-head{grid-template-columns:auto 1fr auto}}
+.fob-no{font-family:var(--display);font-size:40px;line-height:1;color:var(--claret);min-width:1.4em}
+.entry h3{font-family:var(--display);font-weight:600;font-size:clamp(26px,3.6vw,34px);line-height:1.1;margin:0}
+.where{font-family:var(--label);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 0 0}
+.dot{color:var(--brass)}
+.since{grid-column:2;font-family:var(--label);font-size:13px;letter-spacing:.06em;color:var(--muted);margin:0}
+.since span{text-transform:uppercase;letter-spacing:.14em;font-size:11px;margin-right:4px}
+@media(min-width:760px){.since{grid-column:3;text-align:right}}
+.entry-body{display:grid;grid-template-columns:1fr;gap:20px;margin-top:16px}
+@media(min-width:860px){.entry-body{grid-template-columns:1.45fr 1fr;gap:36px}}
+.prose p{margin:0 0 1em}
+.tags{margin:0!important}
+.tag{display:inline-block;font-family:var(--label);font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--brass);color:var(--ink);padding:3px 8px;margin:0 6px 6px 0}
+.register{margin:0;background:var(--card);border:1px solid var(--rule);border-top:3px double var(--brass);padding:4px 14px;font-size:16px;line-height:1.45;align-self:start}
+.register div{display:grid;grid-template-columns:92px 1fr;gap:10px;padding:9px 0;border-bottom:1px dotted var(--rule)}
+.register div:last-child{border-bottom:0}
+.register dt{font-family:var(--label);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.register dd{margin:0}
+sup.ref{font-family:var(--label);font-size:.62em;line-height:0;margin-left:1px}
+sup.ref a{text-decoration:none;padding:0 1px}
+sup.ref a:hover{text-decoration:underline}
+.empty{padding:32px 0;color:var(--muted);font-style:italic}
+
+/* ledger */
+.ledger{margin:56px 0 0}
+.ledger .lead{margin:0 0 16px;max-width:44em}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:16px;background:var(--card)}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--rule)}
+thead th{font-family:var(--label);font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:var(--paper-2)}
+tbody th{font-family:var(--display);font-weight:400;font-size:18px;line-height:1.3;width:30%}
+.verdict{font-family:var(--label);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;white-space:nowrap}
+.v-bad{color:var(--bad)}
+.v-mid{color:var(--mid)}
+
+/* sources & footer */
+.sources{margin:56px 0 0}
+.sources ol{padding-left:2.2em;font-size:15px;line-height:1.5;margin:0}
+.sources li{margin:0 0 8px;overflow-wrap:anywhere}
+.sources li:target{background:var(--paper-2)}
+.pub{font-style:italic}
+.method{font-size:16px;color:var(--muted);margin:0 0 16px}
+footer.site{margin-top:64px;background:var(--green);color:var(--on-green);padding:28px 0 36px;font-family:var(--label);font-size:14px;letter-spacing:.04em;line-height:1.7}
+footer.site a{color:var(--on-green);display:inline-flex;min-height:44px;align-items:center}
+footer.site p{margin:0 0 6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (max-width:480px){body{font-size:17px}.register div{grid-template-columns:80px 1fr}}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 001 · Monday 19 October 2026</span></div></div>
+
+<header class="mast">
+  <div class="wrap">
+    <div>
+      <p class="kicker">A directory of twenty rooms</p>
+      <h1>The Hotel <em>Bar</em> Atlas</h1>
+      <p class="dek">Twenty hotel bars around the world where anyone can walk in, take a seat and watch a city, sorted by the kind of evening they offer.</p>
+      <p class="byline">Nick Carbone · Field guide</p>
+    </div>
+    <div class="crest" aria-hidden="true">
+      <svg viewBox="0 0 360 400" role="img">
+        <g style="stroke:var(--brass)" fill="none" stroke-width="1.5">
+          <path d="M40 390 V170 A140 140 0 0 1 320 170 V390"/>
+          <path d="M62 390 V172 A118 118 0 0 1 298 172 V390"/>
+          <path d="M84 390 V176 A96 96 0 0 1 276 176 V390" stroke-width="1"/>
+        </g>
+        <g style="stroke:var(--brass)" stroke-width="1" opacity=".55">
+          <line x1="180" y1="176" x2="180" y2="80"/><line x1="180" y1="176" x2="112" y2="108"/><line x1="180" y1="176" x2="248" y2="108"/>
+          <line x1="180" y1="176" x2="88" y2="146"/><line x1="180" y1="176" x2="272" y2="146"/><line x1="180" y1="176" x2="142" y2="88"/><line x1="180" y1="176" x2="218" y2="88"/>
+        </g>
+        <!-- bar counter -->
+        <rect style="fill:var(--claret)" x="40" y="318" width="280" height="14"/>
+        <rect style="stroke:var(--brass)" x="52" y="332" width="256" height="58" fill="none" stroke-width="1.5"/>
+        <g style="stroke:var(--brass)" stroke-width="1"><line x1="116" y1="332" x2="116" y2="390"/><line x1="180" y1="332" x2="180" y2="390"/><line x1="244" y1="332" x2="244" y2="390"/></g>
+        <!-- coupe -->
+        <g style="stroke:var(--ink)" fill="none" stroke-width="2">
+          <path style="fill:var(--paper-2)" d="M146 236 Q180 286 214 236 Z"/>
+          <line x1="180" y1="258" x2="180" y2="304"/><line x1="160" y1="306" x2="200" y2="306"/>
+        </g>
+        <circle style="fill:var(--claret)" cx="196" cy="246" r="4"/>
+        <!-- hanging key fob -->
+        <g>
+          <line style="stroke:var(--ink)" x1="268" y1="176" x2="268" y2="214" stroke-width="1"/>
+          <circle style="stroke:var(--ink)" cx="268" cy="218" r="5" fill="none" stroke-width="1.5"/>
+          <path style="fill:var(--claret)" d="M252 222 H284 V262 Q268 282 252 262 Z"/>
+          <text style="fill:var(--paper)" x="268" y="252" text-anchor="middle" font-family="Bodoni Moda, Georgia, serif" font-size="18">20</text>
+        </g>
+        <!-- stools -->
+        <g> style="fill:var(--ink)"<rect x="92" y="296" width="30" height="6" rx="3"/><rect x="238" y="296" width="30" height="6" rx="3"/></g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrap narrow intro">
+
+<p class="lede">A good hotel bar is one of the few grand rooms in a city that anyone can use for the price of a drink. Plenty of the people at the Long Bar in Singapore or the Connaught in Mayfair are not staying upstairs, and nobody asks. The rooms were built to impress travellers, which also makes them good places to watch a city at its habits: the after-work round in Stockholm, aperitivo in a Roman courtyard, a veteran jazz band on the Bund.</p>
+<p>This atlas collects twenty of them in eighteen cities, sorted by the kind of evening they give you. Each entry has a register: how to get in, whether there is a cover charge, what to wear, whether there is a counter to sit at alone, what a drink costs and when to go. Policies and prices were checked against the bars' own pages on 19 October 2026 wherever they publish them; where only an older or secondary figure exists, the entry says so and dates it. All of it changes, so check before you go.</p>
+
+</div>
+
+<div class="wrap">
+  <nav class="rack" aria-labelledby="rack-h">
+    <h2 id="rack-h">The key rack: jump to a bar</h2>
+    <ol><li><a class="fob" href="#bemelmans"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">01</span><span class="fob-c">New York</span><span class="vh"> — Bemelmans Bar</span></a></li><li><a class="fob" href="#kingcole"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">02</span><span class="fob-c">New York</span><span class="vh"> — King Cole Bar</span></a></li><li><a class="fob" href="#coqdor"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">03</span><span class="fob-c">Chicago</span><span class="vh"> — Coq d&#x27;Or</span></a></li><li><a class="fob" href="#longhi"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">04</span><span class="fob-c">Venice</span><span class="vh"> — Bar Longhi</span></a></li><li><a class="fob" href="#newyorkbar"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">05</span><span class="fob-c">Tokyo</span><span class="vh"> — New York Bar</span></a></li><li><a class="fob" href="#cadier"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">06</span><span class="fob-c">Stockholm</span><span class="vh"> — Cadier Bar</span></a></li><li><a class="fob" href="#granhotel"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">07</span><span class="fob-c">Mexico City</span><span class="vh"> — La Terraza</span></a></li><li><a class="fob" href="#harbour"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">08</span><span class="fob-c">Mumbai</span><span class="vh"> — Harbour Bar</span></a></li><li><a class="fob" href="#stravinskij"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">09</span><span class="fob-c">Rome</span><span class="vh"> — Stravinskij Bar</span></a></li><li><a class="fob" href="#planet"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">10</span><span class="fob-c">Cape Town</span><span class="vh"> — Planet Bar</span></a></li><li><a class="fob" href="#bamboo"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">11</span><span class="fob-c">Hanoi</span><span class="vh"> — Bamboo Bar</span></a></li><li><a class="fob" href="#carousel"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">12</span><span class="fob-c">New Orleans</span><span class="vh"> — Carousel Bar</span></a></li><li><a class="fob" href="#jazzbar"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">13</span><span class="fob-c">Shanghai</span><span class="vh"> — The Jazz Bar</span></a></li><li><a class="fob" href="#savoy"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">14</span><span class="fob-c">London</span><span class="vh"> — American Bar</span></a></li><li><a class="fob" href="#connaught"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">15</span><span class="fob-c">London</span><span class="vh"> — Connaught Bar</span></a></li><li><a class="fob" href="#hemingway"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">16</span><span class="fob-c">Paris</span><span class="vh"> — Bar Hemingway</span></a></li><li><a class="fob" href="#longbar"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">17</span><span class="fob-c">Singapore</span><span class="vh"> — Long Bar</span></a></li><li><a class="fob" href="#orient"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">18</span><span class="fob-c">Istanbul</span><span class="vh"> — Orient Bar</span></a></li><li><a class="fob" href="#churchill"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">19</span><span class="fob-c">Marrakech</span><span class="vh"> — Le Churchill</span></a></li><li><a class="fob" href="#sacher"><span class="fob-hole" aria-hidden="true"></span><span class="fob-n">20</span><span class="fob-c">Vienna</span><span class="vh"> — Blaue Bar</span></a></li></ol>
+  </nav>
+
+  <section class="lobby" aria-labelledby="lobby-h">
+    <h2 id="lobby-h">Lobby clocks: local time now</h2>
+    <ul><li data-tz="America/New_York"><span class="clk-city">New York</span><span class="clk-time">··:··</span></li><li data-tz="America/Chicago"><span class="clk-city">Chicago</span><span class="clk-time">··:··</span></li><li data-tz="Europe/Rome"><span class="clk-city">Venice</span><span class="clk-time">··:··</span></li><li data-tz="Asia/Tokyo"><span class="clk-city">Tokyo</span><span class="clk-time">··:··</span></li><li data-tz="Europe/Stockholm"><span class="clk-city">Stockholm</span><span class="clk-time">··:··</span></li><li data-tz="America/Mexico_City"><span class="clk-city">Mexico City</span><span class="clk-time">··:··</span></li><li data-tz="Asia/Kolkata"><span class="clk-city">Mumbai</span><span class="clk-time">··:··</span></li><li data-tz="Europe/Rome"><span class="clk-city">Rome</span><span class="clk-time">··:··</span></li><li data-tz="Africa/Johannesburg"><span class="clk-city">Cape Town</span><span class="clk-time">··:··</span></li><li data-tz="Asia/Ho_Chi_Minh"><span class="clk-city">Hanoi</span><span class="clk-time">··:··</span></li><li data-tz="America/Chicago"><span class="clk-city">New Orleans</span><span class="clk-time">··:··</span></li><li data-tz="Asia/Shanghai"><span class="clk-city">Shanghai</span><span class="clk-time">··:··</span></li><li data-tz="Europe/London"><span class="clk-city">London</span><span class="clk-time">··:··</span></li><li data-tz="Europe/Paris"><span class="clk-city">Paris</span><span class="clk-time">··:··</span></li><li data-tz="Asia/Singapore"><span class="clk-city">Singapore</span><span class="clk-time">··:··</span></li><li data-tz="Europe/Istanbul"><span class="clk-city">Istanbul</span><span class="clk-time">··:··</span></li><li data-tz="Africa/Casablanca"><span class="clk-city">Marrakech</span><span class="clk-time">··:··</span></li><li data-tz="Europe/Vienna"><span class="clk-city">Vienna</span><span class="clk-time">··:··</span></li></ul>
+    <p class="note">Times update from your device's clock. Opening hours are in each entry.</p>
+  </section>
+
+  <section class="rules" aria-labelledby="rules-h">
+    <h2 id="rules-h">House rules for the non-resident</h2>
+    <ol><li><h3>Arrive near opening</h3><p>Several of the busiest bars here take no bookings at all, among them the Connaught, the Long Bar and the New York Bar in Tokyo. The advice from the Ritz itself, from Resy on Bemelmans and from The Nudge on the Savoy comes to the same thing: get there early.<sup class="ref"><a href="#s90">90</a>,<a href="#s100">100</a>,<a href="#s28">28</a>,<a href="#s97">97</a>,<a href="#s4">4</a>,<a href="#s85">85</a></sup></p></li><li><h3>Watch for the cover</h3><p>Music sometimes brings a charge. At Bemelmans it starts at 5.30pm and at the New York Bar at 6.30pm, so the hour before is the cheapest of the night.<sup class="ref"><a href="#s5">5</a>,<a href="#s28">28</a></sup></p></li><li><h3>Take the counter</h3><p>Alone, the stools are the best seats in the house: closest to the bartenders and, at Bemelmans, cheaper once the cover applies.<sup class="ref"><a href="#s4">4</a>,<a href="#s5">5</a></sup></p></li><li><h3>Dress a notch up</h3><p>Most of these bars publish a code, usually smart casual, and sportswear is the thing most often named as unwelcome.<sup class="ref"><a href="#s5">5</a>,<a href="#s82">82</a>,<a href="#s28">28</a>,<a href="#s114">114</a></sup></p></li></ol>
+  </section>
+</div>
+
+<div class="filters" role="toolbar" aria-label="Filter the bars">
+  <div class="wrap">
+    <span class="lab">Show</span>
+    <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+    <button type="button" class="chip" data-filter="painted" aria-pressed="false">Painted rooms</button><button type="button" class="chip" data-filter="view" aria-pressed="false">Windows on the city</button><button type="button" class="chip" data-filter="garden" aria-pressed="false">Gardens and courtyards</button><button type="button" class="chip" data-filter="music" aria-pressed="false">Music rooms</button><button type="button" class="chip" data-filter="stage" aria-pressed="false">The bartender&#x27;s stage</button><button type="button" class="chip" data-filter="salon" aria-pressed="false">Grand-tour salons</button>
+    <button type="button" class="chip sep" data-toggle="walkin" aria-pressed="false">Walk-ins</button>
+    <button type="button" class="chip" data-toggle="counter" aria-pressed="false">Bar counter</button>
+    <span class="count" aria-live="polite"></span>
+  </div>
+</div>
+
+<div class="wrap" id="directory">
+
+<section class="atmos" id="sec-painted" data-section="painted">
+  <div class="atmos-head">
+    <span class="numeral" aria-hidden="true">I</span>
+    <div><h2>Painted rooms</h2><p>Bars built around a mural, a mirror or a picture on the wall. Come for the art and stay because the room was designed to make you stay.</p></div>
+  </div>
+  
+<article class="entry" id="bemelmans" data-section="painted" data-walkin="1" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">01</span>
+    <div class="entry-title">
+      <h3><span class="vh">1. </span>Bemelmans Bar</h3>
+      <p class="where">The Carlyle <span class="dot">·</span> New York</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1947</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>Ludwig Bemelmans, the author of the <i>Madeline</i> books, painted the walls of this Upper East Side bar with Central Park through the four seasons, schoolgirls in two straight lines included. The bar opened in 1947, and the murals are the only Bemelmans commission that survives and is open to the public.<sup class="ref"><a href="#s1">1</a>,<a href="#s2">2</a></sup> He is said to have been paid in about 18 months' lodging for his family; Punch reports it as fact, while the hotel's own press kit calls it a rumour.<sup class="ref"><a href="#s3">3</a>,<a href="#s1">1</a></sup></p><p>The ceiling is 24-carat gold leaf, the bar black granite, and the piano sits in the middle of the room.<sup class="ref"><a href="#s1">1</a>,<a href="#s3">3</a></sup> The Carlyle opened in 1930 a block from Central Park, among the Madison Avenue galleries.<sup class="ref"><a href="#s2">2</a></sup></p><p class="tags"><span class="tag">Walk-ins</span><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>Walk-ins are still the main way in, with waits of up to two hours at peak; the few bookings carry a minimum spend.<sup class="ref"><a href="#s4">4</a></sup></dd></div><div><dt>Cover</dt><dd>From 5.30pm, when the music starts: $20–25 a head at the bar, more at tables.<sup class="ref"><a href="#s5">5</a></sup></dd></div><div><dt>Dress</dt><dd>&ldquo;Dress for the occasion&rdquo;; sportswear is discouraged.<sup class="ref"><a href="#s5">5</a></sup></dd></div><div><dt>Alone</dt><dd>Bar stools, which are also the cheaper seats once the cover applies.<sup class="ref"><a href="#s4">4</a>,<a href="#s5">5</a></sup></dd></div><div><dt>Price</dt><dd>Cocktails about $30–43 before tax on the official menu, checked 19 Oct 2026.<sup class="ref"><a href="#s6">6</a></sup></dd></div><div><dt>When</dt><dd>A weekday afternoon, before the pianist arrives.<sup class="ref"><a href="#s4">4</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="kingcole" data-section="painted" data-walkin="0" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">02</span>
+    <div class="entry-title">
+      <h3><span class="vh">2. </span>King Cole Bar</h3>
+      <p class="where">The St. Regis <span class="dot">·</span> New York</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1904 (hotel)</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>John Jacob Astor IV commissioned Maxfield Parrish's <i>Old King Cole</i> for his Knickerbocker Hotel at 42nd Street and Broadway, where it went up in 1906; Astor's own face is said to be the king's.<sup class="ref"><a href="#s7">7</a>,<a href="#s8">8</a></sup> The mural moved to Astor's St. Regis on Fifth Avenue in 1932, after years in storage and a spell in a Chicago museum, and was later restored at a cost of $100,000.<sup class="ref"><a href="#s7">7</a></sup> Champalimaud Design reworked the room in 2024 with dark panelling and a green ceiling.<sup class="ref"><a href="#s9">9</a></sup></p><p>The bar's claim to fame is the Red Snapper, the St. Regis name for the Bloody Mary, credited to the bartender Fernand Petiot in 1934. Petiot is also credited with making an early version at Harry's New York Bar in Paris, so &ldquo;perfected here&rdquo; is the safer claim.<sup class="ref"><a href="#s8">8</a>,<a href="#s10">10</a></sup> There are only about ten seats at the bar itself.<sup class="ref"><a href="#s8">8</a></sup></p><p class="tags"><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>The hotel's page lists hours but no booking policy.<sup class="ref"><a href="#s11">11</a></sup></dd></div><div><dt>Cover</dt><dd>None listed.<sup class="ref"><a href="#s11">11</a></sup></dd></div><div><dt>Dress</dt><dd>Smart casual.<sup class="ref"><a href="#s11">11</a></sup></dd></div><div><dt>Alone</dt><dd>About ten bar seats; the rest is low velvet chairs.<sup class="ref"><a href="#s8">8</a></sup></dd></div><div><dt>Price</dt><dd>Red Snapper $30 (Boston Globe, April 2026).<sup class="ref"><a href="#s8">8</a></sup></dd></div><div><dt>When</dt><dd>Opening time, before the after-work crowd.<sup class="ref"><a href="#s11">11</a>,<a href="#s10">10</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="coqdor" data-section="painted" data-walkin="1" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">03</span>
+    <div class="entry-title">
+      <h3><span class="vh">3. </span>Coq d&#x27;Or</h3>
+      <p class="where">The Drake <span class="dot">·</span> Chicago</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1933</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>The Coq d'Or opened on 6 December 1933, the day legal sales resumed in Illinois after Repeal, and the hotel says it held the second liquor licence issued in Chicago afterwards; the National Trust repeats the claim.<sup class="ref"><a href="#s12">12</a>,<a href="#s13">13</a></sup> It is a low-ceilinged room of dark panelling, red leather banquettes and French country murals, brightened in a 2011 restoration.<sup class="ref"><a href="#s12">12</a>,<a href="#s14">14</a></sup></p><p>The Drake opened in 1920 where Michigan Avenue meets the lake.<sup class="ref"><a href="#s12">12</a></sup> Order the Executive Pour, a martini served with a chilled sidecar holding a second helping.<sup class="ref"><a href="#s15">15</a></sup></p><p class="tags"><span class="tag">Walk-ins</span><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>No reservations needed; first come, first served.<sup class="ref"><a href="#s13">13</a></sup></dd></div><div><dt>Cover</dt><dd>None listed; live music on Friday and Saturday nights.<sup class="ref"><a href="#s13">13</a>,<a href="#s16">16</a></sup></dd></div><div><dt>Dress</dt><dd>No code published.<sup class="ref"><a href="#s13">13</a></sup></dd></div><div><dt>Alone</dt><dd>A bar counter along the north wall.<sup class="ref"><a href="#s14">14</a></sup></dd></div><div><dt>Price</dt><dd>Specialty cocktails $16–19 on the May 2025 menu.<sup class="ref"><a href="#s17">17</a></sup></dd></div><div><dt>When</dt><dd>Friday or Saturday night for the duos; any afternoon for quiet.<sup class="ref"><a href="#s16">16</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="longhi" data-section="painted" data-walkin="0" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">04</span>
+    <div class="entry-title">
+      <h3><span class="vh">4. </span>Bar Longhi</h3>
+      <p class="where">The Gritti Palace <span class="dot">·</span> Venice</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1895 (hotel)</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>The Gritti was the residence of Doge Andrea Gritti from 1525 and became a hotel in 1895.<sup class="ref"><a href="#s18">18</a></sup> Its bar is named after the 18th-century Venetian painter Pietro Longhi, and Cigar Aficionado reported that original Longhi paintings hang there, a detail other sources do not confirm.<sup class="ref"><a href="#s19">19</a></sup> Expect etched Venetian mirrors, red marble floors and Louis XIV-style chairs.<sup class="ref"><a href="#s20">20</a>,<a href="#s21">21</a></sup></p><p>Outside, the terrace sits on the Grand Canal facing Santa Maria della Salute, styled after the wooden decks of 1930s Italian yachts.<sup class="ref"><a href="#s19">19</a>,<a href="#s20">20</a></sup> Hemingway stayed at the Gritti in the late 1940s and wrote parts of <i>Across the River and into the Trees</i> there; the story of a late-night baseball game in the lobby is best treated as legend.<sup class="ref"><a href="#s19">19</a>,<a href="#s22">22</a></sup></p><p class="tags"><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>Bookings by phone or OpenTable; nothing restricts non-guests.<sup class="ref"><a href="#s23">23</a></sup></dd></div><div><dt>Cover</dt><dd>None published.<sup class="ref"><a href="#s23">23</a></sup></dd></div><div><dt>Dress</dt><dd>Smart casual.<sup class="ref"><a href="#s23">23</a></sup></dd></div><div><dt>Alone</dt><dd>A small bar counter.<sup class="ref"><a href="#s24">24</a></sup></dd></div><div><dt>Price</dt><dd>No current list online; Time Out gave €19 a cocktail in 2018.<sup class="ref"><a href="#s25">25</a></sup></dd></div><div><dt>When</dt><dd>Sunset on the canal terrace, in the warmer months.<sup class="ref"><a href="#s19">19</a>,<a href="#s23">23</a></sup></dd></div></dl>
+  </div>
+</article>
+</section>
+<section class="atmos" id="sec-view" data-section="view">
+  <div class="atmos-head">
+    <span class="numeral" aria-hidden="true">II</span>
+    <div><h2>Windows on the city</h2><p>Bars where the city itself is the decoration: a skyline, a harbour, a square.</p></div>
+  </div>
+  
+<article class="entry" id="newyorkbar" data-section="view" data-walkin="1" data-counter="0">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">05</span>
+    <div class="entry-title">
+      <h3><span class="vh">5. </span>New York Bar</h3>
+      <p class="where">Park Hyatt Tokyo <span class="dot">·</span> Tokyo</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1994</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>On the 52nd floor of Kenzo Tange's Shinjuku Park Tower, the bar opened with the hotel in 1994 and reached a wider audience through Sofia Coppola's <i>Lost in Translation</i>.<sup class="ref"><a href="#s26">26</a></sup> After a 19-month renovation by the Paris studio Jouin Manku, the hotel reopened on 9 December 2025 with the bar's black and chrome restored and its Valerio Adami murals in place.<sup class="ref"><a href="#s26">26</a>,<a href="#s27">27</a></sup></p><p>The hotel is known for its views over Tokyo and, on clear days, to Mount Fuji.<sup class="ref"><a href="#s26">26</a></sup> Jazz sets start at 7.15pm. The L.I.T. cocktail, a nod to the film, is on the menu.<sup class="ref"><a href="#s28">28</a>,<a href="#s29">29</a></sup></p><p class="tags"><span class="tag">Walk-ins</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>Walk-in only: reservations are not accepted. Over-20s, with ID.<sup class="ref"><a href="#s28">28</a></sup></dd></div><div><dt>Cover</dt><dd>¥3,300 a person from 6.30pm.<sup class="ref"><a href="#s28">28</a></sup></dd></div><div><dt>Dress</dt><dd>No shorts, beach sandals, sportswear or sleeveless tops.<sup class="ref"><a href="#s28">28</a></sup></dd></div><div><dt>Alone</dt><dd>Not confirmed since the renovation.</dd></div><div><dt>Price</dt><dd>Cocktails ¥2,640 plus 15% service (menu dated 31 Aug 2026).<sup class="ref"><a href="#s29">29</a></sup></dd></div><div><dt>When</dt><dd>5pm to 6.30pm: daylight into dusk, and no cover.<sup class="ref"><a href="#s28">28</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="cadier" data-section="view" data-walkin="0" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">06</span>
+    <div class="entry-title">
+      <h3><span class="vh">6. </span>Cadier Bar</h3>
+      <p class="where">Grand Hôtel <span class="dot">·</span> Stockholm</p>
+    </div>
+    <p class="since"><span>Dates from</span> 2006</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>The Grand Hôtel opened in 1874, founded by Régis Cadier, a French chef who had cooked for the Swedish court.<sup class="ref"><a href="#s30">30</a></sup> The bar named after him faces the harbour and the Royal Palace across the water.<sup class="ref"><a href="#s31">31</a>,<a href="#s32">32</a></sup> Difford's describes a marble counter about 16 metres long under a high plaster ceiling, with floor-to-ceiling windows.<sup class="ref"><a href="#s32">32</a></sup></p><p>The hotel dates the present bar to 2006 and refreshed it in 2017; an earlier &ldquo;Cadierbaren&rdquo; was created in a 1985 renovation.<sup class="ref"><a href="#s33">33</a>,<a href="#s31">31</a></sup> Falstaff's 2026 bar guide put it first in Sweden.<sup class="ref"><a href="#s34">34</a></sup> It opens at breakfast time and the hotel pitches it at Stockholmers as much as guests.<sup class="ref"><a href="#s35">35</a>,<a href="#s36">36</a></sup></p><p class="tags"><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>Tables can be booked until 5pm; card payment only.<sup class="ref"><a href="#s35">35</a></sup></dd></div><div><dt>Cover</dt><dd>None published.<sup class="ref"><a href="#s35">35</a></sup></dd></div><div><dt>Dress</dt><dd>Smart casual. Over-18s after 10pm.<sup class="ref"><a href="#s35">35</a></sup></dd></div><div><dt>Alone</dt><dd>That long marble counter.<sup class="ref"><a href="#s32">32</a></sup></dd></div><div><dt>Price</dt><dd>Not published online.</dd></div><div><dt>When</dt><dd>After work, which is when the city comes in.<sup class="ref"><a href="#s36">36</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="granhotel" data-section="view" data-walkin="0" data-counter="0">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">07</span>
+    <div class="entry-title">
+      <h3><span class="vh">7. </span>La Terraza</h3>
+      <p class="where">Gran Hotel Ciudad de México <span class="dot">·</span> Mexico City</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1899 (building)</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>The building opened in 1899 as the Centro Mercantil, a department store, and became a hotel for the 1968 Olympics.<sup class="ref"><a href="#s37">37</a>,<a href="#s38">38</a></sup> Its stained-glass ceiling, completed in 1908, is often called Tiffany; it is the work of the French Art Nouveau designer Jacques Grüber.<sup class="ref"><a href="#s38">38</a>,<a href="#s39">39</a></sup> The wrought-iron cage lifts still run.<sup class="ref"><a href="#s40">40</a>,<a href="#s39">39</a></sup></p><p>Drinks are taken on the rooftop terrace, which looks over the Zócalo to the Palacio Nacional and the Metropolitan Cathedral.<sup class="ref"><a href="#s41">41</a>,<a href="#s42">42</a></sup> Oyster reports a lobby piano bar on some evenings, under the glass.<sup class="ref"><a href="#s43">43</a></sup> You need not be staying to see the building.<sup class="ref"><a href="#s40">40</a></sup></p><p class="tags"></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>No official policy published; non-guests report being seated for drinks.<sup class="ref"><a href="#s44">44</a></sup></dd></div><div><dt>Cover</dt><dd>None reported.</dd></div><div><dt>Dress</dt><dd>Smart casual, per a 2023 listing.<sup class="ref"><a href="#s42">42</a></sup></dd></div><div><dt>Alone</dt><dd>Not documented.</dd></div><div><dt>Price</dt><dd>Not verified.</dd></div><div><dt>When</dt><dd>Afternoon; ask for a table at the edge.<sup class="ref"><a href="#s44">44</a>,<a href="#s42">42</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="harbour" data-section="view" data-walkin="0" data-counter="0">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">08</span>
+    <div class="entry-title">
+      <h3><span class="vh">8. </span>Harbour Bar</h3>
+      <p class="where">The Taj Mahal Palace <span class="dot">·</span> Mumbai</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1933</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>The Taj Mahal Palace opened on 16 December 1903 at Apollo Bunder in Colaba.<sup class="ref"><a href="#s45">45</a>,<a href="#s46">46</a></sup> The Harbour Bar dates itself to 1933 and calls itself Mumbai's first licensed bar.<sup class="ref"><a href="#s47">47</a>,<a href="#s46">46</a></sup> The claim's scope wanders, though: some write-ups make it the first licensed hotel bar, others the first licensed bar in India, and no licensing record has been published.<sup class="ref"><a href="#s48">48</a>,<a href="#s49">49</a></sup></p><p>Curved windows look over the harbour.<sup class="ref"><a href="#s48">48</a>,<a href="#s47">47</a></sup> The house story says two Americans sailing the Indian Ocean heard that Prohibition had ended, docked in Bombay and asked for a drink to celebrate; it is a good story with no documentation behind it.<sup class="ref"><a href="#s49">49</a></sup></p><p class="tags"></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>No booking policy published.<sup class="ref"><a href="#s47">47</a></sup></dd></div><div><dt>Cover</dt><dd>None published.<sup class="ref"><a href="#s47">47</a></sup></dd></div><div><dt>Dress</dt><dd>Smart casual.<sup class="ref"><a href="#s47">47</a></sup></dd></div><div><dt>Alone</dt><dd>Lounge seating; no counter described.<sup class="ref"><a href="#s47">47</a></sup></dd></div><div><dt>Price</dt><dd>₹6,000–8,000 for two (Outlook Traveller, Sept 2025).<sup class="ref"><a href="#s48">48</a></sup></dd></div><div><dt>When</dt><dd>Opens at noon; the harbour is the show in daylight.<sup class="ref"><a href="#s47">47</a></sup></dd></div></dl>
+  </div>
+</article>
+</section>
+<section class="atmos" id="sec-garden" data-section="garden">
+  <div class="atmos-head">
+    <span class="numeral" aria-hidden="true">III</span>
+    <div><h2>Gardens and courtyards</h2><p>Open-air bars, or nearly so, where the weather is part of the evening.</p></div>
+  </div>
+  
+<article class="entry" id="stravinskij" data-section="garden" data-walkin="0" data-counter="0">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">09</span>
+    <div class="entry-title">
+      <h3><span class="vh">9. </span>Stravinskij Bar</h3>
+      <p class="where">Hotel de Russie <span class="dot">·</span> Rome</p>
+    </div>
+    <p class="since"><span>Dates from</span> 2000 (hotel reopened)</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>The hotel sits on Via del Babuino between Piazza del Popolo and the Spanish Steps, and the bar spills into a courtyard below terraced gardens laid out by Giuseppe Valadier and restored in 2020.<sup class="ref"><a href="#s50">50</a></sup> Rocco Forte reopened the building as a hotel in 2000; the outdoor bar was redesigned by Paolo Moschino in 2024 and is heated in winter.<sup class="ref"><a href="#s50">50</a>,<a href="#s51">51</a></sup></p><p>Picasso and Cocteau stayed here in 1917 while working on <i>Parade</i> for the Ballets Russes.<sup class="ref"><a href="#s52">52</a>,<a href="#s51">51</a></sup> The bar takes Stravinsky's name, though no source found says he stayed.<sup class="ref"><a href="#s50">50</a></sup> The hotel's own fact sheet bills it as an aperitivo address.<sup class="ref"><a href="#s53">53</a></sup></p><p class="tags"></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>Open from 10am; contact by phone or email. No stated booking rule.<sup class="ref"><a href="#s54">54</a></sup></dd></div><div><dt>Cover</dt><dd>None published.<sup class="ref"><a href="#s54">54</a></sup></dd></div><div><dt>Dress</dt><dd>&ldquo;We do not operate a dress code,&rdquo; though sportswear and beachwear are unwelcome.<sup class="ref"><a href="#s54">54</a></sup></dd></div><div><dt>Alone</dt><dd>Mostly courtyard tables.</dd></div><div><dt>Price</dt><dd>Most cocktails €26 on the official October menu.<sup class="ref"><a href="#s55">55</a></sup></dd></div><div><dt>When</dt><dd>Aperitivo hour.<sup class="ref"><a href="#s53">53</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="planet" data-section="garden" data-walkin="1" data-counter="0">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">10</span>
+    <div class="entry-title">
+      <h3><span class="vh">10. </span>Planet Bar</h3>
+      <p class="where">Mount Nelson <span class="dot">·</span> Cape Town</p>
+    </div>
+    <p class="since"><span>Dates from</span> 2003</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>The Mount Nelson opened on 6 March 1899 for first-class passengers of the Union-Castle line, and has been pink since 1918, when its manager painted it to mark the end of the First World War.<sup class="ref"><a href="#s56">56</a></sup> Planet Bar opened in October 2003 with a terrace over the gardens.<sup class="ref"><a href="#s56">56</a></sup> Cape Town Magazine describes a solar-system model hanging from the ceiling.<sup class="ref"><a href="#s57">57</a></sup></p><p>In January 2025 the hotel added The Fountain by Planet Bar, a garden offshoot that welcomes walk-ins.<sup class="ref"><a href="#s58">58</a>,<a href="#s59">59</a></sup> The hotel faces the Company's Garden, with Table Mountain behind.<sup class="ref"><a href="#s56">56</a></sup></p><p class="tags"><span class="tag">Walk-ins</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>The Fountain takes walk-ins; no published rule for the bar itself.<sup class="ref"><a href="#s59">59</a></sup></dd></div><div><dt>Cover</dt><dd>None reported.</dd></div><div><dt>Dress</dt><dd>No code published.</dd></div><div><dt>Alone</dt><dd>Lounge and terrace seating.<sup class="ref"><a href="#s57">57</a></sup></dd></div><div><dt>Price</dt><dd>Not verified.</dd></div><div><dt>When</dt><dd>Sundowners on the terrace.<sup class="ref"><a href="#s60">60</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="bamboo" data-section="garden" data-walkin="0" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">11</span>
+    <div class="entry-title">
+      <h3><span class="vh">11. </span>Bamboo Bar</h3>
+      <p class="where">Sofitel Legend Metropole <span class="dot">·</span> Hanoi</p>
+    </div>
+    <p class="since"><span>Dates from</span> c. 2012</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>The Metropole opened in 1901 in the French Quarter, a short walk from Hoan Kiem Lake and the Opera House.<sup class="ref"><a href="#s61">61</a></sup> Its poolside Bamboo Bar has a thatched roof, ceiling fans and wooden floors.<sup class="ref"><a href="#s62">62</a>,<a href="#s63">63</a></sup> It is a recent addition: in November 2011, piling work for the planned bar uncovered the hotel's wartime air-raid shelter.<sup class="ref"><a href="#s64">64</a></sup></p><p>The singer Joan Baez sheltered there during the US bombing of Hanoi in December 1972.<sup class="ref"><a href="#s64">64</a>,<a href="#s61">61</a></sup> Tours of the shelter are for hotel guests only.<sup class="ref"><a href="#s65">65</a></sup> The cocktails nod to past guests such as Graham Greene; Charlie Chaplin stayed in 1936.<sup class="ref"><a href="#s63">63</a>,<a href="#s66">66</a></sup></p><p class="tags"><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>No booking policy published.<sup class="ref"><a href="#s62">62</a></sup></dd></div><div><dt>Cover</dt><dd>None published.<sup class="ref"><a href="#s62">62</a></sup></dd></div><div><dt>Dress</dt><dd>No code published.<sup class="ref"><a href="#s62">62</a></sup></dd></div><div><dt>Alone</dt><dd>A few seats at the counter.<sup class="ref"><a href="#s67">67</a></sup></dd></div><div><dt>Price</dt><dd>Most cocktails VND 260,000–290,000 (up to 590,000), plus service and VAT, on a 2021 menu; current prices not published.<sup class="ref"><a href="#s68">68</a></sup></dd></div><div><dt>When</dt><dd>Open from early morning until 11pm.<sup class="ref"><a href="#s62">62</a></sup></dd></div></dl>
+  </div>
+</article>
+</section>
+<section class="atmos" id="sec-music" data-section="music">
+  <div class="atmos-head">
+    <span class="numeral" aria-hidden="true">IV</span>
+    <div><h2>Music rooms</h2><p>Bars where the band, or the machinery, sets the pace.</p></div>
+  </div>
+  
+<article class="entry" id="carousel" data-section="music" data-walkin="1" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">12</span>
+    <div class="entry-title">
+      <h3><span class="vh">12. </span>Carousel Bar</h3>
+      <p class="where">Hotel Monteleone <span class="dot">·</span> New Orleans</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1949</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>Twenty-five seats on a merry-go-round, painted with circus animals, make a full turn every 15 minutes. The bar opened in 1949 in the French Quarter hotel the Monteleone family has run since 1886, on Royal Street a block from Bourbon Street.<sup class="ref"><a href="#s69">69</a>,<a href="#s70">70</a>,<a href="#s71">71</a>,<a href="#s72">72</a></sup></p><p>The hotel's best-known drink, the Vieux Carré, was created in the 1930s by its head bartender, Walter Bergeron, and first printed in 1937. That is more than a decade before the Carousel turned, so &ldquo;invented at the Carousel Bar&rdquo; is loose.<sup class="ref"><a href="#s73">73</a>,<a href="#s71">71</a></sup> Live music plays seven nights a week.<sup class="ref"><a href="#s74">74</a></sup></p><p class="tags"><span class="tag">Walk-ins</span><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>You need not be a guest; expect to wait for a seat on the carousel.<sup class="ref"><a href="#s69">69</a>,<a href="#s70">70</a></sup></dd></div><div><dt>Cover</dt><dd>None found.</dd></div><div><dt>Dress</dt><dd>No dress code (Atlas Obscura, 2018).<sup class="ref"><a href="#s69">69</a></sup></dd></div><div><dt>Alone</dt><dd>The revolving bar is all counter.<sup class="ref"><a href="#s69">69</a></sup></dd></div><div><dt>Price</dt><dd>Signature cocktails $18–21 on the hotel's 2024 list.<sup class="ref"><a href="#s71">71</a></sup></dd></div><div><dt>When</dt><dd>11am opening for a revolving seat; evenings for music. Over-21s only after 6pm.<sup class="ref"><a href="#s74">74</a>,<a href="#s75">75</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="jazzbar" data-section="music" data-walkin="0" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">13</span>
+    <div class="entry-title">
+      <h3><span class="vh">13. </span>The Jazz Bar</h3>
+      <p class="where">Fairmont Peace Hotel <span class="dot">·</span> Shanghai</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1929 (hotel)</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>Victor Sassoon's Cathay Hotel opened on the Bund in 1929, an Art Deco tower with a green copper pyramid roof, and reopened as the Fairmont Peace Hotel in 2010.<sup class="ref"><a href="#s76">76</a></sup> Noël Coward drafted <i>Private Lives</i> while staying there.<sup class="ref"><a href="#s76">76</a></sup></p><p>The Old Jazz Band has played here since 1980. In 2017 the South China Morning Post counted six members aged 63 to 97 and noted the band had once been recognised by Guinness as the world's oldest; the line-up today is not documented.<sup class="ref"><a href="#s77">77</a>,<a href="#s76">76</a></sup> The room, once an English-style pub, is all dark wood, stools and stone pillars.<sup class="ref"><a href="#s77">77</a>,<a href="#s78">78</a></sup></p><p class="tags"><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>Enquiries by phone; no booking button online.<sup class="ref"><a href="#s79">79</a></sup></dd></div><div><dt>Cover</dt><dd>A ¥418 minimum spend per person, per a 2026 local guide.<sup class="ref"><a href="#s78">78</a></sup></dd></div><div><dt>Dress</dt><dd>Not published.</dd></div><div><dt>Alone</dt><dd>A long bar with stools; arrive early for them.<sup class="ref"><a href="#s78">78</a></sup></dd></div><div><dt>Price</dt><dd>Cocktails from ¥118 plus 16.6% service (same guide).<sup class="ref"><a href="#s78">78</a></sup></dd></div><div><dt>When</dt><dd>The 7pm set is mellow; the later set livelier.<sup class="ref"><a href="#s78">78</a></sup></dd></div></dl>
+  </div>
+</article>
+</section>
+<section class="atmos" id="sec-stage" data-section="stage">
+  <div class="atmos-head">
+    <span class="numeral" aria-hidden="true">V</span>
+    <div><h2>The bartender&#x27;s stage</h2><p>Bars where the drink is the performance and the room is built to watch it being made.</p></div>
+  </div>
+  
+<article class="entry" id="savoy" data-section="stage" data-walkin="1" data-counter="0">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">14</span>
+    <div class="entry-title">
+      <h3><span class="vh">14. </span>American Bar</h3>
+      <p class="where">The Savoy <span class="dot">·</span> London</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1893 (hotel&#x27;s date)</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>Richard D'Oyly Carte built the Savoy in 1889 on profits from the Gilbert and Sullivan operas at his theatre next door.<sup class="ref"><a href="#s80">80</a>,<a href="#s81">81</a></sup> The hotel dates its bar to 1893; the earliest record the Oxford Companion to Spirits and Cocktails cites is from 1903, the year Ada Coleman joined the bar.<sup class="ref"><a href="#s82">82</a>,<a href="#s81">81</a></sup></p><p>Coleman stayed until 1925 and is credited with the Hanky Panky. Harry Craddock succeeded her, and his <i>Savoy Cocktail Book</i> appeared in 1930.<sup class="ref"><a href="#s81">81</a></sup> The room is grey and silver Art Deco, with a pianist every night.<sup class="ref"><a href="#s83">83</a>,<a href="#s80">80</a></sup></p><p class="tags"><span class="tag">Walk-ins</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>Long walk-in only; the official page now offers booking. Over-16s.<sup class="ref"><a href="#s82">82</a>,<a href="#s83">83</a></sup></dd></div><div><dt>Cover</dt><dd>None published.<sup class="ref"><a href="#s82">82</a></sup></dd></div><div><dt>Dress</dt><dd>&ldquo;Dress elegantly&rdquo;; no sports shirts.<sup class="ref"><a href="#s82">82</a></sup></dd></div><div><dt>Alone</dt><dd>Not documented.</dd></div><div><dt>Price</dt><dd>No official list; OpenTable puts it at £26–40 a head.<sup class="ref"><a href="#s84">84</a></sup></dd></div><div><dt>When</dt><dd>Around 4pm, before the queue forms.<sup class="ref"><a href="#s85">85</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="connaught" data-section="stage" data-walkin="1" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">15</span>
+    <div class="entry-title">
+      <h3><span class="vh">15. </span>Connaught Bar</h3>
+      <p class="where">The Connaught <span class="dot">·</span> London</p>
+    </div>
+    <p class="since"><span>Dates from</span> 2008</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>David Collins Studio designed the bar, which opened in August 2008 in the hotel's old American Bar: oak panelling finished in platinum silver leaf, linen panels in pink, pistachio and lilac, and leather with brogue detailing borrowed from Savile Row.<sup class="ref"><a href="#s86">86</a>,<a href="#s87">87</a></sup> It topped the World's 50 Best Bars list for 2020.<sup class="ref"><a href="#s88">88</a></sup></p><p>The martini is mixed at your table from a trolley, with a choice of bitters.<sup class="ref"><a href="#s86">86</a></sup> Outside, on the Mayfair corner of Carlos Place and Mount Street, Tadao Ando's water feature, <i>Silence</i>, has stood outside the entrance since 2011.<sup class="ref"><a href="#s89">89</a></sup></p><p class="tags"><span class="tag">Walk-ins</span><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>&ldquo;A no reservation policy.&rdquo; Monday to Saturday from 4pm.<sup class="ref"><a href="#s90">90</a></sup></dd></div><div><dt>Cover</dt><dd>None published.<sup class="ref"><a href="#s90">90</a></sup></dd></div><div><dt>Dress</dt><dd>Not published.<sup class="ref"><a href="#s90">90</a></sup></dd></div><div><dt>Alone</dt><dd>54 seats in all, a few of them at the bar.<sup class="ref"><a href="#s86">86</a>,<a href="#s91">91</a></sup></dd></div><div><dt>Price</dt><dd>Current menus not readable online; £16–30 in 2023.<sup class="ref"><a href="#s87">87</a></sup></dd></div><div><dt>When</dt><dd>Opening time, with no bookings to rely on.<sup class="ref"><a href="#s90">90</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="hemingway" data-section="stage" data-walkin="1" data-counter="0">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">16</span>
+    <div class="entry-title">
+      <h3><span class="vh">16. </span>Bar Hemingway</h3>
+      <p class="where">Ritz Paris <span class="dot">·</span> Paris</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1994 (named)</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>A wood-panelled room of 25 seats hung with Hemingway photographs and letters, on Place Vendôme.<sup class="ref"><a href="#s92">92</a>,<a href="#s93">93</a></sup> The bar took his name in 1994. Colin Field ran it from then until 2023 and created the Serendipity, made with Calvados, mint, apple juice and Champagne; Anne-Sophie Prestail succeeded him.<sup class="ref"><a href="#s94">94</a>,<a href="#s93">93</a>,<a href="#s92">92</a></sup></p><p>The legend says Hemingway &ldquo;liberated&rdquo; the Ritz on 25 August 1944 and ran up a tab for 51 dry martinis. He did reach Paris that day as a war correspondent, but the Germans had already left the hotel, and the martini count is folklore.<sup class="ref"><a href="#s95">95</a>,<a href="#s96">96</a></sup></p><p class="tags"><span class="tag">Walk-ins</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>No booking required, every day from 5pm.<sup class="ref"><a href="#s92">92</a></sup></dd></div><div><dt>Cover</dt><dd>None published.<sup class="ref"><a href="#s92">92</a></sup></dd></div><div><dt>Dress</dt><dd>Smart; elegant shorts only until 5pm.<sup class="ref"><a href="#s92">92</a>,<a href="#s97">97</a></sup></dd></div><div><dt>Alone</dt><dd>Tiny room; not documented.</dd></div><div><dt>Price</dt><dd>About €30–32 a cocktail in undated guides.<sup class="ref"><a href="#s98">98</a>,<a href="#s93">93</a></sup></dd></div><div><dt>When</dt><dd>Arrive early; the hotel suggests before 5.30pm.<sup class="ref"><a href="#s97">97</a></sup></dd></div></dl>
+  </div>
+</article>
+</section>
+<section class="atmos" id="sec-salon" data-section="salon">
+  <div class="atmos-head">
+    <span class="numeral" aria-hidden="true">VI</span>
+    <div><h2>Grand-tour salons</h2><p>Bars that grew up around ships, sleeper trains and colonial-era travel, and still carry the furniture of that world.</p></div>
+  </div>
+  
+<article class="entry" id="longbar" data-section="salon" data-walkin="1" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">17</span>
+    <div class="entry-title">
+      <h3><span class="vh">17. </span>Long Bar</h3>
+      <p class="where">Raffles <span class="dot">·</span> Singapore</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1900s</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>Raffles opened in 1887 under the Armenian Sarkies brothers, and its main building was finished in 1899.<sup class="ref"><a href="#s99">99</a></sup> The Long Bar began as tables in the hotel's Cad's Alley wing; today it occupies two floors of the Raffles Arcade, and guests still brush peanut shells onto the floor.<sup class="ref"><a href="#s100">100</a>,<a href="#s101">101</a></sup> The hotel reopened in 2019 after a restoration led by Alexandra Champalimaud.<sup class="ref"><a href="#s102">102</a></sup></p><p>Raffles credits the Singapore Sling to its bartender Ngiam Tong Boon in 1915. Difford's points out that a pink sling appeared in Singapore newspapers in 1903 and that 1915 may be the year Ngiam died; treat the date as disputed.<sup class="ref"><a href="#s100">100</a>,<a href="#s103">103</a></sup></p><p class="tags"><span class="tag">Walk-ins</span><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>Walk-ins only.<sup class="ref"><a href="#s100">100</a></sup></dd></div><div><dt>Cover</dt><dd>None stated.<sup class="ref"><a href="#s100">100</a></sup></dd></div><div><dt>Dress</dt><dd>Smart casual recommended.<sup class="ref"><a href="#s100">100</a></sup></dd></div><div><dt>Alone</dt><dd>A bar counter, though staff may seat you from a queue.<sup class="ref"><a href="#s100">100</a>,<a href="#s104">104</a></sup></dd></div><div><dt>Price</dt><dd>Singapore Sling S$44 plus service and GST, about S$53 (Aug 2026).<sup class="ref"><a href="#s104">104</a></sup></dd></div><div><dt>When</dt><dd>Early afternoon, before the evening rush.<sup class="ref"><a href="#s104">104</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="orient" data-section="salon" data-walkin="0" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">18</span>
+    <div class="entry-title">
+      <h3><span class="vh">18. </span>Orient Bar</h3>
+      <p class="where">Pera Palace <span class="dot">·</span> Istanbul</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1892–95 (hotel)</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>Built between 1892 and 1895 for passengers off the Orient Express, the Pera Palace was designed by Alexander Vallaury for the Wagons-Lits company.<sup class="ref"><a href="#s105">105</a>,<a href="#s106">106</a></sup> It reopened in 2010 after a restoration, with the Orient Bar back as a meeting place.<sup class="ref"><a href="#s107">107</a></sup> Expect a long polished wooden bar, tall columns and chandeliers.<sup class="ref"><a href="#s108">108</a></sup></p><p>The hotel and the Associated Press both say Hemingway drank here in the early 1920s, when he was covering the Greco-Turkish war.<sup class="ref"><a href="#s109">109</a>,<a href="#s105">105</a></sup> Agatha Christie's link to Room 411 belongs to hotel lore.<sup class="ref"><a href="#s105">105</a></sup></p><p class="tags"><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>No published rule for non-guests. The bar's page carried an undated notice that it was closed until the end of the summer season; call before going.<sup class="ref"><a href="#s110">110</a></sup></dd></div><div><dt>Cover</dt><dd>None published.<sup class="ref"><a href="#s110">110</a></sup></dd></div><div><dt>Dress</dt><dd>Not published.<sup class="ref"><a href="#s110">110</a></sup></dd></div><div><dt>Alone</dt><dd>A long wooden counter; Time Out pictured regulars reading alone over whisky.<sup class="ref"><a href="#s108">108</a>,<a href="#s111">111</a></sup></dd></div><div><dt>Price</dt><dd>Not verified.</dd></div><div><dt>When</dt><dd>Not documented.</dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="churchill" data-section="salon" data-walkin="0" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">19</span>
+    <div class="entry-title">
+      <h3><span class="vh">19. </span>Le Churchill</h3>
+      <p class="where">La Mamounia <span class="dot">·</span> Marrakech</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1923 (hotel conceived)</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>La Mamounia was conceived in 1923 by Morocco's railway company, on the edge of the medina facing the Koutoubia.<sup class="ref"><a href="#s112">112</a>,<a href="#s113">113</a></sup> Its bar is designed as a Pullman carriage, a nod to that railway past, in smoked oak with a black marble counter set with green light blocks by Patrick Jouin.<sup class="ref"><a href="#s114">114</a></sup></p><p>Churchill wintered and painted at the hotel, and the bar is named for him.<sup class="ref"><a href="#s114">114</a>,<a href="#s112">112</a>,<a href="#s113">113</a></sup> The menu prints his quotations beside the cocktails.<sup class="ref"><a href="#s114">114</a>,<a href="#s113">113</a></sup></p><p class="tags"><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>The hotel states no rule for non-guests; a 2026 guide says they are welcome and advises booking in peak season.<sup class="ref"><a href="#s113">113</a></sup></dd></div><div><dt>Cover</dt><dd>None, per the same guide.<sup class="ref"><a href="#s113">113</a></sup></dd></div><div><dt>Dress</dt><dd>Elegant; no shorts after 6pm, no flip-flops; big bags go to the cloakroom.<sup class="ref"><a href="#s114">114</a></sup></dd></div><div><dt>Alone</dt><dd>The marble counter.<sup class="ref"><a href="#s114">114</a></sup></dd></div><div><dt>Price</dt><dd>About 150–330 dirhams a cocktail, per the 2026 guide.<sup class="ref"><a href="#s113">113</a></sup></dd></div><div><dt>When</dt><dd>Opens late afternoon; the hotel's own pages differ on 4pm or 5.30pm.<sup class="ref"><a href="#s114">114</a>,<a href="#s115">115</a></sup></dd></div></dl>
+  </div>
+</article>
+<article class="entry" id="sacher" data-section="salon" data-walkin="0" data-counter="1">
+  <header class="entry-head">
+    <span class="fob-no" aria-hidden="true">20</span>
+    <div class="entry-title">
+      <h3><span class="vh">20. </span>Blaue Bar</h3>
+      <p class="where">Hotel Sacher <span class="dot">·</span> Vienna</p>
+    </div>
+    <p class="since"><span>Dates from</span> 1876 (hotel)</p>
+  </header>
+  <div class="entry-body">
+    <div class="prose"><p>Eduard Sacher, son of the man who invented the Sachertorte, opened the hotel in 1876 behind the State Opera; his widow Anna ran it after 1892, with her cigars and bulldogs.<sup class="ref"><a href="#s116">116</a>,<a href="#s117">117</a></sup> The bar is royal blue throughout: damask walls, crystal chandeliers, velvet seats and a gold-framed mirrored bar.<sup class="ref"><a href="#s118">118</a></sup></p><p>In February 1948 Graham Greene heard about Vienna's sewers and its penicillin racket from a young British intelligence officer at the Sacher, details that went into <i>The Third Man</i>. Sources disagree on whether that conversation happened in the bar or over lunch.<sup class="ref"><a href="#s117">117</a>,<a href="#s119">119</a></sup></p><p class="tags"><span class="tag">Bar counter</span></p></div>
+    <dl class="register"><div><dt>Getting in</dt><dd>Book ahead to be sure of a table.<sup class="ref"><a href="#s118">118</a></sup></dd></div><div><dt>Cover</dt><dd>None published.<sup class="ref"><a href="#s118">118</a></sup></dd></div><div><dt>Dress</dt><dd>Smart casual.<sup class="ref"><a href="#s118">118</a></sup></dd></div><div><dt>Alone</dt><dd>A mirrored bar; stools not documented.<sup class="ref"><a href="#s118">118</a></sup></dd></div><div><dt>Price</dt><dd>Cocktails €18–25 including VAT on the official menu, checked 19 Oct 2026.<sup class="ref"><a href="#s118">118</a></sup></dd></div><div><dt>When</dt><dd>Not documented.</dd></div></dl>
+  </div>
+</article>
+</section>
+<p class="empty" hidden>No bar matches every filter. Try fewer.</p>
+
+<section class="ledger" aria-labelledby="ledger-h">
+  <h2 id="ledger-h">The legend ledger</h2>
+  <p class="lead">Hotel bars trade on stories. Here are the ones that come up most, and how they stand against the record.</p>
+  <div class="tablewrap" tabindex="0" role="region" aria-label="Legend ledger table">
+    <table>
+      <thead><tr><th scope="col">The claim</th><th scope="col">Where</th><th scope="col">Verdict</th><th scope="col">What the record shows</th></tr></thead>
+      <tbody><tr><th scope="row">The Singapore Sling was created at the Long Bar in 1915</th><td>Raffles</td><td><span class="verdict v-mid">Disputed</span></td><td>Credited to Ngiam Tong Boon; a pink sling was in Singapore newspapers by 1903, and 1915 may be the year he died.<sup class="ref"><a href="#s100">100</a>,<a href="#s103">103</a></sup></td></tr><tr><th scope="row">Hemingway liberated the Ritz bar in 1944 and drank 51 martinis</th><td>Ritz Paris</td><td><span class="verdict v-bad">Legend</span></td><td>He reached Paris on 25 August 1944, but the Germans had left the hotel; the martini tab is folklore.<sup class="ref"><a href="#s95">95</a>,<a href="#s96">96</a></sup></td></tr><tr><th scope="row">The Bloody Mary was invented at the King Cole Bar</th><td>St. Regis New York</td><td><span class="verdict v-mid">Disputed</span></td><td>Fernand Petiot is credited with an earlier version at Harry's New York Bar in Paris; the St. Regis refined it as the Red Snapper in 1934.<sup class="ref"><a href="#s8">8</a>,<a href="#s10">10</a></sup></td></tr><tr><th scope="row">The Vieux Carré was invented at the Carousel Bar</th><td>Hotel Monteleone</td><td><span class="verdict v-mid">Loose</span></td><td>Created by the hotel's head bartender in the 1930s and printed in 1937, before the Carousel opened in 1949.<sup class="ref"><a href="#s73">73</a>,<a href="#s71">71</a></sup></td></tr><tr><th scope="row">The American Bar has served since 1893</th><td>The Savoy</td><td><span class="verdict v-mid">Unproven</span></td><td>The earliest record the Oxford Companion cites dates from 1903.<sup class="ref"><a href="#s82">82</a>,<a href="#s81">81</a></sup></td></tr><tr><th scope="row">The Harbour Bar was Mumbai&#x27;s first licensed bar</th><td>Taj Mahal Palace</td><td><span class="verdict v-mid">Unproven</span></td><td>Repeated in hotel and press material; its scope varies and no licence record has been published.<sup class="ref"><a href="#s47">47</a>,<a href="#s48">48</a>,<a href="#s49">49</a></sup></td></tr><tr><th scope="row">Coq d&#x27;Or held Chicago&#x27;s second liquor licence after Repeal</th><td>The Drake</td><td><span class="verdict v-mid">Unproven</span></td><td>Hotel claim, repeated by the National Trust; no licensing record cited.<sup class="ref"><a href="#s12">12</a>,<a href="#s13">13</a></sup></td></tr><tr><th scope="row">Bemelmans painted the murals in exchange for lodging</th><td>The Carlyle</td><td><span class="verdict v-mid">Reported</span></td><td>Punch reports it as fact; the hotel itself calls it a rumour.<sup class="ref"><a href="#s3">3</a>,<a href="#s1">1</a></sup></td></tr><tr><th scope="row">The Gran Hotel has a Tiffany ceiling</th><td>Gran Hotel Ciudad de México</td><td><span class="verdict v-bad">Wrong</span></td><td>The 1908 ceiling is by the French designer Jacques Grüber.<sup class="ref"><a href="#s38">38</a>,<a href="#s39">39</a></sup></td></tr><tr><th scope="row">The Old Jazz Band is the world&#x27;s oldest jazz band</th><td>Fairmont Peace Hotel</td><td><span class="verdict v-mid">Dated</span></td><td>Once recognised by Guinness, per 2017 reporting; current status not documented.<sup class="ref"><a href="#s77">77</a></sup></td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sources" aria-labelledby="sources-h">
+  <h2 id="sources-h">Sources</h2>
+  <p class="method">Hours, access rules and prices were checked on 19 October 2026 against official hotel pages where they exist. Older or secondary price figures carry their dates in the entries. Walk-in and bar-counter tags appear only where a source states them.</p>
+  <ol><li id="s1"><a href="https://www.rosewoodhotels.com/en/the-carlyle-new-york/media/press-kit/history-of-bemelmans">History of Bemelmans (press kit)</a>. <span class="pub">Rosewood Hotels / The Carlyle</span>, undated.</li><li id="s2"><a href="https://www.rosewoodhotels.com/en/the-carlyle-new-york/media/press-kit/hotel-fact-sheet">Hotel Fact Sheet (press kit)</a>. <span class="pub">Rosewood Hotels / The Carlyle</span>, undated.</li><li id="s3"><a href="https://punchdrink.com/articles/the-muse-behind-nycs-most-iconic-hotel-bar/">The Muse Behind NYC&#x27;s Most Iconic Hotel Bar</a>. <span class="pub">Punch</span>, 26 March 2014.</li><li id="s4"><a href="https://blog.resy.com/2025/04/bemelmans-bar-nyc/">Bemelmans Bar guide</a>. <span class="pub">Resy</span>, April 2025.</li><li id="s5"><a href="https://www.rosewoodhotels.com/en/the-carlyle-new-york/dining/bemelmans-bar">Bemelmans Bar</a>. <span class="pub">Rosewood Hotels / The Carlyle</span>, checked 19 October 2026.</li><li id="s6"><a href="https://www.rosewoodhotels.com/en/the-carlyle-new-york/dining/bemelmans-bar/bemelmans-bar-dining-menu">Bemelmans Bar dining menu</a>. <span class="pub">Rosewood Hotels / The Carlyle</span>, checked 19 October 2026.</li><li id="s7"><a href="https://magazine.stregis.com/?p=1352">Walls of Fame</a>. <span class="pub">St. Regis Magazine</span>, 3 April 2015.</li><li id="s8"><a href="https://www.bostonglobe.com/2026/04/03/lifestyle/bloody-mary-st-regis/">Bloody Mary at the St. Regis</a>. <span class="pub">The Boston Globe</span>, 3 April 2026.</li><li id="s9"><a href="https://galeriemagazine.com/st-regis-new-york-champalimaud-design/">The St. Regis New York Unveils a Stunning Renovation for Its 120th Year</a>. <span class="pub">Galerie</span>, 23 September 2024.</li><li id="s10"><a href="https://punchdrink.com/venues/king-cole-bar/">King Cole Bar</a>. <span class="pub">Punch</span>, 19 November 2014.</li><li id="s11"><a href="https://www.marriott.com/en-gb/hotels/nycxr-the-st-regis-new-york/dining/">Dining: King Cole Bar</a>. <span class="pub">The St. Regis New York / Marriott</span>, checked 19 October 2026.</li><li id="s12"><a href="https://savingplaces.org/stories/coq-dor-at-the-drake-hotel-in-chicago">Coq d&#x27;Or at The Drake Hotel in Chicago</a>. <span class="pub">National Trust for Historic Preservation</span>, 13 October 2016.</li><li id="s13"><a href="https://www.thedrakehotel.com/dining/coq-d-or/">Coq d&#x27;Or</a>. <span class="pub">The Drake Hotel</span>, checked 19 October 2026.</li><li id="s14"><a href="https://chibarproject.com/reviews/CoqdOr/">Coq d&#x27;Or review</a>. <span class="pub">Chicago Bar Project</span>, modified 20 October 2021.</li><li id="s15"><a href="https://www.thedrakehotel.com/dining/coq-d-or/coq-dor-martinis/">Coq d&#x27;Or Martinis</a>. <span class="pub">The Drake Hotel</span>, modified 3 March 2025.</li><li id="s16"><a href="https://www.thedrakehotel.com/explore/entertainment/">Entertainment calendar</a>. <span class="pub">The Drake Hotel</span>, checked 19 October 2026.</li><li id="s17"><a href="https://files.thedrakehotel.com/wp-content/uploads/2025/05/CD-Menu-5.10.25-002.pdf">Coq d&#x27;Or menu (PDF)</a>. <span class="pub">The Drake Hotel</span>, 10 May 2025.</li><li id="s18"><a href="https://marriott-international.pressarea.com/en/news/01012023/the-gritti-palace-a-luxury-collection-hotel-venice">The Gritti Palace, a Luxury Collection Hotel, Venice</a>. <span class="pub">Marriott International press area</span>, 2023.</li><li id="s19"><a href="https://www.cigaraficionado.com/article/gritti-palace-venice-17216">Gritti Palace, Venice</a>. <span class="pub">Cigar Aficionado</span>, September/October 2013.</li><li id="s20"><a href="https://www.journaldespalaces.com/en/pressrelease-40816-the-luxury-collection-hotels-resorts-celebrates-the-grand-opening-of-the-legendary-gritti-palace-after-a-35-million-euro-restoration.html">The Luxury Collection celebrates the grand opening of the legendary Gritti Palace after a 35 million euro restoration</a>. <span class="pub">Le Journal des Palaces</span>, 8 May 2013.</li><li id="s21"><a href="https://www.diffordsguide.com/pubs-and-bars/1354/venice/terrazza-longhi-bar-at-gritti-palace-hotel">Terrazza Longhi Bar at Gritti Palace Hotel</a>. <span class="pub">Difford&#x27;s Guide</span>, 24 May 2014.</li><li id="s22"><a href="https://famoushotels.org/news/gritti-venice-hemingways-window">Gritti Venice: Hemingway&#x27;s Window</a>. <span class="pub">Famous Hotels</span>, undated.</li><li id="s23"><a href="https://www.marriott.com/it/hotels/vcegl-the-gritti-palace-a-luxury-collection-hotel-venice/dining/">The Gritti Palace: dining</a>. <span class="pub">Marriott</span>, checked 19 October 2026.</li><li id="s24"><a href="https://www.doctorwine.wine/gourmet-en/where-to-eat/bar-longhi-the-gritti-palace-in-venice/?lang=en">Bar Longhi, The Gritti Palace in Venice</a>. <span class="pub">DoctorWine</span>, 14 February 2024.</li><li id="s25"><a href="https://www.timeout.com/venice/bars-and-pubs/bar-longhi">Bar Longhi</a>. <span class="pub">Time Out Venice</span>, 11 June 2018.</li><li id="s26"><a href="https://newsroom.hyatt.com/120925-Park-Hyatt-Tokyo-Reopens-Following-19-Month-Renovation">The Restoration of An Icon: Park Hyatt Tokyo Reopens Following 19-Month Renovation</a>. <span class="pub">Hyatt Newsroom</span>, 9 December 2025.</li><li id="s27"><a href="https://www.luxurytraveladvisor.com/hotels/park-hyatt-tokyo-reopens-following-19-month-renovation">Park Hyatt Tokyo Reopens Following 19-Month Renovation</a>. <span class="pub">Luxury Travel Advisor</span>, 15 December 2025.</li><li id="s28"><a href="https://restaurants.tokyo.park.hyatt.co.jp/en/newyorkbar/">New York Bar</a>. <span class="pub">Park Hyatt Tokyo</span>, checked 19 October 2026.</li><li id="s29"><a href="https://restaurants.tokyo.park.hyatt.co.jp/int/wp-content/uploads/NYB_Beverage-Menu_31_8_2026.pdf">New York Bar beverage menu (PDF)</a>. <span class="pub">Park Hyatt Tokyo</span>, 31 August 2026.</li><li id="s30"><a href="https://grand-hotel.mynewsdesk.com/blog_posts/a-historical-walking-tour-in-the-spirit-of-regis-cadier-94925">A historical walking tour in the spirit of Régis Cadier</a>. <span class="pub">Grand Hôtel (Mynewsdesk)</span>, 24 July 2020.</li><li id="s31"><a href="https://historichotelsthenandnow.com/grandstockholm.html">Sweden | Stockholm: Grand Hôtel</a>. <span class="pub">Historic Hotels Then and Now</span>, undated.</li><li id="s32"><a href="https://www.diffordsguide.com/pubs-and-bars/1802/stockholm/cadier-bar-at-the-grand-hotel">Cadier Bar at the Grand Hotel</a>. <span class="pub">Difford&#x27;s Guide</span>, 10 December 2019.</li><li id="s33"><a href="https://www.mynewsdesk.com/se/grand_hotel/pressreleases/stockholmsklassiker-faar-ny-kostym-2126613">Stockholmsklassiker får ny kostym</a>. <span class="pub">Grand Hôtel (Mynewsdesk)</span>, 30 August 2017.</li><li id="s34"><a href="https://www.falstaff.com/en/news/the-falstaff-bar-guide-2026-the-best-in-sweden">The Falstaff Bar Guide 2026: the best in Sweden</a>. <span class="pub">Falstaff</span>, 27 November 2025.</li><li id="s35"><a href="https://grandhotel.se/en/food-beverage/the-cadier-bar/opening-hours-and-contact">Cadier Bar: opening hours and contact</a>. <span class="pub">Grand Hôtel Stockholm</span>, checked 19 October 2026.</li><li id="s36"><a href="https://grandhotel.se/index%2ephp/en/food-beverage/the-cadier-bar">The Cadier Bar</a>. <span class="pub">Grand Hôtel Stockholm</span>, checked 19 October 2026.</li><li id="s37"><a href="https://visitmexico.com/en/destino/17595/esgran-hotel-de-la-ciudad-de-mexicoengran-hotel-de-la-ciudad-de-mexico">Gran Hotel de la Ciudad de México</a>. <span class="pub">Visit Mexico</span>, undated.</li><li id="s38"><a href="https://mexicocity.cdmx.gob.mx/venues/gran-hotel">Gran Hotel</a>. <span class="pub">Mexico City Tourism (Gobierno de la CDMX)</span>, undated.</li><li id="s39"><a href="https://www.timeoutmexico.mx/ciudad-de-mexico/que-hacer/la-belle-epoque">La belle époque</a>. <span class="pub">Time Out México</span>, 2 October 2014.</li><li id="s40"><a href="https://www.chilango.com/agenda/otros/gran-hotel-de-la-ciudad-de-mexico-historia-arte-terraza/">Gran Hotel de la Ciudad de México: historia, arte, terraza</a>. <span class="pub">Chilango</span>, 27 April 2023.</li><li id="s41"><a href="https://historichotels.org/hotels-resorts/gran-hotel-ciudad-de-mexico/dining.php">Gran Hotel Ciudad de México: Dining</a>. <span class="pub">Historic Hotels of America</span>, undated.</li><li id="s42"><a href="https://therooftopguide.com/rooftop-bars-in-mexico-city/la-terraza-gran-hotel.html">La Terraza Gran Hotel</a>. <span class="pub">The Rooftop Guide</span>, updated 2 April 2023.</li><li id="s43"><a href="https://www.oyster.com/mexico-city/hotels/gran-hotel-ciudad-de-mexico/">Gran Hotel Ciudad de Mexico Review</a>. <span class="pub">Oyster.com</span>, updated 19 May 2025.</li><li id="s44"><a href="https://culturestraveled.com/best-rooftops-mexico-city/">10 Best Rooftop Bars in Mexico City</a>. <span class="pub">Cultures Traveled</span>, updated 29 September 2026.</li><li id="s45"><a href="https://www.outlooktraveller.com/celebrating-people/taj-mahal-palace-celebrating-120-years-of-excellence-and-heritage">Taj Mahal Palace: Celebrating 120 Years Of Excellence And Heritage</a>. <span class="pub">Outlook Traveller</span>, updated 19 December 2023.</li><li id="s46"><a href="https://ihcldigitaldirectory.com/Taj-factsheets/Taj_Mahal_Palace_Mumbai_Factsheet.pdf">The Taj Mahal Palace, Mumbai: factsheet (PDF)</a>. <span class="pub">IHCL</span>, undated.</li><li id="s47"><a href="https://www.tajhotels.com/en-in/hotels/taj-mahal-palace-mumbai/restaurants/harbour-bar-mumbai">Harbour Bar</a>. <span class="pub">Taj Hotels</span>, checked 19 October 2026.</li><li id="s48"><a href="https://oteats.outlooktraveller.com/features/guides/check-out-these-5-best-cocktail-bars-for-your-next-night-out-in-mumbai">Check out these 5 best cocktail bars for your next night out in Mumbai</a>. <span class="pub">Outlook Traveller (OT Eats)</span>, 8 September 2025.</li><li id="s49"><a href="https://travel.indagare.com/hubfs/1-15-19/EDITORIAL_Newsletter%205-20-20_Armchair%20Travel%20Recipes/Indagare_Virtual%20Travel%20Guide_Recipes%2023.pdf">Virtual Travel Guide: Recipes (PDF)</a>. <span class="pub">Indagare</span>, c. May 2020.</li><li id="s50"><a href="https://press.roccofortehotels.com/hotel-de-russie-fact-sheet/">Hotel de Russie fact sheet</a>. <span class="pub">Rocco Forte Hotels</span>, undated.</li><li id="s51"><a href="https://www.tageskarte.io/hotellerie/detail/hotel-de-russie-in-rom-mit-neuem-bar-design-von-moschino.html">Hotel de Russie in Rom mit neuem Bar-Design von Moschino</a>. <span class="pub">Tageskarte</span>, 15 May 2024.</li><li id="s52"><a href="https://www.gramilano.com/2017/03/picasso-in-rome-with-diaghilev-cocteau-and-massine-the-ballets-russes-and-parade/">Picasso in Rome with Diaghilev, Cocteau and Massine</a>. <span class="pub">Gramilano</span>, 22 March 2017.</li><li id="s53"><a href="https://www.roccofortehotels.com/media/bhffoanw/rfh-hotel-de-russie-factsheet-april-2026.pdf">Hotel de Russie factsheet, April 2026 (PDF)</a>. <span class="pub">Rocco Forte Hotels</span>, April 2026.</li><li id="s54"><a href="https://www.roccofortehotels.com/hotels-and-resorts/hotel-de-russie/dining/stravinskij-bar/">Stravinskij Bar</a>. <span class="pub">Rocco Forte Hotels</span>, checked 19 October 2026.</li><li id="s55"><a href="https://www.roccofortehotels.com/hotels-and-resorts/hotel-de-russie/dining/stravinskij-bar/menus/">Stravinskij Bar: menus</a>. <span class="pub">Rocco Forte Hotels</span>, checked 19 October 2026.</li><li id="s56"><a href="https://www.belmond.com/stories/belmond-mount-nelson-hotel-history">History of a Cape Town Icon</a>. <span class="pub">Belmond</span>, undated.</li><li id="s57"><a href="https://capetownmagazine.com/planet-bar">Planet Bar and Restaurant</a>. <span class="pub">Cape Town Magazine</span>, undated.</li><li id="s58"><a href="https://www.timeout.com/cape-town/news/new-eateries-for-the-nellie-012825">New eateries for the Nellie</a>. <span class="pub">Time Out Cape Town</span>, 28 January 2025.</li><li id="s59"><a href="https://www.wantedonline.co.za/food-and-drink/2025-01-24-new-al-fresco-dining-destinations-at-mount-nelson-a-belmond-hotel/">New al fresco dining destinations at Mount Nelson, A Belmond Hotel</a>. <span class="pub">Wanted Online</span>, 24 January 2025.</li><li id="s60"><a href="https://www.belmond.com/hotels/africa/south-africa/cape-town/belmond-mount-nelson-hotel/dining">Mount Nelson: dining</a>. <span class="pub">Belmond</span>, checked 19 October 2026.</li><li id="s61"><a href="https://www.rustycompass.com/vietnam-travel-guide-233/hanoi-5/hotels-15/sofitel-legend-metropole-hanoi-hotel-270">Sofitel Legend Metropole Hanoi</a>. <span class="pub">Rusty Compass</span>, 15 July 2016.</li><li id="s62"><a href="https://sofitel.accor.com/en/hotels/1555/B001.bar.html">Bamboo Bar</a>. <span class="pub">Sofitel / Accor</span>, checked 19 October 2026.</li><li id="s63"><a href="https://www.sofitel-legend-metropole-hanoi.com/dining/bamboo-bar/">Bamboo Bar</a>. <span class="pub">Sofitel Legend Metropole Hanoi</span>, checked 19 October 2026.</li><li id="s64"><a href="https://vietnamtourism.vn/en/index.php/news/items/4927">Metropole Hotel excavates wartime air raid shelter</a>. <span class="pub">Vietnam National Authority of Tourism</span>, 8 November 2011.</li><li id="s65"><a href="https://travellingforbusiness.co.uk/destinations/metropole-hanoi-marks-50th-anniversary-of-wars-end-with-special-bomb-shelter-tours/">Metropole Hanoi marks 50th anniversary of war&#x27;s end with special bomb shelter tours</a>. <span class="pub">Travelling for Business</span>, 23 April 2025.</li><li id="s66"><a href="https://www.sofitel-legend-metropole-hanoi.com/news-press/charlie-chaplins-unique-exhibition-at-metropole-hanoi/">Charlie Chaplin&#x27;s Unique Exhibition at Metropole Hanoi</a>. <span class="pub">Sofitel Legend Metropole Hanoi</span>, modified 21 May 2026.</li><li id="s67"><a href="https://www.theworlds50best.com/discovery/Establishments/Vietnam/Hanoi/Bamboo-Bar.html">Bamboo Bar</a>. <span class="pub">The World&#x27;s 50 Best Discovery</span>, undated.</li><li id="s68"><a href="https://www.sofitel-legend-metropole-hanoi.com/wp-content/uploads/sites/95/2021/04/Drink-menu.pdf">Drink menu (PDF)</a>. <span class="pub">Sofitel Legend Metropole Hanoi</span>, April 2021.</li><li id="s69"><a href="https://atlasobscura.com/places/carousel-bar">Carousel Bar</a>. <span class="pub">Atlas Obscura</span>, 13 August 2018.</li><li id="s70"><a href="https://www.islands.com/1809952/carousel-bar-historic-rotating-downtown-new-orleans-louisiana-only-unique-world-class-cocktails/">New Orleans&#x27; Only Revolving Bar Is A Unique Carousel-Themed Gem</a>. <span class="pub">Islands</span>, 17 March 2025.</li><li id="s71"><a href="https://hotelmonteleone.com/?p=20668">Celebrating 75 Years of Spinning and Sipping</a>. <span class="pub">Hotel Monteleone</span>, c. 2024.</li><li id="s72"><a href="https://hotelmonteleone.com/history/">History</a>. <span class="pub">Hotel Monteleone</span>, checked 19 October 2026.</li><li id="s73"><a href="https://spiritsanddistilling.com/dictionary/acref-9780199311132-e-442">Vieux Carré, in The Oxford Companion to Spirits and Cocktails</a>. <span class="pub">Oxford University Press, via spiritsanddistilling.com</span>, 2021.</li><li id="s74"><a href="https://hotelmonteleone.com/menu/">Carousel Bar &amp; Lounge: menu and entertainment</a>. <span class="pub">Hotel Monteleone</span>, checked 19 October 2026.</li><li id="s75"><a href="https://www.myneworleans.com/the-carousel-bar-turns-75-with-celebrations-through-september/">The Carousel Bar Turns 75 with Celebrations Through September</a>. <span class="pub">MyNewOrleans.com</span>, 20 August 2024.</li><li id="s76"><a href="https://fcchk.org/correspondent/the-peace-hotel-bund-masterpiece-still-standing-tall-at-90">The Peace Hotel: Bund masterpiece still standing tall at 90</a>. <span class="pub">The Correspondent, Foreign Correspondents&#x27; Club of Hong Kong</span>, c. 2019.</li><li id="s77"><a href="https://amp.scmp.com/culture/music/article/2110028/worlds-oldest-jazz-band-shanghai-rare-constant-amid-chinas-breakneck">World&#x27;s oldest jazz band in Shanghai a rare constant amid China&#x27;s breakneck modernisation</a>. <span class="pub">South China Morning Post</span>, September 2017.</li><li id="s78"><a href="https://rachelgouk.com/shanghai-must-do-old-jazz-band-at-the-fairmont-peace-hotel/">The Old Jazz Band at the Peace Hotel Shanghai</a>. <span class="pub">Rachel Gouk</span>, modified 3 February 2026.</li><li id="s79"><a href="https://www.fairmont.com/en/hotels/shanghai/fairmont-peace-hotel/dining/the-jazz-bar.bar.html">The Jazz Bar</a>. <span class="pub">Fairmont Peace Hotel</span>, checked 19 October 2026.</li><li id="s80"><a href="https://www.historichotels.org/hotels-resorts/the-savoy-london/history">History of The Savoy</a>. <span class="pub">Historic Hotels Worldwide</span>, undated.</li><li id="s81"><a href="https://www.spiritsanddistilling.com/dictionary/acref-9780199311132-e-218">American Bar (Savoy), in The Oxford Companion to Spirits and Cocktails</a>. <span class="pub">Oxford University Press, via spiritsanddistilling.com</span>, 2021.</li><li id="s82"><a href="https://www.thesavoylondon.com/restaurant/american-bar/">American Bar</a>. <span class="pub">The Savoy</span>, checked 19 October 2026.</li><li id="s83"><a href="https://timeout.com/london/bars-and-pubs/american-bar-at-the-savoy">American Bar at The Savoy</a>. <span class="pub">Time Out London</span>, 18 April 2025.</li><li id="s84"><a href="https://www.opentable.ie/r/american-bar-at-the-savoy-london">American Bar at The Savoy</a>. <span class="pub">OpenTable</span>, checked 19 October 2026.</li><li id="s85"><a href="https://thenudge.com/london-bars/the-american-bar-at-the-savoy/">The American Bar at the Savoy</a>. <span class="pub">The Nudge</span>, modified 27 March 2026.</li><li id="s86"><a href="https://inte.maybourne.com/siteassets/media-centre/press-releases/connaught/the-connaught-bar---press-release-2016.pdf">The Connaught Bar: press release 2016 (PDF)</a>. <span class="pub">Maybourne Hotel Group</span>, 2016.</li><li id="s87"><a href="https://www.diffordsguide.com/pubs-and-bars/250/london/the-connaught-bar">The Connaught Bar</a>. <span class="pub">Difford&#x27;s Guide</span>, 23 February 2023.</li><li id="s88"><a href="https://amp.cnn.com/cnn/travel/article/world-best-bars-2020">World&#x27;s best bars 2020</a>. <span class="pub">CNN Travel</span>, November 2020.</li><li id="s89"><a href="https://inte2.the-connaught.co.uk/about-the-hotel/history/">History &amp; Heritage</a>. <span class="pub">The Connaught</span>, undated.</li><li id="s90"><a href="https://www.maybourne.com/en/hotels/the-connaught/restaurants-bars/connaught-bar">Connaught Bar</a>. <span class="pub">The Connaught / Maybourne</span>, checked 19 October 2026.</li><li id="s91"><a href="https://www.hotelsabovepar.com/travel-guides/connaught-bar-london-review">Connaught Bar London review</a>. <span class="pub">Hotels Above Par</span>, 3 September 2025.</li><li id="s92"><a href="https://www.ritzparis.com/hotel/paris/bars-restaurants/bar-hemingway">Bar Hemingway</a>. <span class="pub">Ritz Paris</span>, checked 19 October 2026.</li><li id="s93"><a href="https://www.visitparisregion.com/en/bar-hemingway">Bar Hemingway</a>. <span class="pub">Visit Paris Region</span>, undated.</li><li id="s94"><a href="https://www.journaldespalaces.com/communique-66925-france-nominations-anne-sophie-prestail-la-releve-du-bar-hemingway.html">Anne-Sophie Prestail, la relève du Bar Hemingway</a>. <span class="pub">Le Journal des Palaces</span>, 26 May 2023.</li><li id="s95"><a href="https://newgelora.thejakartapost.com/life/2019/08/12/the-day-hemingway-liberated-the-ritz-bar-in-paris">The day Hemingway &#x27;liberated&#x27; the Ritz bar in Paris</a>. <span class="pub">AFP, via The Jakarta Post</span>, 12 August 2019.</li><li id="s96"><a href="https://www.pariszigzag.fr/insolite/histoire-insolite-paris/legende-ou-realite-hemingway-a-t-il-vraiment-libere-le-ritz/">Légende ou réalité : Hemingway a-t-il vraiment libéré le Ritz ?</a>. <span class="pub">Paris ZigZag</span>, modified 22 October 2024.</li><li id="s97"><a href="https://www.ritzparis.com/hotel/paris/faq?category=restaurant">FAQ: Restaurants</a>. <span class="pub">Ritz Paris</span>, checked 19 October 2026.</li><li id="s98"><a href="https://lefooding.com/en/bars/hemingway-bar-paris">Hemingway Bar</a>. <span class="pub">Le Fooding</span>, undated.</li><li id="s99"><a href="https://eresources.nlb.gov.sg/infopedia/articles/SIP_37_2005-01-05.html">Raffles Hotel</a>. <span class="pub">Infopedia, National Library Board Singapore</span>, undated.</li><li id="s100"><a href="https://www.raffles.com/singapore/dining/long-bar/">Long Bar</a>. <span class="pub">Raffles Hotels &amp; Resorts</span>, checked 19 October 2026.</li><li id="s101"><a href="https://curiocity.nlb.gov.sg/digital-stories/bras-basah/bb-food/">Bras Basah: A Place for Food</a>. <span class="pub">Curiocity, National Library Board Singapore</span>, undated.</li><li id="s102"><a href="https://hoteldesigns.net/industry-news/a-legend-reborn-raffles-singapore-reopens/">A legend reborn: Raffles Singapore reopens</a>. <span class="pub">Hotel Designs</span>, 2 August 2019.</li><li id="s103"><a href="https://www.diffordsguide.com/people/51771/ngiam-tong-boon">Ngiam Tong Boon</a>. <span class="pub">Difford&#x27;s Guide</span>, undated.</li><li id="s104"><a href="https://www.travelmoneyoz.com/tools/blog/is-a-singapore-sling-at-raffles-hotel-worth-it">Is a Singapore Sling at Raffles Hotel worth it?</a>. <span class="pub">Travel Money Oz</span>, 28 August 2026.</li><li id="s105"><a href="https://www.foxnews.com/world/istanbul-hotel-host-to-legends-and-witness-to-an-empires-fall-to-reopen-after-renovation">Istanbul hotel host to legends and witness to an empire&#x27;s fall to reopen after renovation</a>. <span class="pub">Associated Press, via Fox News</span>, 30 July 2010.</li><li id="s106"><a href="https://www.historyhit.com/locations/pera-palace-hotel/">Pera Palace Hotel</a>. <span class="pub">History Hit</span>, undated.</li><li id="s107"><a href="https://www.journaldespalaces.com/en/pressrelease-27749-pera-palace-hotel-reopens-with-its-past-grandeur.html">Pera Palace Hotel reopens with its past grandeur</a>. <span class="pub">Le Journal des Palaces</span>, 16 February 2010.</li><li id="s108"><a href="https://classicchicagomagazine.com/legend-on-the-golden-horn">Legend on the Golden Horn</a>. <span class="pub">Classic Chicago Magazine</span>, undated.</li><li id="s109"><a href="https://perapalace.com/en/famous-guests-of-pera-palace-hotel-ernest-hemingway/">Famous Guests of Pera Palace Hotel: Ernest Hemingway</a>. <span class="pub">Pera Palace Hotel</span>, undated.</li><li id="s110"><a href="https://perapalace.com/en/restaurants/orient-bar/">Orient Bar</a>. <span class="pub">Pera Palace Hotel</span>, checked 19 October 2026.</li><li id="s111"><a href="https://www.timeout.com/istanbul/restaurants/orient-bar">Orient Bar</a>. <span class="pub">Time Out Istanbul</span>, 15 June 2012.</li><li id="s112"><a href="https://medias24.com/2023/09/30/un-siecle-dexistence-pour-la-mamounia-temple-du-savoir-vivre-marocain/">Un siècle d&#x27;existence pour La Mamounia, temple du savoir-vivre marocain</a>. <span class="pub">Medias24</span>, 30 September 2023.</li><li id="s113"><a href="https://themarrakechsociety.ma/blog/en/churchill-bar-marrakech">Churchill Bar Marrakech</a>. <span class="pub">The Marrakech Society</span>, 3 June 2026.</li><li id="s114"><a href="https://mamounia.com/en/bars/le-churchill.html">Le Churchill</a>. <span class="pub">La Mamounia</span>, checked 19 October 2026.</li><li id="s115"><a href="https://mamounia.com/en/magazine/churchill-bar.html">Le Churchill Bar, a unique and exclusive experience</a>. <span class="pub">La Mamounia magazine</span>, checked 19 October 2026.</li><li id="s116"><a href="https://austria-forum.org/af/AustriaWiki/Hotel_Sacher">Hotel Sacher</a>. <span class="pub">Austria-Forum</span>, undated.</li><li id="s117"><a href="https://www.falstaff.com/en/news/hotel-sacher-a-viennese-icon">Hotel Sacher: A Viennese Icon</a>. <span class="pub">Falstaff</span>, 28 January 2025.</li><li id="s118"><a href="https://sacher.com/en/restaurants/blaue-bar">Blaue Bar</a>. <span class="pub">Hotel Sacher</span>, checked 19 October 2026.</li><li id="s119"><a href="https://famoushotels.org/news/vienna-hotel-sacher-third-mans-birthplace">Vienna: Hotel Sacher – Third Man&#x27;s Birthplace</a>. <span class="pub">Famous Hotels</span>, undated.</li></ol>
+</section>
+</div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>Published 19 October 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+    <p><a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20The%20Hotel%20Bar%20Atlas&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-10-19-the-hotel-bar-atlas%2F">Spot an error? Suggest a correction</a></p>
+    <p><a href="/daily/">← Back to Daily</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  try{
+    var clocks=document.querySelectorAll('.lobby li[data-tz]');
+    function tick(){
+      var now=new Date();
+      clocks.forEach(function(li){
+        try{
+          var t=new Intl.DateTimeFormat('en-GB',{timeZone:li.getAttribute('data-tz'),hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
+          li.querySelector('.clk-time').textContent=t;
+        }catch(e){}
+      });
+    }
+    tick(); setInterval(tick,30000);
+  }catch(e){}
+
+  var section='all', need={walkin:false,counter:false};
+  var chips=document.querySelectorAll('.chip[data-filter]');
+  var toggles=document.querySelectorAll('.chip[data-toggle]');
+  var entries=document.querySelectorAll('.entry');
+  var secs=document.querySelectorAll('.atmos');
+  var count=document.querySelector('.count');
+  var empty=document.querySelector('.empty');
+  function apply(){
+    var shown=0;
+    entries.forEach(function(e){
+      var ok=(section==='all'||e.dataset.section===section)&&(!need.walkin||e.dataset.walkin==='1')&&(!need.counter||e.dataset.counter==='1');
+      e.hidden=!ok; if(ok) shown++;
+    });
+    secs.forEach(function(s){ s.hidden=!s.querySelector('.entry:not([hidden])'); });
+    count.textContent=shown+' of '+entries.length+' bars';
+    empty.hidden=shown>0;
+  }
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    section=c.dataset.filter;
+    chips.forEach(function(x){x.setAttribute('aria-pressed',String(x===c));});
+    apply();
+  });});
+  toggles.forEach(function(t){t.addEventListener('click',function(){
+    var k=t.dataset.toggle; need[k]=!need[k]; t.setAttribute('aria-pressed',String(need[k])); apply();
+  });});
+  apply();
+})();
+</script>
+</body>
+</html>
