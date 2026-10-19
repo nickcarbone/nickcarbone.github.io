@@ -191,6 +191,65 @@ Proposed Contents: 20 airports serving major regional hubs. Dedicated express tr
 Interactive Element: An interactive route calculator comparing total transit cost and time from platform to city center across all 20 airports.
 Finish Line: 20 verified airport profiles ranked by connection friction, complete with explicit "avoid/use" ground transport recommendation
 
+The Clock Gap
+A field guide to time zones as political decisions: Spain on Central European Time since 1940, Nepal’s +5:45 offset, China’s single zone, North Korea’s 2015–18 “Pyongyang time.”
+Rule: only offsets that a government chose for a documented reason.
+Finish: 20 entries plus a live offset widget.
+Why now: Europe falls back Oct 25 and the US on Nov 1, so New York–London runs four hours apart for a week. This extends Deadline Clock, so publish it first.
+
+The World's Hidden Standards
+New territory: standards engineering, industrial history, interoperability
+The question: How do invisible technical standards determine what connects, fits, charges, communicates, or works across borders?
+Explore the standards that quietly organize modern life: shipping containers, electrical plugs, radio frequencies, barcode formats, timekeeping, paper sizes, and digital encoding.
+Include: The problem each standard solves, competing historical alternatives, compatibility failures, who governs the standard, and what happens when a country or industry adopts a different one.
+Interactive element: A compatibility checker for selected systems, showing which combinations work and why. Include a timeline of standardization milestones.
+Finish line: 20 standards, grouped into five sectors, with six working compatibility demonstrations.
+
+The World's Everyday Payment Systems
+New territory: financial infrastructure, consumer technology, social behavior
+The question: Why do some countries rely on cards, others on instant bank transfers, and others on mobile wallets or cash?
+Study the systems people actually use to pay for daily life, not financial products or investment strategies.
+Include: Card networks, instant payment rails, QR payments, mobile wallets, cash usage, merchant acceptance, settlement, and the role of regulation. Compare a dozen countries with genuinely different payment ecosystems.
+Interactive element: A country comparison tool with filters for person-to-person transfers, small merchants, transit payments, international visitors, and cash dependence.
+Finish line: 12 country profiles and a comparison matrix that explains the underlying systems, not just which apps are popular.
+
+The Decision-Making Under Uncertainty Lab
+New territory: cognitive science, statistics, behavioral economics
+The question: Why do intelligent people make bad decisions when information is incomplete, and how can a better process improve the outcome?
+Build a practical guide to reasoning rather than another collection of cognitive-bias definitions.
+Include: Bayesian updating, base rates, confirmation bias, survivorship bias, calibration, expected value, loss aversion, and the difference between confidence and accuracy.
+Interactive element: A set of short decision simulations. Users estimate the probability of an event, receive new evidence, update their estimate, and compare their calibration across scenarios.
+Finish line: Eight interactive scenarios, a probability-calibration exercise, and a reusable decision worksheet.
+
+Reading a Phone Number
+An OSINT guide to the world’s numbering plans. Examples: +1 shared by more than 20 countries and territories, which is why one-ring scams use Caribbean area codes; +7 shared by Russia and Kazakhstan (check the status of Kazakhstan’s planned move to its own code).
+Finish: a lookup reference covering structure, mobile versus landline prefixes, and the limits of carrier lookups.
+
+Split Cities
+Towns divided by a border: Baarle-Hertog/Baarle-Nassau, Gorizia/Nova Gorica, Görlitz/Zgorzelec, Tornio/Haparanda, Valga/Valka. Narva/Ivangorod is the counterexample on a hard external border.
+Finish: 12 towns, each with what changes across the line (prices, hours, beer, language) and rail access.
+
+The Wires
+A field guide to 20 news agencies: AP, Reuters, AFP, dpa, EFE, ANSA, Kyodo, PTI, Xinhua, TASS, Anadolu and others.
+Contents: ownership and state funding, language services, how to read datelines and priority codes, and fine print on editorial independence.
+
+Two Prices for Money
+Countries with parallel exchange rates: what the gap means for travelers, prices and journalism.
+Builds on: your hawala and M-Pesa pages.
+Warning: this is the fastest-decaying page on the list. Argentina and Egypt both changed regimes recently. Use a quantitative selection rule, and date-stamp everything.
+
+Made to Measure
+The bespoke trades: suits (Savile Row, Naples, Hong Kong), shoes, shirts, hats.
+Finish: 20 houses, honest price tiers, waiting times, which houses run US trunk shows, and a glossary.
+Fine print: the fight over who may legally say “bespoke.” The 2008 UK advertising ruling is worth checking.
+
+Sleeping at Sea 
+Overnight ferries as hotels: Stockholm–Helsinki, Genoa–Palermo, Newcastle–Amsterdam, Harwich–Hook of Holland, Japan’s long-distance routes.
+Finish: 15 routes with cabin classes, dining, and rail connections at each end.
+
+What a Pint Really Costs
+An interactive profit-and-loss model for a small bar: rent, licensing, pour cost, labor, with sliders and sourced default figures.
+
 ---
 
 # Parked
