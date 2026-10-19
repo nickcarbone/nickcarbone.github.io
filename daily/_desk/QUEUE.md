@@ -29,6 +29,12 @@ Investigate where understated wealth actually lives: villa districts, seaside en
 Include: 10 locations, property styles, local wealth indicators, architectural history, nearby amenities, transport access, and representative properties or streets.
 Finish line: a visual atlas that explains why each place feels distinctive. Use public property listings and documented examples rather than speculating about private residents or their finances.
 
+The Clock Gap
+A field guide to time zones as political decisions: Spain on Central European Time since 1940, Nepal’s +5:45 offset, China’s single zone, North Korea’s 2015–18 “Pyongyang time.”
+Rule: only offsets that a government chose for a documented reason.
+Finish: 20 entries plus a live offset widget.
+Why now: Europe falls back Oct 25 and the US on Nov 1, so New York–London runs four hours apart for a week. This extends Deadline Clock, so publish it first.
+
 The Invisible Systems That Keep Countries Connected
 Explore the physical and commercial infrastructure behind the digital world: submarine cables, internet exchanges, mobile operators, satellite systems, and international data routes.
 Include: 10 strategically interesting countries, major infrastructure, operators, dependencies, chokepoints, redundancy, and geopolitical implications.
@@ -185,12 +191,6 @@ Research Question: Which secondary European airports offer seamless high-speed r
 Proposed Contents: 20 airports serving major regional hubs. Dedicated express train lines vs. regional buses, transit costs, journey times, ticket integration, and door-to-door efficiency compared to main central station hubs.
 Interactive Element: An interactive route calculator comparing total transit cost and time from platform to city center across all 20 airports.
 Finish Line: 20 verified airport profiles ranked by connection friction, complete with explicit "avoid/use" ground transport recommendation
-
-The Clock Gap
-A field guide to time zones as political decisions: Spain on Central European Time since 1940, Nepal’s +5:45 offset, China’s single zone, North Korea’s 2015–18 “Pyongyang time.”
-Rule: only offsets that a government chose for a documented reason.
-Finish: 20 entries plus a live offset widget.
-Why now: Europe falls back Oct 25 and the US on Nov 1, so New York–London runs four hours apart for a week. This extends Deadline Clock, so publish it first.
 
 The World's Hidden Standards
 New territory: standards engineering, industrial history, interoperability
