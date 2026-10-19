@@ -66,6 +66,23 @@ const EXCLUDE = new Set([
   'global-news-monitor',     // pre-publisher project
 ]);
 
+// ── Daily: hub + pieces from daily/manifest.json (lives in this repo) ────────
+function dailyUrls() {
+  let pieces = [];
+  try { pieces = JSON.parse(fs.readFileSync('daily/manifest.json', 'utf8')).pieces || []; }
+  catch (e) { return []; }
+  const entry = (loc, lastmod, priority) => `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <priority>${priority}</priority>
+  </url>`;
+  const latest = pieces[0] ? pieces[0].date : new Date().toISOString().split('T')[0];
+  return [
+    entry(`${BASE_URL}/daily/`, latest, '0.9'),
+    ...pieces.map(p => entry(`${BASE_URL}/daily/${p.slug}/`, p.date, '0.7')),
+  ];
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 async function main() {
   // 1. Fetch all public repos (handles pagination)
@@ -135,6 +152,8 @@ async function main() {
     <lastmod>${today}</lastmod>
     <priority>1.0</priority>
   </url>`,
+    // Daily hub and its pieces (folders inside this repo, not separate repos)
+    ...dailyUrls(),
     // All published pages
     ...results.map(p => `  <url>
     <loc>${p.url}</loc>

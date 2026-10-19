@@ -525,8 +525,39 @@ const MANUAL_CARDS = [
     url: `https://${OWNER}.github.io/signal.html`,
     desc: 'Global situational-awareness dashboard — consequence-ranked events from live feeds (USGS, GDACS, NASA FIRMS, and more).',
     dateLabel: 'Actively updated'
+  },
+  {
+    id: 'daily',
+    name: 'Daily',
+    url: `https://${OWNER}.github.io/daily/`,
+    desc: 'A new researched piece every morning.',
+    dateLabel: 'New every morning'
   }
 ];
+
+// ── Daily: hub card details + pieces sent to this index ─────
+// Reads the Daily hub's manifest and the list of pieces Nick has ticked
+// "Send to main index" on (daily/promoted.json, written from the hub).
+async function loadDaily() {
+  const bust = '?v=' + Date.now();
+  const get = (path, fallback) => fetch(path + bust, { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : fallback).catch(() => fallback);
+  const [m, p] = await Promise.all([
+    get('/daily/manifest.json', { pieces: [] }),
+    get('/daily/promoted.json', { slugs: [] })
+  ]);
+  const pieces = m.pieces || [];
+  const promoted = new Set(p.slugs || []);
+  return {
+    latest: pieces[0] || null,
+    promoted: pieces.filter(x => promoted.has(x.slug)).map(x => ({
+      name: x.title,
+      url: `https://${OWNER}.github.io/daily/${x.slug}/`,
+      desc: x.dek || '',
+      when: `${x.date}T00:00:00`
+    }))
+  };
+}
 // ── Helpers ──────────────────────────────────────────────────
 
 function deSlug(s) {
@@ -670,6 +701,7 @@ function showError(msg) {
   document.getElementById('skeleton').style.display = 'none';
   const grid = document.getElementById('grid');
 
+  const dailyP = loadDaily();
   let repos = [];
   try {
     repos = await loadRepos();
@@ -678,18 +710,32 @@ function showError(msg) {
     // pinned cards should still render — they don't depend on that call.
     if (!MANUAL_CARDS.length) { showError(err.message || 'GitHub API request failed.'); return; }
   }
+  const daily = await dailyP;
 
-  const total = repos.length + MANUAL_CARDS.length;
+  // Fill in the Daily hub card from its manifest.
+  const dailyCard = MANUAL_CARDS.find(c => c.id === 'daily');
+  if (dailyCard && daily.latest) {
+    dailyCard.desc = `A new researched piece every morning. Latest: ${daily.latest.title}`;
+    dailyCard.dateLabel = relTime(`${daily.latest.date}T00:00:00`);
+  }
+
+  // Repos and promoted Daily pieces share one newest-first feed.
+  const feed = [
+    ...repos.map(repo => ({ t: new Date(repo.pushed_at), el: i => renderCard(repo, i) })),
+    ...daily.promoted.map(item => ({ t: new Date(item.when), el: i => renderManualCard({ ...item, dateLabel: 'Daily · ' + relTime(item.when) }, i) }))
+  ].sort((a, b) => b.t - a.t);
+
+  const total = feed.length + MANUAL_CARDS.length;
   if (!total) { showEmpty(); return; }
 
   document.getElementById('count').textContent = `${total} item${total !== 1 ? 's' : ''}`;
-  document.getElementById('last-updated').textContent = repos.length
-    ? `Updated ${relTime(repos[0].pushed_at).toLowerCase()}`
+  document.getElementById('last-updated').textContent = feed.length
+    ? `Updated ${relTime(feed[0].t.toISOString()).toLowerCase()}`
     : '';
 
   let idx = 0;
   MANUAL_CARDS.forEach(item => grid.appendChild(renderManualCard(item, idx++)));
-  repos.forEach(repo => grid.appendChild(renderCard(repo, idx++)));
+  feed.forEach(f => grid.appendChild(f.el(idx++)));
   grid.style.display = 'grid';
 })();
 </script>

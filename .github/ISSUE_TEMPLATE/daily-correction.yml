@@ -1,0 +1,36 @@
+name: "Daily · suggest a correction"
+description: "Report an error in a piece published on nickcarbone.github.io/daily/"
+title: "Correction: "
+labels: ["daily-correction"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for taking the time. Every suggestion is reviewed, and any correction that holds up is made on the page with a dated note."
+  - type: input
+    id: page
+    attributes:
+      label: "Page"
+      description: "Link to the piece"
+      placeholder: "https://nickcarbone.github.io/daily/..."
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: "What's wrong"
+      description: "Quote or describe the passage that's incorrect."
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: "What it should say"
+    validations:
+      required: false
+  - type: textarea
+    id: source
+    attributes:
+      label: "Source"
+      description: "A link or reference that supports the correction."
+    validations:
+      required: false
