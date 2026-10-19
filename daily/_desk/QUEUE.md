@@ -131,6 +131,66 @@ Avoid: current private residents, property prices, live listings.
 Look: an architectural monograph or plan book.
 Finish line: 15 building profiles, a timeline of styles, and a comparison matrix of how each house balances privacy against display.
 
+The Urban Waterfront Access Atlas
+Research question: Which cities make their waterfronts part of ordinary urban life, and which effectively separate the city from the water?
+This is a way to explore your interest in coastal cities, waterfront architecture, overlooked luxury districts, and places where geography shapes everyday life.
+Proposed contents
+- 20 waterfront cities, including riverfront, harbor, lakefront, and seafront examples.
+- Public access to the water and continuity of walking routes.
+- Ferries, promenades, beaches, waterfront markets, and public transport.
+- The relationship between residential neighborhoods, commercial districts, and the waterfront.
+- Barriers such as highways, port facilities, steep terrain, or private developments.
+- A short profile of what makes each waterfront distinctive.
+Interactive element: A filterable atlas organized by waterfront type, public accessibility, and urban integration. Include original CSS-based access diagrams showing how the built environment connects—or fails to connect—to the water.
+Sources to start from: Use verified municipal planning information and public-access information during research.
+Finish line: 20 cities classified into four waterfront types, plus a comparative scorecard for public access and urban integration.
+
+The Overnight Geography Directory
+Research question: Where can you travel overnight, wake up somewhere genuinely different, and still have a useful amount of time to explore before returning?
+Rather than listing sleeper trains alone, this guide investigates the geography of overnight travel: night trains, late ferries, overnight coaches, and useful early-morning arrivals.
+Proposed contents
+- 20 origin–destination connections.
+- Departure and arrival times, journey duration, and arrival-day usefulness.
+- Available accommodation types or seating arrangements.
+- Connections to local transit upon arrival.
+- Seasonal operation and booking constraints.
+- A distinction between journeys that save hotel costs and those that primarily save daytime travel.
+Interactive element: A route planner that filters by mode, overnight duration, arrival time, and whether the destination offers a full usable day. Use original HTML route cards rather than embedded map imagery.
+Sources to start from: Verify current schedules, seasonal services, and booking conditions when researching each route.
+Finish line: 20 verified routes, five useful route comparisons, and a filterable directory that identifies the strongest options for maximizing time at the destination.
+
+The Last-Mile Atlas
+Research question: Which interesting European destinations look easy to reach on a map but become surprisingly difficult once you account for the final connection from the railway station?
+Build a directory of places where the last 5–30 km can determine whether a trip is practical: coastal towns, island gateways, mountain communities, and overlooked resort areas.
+Proposed contents
+- 25 destinations across Europe.
+- Nearest useful railway station and onward transport mode.
+- Typical transfer time, frequency, and seasonal limitations.
+- Whether the final connection requires a bus, ferry, local train, or taxi.
+- A practical rating for weekend visits versus longer stays.
+- A short note on what makes each destination worth the extra effort.
+Interactive element: A searchable directory with filters for onward transport, transfer complexity, and destination type. A custom CSS indicator shows each destination's connection chain: rail → local transfer → destination.
+Sources to start from: Omit source recommendations in the generated guide; populate individual entries using verified transport data during research.
+Finish line: 25 destinations, four filters, and a ranked list of 10 places with unusually manageable last-mile connections.
+
+The European Brewery & Taproom Railway Atlas
+Research Question: Where can a traveler plan an itinerary centered on world-class, historic, or independent microbreweries located within a 15-minute walk of regional railway stations?
+Proposed Contents: 20 classic and craft breweries across Belgium, Germany, the UK, the Netherlands, and Scandinavia located directly adjacent to passenger rail stops. Details include foot transit time from platform, taproom hours, flagship beer styles, food availability, and rail line hub connections.
+Interactive Element: A line-by-line transit map UI displaying brewery stops sequentially along major rail corridors (e.g., Brussels–Gent–Brugge or Munich–Salzburg).
+Finish Line: 20 platform-to-taproom profiles with step-by-step walking guides and rail schedule notes.
+
+The Micro-Brewery & Industrial Taproom Radar
+Research Question: How are independent craft breweries repurposing industrial heritage sites—dockyards, brick warehouses, and old railway arches—into vibrant community third places?
+Proposed Contents: 18 independent breweries operating out of converted industrial spaces. Architectural provenance, outdoor seating, dog-friendliness, local neighborhood integration, transit access, and flagship draft offerings.
+Interactive Element: A searchable directory tagged by architectural type (rail arch, dockyard, warehouse, historic maltings), seating setup, and transit walkability.
+Finish Line: 18 taproom profiles celebrating industrial preservation and craft beer culture.
+
+The Secondary Airport-to-City Transit Scorecard
+Research Question: Which secondary European airports offer seamless high-speed rail connections into city centers, and which trap travelers in costly, slow bus transfers?
+Proposed Contents: 20 airports serving major regional hubs. Dedicated express train lines vs. regional buses, transit costs, journey times, ticket integration, and door-to-door efficiency compared to main central station hubs.
+Interactive Element: An interactive route calculator comparing total transit cost and time from platform to city center across all 20 airports.
+Finish Line: 20 verified airport profiles ranked by connection friction, complete with explicit "avoid/use" ground transport recommendation
+
 ---
 
 # Parked
