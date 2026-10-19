@@ -1,14 +1,14 @@
 # Daily queue
 
-The top idea runs next morning. Order top to bottom is run order.
+The top idea runs next morning. Order top to bottom is run order. Put new ideas under **Ideas**, above **Parked**.
 
-**How to add an idea:** start a line with `## ` followed by a working title. Everything under it, up to the next `## `, is the brief. One line is enough; two or three sentences on the angle get a much closer result. These optional lines help when you have a view:
+**How to add an idea:** write a title on its own line, with the brief on the lines straight under it. Leave one blank line between ideas, and no blank lines inside an idea. (Starting the title with `## ` is fine too, but not needed.) One line of brief is enough, but two or three sentences on the angle get a much closer result. These optional lines help when you have a view:
 
 - `Must include:` things the piece has to cover
 - `Avoid:` angles, sources or formats to stay away from
 - `Look:` a steer on design or format (a map, a timetable, an index card, anything)
 
-**How to request a correction:** add an entry headed `## CORRECTION: <link to the piece>` (anywhere in the queue) and say what's wrong. Corrections run before the day's new piece and don't use up the day.
+**How to request a correction:** add an idea whose title line starts `CORRECTION:` followed by the link to the piece, and say what's wrong underneath. Corrections run before the day's new piece and don't use up the day.
 
 Ideas the desk can't do well (too thin, not evergreen, would need private individuals) are moved to **Parked** at the bottom with a note, and the next idea runs instead.
 
@@ -20,6 +20,8 @@ Evergreen field guide to bars that have served continuously for 300+ years. Whic
 Must include: how "oldest" gets contested, a map
 Look: something like a licensing ledger
 -->
+
+# Ideas
 
 The Hotel Bar Atlas
 A guide to hotel bars as urban third places: where you can sit comfortably, observe a city, meet people, and enjoy a sense of occasion without staying at the hotel.
@@ -132,8 +134,6 @@ Proposed contents
 Visual element: A map-led atlas with filters for architectural style, coastal versus urban setting, historical versus contemporary design, and degree of urban integration.
 Sources to start with: DOCOMOMO International, The World Monuments Fund, ArchDaily, and municipal architectural heritage inventories. Use public listings and published architectural coverage for property examples.
 Finish line: 15 locations, 30 architectural references or images with proper attribution, and a comparative matrix explaining the distinctive character of each enclave.
-
-
 
 ---
 

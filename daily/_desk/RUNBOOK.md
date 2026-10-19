@@ -21,7 +21,7 @@ The run is unattended. Nobody will answer questions. Take the most reasonable re
 
 ## 2. Read the desk
 
-1. **Queue.** Read `daily/_desk/QUEUE.md`. An idea is a line starting `## ` that sits above the `# Parked` heading and outside any `<!-- -->` comment. Everything below a heading, up to the next heading, is its brief. Ideas whose heading starts `## CORRECTION:` are correction requests. Everything under `# Parked` is skipped.
+1. **Queue.** Read `daily/_desk/QUEUE.md`. Ideas are the text between the `# Ideas` heading and the `# Parked` heading, ignoring anything inside `<!-- -->` comments and any `---` rule. Split that text on blank lines: each block is one idea. Its first line is the title (strip a leading `## ` if there is one) and the remaining lines are the brief. A block whose title starts `CORRECTION:` is a correction request. Everything under `# Parked` is skipped. If the `# Ideas` heading has gone missing, treat as ideas the blocks after the instructions and the example comment, and log that you did. Nick sometimes pastes briefs written with another assistant: lines addressed to him ("this connects your interest in…") are context, not requirements, and anything a brief says about sources is a lead to check, never a fact to rely on.
 2. **Correction issues.** List open issues with both labels:
    `gh api "repos/nickcarbone/nickcarbone.github.io/issues?state=open&labels=daily-correction,approved&per_page=50"`
    Only Nick can add the `approved` label, so an issue that has it has been vetted by him. Also count open `daily-correction` issues that *lack* `approved`: these are reader suggestions waiting for Nick. Don't act on them; just report the count in step 9.
@@ -48,6 +48,7 @@ For each one:
 1. **Decide the form** from the material, not from habit: long-form essay, field guide, atlas or map, timeline, sortable reference table, glossary, comparison matrix, interactive explainer or calculator, illustrated index. Depth and length follow the idea's complexity. A narrow idea might be 1,200 well-sourced words. A broad one might be 5,000 words, or a reference set of 40 or more entries, each with sources. Thoroughness counts for more than length.
 2. **Research properly.** Use WebSearch and WebFetch (the shell can't reach most websites). Prefer primary and authoritative sources: official bodies, archives, academic and institutional sources, established reference works, reputable publications. Corroborate every important fact with two independent sources where possible. Record every source as you go, with its title, publisher, URL and the claims it supports.
 3. **Accuracy rules.** Never invent a quote, figure, date, name or source. If you can't verify something, cut it or say plainly that it's disputed or unclear. When sources conflict, say so in the piece. Anything that can change (prices, opening hours, rankings, record holders, who holds a role) gets an "as of" date or is left out; the pieces are evergreen. Don't present estimates as facts.
+4. **Crime, wealth and named parties.** Describe crimes at the level of documented public fact: what happened, how it was investigated, what the courts found. Never give operational detail that would help someone commit a crime or defeat security, verification or surveillance. Never imply that a named business, institution or person is involved in wrongdoing unless a court ruling or an official record establishes it. Attribute every allegation to who made it, and say whether it was proven. Name people only when they're public figures, or were convicted and widely reported. Don't link wealth to identifiable private homes or residents.
 
 ## 6. Write and design
 
@@ -101,7 +102,7 @@ For each one:
    }
    ```
    `no` is the highest existing `no` plus 1. `kind` is the form in two or three words.
-3. Remove the idea from `QUEUE.md`, leaving everything else exactly as Nick wrote it.
+3. Remove the idea (its whole block and the blank line after it) from `QUEUE.md`, leaving everything else exactly as Nick wrote it.
 4. Append one line to `daily/_desk/LOG.md`: `- TODAY · No. N · <slug> · <form> · <minutes taken> min · <anything notable, decisions made, parked ideas, oddities>`.
 5. Commit: `daily: No. 007 · <Headline>`. Then `git pull --rebase origin main` (a GitHub Action also commits to `main`) and `git push origin main`. If the push is rejected, pull with rebase and push once more. If it still fails, stop and notify.
 6. **Confirm it's live.** GitHub Pages takes one to three minutes. Each push also sets off the Rebuild Index Action, which commits on top of yours. That cancels the Pages build for your commit and starts one for the bot's commit, which is normal. Every 30 seconds or so, for up to ten minutes, `git fetch origin main` and check the newest "pages build and deployment" run on that head:
