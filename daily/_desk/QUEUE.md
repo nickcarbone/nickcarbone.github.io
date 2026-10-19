@@ -256,6 +256,51 @@ Finish: 15 routes with cabin classes, dining, and rail connections at each end.
 What a Pint Really Costs
 An interactive profit-and-loss model for a small bar: rent, licensing, pour cost, labor, with sliders and sourced default figures.
 
+The Architecture of Getting Lost
+How do some cities make wandering feel effortless while others leave pedestrians stranded between roads, private developments, dead ends, and disconnected districts? Compare the street patterns, passageways, arcades, courtyards, public staircases, mixed-use blocks, and informal shortcuts that determine whether a place rewards exploration. Include 15 cities, practical examples of routes that reveal hidden layers of each city, and original diagrams explaining how urban form creates or suppresses spontaneous discovery.
+Interactive element: A city-wandering scorecard comparing permeability, pedestrian continuity, interesting detours, and access to everyday local life.
+Finish line: 15 city profiles and a practical framework for identifying cities and neighborhoods that reward aimless exploration.
+
+The Invisible Life of a Hotel
+A hotel is simultaneously a building, a workplace, a logistics operation, a temporary home, and a carefully managed social environment. Follow the journey of a room from checkout to check-in, exploring housekeeping, laundry, linen circulation, maintenance, procurement, staffing, front-desk systems, and the economics of keeping a property running. Contrast a large international luxury hotel, a design-led boutique property, and an older European grand hotel, including how their physical layouts shape the experience.
+Interactive element: An explorable hotel cross-section with clickable operational systems and a room-turnover timeline.
+Finish line: Three hotel operating models, a glossary of the trade, and an explanation of why apparently similar rooms can deliver radically different experiences.
+
+The Night Shift Economy
+What happens in a city between midnight and sunrise, and which systems must keep operating for the daytime world to function? Explore wholesale markets, bakeries, freight terminals, hospital logistics, cleaning crews, overnight public transport, hotel operations, printing facilities, and other documented nighttime industries. Compare cities that maintain substantial overnight activity with those that effectively shut down, including the economic, social, and physical consequences of operating after dark.
+Interactive element: A 24-hour city clock that reveals which industries are active at different hours and how their working schedules depend on one another.
+Finish line: 12 cities, 20 nighttime operations, and a comparative model of what makes a city genuinely functional around the clock.
+
+The Science of a Convincing Place
+Why can a restaurant, bar, shop, or hotel feel unmistakably authentic even when its designers are recreating a different era or culture? Examine the physical and sensory details that create a coherent environment: lighting temperature, acoustics, materials, furniture proportions, menu language, service rituals, music, signage, and the relationship between a place and its neighborhood. Compare convincing historical restorations, contemporary reinterpretations, and environments that rely on superficial decoration. Distinguish documented design principles from subjective judgments about atmosphere.
+Interactive element: An atmosphere diagnostic where users adjust environmental variables and see how those changes affect a fictional venue's intended character.
+Finish line: 15 venue case studies, a vocabulary for describing atmosphere precisely, and a reusable framework for analyzing why a place feels believable.
+
+The World's Informal Economies
+Beyond official shops, corporate chains, and registered businesses, how do people buy, sell, repair, transport, and distribute things through informal or semi-formal systems? Explore street vendors, repair stalls, cash-based markets, secondhand trading, neighborhood delivery networks, informal transit, and community-based services across different countries. Explain how these systems interact with formal regulation, employment, taxation, trust, and household survival without treating informal commerce as synonymous with criminal activity.
+Interactive element: A comparative matrix showing how selected informal economic systems acquire goods, find customers, establish trust, and manage risk.
+Finish line: 12 case studies across at least six countries, a taxonomy of informal commerce, and a guide to understanding what official economic statistics may fail to capture.
+
+The Mechanics of Waiting
+Waiting is an overlooked feature of modern life. Compare queues, appointments, reservations, walk-ins, virtual waiting rooms, timed-entry tickets, and informal first-come-first-served systems to understand how institutions distribute scarce capacity. Explore the mathematics of queues, the psychology of perceived waiting time, priority rules, no-show rates, and the design choices that make the same delay feel either reasonable or intolerable.
+Interactive element: A queue simulator with adjustable arrival rates, service times, staffing levels, and priority rules, showing how waiting times change.
+Finish line: Eight real-world case studies, six interactive simulations, and a practical explanation of how to distinguish a capacity problem from a badly designed queue.
+
+The Geography of Repair
+Why do some objects get repaired for decades while others are discarded after a minor failure? Investigate repair cultures, specialist workshops, parts availability, right-to-repair rules, local manufacturing traditions, secondhand markets, and the economics of skilled manual work. Compare European cobblers, Japanese tool-maintenance traditions, independent electronics repair, watchmaking, furniture restoration, and contemporary repair cafés. Examine which products remain repairable because of their construction and supply chains, and which are deliberately or incidentally difficult to maintain.
+Interactive element: An object repairability index with filters for parts availability, tool requirements, skill level, cost, and expected service life.
+Finish line: 20 repair traditions or businesses, a cross-category repairability comparison, and a practical framework for buying objects that can be maintained rather than replaced.
+
+The World's Smallest Geopolitical Decisions
+Not every consequential border or jurisdictional dispute involves territory, military force, or international treaties. Examine the small administrative decisions that shape everyday life across borders: which side of a road traffic uses, where a postal code changes, how a municipality draws a boundary, who issues a particular certificate, which jurisdiction regulates a product, and how neighboring authorities handle shared services. Select documented cases where seemingly minor decisions produced lasting differences in behavior, commerce, infrastructure, or identity. Keep this distinct from border-town travel guides by focusing on the institutional mechanism and its downstream consequences.
+Interactive element: A decision tree showing how a seemingly local administrative choice can propagate through transport, commerce, regulation, and daily life.
+Finish line: 15 documented cases, a taxonomy of jurisdictional decisions, and six detailed examples tracing a small rule to its wider consequences.
+
+The Hidden Economics of Going Out
+What actually determines whether a night out is inexpensive, luxurious, memorable, or frustrating? Build a comparative model of the businesses and decisions behind an evening: neighborhood bars, hotel lounges, neighborhood restaurants, destination dining, live-music venues, late-night cafés, and other social spaces. Examine rent, labor, capacity, turnover, purchasing, licensing, menu pricing, location, and the trade-offs between atmosphere and profitability. Compare the economics of a packed neighborhood bar with those of a low-volume luxury lounge, and show why the highest-priced venue is not necessarily the most profitable.
+Interactive element: A venue economics simulator where users adjust rent, staffing, average spend, occupancy, opening hours, and customer turnover to see the effects on revenue and operating margin.
+Finish line: Six venue business models, a set of worked financial scenarios, and a practical framework for understanding what makes a social space commercially sustainable.
+
 ---
 
 # Parked
