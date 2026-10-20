@@ -24,11 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Secret Geography of European Luxury
-Investigate where understated wealth actually lives: villa districts, seaside enclaves, resort towns, and overlooked neighborhoods with exceptional architecture and views.
-Include: 10 locations, property styles, local wealth indicators, architectural history, nearby amenities, transport access, and representative properties or streets.
-Finish line: a visual atlas that explains why each place feels distinctive. Use public property listings and documented examples rather than speculating about private residents or their finances.
-
 The Clock Gap
 A field guide to time zones as political decisions: Spain on Central European Time since 1940, Nepal’s +5:45 offset, China’s single zone, North Korea’s 2015–18 “Pyongyang time.”
 Rule: only offsets that a government chose for a documented reason.

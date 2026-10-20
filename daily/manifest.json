@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 2,
+      "slug": "2026-10-20-where-quiet-money-settled",
+      "date": "2026-10-20",
+      "title": "Where Quiet Money Settled",
+      "dek": "Ten European villa districts and resort enclaves, from Cascais to Saltsjöbaden, and the land companies, railways and building rules that made them look the way they do.",
+      "kind": "Illustrated atlas",
+      "readingMinutes": 17,
+      "design": "Libre Caslon Display/Text with Archivo Narrow; survey-linen, Prussian blue and surveyor's red; subdivision-plat hero, graticule map, deed-clause register boxes.",
+      "source": "queue",
+      "brief": "The Secret Geography of European Luxury\nInvestigate where understated wealth actually lives: villa districts, seaside enclaves, resort towns, and overlooked neighborhoods with exceptional architecture and views.\nInclude: 10 locations, property styles, local wealth indicators, architectural history, nearby amenities, transport access, and representative properties or streets.\nFinish line: a visual atlas that explains why each place feels distinctive. Use public property listings and documented examples rather than speculating about private residents or their finances.",
+      "factcheck": {
+        "claims": 220,
+        "fixed": 25
+      },
+      "corrections": []
+    },
+    {
       "no": 1,
       "slug": "2026-10-19-the-hotel-bar-atlas",
       "date": "2026-10-19",
