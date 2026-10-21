@@ -4,6 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DRIVETIME</title>
+<meta name="description" content="Drive through 31 cities around the world in real dashcam footage, with that city's live local radio playing and the clock set to its local time.">
+<meta name="theme-color" content="#08090a">
+<link rel="canonical" href="https://nickcarbone.github.io/drivetime-tesla.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="nickcarbone.github.io">
+<meta property="og:title" content="DRIVETIME — borrow a city's radio and drive">
+<meta property="og:description" content="Real drives through 31 cities, each city's live local radio, set to its local time.">
+<meta property="og:url" content="https://nickcarbone.github.io/drivetime-tesla.html">
+<meta property="og:image" content="https://nickcarbone.github.io/drivetime-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DRIVETIME: a dark car dashboard with a city map and a live radio station">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -96,9 +112,15 @@ button { background: none; border: none; cursor: pointer; }
 .stage .placeholder {
   position: absolute; inset: 0; display: none;
   flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-  color: var(--ink-faint);
+  color: var(--ink-faint); background: #000;
 }
 .stage.is-empty .placeholder { display: flex; }
+.stage-msg {
+  position: absolute; inset: 0; display: none; z-index: 2;
+  flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  background: #000; color: var(--ink-dim); text-align: center; padding: 20px; font-size: 13px;
+}
+.stage-msg.on { display: flex; }
 #staticfx {
   position: absolute; inset: 0; pointer-events: none; opacity: 0;
   background: repeating-linear-gradient(0deg, rgba(242,243,245,.22) 0 1px, transparent 1px 3px);
@@ -271,7 +293,7 @@ button { background: none; border: none; cursor: pointer; }
   position: absolute; inset: 0; display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 6px; padding: 16px;
   text-align: center; color: var(--ink-dim); font-size: 12.5px;
-  overflow-y: auto;
+  overflow-y: auto; background: var(--void);
 }
 .recents { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 4px; }
 .recents button {
@@ -280,31 +302,6 @@ button { background: none; border: none; cursor: pointer; }
   max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .recents button:hover { color: var(--ink); }
-
-/* apps grid (dummy utility apps, shown when Theater has no video loaded) */
-.app-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-  margin-top: 8px; width: 100%; max-width: 300px;
-}
-.app-tile {
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  padding: 12px 8px; border-radius: 10px;
-  background: var(--glass-hi); border: 1px solid var(--hairline);
-  color: var(--ink-dim); font-size: 10.5px; letter-spacing: .03em;
-  transition: color .2s, border-color .2s;
-}
-.app-tile:hover { color: var(--ink); border-color: var(--ink-faint); }
-.app-icon { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; color: inherit; }
-.app-screen {
-  position: absolute; inset: 0; z-index: 5; display: none;
-  flex-direction: column; align-items: center; justify-content: center; gap: 10px;
-  background: var(--void); color: var(--ink-dim); text-align: center; padding: 20px;
-}
-.app-screen.on { display: flex; }
-.app-screen .app-screen-icon { width: 44px; height: 44px; color: var(--signal); }
-.app-screen .app-screen-title { font-size: 15px; font-weight: 500; color: var(--ink); }
-.app-screen .app-screen-note { font-size: 12px; max-width: 260px; line-height: 1.5; }
-.app-screen .pill { margin-top: 6px; }
 
 /* media column — compact "now playing" mini bar */
 .media {
@@ -420,6 +417,67 @@ button { background: none; border: none; cursor: pointer; }
 }
 #ignition .start:hover { filter: brightness(1.1); }
 
+/* ---------- local time + weather in the status strip ---------- */
+.localtime { display: flex; align-items: baseline; gap: 6px; white-space: nowrap; }
+.wx { color: var(--ink-faint); white-space: nowrap; }
+
+/* ---------- nav badge: says whether the map is synced or just a city map ---------- */
+.navbadge {
+  position: absolute; top: 10px; left: 10px;
+  font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 4px 8px; border-radius: 6px;
+  background: rgba(19,20,23,.88); border: 1px solid var(--hairline); color: var(--ink-faint);
+}
+.navbadge.live { color: var(--signal); border-color: rgba(62,106,225,.45); }
+/* map tiles: OpenStreetMap's own tiles, darkened to match, until a CARTO key is set */
+.osm-dark .leaflet-tile-container img { width: 256.5px !important; height: 256.5px !important; } /* hides hairline seams at fractional zoom */
+.osm-dark .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.82) contrast(.92) saturate(.4); }
+.chip { white-space: nowrap; }
+.nav-unmapped .mapfoot { display: none; }
+.turncard { top: 38px !important; }
+.mapfoot { left: 0 !important; right: 0 !important; bottom: 0 !important; padding: 22px 10px 10px;
+  background: linear-gradient(transparent, rgba(8,9,10,.88) 45%); }
+.nav-unmapped .turncard .arrow { display: none; }
+
+/* ---------- saved stations ---------- */
+.saved-wrap { margin-top: 14px; border-top: 1px solid var(--hairline); padding-top: 10px; }
+.saved-row { display: flex; align-items: center; gap: 4px; margin-top: 5px; }
+.saved-row .go-saved {
+  flex: 1; min-width: 0; text-align: left; padding: 6px 9px; border-radius: 7px;
+  background: var(--glass-hi); font-size: 11px; color: var(--ink-dim);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.saved-row .go-saved:hover { color: var(--ink); }
+.saved-row .go-saved small { color: var(--ink-faint); font-size: 10px; margin-left: 4px; }
+.saved-row .rm { width: 24px; height: 24px; border-radius: 6px; color: var(--ink-faint); font-size: 11px; }
+.saved-row .rm:hover { color: var(--ink); background: var(--glass-hi); }
+#fav[aria-pressed="true"] { color: #f5c542; }
+#fav[disabled] { opacity: .35; cursor: default; }
+
+/* ---------- toast ---------- */
+#toast {
+  position: fixed; left: 50%; top: 46px; z-index: 70;
+  transform: translate(-50%, -8px); opacity: 0; pointer-events: none;
+  max-width: min(520px, calc(100vw - 32px));
+  background: rgba(29,31,35,.96); border: 1px solid var(--hairline); border-radius: 10px;
+  padding: 9px 14px; font-size: 12.5px; color: var(--ink); text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  transition: opacity .25s, transform .25s;
+}
+#toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- ignition extras ---------- */
+#ignition .keys { font-size: 10.5px; color: var(--ink-faint); letter-spacing: .04em; margin-top: 4px; }
+#ignition .keys kbd {
+  font-family: var(--mono); font-size: 10px; padding: 1px 5px; border-radius: 4px;
+  border: 1px solid var(--hairline); color: var(--ink-dim);
+}
+#ignition .credits {
+  position: absolute; bottom: 14px; left: 16px; right: 16px;
+  font-size: 10px; color: var(--ink-faint); text-align: center; line-height: 1.6;
+}
+#ignition .credits a { color: var(--ink-dim); }
+
 /* ---------- responsive ---------- */
 /* Below this width there isn't room for a side dash, so it drops
    back under the video, full-width, like a phone dashcam readout. */
@@ -434,13 +492,11 @@ button { background: none; border: none; cursor: pointer; }
   .carcard { height: 108px; padding: 6px 12px; gap: 10px; }
   .speed-read .v { font-size: 32px; }
   .media { flex-basis: 52px; }
-  .app-grid { grid-template-columns: repeat(4, 1fr); max-width: none; }
-  .app-tile { padding: 8px 4px; font-size: 9px; }
-  .app-icon { width: 18px; height: 18px; }
   .presets { grid-template-columns: 1fr 1fr; }
   .status .hide-sm, .status .wordmark { display: none; }
   .status { gap: 8px; padding: 0 10px; }
   .status select { max-width: 108px; padding: 6px 7px; font-size: 11px; }
+  .status #view, .status #collapse { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -453,8 +509,17 @@ button { background: none; border: none; cursor: pointer; }
 <div id="ignition">
   <div class="mk">DRIVETIME</div>
   <div class="sub">Pick a city, borrow its radio, and watch the road go by.</div>
+  <div class="sub" id="ign-city" style="color:var(--ink-dim)"></div>
   <button class="start" id="start">Start the car</button>
+  <div class="keys"><kbd>Space</kbd> park &middot; <kbd>1</kbd>&ndash;<kbd>6</kbd> presets &middot; <kbd>N</kbd> next city &middot; <kbd>F</kbd> fullscreen</div>
+  <div class="credits">
+    Drive footage by the YouTube creators credited on each video &middot; radio via
+    <a href="https://www.radio-browser.info/" target="_blank" rel="noopener">Radio Browser</a> &middot;
+    map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors &middot;
+    weather <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>
+  </div>
 </div>
+<div id="toast" role="status" aria-live="polite"></div>
 
 <div class="status">
   <div class="batt">
@@ -475,14 +540,20 @@ button { background: none; border: none; cursor: pointer; }
   <select id="city" class="pill" aria-label="Which city"></select>
   <div class="sep"></div>
   <button class="dash-toggle" id="collapse" title="Show or hide the dash">Hide dash</button>
+  <button class="dash-toggle" id="share" title="Share a link that opens this city, view and station">Share</button>
   <div class="sep"></div>
-  <span class="num" id="clock">--:--</span>
+  <span class="wx hide-sm" id="wx"></span>
+  <span class="localtime"><span class="lbl hide-sm">Local</span><span class="num" id="clock">--:--</span></span>
 </div>
 
 <div class="main">
 <div class="stage" id="stage">
-  <iframe id="ws-frame" title="Road view" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  <div id="ws-frame"></div>
   <div class="placeholder"><div class="lbl">Playing in the floating window</div></div>
+  <div class="stage-msg" id="stage-msg">
+    <div id="stage-msg-text">None of this city's drives will play right now.</div>
+    <button class="pill" id="stage-next">Drive somewhere else</button>
+  </div>
   <div id="staticfx"></div>
   <div id="fshud">
     <span class="fs-speed num"><span id="fs-speed">0</span> <span class="lbl" id="fs-unit">MPH</span></span>
@@ -550,7 +621,8 @@ button { background: none; border: none; cursor: pointer; }
       <div class="pane-body">
 
         <div class="view on" id="view-nav" role="tabpanel" aria-labelledby="tab-nav">
-          <div id="map" aria-label="Live map of the selected city"></div>
+          <div id="map" aria-label="Map of the selected city"></div>
+          <div class="navbadge" id="nav-badge">—</div>
           <div class="turncard">
             <svg class="arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path id="turn-arrow" d="M12 20 L12 10 M12 10 L7 15 M12 10 L17 15"
@@ -587,19 +659,11 @@ button { background: none; border: none; cursor: pointer; }
               <button class="pill" id="yt-clear">Clear</button>
             </div>
             <div class="theater-screen" id="theater-screen">
-              <iframe id="th-frame" title="Your video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+              <div id="th-frame"></div>
               <div class="theater-empty" id="theater-empty">
                 <div>Paste any YouTube link above to play it here.</div>
                 <div style="color:var(--ink-faint);font-size:11px">Links, youtu.be shortlinks, Shorts, and bare IDs all work.</div>
                 <div class="recents" id="recents"></div>
-                <div class="lbl" style="margin-top:14px">Apps</div>
-                <div class="app-grid" id="app-grid"></div>
-              </div>
-              <div class="app-screen" id="app-screen">
-                <div class="app-screen-icon" id="app-screen-icon"></div>
-                <div class="app-screen-title" id="app-screen-title"></div>
-                <div class="app-screen-note" id="app-screen-note"></div>
-                <button class="pill" id="app-exit">Exit app</button>
               </div>
             </div>
           </div>
@@ -615,6 +679,7 @@ button { background: none; border: none; cursor: pointer; }
           <div class="station" id="station">Starting up…</div>
           <div class="station-meta" id="station-meta"></div>
         </div>
+        <button class="mini-btn" id="fav" aria-label="Save this station" aria-pressed="false" title="Save this station" disabled>☆</button>
         <button class="mini-btn" id="radio-expand" aria-label="Open radio">⌃</button>
       </div>
     </div>
@@ -637,6 +702,10 @@ button { background: none; border: none; cursor: pointer; }
           <input type="range" id="volume" min="0" max="100" value="80" aria-label="Radio volume">
         </div>
         <div class="scan" id="scan"></div>
+        <div class="saved-wrap" id="saved-wrap" style="display:none">
+          <div class="lbl">Saved stations</div>
+          <div id="saved"></div>
+        </div>
       </div>
     </div>
 
@@ -648,10 +717,9 @@ button { background: none; border: none; cursor: pointer; }
       <span class="temp num" id="temp">70°</span>
       <button id="temp-up" aria-label="Raise cabin temperature">+</button>
     </div>
-    <button class="chip" id="ac" aria-pressed="true">Cabin air</button>
-    <button class="chip" id="seat" aria-pressed="false">Seat heat</button>
+    <button class="chip" id="trip-chip" aria-pressed="false" title="Move to a new city every 30 minutes, heading west">Road trip</button>
+    <button class="chip" id="sleep-chip" aria-pressed="false" title="Park the car after 30, 60 or 90 minutes">Sleep</button>
     <div class="grow"></div>
-    <span class="lbl" id="city-plate">—</span>
   </div>
 </div>
 </div>
@@ -664,7 +732,7 @@ button { background: none; border: none; cursor: pointer; }
     <button id="pip-close" title="Close">✕</button>
   </div>
   <div class="screen">
-    <iframe id="pip-frame" title="Floating video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    <div id="pip-frame"></div>
   </div>
   <div class="grip" id="pip-grip"></div>
 </div>
@@ -673,133 +741,149 @@ button { background: none; border: none; cursor: pointer; }
 
 <script>
 /* =====================================================================
-   CITY LIST — the only block you ever need to edit.
-   Every video was machine-checked: embeddable off-site, 1080p+, 30 min+.
-   To add a city: grab the ID from youtube.com/watch?v=ABC123, add an
-   ISO country code (drives the radio search), a local-language city
-   name that stations actually use in their titles, and a few real
-   street names for the navigation display.
+   CITY LIST — the block you edit by hand.
+   Each city: a name, ISO country code (drives the radio search), the
+   word local stations use for the city in their names (q), its IANA
+   time zone (drives the clock and the automatic day/night choice), its
+   centre, and its drive videos. Label videos "Day" or "Sunset/Night"
+   so Auto can pick the one that matches the city's actual time of day.
+   To add a video: grab the ID from youtube.com/watch?v=ABC123.
+   You don't need to check videos by hand any more: the nightly audit
+   (scripts/drivetime-audit.js) tests every ID, and the page skips any
+   it reports broken.
    ===================================================================== */
 const CITIES = [
-  { name: "Tokyo", cc: "JP", q: "Tokyo", lat: 35.6762, lng: 139.6503,
-    videos: [{ id: "-Xh4BNbxpI8", label: "Default" }, { id: "TUgfiNg06GQ", label: "Day" }, { id: "KXXodw60W9U", label: "Sunset/Night" }],
-    streets: ["Meiji-dori", "Aoyama-dori", "Roppongi-dori", "Yasukuni-dori", "Shuto Expressway"] },
-  { name: "Osaka", cc: "JP", q: "Osaka", lat: 34.6937, lng: 135.5023,
-    videos: [{ id: "ovD7QlzCCoU", label: "Default" }, { id: "L07uyRUK8L0", label: "Day" }, { id: "GgOTV7VrlPw", label: "Sunset/Night" }],
-    streets: ["Midosuji", "Sakaisuji", "Nagahori-dori", "Tanimachi-suji", "Shinmido-suji"] },
-  { name: "Seoul", cc: "KR", q: "Seoul", lat: 37.5665, lng: 126.978,
-    videos: [{ id: "SRpMapyw6Aw", label: "Default" }, { id: "KGAIumGxQeY", label: "Day" }, { id: "cEQgFyrbceY", label: "Sunset/Night" }],
-    streets: ["Teheran-ro", "Gangnam-daero", "Sejong-daero", "Olympic-daero", "Yeongdong-daero"] },
-  { name: "Taipei", cc: "TW", q: "Taipei", lat: 25.033, lng: 121.5654,
-    videos: [{ id: "P8Uh9f0EaU8", label: "Default" }, { id: "_mzDsL9tcgc", label: "Day" }, { id: "6YOfoE0zqO8", label: "Sunset/Night" }],
-    streets: ["Zhongxiao E Rd", "Xinyi Rd", "Ren'ai Rd", "Keelung Rd", "Civic Blvd"] },
-  { name: "Hong Kong", cc: "HK", q: "Hong Kong", lat: 22.3193, lng: 114.1694,
-    videos: [{ id: "arbVnYJfZLU", label: "Default" }, { id: "PhGJgftOQ1w", label: "Day" }, { id: "gKUclxoRA6c", label: "Sunset/Night" }],
-    streets: ["Nathan Rd", "Queen's Rd Central", "Connaught Rd", "Gloucester Rd", "Lung Cheung Rd"] },
-  { name: "Bangkok", cc: "TH", q: "Bangkok", lat: 13.7563, lng: 100.5018,
-    videos: [{ id: "1CFuoKiPT60", label: "Default" }, { id: "4BmxX6Ipxpo", label: "Day" }, { id: "dl3sqoz6X3M", label: "Sunset/Night" }],
-    streets: ["Sukhumvit Rd", "Silom Rd", "Rama IV Rd", "Phetchaburi Rd", "Ratchadaphisek Rd"] },
-  { name: "Ho Chi Minh City", cc: "VN", q: "Saigon", lat: 10.7769, lng: 106.7009,
-    videos: [{ id: "gZWiLrQnb10", label: "Default" }, { id: "UrVjf2AR5is", label: "Day" }, { id: "uu-SjnZqZf0", label: "Sunset/Night" }],
-    streets: ["Nguyen Hue", "Le Loi", "Dien Bien Phu", "Vo Van Kiet", "Nam Ky Khoi Nghia"] },
-  { name: "Hanoi", cc: "VN", q: "Hanoi", lat: 21.0285, lng: 105.8542,
-    videos: [{ id: "l-cQOa5K2X0", label: "Default" }, { id: "LTuSOk6dFpY", label: "Day" }, { id: "Gb8T3j2H890", label: "Sunset/Night" }],
-    streets: ["Trang Tien", "Ba Trieu", "Kim Ma", "Nguyen Trai", "Lang Ha"] },
-  { name: "Jakarta", cc: "ID", q: "Jakarta", lat: -6.2088, lng: 106.8456,
-    videos: [{ id: "gmDBzijaIAA", label: "Default" }, { id: "GtVGW8jhO9k", label: "Day" }, { id: "CCMIW7x47Cc", label: "Sunset/Night" }],
-    streets: ["Jl. Sudirman", "Jl. Thamrin", "Jl. Gatot Subroto", "Jl. Rasuna Said", "Jl. Casablanca"] },
-  { name: "Manila", cc: "PH", q: "Manila", lat: 14.5995, lng: 120.9842,
-    videos: [{ id: "1X8SunSuAC4", label: "Default" }, { id: "2tfyoN70EHo", label: "Day" }, { id: "JY-Xyiept88", label: "Sunset/Night" }],
-    streets: ["EDSA", "Roxas Blvd", "Ayala Ave", "Ortigas Ave", "C-5 Rd"] },
-  { name: "Singapore", cc: "SG", q: "Singapore", lat: 1.3521, lng: 103.8198,
-    videos: [{ id: "xEx3-9v0-_o", label: "Default" }, { id: "iREkbaP8jlQ", label: "Day" }, { id: "SzCryiXMG_o", label: "Sunset/Night" }],
-    streets: ["Orchard Rd", "Nicoll Hwy", "Beach Rd", "Shenton Way", "East Coast Pkwy"] },
-  { name: "Mumbai", cc: "IN", q: "Mumbai", lat: 19.076, lng: 72.8777,
-    videos: [{ id: "Nm4PtWe8vlE", label: "Default" }, { id: "j_lBv6BSrNo", label: "Day" }, { id: "l3g-OwaIaWE", label: "Sunset/Night" }],
-    streets: ["Marine Dr", "Linking Rd", "S.V. Rd", "Eastern Fwy", "Peddar Rd"] },
-  { name: "Delhi", cc: "IN", q: "Delhi", lat: 28.7041, lng: 77.1025,
-    videos: [{ id: "QZPqluJA0OY", label: "Default" }, { id: "J9mpXixJptg", label: "Day" }, { id: "g-c3K8plBxo", label: "Sunset/Night" }],
-    streets: ["Ring Rd", "Janpath", "Kartavya Path", "Aurobindo Marg", "Mathura Rd"] },
-  { name: "Dubai", cc: "AE", q: "Dubai", lat: 25.2048, lng: 55.2708,
-    videos: [{ id: "6RPU08WoaxE", label: "Default" }, { id: "TE2tfavIo3E", label: "Day" }, { id: "n964Hq9QkJk", label: "Sunset/Night" }],
-    streets: ["Sheikh Zayed Rd", "Al Khail Rd", "Jumeirah Rd", "Al Wasl Rd", "Emirates Rd"] },
-  { name: "Istanbul", cc: "TR", q: "Istanbul", lat: 41.0082, lng: 28.9784,
-    videos: [{ id: "ALA09uSzD7E", label: "Default" }, { id: "vFhDtI8dGOA", label: "Day" }, { id: "aTsG9KK_Mkk", label: "Sunset/Night" }],
-    streets: ["Istiklal Cd", "Barbaros Blv", "Buyukdere Cd", "Kennedy Cd", "Tarlabasi Blv"] },
-  { name: "Tbilisi", cc: "GE", q: "Tbilisi", lat: 41.7151, lng: 44.8271,
-    videos: [{ id: "joszFYjoU5E", label: "Default" }, { id: "Smk6hpX-OU0", label: "Day" }, { id: "xTssir91CnY", label: "Sunset/Night" }],
-    streets: ["Rustaveli Ave", "Agmashenebeli Ave", "Chavchavadze Ave", "Vazha-Pshavela Ave", "Kostava St"] },
-  { name: "Cairo", cc: "EG", q: "Cairo", lat: 30.0444, lng: 31.2357,
-    videos: [{ id: "--I-TdCe2_g", label: "Default" }, { id: "Esyp2P0uJu4", label: "Day" }, { id: "86pZTI5gJQM", label: "Sunset/Night" }],
-    streets: ["Corniche El Nil", "Salah Salem", "Ramses St", "Al-Haram St", "Ring Rd"] },
-  { name: "Nairobi", cc: "KE", q: "Nairobi", lat: -1.2921, lng: 36.8219,
-    videos: [{ id: "C1iN4D1wBiI", label: "Default" }, { id: "-UV94iPFRlw", label: "Day" }, { id: "glC6vjGfuAM", label: "Sunset/Night" }],
-    streets: ["Uhuru Hwy", "Thika Rd", "Ngong Rd", "Waiyaki Way", "Mombasa Rd"] },
-  { name: "Lagos", cc: "NG", q: "Lagos", lat: 6.5244, lng: 3.3792,
-    videos: [{ id: "aIuTxasD3uw", label: "Default" }, { id: "LZJ000F-CLc", label: "Day" }, { id: "KwrMBdnfCfI", label: "Sunset/Night" }],
-    streets: ["Third Mainland Bridge", "Awolowo Rd", "Ozumba Mbadiwe", "Ikorodu Rd", "Lekki-Epe Expwy"] },
-  { name: "Cape Town", cc: "ZA", q: "Cape Town", lat: -33.9249, lng: 18.4241,
-    videos: [{ id: "5bdCk5AQ9Kw", label: "Default" }, { id: "aah7KuwBDzo", label: "Day" }, { id: "rM8rGs_tGYE", label: "Sunset/Night" }],
-    streets: ["Adderley St", "Long St", "Victoria Rd", "Kloof Nek Rd", "De Waal Dr"] },
-  { name: "Casablanca", cc: "MA", q: "Casablanca", lat: 33.5731, lng: -7.5898,
-    videos: [{ id: "FXeX-H6Ajy4", label: "Default" }, { id: "RN6ioPRXk8A", label: "Day" }, { id: "8qV3p25wsao", label: "Sunset/Night" }],
-    streets: ["Blvd Mohammed V", "Corniche Ain Diab", "Blvd Zerktouni", "Blvd d'Anfa", "Route d'El Jadida"] },
-  { name: "Athens", cc: "GR", q: "Athens", lat: 37.9838, lng: 23.7275,
-    videos: [{ id: "8Hm0rMpapKY", label: "Default" }, { id: "TXHbjjPuvmM", label: "Day" }, { id: "f1cIBCZB0P8", label: "Sunset/Night" }],
-    streets: ["Syngrou Ave", "Kifisias Ave", "Panepistimiou", "Vasilissis Sofias", "Alexandras Ave"] },
-  { name: "Naples", cc: "IT", q: "Napoli", lat: 40.8518, lng: 14.2681,
-    videos: [{ id: "mA0pPRQthnY", label: "Default" }, { id: "FmB2T9xGHk4", label: "Day" }, { id: "IHXZnU2bmc8", label: "Sunset/Night" }],
-    streets: ["Via Toledo", "Riviera di Chiaia", "Corso Umberto I", "Via Caracciolo", "Tangenziale"] },
-  { name: "Rome", cc: "IT", q: "Roma", lat: 41.9028, lng: 12.4964,
-    videos: [{ id: "AdtBRICOD9U", label: "Default" }, { id: "0m7H6_ZI1iM", label: "Day" }, { id: "zWZEZhUkd0Y", label: "Sunset/Night" }],
-    streets: ["Via del Corso", "Via Nazionale", "Lungotevere", "Via Appia Nuova", "Via Cristoforo Colombo"] },
-  { name: "Paris", cc: "FR", q: "Paris", lat: 48.8566, lng: 2.3522,
-    videos: [{ id: "4TKTqb-TWwQ", label: "Default" }, { id: "LoT7kXS7kYg", label: "Day" }, { id: "FBjjYw-xcdg", label: "Sunset/Night" }],
-    streets: ["Bd Saint-Germain", "Av des Champs-Elysees", "Rue de Rivoli", "Bd Peripherique", "Bd Haussmann"] },
-  { name: "London", cc: "GB", q: "London", lat: 51.5074, lng: -0.1278,
-    videos: [{ id: "AveGRdBeOog", label: "Default" }, { id: "lCvWZj_kFgo", label: "Day" }, { id: "GSnAjDu3VoM", label: "Sunset/Night" }],
-    streets: ["Oxford St", "Victoria Embankment", "A40 Westway", "Kings Rd", "Marylebone Rd"] },
-  { name: "Lisbon", cc: "PT", q: "Lisboa", lat: 38.7223, lng: -9.1393,
-    videos: [{ id: "xUZoO-WtyHw", label: "Default" }, { id: "dLLqWlOymxg", label: "Day" }, { id: "sTs9aa7Y6lI", label: "Sunset/Night" }],
-    streets: ["Av da Liberdade", "Av Almirante Reis", "Av da Republica", "Eixo Norte-Sul", "Av 24 de Julho"] },
-  { name: "Madrid", cc: "ES", q: "Madrid", lat: 40.4168, lng: -3.7038,
-    videos: [{ id: "C911U_Fo-QU", label: "Default" }, { id: "ZQC3fIhnH4o", label: "Day" }, { id: "KC0dMMCV4OM", label: "Sunset/Night" }],
-    streets: ["Gran Via", "Paseo de la Castellana", "Calle de Alcala", "Paseo del Prado", "M-30"] },
-  { name: "Berlin", cc: "DE", q: "Berlin", lat: 52.52, lng: 13.405,
-    videos: [{ id: "lBlKR2ek0w4", label: "Default" }, { id: "g9T-KwcXqAg", label: "Day" }, { id: "IzZkjS4nBQI", label: "Sunset/Night" }],
-    streets: ["Unter den Linden", "Kurfurstendamm", "Karl-Marx-Allee", "Frankfurter Allee", "Potsdamer Str"] },
-  { name: "Warsaw", cc: "PL", q: "Warszawa", lat: 52.2297, lng: 21.0122,
-    videos: [{ id: "uJU_DEklaw4", label: "Default" }, { id: "dwtmEnKCP7c", label: "Day" }, { id: "YIQ4Ap9aUMo", label: "Sunset/Night" }],
-    streets: ["Marszalkowska", "Al. Jerozolimskie", "Wislostrada", "Pulawska", "Al. Ujazdowskie"] },
-  { name: "Buenos Aires", cc: "AR", q: "Buenos Aires", lat: -34.6037, lng: -58.3816,
-    videos: [{ id: "MYOj8ckqVuQ", label: "Default" }, { id: "-TPJot7-HTs", label: "Day" }, { id: "6Sb0gHrAlLA", label: "Sunset/Night" }],
-    streets: ["Av 9 de Julio", "Av Corrientes", "Av del Libertador", "Av Rivadavia", "Av Santa Fe"] },
-  { name: "Sao Paulo", cc: "BR", q: "Sao Paulo", lat: -23.5505, lng: -46.6333,
-    videos: [{ id: "fHEaa2ryFnc", label: "Default" }, { id: "zje0hghImYQ", label: "Day" }, { id: "WcjGyIjHLDA", label: "Sunset/Night" }],
-    streets: ["Av Paulista", "Marginal Pinheiros", "Av Faria Lima", "Av 23 de Maio", "Av Reboucas"] },
-  { name: "Bogota", cc: "CO", q: "Bogota", lat: 4.711, lng: -74.0721,
-    videos: [{ id: "N0Qy6oi07W8", label: "Default" }, { id: "X6RNJoUo6HQ", label: "Day" }, { id: "AcpHX2aylSk", label: "Sunset/Night" }],
-    streets: ["Carrera 7", "Calle 26", "Autopista Norte", "Av Boyaca", "Av Caracas"] },
-  { name: "Mexico City", cc: "MX", q: "Mexico", lat: 19.4326, lng: -99.1332,
-    videos: [{ id: "Km6KYN_6vmc", label: "Default" }, { id: "hwn-nnSqP7Y", label: "Day" }, { id: "JCXH_WyC8A4", label: "Sunset/Night" }],
-    streets: ["Paseo de la Reforma", "Av Insurgentes", "Circuito Interior", "Viaducto", "Periferico"] },
-  { name: "Havana", cc: "CU", q: "Habana", lat: 23.1136, lng: -82.3666,
-    videos: [{ id: "vCywf9saDlY", label: "Default" }, { id: "GzBPHZw8j18", label: "Day" }, { id: "IEnv4ZorXmY", label: "Night Walk" }],
-    streets: ["Malecon", "Calle 23", "Paseo del Prado", "Quinta Avenida", "Via Blanca"] },
-  { name: "New York", cc: "US", q: "New York", lat: 40.7128, lng: -74.006,
-    videos: [{ id: "7OgQjRn2x1w", label: "Default" }, { id: "sqsez_oQSQ8", label: "Day" }, { id: "qTCaw64ObUk", label: "Sunset/Night" }],
-    streets: ["Broadway", "FDR Dr", "Fifth Ave", "West Side Hwy", "Canal St"] },
-  { name: "Los Angeles", cc: "US", q: "Los Angeles", lat: 34.0522, lng: -118.2437,
-    videos: [{ id: "7MR08Jm38is", label: "Default" }, { id: "eR5vsN1Lq4E", label: "Day" }, { id: "sifq2tZkKMw", label: "Sunset/Night" }],
-    streets: ["Sunset Blvd", "Wilshire Blvd", "Pacific Coast Hwy", "Mulholland Dr", "Santa Monica Blvd"] },
+  { name: "Tokyo", cc: "JP", q: "Tokyo", tz: "Asia/Tokyo", lat: 35.6762, lng: 139.6503,
+    videos: [{ id: "-Xh4BNbxpI8", label: "Default" }, { id: "TUgfiNg06GQ", label: "Day" }, { id: "KXXodw60W9U", label: "Sunset/Night" }] },
+  { name: "Seoul", cc: "KR", q: "Seoul", tz: "Asia/Seoul", lat: 37.5665, lng: 126.978,
+    videos: [{ id: "SRpMapyw6Aw", label: "Default" }, { id: "KGAIumGxQeY", label: "Day" }, { id: "cEQgFyrbceY", label: "Sunset/Night" }] },
+  { name: "Taipei", cc: "TW", q: "Taipei", tz: "Asia/Taipei", lat: 25.033, lng: 121.5654,
+    videos: [{ id: "P8Uh9f0EaU8", label: "Default" }, { id: "_mzDsL9tcgc", label: "Day" }, { id: "6YOfoE0zqO8", label: "Sunset/Night" }] },
+  { name: "Hong Kong", cc: "HK", q: "Hong Kong", tz: "Asia/Hong_Kong", lat: 22.3193, lng: 114.1694,
+    videos: [{ id: "arbVnYJfZLU", label: "Default" }, { id: "PhGJgftOQ1w", label: "Day" }, { id: "gKUclxoRA6c", label: "Sunset/Night" }] },
+  { name: "Bangkok", cc: "TH", q: "Bangkok", tz: "Asia/Bangkok", lat: 13.7563, lng: 100.5018,
+    videos: [{ id: "1CFuoKiPT60", label: "Default" }, { id: "4BmxX6Ipxpo", label: "Day" }, { id: "dl3sqoz6X3M", label: "Sunset/Night" }] },
+  { name: "Jakarta", cc: "ID", q: "Jakarta", tz: "Asia/Jakarta", lat: -6.2088, lng: 106.8456,
+    videos: [{ id: "gmDBzijaIAA", label: "Default" }, { id: "GtVGW8jhO9k", label: "Day" }, { id: "CCMIW7x47Cc", label: "Sunset/Night" }] },
+  { name: "Manila", cc: "PH", q: "Manila", tz: "Asia/Manila", lat: 14.5995, lng: 120.9842,
+    videos: [{ id: "1X8SunSuAC4", label: "Default" }, { id: "2tfyoN70EHo", label: "Day" }, { id: "JY-Xyiept88", label: "Sunset/Night" }] },
+  { name: "Singapore", cc: "SG", q: "Singapore", tz: "Asia/Singapore", lat: 1.3521, lng: 103.8198,
+    videos: [{ id: "xEx3-9v0-_o", label: "Default" }, { id: "iREkbaP8jlQ", label: "Day" }, { id: "SzCryiXMG_o", label: "Sunset/Night" }] },
+  { name: "Mumbai", cc: "IN", q: "Mumbai", tz: "Asia/Kolkata", lat: 19.076, lng: 72.8777,
+    videos: [{ id: "Nm4PtWe8vlE", label: "Default" }, { id: "j_lBv6BSrNo", label: "Day" }, { id: "l3g-OwaIaWE", label: "Sunset/Night" }] },
+  { name: "Delhi", cc: "IN", q: "Delhi", tz: "Asia/Kolkata", lat: 28.7041, lng: 77.1025,
+    videos: [{ id: "QZPqluJA0OY", label: "Default" }, { id: "J9mpXixJptg", label: "Day" }, { id: "g-c3K8plBxo", label: "Sunset/Night" }] },
+  { name: "Dubai", cc: "AE", q: "Dubai", tz: "Asia/Dubai", lat: 25.2048, lng: 55.2708,
+    videos: [{ id: "6RPU08WoaxE", label: "Default" }, { id: "TE2tfavIo3E", label: "Day" }, { id: "n964Hq9QkJk", label: "Sunset/Night" }] },
+  { name: "Istanbul", cc: "TR", q: "Istanbul", tz: "Europe/Istanbul", lat: 41.0082, lng: 28.9784,
+    videos: [{ id: "ALA09uSzD7E", label: "Default" }, { id: "vFhDtI8dGOA", label: "Day" }, { id: "aTsG9KK_Mkk", label: "Sunset/Night" }] },
+  { name: "Tbilisi", cc: "GE", q: "Tbilisi", tz: "Asia/Tbilisi", lat: 41.7151, lng: 44.8271,
+    videos: [{ id: "joszFYjoU5E", label: "Default" }, { id: "Smk6hpX-OU0", label: "Day" }, { id: "xTssir91CnY", label: "Sunset/Night" }] },
+  { name: "Cairo", cc: "EG", q: "Cairo", tz: "Africa/Cairo", lat: 30.0444, lng: 31.2357,
+    videos: [{ id: "--I-TdCe2_g", label: "Default" }, { id: "Esyp2P0uJu4", label: "Day" }, { id: "86pZTI5gJQM", label: "Sunset/Night" }] },
+  { name: "Nairobi", cc: "KE", q: "Nairobi", tz: "Africa/Nairobi", lat: -1.2921, lng: 36.8219,
+    videos: [{ id: "C1iN4D1wBiI", label: "Default" }, { id: "-UV94iPFRlw", label: "Day" }, { id: "glC6vjGfuAM", label: "Sunset/Night" }] },
+  { name: "Lagos", cc: "NG", q: "Lagos", tz: "Africa/Lagos", lat: 6.5244, lng: 3.3792,
+    videos: [{ id: "aIuTxasD3uw", label: "Default" }, { id: "LZJ000F-CLc", label: "Day" }, { id: "KwrMBdnfCfI", label: "Sunset/Night" }] },
+  { name: "Cape Town", cc: "ZA", q: "Cape Town", tz: "Africa/Johannesburg", lat: -33.9249, lng: 18.4241,
+    videos: [{ id: "5bdCk5AQ9Kw", label: "Default" }, { id: "aah7KuwBDzo", label: "Day" }, { id: "rM8rGs_tGYE", label: "Sunset/Night" }] },
+  { name: "Athens", cc: "GR", q: "Athens", tz: "Europe/Athens", lat: 37.9838, lng: 23.7275,
+    videos: [{ id: "8Hm0rMpapKY", label: "Default" }, { id: "TXHbjjPuvmM", label: "Day" }, { id: "f1cIBCZB0P8", label: "Sunset/Night" }] },
+  { name: "Rome", cc: "IT", q: "Roma", tz: "Europe/Rome", lat: 41.9028, lng: 12.4964,
+    videos: [{ id: "AdtBRICOD9U", label: "Default" }, { id: "0m7H6_ZI1iM", label: "Day" }, { id: "zWZEZhUkd0Y", label: "Sunset/Night" }] },
+  { name: "Paris", cc: "FR", q: "Paris", tz: "Europe/Paris", lat: 48.8566, lng: 2.3522,
+    videos: [{ id: "4TKTqb-TWwQ", label: "Default" }, { id: "LoT7kXS7kYg", label: "Day" }, { id: "FBjjYw-xcdg", label: "Sunset/Night" }] },
+  { name: "London", cc: "GB", q: "London", tz: "Europe/London", lat: 51.5074, lng: -0.1278,
+    videos: [{ id: "AveGRdBeOog", label: "Default" }, { id: "lCvWZj_kFgo", label: "Day" }, { id: "GSnAjDu3VoM", label: "Sunset/Night" }] },
+  { name: "Lisbon", cc: "PT", q: "Lisboa", tz: "Europe/Lisbon", lat: 38.7223, lng: -9.1393,
+    videos: [{ id: "xUZoO-WtyHw", label: "Default" }, { id: "dLLqWlOymxg", label: "Day" }, { id: "sTs9aa7Y6lI", label: "Sunset/Night" }] },
+  { name: "Madrid", cc: "ES", q: "Madrid", tz: "Europe/Madrid", lat: 40.4168, lng: -3.7038,
+    videos: [{ id: "C911U_Fo-QU", label: "Default" }, { id: "ZQC3fIhnH4o", label: "Day" }, { id: "KC0dMMCV4OM", label: "Sunset/Night" }] },
+  { name: "Berlin", cc: "DE", q: "Berlin", tz: "Europe/Berlin", lat: 52.52, lng: 13.405,
+    videos: [{ id: "lBlKR2ek0w4", label: "Default" }, { id: "g9T-KwcXqAg", label: "Day" }, { id: "IzZkjS4nBQI", label: "Sunset/Night" }] },
+  { name: "Warsaw", cc: "PL", q: "Warszawa", tz: "Europe/Warsaw", lat: 52.2297, lng: 21.0122,
+    videos: [{ id: "uJU_DEklaw4", label: "Default" }, { id: "dwtmEnKCP7c", label: "Day" }, { id: "YIQ4Ap9aUMo", label: "Sunset/Night" }] },
+  { name: "Buenos Aires", cc: "AR", q: "Buenos Aires", tz: "America/Argentina/Buenos_Aires", lat: -34.6037, lng: -58.3816,
+    videos: [{ id: "MYOj8ckqVuQ", label: "Default" }, { id: "-TPJot7-HTs", label: "Day" }, { id: "6Sb0gHrAlLA", label: "Sunset/Night" }] },
+  { name: "Sao Paulo", cc: "BR", q: "Sao Paulo", tz: "America/Sao_Paulo", lat: -23.5505, lng: -46.6333,
+    videos: [{ id: "fHEaa2ryFnc", label: "Default" }, { id: "zje0hghImYQ", label: "Day" }, { id: "WcjGyIjHLDA", label: "Sunset/Night" }] },
+  { name: "Bogota", cc: "CO", q: "Bogota", tz: "America/Bogota", lat: 4.711, lng: -74.0721,
+    videos: [{ id: "N0Qy6oi07W8", label: "Default" }, { id: "X6RNJoUo6HQ", label: "Day" }, { id: "AcpHX2aylSk", label: "Sunset/Night" }] },
+  { name: "Mexico City", cc: "MX", q: "Mexico", tz: "America/Mexico_City", lat: 19.4326, lng: -99.1332,
+    videos: [{ id: "Km6KYN_6vmc", label: "Default" }, { id: "hwn-nnSqP7Y", label: "Day" }, { id: "JCXH_WyC8A4", label: "Sunset/Night" }] },
+  { name: "New York", cc: "US", q: "New York", tz: "America/New_York", lat: 40.7128, lng: -74.006,
+    videos: [{ id: "7OgQjRn2x1w", label: "Default" }, { id: "sqsez_oQSQ8", label: "Day" }, { id: "qTCaw64ObUk", label: "Sunset/Night" }] },
+  { name: "Los Angeles", cc: "US", q: "Los Angeles", tz: "America/Los_Angeles", lat: 34.0522, lng: -118.2437,
+    videos: [{ id: "7MR08Jm38is", label: "Default" }, { id: "eR5vsN1Lq4E", label: "Day" }, { id: "sifq2tZkKMw", label: "Sunset/Night" }] },
 ];
 
-/* de1 is a specific, known-good server; the other two mirrors that used
-   to live here (fi1/at1) have been retired and no longer resolve at all,
-   so this list rotted quietly. "all.api.radio-browser.info" is the
-   project's own load-balanced entry point and always points at whichever
-   servers are currently up, so it's a much sturdier fallback than
-   guessing at individual server names. */
+/* BENCH — cities taken off the dial in the "fewer, better" pass (Oct 2026).
+   Each failed one rule: at least 3 HTTPS stations within 60 km in Radio
+   Browser, and only one city per country unless both are strong. Move an
+   entry back into CITIES above to restore it. Nothing reads this array. */
+const BENCH = [
+  { name: "Osaka", cc: "JP", q: "Osaka", tz: "Asia/Tokyo", lat: 34.6937, lng: 135.5023,
+    videos: [{ id: "ovD7QlzCCoU", label: "Default" }, { id: "L07uyRUK8L0", label: "Day" }, { id: "GgOTV7VrlPw", label: "Sunset/Night" }] },
+  { name: "Ho Chi Minh City", cc: "VN", q: "Saigon", tz: "Asia/Ho_Chi_Minh", lat: 10.7769, lng: 106.7009,
+    videos: [{ id: "gZWiLrQnb10", label: "Default" }, { id: "UrVjf2AR5is", label: "Day" }, { id: "uu-SjnZqZf0", label: "Sunset/Night" }] },
+  { name: "Hanoi", cc: "VN", q: "Hanoi", tz: "Asia/Ho_Chi_Minh", lat: 21.0285, lng: 105.8542,
+    videos: [{ id: "l-cQOa5K2X0", label: "Default" }, { id: "LTuSOk6dFpY", label: "Day" }, { id: "Gb8T3j2H890", label: "Sunset/Night" }] },
+  { name: "Casablanca", cc: "MA", q: "Casablanca", tz: "Africa/Casablanca", lat: 33.5731, lng: -7.5898,
+    videos: [{ id: "FXeX-H6Ajy4", label: "Default" }, { id: "RN6ioPRXk8A", label: "Day" }, { id: "8qV3p25wsao", label: "Sunset/Night" }] },
+  { name: "Naples", cc: "IT", q: "Napoli", tz: "Europe/Rome", lat: 40.8518, lng: 14.2681,
+    videos: [{ id: "mA0pPRQthnY", label: "Default" }, { id: "FmB2T9xGHk4", label: "Day" }, { id: "IHXZnU2bmc8", label: "Sunset/Night" }] },
+  { name: "Havana", cc: "CU", q: "Habana", tz: "America/Havana", lat: 23.1136, lng: -82.3666,
+    videos: [{ id: "vCywf9saDlY", label: "Default" }, { id: "GzBPHZw8j18", label: "Day" }, { id: "IEnv4ZorXmY", label: "Night Walk" }] },
+];
+
+/* =====================================================================
+   ROUTES — synced maps, one entry per drive video, keyed by YouTube ID.
+   Made with drivetime-annotate.html: pick a drive, drop a pin each time
+   you recognise where the car is, snap to roads, then "Copy for page"
+   and paste the entry between the braces below (comma between entries).
+   A drive without an entry shows a plain, labelled map of its city:
+   the dash never draws a route it doesn't actually know.
+   ===================================================================== */
+/* ROUTES:BEGIN */
+const ROUTES = {
+};
+/* ROUTES:END */
+
+/* =====================================================================
+   AUDIT — written nightly by .github/workflows/drivetime-audit.yml.
+   Don't edit by hand; your changes would be overwritten.
+   bad:      video IDs that won't play embedded, with the reason
+   blocked:  videos with country restrictions
+   stations: Radio Browser IDs of live local stations, best first
+   ===================================================================== */
+/* AUDIT:BEGIN */
+const AUDIT = {"checked":"2026-10-21","method":"oembed","bad":{"8Hm0rMpapKY":"removed or private","AveGRdBeOog":"won't embed (HTTP 403)"},"blocked":{},"stations":{"Tokyo":["af566e6b-3d2b-4b96-92ca-a9cb183e6fd8","54732c01-db87-4aa2-b313-22fd5fa7eee9","fdffc27f-a096-4be8-b3bf-2c51a943a1d1","d37f6140-a3c4-4b91-9d2c-801894a4c53d"],"Seoul":["3058649c-068d-43e8-8c47-4a5a89dbdc4c","24163c48-89c6-4d34-99b7-a3c2e9d4cadd","9b8512b7-436d-4da8-8777-633ad9b6671f"],"Taipei":["f7a5c94a-c966-4e7f-932f-31d2020f9032","665c3e49-f179-44d5-a33a-51fa71aceb63","56f14e5f-1234-42a9-946b-1ab9e7c06794","40c961b3-7c52-4da1-b956-5728759b2ad4","80f2fde9-58c1-4a37-a2d7-493b454c316f"],"Hong Kong":["409ec628-0a50-4d14-9b28-b21dbe611b08"],"Bangkok":["1e1113a5-7de2-4b9f-922c-ff56026f8759","c764e9db-1d62-47fb-bb10-bcf132702499","b52fe37c-7991-4453-9838-aa9cd9db0700","c02dba45-1182-4185-9bc2-58aef0d799b6","85ff4b3c-8688-4625-a138-8e5fb937ebaa","00635b1c-49b1-4b38-88f6-f924e8f45af8"],"Jakarta":["6233fefa-714e-444c-bc76-065d440c8082","1bdb7538-d6af-4c77-ab1e-d51185aa9384","fd6e2783-293c-476e-8201-ddeda1336ca3","0677e9b2-65d5-49fb-b292-17bc5f1c4bd0","a4202ae4-1f12-4fe1-97cb-b750856009f4","0a36ccab-d169-49f5-a6c4-f89d8047ff67","7beeccf9-8426-4f54-9067-bfefba8819f0","1e8125ec-6607-46f5-abfe-e077886b5306","a4e98f6e-e326-41eb-97a4-f5f477842fab","b33c2a75-8607-4c66-a1ef-87f99bf076de","89054f1c-9f1d-4dc8-a996-28b2358f86a8","3c71fe54-9bd4-43dc-85d2-cff2d2269a5e"],"Manila":["9c9368a3-8f90-4fc8-ba49-1127f9861d2f","91d4bd6e-fc70-4d77-a563-99682073a7ba","d617ca3d-4458-4c94-9a5f-65106263ec51","ea8b53c7-ca7a-49d6-9c01-fca6a6cf0942","6dc7f2f7-41b7-4203-8337-86adf10d78c8","e47c0813-93e0-45e7-9d82-d68bffff3032","eb5bfaf0-1d51-41dc-a9d4-3a450ba75749","3e293cd1-7490-41e1-9b9d-2679dcff5a08","29d089db-7676-4f24-b16b-f5cdc5b9c07e","f4305944-ac27-4b1e-981d-744d509220c0","a3a9c71b-a878-40ee-9481-eb1ac38af84c","76645586-387e-49e0-a291-549fea7ace5a"],"Singapore":["7122f761-9a93-48be-834c-a3c718bb54f5","8c8b010b-07ec-4c69-a668-3c600d95e9bf","82102b0e-68e9-411e-87b8-7cae36046096","eef37dac-e2b2-4f37-bb86-81ac3fe65135","8153ae5a-0cb6-4ed2-b54d-6e24ca5be5b6","a0d91c55-3965-4a03-a0b7-2e76c8faa2cd","f699e43f-b717-41d1-8d05-b5e07506a2d0","aba522d0-e676-4098-b051-87e1db850716","b81bb1bf-879e-4e04-83f2-b04d824c378b","e7b4d0c0-6516-4e75-841d-427489eaa9fa","2e484061-ac27-4fec-92ed-d5924a77c17e","7c4653df-6d49-466f-896f-db2de5a19608"],"Mumbai":["df3dfbcd-0666-42f1-af5f-563bc8508e90","04b25c2b-854a-4c3d-a00a-2cb1eb0961d1","058dcaa3-ee6d-4614-9bce-0cebb25b58c8","6b36ba4f-6d29-4272-b3c0-9aeeb64e61ec","0e5dfcc8-99e2-4fed-a232-7f4bf23ba3c3","4c9b5f1c-8d3b-4855-9ac0-eb9cf56a2566","1bbb4664-d187-49f1-b328-b2f3888fef36"],"Delhi":["300556e2-faf8-4b2e-b24d-7525185430c1","a4ffabec-a162-4320-8cf2-049b8055b17a","f2d3e6ea-9319-4e73-bac6-1c326fc7ae14","042a5b41-1604-4ba9-8c35-0efa02066dc5","539aa037-7357-48e9-87e6-57057edd8d15","7ed302e2-ca82-4613-9ad0-0d646be3f363","de7b0868-91ab-4b25-a8dc-9d5f82314212","e5614d86-0593-4cb6-b964-3a0ad346efe3","f1d7a979-b94d-4929-a4ca-758901029ecb","ec063296-1cc5-4d2b-b5a1-edd745a7a35e","1b2d7f06-8011-46e0-b0bf-b6efaffae9f8"],"Dubai":["f4556a0b-054d-4fbb-8436-aa05d2f2f7f2","619478a1-fb89-4864-bf88-80e9ba7382ce","3a8242b5-a042-466f-b1ad-45ebe013602a","faf70a6b-2ec9-49cd-a642-0a7159593369","5d230d71-3cca-4fce-9c83-ef944d452c1f","48ae1490-5094-46ca-8148-d15ba501ffca","15f7772e-efc9-4655-9d2b-55914a69e7ed","c607fdcb-61af-4ce9-84c7-5c51adb5f40c","babc5512-1063-452e-92ce-36aaa9d44da4","82e64078-241f-492b-ac97-d26a95993f51","b83fa647-a078-49cb-9178-037a94a8200c","edf67ebf-ea91-491c-a611-d873ddc40cf0"],"Istanbul":["f9fe2c7e-6f2f-4780-a682-8317604fe0ce","97f3bb39-24a0-461d-b282-b0ccae5a12c4","91c6a4b7-e345-4341-8d92-92c802f1532c","14db05f4-b028-40dc-a13f-c53d068d929e","78a6ca57-471d-4b78-8c13-c5e2ef5f4c8e","ac818ec6-d595-44f1-a8e1-6ffc9ef308b0","869d6802-36b4-487f-900a-3b26cd9e5ee1","4dc929fc-04c8-4c07-85df-4bbce06c89ab","41f64723-1277-49ac-aef1-7b91de781713","fc8dcd89-2712-4f63-b674-43a39c216423","790a61e8-a696-4ab6-aa4b-251df3d99a9c","ae32a05c-176d-4510-8ced-9a335cd13b03"],"Tbilisi":["395ff89d-0ea3-4fc1-8541-506b1ee4ef5f","b7e5fbb9-d1eb-468f-b095-783702465ea4","6b687628-4aea-47ac-a5e6-1104e92f9791","b92804d1-0bf1-4580-bb7a-26206adbf90e","01ff6b67-75cc-4d62-b54c-28f7cf7d4a11","b806f342-f9c8-4101-94ab-295c254b4b7e","ef9f7a61-bb7d-43eb-8d66-1504895b5621","4623426b-3740-47c3-8e0e-1370b08043cd","561665cf-3adf-41b5-b94b-1e9d8d534bdf","c526d675-3a46-4ca8-9af5-59def9ecdf4d","a9302edc-854d-4e6a-bee1-d6799665bc56"],"Cairo":["b1d17829-6522-481b-bb5c-839c3fd44353","41e19a4b-c517-486b-a111-6b3472eee741","580ef7ef-3ebe-45fd-8c90-25e365c64bc3","a489674f-885f-47ba-b56c-853b9753dfcb"],"Nairobi":["de54f373-bb93-44b0-b50b-16488ab8ac50","fbddafaf-8e7c-4cbe-a7fa-ffdcb61b9c22","0f377239-871a-4469-98d0-b61628ac7ee0","ab349279-ae07-49ce-8c18-2dfe3dec2051"],"Lagos":["dc3c6b97-8f2d-42ba-94b3-effc96dcb49f","1dfcc339-6292-4bf1-8b21-5c4a099ecd7e","a3c93ca9-9891-4249-a805-d622dadeed21","3c8dd994-143a-444d-95da-1a8ba41fce16","cc6525f6-7b80-45b4-a964-37d432b92ca4"],"Cape Town":["cd6d66e4-adc0-4284-9392-f1a1f87091d9","da81140d-96ed-49fe-a17d-761de31f6d19","db841ae9-452c-4479-a4cc-cc789fe9b69b","b291f81b-288c-4f78-9953-06aed3277af4","d7371c0b-e4f1-445c-b66a-9fb11d0b41c7","eb4f9a62-0cb4-4de5-bff2-f221ea6e7a37","8bd6e684-e3f3-4ab8-8089-71e27f6ceb74","bf31e986-2314-4fd8-b054-6254503dd704","8286f8cd-c17d-4322-b58b-a4aafbba2b87"],"Athens":["605b2521-e764-42ba-8be0-473fc096a3b3","df716345-217b-4c1e-9f0a-8f58dce692aa","f28d16cd-4515-43ed-9cc8-c25e56190e23","6f616c84-bd8d-4b47-8126-932544b6ae9b","80cc7186-2384-4e71-bed9-756108581acc","fffa0320-34a0-406e-b3d1-3e93dd2c630d","396e5702-5ea5-46ba-89fd-bca05c9df845","ccdc8e96-f3bc-4703-86ba-5b6aa0c92304","dec88d4d-39bc-4e53-8aca-3cb763536bab","388c7f4c-9911-49e0-b7c9-3643c1373003","6cbaa6b6-bc85-4f67-924d-1f1027c67ca4","ce944cfa-9ba9-4e9b-98fe-e1045a4f9df6"],"Rome":["caf01ffe-e18a-4158-bf9e-e947aa50d2b9","32c1aa82-c639-4c73-9236-948bbda511d7","cb74060e-8b0b-45f0-8e6b-e2f8c6c1a152","af6b114a-5c13-426e-b667-f58a9bd79b92","e2bba5e4-671e-4d79-abfc-ea9d80429a6e","12cfc0d8-0ff1-4dcb-9c63-1f8f46538dc9","d5e27912-6201-4684-813d-6dd1f90fc127","4e51e5c2-ba43-4f7d-8c5f-c2adfd2c9547","9fd24138-a782-4719-ab8a-cf8b43d657d2","af42f402-dc96-4ae1-8b4c-063c7d86c0a6","1797bc4c-3ff6-46d1-8fb7-da9778be4485","2b4130d4-c6b1-4280-bc0e-e8359b1f070e"],"Paris":["d39ab442-6c34-4097-afd0-e298ac21e50c","226396d3-6335-4d39-89fc-f1564d6f3ad7","a781a6da-a41f-498d-92f5-aede46952d54","0842377e-9c21-4567-a326-6303a48b0ea1","aeee1931-d6a2-4ac5-9212-dec8fb4bb4c0","33a9759c-c463-4085-829a-4f93206138b8","07b28e11-a8da-47ee-a96a-8930192c8163","e3ecb332-be77-4641-9b52-39cb4e79e042","044a2f56-6e97-4969-9df7-994ad160d058","64179b77-7c6f-4e74-af5b-4bf3b5a1265a","53adaf12-1dd1-4700-852b-f55da044ee7f","2c5e5b6b-193a-4cc4-ab6f-1a84044fd48a"],"London":["80d74009-e473-4454-9602-139b88485ba5","0f1a8621-d35a-4073-83d3-7ee14207a9a9","ea391ded-00f0-47e0-841c-d92663e11854","9c8f6141-f8e8-4779-bfed-5a79e14ed4dd","b5699b26-274e-4451-9c1f-cc307b642793","4ad5bdc7-01e5-47c9-a1f9-751671b4707e","ff871225-7731-45a1-aee0-9e8fa463dfc3","0f208ce7-6c65-4f59-af2a-772819fccf04","dec031e0-4419-45d2-9f3e-76e91d876c40","b4491892-12f3-41b7-8252-5cd5e4cf61fb","996a22a8-9bc1-48dc-8f08-e46b71dafc66","da52663e-bf3e-40aa-b863-28c1d12d6464"],"Lisbon":["909735da-70e8-4527-b771-52793d9f0086","cc461784-3150-4a34-81c5-2116fe024740","7bc1f66f-412d-484b-82eb-b7b1c4575faa","a08d74ca-2172-447a-941a-b5c5c20afdd6","1ac20829-1ca7-4abe-bd7f-b8dcd835b29b","b50fea42-9c22-45c3-a7d5-afc772cab87d","ae8f651c-f768-4243-83a0-7d535a5d4d8b","bf7a7180-2465-48d2-983c-3bc182ba0c83","06b3a0bc-3feb-474e-931a-719d30399af8","04e5765a-fc96-48dd-a5f4-ae2234a1a8ab","5848aa9f-1e09-425a-9609-b76686144681","7119e56e-a767-4b1a-b31e-6f39d2d9c030"],"Madrid":["b81c57c3-eb05-47ac-a0ea-eb01a6960cc4","db656299-a63e-4b7b-ac5a-ac2444459ae4","07dbb40c-f3a8-4f45-925d-c16ef08c7293","da1d6975-911a-42fa-8ead-8069097057d6","651d234f-a1e7-4c27-aba8-4343f1a9f80b","bbaa52e1-c9ab-4795-8410-dfbecf85efb6","55112aa4-5fca-4201-bc53-ae2b467ee087","34f16bc1-bbe6-43ba-b859-e6f88aa47f9b","5783c95b-67d9-4976-905a-64acd2b4f7aa","fc5d9c8c-43b4-4c20-8a0c-b38013762f3b","f9e4262c-1dad-442f-8761-247468829967","08b873e3-b047-4239-9c21-f97827f87df7"],"Berlin":["96074d8b-0601-11e8-ae97-52543be04c81","40e63764-adec-4e81-978b-f7bda48795c0","51aa0ac1-f3a1-4fa5-b491-8c4a23527740","d70bc21e-8281-4558-8043-8723558c659b","61046d79-1090-4e21-8739-229c07e366b8","2c813b57-9965-490f-afe2-c8d9bdc01b11","26e5445b-655f-4cc4-933b-b58d95a38dc4","e3e80372-1db7-4d8c-8276-d0e466a79412","64512383-0fd7-44b3-8c77-63035da01938","fe271ac5-e0dc-47c2-869d-a394eae468d9","8929a686-3467-43f1-9e22-612bfa1207be","63833488-c6dc-4605-88ba-e27a61fc1c0a"],"Warsaw":["6dcc981e-4602-401c-b175-7649736e2f11","86329383-66ef-4156-ba8d-6ac8d3778cc5","3d5ae3c4-6d05-415b-a0eb-d21ca56be0ea","d36486e5-9377-41a3-bc2a-96d787ce0e2c","c64f60f5-594a-43ab-bf7b-02c883ca2ab5","f1a8f4ea-1f02-4432-9c0f-3221aa7f8f16","ff1d99bb-fdb7-4cfc-b16d-68ae92305c8e","7a2f5726-23ff-4cce-a3ab-14e64bbce8ce","ad3f3041-7879-4abb-bfce-36efae67a43f","00dc9649-868b-43a8-9119-28a9b4d962e2","85038219-3b4b-480f-b404-9cbc5f0a32cc","dc835e53-1d9f-4c0f-b6ee-ffea5c672ec0"],"Buenos Aires":["f006d4dc-9771-4109-bf35-eb09291320da","bcb3b03a-f0ec-4ceb-b22f-922138858800","5440e89d-708d-4336-9b42-fa274ed093b1","3c6c111c-6bbc-44ae-8ad8-46b502b3002a","9257ed3b-c422-43cf-a8dd-8165861b3187","8ddfdc2b-6fc5-45a9-b100-9450b93a6ef4","a6a965ab-d9ab-4e56-8aef-99b52829743f","7b03996e-6ea0-4db5-8168-ddd1463faec2","4ff249e9-131b-4fae-88f0-d93c744240ee","774da6ef-9d08-4ab6-9afc-f7a8d2a82a03","94156264-2eeb-4df7-a01f-24de6da555f5","7624ad5c-a8f6-4339-99e1-6a2adcb5360c"],"Sao Paulo":["447a1a5f-aee6-4b21-b85f-10ceb1896ad3","4a17b7fa-42a0-4c32-bdc6-dc1c59066c96","d12439b1-0bfe-4caa-9dec-6f19af01db3a","ce5aac6c-e499-4714-a28b-a1a94baa1b74","52994d67-31ea-448f-b6bc-7eaeb6a3504b","f0d81ba6-285c-4b93-97c9-4398d20c7797","ad039169-2969-4a7a-be83-86f079f4a55e","523fdf97-a758-4ffc-88b9-e36614e943fd","d5c994a5-9a9b-4075-a557-702437956646","24ae1d51-9156-49eb-b2ff-b70eeda50236","8ff4695c-7266-4fc0-9a23-c84d0a51cb34","0560dc71-3149-4948-a5d5-2afeaae09a04"],"Bogota":["d205e92e-1bd5-4465-8994-8fe527756973","98578df5-be42-4583-8dfa-124ab0c8710f","c101d771-3863-404c-b201-836be835b947","6b962980-351d-439f-8591-ab5584346cd7","07504685-0de1-4860-8b88-ac4f3f11baab","6a436cad-5aa9-4a8d-a879-7f8328749b3e","fcec7b63-159f-407c-b4e5-31e7acc30318","8680e6c9-0a34-46b6-b03f-fd5d6da94442","c6d59222-e9e0-4c0e-a1b0-1b6372e21131","dd971796-bfa4-41aa-92e2-193112947116","425e70bc-c6a9-4689-b6cb-e1191116829b","e814c225-a6cf-4576-9e06-f5bc6842e354"],"Mexico City":["0f5f1741-70a5-4075-8995-836d059fff8e","9e1c5a91-80d7-11e9-aa30-52543be04c81","df674ea5-8313-438a-8a37-b1d8f1022559","4b09ce89-f30d-4c07-ae22-c4233e44eec4","19ba0105-a803-47f3-8489-924fb18cdd35","427d1844-450e-45fc-a3ee-bce70b83482c","a1865a88-6963-4348-8bb9-f7b95aa32782","a0b40c3f-aede-46e9-b67f-38cd8b262936","583c8fe9-dc3d-4dd2-9ace-afaf6b683635","ad642d0a-e41b-4572-8894-520ff22ef90f","68aba27b-fe79-4f35-a7e1-8520dd4b55a7","b00edde9-7967-4b1d-a89d-593577fa3b76"],"New York":["ba3ad919-0516-485c-bce6-b27c4492ab14","c7e5b008-2c9f-4a10-b431-41b7d0b06af2","56df9f1a-ed8b-4393-890a-2c0e6a0133a1","30928802-8f3b-4083-94ee-7cb3c6c41790","1b01e215-b1c1-4487-bcaf-c2b3deee3fb4","ae414367-526c-43f4-b5e1-979978cd307a","afc174d9-5090-4e71-9845-e96f5ae51055","ea60c9ef-29e9-4f4a-ab30-21eb34769faf","b878428e-22e5-4772-9943-82e90487e2e9","962b764a-0601-11e8-ae97-52543be04c81","96201d80-0601-11e8-ae97-52543be04c81","b65a397b-43a9-4b6b-a595-a305f931fc4f"],"Los Angeles":["c624a501-939a-11e9-a605-52543be04c81","325a61dc-fe34-48c6-ae82-1467b710f07b","b449c3c0-db5f-4f01-a81e-3bc1c769e188","ffa61df7-f408-48a5-b4fb-ca07e8ec3c1a","213a8ed4-be7a-449a-b437-ea675e5af104","51306363-5c47-47b2-adb6-4e25bda8b787","2ff78623-db41-425d-bfeb-480f723433a3","84b21734-f3a8-40e9-9051-68c2e23668f7","36074435-1ae4-4eea-a597-c67a19035534","00e78008-abe8-41fc-a81f-d8add62f388e","b05ea9ac-a99c-4e5b-9631-b38b07df92af","c388c156-bbe7-4be7-9f13-c9fddcec69eb"]}};
+/* AUDIT:END */
+
+/* =====================================================================
+   MAP TILES — CARTO stopped serving its free tiles without a key on
+   25 Sept 2026 (keyless requests now get an "API KEY REQUIRED" image).
+   Keys are free for non-commercial use: request one at
+   carto.com/basemaps/apikey, restrict it to nickcarbone.github.io in
+   the CARTO dashboard (so it's safe to publish here), and paste it in.
+   Until then the map uses OpenStreetMap's own tiles, darkened in CSS.
+   ===================================================================== */
+const CARTO_KEY = "";
+function addBaseTiles(map) {
+  if (CARTO_KEY) {
+    L.tileLayer("https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}{r}.png?key=" + encodeURIComponent(CARTO_KEY), {
+      maxZoom: 20, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    }).addTo(map);
+  } else {
+    map.getContainer().classList.add("osm-dark");
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+  }
+}
+
+/* de1 is a specific, known-good server; "all.api.radio-browser.info" is
+   the project's own load-balanced entry point. */
 const RB_MIRRORS = [
   "https://de1.api.radio-browser.info",
   "https://all.api.radio-browser.info",
@@ -807,45 +891,146 @@ const RB_MIRRORS = [
 
 const $ = id => document.getElementById(id);
 const el = {
-  city: $("city"), view: $("view"), clock: $("clock"), odo: $("odo"), triptime: $("triptime"),
+  city: $("city"), view: $("view"), clock: $("clock"), wx: $("wx"), odo: $("odo"), triptime: $("triptime"),
   battFill: $("batt-fill"), battPct: $("batt-pct"), range: $("range"),
-  stage: $("stage"), wsFrame: $("ws-frame"), staticfx: $("staticfx"),
+  stage: $("stage"), staticfx: $("staticfx"), stageMsg: $("stage-msg"), stageMsgText: $("stage-msg-text"), stageNext: $("stage-next"),
   fshud: $("fshud"), fsSpeed: $("fs-speed"), fsUnit: $("fs-unit"), fsCity: $("fs-city"),
   fsStation: $("fs-station"), fsPrev: $("fs-prev"), fsNext: $("fs-next"),
-  console: $("console"), collapse: $("collapse"),
+  console: $("console"), collapse: $("collapse"), share: $("share"),
   speed: $("speed"), units: $("units"), laneL: $("lane-l"), laneR: $("lane-r"), apNote: $("ap-note"),
   tabNav: $("tab-nav"), tabTheater: $("tab-theater"), viewNav: $("view-nav"), viewTheater: $("view-theater"),
+  navBadge: $("nav-badge"),
   turnArrow: $("turn-arrow"), turnDist: $("turn-dist"), turnStreet: $("turn-street"),
   etaTime: $("eta-time"), etaDist: $("eta-dist"), dest: $("dest"),
   zoomIn: $("zoom-in"), zoomOut: $("zoom-out"),
   ytInput: $("yt-input"), ytLoad: $("yt-load"), ytMute: $("yt-mute"), ytClear: $("yt-clear"),
-  thFrame: $("th-frame"), theaterEmpty: $("theater-empty"), recents: $("recents"),
-  appGrid: $("app-grid"), appScreen: $("app-screen"), appScreenIcon: $("app-screen-icon"),
-  appScreenTitle: $("app-screen-title"), appScreenNote: $("app-screen-note"), appExit: $("app-exit"),
-  livedot: $("livedot"), station: $("station"), stationMeta: $("station-meta"),
+  theaterEmpty: $("theater-empty"), recents: $("recents"),
+  livedot: $("livedot"), station: $("station"), stationMeta: $("station-meta"), fav: $("fav"),
   presets: $("presets"), prevSt: $("prev-st"), nextSt: $("next-st"), power: $("power"),
   fullscreen: $("fullscreen"), volume: $("volume"), scan: $("scan"), radio: $("radio"),
   radioApp: $("radio-app"), radioExpand: $("radio-expand"), radioBack: $("radio-back"),
-  pip: $("pip"), pipBar: $("pip-bar"), pipTitle: $("pip-title"), pipFrame: $("pip-frame"),
+  saved: $("saved"), savedWrap: $("saved-wrap"),
+  pip: $("pip"), pipBar: $("pip-bar"), pipTitle: $("pip-title"),
   pipSwap: $("pip-swap"), pipClose: $("pip-close"), pipGrip: $("pip-grip"), pipToggle: $("pip-toggle"),
-  temp: $("temp"), tempUp: $("temp-up"), tempDown: $("temp-down"), ac: $("ac"), seat: $("seat"),
-  cityPlate: $("city-plate"), ignition: $("ignition"), start: $("start"),
+  temp: $("temp"), tempUp: $("temp-up"), tempDown: $("temp-down"),
+  tripChip: $("trip-chip"), sleepChip: $("sleep-chip"),
+  ignition: $("ignition"), ignCity: $("ign-city"), start: $("start"),
+  toast: $("toast"),
 };
 
 const S = {
-  cityIdx: 0, variantIdx: 0,
+  cityIdx: 0, variantIdx: 0, viewMode: "auto",
   stations: [], stationIdx: -1, playing: false, allPaused: false,
-  speed: 0, target: 0, gear: "D", metric: false,
+  speed: 0, target: 0, gear: "D", metric: false,   // speed is always held in mph
   battery: 87, odoMi: 0, tripStart: null,
   windshield: "drive", pipOpen: false,
   theaterId: null, theaterMuted: true, recents: [],
-  cabin: 70, audioCtx: null, running: false,
+  cabin: 70, audioCtx: null, running: false, zoom: 1,
+  wx: null, tripAt: null, sleepAt: null,
 };
 
 /* ---------------------------------------------------------------
-   RADIO — Radio Browser is free and keyless, but its "is this
-   station alive" metadata is often stale, so every candidate is
-   actually test-loaded in the browser before it earns a preset.
+   SMALL HELPERS
+   --------------------------------------------------------------- */
+const slugify = s => (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+  .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const escapeHtml = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+// Browser storage can be missing or throw (private windows, blocked
+// site data), so every touch is wrapped and the page works without it.
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+};
+let toastTimer = null;
+function toast(msg) {
+  el.toast.textContent = msg;
+  el.toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.toast.classList.remove("show"), 3800);
+}
+
+/* Videos the nightly audit reported broken, plus any that failed in
+   this browser session, are skipped everywhere. */
+const runtimeBad = new Set();
+const badVideo = id => !!((AUDIT.bad && AUDIT.bad[id]) || runtimeBad.has(id));
+const usableVideos = city => city.videos.map((v, i) => ({ ...v, i })).filter(v => !badVideo(v.id));
+
+/* ---------------------------------------------------------------
+   LOCAL TIME + SUN
+   Solar elevation from the standard low-precision almanac formula
+   (good to about a degree, which is plenty for "is it dark yet").
+   --------------------------------------------------------------- */
+function solarElevation(lat, lng, date = new Date()) {
+  const rad = Math.PI / 180;
+  const n = date.getTime() / 86400000 + 2440587.5 - 2451545.0;
+  const L = (280.460 + 0.9856474 * n) % 360;
+  const g = ((357.528 + 0.9856003 * n) % 360) * rad;
+  const lam = (L + 1.915 * Math.sin(g) + 0.020 * Math.sin(2 * g)) * rad;
+  const eps = (23.439 - 0.0000004 * n) * rad;
+  const dec = Math.asin(Math.sin(eps) * Math.sin(lam));
+  const ra = Math.atan2(Math.cos(eps) * Math.sin(lam), Math.cos(lam));
+  const gmst = ((18.697374558 + 24.06570982441908 * n) % 24 + 24) % 24;
+  const ha = (gmst * 15 + lng) * rad - ra;
+  return Math.asin(Math.sin(lat * rad) * Math.sin(dec) + Math.cos(lat * rad) * Math.cos(dec) * Math.cos(ha)) / rad;
+}
+function skyPhase(city) {
+  const e = solarElevation(city.lat, city.lng);
+  if (e > 6) return "daytime";
+  if (e > -6) return solarElevation(city.lat, city.lng, new Date(Date.now() + 6e5)) > e ? "dawn" : "dusk";
+  return "night";
+}
+// Auto: the Day video while the sun is well up, otherwise Sunset/Night.
+function autoVariant(city) {
+  const list = usableVideos(city);
+  if (!list.length) return -1;
+  const want = skyPhase(city) === "daytime" ? /day/i : /night|sunset|dusk|evening/i;
+  return (list.find(v => want.test(v.label)) || list[0]).i;
+}
+const timeIn = tz => {
+  try { return new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit", timeZone: tz }); }
+  catch (e) { return new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }); }
+};
+function tickClock() {
+  const c = CITIES[S.cityIdx];
+  el.clock.textContent = timeIn(c.tz);
+  el.clock.title = "Time in " + c.name + " (" + skyPhase(c) + ") · your time " + timeIn(undefined);
+}
+
+/* Weather: Open-Meteo, free and keyless. Purely decorative, so any
+   failure just leaves the slot empty. */
+const WMO = { 0: "Clear", 1: "Mostly clear", 2: "Partly cloudy", 3: "Overcast", 45: "Fog", 48: "Fog",
+  51: "Drizzle", 53: "Drizzle", 55: "Drizzle", 56: "Freezing drizzle", 57: "Freezing drizzle",
+  61: "Light rain", 63: "Rain", 65: "Heavy rain", 66: "Freezing rain", 67: "Freezing rain",
+  71: "Light snow", 73: "Snow", 75: "Heavy snow", 77: "Snow", 80: "Showers", 81: "Showers", 82: "Heavy showers",
+  85: "Snow showers", 86: "Snow showers", 95: "Thunderstorms", 96: "Thunderstorms", 99: "Thunderstorms" };
+let wxToken = 0;
+async function loadWeather(city) {
+  const tok = ++wxToken;
+  S.wx = null; renderWeather();
+  try {
+    const r = await fetch("https://api.open-meteo.com/v1/forecast?latitude=" + city.lat + "&longitude=" + city.lng +
+      "&current=temperature_2m,weather_code");
+    if (!r.ok) return;
+    const j = await r.json();
+    if (tok !== wxToken || !j.current) return;
+    S.wx = j.current; renderWeather();
+  } catch (e) { /* leave blank */ }
+}
+function renderWeather() {
+  if (!S.wx || typeof S.wx.temperature_2m !== "number") { el.wx.textContent = ""; return; }
+  const c = S.wx.temperature_2m;
+  const t = S.metric ? Math.round(c) + "°C" : Math.round(c * 9 / 5 + 32) + "°F";
+  el.wx.textContent = t + (WMO[S.wx.weather_code] ? " · " + WMO[S.wx.weather_code] : "");
+  el.wx.title = "Current weather in " + CITIES[S.cityIdx].name + " (Open-Meteo)";
+}
+
+/* ---------------------------------------------------------------
+   RADIO — Radio Browser is free and keyless. The nightly audit stores
+   a shortlist of live, genuinely local stations per city (by name or
+   by registered location within 60 km). Those are fetched fresh by ID
+   so stream URLs are current, then each is test-loaded in the browser
+   before it earns a preset. If the shortlist is thin, the old live
+   search fills the gap.
    --------------------------------------------------------------- */
 async function rbFetch(path) {
   for (const base of RB_MIRRORS) {
@@ -860,9 +1045,24 @@ async function rbFetch(path) {
   throw new Error("no mirror reachable");
 }
 
+// Radio Browser asks apps to report each play, so it can rank stations.
+const reported = new Set();
+function reportPlay(uuid) {
+  if (!uuid || reported.has(uuid)) return;
+  reported.add(uuid);
+  fetch(RB_MIRRORS[0] + "/json/url/" + encodeURIComponent(uuid)).catch(() => {});
+}
+
+// On an HTTPS page the browser upgrades http:// audio or blocks it,
+// so test (and play) the upgraded URL from the start.
+const streamUrl = s => {
+  const u = s.url_resolved || s.url || "";
+  return location.protocol === "https:" ? u.replace(/^http:\/\//i, "https://") : u;
+};
+
 const GENERIC = new Set(["radio","fm","am","the","la","el","le","los","las","my","new","big","hit","hits","top","city"]);
-const norm = s => (s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"");
-const firstTok = s => ((s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+const norm = s => (s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"");
+const firstTok = s => ((s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
   .split(/[^a-z0-9]+/).filter(Boolean)[0]) || "";
 
 /* One station often appears several times under near-identical names
@@ -870,17 +1070,17 @@ const firstTok = s => ((s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\
    prefix repeats, and repeated distinctive callsigns — but never treat
    a generic opener like "Radio" as a callsign. */
 function dedupe(list) {
-  const out = [], seen = new Set(), toks = new Set();
+  const out = [], seen = new Set(), toks = new Set(), ids = new Set();
   for (const s of list) {
     const full = norm(s.name), tok = firstTok(s.name);
-    if (!full || seen.has(full)) continue;
+    if (!full || seen.has(full) || ids.has(s.stationuuid)) continue;
     let prefixDupe = false;
     for (const f of seen) {
       if (f.length >= 6 && full.length >= 6 && (full.startsWith(f) || f.startsWith(full))) { prefixDupe = true; break; }
     }
     if (prefixDupe) continue;
     if (tok && !GENERIC.has(tok) && tok.length >= 3 && toks.has(tok)) continue;
-    seen.add(full);
+    seen.add(full); ids.add(s.stationuuid);
     if (tok && !GENERIC.has(tok)) toks.add(tok);
     out.push(s);
   }
@@ -906,50 +1106,76 @@ function testStream(url, ms = 4500) {
   });
 }
 
+// Tests in parallel lanes but returns winners in their original rank
+// order, so preset 1 is the best station, not whichever answered first.
 async function testBatch(cands, need, lanes = 5) {
   const good = [];
   let i = 0;
   const worker = async () => {
     while (i < cands.length && good.length < need) {
-      const s = cands[i++];
-      const url = s.url_resolved || s.url;
-      if (url && await testStream(url)) good.push(s);
+      const k = i++, s = cands[k];
+      const url = streamUrl(s);
+      if (url && await testStream(url)) good.push({ k, s });
     }
   };
   await Promise.all(Array.from({ length: Math.min(lanes, cands.length) }, worker));
-  return good;
+  return good.sort((a, b) => a.k - b.k).map(g => g.s);
+}
+
+async function curatedStations(city) {
+  const ids = (AUDIT.stations && AUDIT.stations[city.name]) || [];
+  if (!ids.length) return [];
+  try {
+    const list = await rbFetch("/json/stations/byuuid?uuids=" + ids.join(","));
+    const rank = new Map(ids.map((u, i) => [u, i]));
+    return list.filter(s => rank.has(s.stationuuid)).sort((a, b) => rank.get(a.stationuuid) - rank.get(b.stationuuid));
+  } catch (e) { return []; }
 }
 
 let scanToken = 0;
-async function loadStations(city) {
+async function loadStations(city, wantUuid) {
   const token = ++scanToken;
   el.scan.textContent = "Scanning the dial…";
   S.stations = []; S.stationIdx = -1;
-  renderPresets();
+  renderPresets(); renderFav();
   try {
-    let list = await rbFetch(
-      "/json/stations/search?limit=80&hidebroken=true&order=clickcount&reverse=true" +
-      "&countrycode=" + encodeURIComponent(city.cc) + "&name=" + encodeURIComponent(city.q));
-    if (!list || list.length < 6) {
-      const wider = await rbFetch(
+    let list = await curatedStations(city);
+    if (token !== scanToken) return;
+    if (list.length < 8) {
+      let more = await rbFetch(
         "/json/stations/search?limit=80&hidebroken=true&order=clickcount&reverse=true" +
-        "&countrycode=" + encodeURIComponent(city.cc));
-      const have = new Set(list.map(s => s.stationuuid));
-      list = list.concat(wider.filter(s => !have.has(s.stationuuid)));
+        "&countrycode=" + encodeURIComponent(city.cc) + "&name=" + encodeURIComponent(city.q));
+      if (!more || more.length < 6) {
+        const wider = await rbFetch(
+          "/json/stations/search?limit=80&hidebroken=true&order=clickcount&reverse=true" +
+          "&countrycode=" + encodeURIComponent(city.cc));
+        more = (more || []).concat(wider);
+      }
+      const secure = more.filter(s => (s.url_resolved || "").startsWith("https"));
+      const rest = more.filter(s => !(s.url_resolved || "").startsWith("https"));
+      list = list.concat(secure, rest);
+    }
+    if (wantUuid) {
+      let wanted = list.find(s => s.stationuuid === wantUuid);
+      if (!wanted) {
+        try { wanted = (await rbFetch("/json/stations/byuuid?uuids=" + encodeURIComponent(wantUuid)))[0]; } catch (e) {}
+      }
+      if (wanted) list = [wanted].concat(list.filter(s => s.stationuuid !== wantUuid));
     }
     if (token !== scanToken) return;
-    const secure = list.filter(s => (s.url_resolved || "").startsWith("https"));
-    const rest = list.filter(s => !(s.url_resolved || "").startsWith("https"));
-    const cands = dedupe(secure.concat(rest)).slice(0, 24);
+    const cands = dedupe(list).slice(0, 24);
     el.scan.textContent = "Checking which ones are on air…";
     const live = await testBatch(cands, 6);
     if (token !== scanToken) return;
-    S.stations = dedupe(live).slice(0, 6);
+    S.stations = live.slice(0, 6);
     renderPresets();
     el.scan.textContent = S.stations.length
       ? S.stations.length + " stations on air in " + city.name
       : "Nothing on air here right now — try another city";
-    if (S.stations.length && !S.allPaused) tune(0);
+    if (wantUuid && !S.stations.some(s => s.stationuuid === wantUuid) && S.stations.length) {
+      toast("That station isn't on air right now, so here's another from " + city.name);
+    }
+    if (S.stations.length && !S.allPaused && S.gear === "D") tune(0);
   } catch (e) {
     if (token === scanToken) el.scan.textContent = "Couldn't reach the station directory — check your connection";
   }
@@ -968,7 +1194,6 @@ function renderPresets() {
     el.presets.appendChild(b);
   }
 }
-const escapeHtml = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 function tune(i) {
   const s = S.stations[i];
@@ -978,11 +1203,12 @@ function tune(i) {
   el.station.textContent = s.name.trim();
   el.stationMeta.textContent = [s.codec, s.bitrate ? s.bitrate + " kbps" : ""].filter(Boolean).join(" · ");
   el.fsStation.textContent = s.name.trim();
-  el.radio.src = s.url_resolved || s.url;
+  el.radio.src = streamUrl(s);
   el.radio.volume = el.volume.value / 100;
   if (changed) { staticBurst(); if (isFS()) hudShow(); }
   playRadio();
-  renderPresets();
+  reportPlay(s.stationuuid);
+  renderPresets(); renderFav(); setMediaMeta(); updateURL();
 }
 
 function playRadio() {
@@ -991,11 +1217,13 @@ function playRadio() {
     el.livedot.classList.add("on");
     el.power.textContent = "Stop";
     el.scan.textContent = "";
+    setPlaybackState("playing");
   }).catch(() => {
     S.playing = false;
     el.livedot.classList.remove("on");
     el.power.textContent = "Play";
     el.scan.textContent = "That stream won't open — try the next preset";
+    setPlaybackState("paused");
   });
 }
 
@@ -1006,6 +1234,7 @@ function stopRadio() {
   S.playing = false;
   el.livedot.classList.remove("on");
   el.power.textContent = "Play";
+  setPlaybackState("paused");
 }
 
 function stepStation(d) {
@@ -1039,67 +1268,235 @@ el.power.addEventListener("click", () => {
 el.volume.addEventListener("input", () => { el.radio.volume = el.volume.value / 100; });
 
 /* ---------------------------------------------------------------
-   VIDEO SLOTS
+   MEDIA SESSION — keyboard media keys, headphone buttons and the
+   OS "now playing" panel control the radio.
+   --------------------------------------------------------------- */
+function setMediaMeta() {
+  if (!("mediaSession" in navigator) || typeof MediaMetadata === "undefined") return;
+  const s = S.stations[S.stationIdx], c = CITIES[S.cityIdx];
+  try {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: s ? s.name.trim() : "DRIVETIME",
+      artist: c.name + " · live local radio",
+      album: "DRIVETIME",
+      artwork: s && /^https:\/\//.test(s.favicon || "") ? [{ src: s.favicon }] : [],
+    });
+  } catch (e) {}
+}
+function setPlaybackState(st) {
+  if ("mediaSession" in navigator) { try { navigator.mediaSession.playbackState = st; } catch (e) {} }
+}
+if ("mediaSession" in navigator) {
+  const h = (a, f) => { try { navigator.mediaSession.setActionHandler(a, f); } catch (e) {} };
+  h("play", () => { S.allPaused = false; if (S.stationIdx >= 0) tune(S.stationIdx); else if (S.stations.length) tune(0); });
+  h("pause", () => stopRadio());
+  h("stop", () => stopRadio());
+  h("nexttrack", () => stepStation(1));
+  h("previoustrack", () => stepStation(-1));
+}
+
+/* ---------------------------------------------------------------
+   SAVED STATIONS — kept in this browser only.
+   --------------------------------------------------------------- */
+let favs = store.get("drivetime:favs", []);
+const isFav = uuid => favs.some(f => f.uuid === uuid);
+function renderFav() {
+  const s = S.stations[S.stationIdx];
+  const on = !!(s && isFav(s.stationuuid));
+  el.fav.disabled = !s;
+  el.fav.textContent = on ? "★" : "☆";
+  el.fav.setAttribute("aria-pressed", String(on));
+  el.fav.title = on ? "Remove from saved stations" : "Save this station";
+}
+function renderSaved() {
+  el.saved.innerHTML = "";
+  el.savedWrap.style.display = favs.length ? "" : "none";
+  favs.forEach(f => {
+    const row = document.createElement("div");
+    row.className = "saved-row";
+    row.innerHTML = '<button class="go-saved" title="' + escapeHtml(f.name) + '">' + escapeHtml(f.name) +
+      '<small>' + escapeHtml(f.city) + '</small></button><button class="rm" aria-label="Remove ' + escapeHtml(f.name) + '">✕</button>';
+    row.querySelector(".go-saved").addEventListener("click", () => playSaved(f));
+    row.querySelector(".rm").addEventListener("click", () => {
+      favs = favs.filter(x => x.uuid !== f.uuid); store.set("drivetime:favs", favs); renderSaved(); renderFav();
+    });
+    el.saved.appendChild(row);
+  });
+}
+el.fav.addEventListener("click", () => {
+  const s = S.stations[S.stationIdx];
+  if (!s) return;
+  if (isFav(s.stationuuid)) {
+    favs = favs.filter(f => f.uuid !== s.stationuuid);
+    toast("Removed " + s.name.trim());
+  } else {
+    favs.unshift({ uuid: s.stationuuid, name: s.name.trim(), city: CITIES[S.cityIdx].name });
+    favs = favs.slice(0, 24);
+    toast("Saved " + s.name.trim() + " — find it under Radio");
+  }
+  store.set("drivetime:favs", favs);
+  renderFav(); renderSaved();
+});
+function playSaved(f) {
+  const i = CITIES.findIndex(c => c.name === f.city);
+  if (i < 0) { toast(f.city + " is no longer on the dial"); return; }
+  S.allPaused = false;
+  if (S.gear !== "D") setGear("D");
+  if (i !== S.cityIdx) { el.city.value = String(i); setCity(i, { station: f.uuid }); return; }
+  const k = S.stations.findIndex(s => s.stationuuid === f.uuid);
+  if (k >= 0) tune(k); else loadStations(CITIES[i], f.uuid);
+}
+renderSaved();
+
+/* ---------------------------------------------------------------
+   VIDEO SLOTS — YouTube IFrame Player API
    Two places can show a video: the windshield and the floating
    window. Two sources exist: the city drive and whatever you load
    in Theater. Swap trades their places. Nothing is ever mounted in
    two slots at once, which is what keeps audio from doubling up.
+   The API also reports errors (so a dead video falls back to the
+   next one) and the playhead (which drives the synced map).
    --------------------------------------------------------------- */
-function embedUrl(id) {
-  return "https://www.youtube.com/embed/" + id +
-    "?autoplay=1&mute=1&rel=0&modestbranding=1&enablejsapi=1&loop=1&playlist=" + id;
+let ytReady = false;
+const ytQueue = [];
+window.onYouTubeIframeAPIReady = () => { ytReady = true; ytQueue.splice(0).forEach(f => f()); };
+const whenYT = f => (ytReady ? f() : ytQueue.push(f));
+(function loadYTApi() {
+  const s = document.createElement("script");
+  s.src = "https://www.youtube.com/iframe_api";
+  s.onerror = () => toast("Couldn't reach YouTube — check your connection or content blocker");
+  document.head.appendChild(s);
+})();
+
+const makeSlot = elId => ({ elId, player: null, ready: false, cur: null, want: null, role: null, muted: true });
+const slots = { ws: makeSlot("ws-frame"), pip: makeSlot("pip-frame"), th: makeSlot("th-frame") };
+const rolling = () => S.gear === "D" || S.gear === "N";
+
+function slotLoad(slot, id, role, muted) {
+  slot.want = id || null; slot.role = role; slot.muted = muted;
+  whenYT(() => {
+    if (!slot.player) {
+      if (!slot.want) return;
+      const vars = { autoplay: 1, mute: 1, rel: 0, playsinline: 1, modestbranding: 1 };
+      if (/^https?:$/.test(location.protocol)) vars.origin = location.origin;
+      slot.player = new YT.Player(slot.elId, {
+        videoId: slot.want,
+        playerVars: vars,
+        events: {
+          onReady: () => { slot.ready = true; slot.cur = slot.want; applySlot(slot); },
+          onStateChange: e => onSlotState(slot, e),
+          onError: e => onSlotError(slot, e),
+        },
+      });
+      return;
+    }
+    if (slot.ready) applySlot(slot);
+  });
 }
-function setFrame(frame, id) {
-  const want = id ? embedUrl(id) : "";
-  if (frame.dataset.cur === want) return;
-  frame.dataset.cur = want;
-  if (want) frame.src = want; else frame.removeAttribute("src");
-}
-function ytCmd(frame, func) {
-  if (!frame.dataset.cur) return;
+function applySlot(slot) {
+  const p = slot.player;
   try {
-    frame.contentWindow.postMessage(JSON.stringify({ event: "command", func, args: [] }), "*");
-  } catch (e) { /* frame not ready */ }
+    if (!slot.want) { if (slot.cur) { p.stopVideo(); slot.cur = null; } return; }
+    if (slot.cur !== slot.want) { p.loadVideoById(slot.want); slot.cur = slot.want; }
+    if (slot.muted) p.mute(); else p.unMute();
+    if (slot.role === "drive" && !rolling()) p.pauseVideo();
+  } catch (e) { /* player not ready yet; onReady re-applies */ }
 }
-function theaterFrame() {
-  if (S.windshield === "theater") return el.wsFrame;
-  if (S.pipOpen && S.windshield === "drive") return el.pipFrame;
-  return el.thFrame;
+function onSlotState(slot, e) {
+  if (slot.role !== "drive") return;
+  if (e.data === 0) { try { slot.player.seekTo(0, true); slot.player.playVideo(); } catch (x) {} }   // loop
+  else if (e.data === 1 && !rolling()) { try { slot.player.pauseVideo(); } catch (x) {} }
+}
+function onSlotError(slot, e) {
+  const id = slot.cur || slot.want, code = e && e.data;
+  console.warn("[drivetime] YouTube player error", code, "on", id, "(" + slot.role + ")");
+  // 100 = removed/private, 101/150 = owner blocks embedding: the video is
+  // the problem, so skip it. Anything else (5 = this browser can't play
+  // it, 153 = missing referrer) is about the viewer's setup, and cycling
+  // through the other videos wouldn't help.
+  const videoAtFault = code === 100 || code === 101 || code === 150;
+  if (slot.role === "drive" && !videoAtFault) {
+    el.stageMsg.classList.add("on");
+    el.stageMsgText.textContent = "YouTube couldn't play this drive in your browser (error " + code + "). " +
+      "A content blocker or an old browser is the usual cause.";
+    return;
+  }
+  if (slot.role === "drive") {
+    runtimeBad.add(id);
+    const city = CITIES[S.cityIdx];
+    const label = (city.videos.find(v => v.id === id) || {}).label || "selected";
+    const next = S.viewMode === "auto" ? autoVariant(city) : (usableVideos(city)[0] || { i: -1 }).i;
+    S.variantIdx = next;
+    fillViews(city);
+    assignVideos();
+    if (next >= 0) toast("The " + label + " drive won't play here, so you're on " + city.videos[next].label + " instead");
+  } else {
+    const why = code === 100 ? "That video was removed or made private."
+      : (code === 101 || code === 150) ? "That video's owner doesn't allow it to play on other sites."
+      : "That video couldn't be played here.";
+    S.recents = S.recents.filter(r => r.id !== id); renderRecents();
+    S.theaterId = null;
+    if (S.windshield === "theater") S.windshield = "drive";
+    if (S.pipOpen && S.windshield === "drive") setPip(false);
+    assignVideos();
+    toast(why);
+  }
+}
+
+const currentDriveId = () => {
+  const v = CITIES[S.cityIdx].videos[S.variantIdx];
+  return v && !badVideo(v.id) ? v.id : null;
+};
+function driveSlot() {
+  if (S.windshield === "drive") return slots.ws;
+  if (S.pipOpen) return slots.pip;
+  return null;
 }
 
 function assignVideos() {
   const city = CITIES[S.cityIdx];
-  const driveId = city.videos[S.variantIdx].id;
-  const other = S.windshield === "drive" ? "theater" : "drive";
+  const driveId = currentDriveId();
+  const wsRole = S.windshield;
+  const other = wsRole === "drive" ? "theater" : "drive";
+  const idFor = role => role === "drive" ? driveId : S.theaterId;
+  const mutedFor = role => role === "drive" ? true : S.theaterMuted;
 
-  setFrame(el.wsFrame, S.windshield === "drive" ? driveId : S.theaterId);
-  el.stage.classList.toggle("is-empty", S.windshield === "theater" && !S.theaterId);
-
-  if (S.pipOpen) {
-    setFrame(el.pipFrame, other === "drive" ? driveId : S.theaterId);
-    el.pipTitle.textContent = other === "drive" ? city.name + " road view" : "Your video";
-  } else {
-    setFrame(el.pipFrame, null);
+  slotLoad(slots.ws, idFor(wsRole), wsRole, mutedFor(wsRole));
+  el.stage.classList.toggle("is-empty", wsRole === "theater" && !S.theaterId);
+  el.stageMsg.classList.toggle("on", wsRole === "drive" && !driveId);
+  if (wsRole === "drive" && !driveId) {
+    const failedHere = city.videos.some(v => runtimeBad.has(v.id));
+    el.stageMsgText.textContent = "None of " + city.name + "'s drives will play right now." +
+      (failedHere ? " If every city does this, YouTube may be blocking embedded playback on your network or browser." : "");
   }
 
-  const theaterElsewhere = S.windshield === "theater" || (S.pipOpen && other === "theater");
-  setFrame(el.thFrame, (S.theaterId && !theaterElsewhere) ? S.theaterId : null);
+  if (S.pipOpen) {
+    slotLoad(slots.pip, idFor(other), other, mutedFor(other));
+    el.pipTitle.textContent = other === "drive" ? city.name + " road view" : "Your video";
+  } else {
+    slotLoad(slots.pip, null, null, true);
+  }
+
+  const theaterElsewhere = wsRole === "theater" || (S.pipOpen && other === "theater");
+  slotLoad(slots.th, (S.theaterId && !theaterElsewhere) ? S.theaterId : null, "theater", S.theaterMuted);
   el.theaterEmpty.style.display = (S.theaterId && !theaterElsewhere) ? "none" : "flex";
   if (S.theaterId && theaterElsewhere) {
     el.theaterEmpty.firstElementChild.textContent =
-      S.windshield === "theater" ? "Your video is on the main screen." : "Your video is in the floating window.";
+      wsRole === "theater" ? "Your video is on the main screen." : "Your video is in the floating window.";
   } else if (!S.theaterId) {
     el.theaterEmpty.firstElementChild.textContent = "Paste any YouTube link above to play it here.";
   }
-  applyTheaterSound();
-}
-
-function applyTheaterSound() {
-  if (!S.theaterId) return;
-  const f = theaterFrame();
-  setTimeout(() => ytCmd(f, S.theaterMuted ? "mute" : "unMute"), 700);
   el.ytMute.textContent = S.theaterMuted ? "Sound off" : "Sound on";
   el.ytMute.setAttribute("aria-pressed", String(S.theaterMuted));
+
+  setNavFor(city, driveId);
+}
+
+function applyGearToVideo() {
+  [slots.ws, slots.pip].forEach(sl => {
+    if (!sl.player || !sl.ready || !sl.cur) return;
+    try { if (rolling()) sl.player.playVideo(); else sl.player.pauseVideo(); } catch (e) {}
+  });
 }
 
 function staticBurst(ms = 380) {
@@ -1123,40 +1520,15 @@ function staticBurst(ms = 380) {
 
 /* ---------------------------------------------------------------
    NAVIGATION
-   The base map is real (OpenStreetMap tiles via Leaflet), centered on
-   the selected city's actual coordinates. The route drawn through it
-   is invented — this dash has no telemetry tying it to the video —
-   but it's built from a hash of the city name (so a given city always
-   drives the same "route"), labeled with that city's real streets, and
-   plotted at true-to-scale distances onto the real map underneath.
-   Distances assume 1 grid unit = 8 m.
+   The base map is real (OpenStreetMap data, CARTO tiles via Leaflet).
+   A drive with an entry in ROUTES is synced: the car's position comes
+   from the video's playhead, interpolated along a road-snapped line
+   between hand-placed waypoints, and the turn prompts and street names
+   come from that real route. A drive without one shows a plain map of
+   the city, labelled as such, and no invented route.
    --------------------------------------------------------------- */
-const GRID = 15, SPACING = 34, U2M = 8, GRID_ORIGIN = (GRID - 1) / 2 * SPACING;
-const mulberry32 = a => () => {
-  a |= 0; a = a + 0x6D2B79F5 | 0;
-  let t = Math.imul(a ^ a >>> 15, 1 | a);
-  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-  return ((t ^ t >>> 14) >>> 0) / 4294967296;
-};
-function hashStr(s) {
-  let h = 2166136261;
-  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
-  return h >>> 0;
-}
-
-/* Grid coords are treated as flat local meters (x=east, y=south) around
-   the city's real lat/lng, then converted back to lat/lng for Leaflet. */
-function metersToLatLng(city, dxEast, dyNorth) {
-  const lat = city.lat + dyNorth / 111320;
-  const lng = city.lng + dxEast / (111320 * Math.cos(city.lat * Math.PI / 180));
-  return [lat, lng];
-}
-function gridToLatLng(city, x, y) {
-  return metersToLatLng(city, (x - GRID_ORIGIN) * U2M, -(y - GRID_ORIGIN) * U2M);
-}
-
-let rng = mulberry32(1), nodes = [], route = null;
 let mapInst = null, routeLine = null, carMarker = null;
+let track = null, navKey = null, heading = 0, navSpeedMph = null;
 
 function initMap() {
   mapInst = L.map("map", {
@@ -1164,10 +1536,7 @@ function initMap() {
     dragging: false, scrollWheelZoom: false, doubleClickZoom: false,
     boxZoom: false, keyboard: false, touchZoom: false, tap: false, fadeAnimation: false,
   }).setView([20, 0], 3);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-    subdomains: "abcd", maxZoom: 20,
-    attribution: '&copy; OpenStreetMap &copy; CARTO',
-  }).addTo(mapInst);
+  addBaseTiles(mapInst);
   routeLine = L.polyline([], {
     color: "#3e6ae1", weight: 5, opacity: .55, lineCap: "round", lineJoin: "round",
   }).addTo(mapInst);
@@ -1177,55 +1546,126 @@ function initMap() {
           '<circle r="13" fill="#3e6ae1" opacity=".18"/>' +
           '<path class="car-pin-arrow" d="M0,-8 L6.5,7 L0,3.4 L-6.5,7 Z" fill="#f2f3f5"/></svg>',
   });
-  carMarker = L.marker([20, 0], { icon: carIcon, interactive: false }).addTo(mapInst);
+  carMarker = L.marker([20, 0], { icon: carIcon, interactive: false, opacity: 0 }).addTo(mapInst);
 }
 
-function buildCityMap(city) {
-  rng = mulberry32(hashStr(city.name));
-  nodes = [];
-  for (let i = 0; i < GRID; i++) {
-    nodes[i] = [];
-    for (let j = 0; j < GRID; j++) {
-      nodes[i][j] = { x: i * SPACING + (rng() * 11 - 5.5), y: j * SPACING + (rng() * 11 - 5.5), i, j };
-    }
+function decodePolyline(str, precision = 5) {
+  const f = Math.pow(10, precision), out = [];
+  let i = 0, lat = 0, lng = 0;
+  while (i < str.length) {
+    let b, shift = 0, result = 0;
+    do { b = str.charCodeAt(i++) - 63; result |= (b & 0x1f) << shift; shift += 5; } while (b >= 0x20);
+    lat += (result & 1) ? ~(result >> 1) : (result >> 1);
+    shift = 0; result = 0;
+    do { b = str.charCodeAt(i++) - 63; result |= (b & 0x1f) << shift; shift += 5; } while (b >= 0x20);
+    lng += (result & 1) ? ~(result >> 1) : (result >> 1);
+    out.push([lat / f, lng / f]);
   }
-  if (mapInst) mapInst.setView([city.lat, city.lng], 16, { animate: false });
-  newRoute(3 + Math.floor(rng() * 8), 3 + Math.floor(rng() * 8), city);
+  return out;
+}
+function distM(a, b) {
+  const r = x => x * Math.PI / 180;
+  const dLat = r(b[0] - a[0]), dLng = r(b[1] - a[1]);
+  const s = Math.sin(dLat / 2) ** 2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dLng / 2) ** 2;
+  return 2 * 6371008.8 * Math.asin(Math.sqrt(s));
+}
+function bearing(a, b) {
+  const r = x => x * Math.PI / 180;
+  const y = Math.sin(r(b[1] - a[1])) * Math.cos(r(b[0]));
+  const x = Math.cos(r(a[0])) * Math.sin(r(b[0])) - Math.sin(r(a[0])) * Math.cos(r(b[0])) * Math.cos(r(b[1] - a[1]));
+  return Math.atan2(y, x);
 }
 
-function newRoute(si, sj, city) {
-  const pts = [];
-  let i = si, j = sj, pi = -1, pj = -1;
-  for (let k = 0; k < 26; k++) {
-    pts.push(nodes[i][j]);
-    const opts = [];
-    if (i > 0 && !(i - 1 === pi && j === pj)) opts.push([i - 1, j]);
-    if (i < GRID - 1 && !(i + 1 === pi && j === pj)) opts.push([i + 1, j]);
-    if (j > 0 && !(i === pi && j - 1 === pj)) opts.push([i, j - 1]);
-    if (j < GRID - 1 && !(i === pi && j + 1 === pj)) opts.push([i, j + 1]);
-    if (!opts.length) break;
-    const p = opts[Math.floor(rng() * opts.length)];
-    pi = i; pj = j; i = p[0]; j = p[1];
-  }
-  const segs = [];
-  let total = 0;
-  for (let k = 0; k < pts.length - 1; k++) {
-    const a = pts[k], b = pts[k + 1];
-    const len = Math.hypot(b.x - a.x, b.y - a.y);
-    segs.push({ a, b, len, start: total, head: Math.atan2(b.x - a.x, -(b.y - a.y)),
-                street: city.streets[(k + Math.floor(rng() * 3)) % city.streets.length] });
-    total += len;
-  }
-  route = { pts, segs, total, d: 0, end: [i, j],
-            dest: city.streets[Math.floor(rng() * city.streets.length)] };
-  if (routeLine) routeLine.setLatLngs(pts.map(p => gridToLatLng(city, p.x, p.y)));
-  el.dest.textContent = route.dest;
+const trackCache = {};
+function getTrack(id) {
+  const raw = id && ROUTES[id];
+  if (!raw) return null;
+  if (trackCache[id]) return trackCache[id];
+  try {
+    const line = decodePolyline(raw.line);
+    const cum = [0];
+    for (let i = 1; i < line.length; i++) cum.push(cum[i - 1] + distM(line[i - 1], line[i]));
+    const steps = (raw.steps || []).map(s => ({ idx: s[0], type: s[1], mod: s[2], name: s[3], d: cum[Math.min(s[0], line.length - 1)] }));
+    if (!raw.pts || raw.pts.length < 2 || raw.marks.length !== raw.pts.length) return null;
+    return (trackCache[id] = { pts: raw.pts, marks: raw.marks, line, cum, steps });
+  } catch (e) { return null; }
 }
 
-function segAt(d) {
-  const s = route.segs;
-  for (let k = 0; k < s.length; k++) if (d < s[k].start + s[k].len) return k;
-  return s.length - 1;
+// Position at video time t: constant speed between consecutive waypoints.
+function trackAt(tr, t) {
+  const P = tr.pts, M = tr.marks, cum = tr.cum;
+  let d, mps = 0;
+  if (t <= P[0][0]) d = cum[M[0]];
+  else if (t >= P[P.length - 1][0]) d = cum[M[M.length - 1]];
+  else {
+    let i = 0;
+    while (i < P.length - 2 && t >= P[i + 1][0]) i++;
+    const t0 = P[i][0], t1 = P[i + 1][0], d0 = cum[M[i]], d1 = cum[M[i + 1]];
+    d = d0 + (t - t0) / (t1 - t0) * (d1 - d0);
+    mps = (d1 - d0) / Math.max(0.001, t1 - t0);
+  }
+  let lo = 0, hi = cum.length - 1;
+  while (lo < hi - 1) { const mid = (lo + hi) >> 1; if (cum[mid] <= d) lo = mid; else hi = mid; }
+  const a = tr.line[lo], b = tr.line[Math.min(lo + 1, tr.line.length - 1)];
+  const seg = cum[Math.min(lo + 1, cum.length - 1)] - cum[lo];
+  const f = seg > 0 ? (d - cum[lo]) / seg : 0;
+  return { d, mps, lat: a[0] + (b[0] - a[0]) * f, lng: a[1] + (b[1] - a[1]) * f, head: seg > 0 ? bearing(a, b) : null };
+}
+
+function stepText(st) {
+  const onto = st.name ? " onto " + st.name : "";
+  const mod = st.mod || "";
+  switch (st.type) {
+    case "depart": return st.name ? "Head along " + st.name : "Head off";
+    case "arrive": return "End of the mapped drive" + (st.name ? " on " + st.name : "");
+    case "roundabout": case "rotary": return "Enter the roundabout" + (st.name ? " for " + st.name : "");
+    case "exit roundabout": case "exit rotary": return "Leave the roundabout" + onto;
+    case "merge": return "Merge" + onto;
+    case "on ramp": return "Take the ramp" + onto;
+    case "off ramp": return "Take the exit" + onto;
+    case "fork": return "Keep " + (mod.includes("left") ? "left" : mod.includes("right") ? "right" : "straight") + onto;
+    case "end of road": return "At the end of the road, turn " + (mod || "") + onto;
+    case "new name": case "continue": return "Continue" + onto;
+    default:
+      if (!mod || mod === "straight") return "Continue" + onto;
+      if (mod === "uturn") return "Make a U-turn" + onto;
+      return "Turn " + mod + onto;
+  }
+}
+const arrowFor = st => (st.mod || "").includes("left") || st.mod === "uturn" ? "left" : (st.mod || "").includes("right") ? "right" : "straight";
+
+const navZoom = () => (track ? 16 : 13) + Math.log2(S.zoom);
+function setNavFor(city, videoId) {
+  const key = S.cityIdx + "|" + videoId;
+  if (key === navKey || !mapInst) return;
+  navKey = key;
+  track = getTrack(videoId);
+  navSpeedMph = null;
+  if (track) {
+    el.viewNav.classList.remove("nav-unmapped");
+    routeLine.setLatLngs(track.line);
+    carMarker.setOpacity(1);
+    carMarker.setLatLng(track.line[0]);
+    mapInst.dragging.disable(); mapInst.scrollWheelZoom.disable();
+    mapInst.setView(track.line[0], navZoom(), { animate: false });
+    el.navBadge.textContent = "Synced to the video";
+    el.navBadge.classList.add("live");
+    el.turnArrow.setAttribute("d", ARROWS.straight);
+    el.turnDist.textContent = "—";
+    el.turnStreet.textContent = "Waiting for the drive to start…";
+    const named = track.steps.filter(s => s.name);
+    el.dest.textContent = named.length ? named[named.length - 1].name : "End of drive";
+  } else {
+    el.viewNav.classList.add("nav-unmapped");
+    routeLine.setLatLngs([]);
+    carMarker.setOpacity(0);
+    mapInst.dragging.enable(); mapInst.scrollWheelZoom.enable();
+    mapInst.setView([city.lat, city.lng], navZoom(), { animate: false });
+    el.navBadge.textContent = "Route not mapped yet";
+    el.navBadge.classList.remove("live");
+    el.turnDist.textContent = city.name;
+    el.turnStreet.textContent = "Drag the map to look around";
+  }
 }
 
 function fmtDist(m) {
@@ -1233,6 +1673,7 @@ function fmtDist(m) {
   const ft = m * 3.28084;
   return ft < 1000 ? Math.round(ft / 50) * 50 + " ft" : (m / 1609.34).toFixed(1) + " mi";
 }
+const fmtClock = s => Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
 
 const ARROWS = {
   straight: "M12 21 L12 6 M12 6 L7.5 10.5 M12 6 L16.5 10.5",
@@ -1240,73 +1681,80 @@ const ARROWS = {
   left: "M17 21 L17 13 Q17 8.5 12.5 8.5 L7 8.5 M7 8.5 L11.2 4.6 M7 8.5 L11.2 12.4",
 };
 
-let heading = 0;
 function updateNav(dt) {
-  if (!route) return;
-  const mps = S.speed * (S.metric ? 0.27778 : 0.44704);
-  route.d += (mps / U2M) * dt;
+  navSpeedMph = null;
+  if (!track) return;
+  const sl = driveSlot();
+  if (!sl || !sl.ready || !sl.player || sl.cur !== currentDriveId()) return;
+  let t, playing;
+  try { t = sl.player.getCurrentTime(); playing = sl.player.getPlayerState() === 1; } catch (e) { return; }
+  if (typeof t !== "number" || isNaN(t)) return;
 
-  if (route.d >= route.total - 1) {
-    const city = CITIES[S.cityIdx];
-    el.turnStreet.textContent = "Arrived — finding a new route";
-    newRoute(route.end[0], route.end[1], city);
+  const pos = trackAt(track, t);
+  navSpeedMph = playing ? pos.mps / 0.44704 : 0;
+  const ll = [pos.lat, pos.lng];
+  mapInst.panTo(ll, { animate: false });
+  carMarker.setLatLng(ll);
+  if (pos.head !== null) {
+    let diff = pos.head - heading;
+    while (diff > Math.PI) diff -= 2 * Math.PI;
+    while (diff < -Math.PI) diff += 2 * Math.PI;
+    heading += diff * Math.min(1, dt * 3.5);
   }
+  const markerEl = carMarker.getElement();
+  const arrow = markerEl && markerEl.querySelector(".car-pin-arrow");
+  if (arrow) arrow.setAttribute("transform", "rotate(" + (heading * 180 / Math.PI).toFixed(1) + ")");
 
-  const k = segAt(route.d);
-  const seg = route.segs[k];
-  const t = Math.min(1, Math.max(0, (route.d - seg.start) / seg.len));
-  const cx = seg.a.x + (seg.b.x - seg.a.x) * t;
-  const cy = seg.a.y + (seg.b.y - seg.a.y) * t;
-
-  let diff = seg.head - heading;
-  while (diff > Math.PI) diff -= 2 * Math.PI;
-  while (diff < -Math.PI) diff += 2 * Math.PI;
-  heading += diff * Math.min(1, dt * 3.5);
-
-  const city = CITIES[S.cityIdx];
-  const latlng = gridToLatLng(city, cx, cy);
-  if (mapInst) {
-    mapInst.panTo(latlng, { animate: false });
-    carMarker.setLatLng(latlng);
-    const markerEl = carMarker.getElement();
-    const arrow = markerEl && markerEl.querySelector(".car-pin-arrow");
-    if (arrow) arrow.setAttribute("transform", "rotate(" + (heading * 180 / Math.PI).toFixed(1) + ")");
-  }
-
-  const toTurn = (seg.start + seg.len - route.d) * U2M;
-  el.turnDist.textContent = fmtDist(toTurn);
-  const nxt = route.segs[k + 1];
-  if (nxt) {
-    let a = nxt.head - seg.head;
-    while (a > Math.PI) a -= 2 * Math.PI;
-    while (a < -Math.PI) a += 2 * Math.PI;
-    const dir = a > 0.5 ? "right" : a < -0.5 ? "left" : "straight";
-    el.turnArrow.setAttribute("d", ARROWS[dir]);
-    el.turnStreet.textContent = (dir === "straight" ? "Continue on " : dir === "left" ? "Turn left onto " : "Turn right onto ") + nxt.street;
-  } else {
+  const P = track.pts, endT = P[P.length - 1][0];
+  const endD = track.cum[track.marks[track.marks.length - 1]];
+  if (t < P[0][0]) {
     el.turnArrow.setAttribute("d", ARROWS.straight);
-    el.turnStreet.textContent = "Continue on " + seg.street;
+    el.turnDist.textContent = "—";
+    el.turnStreet.textContent = "The mapped part of this drive starts in " + fmtClock(P[0][0] - t);
+  } else if (t >= endT) {
+    el.turnArrow.setAttribute("d", ARROWS.straight);
+    el.turnDist.textContent = "—";
+    el.turnStreet.textContent = "Past the end of the mapped route";
+  } else {
+    const next = track.steps.find(s => s.d > pos.d + 3);
+    let cur = null;
+    for (const s of track.steps) { if (s.d <= pos.d + 3) cur = s; else break; }
+    if (next && next.type !== "arrive") {
+      el.turnArrow.setAttribute("d", ARROWS[arrowFor(next)]);
+      el.turnDist.textContent = fmtDist(next.d - pos.d);
+      el.turnStreet.textContent = stepText(next);
+    } else {
+      el.turnArrow.setAttribute("d", ARROWS.straight);
+      el.turnDist.textContent = fmtDist(Math.max(0, endD - pos.d));
+      el.turnStreet.textContent = cur && cur.name ? "Continue on " + cur.name : "Continue";
+    }
   }
-
-  const remain = (route.total - route.d) * U2M;
-  el.etaDist.textContent = fmtDist(remain);
-  const cruise = Math.max(mps, 7);
-  const arrive = new Date(Date.now() + (remain / cruise) * 1000);
-  el.etaTime.textContent = arrive.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  el.etaDist.textContent = fmtDist(Math.max(0, endD - pos.d));
+  try {
+    el.etaTime.textContent = new Date(Date.now() + Math.max(0, endT - t) * 1000)
+      .toLocaleTimeString([], { hour: "numeric", minute: "2-digit", timeZone: CITIES[S.cityIdx].tz });
+  } catch (e) {}
 }
 
 /* ---------------------------------------------------------------
    DRIVE SIMULATION
-   The speed, battery and route position are an invented ambience —
-   nothing here is measured from the video, which has no telemetry.
+   On a synced drive, speed is the real average speed between the
+   waypoints you placed. Otherwise speed and battery are an invented
+   ambience: nothing is measured from a video with no telemetry.
    --------------------------------------------------------------- */
+const mulberry32 = a => () => {
+  a |= 0; a = a + 0x6D2B79F5 | 0;
+  let t = Math.imul(a ^ a >>> 15, 1 | a);
+  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+  return ((t ^ t >>> 14) >>> 0) / 4294967296;
+};
+const rng = mulberry32(Date.now() | 0);
 const BANDS = [0, 12, 18, 25, 30, 35, 45, 55];
 let nextShift = 0, laneOffset = 0, lastT = 0;
 
 function pickTarget() {
-  const r = rng();
   if (S.gear !== "D") return 0;
-  if (r < 0.12) return 0;
+  if (rng() < 0.12) return 0;
   return BANDS[2 + Math.floor(rng() * (BANDS.length - 2))];
 }
 
@@ -1316,9 +1764,16 @@ function tick(now) {
   const dt = Math.min(0.1, (now - lastT) / 1000 || 0);
   lastT = now;
 
-  if (now > nextShift) {
-    S.target = pickTarget();
-    nextShift = now + 4000 + rng() * 6000;
+  updateNav(dt);
+  if (navSpeedMph !== null) {
+    S.target = rolling() ? navSpeedMph : 0;
+  } else {
+    if (now > nextShift) { S.target = pickTarget(); nextShift = now + 4000 + rng() * 6000; }
+    // The car only moves while the drive video is actually playing
+    const sl = driveSlot();
+    let moving = false;
+    try { moving = !!(sl && sl.ready && sl.cur && sl.player.getPlayerState() === 1); } catch (e) {}
+    if (S.gear !== "D" || !moving) S.target = 0;
   }
   const accel = S.speed < S.target ? 3.4 : -6.2;
   S.speed = Math.max(0, S.speed + accel * dt);
@@ -1337,18 +1792,17 @@ function tick(now) {
   el.laneR.setAttribute("opacity", lit);
 
   el.apNote.textContent = S.gear !== "D" ? ({ P: "Parked", R: "Reverse", N: "Neutral" })[S.gear]
-    : S.speed < 1 ? "Stopped at a light" : S.speed < 22 ? "City traffic" : S.speed < 40 ? "Rolling" : "Open road";
+    : S.speed < 1 ? "Stopped" : S.speed < 22 ? "City traffic" : S.speed < 40 ? "Rolling" : "Open road";
 
   const miles = S.speed * (dt / 3600);
   S.odoMi += miles;
   S.battery = Math.max(0, S.battery - miles * (100 / 333));
-  el.odo.textContent = S.odoMi.toFixed(2);
+  if (S.battery <= 0) S.battery = 100;   // a quick supercharge; this is a screensaver, not a guilt trip
+  el.odo.textContent = (S.metric ? S.odoMi * 1.60934 : S.odoMi).toFixed(2);
   el.battPct.textContent = Math.round(S.battery) + "%";
   el.battFill.style.width = S.battery + "%";
-  el.range.textContent = Math.round(S.battery / 100 * 333 * (S.metric ? 1.60934 : 1)) +
-    (S.metric ? " km" : " mi");
+  el.range.textContent = Math.round(S.battery / 100 * 333 * (S.metric ? 1.60934 : 1)) + (S.metric ? " km" : " mi");
 
-  updateNav(dt);
   updateTrip();
 }
 
@@ -1393,50 +1847,13 @@ function renderRecents() {
   });
 }
 
-/* ---------------------------------------------------------------
-   APPS — decorative utility tiles shown in Theater when no video
-   is loaded. Nothing behind these is functional; they open a static
-   placeholder screen so the console doesn't feel like a dead end.
-   --------------------------------------------------------------- */
-const APP_ICONS = {
-  dashcam: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="7" width="15" height="11" rx="2.5"/><path d="M17 10.5l5-3v9l-5-3"/><circle cx="9.5" cy="12.5" r="2.8"/></svg>',
-  tripplanner: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>',
-  karaoke: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>',
-  sentry: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>',
-};
-const APPS = [
-  { id: "dashcam", label: "Dashcam", note: "Front and rear clips would show up here." },
-  { id: "tripplanner", label: "Trip Planner", note: "Multi-stop routing would show up here." },
-  { id: "karaoke", label: "Karaoke", note: "Synced lyrics would scroll here." },
-  { id: "sentry", label: "Sentry Mode", note: "A live perimeter feed would show up here." },
-];
-function renderAppGrid() {
-  el.appGrid.innerHTML = APPS.map(a =>
-    '<button class="app-tile" data-app="' + a.id + '" title="' + a.label + '">' +
-      '<span class="app-icon">' + APP_ICONS[a.id] + '</span><span>' + a.label + '</span>' +
-    '</button>').join("");
-  el.appGrid.querySelectorAll(".app-tile").forEach(b =>
-    b.addEventListener("click", () => openApp(b.dataset.app)));
-}
-function openApp(id) {
-  const app = APPS.find(a => a.id === id);
-  if (!app) return;
-  el.appScreenIcon.innerHTML = APP_ICONS[id];
-  el.appScreenTitle.textContent = app.label;
-  el.appScreenNote.textContent = app.note;
-  el.appScreen.classList.add("on");
-  staticBurst(300);
-}
-el.appExit.addEventListener("click", () => el.appScreen.classList.remove("on"));
-renderAppGrid();
-
 async function loadTheater(id) {
   S.theaterId = id;
   el.ytInput.value = "";
   showTab("theater");
   assignVideos();
-  el.appScreen.classList.remove("on");
   const title = await ytTitle(id);
+  if (S.theaterId !== id) return;
   const label = title ? title.slice(0, 40) : id;
   S.recents = [{ id, label }].concat(S.recents.filter(r => r.id !== id)).slice(0, 4);
   renderRecents();
@@ -1463,11 +1880,11 @@ el.ytClear.addEventListener("click", () => {
 
 el.ytMute.addEventListener("click", () => {
   S.theaterMuted = !S.theaterMuted;
-  applyTheaterSound();
+  assignVideos();
   if (!S.theaterMuted && S.playing) {
     stopRadio();
     el.scan.textContent = "Radio paused so you can hear your video";
-  } else if (S.theaterMuted && !S.playing && S.stations.length) {
+  } else if (S.theaterMuted && !S.playing && S.stations.length && S.gear === "D") {
     tune(S.stationIdx >= 0 ? S.stationIdx : 0);
   }
 });
@@ -1548,11 +1965,10 @@ function setGear(g) {
   S.gear = g;
   document.querySelectorAll(".shifter button").forEach(b =>
     b.setAttribute("aria-pressed", String(b.dataset.gear === g)));
-  const rolling = g === "D" || g === "N";
-  if (rolling) { ytCmd(el.wsFrame, "playVideo"); ytCmd(el.pipFrame, "playVideo"); }
-  else { ytCmd(el.wsFrame, "pauseVideo"); ytCmd(el.pipFrame, "pauseVideo"); S.target = 0; }
+  applyGearToVideo();
+  if (!rolling()) S.target = 0;
   if (g === "D") {
-    if (!S.playing && S.stations.length) tune(S.stationIdx >= 0 ? S.stationIdx : 0);
+    if (!S.playing && S.stations.length && S.theaterMuted) tune(S.stationIdx >= 0 ? S.stationIdx : 0);
   } else {
     stopRadio();
   }
@@ -1575,19 +1991,19 @@ el.units.addEventListener("click", () => {
   const u = S.metric ? "KM/H" : "MPH";
   el.units.textContent = u;
   el.fsUnit.textContent = u;
+  el.odo.nextSibling.textContent = S.metric ? " km" : " mi";
+  renderWeather();
 });
 el.zoomIn.addEventListener("click", () => {
   S.zoom = Math.min(2.4, S.zoom * 1.25);
-  if (mapInst) mapInst.setZoom(16 + Math.log2(S.zoom), { animate: true });
+  if (mapInst) mapInst.setZoom(navZoom(), { animate: true });
 });
 el.zoomOut.addEventListener("click", () => {
   S.zoom = Math.max(0.55, S.zoom / 1.25);
-  if (mapInst) mapInst.setZoom(16 + Math.log2(S.zoom), { animate: true });
+  if (mapInst) mapInst.setZoom(navZoom(), { animate: true });
 });
 el.tempUp.addEventListener("click", () => { S.cabin = Math.min(82, S.cabin + 1); el.temp.textContent = S.cabin + "°"; });
 el.tempDown.addEventListener("click", () => { S.cabin = Math.max(60, S.cabin - 1); el.temp.textContent = S.cabin + "°"; });
-[el.ac, el.seat].forEach(b => b.addEventListener("click", () =>
-  b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true")));
 
 /* ---------------------------------------------------------------
    FULLSCREEN ROAD VIEW
@@ -1614,6 +2030,7 @@ el.fullscreen.addEventListener("click", () => {
 document.addEventListener("keydown", e => {
   const t = e.target;
   if (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+  if (e.metaKey || e.ctrlKey || e.altKey || !S.running) return;
   if (e.key >= "1" && e.key <= "6") {
     const i = +e.key - 1;
     if (S.stations[i]) { S.allPaused = false; tune(i); }
@@ -1622,11 +2039,13 @@ document.addEventListener("keydown", e => {
     setGear(S.gear === "D" ? "P" : "D");
   } else if (e.key.toLowerCase() === "f") {
     el.fullscreen.click();
+  } else if (e.key.toLowerCase() === "n") {
+    goCity(nextWest(S.cityIdx));
   }
 });
 
 /* ---------------------------------------------------------------
-   CITY + VARIANT
+   CITY + VIEW
    --------------------------------------------------------------- */
 CITIES.forEach((c, i) => {
   const o = document.createElement("option");
@@ -1636,47 +2055,162 @@ CITIES.forEach((c, i) => {
 
 function fillViews(city) {
   el.view.innerHTML = "";
+  const auto = document.createElement("option");
+  auto.value = "auto";
+  auto.textContent = "Auto · " + skyPhase(city);
+  el.view.appendChild(auto);
   city.videos.forEach((v, i) => {
+    if (badVideo(v.id)) return;
     const o = document.createElement("option");
-    o.value = i; o.textContent = v.label;
+    o.value = String(i); o.textContent = v.label;
     el.view.appendChild(o);
   });
-  el.view.value = "0";
+  el.view.value = S.viewMode === "auto" || S.variantIdx < 0 ? "auto" : String(S.variantIdx);
 }
 
-function setCity(i) {
-  S.cityIdx = i; S.variantIdx = 0;
+function setCity(i, opts = {}) {
+  S.cityIdx = i;
   const city = CITIES[i];
+  let vi = -1;
+  if (opts.view) vi = city.videos.findIndex(v => slugify(v.label) === opts.view && !badVideo(v.id));
+  if (vi >= 0) { S.viewMode = "manual"; S.variantIdx = vi; }
+  else { S.viewMode = "auto"; S.variantIdx = autoVariant(city); }
   fillViews(city);
   staticBurst(500);
   el.fsCity.textContent = city.name;
-  el.cityPlate.textContent = city.name + " · " + city.cc;
   el.station.textContent = "Finding stations in " + city.name + "…";
   el.stationMeta.textContent = "";
   el.fsStation.textContent = "";
   stopRadio();
-  buildCityMap(city);
+  tickClock();
+  loadWeather(city);
   assignVideos();
-  loadStations(city);
+  loadStations(city, opts.station);
+  updateURL();
+}
+function goCity(i, msg) {
+  el.city.value = String(i);
+  setCity(i);
+  if (msg) toast(msg);
 }
 el.city.addEventListener("change", e => setCity(+e.target.value));
 el.view.addEventListener("change", e => {
-  S.variantIdx = +e.target.value;
+  const city = CITIES[S.cityIdx];
+  if (e.target.value === "auto") { S.viewMode = "auto"; S.variantIdx = autoVariant(city); }
+  else { S.viewMode = "manual"; S.variantIdx = +e.target.value; }
   staticBurst(400);
   assignVideos();
+  updateURL();
+});
+el.stageNext.addEventListener("click", () => goCity(nextWest(S.cityIdx)));
+
+/* ---------------------------------------------------------------
+   SHAREABLE LINKS — the address bar always describes what's playing:
+   ?city=lisbon&view=day&station=<Radio Browser ID>
+   --------------------------------------------------------------- */
+function updateURL() {
+  if (!S.running) return;
+  const c = CITIES[S.cityIdx], p = new URLSearchParams();
+  p.set("city", slugify(c.name));
+  if (S.viewMode !== "auto" && c.videos[S.variantIdx]) p.set("view", slugify(c.videos[S.variantIdx].label));
+  const s = S.stations[S.stationIdx];
+  if (s) p.set("station", s.stationuuid);
+  try { history.replaceState(null, "", location.pathname + "?" + p.toString()); } catch (e) {}
+}
+const fromURL = (() => {
+  const p = new URLSearchParams(location.search);
+  return { cityIdx: CITIES.findIndex(c => slugify(c.name) === p.get("city")), view: p.get("view"), station: p.get("station") };
+})();
+
+el.share.addEventListener("click", async () => {
+  updateURL();
+  const c = CITIES[S.cityIdx], s = S.stations[S.stationIdx];
+  const text = "Driving through " + c.name + (s ? " with " + s.name.trim() + " on the radio" : "");
+  const url = location.href;
+  if (navigator.share && matchMedia("(pointer: coarse)").matches) {
+    try { await navigator.share({ title: "DRIVETIME", text, url }); return; }
+    catch (e) { if (e.name === "AbortError") return; }
+  }
+  try { await navigator.clipboard.writeText(url); toast("Link copied. It opens on this city, view and station."); }
+  catch (e) { toast(url); }
 });
 
 /* ---------------------------------------------------------------
-   CLOCK + IGNITION
+   ROAD TRIP + SLEEP — for leaving it running on a second screen.
+   Road trip heads west through the cities by longitude, one every
+   30 minutes. Sleep parks the car after 30, 60 or 90 minutes.
    --------------------------------------------------------------- */
-function tickClock() {
-  el.clock.textContent = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+const TRIP_MS = 30 * 60e3, SLEEP_STEPS = [0, 30, 60, 90];
+const westOrder = CITIES.map((c, i) => i).sort((a, b) => CITIES[b].lng - CITIES[a].lng);
+const nextWest = i => westOrder[(westOrder.indexOf(i) + 1) % westOrder.length];
+let sleepStep = 0;
+
+function renderChips() {
+  const now = Date.now(), mins = at => Math.max(1, Math.ceil((at - now) / 60e3));
+  el.tripChip.setAttribute("aria-pressed", String(!!S.tripAt));
+  el.tripChip.textContent = S.tripAt ? "Road trip · " + mins(S.tripAt) + "m" : "Road trip";
+  el.sleepChip.setAttribute("aria-pressed", String(!!S.sleepAt));
+  el.sleepChip.textContent = S.sleepAt ? "Sleep · " + mins(S.sleepAt) + "m" : "Sleep";
 }
+el.tripChip.addEventListener("click", () => {
+  if (S.tripAt) { S.tripAt = null; toast("Road trip off"); }
+  else {
+    S.tripAt = Date.now() + TRIP_MS;
+    toast("Road trip on: a new city every 30 minutes, heading west. Next stop " + CITIES[nextWest(S.cityIdx)].name + ".");
+  }
+  renderChips();
+});
+el.sleepChip.addEventListener("click", () => {
+  sleepStep = (sleepStep + 1) % SLEEP_STEPS.length;
+  const m = SLEEP_STEPS[sleepStep];
+  S.sleepAt = m ? Date.now() + m * 60e3 : null;
+  toast(m ? "Sleep timer: the car parks in " + m + " minutes" : "Sleep timer off");
+  renderChips();
+});
+setInterval(() => {
+  if (!S.running) return;
+  const now = Date.now();
+  if (S.tripAt && now >= S.tripAt) {
+    if (S.gear === "D") { const n = nextWest(S.cityIdx); goCity(n, "Road trip: next stop " + CITIES[n].name); }
+    S.tripAt = now + TRIP_MS;
+  }
+  if (S.sleepAt && now >= S.sleepAt) {
+    S.sleepAt = null; S.tripAt = null; sleepStep = 0;
+    setGear("P");
+    toast("Sleep timer: parked. Press Space to drive on.");
+  }
+  renderChips();
+}, 1000);
+
+/* ---------------------------------------------------------------
+   CLOCK + IGNITION
+   The clock shows the city's local time. Once a minute Auto checks
+   whether the sun has set or risen there and swaps the drive to match.
+   --------------------------------------------------------------- */
 tickClock();
 setInterval(tickClock, 15000);
+setInterval(() => {
+  if (!S.running || S.viewMode !== "auto") return;
+  const city = CITIES[S.cityIdx], v = autoVariant(city);
+  fillViews(city);
+  if (v >= 0 && v !== S.variantIdx) {
+    S.variantIdx = v;
+    staticBurst(500);
+    assignVideos();
+    toast(skyPhase(city) === "daytime" ? "Morning in " + city.name + ", so on to the day drive"
+                                       : "The sun's setting in " + city.name + ", so on to the night drive");
+  }
+}, 60000);
+setInterval(() => { if (S.running) loadWeather(CITIES[S.cityIdx]); }, 30 * 60e3);
 
 initMap();
 el.temp.textContent = S.cabin + "°";
+
+if (fromURL.cityIdx >= 0) {
+  const c = CITIES[fromURL.cityIdx];
+  el.ignCity.textContent = "It's " + timeIn(c.tz) + " in " + c.name + ".";
+  el.start.textContent = "Start the car in " + c.name;
+}
 
 el.start.addEventListener("click", () => {
   try { S.audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
@@ -1687,10 +2221,10 @@ el.start.addEventListener("click", () => {
   S.zoom = 1.15;
   lastT = performance.now();
   requestAnimationFrame(tick);
-  const start = Math.floor(Math.random() * CITIES.length);
-  el.city.value = start;
-  setCity(start);
+  const start = fromURL.cityIdx >= 0 ? fromURL.cityIdx : Math.floor(Math.random() * CITIES.length);
+  el.city.value = String(start);
   setGear("D");
+  setCity(start, { view: fromURL.view, station: fromURL.station });
 }, { once: true });
 </script>
 </body>
