@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Drivetime Route Annotator</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<style>
+/* A working tool for one person, so it's plain and dense: the same
+   dark palette as DRIVETIME, but every pixel goes to the video, the
+   map and the pin list. */
+:root {
+  --void: #08090a; --glass: #131417; --glass-hi: #1d1f23; --hairline: #2a2d33;
+  --ink: #f2f3f5; --ink-dim: #a0a4ab; --ink-faint: #6b6f76;
+  --signal: #3e6ae1; --ok: #17c964; --warn: #f5a524; --bad: #e5484d;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --mono: "SF Mono", "Cascadia Mono", ui-monospace, Consolas, Menlo, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { background: var(--void); color: var(--ink); font: 13px/1.45 var(--sans); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+button, select, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.num { font-variant-numeric: tabular-nums; }
+.mono { font-family: var(--mono); font-size: 12px; }
+
+header { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--hairline); flex-wrap: wrap; }
+header h1 { font-size: 11px; letter-spacing: .3em; font-weight: 600; }
+header .grow { flex: 1; }
+select, .btn, input[type=text] {
+  background: var(--glass-hi); border: 1px solid var(--hairline); border-radius: 7px; padding: 6px 10px;
+}
+.btn:hover { border-color: var(--ink-faint); }
+.btn.go { background: var(--signal); border-color: var(--signal); color: #fff; }
+.btn[disabled] { opacity: .4; cursor: not-allowed; }
+.status { color: var(--ink-dim); font-size: 12px; }
+
+main { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(380px, 46%) 1fr; }
+.left { display: flex; flex-direction: column; min-height: 0; border-right: 1px solid var(--hairline); }
+.video { position: relative; aspect-ratio: 16 / 9; background: #000; flex-shrink: 0; }
+.video iframe, .video > div { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.transport { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-bottom: 1px solid var(--hairline); flex-wrap: wrap; }
+.transport .t { font-family: var(--mono); font-size: 14px; min-width: 120px; }
+.help { padding: 10px 12px; border-bottom: 1px solid var(--hairline); color: var(--ink-dim); font-size: 12px; }
+.help summary { cursor: pointer; color: var(--ink); }
+.help ol { margin: 8px 0 0 18px; }
+.help li { margin: 3px 0; }
+.help kbd { font-family: var(--mono); font-size: 11px; border: 1px solid var(--hairline); border-radius: 4px; padding: 0 4px; }
+.pins { flex: 1; min-height: 0; overflow: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--hairline); white-space: nowrap; }
+th { position: sticky; top: 0; background: var(--glass); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; }
+td .x { background: none; border: none; color: var(--ink-faint); padding: 2px 6px; border-radius: 5px; }
+td .x:hover { color: var(--ink); background: var(--glass-hi); }
+td .jump { background: none; border: none; color: var(--signal); font-family: var(--mono); font-size: 12px; }
+tr.warn td.flag { color: var(--warn); }
+tr.bad td.flag { color: var(--bad); }
+td.flag { white-space: normal; font-size: 11.5px; color: var(--ink-faint); }
+.empty { padding: 18px 12px; color: var(--ink-faint); }
+
+.right { position: relative; min-height: 0; }
+#map { position: absolute; inset: 0; background: #0b0c0e; }
+.search { position: absolute; top: 10px; left: 54px; right: 10px; z-index: 600; display: flex; gap: 6px; max-width: 460px; }
+.search input { flex: 1; min-width: 0; background: rgba(19,20,23,.95); }
+.pin-icon { background: var(--signal); color: #fff; border: 2px solid #fff; border-radius: 50%; width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center; font: 600 10px var(--sans); box-shadow: 0 1px 4px rgba(0,0,0,.6); }
+.pin-icon.warn { background: var(--warn); color: #111; }
+.pin-icon.bad { background: var(--bad); }
+.foot { display: flex; gap: 6px; padding: 8px 10px; border-top: 1px solid var(--hairline); flex-wrap: wrap; align-items: center; }
+#toast { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 900; background: var(--glass-hi);
+  border: 1px solid var(--hairline); border-radius: 9px; padding: 8px 14px; opacity: 0; transition: opacity .2s; pointer-events: none; max-width: 90vw; }
+#toast.show { opacity: 1; }
+@media (max-width: 900px) { main { grid-template-columns: 1fr; grid-template-rows: auto 50vh; } .left { border-right: 0; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>DRIVETIME · ROUTE ANNOTATOR</h1>
+  <select id="city" aria-label="City"></select>
+  <select id="drive" aria-label="Drive video"></select>
+  <span class="status" id="status">Loading the city list…</span>
+  <div class="grow"></div>
+  <a class="status" href="drivetime-tesla.html" style="color:var(--ink-dim)">Back to DRIVETIME</a>
+</header>
+<main>
+  <section class="left">
+    <div class="video"><div id="player"></div></div>
+    <div class="transport">
+      <button class="btn" id="back5" title="Back 5 seconds (←)">−5s</button>
+      <button class="btn go" id="play" title="Play or pause (Space)">Play</button>
+      <button class="btn" id="fwd5" title="Forward 5 seconds (→)">+5s</button>
+      <span class="t num" id="time">0:00.0</span>
+      <label class="status">Speed
+        <select id="rate"><option>1</option><option selected>2</option><option>4</option></select>
+      </label>
+    </div>
+    <details class="help" id="help" open>
+      <summary>How to map a drive (about 20 minutes per video)</summary>
+      <ol>
+        <li>Pick a city and drive. Play it at 2× and watch for places you can find on the map: junctions, landmarks, bridges.</li>
+        <li>When you know where the car is, press <kbd>Space</kbd> to pause and click that spot on the map. The pin records the video time.</li>
+        <li>Pin every turn, a few car-lengths <em>after</em> the car has turned (pins in the middle of a junction can snap to the cross street). On long straight runs, add one about every minute.</li>
+        <li>Drag a pin to move it. Click its time in the list to jump the video there.</li>
+        <li>Press <b>Snap to roads</b>. Check the blue line follows the video. Any row flagged orange or red is worth a second look.</li>
+        <li>Press <b>Copy for page</b> and paste the result inside <code>const ROUTES = { … }</code> in drivetime-tesla.html, with a comma between entries.</li>
+      </ol>
+      <p style="margin-top:6px">Work saves in this browser as you go. <kbd>←</kbd>/<kbd>→</kbd> seek 5s, <kbd>Shift</kbd> for 1s, <kbd>Z</kbd> removes the last pin.</p>
+    </details>
+    <div class="pins" id="pins"></div>
+    <div class="foot">
+      <button class="btn go" id="snap">Snap to roads</button>
+      <button class="btn" id="copy" disabled>Copy for page</button>
+      <button class="btn" id="copy-all">Copy all saved routes</button>
+      <div style="flex:1"></div>
+      <button class="btn" id="clear">Clear this drive</button>
+    </div>
+  </section>
+  <section class="right">
+    <div id="map"></div>
+    <form class="search" id="search">
+      <input type="text" id="q" placeholder="Find a street or place in this city" autocomplete="off">
+      <button class="btn" type="submit">Find</button>
+    </form>
+  </section>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ---------------------------------------------------------------
+   Reads CITIES, ROUTES and CARTO_KEY straight out of the live page,
+   so there's only ever one list to maintain.
+   --------------------------------------------------------------- */
+const PAGE = "drivetime-tesla.html";
+const OSRM = "https://router.project-osrm.org/route/v1/driving/";
+const CHUNK = 40;                       // waypoints per OSRM request
+
+const $ = id => document.getElementById(id);
+let CITIES = [], ROUTES = {}, CARTO_KEY = "";
+let city = null, video = null;
+let pins = [];          // [{t, lat, lng}]
+let snapped = null;     // {line:[[lat,lng]], marks:[], steps:[], legs:[{dist, straight}]}
+let player = null, playerReady = false, ytReady = false;
+let map, pinLayer, rawLine, snapLine;
+
+let toastT;
+function toast(m) { const t = $("toast"); t.textContent = m; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 3500); }
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { toast("Couldn't save in this browser — copy your work out before closing"); } },
+  keys() { try { return Object.keys(localStorage).filter(k => k.startsWith("dt-route:")); } catch (e) { return []; } },
+};
+const fmtT = s => { s = Math.max(0, s || 0); return Math.floor(s / 60) + ":" + (s % 60).toFixed(1).padStart(4, "0"); };
+
+/* ---------- geometry ---------- */
+function distM(a, b) {
+  const r = x => x * Math.PI / 180;
+  const dLat = r(b[0] - a[0]), dLng = r(b[1] - a[1]);
+  const s = Math.sin(dLat / 2) ** 2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dLng / 2) ** 2;
+  return 2 * 6371008.8 * Math.asin(Math.sqrt(s));
+}
+function decodePolyline(str, precision = 5) {
+  const f = Math.pow(10, precision), out = [];
+  let i = 0, lat = 0, lng = 0;
+  while (i < str.length) {
+    let b, shift = 0, result = 0;
+    do { b = str.charCodeAt(i++) - 63; result |= (b & 0x1f) << shift; shift += 5; } while (b >= 0x20);
+    lat += (result & 1) ? ~(result >> 1) : (result >> 1);
+    shift = 0; result = 0;
+    do { b = str.charCodeAt(i++) - 63; result |= (b & 0x1f) << shift; shift += 5; } while (b >= 0x20);
+    lng += (result & 1) ? ~(result >> 1) : (result >> 1);
+    out.push([lat / f, lng / f]);
+  }
+  return out;
+}
+function encodePolyline(pts, precision = 5) {
+  const f = Math.pow(10, precision);
+  let out = "", pLat = 0, pLng = 0;
+  const enc = v => { v = v < 0 ? ~(v << 1) : (v << 1); let s = ""; while (v >= 0x20) { s += String.fromCharCode((0x20 | (v & 0x1f)) + 63); v >>= 5; } return s + String.fromCharCode(v + 63); };
+  for (const [la, ln] of pts) {
+    const lat = Math.round(la * f), lng = Math.round(ln * f);
+    out += enc(lat - pLat) + enc(lng - pLng);
+    pLat = lat; pLng = lng;
+  }
+  return out;
+}
+function turnModifier(before, after) {
+  let a = after - before;
+  while (a > 180) a -= 360;
+  while (a < -180) a += 360;
+  if (Math.abs(a) < 25) return null;
+  if (Math.abs(a) > 160) return "uturn";
+  const side = a > 0 ? "right" : "left";
+  return Math.abs(a) < 60 ? "slight " + side : Math.abs(a) > 120 ? "sharp " + side : side;
+}
+
+/* ---------- load the page's data ---------- */
+async function loadPageData() {
+  const html = await (await fetch(PAGE, { cache: "no-store" })).text();
+  const grab = re => { const m = html.match(re); return m ? m[1] : null; };
+  CITIES = Function('"use strict";return (' + grab(/const CITIES = (\[[\s\S]*?\n\]);/) + ")")();
+  const r = grab(/\/\* ROUTES:BEGIN \*\/\s*const ROUTES = (\{[\s\S]*?\});\s*\/\* ROUTES:END \*\//);
+  try { ROUTES = r ? Function('"use strict";return (' + r + ")")() : {}; } catch (e) { ROUTES = {}; toast("The ROUTES block in the page has a typo, so existing routes weren't loaded"); }
+  CARTO_KEY = grab(/const CARTO_KEY = "([^"]*)";/) || "";
+}
+
+/* ---------- map ---------- */
+function initMap() {
+  map = L.map("map", { zoomControl: true }).setView([20, 0], 3);
+  if (CARTO_KEY) {
+    L.tileLayer("https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=" + encodeURIComponent(CARTO_KEY),
+      { maxZoom: 20, attribution: "&copy; OpenStreetMap contributors &copy; CARTO" }).addTo(map);
+  } else {
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+  }
+  rawLine = L.polyline([], { color: "#3e6ae1", weight: 2, dashArray: "4 6", opacity: .8 }).addTo(map);
+  snapLine = L.polyline([], { color: "#3e6ae1", weight: 5, opacity: .75 }).addTo(map);
+  pinLayer = L.layerGroup().addTo(map);
+  map.on("click", e => addPin(e.latlng.lat, e.latlng.lng));
+}
+
+/* ---------- player ---------- */
+window.onYouTubeIframeAPIReady = () => { ytReady = true; if (video) loadVideo(); };
+(function () { const s = document.createElement("script"); s.src = "https://www.youtube.com/iframe_api"; document.head.appendChild(s); })();
+function loadVideo() {
+  if (!ytReady || !video) return;
+  if (player && playerReady) { player.cueVideoById(video.id); return; }
+  if (player) return;
+  const vars = { rel: 0, playsinline: 1, modestbranding: 1 };
+  if (/^https?:$/.test(location.protocol)) vars.origin = location.origin;
+  player = new YT.Player("player", {
+    videoId: video.id, playerVars: vars,
+    events: {
+      onReady: () => { playerReady = true; player.setPlaybackRate(+$("rate").value); },
+      onStateChange: e => { $("play").textContent = e.data === 1 ? "Pause" : "Play"; if (e.data === 1) player.setPlaybackRate(+$("rate").value); },
+      onError: e => toast("YouTube error " + e.data + " on this video" + (e.data === 101 || e.data === 150 ? ": its owner blocks embedding, so it needs replacing in CITIES" : "")),
+    },
+  });
+}
+const now = () => { try { return player && playerReady ? player.getCurrentTime() : 0; } catch (e) { return 0; } };
+const playing = () => { try { return player && playerReady && player.getPlayerState() === 1; } catch (e) { return false; } };
+function togglePlay() { if (!playerReady) return; playing() ? player.pauseVideo() : player.playVideo(); }
+function seek(d) { if (!playerReady) return; player.seekTo(Math.max(0, now() + d), true); }
+setInterval(() => { $("time").textContent = fmtT(now()); }, 100);
+
+/* ---------- pins ---------- */
+const key = () => "dt-route:" + video.id;
+function save() {
+  const entry = { city: city.name, label: video.label, pins, snapped: snapped ? { line: encodePolyline(snapped.line), marks: snapped.marks, steps: snapped.steps, legs: snapped.legs } : null };
+  store.set(key(), entry);
+}
+function addPin(lat, lng) {
+  if (!video) return;
+  const t = Math.round(now() * 10) / 10;
+  if (pins.some(p => Math.abs(p.t - t) < 0.3)) { toast("There's already a pin at " + fmtT(t) + " — move the video on first"); return; }
+  pins.push({ t, lat: +lat.toFixed(6), lng: +lng.toFixed(6) });
+  pins.sort((a, b) => a.t - b.t);
+  invalidateSnap(); save(); render();
+}
+function invalidateSnap() { snapped = null; snapLine.setLatLngs([]); $("copy").disabled = true; }
+
+// Sanity checks per leg: implied speed and, once snapped, detours.
+function legFlags() {
+  return pins.map((p, i) => {
+    if (i === 0) return { cls: "", text: "" };
+    const q = pins[i - 1], dt = p.t - q.t;
+    const straight = distM([q.lat, q.lng], [p.lat, p.lng]);
+    const leg = snapped && snapped.legs[i - 1];
+    const d = leg ? leg.dist : straight;
+    const kmh = dt > 0 ? d / dt * 3.6 : Infinity;
+    const notes = [], speed = Math.round(kmh) + " km/h";
+    let cls = "";
+    if (kmh > 110) { cls = "bad"; notes.push(speed + " — too fast for a city, check the time or place"); }
+    else if (kmh > 75) { cls = "warn"; notes.push(speed + " — fast, worth a check"); }
+    else notes.push(speed);
+    if (leg && d > 150 && d > straight * 2.2) { cls = cls || "warn"; notes.push("route detours " + Math.round(d) + " m for a " + Math.round(straight) + " m gap; the pin may have snapped to the wrong road"); }
+    return { cls, text: notes.join(" · ") };
+  });
+}
+
+function render() {
+  const flags = legFlags();
+  pinLayer.clearLayers();
+  pins.forEach((p, i) => {
+    const m = L.marker([p.lat, p.lng], {
+      draggable: true,
+      icon: L.divIcon({ className: "", html: '<div class="pin-icon ' + flags[i].cls + '">' + (i + 1) + "</div>", iconSize: [22, 22], iconAnchor: [11, 11] }),
+    }).addTo(pinLayer);
+    m.bindTooltip(fmtT(p.t), { direction: "top", offset: [0, -10] });
+    m.on("dragend", e => { const ll = e.target.getLatLng(); p.lat = +ll.lat.toFixed(6); p.lng = +ll.lng.toFixed(6); invalidateSnap(); save(); render(); });
+    m.on("click", () => { if (playerReady) player.seekTo(p.t, true); });
+  });
+  rawLine.setLatLngs(pins.map(p => [p.lat, p.lng]));
+
+  const box = $("pins");
+  if (!pins.length) { box.innerHTML = '<div class="empty">No pins yet. Play the drive, pause where you recognise the spot, and click the map.</div>'; return; }
+  box.innerHTML = "<table><thead><tr><th>#</th><th>Video time</th><th>Check</th><th></th></tr></thead><tbody>" +
+    pins.map((p, i) => '<tr class="' + flags[i].cls + '"><td class="num">' + (i + 1) + '</td><td><button class="jump" data-i="' + i + '">' + fmtT(p.t) +
+      '</button></td><td class="flag">' + flags[i].text + '</td><td><button class="x" data-i="' + i + '" aria-label="Delete pin ' + (i + 1) + '">✕</button></td></tr>').join("") +
+    "</tbody></table>";
+  box.querySelectorAll(".jump").forEach(b => b.addEventListener("click", () => { const p = pins[+b.dataset.i]; if (playerReady) player.seekTo(p.t, true); map.panTo([p.lat, p.lng]); }));
+  box.querySelectorAll(".x").forEach(b => b.addEventListener("click", () => { pins.splice(+b.dataset.i, 1); invalidateSnap(); save(); render(); }));
+}
+
+/* ---------- snapping (OSRM public server; please keep it gentle) ---------- */
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function snap() {
+  if (pins.length < 2) { toast("Add at least two pins first"); return; }
+  $("snap").disabled = true;
+  const line = [], marks = [], steps = [], legs = [];
+  let prevBearing = null;
+  try {
+    for (let start = 0; start < pins.length - 1; start += CHUNK - 1) {
+      const chunk = pins.slice(start, start + CHUNK);
+      $("status").textContent = "Snapping pins " + (start + 1) + "–" + (start + chunk.length) + "…";
+      const url = OSRM + chunk.map(p => p.lng.toFixed(6) + "," + p.lat.toFixed(6)).join(";") +
+        "?overview=false&steps=true&geometries=polyline";
+      const r = await fetch(url);
+      const j = await r.json();
+      if (j.code !== "Ok") throw new Error(j.message || j.code);
+      j.routes[0].legs.forEach((leg, li) => {
+        const globalLeg = start + li;
+        if (globalLeg === 0) marks.push(0);
+        let legDist = 0;
+        leg.steps.forEach((st, si) => {
+          const g = decodePolyline(st.geometry);
+          const first = globalLeg === 0 && si === 0, lastLeg = globalLeg === pins.length - 2;
+          const t = st.maneuver.type;
+          const at = Math.max(0, line.length - 1);
+          if (t === "depart") {
+            if (first) steps.push([0, "depart", null, st.name || ""]);
+            else if (prevBearing !== null) {
+              // A turn that happens right at a pin hides between two legs;
+              // recover it from the bearings either side.
+              const mod = turnModifier(prevBearing, st.maneuver.bearing_after);
+              if (mod) steps.push([at, "turn", mod, st.name || ""]);
+              else if (st.name && steps.length && steps[steps.length - 1][3] !== st.name) steps.push([at, "new name", null, st.name]);
+            }
+          } else if (t === "arrive") {
+            prevBearing = st.maneuver.bearing_before;
+            if (lastLeg) steps.push([at, "arrive", null, st.name || ""]);
+          } else {
+            steps.push([at, t, st.maneuver.modifier || null, st.name || ""]);
+          }
+          g.forEach((pt, k) => { if (line.length && k === 0 && distM(line[line.length - 1], pt) < 0.5) return; line.push(pt); });
+          legDist += st.distance;
+        });
+        marks.push(line.length - 1);
+        const a = pins[globalLeg], b = pins[globalLeg + 1];
+        legs.push({ dist: Math.round(legDist), straight: Math.round(distM([a.lat, a.lng], [b.lat, b.lng])) });
+      });
+      if (start + CHUNK < pins.length) await sleep(1100);   // the public server asks for at most one request a second
+    }
+    // marks must line up one-to-one with pins and never go backwards
+    if (marks.length !== pins.length) throw new Error("pin and route counts don't match (" + marks.length + " vs " + pins.length + ")");
+    for (let i = 1; i < marks.length; i++) marks[i] = Math.max(marks[i], marks[i - 1]);
+    snapped = { line, marks, steps, legs };
+    snapLine.setLatLngs(line);
+    $("copy").disabled = false;
+    const km = legs.reduce((a, l) => a + l.dist, 0) / 1000;
+    $("status").textContent = "Snapped: " + km.toFixed(1) + " km, " + steps.filter(s => s[1] !== "depart" && s[1] !== "arrive").length + " turns";
+    save(); render();
+  } catch (e) {
+    $("status").textContent = "Snapping failed: " + e.message;
+    toast("Snapping failed — the routing server may be busy. Try again in a minute.");
+  } finally { $("snap").disabled = false; }
+}
+
+/* ---------- output ---------- */
+function entryFor(id, label, cityName, P, S) {
+  const obj = {
+    city: cityName, label,
+    pts: P.map(p => [Math.round(p.t * 10) / 10, +p.lat.toFixed(5), +p.lng.toFixed(5)]),
+    line: typeof S.line === "string" ? S.line : encodePolyline(S.line),
+    marks: S.marks, steps: S.steps,
+  };
+  return JSON.stringify(id) + ": " + JSON.stringify(obj);
+}
+async function copyText(t, what) {
+  try { await navigator.clipboard.writeText(t); toast(what + " copied — paste it inside const ROUTES = { … }"); }
+  catch (e) { prompt("Copy this:", t); }
+}
+$("copy").addEventListener("click", () => {
+  if (!snapped) return;
+  copyText(entryFor(video.id, video.label, city.name, pins, snapped) + ",", "Route for " + city.name + " · " + video.label);
+});
+$("copy-all").addEventListener("click", () => {
+  const out = [];
+  for (const k of store.keys()) {
+    const e = store.get(k, null);
+    if (e && e.snapped && e.pins && e.pins.length >= 2) out.push("  " + entryFor(k.slice(9), e.label, e.city, e.pins, e.snapped));
+  }
+  if (!out.length) { toast("No snapped routes saved in this browser yet"); return; }
+  copyText(out.join(",\n") + ",", out.length + " route" + (out.length > 1 ? "s" : ""));
+});
+$("clear").addEventListener("click", () => {
+  if (!video || !pins.length) return;
+  if (!confirm("Remove all " + pins.length + " pins for this drive?")) return;
+  pins = []; invalidateSnap(); save(); render();
+});
+$("snap").addEventListener("click", snap);
+
+/* ---------- search (Nominatim, limited to the city's area) ---------- */
+$("search").addEventListener("submit", async e => {
+  e.preventDefault();
+  const q = $("q").value.trim();
+  if (!q || !city) return;
+  const d = 0.25, vb = [city.lng - d, city.lat + d, city.lng + d, city.lat - d].join(",");
+  try {
+    const r = await fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&bounded=1&viewbox=" + vb + "&q=" + encodeURIComponent(q));
+    const j = await r.json();
+    if (!j.length) { toast("Nothing called that near " + city.name); return; }
+    map.setView([+j[0].lat, +j[0].lon], 17);
+  } catch (err) { toast("Search isn't reachable right now"); }
+});
+
+/* ---------- city + drive pickers ---------- */
+function fillDrives() {
+  $("drive").innerHTML = city.videos.map((v, i) => {
+    const saved = store.get("dt-route:" + v.id, null);
+    const mark = ROUTES[v.id] ? " ✓ in page" : saved && saved.pins && saved.pins.length ? " · " + saved.pins.length + " pins saved" : "";
+    return '<option value="' + i + '">' + v.label + mark + "</option>";
+  }).join("");
+}
+function selectDrive(i) {
+  video = city.videos[i];
+  const saved = store.get(key(), null);
+  if (saved && saved.pins) {
+    pins = saved.pins;
+    snapped = saved.snapped ? { line: decodePolyline(saved.snapped.line), marks: saved.snapped.marks, steps: saved.snapped.steps, legs: saved.snapped.legs || [] } : null;
+  } else if (ROUTES[video.id]) {
+    const r = ROUTES[video.id];
+    pins = r.pts.map(p => ({ t: p[0], lat: p[1], lng: p[2] }));
+    snapped = null;
+    toast("Loaded the route already in the page. Snap again before copying.");
+  } else { pins = []; snapped = null; }
+  snapLine.setLatLngs(snapped ? snapped.line : []);
+  $("copy").disabled = !snapped;
+  $("help").open = !pins.length;
+  $("status").textContent = pins.length ? pins.length + " pins" + (snapped ? ", snapped" : "") : "No pins yet";
+  if (pins.length) map.fitBounds(L.latLngBounds(pins.map(p => [p.lat, p.lng])).pad(0.2));
+  else map.setView([city.lat, city.lng], 14);
+  loadVideo();
+  render();
+}
+function selectCity(i) {
+  city = CITIES[i];
+  fillDrives();
+  selectDrive(0);
+  try { history.replaceState(null, "", "?city=" + encodeURIComponent(city.name)); } catch (e) {}
+}
+$("city").addEventListener("change", e => selectCity(+e.target.value));
+$("drive").addEventListener("change", e => selectDrive(+e.target.value));
+$("play").addEventListener("click", togglePlay);
+$("back5").addEventListener("click", () => seek(-5));
+$("fwd5").addEventListener("click", () => seek(5));
+$("rate").addEventListener("change", () => { if (playerReady) player.setPlaybackRate(+$("rate").value); });
+document.addEventListener("keydown", e => {
+  if (/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) || e.metaKey || e.ctrlKey) return;
+  if (e.code === "Space") { e.preventDefault(); togglePlay(); }
+  else if (e.key === "ArrowLeft") { e.preventDefault(); seek(e.shiftKey ? -1 : -5); }
+  else if (e.key === "ArrowRight") { e.preventDefault(); seek(e.shiftKey ? 1 : 5); }
+  else if (e.key.toLowerCase() === "z" && pins.length) {
+    let last = 0; pins.forEach((p, i) => { if (p.t <= now() + 0.05) last = i; });
+    pins.splice(last, 1); invalidateSnap(); save(); render(); toast("Removed a pin");
+  }
+});
+
+(async () => {
+  try { await loadPageData(); }
+  catch (e) { $("status").textContent = "Couldn't read " + PAGE + " — open this tool from the same site"; return; }
+  initMap();
+  // The flagship cities (US and Europe) first, then the rest.
+  const FLAG = ["New York", "Los Angeles", "London", "Paris", "Rome", "Madrid", "Lisbon", "Berlin", "Athens", "Warsaw"];
+  const order = CITIES.map((c, i) => i).sort((a, b) => {
+    const fa = FLAG.indexOf(CITIES[a].name), fb = FLAG.indexOf(CITIES[b].name);
+    return (fa < 0 ? 99 : fa) - (fb < 0 ? 99 : fb);
+  });
+  $("city").innerHTML = '<optgroup label="Flagship">' + order.filter(i => FLAG.includes(CITIES[i].name)).map(i => '<option value="' + i + '">' + CITIES[i].name + "</option>").join("") +
+    '</optgroup><optgroup label="Everywhere else">' + order.filter(i => !FLAG.includes(CITIES[i].name)).map(i => '<option value="' + i + '">' + CITIES[i].name + "</option>").join("") + "</optgroup>";
+  const want = new URLSearchParams(location.search).get("city");
+  const start = Math.max(0, CITIES.findIndex(c => c.name === want));
+  $("city").value = String(want && start >= 0 ? start : order[0]);
+  selectCity(+$("city").value);
+})();
+</script>
+</body>
+</html>
