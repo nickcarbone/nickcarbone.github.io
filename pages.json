@@ -1,7 +1,23 @@
 {
-  "generated": "2026-10-21T16:58:20.352Z",
-  "count": 83,
+  "generated": "2026-10-21T21:20:45.337Z",
+  "count": 84,
   "pages": [
+    {
+      "slug": "first-light",
+      "url": "https://nickcarbone.github.io/first-light/",
+      "title": "First Light",
+      "description": "",
+      "updated": "2026-10-21T20:57:00Z",
+      "created": "2026-10-21T20:37:01Z"
+    },
+    {
+      "slug": "evening-edition",
+      "url": "https://nickcarbone.github.io/evening-edition/",
+      "title": "Evening Edition",
+      "description": "",
+      "updated": "2026-10-21T20:55:19Z",
+      "created": "2026-10-20T14:56:45Z"
+    },
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
@@ -9,14 +25,6 @@
       "description": "",
       "updated": "2026-10-21T16:22:02Z",
       "created": "2026-07-10T01:19:16Z"
-    },
-    {
-      "slug": "evening-edition",
-      "url": "https://nickcarbone.github.io/evening-edition/",
-      "title": "Evening Edition",
-      "description": "",
-      "updated": "2026-10-21T12:24:40Z",
-      "created": "2026-10-20T14:56:45Z"
     },
     {
       "slug": "brewed-with",
