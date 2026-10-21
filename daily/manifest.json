@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 3,
+      "slug": "2026-10-21-the-clock-gap",
+      "date": "2026-10-21",
+      "title": "The Clock Gap",
+      "dek": "Twenty places where a government set the clocks on purpose and wrote down why, from Franco's Spain to Pyongyang's half-hour, with a live board showing how far each one runs from the sun.",
+      "kind": "Field guide",
+      "readingMinutes": 20,
+      "design": "Gloock, Source Serif 4, Spline Sans Mono; enamel blue-white, ink, vermilion, time-ball yellow; UTC offset band hero, sun-gap rulers, dark live board.",
+      "source": "queue",
+      "brief": "The Clock Gap\nA field guide to time zones as political decisions: Spain on Central European Time since 1940, Nepal’s +5:45 offset, China’s single zone, North Korea’s 2015–18 “Pyongyang time.”\nRule: only offsets that a government chose for a documented reason.\nFinish: 20 entries plus a live offset widget.\nWhy now: Europe falls back Oct 25 and the US on Nov 1, so New York–London runs four hours apart for a week. This extends Deadline Clock, so publish it first.",
+      "factcheck": {
+        "claims": 165,
+        "fixed": 22
+      },
+      "corrections": []
+    },
+    {
       "no": 2,
       "slug": "2026-10-20-where-quiet-money-settled",
       "date": "2026-10-20",

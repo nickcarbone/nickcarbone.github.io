@@ -24,12 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Clock Gap
-A field guide to time zones as political decisions: Spain on Central European Time since 1940, Nepal’s +5:45 offset, China’s single zone, North Korea’s 2015–18 “Pyongyang time.”
-Rule: only offsets that a government chose for a documented reason.
-Finish: 20 entries plus a live offset widget.
-Why now: Europe falls back Oct 25 and the US on Nov 1, so New York–London runs four hours apart for a week. This extends Deadline Clock, so publish it first.
-
 The Invisible Systems That Keep Countries Connected
 Explore the physical and commercial infrastructure behind the digital world: submarine cables, internet exchanges, mobile operators, satellite systems, and international data routes.
 Include: 10 strategically interesting countries, major infrastructure, operators, dependencies, chokepoints, redundancy, and geopolitical implications.
