@@ -1,0 +1,69 @@
+name: Drivetime audit
+
+# Nightly: checks every drive video still plays embedded (and where it's
+# region-blocked), refreshes each city's shortlist of live local radio
+# stations, and writes the results into the page. Opens or updates a
+# GitHub issue when a video breaks.
+#
+# Needs one repo secret: YOUTUBE_API_KEY (YouTube Data API v3).
+# Without it the check falls back to oEmbed and skips region data.
+
+on:
+  schedule:
+    - cron: '17 7 * * *'     # 07:17 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: drivetime-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    env:
+      PAGE: drivetime-tesla.html
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run audit
+        env:
+          YT_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/drivetime-audit.js "$PAGE"
+
+      - name: Publish report to the run summary
+        if: always()
+        run: |
+          [ -f "$RUNNER_TEMP/drivetime-audit-report.md" ] && cat "$RUNNER_TEMP/drivetime-audit-report.md" >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Commit page if the audit changed it
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "$PAGE"
+          git diff --staged --quiet && echo "No changes." || (
+            git commit -m "chore: drivetime nightly audit [skip ci]" &&
+            git pull --rebase origin main &&
+            git push
+          )
+
+      - name: Open or update the broken-video issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ -s "$RUNNER_TEMP/drivetime-audit-bad.txt" ] || { echo "No broken videos."; exit 0; }
+          TITLE="Drivetime: drive videos need replacing"
+          NUM=$(gh issue list --state open --search "\"$TITLE\" in:title" --json number --jq '.[0].number')
+          if [ -n "$NUM" ]; then
+            # Refresh the body quietly rather than commenting every night
+            gh issue edit "$NUM" --body-file "$RUNNER_TEMP/drivetime-audit-report.md"
+          else
+            gh issue create --title "$TITLE" --body-file "$RUNNER_TEMP/drivetime-audit-report.md"
+          fi
