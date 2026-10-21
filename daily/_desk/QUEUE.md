@@ -255,11 +255,6 @@ A hotel is simultaneously a building, a workplace, a logistics operation, a temp
 Interactive element: An explorable hotel cross-section with clickable operational systems and a room-turnover timeline.
 Finish line: Three hotel operating models, a glossary of the trade, and an explanation of why apparently similar rooms can deliver radically different experiences.
 
-The Night Shift Economy
-What happens in a city between midnight and sunrise, and which systems must keep operating for the daytime world to function? Explore wholesale markets, bakeries, freight terminals, hospital logistics, cleaning crews, overnight public transport, hotel operations, printing facilities, and other documented nighttime industries. Compare cities that maintain substantial overnight activity with those that effectively shut down, including the economic, social, and physical consequences of operating after dark.
-Interactive element: A 24-hour city clock that reveals which industries are active at different hours and how their working schedules depend on one another.
-Finish line: 12 cities, 20 nighttime operations, and a comparative model of what makes a city genuinely functional around the clock.
-
 The Science of a Convincing Place
 Why can a restaurant, bar, shop, or hotel feel unmistakably authentic even when its designers are recreating a different era or culture? Examine the physical and sensory details that create a coherent environment: lighting temperature, acoustics, materials, furniture proportions, menu language, service rituals, music, signage, and the relationship between a place and its neighborhood. Compare convincing historical restorations, contemporary reinterpretations, and environments that rely on superficial decoration. Distinguish documented design principles from subjective judgments about atmosphere.
 Interactive element: An atmosphere diagnostic where users adjust environmental variables and see how those changes affect a fictional venue's intended character.
