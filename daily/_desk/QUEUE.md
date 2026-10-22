@@ -275,11 +275,6 @@ Why do some objects get repaired for decades while others are discarded after a 
 Interactive element: An object repairability index with filters for parts availability, tool requirements, skill level, cost, and expected service life.
 Finish line: 20 repair traditions or businesses, a cross-category repairability comparison, and a practical framework for buying objects that can be maintained rather than replaced.
 
-The World's Smallest Geopolitical Decisions
-Not every consequential border or jurisdictional dispute involves territory, military force, or international treaties. Examine the small administrative decisions that shape everyday life across borders: which side of a road traffic uses, where a postal code changes, how a municipality draws a boundary, who issues a particular certificate, which jurisdiction regulates a product, and how neighboring authorities handle shared services. Select documented cases where seemingly minor decisions produced lasting differences in behavior, commerce, infrastructure, or identity. Keep this distinct from border-town travel guides by focusing on the institutional mechanism and its downstream consequences.
-Interactive element: A decision tree showing how a seemingly local administrative choice can propagate through transport, commerce, regulation, and daily life.
-Finish line: 15 documented cases, a taxonomy of jurisdictional decisions, and six detailed examples tracing a small rule to its wider consequences.
-
 The Hidden Economics of Going Out
 What actually determines whether a night out is inexpensive, luxurious, memorable, or frustrating? Build a comparative model of the businesses and decisions behind an evening: neighborhood bars, hotel lounges, neighborhood restaurants, destination dining, live-music venues, late-night cafés, and other social spaces. Examine rent, labor, capacity, turnover, purchasing, licensing, menu pricing, location, and the trade-offs between atmosphere and profitability. Compare the economics of a packed neighborhood bar with those of a low-volume luxury lounge, and show why the highest-priced venue is not necessarily the most profitable.
 Interactive element: A venue economics simulator where users adjust rent, staffing, average spend, occupancy, opening hours, and customer turnover to see the effects on revenue and operating margin.
