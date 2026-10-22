@@ -24,11 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Invisible Systems That Keep Countries Connected
-Explore the physical and commercial infrastructure behind the digital world: submarine cables, internet exchanges, mobile operators, satellite systems, and international data routes.
-Include: 10 strategically interesting countries, major infrastructure, operators, dependencies, chokepoints, redundancy, and geopolitical implications.
-Finish line: a sourced explainer with a map or network diagram and three case studies of how disruptions can affect ordinary users.
-
 The Airport Systems Atlas
 A guide to why airports work the way they do, how they connect to cities, and how travelers can make smarter routing decisions.
 Include: hub structures, airline alliances, rail-air connections, terminal transfers, overnight connections, ground transport, alternative airports, and examples of counterintuitive routes.
