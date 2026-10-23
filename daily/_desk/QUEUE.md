@@ -24,11 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Airport Systems Atlas
-A guide to why airports work the way they do, how they connect to cities, and how travelers can make smarter routing decisions.
-Include: hub structures, airline alliances, rail-air connections, terminal transfers, overnight connections, ground transport, alternative airports, and examples of counterintuitive routes.
-Finish line: five worked journeys showing how to compare total travel time, transfers, ground access, and cost—not merely the headline airfare.
-
 The Cocktail Birthplace Atlas
 A companion to The Hotel Bar Atlas: 20 classic cocktails credited to a specific bar, set against what the record supports and what stands at that address today. Many of the famous claims are shakier than the menus suggest. The Negroni's count is disputed, and the Roosevelt's Sazerac Bar bought its name in 1949, so treat every origin as a claim to test.
 Include: for each drink, the bar and city credited, the claimed creator and year, the earliest printed recipe or reference found, any rival claimants, how the first known spec differs from what's poured now, and what occupies the original site.

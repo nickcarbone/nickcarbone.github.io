@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Airport Systems Atlas · Daily</title>
+<meta name="description" content="How hubs, alliances, transfer rules, borders and airport rail links shape a journey, with five worked trips that judge a route by its door-to-door time and full cost rather than its headline fare.">
+<meta property="og:title" content="The Airport Systems Atlas">
+<meta property="og:description" content="How hubs, alliances, transfer rules, borders and airport rail links shape a journey, with five worked trips that judge a route by its door-to-door time and full cost rather than its headline fare.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-10-23-the-airport-systems-atlas/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-10-23-the-airport-systems-atlas/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@500;600;700;800&family=Red+Hat+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --floor:#ecebe6; --floor2:#e2e0d9; --card:#faf9f6; --ink:#151515; --muted:#4f4f4f; --rule:#bdb9ae;
+  --sign:#ffd200; --signink:#111; --go:#0a6640; --go-l:#d9ece2; --stop:#a3241b; --wait:#8b8679;
+  --sans:"Atkinson Hyperlegible",system-ui,sans-serif; --cond:"Barlow Condensed","Arial Narrow",sans-serif; --mono:"Red Hat Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--floor);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.6}
+a{color:var(--go);text-underline-offset:2px}
+a:hover{color:var(--ink)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.strip{background:var(--ink);color:#f3f3f3;font-family:var(--mono);font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 20px;min-height:44px;flex-wrap:wrap}
+.strip a{color:var(--sign);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;min-height:44px}
+.strip a:hover{text-decoration:underline;color:var(--sign)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+.wide{max-width:1100px;margin:0 auto;padding:0 20px}
+/* hero */
+header.hero{padding:40px 0 24px;border-bottom:6px solid var(--ink)}
+.hero .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:10px;background:var(--sign);color:var(--signink);font-family:var(--cond);font-weight:700;font-size:20px;letter-spacing:.04em;text-transform:uppercase;padding:4px 12px 4px 8px}
+.kicker b{background:var(--ink);color:var(--sign);padding:0 8px;font-weight:800}
+h1{font-family:var(--cond);font-weight:800;font-size:clamp(46px,9vw,92px);line-height:.92;margin:18px 0 16px;letter-spacing:-.01em;text-transform:uppercase}
+.dek{font-size:21px;line-height:1.45;margin:0 0 14px;max-width:34em}
+.byline{font-family:var(--mono);font-size:14px;color:var(--muted)}
+.hubsvg{width:100%;height:auto;display:block}
+.hubsvg .web line{stroke:var(--wait);stroke-width:1;opacity:.35}
+.hubsvg .spokes line{stroke:var(--go);stroke-width:5}
+.hubsvg .nodes circle{fill:var(--card);stroke:var(--ink);stroke-width:3}
+.hubsvg .hubdot{fill:var(--sign);stroke:var(--ink);stroke-width:4}
+.hubsvg .hublabel{font-family:var(--cond);font-weight:800;font-size:24px;fill:var(--ink)}
+.cap{font-family:var(--mono);font-size:14px;color:var(--muted);line-height:1.5;margin-top:8px}
+.cap b{color:var(--ink)}
+/* departures-style contents */
+nav.toc{margin:28px 0 8px}
+.toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px}
+.toc a{display:flex;align-items:center;gap:10px;min-height:44px;padding:6px 10px;background:var(--card);border:1px solid var(--rule);text-decoration:none;color:var(--ink);font-family:var(--cond);font-weight:600;font-size:20px}
+.toc a:hover{background:var(--sign)}
+.toc .g{font-family:var(--cond);font-weight:800;background:var(--ink);color:var(--sign);min-width:34px;text-align:center;padding:2px 4px}
+/* section signs */
+section{padding:20px 0 8px}
+h2.sign{display:flex;align-items:stretch;gap:0;margin:40px 0 20px;font-family:var(--cond);font-weight:700;font-size:clamp(28px,5vw,40px);line-height:1.05;text-transform:uppercase;letter-spacing:.01em;background:var(--sign);color:var(--signink);border-left:10px solid var(--ink)}
+h2.sign .g{background:var(--ink);color:var(--sign);font-weight:800;display:flex;align-items:center;padding:0 14px;min-width:60px;justify-content:center}
+h2.sign .t{padding:12px 16px;flex:1}
+h2.sign .arr{display:flex;align-items:center;padding:0 16px;font-size:1.1em}
+h3{font-family:var(--cond);font-weight:700;font-size:26px;line-height:1.15;margin:30px 0 8px;text-transform:uppercase;letter-spacing:.01em}
+p{margin:0 0 1em}
+sup.r{font-family:var(--mono);font-size:.62em;line-height:0;margin-left:1px}
+sup.r a{text-decoration:none;color:var(--go);font-weight:600}
+sup.r a:hover{text-decoration:underline}
+.note{background:var(--card);border:1px solid var(--rule);border-left:6px solid var(--go);padding:14px 16px;margin:18px 0;font-size:17px}
+.note strong{font-family:var(--cond);font-size:20px;text-transform:uppercase;letter-spacing:.02em;display:block;margin-bottom:2px}
+.asof{font-family:var(--mono);font-size:13px;background:var(--floor2);padding:1px 6px;white-space:nowrap}
+figure{margin:24px 0}
+.banksvg{width:100%;height:auto;display:block;background:var(--card);border:1px solid var(--rule)}
+.banksvg .hr{stroke:var(--rule);stroke-width:1}
+.banksvg .hrl{font-family:var(--mono);font-size:14px;fill:var(--muted)}
+.banksvg .arr{fill:var(--ink)}
+.banksvg .dep{fill:var(--go)}
+.banksvg .win{fill:var(--sign);opacity:.55}
+.banksvg .winl{font-family:var(--cond);font-weight:700;font-size:16px;fill:var(--ink);text-transform:uppercase}
+.banksvg .lab{font-family:var(--cond);font-weight:700;font-size:17px;fill:var(--ink);letter-spacing:.04em}
+.banksvg .lab.sm{font-size:15px;fill:var(--muted)}
+/* alliance boards */
+.alli{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.alli div{background:var(--card);border:1px solid var(--rule);border-top:6px solid var(--ink);padding:12px 14px}
+.alli .n{font-family:var(--cond);font-weight:800;font-size:44px;line-height:1}
+.alli .nm{font-family:var(--cond);font-weight:700;font-size:21px;text-transform:uppercase}
+.alli .d{font-size:15px;color:var(--muted);line-height:1.45}
+/* ladder */
+.ladder{list-style:none;padding:0;margin:18px 0;counter-reset:l}
+.ladder li{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--rule)}
+.ladder li:last-child{border-bottom:1px solid var(--rule)}
+.ladder .k{font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;line-height:1.15}
+.ladder .k span{display:block;font-family:var(--mono);font-weight:500;font-size:12px;color:var(--muted);text-transform:none;margin-top:4px}
+/* border table */
+.tbl{overflow-x:auto;margin:18px 0;border:1px solid var(--rule);background:var(--card);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:16px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+thead th{background:var(--ink);color:#fff;font-family:var(--cond);font-weight:600;font-size:17px;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap}
+td.num{font-family:var(--mono);white-space:nowrap}
+th button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:40px}
+th button:focus-visible{outline:3px solid var(--sign)}
+th button::after{content:"↕";color:var(--sign);font-size:14px}
+th button[aria-sort="ascending"]::after{content:"↑"}
+th button[aria-sort="descending"]::after{content:"↓"}
+tbody tr:nth-child(even){background:#f3f2ee}
+.pill{display:inline-block;font-family:var(--mono);font-size:12px;padding:1px 6px;border:1px solid currentColor;white-space:nowrap}
+.pill.y{background:var(--go-l);color:var(--go)}
+.pill.n{color:var(--stop)}
+/* distance bars */
+.far{margin:18px 0;display:grid;gap:8px}
+.far .row{display:grid;grid-template-columns:170px 1fr;gap:10px;align-items:center}
+.far .nm{font-family:var(--cond);font-weight:700;font-size:19px;line-height:1.1}
+.far .nm span{display:block;font-family:var(--mono);font-weight:400;font-size:12px;color:var(--muted)}
+.far .bar{height:28px;background:var(--floor2);position:relative}
+.far .bar i{position:absolute;inset:0 auto 0 0;background:var(--ink);display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:var(--sign);font-family:var(--mono);font-style:normal;font-size:13px;font-weight:600;white-space:nowrap}
+/* journeys */
+.journey{background:var(--card);border:1px solid var(--rule);margin:26px 0;}
+.journey .jh{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between;background:var(--ink);color:#fff;padding:10px 16px}
+.journey .jh h3{margin:0;color:var(--sign);font-size:26px}
+.journey .jh .no{font-family:var(--mono);font-size:13px;color:#ddd}
+.journey .jb{padding:14px 16px 6px}
+.opt{margin:14px 0 18px}
+.opt .ol{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;margin-bottom:6px}
+.opt .ol .tot{font-family:var(--mono);font-size:15px;font-weight:600;text-transform:none;background:var(--sign);padding:0 6px}
+.tl{display:flex;height:34px;border:2px solid var(--ink);overflow:hidden}
+.tl span{display:block;height:100%;border-right:2px solid var(--card);min-width:4px;position:relative}
+.tl span:last-child{border-right:0}
+.tl .mv{background:var(--go)}
+.tl .fl{background:var(--ink)}
+.tl .wt{background:repeating-linear-gradient(135deg,var(--wait) 0 5px,#b4afa2 5px 10px)}
+.tl .as{background:#d6c7a0}
+.legs{list-style:none;padding:0;margin:8px 0 0;font-size:15px;line-height:1.5;display:grid;gap:2px}
+.legs li{display:grid;grid-template-columns:76px 1fr;gap:8px}
+.legs .m{font-family:var(--mono);font-size:14px;white-space:nowrap}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--mono);font-size:13px;color:var(--muted);margin:10px 0}
+.key i{display:inline-block;width:18px;height:12px;vertical-align:-1px;margin-right:6px;border:1px solid var(--ink)}
+.verdict{border-top:2px dashed var(--rule);padding-top:10px;margin-top:6px}
+.verdict b{font-family:var(--cond);font-size:19px;text-transform:uppercase;letter-spacing:.03em}
+/* calculator */
+.calc{background:var(--ink);color:#f1f1f1;padding:18px 16px;margin:26px 0}
+.calc h3{color:var(--sign);margin-top:0}
+.calc p{font-size:16px}
+.calc .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.calc fieldset{border:1px solid #555;padding:10px 12px;margin:0}
+.calc legend{font-family:var(--cond);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--sign);padding:0 6px}
+.calc label{display:grid;grid-template-columns:1fr 92px;gap:8px;align-items:center;font-size:15px;margin:6px 0}
+.calc label.nm{grid-template-columns:70px 1fr}
+.calc input{font:inherit;font-family:var(--mono);font-size:16px;min-height:42px;width:100%;padding:6px 8px;background:#fff;color:#111;border:2px solid #777}
+.calc input:focus{border-color:var(--sign);outline:none}
+.calc .out{margin-top:14px;background:var(--sign);color:var(--signink);padding:12px 14px;font-size:17px}
+.calc .out b{font-family:var(--mono)}
+.calc .row2{display:grid;grid-template-columns:1fr 92px;gap:8px;align-items:center;max-width:420px;margin-top:12px}
+.calc .row2 label{display:contents}
+.calc .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.calc button{font:inherit;font-family:var(--cond);font-weight:700;text-transform:uppercase;font-size:17px;min-height:42px;padding:6px 14px;background:transparent;color:var(--sign);border:2px solid var(--sign);cursor:pointer}
+.calc button:hover{background:var(--sign);color:var(--ink)}
+.calc a{color:var(--sign)}
+/* sources */
+.sources ol{padding-left:2.4em;font-size:15px;line-height:1.5}
+.sources li{margin:0 0 8px;scroll-margin-top:16px}
+.sources li:target{background:var(--sign)}
+.sources .pub{color:var(--muted)}
+footer{border-top:6px solid var(--ink);margin-top:40px;padding:22px 0 48px;font-family:var(--mono);font-size:14px;line-height:1.7}
+footer a{display:inline-flex;align-items:center;min-height:40px}
+@media (max-width:820px){
+  .hero .grid{grid-template-columns:1fr}
+  .hero .grid figure{max-width:440px}
+  .alli{grid-template-columns:1fr}
+  .calc .cols{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  body{font-size:17px}
+  .dek{font-size:19px}
+  .ladder li{grid-template-columns:1fr;gap:4px}
+  .far .row{grid-template-columns:1fr;gap:2px}
+  h2.sign .arr{display:none}
+  h2.sign .g{min-width:46px;padding:0 10px}
+  .strip{font-size:13px;padding:0 16px}
+  .wrap,.wide{padding:0 16px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}.toc a{transition:background .15s}}
+</style>
+</head>
+<body>
+<div class="strip" role="banner">
+  <a href="/daily/">← Daily</a>
+  <span>No. 005 · Friday 23 October 2026</span>
+</div>
+
+<header class="hero">
+ <div class="wide">
+  <div class="grid">
+   <div>
+    <span class="kicker"><b>→</b> Field guide · Transfers · Rail · Borders</span>
+    <h1>The Airport Systems Atlas</h1>
+    <p class="dek">How hubs, alliances, transfer rules, borders and airport rail links shape a journey, with five worked trips that judge a route by its door-to-door time and full cost rather than its headline fare.</p>
+    <p class="byline">Published 23 October 2026 · About 22 minutes · Times and fares checked October 2026</p>
+   </div>
+   <figure>
+    <svg class="hubsvg" viewBox="0 0 600 460" role="img" aria-labelledby="hubt hubd">
+<title id="hubt">Hub-and-spoke diagram</title>
+<desc id="hubd">Ten cities joined to one hub by ten routes. Faint lines show the 45 further routes a point-to-point network would need to join every pair directly.</desc>
+<g class="web"><line x1="300.0" y1="55.0" x2="402.9" y2="88.4"/><line x1="300.0" y1="55.0" x2="466.4" y2="175.9"/><line x1="300.0" y1="55.0" x2="466.4" y2="284.1"/><line x1="300.0" y1="55.0" x2="402.9" y2="371.6"/><line x1="300.0" y1="55.0" x2="300.0" y2="405.0"/><line x1="300.0" y1="55.0" x2="197.1" y2="371.6"/><line x1="300.0" y1="55.0" x2="133.6" y2="284.1"/><line x1="300.0" y1="55.0" x2="133.6" y2="175.9"/><line x1="300.0" y1="55.0" x2="197.1" y2="88.4"/><line x1="402.9" y1="88.4" x2="466.4" y2="175.9"/><line x1="402.9" y1="88.4" x2="466.4" y2="284.1"/><line x1="402.9" y1="88.4" x2="402.9" y2="371.6"/><line x1="402.9" y1="88.4" x2="300.0" y2="405.0"/><line x1="402.9" y1="88.4" x2="197.1" y2="371.6"/><line x1="402.9" y1="88.4" x2="133.6" y2="284.1"/><line x1="402.9" y1="88.4" x2="133.6" y2="175.9"/><line x1="402.9" y1="88.4" x2="197.1" y2="88.4"/><line x1="466.4" y1="175.9" x2="466.4" y2="284.1"/><line x1="466.4" y1="175.9" x2="402.9" y2="371.6"/><line x1="466.4" y1="175.9" x2="300.0" y2="405.0"/><line x1="466.4" y1="175.9" x2="197.1" y2="371.6"/><line x1="466.4" y1="175.9" x2="133.6" y2="284.1"/><line x1="466.4" y1="175.9" x2="133.6" y2="175.9"/><line x1="466.4" y1="175.9" x2="197.1" y2="88.4"/><line x1="466.4" y1="284.1" x2="402.9" y2="371.6"/><line x1="466.4" y1="284.1" x2="300.0" y2="405.0"/><line x1="466.4" y1="284.1" x2="197.1" y2="371.6"/><line x1="466.4" y1="284.1" x2="133.6" y2="284.1"/><line x1="466.4" y1="284.1" x2="133.6" y2="175.9"/><line x1="466.4" y1="284.1" x2="197.1" y2="88.4"/><line x1="402.9" y1="371.6" x2="300.0" y2="405.0"/><line x1="402.9" y1="371.6" x2="197.1" y2="371.6"/><line x1="402.9" y1="371.6" x2="133.6" y2="284.1"/><line x1="402.9" y1="371.6" x2="133.6" y2="175.9"/><line x1="402.9" y1="371.6" x2="197.1" y2="88.4"/><line x1="300.0" y1="405.0" x2="197.1" y2="371.6"/><line x1="300.0" y1="405.0" x2="133.6" y2="284.1"/><line x1="300.0" y1="405.0" x2="133.6" y2="175.9"/><line x1="300.0" y1="405.0" x2="197.1" y2="88.4"/><line x1="197.1" y1="371.6" x2="133.6" y2="284.1"/><line x1="197.1" y1="371.6" x2="133.6" y2="175.9"/><line x1="197.1" y1="371.6" x2="197.1" y2="88.4"/><line x1="133.6" y1="284.1" x2="133.6" y2="175.9"/><line x1="133.6" y1="284.1" x2="197.1" y2="88.4"/><line x1="133.6" y1="175.9" x2="197.1" y2="88.4"/></g>
+<g class="spokes"><line x1="300" y1="230" x2="300.0" y2="55.0"/><line x1="300" y1="230" x2="402.9" y2="88.4"/><line x1="300" y1="230" x2="466.4" y2="175.9"/><line x1="300" y1="230" x2="466.4" y2="284.1"/><line x1="300" y1="230" x2="402.9" y2="371.6"/><line x1="300" y1="230" x2="300.0" y2="405.0"/><line x1="300" y1="230" x2="197.1" y2="371.6"/><line x1="300" y1="230" x2="133.6" y2="284.1"/><line x1="300" y1="230" x2="133.6" y2="175.9"/><line x1="300" y1="230" x2="197.1" y2="88.4"/></g>
+<g class="nodes"><circle cx="300.0" cy="55.0" r="9"/><circle cx="402.9" cy="88.4" r="9"/><circle cx="466.4" cy="175.9" r="9"/><circle cx="466.4" cy="284.1" r="9"/><circle cx="402.9" cy="371.6" r="9"/><circle cx="300.0" cy="405.0" r="9"/><circle cx="197.1" cy="371.6" r="9"/><circle cx="133.6" cy="284.1" r="9"/><circle cx="133.6" cy="175.9" r="9"/><circle cx="197.1" cy="88.4" r="9"/></g>
+<circle class="hubdot" cx="300" cy="230" r="34"/>
+<text class="hublabel" x="300" y="237" text-anchor="middle">HUB</text>
+</svg>
+    <figcaption class="cap"><b>Ten routes, 55 markets.</b> A hub joined to ten cities lets every pair of the eleven places reach each other with no more than one change. Joining them all directly would take 55 routes; the faint lines are the 45 extra.</figcaption>
+   </figure>
+  </div>
+ </div>
+</header>
+
+<main>
+<div class="wrap">
+<nav class="toc" aria-label="Contents">
+ <ol>
+  <li><a href="#hubs"><span class="g">A</span>Why hubs exist</a></li>
+  <li><a href="#partners"><span class="g">B</span>Alliances and partners</a></li>
+  <li><a href="#connect"><span class="g">C</span>The connection</a></li>
+  <li><a href="#borders"><span class="g">D</span>Borders inside airports</a></li>
+  <li><a href="#rail"><span class="g">E</span>Rail meets air</a></li>
+  <li><a href="#far"><span class="g">F</span>Airports far from town</a></li>
+  <li><a href="#overnight"><span class="g">G</span>Long layovers</a></li>
+  <li><a href="#journeys"><span class="g">H</span>Five worked journeys</a></li>
+ </ol>
+</nav>
+
+<p style="margin-top:28px">An airfare is the one number every booking site puts in large type, and it is often the least useful one. The time it takes to reach the airport, the hour you are told to arrive early, the second security check at a transfer, the passport queue on landing and the coach from an airport 80 kilometres from the city on the ticket all count, and none of them are in the price. This guide explains the systems behind those hidden hours: why airlines funnel passengers through hubs, what an alliance really promises, which rules protect a connection and which leave you on your own, where border lines run through terminals, and how trains have become part of the airline network. It ends with five journeys worked out step by step, and a calculator for doing the same with your own.</p>
+
+<section id="hubs">
+<h2 class="sign"><span class="g">A</span><span class="t">Why hubs exist</span><span class="arr" aria-hidden="true">→</span></h2>
+
+<p>Until 1978, the US government decided which American airlines could fly which domestic routes and what they could charge. President Jimmy Carter signed the Airline Deregulation Act on 24 October that year, and the airlines that survived the shake-out, in the Smithsonian's words, "adopted the hub-and-spoke system using a few major airports as central connecting points".<sup class="r"><a href="#s1">1</a></sup> Transport geographers describe the same shift: freed to plan their own routes, carriers consolidated "hub-and-spoke networks feeding traffic to and from strategically located hubs".<sup class="r"><a href="#s2">2</a></sup></p>
+
+<p>The appeal is arithmetic. A network that flies every city to every other city directly needs a route for each pair: for <i>n</i> cities that is <i>n</i>(<i>n</i>−1)/2 routes, while a hub joins them with <i>n</i>−1.<sup class="r"><a href="#s3">3</a></sup> Ten spoke cities plus the hub make eleven places and 55 possible city pairs. Point to point, that is 55 routes. Through the hub it is ten, and every one of those ten flights carries a mix of people heading to many different final destinations, which lets an airline fill a big aircraft on a route that could never fill one with local passengers alone.</p>
+
+<p>The cost lands on the traveller as a change of plane, and on the airport as congestion. The Smithsonian's account of deregulation notes that hubs removed many nonstop flights and that fares rose at airports where one airline came to dominate,<sup class="r"><a href="#s1">1</a></sup> the arrangement the industry calls a fortress hub.</p>
+
+<h3>Banks and waves</h3>
+<p>A hub only works if the connections are short. Many hub airlines therefore schedule in <em>banks</em> or <em>waves</em>: a cluster of arrivals inside a short window, a pause while passengers and bags change aircraft, then a cluster of departures. Research on European networks found that airlines "concentrated their networks by adopting or intensifying wave-system structures" after the EU liberalised air transport, because waves multiply the number of workable connections a hub offers for the same number of flights.<sup class="r"><a href="#s4">4</a></sup> The price is a runway and terminal that are overloaded for an hour and quiet for the next. The alternative, a "rolling" hub that spreads flights evenly across the day, uses aircraft and staff more efficiently but makes the average connection longer; American Airlines tried de-peaking its hubs and later went back to banks.<sup class="r"><a href="#s5">5</a></sup></p>
+
+<figure>
+ <svg class="banksvg" viewBox="0 0 800 240" role="img" aria-labelledby="bankt bankd">
+<title id="bankt">Schematic of connection banks at a hub</title>
+<desc id="bankd">Arrivals cluster in a short window, then departures cluster soon after, so passengers from every arriving flight can reach every departing one. A second, smaller bank follows later in the morning.</desc>
+<line class="hr" x1="40.0" y1="40" x2="40.0" y2="200"/><text class="hrl" x="40.0" y="222" text-anchor="middle">06:00</text><line class="hr" x1="160.0" y1="40" x2="160.0" y2="200"/><text class="hrl" x="160.0" y="222" text-anchor="middle">07:00</text><line class="hr" x1="280.0" y1="40" x2="280.0" y2="200"/><text class="hrl" x="280.0" y="222" text-anchor="middle">08:00</text><line class="hr" x1="400.0" y1="40" x2="400.0" y2="200"/><text class="hrl" x="400.0" y="222" text-anchor="middle">09:00</text><line class="hr" x1="520.0" y1="40" x2="520.0" y2="200"/><text class="hrl" x="520.0" y="222" text-anchor="middle">10:00</text><line class="hr" x1="640.0" y1="40" x2="640.0" y2="200"/><text class="hrl" x="640.0" y="222" text-anchor="middle">11:00</text><line class="hr" x1="760.0" y1="40" x2="760.0" y2="200"/><text class="hrl" x="760.0" y="222" text-anchor="middle">12:00</text>
+<rect class="win" x="230.0" y="40" width="110.0" height="160"/>
+<text class="winl" x="285.0" y="58" text-anchor="middle">transfer</text>
+<text class="winl" x="285.0" y="74" text-anchor="middle">window</text>
+<rect class="arr" x="147.0" y="90" width="6" height="44"/><rect class="arr" x="157.0" y="90" width="6" height="44"/><rect class="arr" x="161.0" y="90" width="6" height="44"/><rect class="arr" x="173.0" y="90" width="6" height="44"/><rect class="arr" x="177.0" y="90" width="6" height="44"/><rect class="arr" x="187.0" y="90" width="6" height="44"/><rect class="arr" x="193.0" y="90" width="6" height="44"/><rect class="arr" x="201.0" y="90" width="6" height="44"/><rect class="arr" x="207.0" y="90" width="6" height="44"/><rect class="arr" x="213.0" y="90" width="6" height="44"/><rect class="arr" x="217.0" y="90" width="6" height="44"/><rect class="arr" x="227.0" y="90" width="6" height="44"/><rect class="arr" x="547.0" y="90" width="6" height="44"/><rect class="arr" x="557.0" y="90" width="6" height="44"/><rect class="arr" x="567.0" y="90" width="6" height="44"/><rect class="arr" x="577.0" y="90" width="6" height="44"/><rect class="arr" x="587.0" y="90" width="6" height="44"/><rect class="arr" x="597.0" y="90" width="6" height="44"/>
+<rect class="dep" x="337.0" y="140" width="6" height="44"/><rect class="dep" x="347.0" y="140" width="6" height="44"/><rect class="dep" x="353.0" y="140" width="6" height="44"/><rect class="dep" x="357.0" y="140" width="6" height="44"/><rect class="dep" x="367.0" y="140" width="6" height="44"/><rect class="dep" x="373.0" y="140" width="6" height="44"/><rect class="dep" x="381.0" y="140" width="6" height="44"/><rect class="dep" x="387.0" y="140" width="6" height="44"/><rect class="dep" x="397.0" y="140" width="6" height="44"/><rect class="dep" x="407.0" y="140" width="6" height="44"/><rect class="dep" x="417.0" y="140" width="6" height="44"/><rect class="dep" x="427.0" y="140" width="6" height="44"/><rect class="dep" x="697.0" y="140" width="6" height="44"/><rect class="dep" x="707.0" y="140" width="6" height="44"/><rect class="dep" x="717.0" y="140" width="6" height="44"/><rect class="dep" x="727.0" y="140" width="6" height="44"/><rect class="dep" x="737.0" y="140" width="6" height="44"/>
+<text class="lab" x="144.0" y="84">ARRIVALS</text>
+<text class="lab" x="336.0" y="200">DEPARTURES</text>
+<text class="lab sm" x="544.0" y="84">bank 2</text>
+</svg>
+ <figcaption class="cap"><b>Schematic, not a real timetable.</b> Arrivals (black) bunch together; departures (green) follow once passengers have had time to change. A traveller who lands between banks can face a long wait for the next one.</figcaption>
+</figure>
+
+<div class="note"><strong>What it means for you</strong>If a connection on a booking site looks oddly long, you may have landed at the end of one bank and be leaving at the start of the next. An earlier or later inbound flight in the same bank can cut the wait by hours.</div>
+
+<h3>The superconnectors</h3>
+<p>Some hubs sit in places whose own population could never support their traffic, and they live on what aviation law calls the sixth freedom. ICAO lists it as the right "of transporting, via the home State of the carrier, traffic moving between two other States", and calls it "so-called" because, unlike the first five freedoms, it is not written into the founding treaties.<sup class="r"><a href="#s6">6</a></sup> Business Traveller's example is a London–Dubai–Cape Town ticket on Emirates.<sup class="r"><a href="#s7">7</a></sup> Analysts at CAPA described Dubai, Doha and Abu Dhabi as "the three major sixth freedom hubs in the Middle East".<sup class="r"><a href="#s8">8</a></sup></p>
+
+<p>The scale shows in the rankings. In Airports Council International's figures for 2025, Atlanta, Delta's fortress hub,<sup class="r"><a href="#s5">5</a></sup> was the world's busiest airport with 106.3 million passengers, followed by Dubai with 95.2 million and Tokyo Haneda with 91.7 million. Counting only international passengers, Dubai was first, ahead of London Heathrow and Seoul Incheon.<sup class="r"><a href="#s9">9</a></sup></p>
+</section>
+
+<section id="partners">
+<h2 class="sign"><span class="g">B</span><span class="t">Alliances and partners</span><span class="arr" aria-hidden="true">→</span></h2>
+
+<p>No airline flies everywhere, so airlines sell each other's seats, and the agreements behind that come in layers of increasing intimacy. The layer matters to you mostly when something goes wrong.</p>
+
+<ol class="ladder">
+ <li><div class="k">Interline<span>the base layer</span></div><div>Two airlines agree to accept each other's tickets and bags. IATA's multilateral interline agreements "spell out the basic rules airlines follow when collecting money and issuing documents for carriage on each other's services".<sup class="r"><a href="#s10">10</a></sup> This is what lets one ticket, with your bag checked through, cover flights on two carriers.</div></li>
+ <li><div class="k">Codeshare<span>one flight, several numbers</span></div><div>One airline sells seats on another's flight under its own flight number. The US Justice Department has described the range, from simply using another carrier's reservation codes up to "comprehensive integration of marketing and operations". Codeshare partners still compete; without a specific grant of antitrust immunity, competition law applies to them in full.<sup class="r"><a href="#s11">11</a></sup></div></li>
+ <li><div class="k">Alliance<span>a branded club</span></div><div>A group of airlines that link loyalty schemes, lounges and transfer handling under one name. It does not by itself set shared fares.</div></li>
+ <li><div class="k">Joint venture<span>the deepest tie</span></div><div>Partners pool revenue and costs on a set of routes so that none of them cares whose aircraft you fly on. The US Department of Transportation calls this "metal neutrality": prices, capacity and sales are coordinated across the combined network, which the DOT says lets carriers "achieve merger-like efficiencies". It needs antitrust immunity.<sup class="r"><a href="#s12">12</a></sup></div></li>
+</ol>
+
+<p>Three such joint ventures dominate flights between North America and Europe. One combines Delta, Air France, KLM and Virgin Atlantic, tentatively granted immunity in its expanded form by the DOT in August 2019.<sup class="r"><a href="#s13">13</a></sup> Another joins American Airlines with British Airways, Iberia and Finnair, with Aer Lingus approved to join in December 2020.<sup class="r"><a href="#s14">14</a></sup> The third links Lufthansa, United and Air Canada; in 2025 the partners applied to add ITA Airways.<sup class="r"><a href="#s15">15</a></sup> Each venture lines up with an alliance, which is why a transatlantic fare on one partner so often routes you through another partner's hub.</p>
+
+<div class="alli" role="list">
+ <div role="listitem"><div class="nm">Star Alliance</div><div class="n">26</div><div class="d">Founded 14 May 1997 by Air Canada, Lufthansa, SAS, Thai Airways and United.<sup class="r"><a href="#s16">16</a></sup> ITA Airways joined on 1 April 2026;<sup class="r"><a href="#s17">17</a></sup> Asiana is due to leave on 16 December 2026, taking the count to 25.<sup class="r"><a href="#s18">18</a></sup> <span class="asof">as of Oct 2026</span></div></div>
+ <div role="listitem"><div class="nm">oneworld</div><div class="n">15</div><div class="d">Formed 1 February 1999 by American, British Airways, Canadian Airlines, Cathay Pacific and Qantas.<sup class="r"><a href="#s19">19</a></sup> Fiji Airways became a full member in March 2025 and Oman Air the fifteenth in June 2025; Philippine Airlines is listed as a future member.<sup class="r"><a href="#s20">20</a>,<a href="#s21">21</a></sup> <span class="asof">as of Oct 2026</span></div></div>
+ <div role="listitem"><div class="nm">SkyTeam</div><div class="n">18</div><div class="d">Founded 22 June 2000 by Aeromexico, Air France, Delta and Korean Air. Its own list names 19 airlines with Aeroflot's membership suspended.<sup class="r"><a href="#s22">22</a></sup> Virgin Atlantic joined in March 2023; ITA Airways left in February 2025.<sup class="r"><a href="#s23">23</a>,<a href="#s24">24</a></sup> <span class="asof">active members, Oct 2026</span></div></div>
+</div>
+
+<div class="note"><strong>What it means for you</strong>Partner airlines on one ticket will usually check your bag through and rebook you if a delay breaks the connection. Two airlines in the same alliance on <em>separate</em> tickets owe you neither. The ticket, not the logo, decides.</div>
+</section>
+
+<section id="connect">
+<h2 class="sign"><span class="g">C</span><span class="t">The connection</span><span class="arr" aria-hidden="true">→</span></h2>
+
+<p>Every hub has a <em>minimum connection time</em>: the shortest gap, airport by airport and often terminal by terminal, in which a passenger and their bag can be expected to make a transfer. MCTs are agreed by the airlines operating at each airport, with individual airlines filing exceptions, and new industry-standard times must be approved by IATA. The aviation data company OAG publishes more than 157,000 of them, which is how booking engines decide which connections they are allowed to sell.<sup class="r"><a href="#s25">25</a></sup> KLM, for example, gives its minimum at Amsterdam Schiphol as 40 minutes between Schengen flights and 50 minutes for non-Schengen flights.<sup class="r"><a href="#s26">26</a></sup> <span class="asof">as of Oct 2026</span></p>
+
+<p>An MCT is a promise only when the connection is on one ticket. Heathrow says airlines only sell connecting itineraries that meet its minimum, and that a passenger who misses a connection because the first flight was late should ask the airline about rebooking; for flights booked separately, the minimums do not apply and the traveller must leave their own margin.<sup class="r"><a href="#s27">27</a></sup> KLM says a passenger on a protected connection who misses it is automatically rebooked on the next available flight at no cost.<sup class="r"><a href="#s26">26</a></sup></p>
+
+<p>European law adds money. Under EU Regulation 261/2004, as the Court of Justice of the European Union ruled in <i>Air France v Folkerts</i> on 26 February 2013, a passenger on a connecting journey is owed compensation if they reach their <em>final</em> destination three hours or more late, even if the first flight's own delay was too short to qualify on its own.<sup class="r"><a href="#s28">28</a></sup></p>
+
+<h3>Self-transfer: the gap between two tickets</h3>
+<p>Booking two cheap one-way tickets through a hub can save money, and it moves all the risk to you. At Gatwick, a passenger connecting on a separate ticket has to pass through immigration, collect their bags from reclaim if they were not checked through, and check in again. Even passengers who already hold a boarding pass for the next flight are told to allow at least 60 minutes within a terminal and 90 minutes between terminals, or "you are at serious risk of missing your onward connection"; those with bags to reclaim are pointed to their airline's own minimum.<sup class="r"><a href="#s29">29</a></sup> Gatwick once tried to sell a safety net: GatwickConnects, launched with the booking firm Dohop in September 2015, let travellers buy separate airlines' flights in one transaction with a guarantee if things went wrong.<sup class="r"><a href="#s30">30</a></sup> It no longer appears on Gatwick's website. Frankfurt makes the same point from the other side: on one ticket, bags are in most cases checked through automatically; on separately booked connections, you reclaim and check them in again.<sup class="r"><a href="#s31">31</a></sup></p>
+
+<div class="note"><strong>Rule of thumb</strong>On one ticket, the airline owns the risk of a tight connection. On two, you do, so price in a buffer of at least an hour, the chance of losing the second fare, and any bag fee charged twice.</div>
+<h3>Two ticket tricks, one of them banned</h3>
+<p>An <em>open-jaw</em> ticket flies you into one city and home from another, and IATA's fare rules define it as a normal fare type.<sup class="r"><a href="#s85">85</a></sup> It often lets a traveller drop a backtracking leg and replace it with a train. <em>Hidden-city</em> ticketing, booking through a hub you actually want to stop at because the longer ticket is cheaper, is a different matter: American Airlines' conditions of carriage name it as a prohibited practice,<sup class="r"><a href="#s86">86</a></sup> and Lufthansa's allow it to recalculate the fare when legs are skipped and collect the difference.<sup class="r"><a href="#s87">87</a></sup> Lufthansa took a passenger to court in Germany over a skipped leg; a Berlin court dismissed the claim in 2018, and Lufthansa withdrew its appeal in 2019.<sup class="r"><a href="#s88">88</a>,<a href="#s89">89</a></sup> Skipping a leg also cancels the rest of the itinerary on most airlines, and a checked bag goes to the ticketed destination.</p>
+</section>
+
+<section id="borders">
+<h2 class="sign"><span class="g">D</span><span class="t">Borders inside airports</span><span class="arr" aria-hidden="true">→</span></h2>
+
+<p>A transfer is sometimes a walk to the next gate and sometimes a full border crossing, and the difference decides how long you need. Three regimes cover most of the journeys a European traveller makes.</p>
+
+<div class="tbl" tabindex="0" role="region" aria-label="Border rules at transfer airports">
+<table>
+<thead><tr><th scope="col">Where</th><th scope="col">Connecting from → to</th><th scope="col">What happens</th></tr></thead>
+<tbody>
+<tr><td>Schengen hub<br>(Munich, Frankfurt, Amsterdam…)</td><td>Schengen → Schengen</td><td>Usually no passport control.<sup class="r"><a href="#s32">32</a></sup></td></tr>
+<tr><td></td><td>Outside → outside</td><td>Usually no passport control if you stay in the gate area.<sup class="r"><a href="#s32">32</a></sup></td></tr>
+<tr><td></td><td>Outside → Schengen, or the reverse</td><td>Passport control at the transfer airport. Arriving from Singapore and flying on to Rome via Munich, you enter the Schengen area in Munich and land in Rome as a domestic passenger.<sup class="r"><a href="#s32">32</a>,<a href="#s33">33</a></sup></td></tr>
+<tr><td>United States</td><td>Abroad → abroad, via a US airport</td><td>No airside transit. The US suspended its transit-without-visa programmes in August 2003;<sup class="r"><a href="#s34">34</a></sup> passengers passing through need a visa or ESTA,<sup class="r"><a href="#s35">35</a></sup> are inspected by Customs and Border Protection at the first US airport, collect even "checked through" bags, recheck them and clear security again, as Chicago O'Hare describes.<sup class="r"><a href="#s36">36</a></sup></td></tr>
+<tr><td>Heathrow</td><td>Any → any</td><td>Everyone boarding a new flight goes through security again. Changing terminals means the free transfer bus, every ten minutes.<sup class="r"><a href="#s27">27</a></sup> Changing to Gatwick means a National Express coach of about 70 minutes; there is no direct train.<sup class="r"><a href="#s37">37</a></sup></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Preclearance: crossing the border before you leave</h3>
+<p>The US has found one way round its own rule. At Preclearance airports, CBP officers inspect passengers before departure, so they land in the US as domestic travellers and skip the arrival queue. CBP lists 15 locations in six countries: Dublin and Shannon in Ireland; Aruba; Bermuda; Nassau in the Bahamas; Abu Dhabi; and nine Canadian airports (Calgary, Edmonton, Halifax, Montreal, Ottawa, Toronto, Vancouver, Victoria and Winnipeg).<sup class="r"><a href="#s38">38</a></sup> <span class="asof">as of Oct 2026</span> O'Hare notes that precleared passengers can change terminals there without leaving security and being screened again.<sup class="r"><a href="#s36">36</a></sup> For a traveller connecting onward inside the US, that can be the difference between a comfortable transfer and a missed one.</p>
+</section>
+
+<section id="rail">
+<h2 class="sign"><span class="g">E</span><span class="t">Rail meets air</span><span class="arr" aria-hidden="true">→</span></h2>
+
+<p>On short feeder routes, the European airlines have been replacing aircraft with trains that carry flight numbers. At Frankfurt, where the airport has its own long-distance station, Lufthansa Express Rail (the service known until 2015 as AIRail<sup class="r"><a href="#s39">39</a></sup>) connected 28 cities by 2024, with more than 240 daily ICE trains carrying a Lufthansa flight number. In November 2024 Lufthansa and Deutsche Bahn said 432,000 travellers had used it since the start of the year, a record, with more than 500,000 bookings confirmed by the year's end.<sup class="r"><a href="#s40">40</a></sup> The ticket covers train and flight together, with a reserved seat and a guaranteed connection.<sup class="r"><a href="#s41">41</a></sup></p>
+
+<p>Austrian Airlines runs the same idea from Vienna Airport as AIRail, on ÖBB Railjets that show an Austrian Airlines flight number on the station screens. Austrian lists Linz, Salzburg, Graz, Klagenfurt and Innsbruck; ÖBB's own page lists Linz, Salzburg and Graz.<sup class="r"><a href="#s42">42</a>,<a href="#s43">43</a></sup> In France, Air France and SNCF sell Train + Air journeys through Paris-Charles de Gaulle on one booking, with a free seat on the next train or flight if either is delayed or cancelled. In September 2026 they extended it to every OUIGO train serving the airport and reported that Train + Air traffic had risen 43% year on year over the previous six months.<sup class="r"><a href="#s44">44</a></sup></p>
+
+<h3>France's 2h30 rule</h3>
+<p>France went further and banned some flights outright. Article 145 of the Climate and Resilience Law of 22 August 2021 prohibits scheduled domestic flights where a direct train, running several times a day, makes the trip in under two and a half hours.<sup class="r"><a href="#s45">45</a></sup> The European Commission approved the measure in December 2022, after France dropped proposed exemptions, including one for routes carried mainly by connecting passengers, which the Commission said risked discriminating between carriers.<sup class="r"><a href="#s46">46</a></sup> The implementing decree of 22 May 2023 covered three routes, from Paris-Orly to Bordeaux, Nantes and Lyon, whose flights had in practice already stopped in 2021. Routes from Charles de Gaulle survived, because the train from that airport takes too long or the timetable does not allow a full day at the destination.<sup class="r"><a href="#s45">45</a>,<a href="#s47">47</a></sup></p>
+
+<h3>The airport train: how fast is the last mile?</h3>
+<p>Where an airport has a fast rail link, it changes the sum. The table gives each operator's own figures; tap a column heading to sort.</p>
+
+<div class="tbl" tabindex="0" role="region" aria-label="Airport rail links, sortable">
+<table id="railtbl">
+<thead><tr>
+ <th scope="col"><button type="button" data-k="0">Airport</button></th>
+ <th scope="col"><button type="button" data-k="1">Service → stop</button></th>
+ <th scope="col"><button type="button" data-k="2" data-num="1">Minutes</button></th>
+ <th scope="col"><button type="button" data-k="3" data-num="1">Every (min)</button></th>
+ <th scope="col">Adult single</th>
+</tr></thead>
+<tbody>
+<tr><td>Amsterdam Schiphol</td><td>NS train → Centraal</td><td class="num" data-v="14">14–17</td><td class="num" data-v="7.5">~7.5</td><td>—<sup class="r"><a href="#s48">48</a></sup></td></tr>
+<tr><td>Zurich</td><td>SBB train → Zürich HB</td><td class="num" data-v="15">15</td><td class="num" data-v="10">10</td><td>—<sup class="r"><a href="#s49">49</a></sup></td></tr>
+<tr><td>London Heathrow</td><td>Heathrow Express → Paddington</td><td class="num" data-v="15">15 (T5: 20)</td><td class="num" data-v="15">15</td><td class="num">£26<sup class="r"><a href="#s50">50</a></sup></td></tr>
+<tr><td>London Heathrow</td><td>Elizabeth line → central London</td><td class="num" data-v="45">under 45</td><td class="num" data-v="30">30</td><td class="num">£13.90<sup class="r"><a href="#s51">51</a></sup></td></tr>
+<tr><td>Oslo</td><td>Flytoget → city centre</td><td class="num" data-v="19">19</td><td class="num" data-v="10">10</td><td>—<sup class="r"><a href="#s52">52</a></sup></td></tr>
+<tr><td>Hong Kong</td><td>Airport Express → Hong Kong station</td><td class="num" data-v="24">24</td><td class="num" data-v="10">~10</td><td class="num">HK$115<sup class="r"><a href="#s53">53</a></sup></td></tr>
+<tr><td>London Luton</td><td>DART + Luton Airport Express → St Pancras</td><td class="num" data-v="22">22–32 + DART</td><td class="num" data-v="30">30</td><td>from £10 + DART<sup class="r"><a href="#s54">54</a></sup></td></tr>
+<tr><td>London Gatwick</td><td>Gatwick Express → Victoria</td><td class="num" data-v="30">30</td><td class="num" data-v="30">30</td><td>—<sup class="r"><a href="#s55">55</a></sup></td></tr>
+<tr><td>London Stansted</td><td>Stansted Express → Liverpool Street</td><td class="num" data-v="48">48 (avg)</td><td class="num" data-v="15">15–30</td><td>from £9.90<sup class="r"><a href="#s56">56</a></sup></td></tr>
+</tbody>
+</table>
+</div>
+<p class="cap">Operators' published figures, October 2026. "—" means the official page states no fare or frequency. Heathrow Express sells advance fares from £10 booked 30 days ahead. Luton's DART shuttle to Luton Airport Parkway carries its own fee, not included in the train fares.</p>
+</section>
+
+<section id="far">
+<h2 class="sign"><span class="g">F</span><span class="t">Airports far from town</span><span class="arr" aria-hidden="true">→</span></h2>
+
+<p>London alone has six major international airports: Heathrow, Gatwick, Stansted, Luton, City and Southend.<sup class="r"><a href="#s57">57</a></sup> Most big cities have at least a second option, and low-cost airlines have made a business of airports whose names promise more than their location delivers. Measured from the city in the name (for Hahn, from Frankfurt's main airport):</p>
+
+<div class="far" role="list" aria-label="Distance from the named city">
+ <div class="row" role="listitem"><div class="nm">Milan Bergamo<span>Orio al Serio</span></div><div class="bar"><i style="width:45%">45 km</i></div></div>
+ <div class="row" role="listitem"><div class="nm">Paris Beauvais<span>Beauvais-Tillé</span></div><div class="bar"><i style="width:80%">≈80 km</i></div></div>
+ <div class="row" role="listitem"><div class="nm">Barcelona Girona<span>Girona-Costa Brava</span></div><div class="bar"><i style="width:85%">85 km</i></div></div>
+ <div class="row" role="listitem"><div class="nm">Frankfurt-Hahn<span>Hunsrück</span></div><div class="bar"><i style="width:100%">≈100 km</i></div></div>
+ <div class="row" role="listitem"><div class="nm">Stockholm Skavsta<span>near Nyköping</span></div><div class="bar"><i style="width:100%">100 km</i></div></div>
+</div>
+<p class="cap">Bergamo is 45 km from Milan, by its airport's own figure;<sup class="r"><a href="#s58">58</a></sup> Beauvais about 80 km north of Paris, by the Paris tourist office;<sup class="r"><a href="#s59">59</a></sup> Girona 85 km from Barcelona, by the operator Aena;<sup class="r"><a href="#s60">60</a></sup> Hahn around 100 km from Frankfurt Airport;<sup class="r"><a href="#s61">61</a></sup> Skavsta 100 km south of Stockholm.<sup class="r"><a href="#s62">62</a></sup></p>
+
+<p>The distance is only half of it. Beauvais's official shuttle to Porte Maillot, on the western edge of Paris, takes from 1h15, traffic permitting, and costs €17.90 one way bought online;<sup class="r"><a href="#s63">63</a></sup> the tourist office says to allow about 1h30.<sup class="r"><a href="#s59">59</a></sup> The direct bus from Girona airport to Barcelona Nord takes 75 minutes and costs €35 return.<sup class="r"><a href="#s64">64</a></sup> Shuttles from these airports are usually timed to flights, so a delayed arrival can mean waiting for the next one.</p>
+
+<h3>The airport in two countries</h3>
+<p>The opposite case is EuroAirport Basel-Mulhouse-Freiburg, which stands on French soil under a Franco-Swiss convention signed in Bern on 4 July 1949 and calls itself the world's only binational airport.<sup class="r"><a href="#s65">65</a>,<a href="#s66">66</a></sup> It has a Swiss sector, where prices are in Swiss francs, and a French sector priced in euros.<sup class="r"><a href="#s65">65</a></sup> From the Swiss side, bus 50 runs every seven to ten minutes to Basel SBB station in about 20 minutes.<sup class="r"><a href="#s67">67</a></sup> One building serves three countries' worth of catchment, so it is worth checking for anyone heading to north-west Switzerland, Alsace or southern Baden.</p>
+</section>
+
+<section id="overnight">
+<h2 class="sign"><span class="g">G</span><span class="t">Long layovers</span><span class="arr" aria-hidden="true">→</span></h2>
+
+<p>A long connection is usually a scheduling accident, the gap between one bank and the next. A few hubs have turned it into a product, and several airlines will let you stretch it into a holiday for no extra airfare. The rules below are each operator's own, as published in October 2026; they change, so check before relying on them.</p>
+
+<div class="tbl" tabindex="0" role="region" aria-label="Layover programmes">
+<table>
+<thead><tr><th scope="col">Programme</th><th scope="col">Who qualifies</th><th scope="col">The catch</th></tr></thead>
+<tbody>
+<tr><td><b>Free Singapore Tour</b><br>Changi</td><td>Transit passengers with 5.5 to 24 hours before the next flight, bags checked through. Free 2.5-hour guided tours, several slots a day; register at booths in the T2 and T3 transit areas.<sup class="r"><a href="#s68">68</a></sup></td><td>Your flight times must fit the tour slots, and some nationalities need a Singapore visa to join.<sup class="r"><a href="#s68">68</a></sup></td></tr>
+<tr><td><b>Touristanbul</b><br>Turkish Airlines, Istanbul</td><td>International-to-international connections with a layover of 6 to 24 hours, on a Turkish Airlines ticket (number starting 235) with both flights in one booking. Free.<sup class="r"><a href="#s69">69</a></sup></td><td>Tours run at set times between 08:00 and 23:00 (the latest is seasonal) and must finish at least 1h25 before your next flight. It can't be combined with a Stopover or with the transfer hotel in the same layover; visas are your responsibility.<sup class="r"><a href="#s69">69</a>,<a href="#s70">70</a></sup></td></tr>
+<tr><td><b>Transfer hotel</b><br>Turkish Airlines, Istanbul</td><td>Economy passengers with a layover of 12 hours or more; Business passengers with nine hours or more; both flights on one ticket.<sup class="r"><a href="#s71">71</a></sup></td><td>"If a shorter layover flight is available, hotel accommodation cannot be used, even if that flight is fully booked."<sup class="r"><a href="#s71">71</a></sup></td></tr>
+<tr><td><b>Icelandair Stopover</b><br>Reykjavík</td><td>Most fares allow up to seven nights in Iceland with "no additional airfare"; flex fares allow up to 21.<sup class="r"><a href="#s72">72</a></sup></td><td>Hotels are extra, and the fare for your chosen dates may differ; adding it later costs a change fee.<sup class="r"><a href="#s72">72</a></sup></td></tr>
+<tr><td><b>Portugal Stopover</b><br>TAP, Lisbon or Porto</td><td>Up to ten days "at no extra cost on your ticket".<sup class="r"><a href="#s73">73</a></sup></td><td>Only where the "Add a free Stopover" option appears during booking.<sup class="r"><a href="#s73">73</a></sup></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Airside or landside?</h3>
+<p>Sleeping at the airport has one question that matters more than price: is the hotel inside the transit area? Changi's transit hotels in Terminals 1, 2 and 3 are airside, and Changi warns guests not to clear immigration if they want to stay in them. The YOTELAIR in Changi's Jewel complex is in the public area, so its guests must pass through immigration.<sup class="r"><a href="#s74">74</a></sup> The Aerotel at Heathrow is in the Terminal 3 arrivals hall, landside.<sup class="r"><a href="#s75">75</a></sup> A landside hotel means a passport check, perhaps a visa, and security again in the morning.</p>
+</section>
+
+<section id="journeys">
+<h2 class="sign"><span class="g">H</span><span class="t">Five worked journeys</span><span class="arr" aria-hidden="true">→</span></h2>
+
+<p>Each journey below is broken into its legs with the operators' own figures. Where no official figure exists, we have made an assumption and said so. Fares for flights and trains change by the hour, so they are left as the variable you fill in; fixed ground costs are given where published.</p>
+
+<div class="key" aria-hidden="true">
+ <span><i style="background:#d6c7a0"></i>getting to the start</span>
+ <span><i style="background:repeating-linear-gradient(135deg,#8b8679 0 4px,#b4afa2 4px 8px)"></i>waiting, checks</span>
+ <span><i style="background:#151515"></i>flying</span>
+ <span><i style="background:#0a6640"></i>train or bus</span>
+</div>
+
+<article class="journey" id="j1">
+ <div class="jh"><h3>1 · Central London to central Paris</h3><span class="no">Train vs plane</span></div>
+ <div class="jb">
+  <div class="opt">
+   <div class="ol"><span>Eurostar from St Pancras</span><span class="tot">≈ 3h31</span></div>
+   <div class="tl" role="img" aria-label="Eurostar: 75 minutes waiting, 136 minutes on the train"><span class="wt" style="flex:75"></span><span class="mv" style="flex:136"></span></div>
+   <ul class="legs">
+    <li><span class="m">75 min</span><span>Eurostar asks Standard passengers to arrive 75 minutes before departure; the gate closes at 30.<sup class="r"><a href="#s76">76</a></sup></span></li>
+    <li><span class="m">2h16</span><span>Most trains reach Paris Gare du Nord in 2hrs 16mins.<sup class="r"><a href="#s77">77</a></sup> You arrive in the city.</span></li>
+   </ul>
+  </div>
+  <div class="opt">
+   <div class="ol"><span>Fly from Heathrow T5 to Charles de Gaulle</span><span class="tot">≈ 4h45</span></div>
+   <div class="tl" role="img" aria-label="Flying: 20 minutes to the airport, 120 minutes early arrival, about 80 minutes flying, 30 minutes leaving the airport, 35 minutes on the train into Paris"><span class="as" style="flex:20"></span><span class="wt" style="flex:120"></span><span class="fl" style="flex:80"></span><span class="wt" style="flex:30"></span><span class="mv" style="flex:35"></span></div>
+   <ul class="legs">
+    <li><span class="m">20 min</span><span>Heathrow Express from Paddington: 15 minutes to Terminals 2 and 3, five more to Terminal 5; we use the longer time, since Paris flights leave from Terminals 4 and 5.<sup class="r"><a href="#s50">50</a>,<a href="#s79">79</a></sup> £26 single.<sup class="r"><a href="#s50">50</a></sup></span></li>
+    <li><span class="m">120 min</span><span>Heathrow advises arriving two hours before a European flight.<sup class="r"><a href="#s78">78</a></sup></span></li>
+    <li><span class="m">≈80 min</span><span>Scheduled flight times on the route run from about 1h10 to 1h25.<sup class="r"><a href="#s79">79</a></sup></span></li>
+    <li><span class="m">30 min</span><span><i>Our assumption</i> for leaving the aircraft and the terminal with hand luggage only.</span></li>
+    <li><span class="m">≈35 min</span><span>RER B to Gare du Nord, €14.<sup class="r"><a href="#s80">80</a></sup></span></li>
+   </ul>
+  </div>
+  <p class="verdict"><b>Verdict:</b> the train wins by about an hour and a quarter, plus around £26 and €14 in airport transfers, and it starts and ends in the city. The gap narrows if you trust the check-in deadline instead of the advice: British Airways closes short-haul check-in 45 minutes before departure,<sup class="r"><a href="#s81">81</a></sup> and arriving an hour early brings the flight to about 3h45, but with no room for a slow security queue. The clocks in Paris are an hour ahead of London's either way.</p>
+ </div>
+</article>
+
+<article class="journey" id="j2">
+ <div class="jh"><h3>2 · London to New York, or onward</h3><span class="no">Nonstop vs Preclearance via Dublin</span></div>
+ <div class="jb">
+  <p>Two ways to the same city. A nonstop from Heathrow is shorter in the air and simpler on paper. Going via Dublin adds a flight, but the US border moves to Ireland.</p>
+  <ul class="legs">
+   <li><span class="m">Heathrow</span><span>Arrive three hours before a long-haul flight, Heathrow advises.<sup class="r"><a href="#s78">78</a></sup> On landing in New York you join the CBP inspection queue; if you are flying on within the US, you collect your bag, recheck it and clear security again before the next flight.<sup class="r"><a href="#s36">36</a></sup></span></li>
+   <li><span class="m">Dublin</span><span>Dublin Airport also advises three hours for long-haul flights. US flights leave from Terminal 2, where Preclearance runs all US immigration, customs and agriculture checks before departure, and you "arrive in the U.S. as a domestic passenger".<sup class="r"><a href="#s82">82</a>,<a href="#s83">83</a></sup></span></li>
+   <li><span class="m">Either way</span><span>Visa Waiver travellers need an approved ESTA; Dublin advises applying at least 72 hours ahead.<sup class="r"><a href="#s82">82</a></sup></span></li>
+  </ul>
+  <p class="verdict"><b>Verdict:</b> for New York alone, the nonstop usually wins on total time. The Dublin routing earns its extra flight when the trip continues: you land as a domestic passenger, so a connection to a second US city loses the border queue and the bag recheck that would otherwise sit inside it. At O'Hare, precleared passengers can change terminals without being screened again.<sup class="r"><a href="#s36">36</a></sup> The ground at the London end counts too, because the Dublin leg can start from whichever London airport is easiest to reach.</p>
+ </div>
+</article>
+
+<article class="journey" id="j3">
+ <div class="jh"><h3>3 · Paris to Bordeaux</h3><span class="no">The route with no flight</span></div>
+ <div class="jb">
+  <div class="opt">
+   <div class="ol"><span>TGV from Paris-Montparnasse</span><span class="tot">from 2h02</span></div>
+   <div class="tl" role="img" aria-label="Train only: 122 minutes on the train"><span class="mv" style="flex:122"></span></div>
+   <ul class="legs">
+    <li><span class="m">2h02</span><span>SNCF gives 2h02 as the fastest time and lists 33 trains a day, mostly from Montparnasse, with second-class fares from €16 one way, subject to availability.<sup class="r"><a href="#s84">84</a></sup> <span class="asof">Oct 2026</span></span></li>
+   </ul>
+  </div>
+  <p>There is no flight to compare it with from Orly: the route fell under France's 2h30 rule.<sup class="r"><a href="#s45">45</a></sup> The interesting case is the traveller landing at Charles de Gaulle on a long-haul flight. Flights from CDG to Bordeaux were not banned, because the train from that airport does not meet the law's test,<sup class="r"><a href="#s47">47</a></sup> and Air France's Train + Air sells onward rail journeys from CDG on a single booking, with protection if either leg runs late; check whether your destination is covered.<sup class="r"><a href="#s44">44</a></sup></p>
+  <p class="verdict"><b>Verdict:</b> from central Paris, the train. From a long-haul arrival at CDG, compare the onward flight against a Train + Air booking or a train from the airport, and count a single protected booking as worth something in its own right.</p>
+ </div>
+</article>
+
+<article class="journey" id="j4">
+ <div class="jh"><h3>4 · The cheaper fare to Beauvais</h3><span class="no">Paris, via the airport 80 km away</span></div>
+ <div class="jb">
+  <div class="opt">
+   <div class="ol"><span>Land at Charles de Gaulle</span><span class="tot">≈ 1h05 to the city</span></div>
+   <div class="tl" role="img" aria-label="CDG: 30 minutes leaving the airport, 35 minutes by train" style="width:52%"><span class="wt" style="flex:30"></span><span class="mv" style="flex:35"></span></div>
+   <ul class="legs">
+    <li><span class="m">30 min</span><span><i>Our assumption</i> for leaving the aircraft and terminal, as in journey 1.</span></li>
+    <li><span class="m">≈35 min</span><span>RER B to Gare du Nord, €14.<sup class="r"><a href="#s80">80</a></sup></span></li>
+   </ul>
+  </div>
+  <div class="opt">
+   <div class="ol"><span>Land at Beauvais</span><span class="tot">≈ 1h45–2h00</span></div>
+   <div class="tl" role="img" aria-label="Beauvais: 30 minutes leaving the airport, 75 to 90 minutes by shuttle bus"><span class="wt" style="flex:30"></span><span class="mv" style="flex:82"></span></div>
+   <ul class="legs">
+    <li><span class="m">30 min</span><span><i>Our assumption</i>, the same as at CDG.</span></li>
+    <li><span class="m">75–90 min</span><span>Official shuttle to Porte Maillot, from 1h15 depending on traffic, €17.90 online;<sup class="r"><a href="#s63">63</a></sup> the tourist office says about 1h30.<sup class="r"><a href="#s59">59</a></sup></span></li>
+   </ul>
+  </div>
+  <p class="verdict"><b>Verdict:</b> Beauvais costs at least 40 extra minutes and about €3.90 more on the ground each way, and drops you on the edge of the city rather than at a central station. On a return trip that is roughly 1h20 to 1h50 and around €8 more. The cheaper airfare has to beat that, plus whatever the low-cost airline charges for the bag the other fare included.</p>
+ </div>
+</article>
+
+<article class="journey" id="j5">
+ <div class="jh"><h3>5 · Fourteen hours in Istanbul</h3><span class="no">A long connection, used well</span></div>
+ <div class="jb">
+  <p>Suppose a Turkish Airlines itinerary, on one ticket in Economy, lands at Istanbul at 06:00 and connects at 20:00, 14 hours later.</p>
+  <ul class="legs">
+   <li><span class="m">Hotel</span><span>Timing aside, the layover clears the 12-hour Economy threshold for Turkish Airlines' transfer hotel, but only if no shorter connection exists on that route, "even if that flight is fully booked". Apply at the Hotel Desk on the arrivals level.<sup class="r"><a href="#s71">71</a></sup></span></li>
+   <li><span class="m">Tour</span><span>Fourteen daytime hours also fit Touristanbul's 6–24-hour window and the daytime tour slots, provided the tour ends at least 1h25 before the next flight. You can have the tour or the hotel in one layover, not both.<sup class="r"><a href="#s69">69</a>,<a href="#s70">70</a></sup></span></li>
+   <li><span class="m">Border</span><span>Both mean leaving the airport, so you need whatever entry permission your passport requires for Türkiye; the airline says visas are the passenger's responsibility.<sup class="r"><a href="#s70">70</a></sup></span></li>
+  </ul>
+  <p>The same daytime gap at Changi falls inside the Free Singapore Tour's 5.5-to-24-hour window, though the tour also needs your flights to fit its slots; and an airside transit hotel offers a bed without entering Singapore at all.<sup class="r"><a href="#s68">68</a>,<a href="#s74">74</a></sup></p>
+  <p class="verdict"><b>Verdict:</b> a long connection on a single ticket with an airline that runs these schemes can cost less than a shorter one bought on two tickets with a night in a hotel you pay for. Before booking a fare for its layover, check the rules on the day; they are the airline's to change.</p>
+ </div>
+</article>
+
+<section class="calc" id="calc" aria-labelledby="calch">
+ <h3 id="calch">Door-to-door calculator</h3>
+ <p>Fill in two ways of making the same trip. Times in minutes, costs in any one currency. It starts with journey 1; use your own numbers, and put a value on an hour of your time if you want the comparison to account for it.</p>
+ <form id="cf" onsubmit="return false">
+ <div class="cols">
+  <fieldset><legend>Option A</legend>
+   <label class="nm">Name <input id="a_name" type="text" value="Eurostar"></label>
+   <label>Getting to the start (min) <input id="a1" type="number" min="0" inputmode="numeric" value="0"></label>
+   <label>Arrive early / checks (min) <input id="a2" type="number" min="0" inputmode="numeric" value="75"></label>
+   <label>Main journey (min) <input id="a3" type="number" min="0" inputmode="numeric" value="136"></label>
+   <label>Transfers and exits (min) <input id="a4" type="number" min="0" inputmode="numeric" value="0"></label>
+   <label>Final leg to destination (min) <input id="a5" type="number" min="0" inputmode="numeric" value="0"></label>
+   <label>Fare <input id="ac1" type="number" min="0" step="0.01" inputmode="decimal" value="0"></label>
+   <label>Bags and fees <input id="ac2" type="number" min="0" step="0.01" inputmode="decimal" value="0"></label>
+   <label>Ground transport <input id="ac3" type="number" min="0" step="0.01" inputmode="decimal" value="0"></label>
+  </fieldset>
+  <fieldset><legend>Option B</legend>
+   <label class="nm">Name <input id="b_name" type="text" value="Fly LHR T5–CDG"></label>
+   <label>Getting to the start (min) <input id="b1" type="number" min="0" inputmode="numeric" value="20"></label>
+   <label>Arrive early / checks (min) <input id="b2" type="number" min="0" inputmode="numeric" value="120"></label>
+   <label>Main journey (min) <input id="b3" type="number" min="0" inputmode="numeric" value="80"></label>
+   <label>Transfers and exits (min) <input id="b4" type="number" min="0" inputmode="numeric" value="30"></label>
+   <label>Final leg to destination (min) <input id="b5" type="number" min="0" inputmode="numeric" value="35"></label>
+   <label>Fare <input id="bc1" type="number" min="0" step="0.01" inputmode="decimal" value="0"></label>
+   <label>Bags and fees <input id="bc2" type="number" min="0" step="0.01" inputmode="decimal" value="0"></label>
+   <label>Ground transport <input id="bc3" type="number" min="0" step="0.01" inputmode="decimal" value="0"></label>
+  </fieldset>
+ </div>
+ <div class="row2"><label for="vot">Value of an hour of your time</label><input id="vot" type="number" min="0" step="1" inputmode="decimal" value="0"></div>
+ <div class="out" id="cout" aria-live="polite">Option A: <b>3h31</b>. Option B: <b>4h45</b>. A is quicker by 1h14.</div>
+ <div class="btns"><button type="button" id="reset">Reset to journey 1</button></div>
+ </form>
+ <p style="margin:12px 0 0;font-size:14px;color:#cfcfcf">For journey 1, option B's ground costs are the £26 Heathrow Express and the €14 RER ticket; enter them in one currency at today's rate. Nothing you type leaves this page.</p>
+</section>
+</section>
+
+<section class="sources" id="sources">
+<h2 class="sign"><span class="g">⌘</span><span class="t">Sources</span></h2>
+<ol>
+<li id="s1"><a href="https://airandspace.si.edu/stories/editorial/airline-deregulation-when-everything-changed">Airline Deregulation: When Everything Changed</a> <span class="pub">· Smithsonian National Air and Space Museum</span></li>
+<li id="s2"><a href="https://transportgeography.org/contents/chapter5/air-transport/hub-spoke-deregulation/">Airline Deregulation and Hub-and-Spoke Networks</a> <span class="pub">· The Geography of Transport Systems (J.-P. Rodrigue)</span></li>
+<li id="s3"><a href="https://users.ssc.wisc.edu/~hendrick/publications/EconomicsofHubs.pdf">The Economics of Hubs: The Case of Monopoly</a> <span class="pub">· Hendricks, Piccione and Tan, Review of Economic Studies (1995)</span></li>
+<li id="s4"><a href="https://ideas.repec.org/a/eee/jaitra/v11y2005i3p185-198.html">Temporal configurations of European airline networks</a> <span class="pub">· Burghouwt and de Wit, Journal of Air Transport Management (2005)</span></li>
+<li id="s5"><a href="https://en.wikipedia.org/wiki/Airline_hub">Airline hub</a> <span class="pub">· Wikipedia (citing Belobaba et al., The Global Airline Industry)</span></li>
+<li id="s6"><a href="https://icao.int/pages/freedomsair.aspx">Freedoms of the Air</a> <span class="pub">· International Civil Aviation Organization</span></li>
+<li id="s7"><a href="https://www.businesstraveller.com/opinion/sixth-freedom-success/">Sixth freedom success</a> <span class="pub">· Business Traveller (2023)</span></li>
+<li id="s8"><a href="https://centreforaviation.com/analysis/middle-east-sixth-freedom-hubs-add-8-million-passengers-in-2011-as-home-carriers-plan-further-growth-69249">Middle East sixth freedom hubs add 8 million passengers in 2011</a> <span class="pub">· CAPA Centre for Aviation (2012)</span></li>
+<li id="s9"><a href="https://aci.aero/?p=160852">World's Busiest Airports Revealed in Latest Global Rankings</a> <span class="pub">· Airports Council International World (April 2026)</span></li>
+<li id="s10"><a href="https://www.iata.org/en/publications/manuals/multilateral-interline-traffic-agreements/">Multilateral Interline Traffic Agreements</a> <span class="pub">· IATA</span></li>
+<li id="s11"><a href="https://www.justice.gov/atr/public/testimony/1755.pdf">Testimony of John M. Nannes on airline alliances (1998)</a> <span class="pub">· US Department of Justice, Antitrust Division</span></li>
+<li id="s12"><a href="https://www.transportation.gov/sites/dot.gov/files/2020-10/Delta%20WestJet%20Show%20Cause%20Order%202020-10-13.pdf">Delta/WestJet show cause order (2020)</a> <span class="pub">· US Department of Transportation</span></li>
+<li id="s13"><a href="https://www.transportation.gov/briefing-room/4719">DOT tentatively grants antitrust immunity to Delta, Air France, KLM and Virgin Atlantic (2019)</a> <span class="pub">· US Department of Transportation</span></li>
+<li id="s14"><a href="https://news.aa.com/news/news-details/2020/US-Department-of-Transportation-Approves-Aer-Lingus-to-Join-Trans-Atlantic-Joint-Business-Between-American-Airlines-British-Airways-Iberia-and-Finnair-NET-ALP-12/default.aspx">DOT approves Aer Lingus to join transatlantic joint business</a> <span class="pub">· American Airlines Newsroom (2020)</span></li>
+<li id="s15"><a href="https://www.travelextra.ie/ita-to-join-lufthansa-transatlantic-joint-venture-with-air-canada-united/">ITA to join Lufthansa transatlantic joint venture with Air Canada and United</a> <span class="pub">· TravelExtra (2025)</span></li>
+<li id="s16"><a href="https://airwaysmag.com/star-alliance-is-founded">Star Alliance is founded</a> <span class="pub">· Airways Magazine</span></li>
+<li id="s17"><a href="https://business.lufthansagroup.com/be/en/program/experts/news/ita-airways-is-now-part-of-star-alliance">ITA Airways is now part of Star Alliance</a> <span class="pub">· Lufthansa Group (2026)</span></li>
+<li id="s18"><a href="https://www.evaair.com/en-at/about-eva-air/news/star-alliance-press-releases/2026-06-23-oz-news.html">Star Alliance press release on Asiana Airlines (June 2026)</a> <span class="pub">· Star Alliance, via EVA Air</span></li>
+<li id="s19"><a href="https://www.businesstraveller.com/business-travel/2024/02/01/oneworld-celebrates-25th-anniversary/">Oneworld celebrates 25th anniversary</a> <span class="pub">· Business Traveller (2024)</span></li>
+<li id="s20"><a href="https://www.oneworld.com/members">Member airlines</a> <span class="pub">· oneworld</span></li>
+<li id="s21"><a href="https://www.oneworld.com/news/2025-06-30-oneworld-welcomes-oman-air">oneworld welcomes Oman Air</a> <span class="pub">· oneworld (2025)</span>; <a href="https://news.alaskaair.com/destinations/alaska-airlines-welcomes-fiji-airways-as-the-newest-full-member-of-the-oneworld-alliance/">Fiji Airways full member</a> <span class="pub">· Alaska Airlines Newsroom (2025)</span></li>
+<li id="s22"><a href="https://www.skyteam.com/en/about/faq/general-alliance-questions">General alliance questions</a> <span class="pub">· SkyTeam</span></li>
+<li id="s23"><a href="https://thepointsguy.com/news/virgin-atlantic-has-joined-skyteam">Virgin Atlantic has joined SkyTeam</a> <span class="pub">· The Points Guy (2023)</span></li>
+<li id="s24"><a href="https://loyaltylobby.com/2025/02/03/ita-airways-has-exited-skyteam-joins-star-alliance-in-2026/">ITA Airways has exited SkyTeam</a> <span class="pub">· LoyaltyLobby (2025)</span></li>
+<li id="s25"><a href="https://www.oag.com/minimum-connection-time">Minimum Connection Times (MCTs): An Insider's Guide</a> <span class="pub">· OAG</span></li>
+<li id="s26"><a href="https://www.klm.com/information/airport/transfers">Transfers</a> <span class="pub">· KLM</span></li>
+<li id="s27"><a href="https://www.heathrow.com/connecting-flights">Connecting flights</a> <span class="pub">· Heathrow Airport</span>; <a href="https://www.heathrow.com/heathrow-blog/a-guide-to-connections">A guide to connections</a> <span class="pub">· Heathrow</span></li>
+<li id="s28"><a href="https://curia.europa.eu/jcms/upload/docs/application/pdf/2013-02/cp130018es.pdf">Press release on Case C-11/11, Air France v Folkerts (2013)</a> <span class="pub">· Court of Justice of the European Union</span></li>
+<li id="s29"><a href="https://www.gatwickairport.com/flights/flight-connections.html">Flight connections</a> <span class="pub">· Gatwick Airport</span></li>
+<li id="s30"><a href="https://www.prnewswire.co.uk/news-releases/dohop-and-gatwick-launch-gatwickconnects-a-ground-breaking-new-flight-connection-service-528161971.html">Dohop and Gatwick launch GatwickConnects (2015)</a> <span class="pub">· PR Newswire</span></li>
+<li id="s31"><a href="https://www.frankfurt-airport.com/en/flights-and-transfer/transferring-at-fra.html">Transferring at FRA</a> <span class="pub">· Frankfurt Airport (Fraport)</span></li>
+<li id="s32"><a href="https://www.munich-airport.com/connecting-flights-260553">Connecting flights</a> <span class="pub">· Munich Airport</span></li>
+<li id="s33"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=LEGISSUM%3A230101_1">Rules on crossing EU borders (Schengen Borders Code summary)</a> <span class="pub">· EUR-Lex</span></li>
+<li id="s34"><a href="https://www.govinfo.gov/content/pkg/FR-2003-08-07/pdf/03-20130.pdf">Suspension of the Transit Without Visa and International-to-International programs (2003)</a> <span class="pub">· Federal Register</span></li>
+<li id="s35"><a href="https://www.cbp.gov/travel/international-visitors/esta/frequently-asked-questions-about-visa-waiver-program-vwp-and-electronic-system-travel">FAQs about the Visa Waiver Program and ESTA</a> <span class="pub">· US Customs and Border Protection</span></li>
+<li id="s36"><a href="https://www.flychicago.com/ohare/myflight/international/Pages/default.aspx">International travel at O'Hare</a> <span class="pub">· Chicago Department of Aviation</span></li>
+<li id="s37"><a href="https://www.heathrow.com/transport-and-directions/travel-between-airports">Travel between London airports</a> <span class="pub">· Heathrow Airport</span></li>
+<li id="s38"><a href="https://www.cbp.gov/travel/preclearance">Preclearance</a> <span class="pub">· US Customs and Border Protection</span></li>
+<li id="s39"><a href="https://www.aerotelegraph.com/zubringerdienste-von-lufthansa-heissen-neu-alle-lufthansa-express">Zubringerdienste von Lufthansa heißen neu alle Lufthansa Express (2015)</a> <span class="pub">· aeroTELEGRAPH</span></li>
+<li id="s40"><a href="https://newsroom.lufthansagroup.com/en/by-train-and-by-plane-lufthansa-and-deutsche-bahn-announce-record-figures1/">By train and by plane: Lufthansa and Deutsche Bahn announce record figures (2024)</a> <span class="pub">· Lufthansa Group Newsroom</span></li>
+<li id="s41"><a href="https://business.lufthansagroup.com/be/en/news/lh-express-rail-network-2024">Lufthansa Express Rail network 2024</a> <span class="pub">· Lufthansa Group</span></li>
+<li id="s42"><a href="https://www.austrian.com/fr/en/airail-and-fly">AIRail and Fly</a> <span class="pub">· Austrian Airlines</span></li>
+<li id="s43"><a href="https://oebb.at/en/regionale-angebote/ueberregionale-angebote/anreise-zum-flughafen/austrian-airail">Austrian AIRail</a> <span class="pub">· ÖBB</span></li>
+<li id="s44"><a href="https://corporate.airfrance.com/fr/actualites/air-france-et-sncf-voyageurs-etendent-loffre-dintermodalite-train-air-lensemble-des">Air France et SNCF Voyageurs étendent l'offre d'intermodalité Train + Air (2026)</a> <span class="pub">· Air France</span></li>
+<li id="s45"><a href="https://www.maire-info.com/interdiction-des-liaisons-aeriennes-courtes-le-decret-est-paru-mais-naura-aucun-effet-pour-linstant-article2-27531">Interdiction des liaisons aériennes courtes : le décret est paru (2023)</a> <span class="pub">· Maire-info</span></li>
+<li id="s46"><a href="https://eur-lex.europa.eu/eli/dec_impl/2022/2358/oj">Commission Implementing Decision (EU) 2022/2358</a> <span class="pub">· EUR-Lex</span>; <a href="https://www.consultations-publiques.developpement-durable.gouv.fr/IMG/pdf/decision_consultation_public_2h30.pdf">French text of the decision</a> <span class="pub">· French Ministry of Ecological Transition</span></li>
+<li id="s47"><a href="https://blog.landot-avocats.net/2023/05/23/quelles-sont-les-lignes-aeriennes-qui-seront-supprimees-au-terme-du-decret-dapplication-de-la-loi-climat-resilience-pour-cause-doffre-suffisante-dalternative-par-le-train/">Quelles sont les lignes aériennes qui seront supprimées (2023)</a> <span class="pub">· Landot &amp; Associés</span></li>
+<li id="s48"><a href="https://www.schiphol.nl/en/from-to-schiphol/by-public-transport/train/">By train</a> <span class="pub">· Amsterdam Airport Schiphol</span></li>
+<li id="s49"><a href="https://www.flughafen-zuerich.ch/en/passengers/practical/parking-and-transport/train-tram-and-bus">Train, tram and bus</a> <span class="pub">· Zurich Airport</span></li>
+<li id="s50"><a href="https://www.heathrow.com/transport-and-directions/by-rail-or-train/heathrow-express">Heathrow Express</a> <span class="pub">· Heathrow Airport</span></li>
+<li id="s51"><a href="https://www.heathrow.com/transport-and-directions/getting-to-central-london">Getting to central London</a> <span class="pub">· Heathrow Airport</span></li>
+<li id="s52"><a href="https://flytoget.no/en/">Flytoget</a> <span class="pub">· Flytoget AS</span></li>
+<li id="s53"><a href="https://hkairport.com/en/transport/to-from-airport/airport-express.page">Airport Express</a> <span class="pub">· Hong Kong International Airport</span></li>
+<li id="s54"><a href="https://www.london-luton.co.uk/to-and-from-lla/trains/to-from-london">Trains to and from London</a> <span class="pub">· London Luton Airport</span></li>
+<li id="s55"><a href="https://gatwickairport.com/transport-options/to-from-london.html">To and from London</a> <span class="pub">· Gatwick Airport</span></li>
+<li id="s56"><a href="https://www.stanstedexpress.com/travel-information/popular-journeys/london-liverpool-street-train-to-stansted-airport">London Liverpool Street to Stansted Airport</a> <span class="pub">· Stansted Express</span></li>
+<li id="s57"><a href="https://www.london.gov.uk/who-we-are/what-london-assembly-does/london-assembly-research-unit-publications/londons-airports">London's airports</a> <span class="pub">· London Assembly Research Unit (2025)</span></li>
+<li id="s58"><a href="https://www.milanbergamoairport.it/en/airport-infrastructure/">Airport infrastructure</a> <span class="pub">· Milan Bergamo Airport (SACBO)</span></li>
+<li id="s59"><a href="https://parisjetaime.com/eng/article/from-paris-beauvais-airport-a540">From Paris-Beauvais airport</a> <span class="pub">· Paris je t'aime, Paris tourist office</span></li>
+<li id="s60"><a href="https://www.aena.es/en/girona-costa-brava/about-us/presentation.html">Girona-Costa Brava Airport: presentation</a> <span class="pub">· Aena</span></li>
+<li id="s61"><a href="https://www.ch-aviation.com/news/108911-frankfurt-hahn-operator-declares-insolvency">Frankfurt Hahn operator declares insolvency (2021)</a> <span class="pub">· ch-aviation</span></li>
+<li id="s62"><a href="https://www.skavsta.se/en/corporate/about-the-airport/">About the airport</a> <span class="pub">· Stockholm Skavsta Airport</span></li>
+<li id="s63"><a href="https://aeroportparisbeauvais.com/en/access-parking/paris-airport-shuttle">Paris airport shuttle</a> <span class="pub">· Aéroport Paris Beauvais</span></li>
+<li id="s64"><a href="https://www.sagales.com/en/trip/17/transfer-girona-airport-barcelona-centre">Transfer Girona Airport – Barcelona centre</a> <span class="pub">· Sagalés</span></li>
+<li id="s65"><a href="https://www.euroairport.com/en/publications/news/new-tower-banner-at-euroairport-75-years-of-the-franco-swiss-treaty">75 years of the Franco-Swiss treaty</a> <span class="pub">· EuroAirport</span></li>
+<li id="s66"><a href="https://www.bazl.admin.ch/fr/aeroport-bale-mulhouse">Aéroport de Bâle-Mulhouse</a> <span class="pub">· Swiss Federal Office of Civil Aviation</span></li>
+<li id="s67"><a href="https://www.euroairport.com/en/transport">Transport</a> <span class="pub">· EuroAirport</span></li>
+<li id="s68"><a href="https://www.changiairport.com/en/airport-guide/facilities-and-services/free-singapore-tour.html">Free Singapore Tour</a> <span class="pub">· Changi Airport Group</span></li>
+<li id="s69"><a href="https://www.turkishairlines.com/en-us/flights/fly-different/touristanbul/">Touristanbul</a> <span class="pub">· Turkish Airlines</span></li>
+<li id="s70"><a href="https://www.turkishairlines.com/en-us/flights/fly-different/touristanbul/faq/">Touristanbul FAQ</a> <span class="pub">· Turkish Airlines</span></li>
+<li id="s71"><a href="https://www.turkishairlines.com/en-ae/flights/hotel-service/">Hotel service</a> <span class="pub">· Turkish Airlines</span></li>
+<li id="s72"><a href="https://www.icelandair.com/flights/stopover/">Stopover in Iceland</a> <span class="pub">· Icelandair</span></li>
+<li id="s73"><a href="https://www.flytap.com/en-us/stopover">Portugal Stopover</a> <span class="pub">· TAP Air Portugal</span></li>
+<li id="s74"><a href="https://www.changiairport.com/en/at-changi/facilities-and-services-directory/transit-hotels.html">Transit hotels</a> <span class="pub">· Changi Airport</span></li>
+<li id="s75"><a href="https://www.myaerotel.com/en-uk/find/americas-europe/united-kingdom/london/aerotel-london">Aerotel London</a> <span class="pub">· Aerotel</span></li>
+<li id="s76"><a href="https://www.eurostar.com/uk-en/travel-info/your-trip/check-in">When to arrive at the station</a> <span class="pub">· Eurostar</span></li>
+<li id="s77"><a href="https://www.eurostar.com/uk-en/train/london-to-paris">London to Paris train</a> <span class="pub">· Eurostar</span></li>
+<li id="s78"><a href="https://www.heathrow.com/heathrow-blog/top-tips-for-timing-your-airport-journey">Top tips for timing your airport journey (2026)</a> <span class="pub">· Heathrow</span></li>
+<li id="s79"><a href="https://www.flightsfrom.com/LHR-CDG">Direct flights from London Heathrow to Paris Charles de Gaulle</a> <span class="pub">· FlightsFrom</span></li>
+<li id="s80"><a href="https://parisbytrain.com/charles-de-gaulle-airport-cdg-to-paris-by-train/">Charles de Gaulle Airport (CDG) to Paris by train</a> <span class="pub">· Paris by Train</span></li>
+<li id="s81"><a href="https://www.britishairways.com/content/information/checking-in-and-boarding/checking-in">Checking in</a> <span class="pub">· British Airways</span></li>
+<li id="s82"><a href="https://www.dublinairport.com/flight-information/travelling-to-usa/usa-preclearance">US Preclearance</a> <span class="pub">· Dublin Airport (daa)</span></li>
+<li id="s83"><a href="https://www.dublinairport.com/flight-information/travelling-to-usa/faqs">Travelling to the USA: FAQs</a> <span class="pub">· Dublin Airport (daa)</span></li>
+<li id="s84"><a href="https://www.sncf-connect.com/en-en/train/route/paris/bordeaux">Paris to Bordeaux by train</a> <span class="pub">· SNCF Connect</span></li>
+<li id="s85"><a href="https://airtechzone.iata.org/aidm_model/21.3/EARoot/EA4/EA1/EA2/EA6310.htm">Normal Fare Open Jaw (business glossary)</a> <span class="pub">· IATA AIDM</span></li>
+<li id="s86"><a href="https://www.aa.com/i18n/customer-service/support/conditions-of-carriage.html">Conditions of carriage</a> <span class="pub">· American Airlines</span></li>
+<li id="s87"><a href="https://www.lufthansa.com/us/en/terms-and-conditions-lh">General Conditions of Carriage</a> <span class="pub">· Deutsche Lufthansa AG</span></li>
+<li id="s88"><a href="https://edition.cnn.com/travel/article/lufthansa-sues-passenger-scli-intl/index.html">Lufthansa sues passenger who skipped flight (2019)</a> <span class="pub">· CNN</span></li>
+<li id="s89"><a href="https://thepointsguy.com/news/a-small-victory-for-bargain-hunters-lufthansa-drops-lawsuit-against-skiplagging-passenger/">Lufthansa drops lawsuit against skiplagging passenger (2019)</a> <span class="pub">· The Points Guy</span></li>
+</ol>
+</section>
+</div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <p>Published 23 October 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+  <p><a href="/daily/">← Back to Daily</a></p>
+  <p><a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20The%20Airport%20Systems%20Atlas&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-10-23-the-airport-systems-atlas%2F">Spot an error? Suggest a correction</a></p>
+ </div>
+</footer>
+
+<script>
+(function(){
+  // sortable rail table
+  var t=document.getElementById('railtbl'); if(t){
+    var btns=t.querySelectorAll('th button');
+    btns.forEach(function(b){b.addEventListener('click',function(){
+      var k=+b.dataset.k,num=!!b.dataset.num,dir=b.getAttribute('aria-sort')==='ascending'?-1:1;
+      btns.forEach(function(x){x.removeAttribute('aria-sort')});
+      b.setAttribute('aria-sort',dir===1?'ascending':'descending');
+      var tb=t.tBodies[0],rows=[].slice.call(tb.rows);
+      rows.sort(function(r1,r2){var a=r1.cells[k],c=r2.cells[k];
+        if(num){return dir*((+a.dataset.v)-(+c.dataset.v));}
+        return dir*a.textContent.localeCompare(c.textContent);});
+      rows.forEach(function(r){tb.appendChild(r)});
+    });});
+  }
+  // calculator
+  var f=document.getElementById('cf'); if(!f) return;
+  var defs={}; f.querySelectorAll('input').forEach(function(i){defs[i.id]=i.value});
+  function v(id){var n=parseFloat(document.getElementById(id).value);return isFinite(n)&&n>0?n:0}
+  function hm(m){m=Math.round(m);var h=Math.floor(m/60),r=m%60;return h+'h'+(r<10?'0':'')+r}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function calc(){
+    var ta=0,tb=0,ca=0,cb=0,i;
+    for(i=1;i<=5;i++){ta+=v('a'+i);tb+=v('b'+i);}
+    for(i=1;i<=3;i++){ca+=v('ac'+i);cb+=v('bc'+i);}
+    var na=esc(document.getElementById('a_name').value||'A'),nb=esc(document.getElementById('b_name').value||'B');
+    var vot=v('vot'),s=na+': <b>'+hm(ta)+'</b>';
+    if(ca) s+=', cost <b>'+ca.toFixed(2)+'</b>';
+    s+='. '+nb+': <b>'+hm(tb)+'</b>'; if(cb) s+=', cost <b>'+cb.toFixed(2)+'</b>'; s+='. ';
+    if(ta===tb) s+='Same total time.'; else s+=(ta<tb?na:nb)+' is quicker by '+hm(Math.abs(ta-tb))+'.';
+    if(vot){var ga=ca+ta/60*vot,gb=cb+tb/60*vot;s+=' Counting your time, '+na+' comes to <b>'+ga.toFixed(2)+'</b> and '+nb+' to <b>'+gb.toFixed(2)+'</b>: '+(ga===gb?'a tie.':(ga<gb?na:nb)+' is better value.');}
+    document.getElementById('cout').innerHTML=s;
+  }
+  f.addEventListener('input',calc);
+  document.getElementById('reset').addEventListener('click',function(){Object.keys(defs).forEach(function(k){document.getElementById(k).value=defs[k]});calc();});
+  calc();
+})();
+</script>
+</body>
+</html>

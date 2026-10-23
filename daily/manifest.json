@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 5,
+      "slug": "2026-10-23-the-airport-systems-atlas",
+      "date": "2026-10-23",
+      "title": "The Airport Systems Atlas",
+      "dek": "How hubs, alliances, transfer rules, borders and airport rail links shape a journey, with five worked trips that judge a route by its door-to-door time and full cost rather than its headline fare.",
+      "kind": "Field guide",
+      "readingMinutes": 22,
+      "design": "Barlow Condensed, Atkinson Hyperlegible, Red Hat Mono; wayfinding yellow, terminal-floor grey, ink and exit green; gate-letter sign headers, hub diagram, door-to-door timeline bars.",
+      "source": "queue",
+      "brief": "The Airport Systems Atlas\nA guide to why airports work the way they do, how they connect to cities, and how travelers can make smarter routing decisions.\nInclude: hub structures, airline alliances, rail-air connections, terminal transfers, overnight connections, ground transport, alternative airports, and examples of counterintuitive routes.\nFinish line: five worked journeys showing how to compare total travel time, transfers, ground access, and cost—not merely the headline airfare.",
+      "factcheck": {
+        "claims": 209,
+        "fixed": 17
+      },
+      "corrections": []
+    },
+    {
       "no": 4,
       "slug": "2026-10-22-landfall",
       "date": "2026-10-22",
