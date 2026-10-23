@@ -1,13 +1,21 @@
 {
-  "generated": "2026-10-22T21:23:21.343Z",
+  "generated": "2026-10-23T04:15:58.888Z",
   "count": 84,
   "pages": [
+    {
+      "slug": "scoop-tracker",
+      "url": "https://nickcarbone.github.io/scoop-tracker/",
+      "title": "Scoop Tracker",
+      "description": "",
+      "updated": "2026-10-23T02:39:56Z",
+      "created": "2026-07-10T01:19:16Z"
+    },
     {
       "slug": "evening-edition",
       "url": "https://nickcarbone.github.io/evening-edition/",
       "title": "Evening Edition",
       "description": "",
-      "updated": "2026-10-22T19:32:26Z",
+      "updated": "2026-10-23T01:57:31Z",
       "created": "2026-10-20T14:56:45Z"
     },
     {
@@ -17,14 +25,6 @@
       "description": "",
       "updated": "2026-10-22T17:03:48Z",
       "created": "2026-10-21T20:37:01Z"
-    },
-    {
-      "slug": "scoop-tracker",
-      "url": "https://nickcarbone.github.io/scoop-tracker/",
-      "title": "Scoop Tracker",
-      "description": "",
-      "updated": "2026-10-22T16:21:14Z",
-      "created": "2026-07-10T01:19:16Z"
     },
     {
       "slug": "brewed-with",
@@ -510,7 +510,7 @@
       "slug": "why-would-i-now",
       "url": "https://nickcarbone.github.io/why-would-i-now/",
       "title": "Why Would I Now",
-      "description": "Published via Publisher �� nickcarbone.github.io/why-would-i-now/",
+      "description": "nickcarbone.github.io/why-would-i-now/",
       "updated": "2026-06-05T04:35:43Z",
       "created": "2026-06-05T04:35:35Z"
     },
