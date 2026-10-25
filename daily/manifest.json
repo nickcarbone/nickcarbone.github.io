@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 7,
+      "slug": "2026-10-25-the-heist-file",
+      "date": "2026-10-25",
+      "title": "The Heist File",
+      "dek": "Five documented jewel thefts and what courts and investigators established about each, how stolen luxury goods are traced, why video evidence misleads, and a glossary of the trade, for writers who want the public record kept apart from invention.",
+      "kind": "Writer's casebook",
+      "readingMinutes": 20,
+      "design": "Instrument Serif, Public Sans, Martian Mono; evidence-kraft with forensic grid, ink and exhibit red; exhibit-tag hero, vertical case-file tabs, CCTV findings panel, verdict timeline.",
+      "source": "queue",
+      "brief": "The Anatomy of a Modern Luxury Crime\nA writer's reference to the environments, methods, and social machinery behind sophisticated contemporary thefts.\nInclude: real documented jewel thefts, luxury resale networks, auction houses, private security, identity verification, surveillance evidence, and the distinction between public facts and fictionalized mechanics.\nFinish line: five case studies, a glossary of the luxury trade, and a collection of story-generating contradictions. Pay particular attention to mistaken identity and why video evidence can be misleading.\nReview: yes",
+      "factcheck": {
+        "claims": 123,
+        "fixed": 12
+      },
+      "corrections": []
+    },
+    {
       "no": 6,
       "slug": "2026-10-24-the-cocktail-birthplace-atlas",
       "date": "2026-10-24",

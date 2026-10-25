@@ -24,12 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Anatomy of a Modern Luxury Crime
-A writer's reference to the environments, methods, and social machinery behind sophisticated contemporary thefts.
-Include: real documented jewel thefts, luxury resale networks, auction houses, private security, identity verification, surveillance evidence, and the distinction between public facts and fictionalized mechanics.
-Finish line: five case studies, a glossary of the luxury trade, and a collection of story-generating contradictions. Pay particular attention to mistaken identity and why video evidence can be misleading.
-Review: yes
-
 The Airport-to-City Reality Index
 The question: Which airports make it easiest to start living like a local immediately after landing, and which quietly consume an hour of your trip?
 This connects your interest in airport systems with your preference for efficient travel and avoiding unnecessary driving.
