@@ -258,6 +258,15 @@ Split Cities
 Towns divided by a border: Baarle-Hertog/Baarle-Nassau, Gorizia/Nova Gorica, Görlitz/Zgorzelec, Tornio/Haparanda, Valga/Valka. Narva/Ivangorod is the counterexample on a hard external border.
 Finish: 12 towns, each with what changes across the line (prices, hours, beer, language) and rail access.
 
+The Paper Trail That Exposed the Truth
+Create an interactive HTML guide to historical investigations solved or substantially clarified through ordinary public records.
+Explore cases where court filings, company registries, property deeds, shipping manifests, procurement records, financial documents, or declassified files revealed hidden relationships or contradicted official explanations.
+For each case, reconstruct the discovery process: the original question, the overlooked record, the connection it exposed, and the resulting historical significance.
+Show how separate pieces of seemingly unremarkable information can combine into a compelling evidentiary chain.
+Distinguish what the records prove directly from what investigators inferred, and explain any remaining uncertainty.
+Build an interactive evidence graph connecting people, organizations, dates, places, and documents.
+Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
+
 The Wires
 A field guide to 20 news agencies: AP, Reuters, AFP, dpa, EFE, ANSA, Kyodo, PTI, Xinhua, TASS, Anadolu and others.
 Contents: ownership and state funding, language services, how to read datelines and priority codes, and fine print on editorial independence.
@@ -275,6 +284,15 @@ Fine print: the fight over who may legally say “bespoke.” The 2008 UK advert
 Sleeping at Sea 
 Overnight ferries as hotels: Stockholm–Helsinki, Genoa–Palermo, Newcastle–Amsterdam, Harwich–Hook of Holland, Japan’s long-distance routes.
 Finish: 15 routes with cabin classes, dining, and rail connections at each end.
+
+Reconstructing the Day History Changed
+Create an interactive HTML investigation reconstructing one consequential historical event from contemporaneous evidence rather than hindsight.
+Choose an event with a rich documentary trail, such as a coup, diplomatic breakdown, infrastructure disaster, financial collapse, unexplained military incident, or sudden political turning point.
+Rebuild the sequence using dated public statements, communications, news reports, photographs described in text, official records, and later-confirmed evidence.
+For each timeline entry, show when the event occurred, when it became publicly known, when the evidence was recorded, and how certainty changed afterward.
+Highlight contradictions, information gaps, delayed reporting, and the difference between what participants knew and what later became established.
+Build an interactive chronological evidence board with confidence labels and alternative interpretations where warranted.
+Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
 
 What a Pint Really Costs
 An interactive profit-and-loss model for a small bar: rent, licensing, pour cost, labor, with sliders and sourced default figures.
