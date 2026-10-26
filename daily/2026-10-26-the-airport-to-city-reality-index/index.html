@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Airport-to-City Reality Index · Daily</title>
+<meta name="description" content="Thirty European airports scored on how fast, how often and how late public transport gets you from the terminal to the middle of town, with the scoring rules on show.">
+<meta property="og:title" content="The Airport-to-City Reality Index">
+<meta property="og:description" content="Thirty European airports scored on how fast, how often and how late public transport gets you from the terminal to the middle of town, with the scoring rules on show.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-10-26-the-airport-to-city-reality-index/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-10-26-the-airport-to-city-reality-index/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#eef1ec; --panel:#f8faf6; --ink:#15243a; --muted:#4a586a; --rule:#c4ccc6; --soft:#dfe5df;
+  --rail:#b3261e; --metro:#00735c; --tram:#a35f00; --coach:#5a479b; --bus:#5a479b; --busmetro:#2c639a;
+  --t:#15243a; --r:#b3261e; --f:#00735c; --l:#2c639a; --p:#a35f00;
+  --link:#1d4f86;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Spectral",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0f1924; --panel:#152230; --ink:#e4eae6; --muted:#a6b3bf; --rule:#2f4152; --soft:#1d2d3d;
+  --rail:#ff7b70; --metro:#3fcca5; --tram:#f0a63a; --coach:#b4a4f2; --bus:#b4a4f2; --busmetro:#7fb4ec;
+  --t:#e4eae6; --r:#ff7b70; --f:#3fcca5; --l:#7fb4ec; --p:#f0a63a; --link:#8cc0f5;
+}}
+:root[data-theme="dark"]{
+  --paper:#0f1924; --panel:#152230; --ink:#e4eae6; --muted:#a6b3bf; --rule:#2f4152; --soft:#1d2d3d;
+  --rail:#ff7b70; --metro:#3fcca5; --tram:#f0a63a; --coach:#b4a4f2; --bus:#b4a4f2; --busmetro:#7fb4ec;
+  --t:#e4eae6; --r:#ff7b70; --f:#3fcca5; --l:#7fb4ec; --p:#f0a63a; --link:#8cc0f5;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.125rem/1.62 var(--body);overflow-x:hidden}
+a{color:var(--link);text-underline-offset:.18em}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--link);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.prose{max-width:40rem}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;font-weight:700}
+h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-variation-settings:"wdth" 80;letter-spacing:-.01em;margin:3.2rem 0 1rem}
+p{margin:0 0 1em}
+.ref{font:600 .66em/1 var(--display);vertical-align:super;text-decoration:none;margin-left:.12em;padding:0 .12em;color:var(--link)}
+.refs{white-space:nowrap}
+.refs .ref+.ref{margin-left:0;padding-left:0}
+.refs .ref+.ref::before{content:",";color:var(--muted);margin-right:.12em}
+.num{font-variant-numeric:tabular-nums lining-nums}
+
+/* top strip */
+.strip{border-bottom:1px solid var(--rule);font:500 .95rem/1 var(--display);font-variation-settings:"wdth" 85}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;flex-wrap:wrap}
+.strip a{color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.strip a:hover{text-decoration:underline}
+.strip span{color:var(--muted)}
+
+/* masthead */
+header.mast{padding-top:44px;padding-bottom:8px}
+h1{font-size:clamp(2.5rem,7.6vw,5.6rem);font-variation-settings:"wdth" 75,"opsz" 96;font-weight:800;letter-spacing:-.02em;max-width:14ch}
+.dek{font-size:clamp(1.2rem,2.2vw,1.45rem);line-height:1.45;max-width:36rem;margin:20px 0 10px;color:var(--ink)}
+.by{color:var(--muted);font:500 1rem/1.4 var(--display);margin:0}
+
+/* hero strip map */
+.map{margin:34px 0 12px;background:var(--panel);border:1px solid var(--rule);padding:22px 22px 16px}
+.map-h{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+.map-h p{margin:0;font:500 1rem/1.35 var(--display);max-width:38rem}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font:500 .9rem/1 var(--display);color:var(--muted);margin:0;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:6px}
+.sw{width:22px;height:6px;border-radius:3px;display:inline-block}
+.scale{display:grid;grid-template-columns:48px 1fr;font:500 .78rem/1 var(--display);color:var(--muted);margin:0 0 4px}
+.scale div{position:relative;height:16px}
+.scale span{position:absolute;transform:translateX(-50%)}
+ol.sm{list-style:none;margin:0;padding:0;position:relative}
+.sl{display:grid;grid-template-columns:48px 1fr;align-items:center;min-height:23px}
+.sl-code{font:700 .86rem/1 var(--display);font-variation-settings:"wdth" 80;letter-spacing:.02em}
+.sl-track{position:relative;display:flex;align-items:center;height:23px;background:repeating-linear-gradient(90deg,transparent 0 calc(12.5% - 1px),var(--soft) calc(12.5% - 1px) 12.5%)}
+.sl-line{display:block;height:7px;width:var(--w);background:var(--c);border-radius:4px;position:relative;flex:none}
+.sl-line::before,.sl-line::after{content:"";position:absolute;top:50%;width:11px;height:11px;border-radius:50%;transform:translate(-50%,-50%)}
+.sl-line::before{left:0;background:var(--panel);border:3px solid var(--c);width:7px;height:7px}
+.sl-line::after{left:100%;background:var(--c);box-shadow:0 0 0 2px var(--panel)}
+.sl-end{font:500 .8rem/1 var(--display);margin-left:10px;white-space:nowrap;color:var(--muted)}
+.sl-end b{color:var(--ink);font-weight:700}
+.long .sl-end{position:absolute;right:calc(100% - var(--w) + 14px);background:var(--panel);padding:2px 6px;margin:0;border-radius:3px}
+.map{overflow:hidden}
+.m-rail{--c:var(--rail)}.m-metro{--c:var(--metro)}.m-tram{--c:var(--tram)}.m-coach{--c:var(--coach)}.m-bus{--c:var(--bus)}
+.m-busmetro{--c:var(--busmetro)}
+.m-coach .sl-line,.m-bus .sl-line,.m-busmetro .sl-line{background:repeating-linear-gradient(90deg,var(--c) 0 9px,transparent 9px 13px)}
+.map figcaption{font:400 .9rem/1.45 var(--display);color:var(--muted);margin-top:12px}
+
+/* sections */
+.cols{display:grid;grid-template-columns:minmax(0,40rem) minmax(0,1fr);gap:48px;align-items:start}
+.aside{font:400 1rem/1.5 var(--display);border-left:4px solid var(--ink);padding:4px 0 4px 18px;margin-top:3.6rem}
+.aside p{margin:0 0 .7em}
+.rules{border-collapse:collapse;width:100%;font:400 1rem/1.45 var(--display);margin:8px 0 18px}
+.rules th,.rules td{border-top:1px solid var(--rule);padding:12px 12px 12px 0;vertical-align:top;text-align:left}
+.rules th{font-weight:700;width:30%}
+.rules td.pts{width:5.5rem;font-weight:700;white-space:nowrap}
+.rules .k{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:8px;vertical-align:-1px}
+
+/* top ten */
+ol.tops{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px}
+.top{border-top:3px solid var(--c);padding:16px 0 10px}
+.top-h{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:baseline}
+.top-rank{font:800 2.1rem/1 var(--display);font-variation-settings:"wdth" 75;color:var(--c);min-width:2.4ch}
+.top h3{font-size:1.5rem;font-variation-settings:"wdth" 85}
+.top-score{font:700 1.3rem/1 var(--display)}
+.top-score small{font-size:.7em;color:var(--muted);font-weight:500}
+.top-line{font:500 1rem/1.35 var(--display);color:var(--muted);margin:8px 0 8px}
+.top p{font-size:1.04rem}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);margin-right:7px;vertical-align:0}
+
+/* directory */
+.controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:8px 0 14px;font:500 1rem/1.2 var(--display)}
+.controls fieldset{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.controls legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1.5px solid var(--ink);border-radius:22px;cursor:pointer;user-select:none;background:var(--panel)}
+.chip input{width:18px;height:18px;margin:0;accent-color:var(--ink)}
+.chip:has(input:checked){background:var(--ink);color:var(--paper)}
+.sortbox{display:flex;align-items:center;gap:8px}
+.sortbox select{font:500 1rem/1 var(--display);min-height:44px;padding:0 10px;border:1.5px solid var(--ink);background:var(--panel);color:var(--ink);border-radius:6px}
+.count{color:var(--muted);margin-left:auto}
+.tablewrap{overflow-x:auto;border-top:3px solid var(--ink)}
+table.dir{border-collapse:collapse;width:100%;font:400 .9rem/1.4 var(--display);min-width:1000px}
+.dir thead th{font-weight:700;text-align:left;padding:10px 10px 10px 0;border-bottom:1px solid var(--ink);vertical-align:bottom;font-size:.9rem}
+.dir td,.dir tbody th{padding:12px 10px 12px 0;border-bottom:1px solid var(--rule);vertical-align:top;text-align:left;font-weight:400}
+.dir .num{white-space:nowrap}
+.c-rank{font:800 1.25rem/1 var(--display);font-variation-settings:"wdth" 75;width:3rem}
+.iata{font-weight:800;letter-spacing:.03em}
+.apn{font-weight:600}
+.cty,.svc{display:block;color:var(--muted);font-size:.86rem;margin-top:3px}
+.c-ap{min-width:8.5rem}
+.c-hub{min-width:9rem}
+.c-fr,.c-late{min-width:8rem}
+.c-note{min-width:13rem;color:var(--ink)}
+.c-score b{font-size:1.15rem;display:block}
+.nv{color:var(--muted);font-style:italic}
+.bar{display:flex;width:96px;height:8px;background:var(--soft);margin-top:6px}
+.bar i{display:block;height:100%}
+.b-t{background:var(--t)}.b-r{background:var(--r)}.b-f{background:var(--f)}.b-l{background:var(--l)}.b-p{background:var(--p)}
+tr[hidden]{display:none}
+.empty{padding:18px 0;color:var(--muted);font:500 1rem/1.4 var(--display)}
+
+/* sources + footer */
+.sources ol{font:400 .95rem/1.5 var(--display);padding-left:2.2rem;columns:2;column-gap:40px}
+.sources li{break-inside:avoid;margin:0 0 .45em}
+.sources .pub{color:var(--muted)}
+footer{border-top:1px solid var(--rule);margin-top:3rem;padding:24px 0 48px;font:400 1rem/1.6 var(--display);color:var(--muted)}
+footer a{display:inline-flex;align-items:center;min-height:44px}
+footer p{margin:0}
+
+@media (max-width:900px){
+  .cols{grid-template-columns:1fr;gap:0}
+  .aside{margin-top:1rem}
+  ol.tops{grid-template-columns:1fr}
+  .sources ol{columns:1}
+}
+@media (max-width:820px){
+  .tablewrap{overflow:visible}
+  table.dir,table.dir tbody{display:block;min-width:0}
+  table.dir thead{display:none}
+  .dir tr{display:grid;grid-template-columns:3rem 1fr auto;gap:2px 10px;padding:14px 0;border-bottom:1px solid var(--rule)}
+  .dir td,.dir tbody th{border:0;padding:0}
+  .c-rank{grid-row:1;grid-column:1}
+  .dir tbody th.c-ap{grid-row:1;grid-column:2}
+  .c-score{grid-row:1;grid-column:3;text-align:right}
+  .c-score .bar{margin-left:auto}
+  .c-hub,.c-min,.c-ch,.c-fr,.c-late,.c-km,.c-note{grid-column:2/4;display:grid;grid-template-columns:7.5rem 1fr;gap:10px;padding-top:6px !important}
+  .c-hub::before,.c-min::before,.c-ch::before,.c-fr::before,.c-late::before,.c-km::before,.c-note::before{content:attr(data-l);color:var(--muted);font-size:.86rem}
+  .c-hub .svc{grid-column:2}
+  .dir .num{white-space:normal}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  body{font-size:1.0625rem}
+  .map{padding:14px 12px 12px}
+  .sl,.scale{grid-template-columns:40px 1fr}
+  .sl-end{font-size:.72rem;margin-left:7px}
+  .c-hub,.c-min,.c-ch,.c-fr,.c-late,.c-km,.c-note{grid-template-columns:6.4rem 1fr}
+  .rules th{width:auto}
+  .rules,.rules tbody,.rules tr,.rules th,.rules td{display:block;width:auto}
+  .rules tr{border-top:1px solid var(--rule);padding:10px 0}
+  .rules th,.rules td{border:0;padding:2px 0}
+  .count{margin-left:0;width:100%}
+}
+@media (prefers-reduced-motion:no-preference){
+  .sl-line{animation:draw .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * 18ms)}
+  @keyframes draw{from{width:0}}
+}
+</style>
+</head>
+<body>
+<nav class="strip" aria-label="Daily"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 008 · Monday 26 October 2026</span></div></nav>
+
+<main>
+<header class="mast wrap">
+<h1>The Airport-to-City Reality Index</h1>
+<p class="dek">Thirty European airports scored on how fast, how often and how late public transport gets you from the terminal to the middle of town, with the scoring rules on show.</p>
+<p class="by">Published 26 October 2026 · Timetables checked in October 2026</p>
+
+<figure class="map" aria-labelledby="mapcap">
+<div class="map-h">
+<p id="mapcap">Minutes from the terminal to the city's central hub on the fastest regular public transport, shortest first.</p>
+<ul class="legend" aria-label="Mode">
+<li><span class="sw" style="background:var(--rail)"></span>Train</li>
+<li><span class="sw" style="background:var(--metro)"></span>Metro</li>
+<li><span class="sw" style="background:var(--tram)"></span>Tram</li>
+<li><span class="sw" style="background:repeating-linear-gradient(90deg,var(--coach) 0 6px,transparent 6px 9px)"></span>Coach or bus</li>
+<li><span class="sw" style="background:repeating-linear-gradient(90deg,var(--busmetro) 0 6px,transparent 6px 9px)"></span>Bus + metro</li>
+</ul>
+</div>
+<div class="scale" aria-hidden="true"><i></i><div><span style="left:0">0</span><span style="left:25%">20</span><span style="left:50%">40</span><span style="left:75%">60</span><span style="left:100%;transform:translateX(-100%)">80 min</span></div></div>
+<ol class="sm">
+<li class="sl m-rail" style="--w:7.50%"><span class="sl-code">GVA</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Genève-Cornavin <b>6</b></span></span></li>
+<li class="sl m-rail" style="--w:11.25%"><span class="sl-code">ZRH</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Zürich HB <b>9</b></span></span></li>
+<li class="sl m-rail" style="--w:15.00%"><span class="sl-code">CPH</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">København H <b>12</b></span></span></li>
+<li class="sl m-rail" style="--w:15.00%"><span class="sl-code">FRA</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Frankfurt (Main) Hbf <b>12</b></span></span></li>
+<li class="sl m-metro" style="--w:15.00%"><span class="sl-code">MAD</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Nuevos Ministerios <b>12</b></span></span></li>
+<li class="sl m-rail" style="--w:17.50%"><span class="sl-code">AMS</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Amsterdam Centraal <b>14</b></span></span></li>
+<li class="sl m-rail" style="--w:18.75%"><span class="sl-code">LHR</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">London Paddington <b>15</b></span></span></li>
+<li class="sl m-rail" style="--w:18.75%"><span class="sl-code">VIE</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Wien Hbf <b>15</b></span></span></li>
+<li class="sl m-rail" style="--w:22.50%"><span class="sl-code">ARN</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Stockholm C <b>18</b></span></span></li>
+<li class="sl m-rail" style="--w:22.50%"><span class="sl-code">BRU</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Bruxelles-Central <b>18</b></span></span></li>
+<li class="sl m-rail" style="--w:23.75%"><span class="sl-code">OSL</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Oslo S <b>19</b></span></span></li>
+<li class="sl m-bus" style="--w:25.00%"><span class="sl-code">DUB</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">O&#x27;Connell Street <b>20</b></span></span></li>
+<li class="sl m-metro" style="--w:25.00%"><span class="sl-code">LIS</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Saldanha <b>20</b></span></span></li>
+<li class="sl m-rail" style="--w:28.75%"><span class="sl-code">BER</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Berlin Hbf <b>23</b></span></span></li>
+<li class="sl m-rail" style="--w:32.50%"><span class="sl-code">BCN</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Passeig de Gràcia <b>26</b></span></span></li>
+<li class="sl m-rail" style="--w:37.50%"><span class="sl-code">CDG</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Gare du Nord <b>30</b></span></span></li>
+<li class="sl m-tram" style="--w:37.50%"><span class="sl-code">EDI</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Princes Street / Waverley <b>30</b></span></span></li>
+<li class="sl m-rail" style="--w:37.50%"><span class="sl-code">HEL</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Helsinki Central <b>30</b></span></span></li>
+<li class="sl m-rail" style="--w:37.50%"><span class="sl-code">LGW</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">London Victoria <b>30</b></span></span></li>
+<li class="sl m-busmetro" style="--w:37.50%"><span class="sl-code">PRG</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">City centre (Metro A) <b>30</b></span></span></li>
+<li class="sl m-rail" style="--w:40.00%"><span class="sl-code">FCO</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Roma Termini <b>32</b></span></span></li>
+<li class="sl m-rail" style="--w:46.25%"><span class="sl-code">MXP</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Milano Cadorna <b>37</b></span></span></li>
+<li class="sl m-metro" style="--w:50.00%"><span class="sl-code">ATH</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Syntagma <b>40</b></span></span></li>
+<li class="sl m-bus" style="--w:50.00%"><span class="sl-code">BUD</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Deák Ferenc tér <b>40</b></span></span></li>
+<li class="sl m-rail" style="--w:50.00%"><span class="sl-code">MUC</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">München Hbf <b>40</b></span></span></li>
+<li class="sl m-rail long" style="--w:60.00%"><span class="sl-code">STN</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">London Liverpool Street <b>48</b></span></span></li>
+<li class="sl m-coach long" style="--w:62.50%"><span class="sl-code">BGY</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Milano Centrale <b>50</b></span></span></li>
+<li class="sl m-coach long" style="--w:68.75%"><span class="sl-code">CRL</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Bruxelles-Midi <b>55</b></span></span></li>
+<li class="sl m-coach long" style="--w:93.75%"><span class="sl-code">BVA</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Porte Maillot <b>75</b></span></span></li>
+<li class="sl m-coach long" style="--w:93.75%"><span class="sl-code">GRO</span><span class="sl-track"><span class="sl-line"></span><span class="sl-end">Barcelona Nord <b>75</b></span></span></li>
+</ol>
+<figcaption>Where a source gives a range, the line shows the lower figure. Solid lines run on rails; dashed lines start on the road.</figcaption>
+</figure>
+</header>
+
+<div class="wrap">
+<div class="cols">
+<div class="prose">
+<p>The distance printed on an airport's website is the least useful number about it. What matters after landing is how long it takes, on public transport, to stand in the middle of the city holding a ticket that works on everything else. Geneva's trains reach Cornavin in six or seven minutes.<span class="refs"><a class="ref" href="#s6" aria-label="Source 6">6</a><a class="ref" href="#s7" aria-label="Source 7">7</a></span> A Ryanair arrival at Girona faces a coach of about 75 minutes before it reaches Barcelona at all.<span class="refs"><a class="ref" href="#s75" aria-label="Source 75">75</a></span></p>
+<p>This index takes 30 airports serving European cities and asks each the same questions. How quickly does the fastest regular public transport reach a named central hub? Is it a train, metro or tram from the terminal, or does the trip start in traffic? How often does it go? Does anything run all night? And how far is the airport from that hub in a straight line? The answers come from airport operators, railways, transport authorities and city tourist offices, checked in October 2026, and the scoring rules are set out in full so you can argue with them.</p>
+<p>Taxis, ride-hailing and hotel shuttles are left out on purpose. So are fares, which change too often to be worth printing in a piece meant to last; where a route charges a premium or a supplement, the notes say so.</p>
+</div>
+<aside class="aside">
+<p><strong>Companion piece.</strong> For how hubs, transfers and alternative airports shape the wider journey, see <a href="/daily/2026-10-23-the-airport-systems-atlas/">The Airport Systems Atlas</a>.</p>
+<p>Distances were measured from each airport's reference point in the OurAirports dataset<span class="refs"><a class="ref" href="#s1" aria-label="Source 1">1</a></span> to the hub's location in OpenStreetMap.<span class="refs"><a class="ref" href="#s2" aria-label="Source 2">2</a></span></p>
+</aside>
+</div>
+
+<section id="method" class="prose" aria-labelledby="h-method">
+<h2 id="h-method">How the score works</h2>
+<p>Every airport is scored out of 100 on five measures. Time carries the most weight because it is what a traveller feels; the rest reward the things that make an arrival easy to trust.</p>
+<table class="rules">
+<tbody>
+<tr><th scope="row"><span class="k" style="background:var(--t)"></span>Time to the hub</th><td class="pts">up to 40</td><td>40 points, minus half a point for every minute over five. Six minutes scores 39.5; 45 minutes scores 20; 85 minutes or more scores nothing.</td></tr>
+<tr><th scope="row"><span class="k" style="background:var(--r)"></span>One seat on rails</th><td class="pts">20, 10 or 0</td><td>20 if a train, metro or tram runs from the airport to the hub with no change. 10 if rail reaches the airport but you have to change. Nothing if the trip begins on the road.</td></tr>
+<tr><th scope="row"><span class="k" style="background:var(--f)"></span>How often</th><td class="pts">up to 15</td><td>Departures on the fastest route, or any route scheduled within ten minutes of it: every 10 minutes or better scores 15; up to every 15 minutes, 10; up to every 30, 5. Departures timed to flights, or an interval we could not verify, score nothing.</td></tr>
+<tr><th scope="row"><span class="k" style="background:var(--l)"></span>Late at night</th><td class="pts">15, 8 or 0</td><td>15 if public transport runs to the centre all night, every night. 8 if the last departures are around midnight or later, or the service meets every flight. Nothing if it stops earlier or we could not verify it.</td></tr>
+<tr><th scope="row"><span class="k" style="background:var(--p)"></span>Proximity</th><td class="pts">10, 5 or 0</td><td>Straight-line distance from airport to hub: up to 15 km scores 10; up to 30 km, 5; further, nothing.</td></tr>
+</tbody>
+</table>
+<p>Where a source gives a range of journey times, the score uses the lower figure and the table shows the range. A field we could not confirm scores zero and is marked as not verified.</p>
+</section>
+
+<section id="top" aria-labelledby="h-top">
+<h2 id="h-top">The ten easiest arrivals</h2>
+<ol class="tops">
+<li class="top m-rail"><div class="top-h"><span class="top-rank">=1</span><h3>Frankfurt</h3><span class="top-score">96.5<small>/100</small></span></div>
+<p class="top-line"><span class="dot m-rail"></span>Frankfurt (Main) Hbf in about 12 min, 11.6 km away as the crow flies</p>
+<p>The S-Bahn leaves from beneath Terminal 1 and reaches the Hauptbahnhof in about 12 minutes, roughly every ten minutes by day.<span class="refs"><a class="ref" href="#s11" aria-label="Source 11">11</a></span> The S8 keeps running through the night, hourly or half-hourly.<span class="refs"><a class="ref" href="#s12" aria-label="Source 12">12</a></span> The only trap is the airport's second station: the Long-Distance Station is for ICE trains, and the S-Bahn goes from the Regional Station.<span class="refs"><a class="ref" href="#s10" aria-label="Source 10">10</a></span></p></li>
+<li class="top m-rail"><div class="top-h"><span class="top-rank">=1</span><h3>Copenhagen</h3><span class="top-score">96.5<small>/100</small></span></div>
+<p class="top-line"><span class="dot m-rail"></span>København H in 12–15 min, 8.4 km away as the crow flies</p>
+<p>Trains from Terminal 3 reach Copenhagen Central in 12 to 15 minutes,<span class="refs"><a class="ref" href="#s20" aria-label="Source 20">20</a><a class="ref" href="#s23" aria-label="Source 23">23</a></span> and the driverless M2 metro from the same terminal runs through the night, every 15 to 20 minutes, to Kongens Nytorv and Nørreport.<span class="refs"><a class="ref" href="#s21" aria-label="Source 21">21</a><a class="ref" href="#s22" aria-label="Source 22">22</a></span> The airport is 8.4 km from the central station in a straight line, close enough to cycle.</p></li>
+<li class="top m-rail"><div class="top-h"><span class="top-rank">3</span><h3>Amsterdam Schiphol</h3><span class="top-score">95.5<small>/100</small></span></div>
+<p class="top-line"><span class="dot m-rail"></span>Amsterdam Centraal in 14–17 min, 12.1 km away as the crow flies</p>
+<p>Schiphol's station sits directly under the main arrivals plaza. About eight trains an hour run to Amsterdam Centraal in 14 to 17 minutes, and the airport says trains to Amsterdam run around the clock.<span class="refs"><a class="ref" href="#s8" aria-label="Source 8">8</a></span> After about 01:00 the service drops to one train an hour.<span class="refs"><a class="ref" href="#s9" aria-label="Source 9">9</a></span></p></li>
+<li class="top m-rail"><div class="top-h"><span class="top-rank">4</span><h3>Zurich</h3><span class="top-score">91<small>/100</small></span></div>
+<p class="top-line"><span class="dot m-rail"></span>Zürich HB in 9–13 min, 8.9 km away as the crow flies</p>
+<p>Around 13 trains an hour leave the station beneath the Airport Centre for the city, and every southbound train stops at Zürich HB, nine to 13 minutes away.<span class="refs"><a class="ref" href="#s3" aria-label="Source 3">3</a></span> There is no premium express and no need for one. Zurich loses most of its points because weekday nights have no all-night trains; the ZVV night network runs on Friday and Saturday nights.<span class="refs"><a class="ref" href="#s5" aria-label="Source 5">5</a></span></p></li>
+<li class="top m-rail"><div class="top-h"><span class="top-rank">5</span><h3>Barcelona El Prat</h3><span class="top-score">89.5<small>/100</small></span></div>
+<p class="top-line"><span class="dot m-rail"></span>Passeig de Gràcia in about 26 min, 12.8 km away as the crow flies</p>
+<p>The Rodalies R2 Nord reaches Passeig de Gràcia in about 26 minutes, but it runs only every half hour and only from Terminal 2.<span class="refs"><a class="ref" href="#s70" aria-label="Source 70">70</a><a class="ref" href="#s73" aria-label="Source 73">73</a><a class="ref" href="#s74" aria-label="Source 74">74</a></span> What lifts Barcelona is the Aerobús, which runs every five to ten minutes to Plaça Catalunya in about 35, and a proper night network of Aerobús and NitBus services.<span class="refs"><a class="ref" href="#s70" aria-label="Source 70">70</a></span></p></li>
+<li class="top m-rail"><div class="top-h"><span class="top-rank">=6</span><h3>Geneva</h3><span class="top-score">87.5<small>/100</small></span></div>
+<p class="top-line"><span class="dot m-rail"></span>Genève-Cornavin in 6–7 min, 4.2 km away as the crow flies</p>
+<p>The fastest link in the index: trains from the station under the terminal reach Cornavin in six or seven minutes, and the airport is 4.2 km from it in a straight line.<span class="refs"><a class="ref" href="#s6" aria-label="Source 6">6</a><a class="ref" href="#s7" aria-label="Source 7">7</a></span> Geneva loses ground on frequency (about five trains an hour) and on late nights, when trains stop around midnight.<span class="refs"><a class="ref" href="#s7" aria-label="Source 7">7</a></span></p></li>
+<li class="top m-tram"><div class="top-h"><span class="top-rank">=6</span><h3>Edinburgh</h3><span class="top-score">87.5<small>/100</small></span></div>
+<p class="top-line"><span class="dot m-tram"></span>Princes Street / Waverley in 30–35 min, 11.3 km away as the crow flies</p>
+<p>Trams leave from just outside the terminal every seven minutes by day and reach Princes Street in about half an hour.<span class="refs"><a class="ref" href="#s58" aria-label="Source 58">58</a></span> The Airlink 100 express bus covers the same ground in about the same time and runs 24 hours, which gives Edinburgh full marks for late arrivals.<span class="refs"><a class="ref" href="#s60" aria-label="Source 60">60</a><a class="ref" href="#s61" aria-label="Source 61">61</a></span></p></li>
+<li class="top m-rail"><div class="top-h"><span class="top-rank">8</span><h3>Brussels</h3><span class="top-score">86.5<small>/100</small></span></div>
+<p class="top-line"><span class="dot m-rail"></span>Bruxelles-Central in about 18 min, 10.9 km away as the crow flies</p>
+<p>The station is directly beneath the terminal halls, with six direct trains an hour to central Brussels. Bruxelles-Central is about 18 minutes away and Bruxelles-Nord about 11.<span class="refs"><a class="ref" href="#s50" aria-label="Source 50">50</a></span> Trains stop around midnight.</p></li>
+<li class="top m-metro"><div class="top-h"><span class="top-rank">9</span><h3>Lisbon</h3><span class="top-score">85.5<small>/100</small></span></div>
+<p class="top-line"><span class="dot m-metro"></span>Saldanha in about 20 min, 5.2 km away as the crow flies</p>
+<p>Lisbon's airport is barely five kilometres from Saldanha in a straight line, and the Red Line metro gets there in about 20 minutes, every six to eight minutes.<span class="refs"><a class="ref" href="#s78" aria-label="Source 78">78</a><a class="ref" href="#s80" aria-label="Source 80">80</a></span> The metro closes around 01:00. Terminal 2, used by low-cost airlines, has no metro station, so its passengers start with a shuttle bus.<span class="refs"><a class="ref" href="#s79" aria-label="Source 79">79</a></span></p></li>
+<li class="top m-rail"><div class="top-h"><span class="top-rank">10</span><h3>London Heathrow</h3><span class="top-score">85<small>/100</small></span></div>
+<p class="top-line"><span class="dot m-rail"></span>London Paddington in 15 min, 20.2 km away as the crow flies</p>
+<p>Heathrow Express reaches Paddington in 15 minutes from the Terminal 2 and 3 station, every 15 minutes.<span class="refs"><a class="ref" href="#s35" aria-label="Source 35">35</a></span> Paddington is on the western edge of central London, and the Elizabeth line covers the same run in about 28 minutes at ordinary fares.<span class="refs"><a class="ref" href="#s36" aria-label="Source 36">36</a><a class="ref" href="#s38" aria-label="Source 38">38</a></span> The N9 night bus runs all night, so a midnight arrival still has a way in.<span class="refs"><a class="ref" href="#s38" aria-label="Source 38">38</a></span></p></li>
+</ol>
+</section>
+
+<section id="directory" aria-labelledby="h-dir">
+<h2 id="h-dir">All 30 airports</h2>
+<p class="prose">Ranked by score. Filter for what matters to you, or re-sort by journey time or distance. On a phone each airport becomes a block you can scroll through.</p>
+<form class="controls" id="controls" hidden onsubmit="return false">
+<fieldset><legend>Filters</legend>
+<label class="chip"><input type="checkbox" name="guided">Rail, metro or tram</label>
+<label class="chip"><input type="checkbox" name="nochange">No change</label>
+<label class="chip"><input type="checkbox" name="night">Runs all night</label>
+<label class="chip"><input type="checkbox" name="fast">Under 25 min</label>
+</fieldset>
+<label class="sortbox">Sort by
+<select name="sort"><option value="s">Score</option><option value="tm">Journey time</option><option value="km">Distance</option><option value="n">Name</option></select></label>
+<span class="count" id="count" aria-live="polite"></span>
+</form>
+<div class="tablewrap">
+<table class="dir" id="dir">
+<caption class="prose" style="text-align:left;caption-side:bottom;font:400 .9rem/1.45 var(--display);color:var(--muted);padding-top:10px">Minutes are scheduled times on the fastest regular public transport. Straight-line distance is from the airport's reference point to the hub. Score bars show the five measures in the order of the scoring table.</caption>
+<thead><tr><th scope="col">Rank</th><th scope="col">Airport</th><th scope="col">To</th><th scope="col">Minutes</th><th scope="col">Changes</th><th scope="col">How often</th><th scope="col">Late at night</th><th scope="col">Straight line</th><th scope="col">Score</th><th scope="col">Worth knowing</th></tr></thead>
+<tbody>
+<tr data-i="FRA">
+<td class="c-rank" data-l="Rank">=1</td>
+<th scope="row" class="c-ap"><span class="iata">FRA</span> <span class="apn">Frankfurt</span><span class="cty">Frankfurt, Germany</span></th>
+<td class="c-hub" data-l="To">Frankfurt (Main) Hbf<span class="svc"><span class="dot m-rail"></span>Train: S-Bahn S8 and S9</span></td>
+<td class="c-min num" data-l="Minutes">about 12</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Roughly every 10 min</td>
+<td class="c-late" data-l="Late at night">S8 runs through the night, hourly or half-hourly</td>
+<td class="c-km num" data-l="Straight line">11.6 km</td>
+<td class="c-score num" data-l="Score"><b>96.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:36.5%" title="Time 36.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Use the Regional Station under Terminal 1; the separate Long-Distance Station is for ICE and IC trains. <span class="refs"><a class="ref" href="#s10" aria-label="Source 10">10</a><a class="ref" href="#s11" aria-label="Source 11">11</a><a class="ref" href="#s12" aria-label="Source 12">12</a></span></span></td>
+</tr>
+<tr data-i="CPH">
+<td class="c-rank" data-l="Rank">=1</td>
+<th scope="row" class="c-ap"><span class="iata">CPH</span> <span class="apn">Copenhagen</span><span class="cty">Copenhagen, Denmark</span></th>
+<td class="c-hub" data-l="To">København H<span class="svc"><span class="dot m-rail"></span>Train: Regional trains; Metro M2 for the inner city</span></td>
+<td class="c-min num" data-l="Minutes">12–15</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Metro every 4–6 min by day; trains roughly every 10 min</td>
+<td class="c-late" data-l="Late at night">Metro runs all night, every 15–20 min</td>
+<td class="c-km num" data-l="Straight line">8.4 km</td>
+<td class="c-score num" data-l="Score"><b>96.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:36.5%" title="Time 36.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Train and metro stations are both at Terminal 3. The train goes direct to Central Station; the metro goes to Kongens Nytorv and Nørreport in about 15 min. <span class="refs"><a class="ref" href="#s20" aria-label="Source 20">20</a><a class="ref" href="#s21" aria-label="Source 21">21</a><a class="ref" href="#s22" aria-label="Source 22">22</a><a class="ref" href="#s23" aria-label="Source 23">23</a></span></span></td>
+</tr>
+<tr data-i="AMS">
+<td class="c-rank" data-l="Rank">3</td>
+<th scope="row" class="c-ap"><span class="iata">AMS</span> <span class="apn">Amsterdam Schiphol</span><span class="cty">Amsterdam, Netherlands</span></th>
+<td class="c-hub" data-l="To">Amsterdam Centraal<span class="svc"><span class="dot m-rail"></span>Train: NS intercity and sprinter trains</span></td>
+<td class="c-min num" data-l="Minutes">14–17</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">About eight trains an hour</td>
+<td class="c-late" data-l="Late at night">Trains run through the night, hourly after about 01:00</td>
+<td class="c-km num" data-l="Straight line">12.1 km</td>
+<td class="c-score num" data-l="Score"><b>95.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:35.5%" title="Time 35.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>The platforms are directly below Schiphol Plaza, a couple of minutes&#x27; walk from arrivals. Ordinary NS fares. <span class="refs"><a class="ref" href="#s8" aria-label="Source 8">8</a><a class="ref" href="#s9" aria-label="Source 9">9</a></span></span></td>
+</tr>
+<tr data-i="ZRH">
+<td class="c-rank" data-l="Rank">4</td>
+<th scope="row" class="c-ap"><span class="iata">ZRH</span> <span class="apn">Zurich</span><span class="cty">Zurich, Switzerland</span></th>
+<td class="c-hub" data-l="To">Zürich HB<span class="svc"><span class="dot m-rail"></span>Train: SBB S-Bahn and intercity trains</span></td>
+<td class="c-min num" data-l="Minutes">9–13</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Roughly every 5 min (about 13 trains an hour)</td>
+<td class="c-late" data-l="Late at night">No all-night trains on weekdays; ZVV night network on Friday and Saturday nights</td>
+<td class="c-km num" data-l="Straight line">8.9 km</td>
+<td class="c-score num" data-l="Score"><b>91</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:38.0%" title="Time 38"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:8%" title="Late 8"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>No premium express: an ordinary ticket covers the ride from the station beneath the Airport Centre. <span class="refs"><a class="ref" href="#s3" aria-label="Source 3">3</a><a class="ref" href="#s4" aria-label="Source 4">4</a><a class="ref" href="#s5" aria-label="Source 5">5</a></span></span></td>
+</tr>
+<tr data-i="BCN">
+<td class="c-rank" data-l="Rank">5</td>
+<th scope="row" class="c-ap"><span class="iata">BCN</span> <span class="apn">Barcelona El Prat</span><span class="cty">Barcelona, Spain</span></th>
+<td class="c-hub" data-l="To">Passeig de Gràcia<span class="svc"><span class="dot m-rail"></span>Train: Rodalies R2 Nord</span></td>
+<td class="c-min num" data-l="Minutes">about 26</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Train every 30 min; Aerobús every 5–10 min</td>
+<td class="c-late" data-l="Late at night">Night Aerobús and NitBus N17/N18 overnight</td>
+<td class="c-km num" data-l="Straight line">12.8 km</td>
+<td class="c-score num" data-l="Score"><b>89.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:29.5%" title="Time 29.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>The train leaves from T2 only; T1 passengers take a free shuttle bus. The Aerobús coach to Plaça Catalunya takes about 35 min. Metro L9 Sud serves both terminals but needs a change and a special ticket. <span class="refs"><a class="ref" href="#s70" aria-label="Source 70">70</a><a class="ref" href="#s71" aria-label="Source 71">71</a><a class="ref" href="#s72" aria-label="Source 72">72</a><a class="ref" href="#s73" aria-label="Source 73">73</a><a class="ref" href="#s74" aria-label="Source 74">74</a></span></span></td>
+</tr>
+<tr data-i="GVA">
+<td class="c-rank" data-l="Rank">=6</td>
+<th scope="row" class="c-ap"><span class="iata">GVA</span> <span class="apn">Geneva</span><span class="cty">Geneva, Switzerland</span></th>
+<td class="c-hub" data-l="To">Genève-Cornavin<span class="svc"><span class="dot m-rail"></span>Train: SBB/CFF trains</span></td>
+<td class="c-min num" data-l="Minutes">6–7</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">About five trains an hour, up to seven at peak</td>
+<td class="c-late" data-l="Late at night">Trains until around midnight</td>
+<td class="c-km num" data-l="Straight line">4.2 km</td>
+<td class="c-score num" data-l="Score"><b>87.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:39.5%" title="Time 39.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:10%" title="Frequency 10"></i><i class="b-l" style="width:8%" title="Late 8"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>The station sits directly beneath the terminal; every train from it calls at Cornavin. <span class="refs"><a class="ref" href="#s6" aria-label="Source 6">6</a><a class="ref" href="#s7" aria-label="Source 7">7</a></span></span></td>
+</tr>
+<tr data-i="EDI">
+<td class="c-rank" data-l="Rank">=6</td>
+<th scope="row" class="c-ap"><span class="iata">EDI</span> <span class="apn">Edinburgh</span><span class="cty">Edinburgh, United Kingdom</span></th>
+<td class="c-hub" data-l="To">Princes Street / Waverley<span class="svc"><span class="dot m-tram"></span>Tram: Edinburgh Trams; Airlink 100 bus</span></td>
+<td class="c-min num" data-l="Minutes">30–35</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Tram every 7 min by day; Airlink every 10 min</td>
+<td class="c-late" data-l="Late at night">Airlink 100 runs 24 hours</td>
+<td class="c-km num" data-l="Straight line">11.3 km</td>
+<td class="c-score num" data-l="Score"><b>87.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:27.5%" title="Time 27.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>The tram stop is just outside the terminal; the Airlink express bus to Waverley Bridge takes about the same time. <span class="refs"><a class="ref" href="#s58" aria-label="Source 58">58</a><a class="ref" href="#s59" aria-label="Source 59">59</a><a class="ref" href="#s60" aria-label="Source 60">60</a><a class="ref" href="#s61" aria-label="Source 61">61</a></span></span></td>
+</tr>
+<tr data-i="BRU">
+<td class="c-rank" data-l="Rank">8</td>
+<th scope="row" class="c-ap"><span class="iata">BRU</span> <span class="apn">Brussels</span><span class="cty">Brussels, Belgium</span></th>
+<td class="c-hub" data-l="To">Bruxelles-Central<span class="svc"><span class="dot m-rail"></span>Train: SNCB/NMBS trains</span></td>
+<td class="c-min num" data-l="Minutes">about 18</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Six direct trains an hour to central Brussels</td>
+<td class="c-late" data-l="Late at night">Trains until around midnight</td>
+<td class="c-km num" data-l="Straight line">10.9 km</td>
+<td class="c-score num" data-l="Score"><b>86.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:33.5%" title="Time 33.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:8%" title="Late 8"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>The station is directly beneath the arrivals and departures halls. Bruxelles-Nord is about 11 min, Midi about 23. <span class="refs"><a class="ref" href="#s50" aria-label="Source 50">50</a></span></span></td>
+</tr>
+<tr data-i="LIS">
+<td class="c-rank" data-l="Rank">9</td>
+<th scope="row" class="c-ap"><span class="iata">LIS</span> <span class="apn">Lisbon</span><span class="cty">Lisbon, Portugal</span></th>
+<td class="c-hub" data-l="To">Saldanha<span class="svc"><span class="dot m-metro"></span>Metro: Metro Red Line</span></td>
+<td class="c-min num" data-l="Minutes">about 20</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 6–8 min</td>
+<td class="c-late" data-l="Late at night">Metro until about 01:00</td>
+<td class="c-km num" data-l="Straight line">5.2 km</td>
+<td class="c-score num" data-l="Score"><b>85.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:32.5%" title="Time 32.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:8%" title="Late 8"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Barely five kilometres from Saldanha in a straight line. Terminal 2 has no metro: take the free shuttle to Terminal 1. Baixa and Rossio need one change. <span class="refs"><a class="ref" href="#s78" aria-label="Source 78">78</a><a class="ref" href="#s79" aria-label="Source 79">79</a><a class="ref" href="#s80" aria-label="Source 80">80</a><a class="ref" href="#s81" aria-label="Source 81">81</a></span></span></td>
+</tr>
+<tr data-i="LHR">
+<td class="c-rank" data-l="Rank">10</td>
+<th scope="row" class="c-ap"><span class="iata">LHR</span> <span class="apn">London Heathrow</span><span class="cty">London, United Kingdom</span></th>
+<td class="c-hub" data-l="To">London Paddington<span class="svc"><span class="dot m-rail"></span>Train: Heathrow Express</span></td>
+<td class="c-min num" data-l="Minutes">15</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 15 min</td>
+<td class="c-late" data-l="Late at night">N9 night bus all night; Night Tube on Friday and Saturday nights</td>
+<td class="c-km num" data-l="Straight line">20.2 km</td>
+<td class="c-score num" data-l="Score"><b>85</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:35.0%" title="Time 35"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:10%" title="Frequency 10"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:5%" title="Proximity 5"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Fifteen minutes is from Heathrow Central (T2 and T3); T5 is about six minutes further. The Elizabeth line reaches Paddington in about 28 min at TfL fares; the Piccadilly line takes about 50 min. <span class="refs"><a class="ref" href="#s35" aria-label="Source 35">35</a><a class="ref" href="#s36" aria-label="Source 36">36</a><a class="ref" href="#s37" aria-label="Source 37">37</a><a class="ref" href="#s38" aria-label="Source 38">38</a></span></span></td>
+</tr>
+<tr data-i="OSL">
+<td class="c-rank" data-l="Rank">11</td>
+<th scope="row" class="c-ap"><span class="iata">OSL</span> <span class="apn">Oslo Gardermoen</span><span class="cty">Oslo, Norway</span></th>
+<td class="c-hub" data-l="To">Oslo S<span class="svc"><span class="dot m-rail"></span>Train: Flytoget airport express</span></td>
+<td class="c-min num" data-l="Minutes">19</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 10 min by day, every 20 min early, late and at weekends</td>
+<td class="c-late" data-l="Late at night">Trains about 05:30–00:30; most Flybussen coach routes run around the clock</td>
+<td class="c-km num" data-l="Straight line">36.9 km</td>
+<td class="c-score num" data-l="Score"><b>83</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:33.0%" title="Time 33"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:15%" title="Late 15"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Flytoget charges a premium fare. Vy regional trains from the same station take about 23 min on an ordinary fare. <span class="refs"><a class="ref" href="#s24" aria-label="Source 24">24</a><a class="ref" href="#s25" aria-label="Source 25">25</a><a class="ref" href="#s26" aria-label="Source 26">26</a><a class="ref" href="#s27" aria-label="Source 27">27</a></span></span></td>
+</tr>
+<tr data-i="MAD">
+<td class="c-rank" data-l="Rank">12</td>
+<th scope="row" class="c-ap"><span class="iata">MAD</span> <span class="apn">Madrid-Barajas</span><span class="cty">Madrid, Spain</span></th>
+<td class="c-hub" data-l="To">Nuevos Ministerios<span class="svc"><span class="dot m-metro"></span>Metro: Metro Line 8</span></td>
+<td class="c-min num" data-l="Minutes">12–20</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often" class="nv">Not verified</td>
+<td class="c-late" data-l="Late at night">Express bus 203 runs 24 hours (overnight from Cibeles)</td>
+<td class="c-km num" data-l="Straight line">11.4 km</td>
+<td class="c-score num" data-l="Score"><b>81.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:36.5%" title="Time 36.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>About 12 min from the T1-T2-T3 station and under 20 from T4. A €3 airport supplement applies to Metro tickets. Cercanías trains serve T4 only. <span class="refs"><a class="ref" href="#s65" aria-label="Source 65">65</a><a class="ref" href="#s66" aria-label="Source 66">66</a><a class="ref" href="#s67" aria-label="Source 67">67</a><a class="ref" href="#s68" aria-label="Source 68">68</a><a class="ref" href="#s69" aria-label="Source 69">69</a></span></span></td>
+</tr>
+<tr data-i="BER">
+<td class="c-rank" data-l="Rank">13</td>
+<th scope="row" class="c-ap"><span class="iata">BER</span> <span class="apn">Berlin Brandenburg</span><span class="cty">Berlin, Germany</span></th>
+<td class="c-hub" data-l="To">Berlin Hbf<span class="svc"><span class="dot m-rail"></span>Train: FEX airport express</span></td>
+<td class="c-min num" data-l="Minutes">23</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Up to four trains an hour (FEX and RE20 combined)</td>
+<td class="c-late" data-l="Late at night">RE8 runs every night; night buses N7, N7X, N36 and N60</td>
+<td class="c-km num" data-l="Straight line">20.3 km</td>
+<td class="c-score num" data-l="Score"><b>81</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:31.0%" title="Time 31"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:10%" title="Frequency 10"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:5%" title="Proximity 5"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Since December 2025 the FEX has run via the Dresdner Bahn, cutting the trip to 23 min. The station is under Terminal 1. <span class="refs"><a class="ref" href="#s62" aria-label="Source 62">62</a><a class="ref" href="#s63" aria-label="Source 63">63</a><a class="ref" href="#s64" aria-label="Source 64">64</a></span></span></td>
+</tr>
+<tr data-i="VIE">
+<td class="c-rank" data-l="Rank">14</td>
+<th scope="row" class="c-ap"><span class="iata">VIE</span> <span class="apn">Vienna</span><span class="cty">Vienna, Austria</span></th>
+<td class="c-hub" data-l="To">Wien Hbf<span class="svc"><span class="dot m-rail"></span>Train: ÖBB Railjet and Intercity</span></td>
+<td class="c-min num" data-l="Minutes">about 15</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Railjet every 30 min; CAT coach to Wien Mitte every 12–15 min</td>
+<td class="c-late" data-l="Late at night">Last trains around 23:00, plus one just after midnight</td>
+<td class="c-km num" data-l="Straight line">16.5 km</td>
+<td class="c-score num" data-l="Score"><b>78</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:35.0%" title="Time 35"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:10%" title="Frequency 10"></i><i class="b-l" style="width:8%" title="Late 8"></i><i class="b-p" style="width:5%" title="Proximity 5"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Temporary picture: the S-Bahn trunk line is shut from September 2026 to the end of October 2027, and the City Airport Train runs as a bus to Wien Mitte (about 21 min) until it reopens. <span class="refs"><a class="ref" href="#s15" aria-label="Source 15">15</a><a class="ref" href="#s16" aria-label="Source 16">16</a><a class="ref" href="#s17" aria-label="Source 17">17</a><a class="ref" href="#s18" aria-label="Source 18">18</a><a class="ref" href="#s19" aria-label="Source 19">19</a></span></span></td>
+</tr>
+<tr data-i="CDG">
+<td class="c-rank" data-l="Rank">=15</td>
+<th scope="row" class="c-ap"><span class="iata">CDG</span> <span class="apn">Paris Charles de Gaulle</span><span class="cty">Paris, France</span></th>
+<td class="c-hub" data-l="To">Gare du Nord<span class="svc"><span class="dot m-rail"></span>Train: RER B</span></td>
+<td class="c-min num" data-l="Minutes">30–35</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 6–15 min</td>
+<td class="c-late" data-l="Late at night">RER B until about 23:50; Noctilien night buses N140 and N143 overnight</td>
+<td class="c-km num" data-l="Straight line">20.3 km</td>
+<td class="c-score num" data-l="Score"><b>77.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:27.5%" title="Time 27.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:10%" title="Frequency 10"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:5%" title="Proximity 5"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Two stations: CDG 2-TGV between the T2 halls, and CDG 1 at Roissypole, reached from T1 by the CDGVAL shuttle. Roissybus stopped running on 1 March 2026. <span class="refs"><a class="ref" href="#s44" aria-label="Source 44">44</a><a class="ref" href="#s45" aria-label="Source 45">45</a><a class="ref" href="#s46" aria-label="Source 46">46</a><a class="ref" href="#s47" aria-label="Source 47">47</a></span></span></td>
+</tr>
+<tr data-i="MUC">
+<td class="c-rank" data-l="Rank">=15</td>
+<th scope="row" class="c-ap"><span class="iata">MUC</span> <span class="apn">Munich</span><span class="cty">Munich, Germany</span></th>
+<td class="c-hub" data-l="To">München Hbf<span class="svc"><span class="dot m-rail"></span>Train: S-Bahn S1 and S8</span></td>
+<td class="c-min num" data-l="Minutes">about 40</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 10 min combined</td>
+<td class="c-late" data-l="Late at night">S8 runs around the clock, every 40 min in the small hours</td>
+<td class="c-km num" data-l="Straight line">29.1 km</td>
+<td class="c-score num" data-l="Score"><b>77.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:22.5%" title="Time 22.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:5%" title="Proximity 5"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>No airport express: the S-Bahn crawls through the suburbs, which is why a 29 km hop takes 40 minutes. <span class="refs"><a class="ref" href="#s13" aria-label="Source 13">13</a><a class="ref" href="#s14" aria-label="Source 14">14</a></span></span></td>
+</tr>
+<tr data-i="FCO">
+<td class="c-rank" data-l="Rank">17</td>
+<th scope="row" class="c-ap"><span class="iata">FCO</span> <span class="apn">Rome Fiumicino</span><span class="cty">Rome, Italy</span></th>
+<td class="c-hub" data-l="To">Roma Termini<span class="svc"><span class="dot m-rail"></span>Train: Leonardo Express</span></td>
+<td class="c-min num" data-l="Minutes">32</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 15 min (every 30 at quieter times, says Turismo Roma)</td>
+<td class="c-late" data-l="Late at night">Trains until about 23:30, then coaches to Termini through the night</td>
+<td class="c-km num" data-l="Straight line">23.3 km</td>
+<td class="c-score num" data-l="Score"><b>76.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:26.5%" title="Time 26.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:10%" title="Frequency 10"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:5%" title="Proximity 5"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Premium-fare non-stop train. The cheaper FL1 regional takes about 48 min and goes to Tiburtina, not Termini. <span class="refs"><a class="ref" href="#s82" aria-label="Source 82">82</a><a class="ref" href="#s83" aria-label="Source 83">83</a><a class="ref" href="#s84" aria-label="Source 84">84</a><a class="ref" href="#s85" aria-label="Source 85">85</a></span></span></td>
+</tr>
+<tr data-i="ARN">
+<td class="c-rank" data-l="Rank">18</td>
+<th scope="row" class="c-ap"><span class="iata">ARN</span> <span class="apn">Stockholm Arlanda</span><span class="cty">Stockholm, Sweden</span></th>
+<td class="c-hub" data-l="To">Stockholm C<span class="svc"><span class="dot m-rail"></span>Train: Arlanda Express</span></td>
+<td class="c-min num" data-l="Minutes">18</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 15 min for most of the day</td>
+<td class="c-late" data-l="Late at night">Last train around 01:00 (operator leaflet, c. 2023)</td>
+<td class="c-km num" data-l="Straight line">36.1 km</td>
+<td class="c-score num" data-l="Score"><b>71.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:33.5%" title="Time 33.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:10%" title="Frequency 10"></i><i class="b-l" style="width:8%" title="Late 8"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Premium fare. The SL commuter train takes about 38 min from Arlanda C, which charges a station fee to passengers using it. <span class="refs"><a class="ref" href="#s28" aria-label="Source 28">28</a><a class="ref" href="#s29" aria-label="Source 29">29</a><a class="ref" href="#s30" aria-label="Source 30">30</a><a class="ref" href="#s31" aria-label="Source 31">31</a></span></span></td>
+</tr>
+<tr data-i="HEL">
+<td class="c-rank" data-l="Rank">19</td>
+<th scope="row" class="c-ap"><span class="iata">HEL</span> <span class="apn">Helsinki-Vantaa</span><span class="cty">Helsinki, Finland</span></th>
+<td class="c-hub" data-l="To">Helsinki Central<span class="svc"><span class="dot m-rail"></span>Train: HSL commuter trains I and P</span></td>
+<td class="c-min num" data-l="Minutes">about 30</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 10–15 min</td>
+<td class="c-late" data-l="Late at night">Trains until about midnight, every 30 min late and early</td>
+<td class="c-km num" data-l="Straight line">16.4 km</td>
+<td class="c-score num" data-l="Score"><b>70.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:27.5%" title="Time 27.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:10%" title="Frequency 10"></i><i class="b-l" style="width:8%" title="Late 8"></i><i class="b-p" style="width:5%" title="Proximity 5"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>The station is under the terminal. Both loop directions of the Ring Rail Line reach Central without a change, on an ordinary HSL ticket. <span class="refs"><a class="ref" href="#s32" aria-label="Source 32">32</a><a class="ref" href="#s33" aria-label="Source 33">33</a><a class="ref" href="#s34" aria-label="Source 34">34</a></span></span></td>
+</tr>
+<tr data-i="DUB">
+<td class="c-rank" data-l="Rank">=20</td>
+<th scope="row" class="c-ap"><span class="iata">DUB</span> <span class="apn">Dublin</span><span class="cty">Dublin, Ireland</span></th>
+<td class="c-hub" data-l="To">O&#x27;Connell Street<span class="svc"><span class="dot m-bus"></span>Bus: Aircoach 700 and Dublin Express</span></td>
+<td class="c-min num" data-l="Minutes">20–40</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 15 min at peak (Aircoach)</td>
+<td class="c-late" data-l="Late at night">Aircoach 700 and Dublin Bus 41 run 24 hours</td>
+<td class="c-km num" data-l="Straight line">8.6 km</td>
+<td class="c-score num" data-l="Score"><b>67.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:32.5%" title="Time 32.5"></i><i class="b-f" style="width:10%" title="Frequency 10"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>No rail link: every option is on the road, so times range from about 20 to 40 min with traffic. Dublin Bus 16 and 41 take about 40 min. <span class="refs"><a class="ref" href="#s55" aria-label="Source 55">55</a><a class="ref" href="#s56" aria-label="Source 56">56</a><a class="ref" href="#s57" aria-label="Source 57">57</a></span></span></td>
+</tr>
+<tr data-i="ATH">
+<td class="c-rank" data-l="Rank">=20</td>
+<th scope="row" class="c-ap"><span class="iata">ATH</span> <span class="apn">Athens</span><span class="cty">Athens, Greece</span></th>
+<td class="c-hub" data-l="To">Syntagma<span class="svc"><span class="dot m-metro"></span>Metro: Metro Line 3</span></td>
+<td class="c-min num" data-l="Minutes">about 40</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 30 min or so</td>
+<td class="c-late" data-l="Late at night">X95 express bus to Syntagma runs 24 hours</td>
+<td class="c-km num" data-l="Straight line">18.8 km</td>
+<td class="c-score num" data-l="Score"><b>67.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:22.5%" title="Time 22.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:5%" title="Frequency 5"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:5%" title="Proximity 5"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Airport metro tickets cost more than the city fare. The X95 takes about an hour depending on traffic. <span class="refs"><a class="ref" href="#s104" aria-label="Source 104">104</a><a class="ref" href="#s105" aria-label="Source 105">105</a><a class="ref" href="#s106" aria-label="Source 106">106</a></span></span></td>
+</tr>
+<tr data-i="LGW">
+<td class="c-rank" data-l="Rank">=22</td>
+<th scope="row" class="c-ap"><span class="iata">LGW</span> <span class="apn">London Gatwick</span><span class="cty">London, United Kingdom</span></th>
+<td class="c-hub" data-l="To">London Victoria<span class="svc"><span class="dot m-rail"></span>Train: Gatwick Express; Southern and Thameslink</span></td>
+<td class="c-min num" data-l="Minutes">30</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Gatwick Express every 30 min; Southern and Thameslink add more</td>
+<td class="c-late" data-l="Late at night">Late trains; overnight Gatwick Express only on some summer nights</td>
+<td class="c-km num" data-l="Straight line">38.6 km</td>
+<td class="c-score num" data-l="Score"><b>60.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:27.5%" title="Time 27.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:5%" title="Frequency 5"></i><i class="b-l" style="width:8%" title="Late 8"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>The airport gives 30–45 min to London across Gatwick Express, Southern and Thameslink, so the express buys little time. Southern&#x27;s interval to Victoria was not published on the pages we checked, so only the express is scored for frequency. The station is at the South Terminal. <span class="refs"><a class="ref" href="#s39" aria-label="Source 39">39</a><a class="ref" href="#s40" aria-label="Source 40">40</a><a class="ref" href="#s41" aria-label="Source 41">41</a></span></span></td>
+</tr>
+<tr data-i="PRG">
+<td class="c-rank" data-l="Rank">=22</td>
+<th scope="row" class="c-ap"><span class="iata">PRG</span> <span class="apn">Prague</span><span class="cty">Prague, Czech Republic</span></th>
+<td class="c-hub" data-l="To">City centre (Metro A)<span class="svc"><span class="dot m-busmetro"></span>Bus + metro: Trolleybus 59 + Metro A</span></td>
+<td class="c-min num" data-l="Minutes">about 30</td>
+<td class="c-ch num" data-l="Changes">1</td>
+<td class="c-fr" data-l="How often">Buses to the metro every few minutes</td>
+<td class="c-late" data-l="Late at night">Metro until about midnight; night buses 907 and 910 leave every 30 min, but we could not confirm a route to the centre</td>
+<td class="c-km num" data-l="Straight line">11.8 km</td>
+<td class="c-score num" data-l="Score"><b>60.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:27.5%" title="Time 27.5"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:8%" title="Late 8"></i><i class="b-p" style="width:10%" title="Proximity 10"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>No rail link yet. The Airport Express bus runs to the main station in about 40–45 min on a special fare. A rail branch is planned for around 2030. <span class="refs"><a class="ref" href="#s96" aria-label="Source 96">96</a><a class="ref" href="#s97" aria-label="Source 97">97</a><a class="ref" href="#s98" aria-label="Source 98">98</a><a class="ref" href="#s99" aria-label="Source 99">99</a><a class="ref" href="#s100" aria-label="Source 100">100</a></span></span></td>
+</tr>
+<tr data-i="BUD">
+<td class="c-rank" data-l="Rank">24</td>
+<th scope="row" class="c-ap"><span class="iata">BUD</span> <span class="apn">Budapest</span><span class="cty">Budapest, Hungary</span></th>
+<td class="c-hub" data-l="To">Deák Ferenc tér<span class="svc"><span class="dot m-bus"></span>Bus: Bus 100E Airport Express</span></td>
+<td class="c-min num" data-l="Minutes">about 40</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 6–10 min by day</td>
+<td class="c-late" data-l="Late at night">Runs 24/7, every 30–40 min at night</td>
+<td class="c-km num" data-l="Straight line">17.4 km</td>
+<td class="c-score num" data-l="Score"><b>57.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:22.5%" title="Time 22.5"></i><i class="b-f" style="width:15%" title="Frequency 15"></i><i class="b-l" style="width:15%" title="Late 15"></i><i class="b-p" style="width:5%" title="Proximity 5"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>Special fare; ordinary passes aren&#x27;t valid. Bus 200E plus Metro M3 is the regular-ticket route. A rail link is planned, not built. <span class="refs"><a class="ref" href="#s101" aria-label="Source 101">101</a><a class="ref" href="#s102" aria-label="Source 102">102</a><a class="ref" href="#s103" aria-label="Source 103">103</a></span></span></td>
+</tr>
+<tr data-i="MXP">
+<td class="c-rank" data-l="Rank">25</td>
+<th scope="row" class="c-ap"><span class="iata">MXP</span> <span class="apn">Milan Malpensa</span><span class="cty">Milan, Italy</span></th>
+<td class="c-hub" data-l="To">Milano Cadorna<span class="svc"><span class="dot m-rail"></span>Train: Malpensa Express</span></td>
+<td class="c-min num" data-l="Minutes">about 37</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 30 min on each branch</td>
+<td class="c-late" data-l="Late at night">Last train to Cadorna around 00:20–00:30</td>
+<td class="c-km num" data-l="Straight line">39.2 km</td>
+<td class="c-score num" data-l="Score"><b>57</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:24.0%" title="Time 24"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:5%" title="Frequency 5"></i><i class="b-l" style="width:8%" title="Late 8"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>The Centrale branch takes about 51 min. Stations at both terminals. <span class="refs"><a class="ref" href="#s86" aria-label="Source 86">86</a><a class="ref" href="#s87" aria-label="Source 87">87</a><a class="ref" href="#s88" aria-label="Source 88">88</a><a class="ref" href="#s89" aria-label="Source 89">89</a></span></span></td>
+</tr>
+<tr data-i="STN">
+<td class="c-rank" data-l="Rank">26</td>
+<th scope="row" class="c-ap"><span class="iata">STN</span> <span class="apn">London Stansted</span><span class="cty">London, United Kingdom</span></th>
+<td class="c-hub" data-l="To">London Liverpool Street<span class="svc"><span class="dot m-rail"></span>Train: Stansted Express</span></td>
+<td class="c-min num" data-l="Minutes">48–50</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 15 min</td>
+<td class="c-late" data-l="Late at night">Last train from the airport at 00:30</td>
+<td class="c-km num" data-l="Straight line">46.2 km</td>
+<td class="c-score num" data-l="Score"><b>56.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:18.5%" title="Time 18.5"></i><i class="b-r" style="width:20%" title="Rail 20"></i><i class="b-f" style="width:10%" title="Frequency 10"></i><i class="b-l" style="width:8%" title="Late 8"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>The station is directly under the terminal. <span class="refs"><a class="ref" href="#s42" aria-label="Source 42">42</a><a class="ref" href="#s43" aria-label="Source 43">43</a></span></span></td>
+</tr>
+<tr data-i="CRL">
+<td class="c-rank" data-l="Rank">27</td>
+<th scope="row" class="c-ap"><span class="iata">CRL</span> <span class="apn">Brussels South Charleroi</span><span class="cty">Brussels (marketed), Belgium</span></th>
+<td class="c-hub" data-l="To">Bruxelles-Midi<span class="svc"><span class="dot m-coach"></span>Coach: Flibco shuttle coach</span></td>
+<td class="c-min num" data-l="Minutes">55–60</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 20–30 min (sources differ)</td>
+<td class="c-late" data-l="Late at night">Last coach from the airport around 00:40–01:00 (sources differ)</td>
+<td class="c-km num" data-l="Straight line">42.5 km</td>
+<td class="c-score num" data-l="Score"><b>28</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:15.0%" title="Time 15"></i><i class="b-f" style="width:5%" title="Frequency 5"></i><i class="b-l" style="width:8%" title="Late 8"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>The airport is at Charleroi, about 50 km south of Brussels. The alternative is TEC bus A1 to Charleroi-Central station (about 20 min), then a train. <span class="refs"><a class="ref" href="#s51" aria-label="Source 51">51</a><a class="ref" href="#s52" aria-label="Source 52">52</a><a class="ref" href="#s53" aria-label="Source 53">53</a><a class="ref" href="#s54" aria-label="Source 54">54</a></span></span></td>
+</tr>
+<tr data-i="BGY">
+<td class="c-rank" data-l="Rank">28</td>
+<th scope="row" class="c-ap"><span class="iata">BGY</span> <span class="apn">Milan Bergamo</span><span class="cty">Milan (marketed), Italy</span></th>
+<td class="c-hub" data-l="To">Milano Centrale<span class="svc"><span class="dot m-coach"></span>Coach: Coaches to Milano Centrale</span></td>
+<td class="c-min num" data-l="Minutes">50–55</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Every 20–30 min (Terravision)</td>
+<td class="c-late" data-l="Late at night" class="nv">Not verified</td>
+<td class="c-km num" data-l="Straight line">44.3 km</td>
+<td class="c-score num" data-l="Score"><b>22.5</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:17.5%" title="Time 17.5"></i><i class="b-f" style="width:5%" title="Frequency 5"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>About ten minutes from Bergamo by bus. A rail link to Bergamo station is being built and running late: FS gives activation in 2028, and RFI now targets December 2027. <span class="refs"><a class="ref" href="#s90" aria-label="Source 90">90</a><a class="ref" href="#s91" aria-label="Source 91">91</a><a class="ref" href="#s92" aria-label="Source 92">92</a><a class="ref" href="#s93" aria-label="Source 93">93</a><a class="ref" href="#s94" aria-label="Source 94">94</a><a class="ref" href="#s95" aria-label="Source 95">95</a></span></span></td>
+</tr>
+<tr data-i="BVA">
+<td class="c-rank" data-l="Rank">=29</td>
+<th scope="row" class="c-ap"><span class="iata">BVA</span> <span class="apn">Paris Beauvais</span><span class="cty">Paris (marketed), France</span></th>
+<td class="c-hub" data-l="To">Porte Maillot<span class="svc"><span class="dot m-coach"></span>Coach: Airport shuttle coach</span></td>
+<td class="c-min num" data-l="Minutes">75–90</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Timed to flights, not to a clock</td>
+<td class="c-late" data-l="Late at night">Shuttle leaves about 20 min after each arrival, however late</td>
+<td class="c-km num" data-l="Straight line">65.3 km</td>
+<td class="c-score num" data-l="Score"><b>13</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:5.0%" title="Time 5"></i><i class="b-l" style="width:8%" title="Late 8"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>The airport is in Beauvais, about 85 km from Paris. The coach leaves about 20 min after each flight lands and from Porte Maillot about three hours before each departure. <span class="refs"><a class="ref" href="#s48" aria-label="Source 48">48</a><a class="ref" href="#s46" aria-label="Source 46">46</a><a class="ref" href="#s49" aria-label="Source 49">49</a></span></span></td>
+</tr>
+<tr data-i="GRO">
+<td class="c-rank" data-l="Rank">=29</td>
+<th scope="row" class="c-ap"><span class="iata">GRO</span> <span class="apn">Girona</span><span class="cty">Barcelona (marketed), Spain</span></th>
+<td class="c-hub" data-l="To">Barcelona Nord<span class="svc"><span class="dot m-coach"></span>Coach: Sagalés coach</span></td>
+<td class="c-min num" data-l="Minutes">about 75</td>
+<td class="c-ch num" data-l="Changes">None</td>
+<td class="c-fr" data-l="How often">Timed to Ryanair flights</td>
+<td class="c-late" data-l="Late at night">Coaches follow the flight schedule</td>
+<td class="c-km num" data-l="Straight line">74.4 km</td>
+<td class="c-score num" data-l="Score"><b>13</b><span class="bar" aria-hidden="true"><i class="b-t" style="width:5.0%" title="Time 5"></i><i class="b-l" style="width:8%" title="Late 8"></i></span></td>
+<td class="c-note" data-l="Worth knowing"><span>About 90 km from central Barcelona, with no rail link. The alternative is a bus to Girona station and a train. <span class="refs"><a class="ref" href="#s75" aria-label="Source 75">75</a><a class="ref" href="#s76" aria-label="Source 76">76</a><a class="ref" href="#s77" aria-label="Source 77">77</a></span></span></td>
+</tr>
+</tbody>
+</table>
+<p class="empty" id="empty" hidden>No airport matches every filter you've chosen. Clear one to see more.</p>
+</div>
+</section>
+
+<div class="cols">
+<section class="prose" aria-labelledby="h-dist">
+<h2 id="h-dist">Distance is a poor guide</h2>
+<p>Oslo Gardermoen is 36.9 km from Oslo S in a straight line, and Arlanda is 36.1 km from Stockholm Central. Dedicated airport lines get you there in 19 and 18 minutes.<span class="refs"><a class="ref" href="#s24" aria-label="Source 24">24</a><a class="ref" href="#s28" aria-label="Source 28">28</a></span> Munich is closer, at 29.1 km, but its S-Bahn is a suburban railway that stops all the way in, and the trip takes about 40 minutes.<span class="refs"><a class="ref" href="#s13" aria-label="Source 13">13</a></span></p>
+<p>Dublin is the starkest case the other way. Its airport is 8.6 km from O'Connell Street, nearer than Schiphol is to Amsterdam Centraal or Frankfurt Airport is to the Hauptbahnhof. With no rail link, though, every option shares the road, and the coach takes anything from 20 to 40 minutes depending on traffic.<span class="refs"><a class="ref" href="#s55" aria-label="Source 55">55</a></span> Prague and Budapest are in the same position. Prague's quickest route is a trolleybus to the metro at Nádraží Veleslavín and Line A into the centre, about half an hour with one change; a rail branch is in preparation and Railway Pro reports full completion of the wider project expected in 2030.<span class="refs"><a class="ref" href="#s96" aria-label="Source 96">96</a><a class="ref" href="#s99" aria-label="Source 99">99</a><a class="ref" href="#s100" aria-label="Source 100">100</a></span> Budapest's 100E express bus takes about 40 minutes and runs around the clock; in March 2026 a government official said a rail link could be in use by 2031.<span class="refs"><a class="ref" href="#s101" aria-label="Source 101">101</a><a class="ref" href="#s103" aria-label="Source 103">103</a></span></p>
+<p>The premium expresses tell their own story. Heathrow Express, Flytoget, Arlanda Express and the Leonardo Express all charge more than the ordinary route. At Heathrow and Oslo the ordinary trains lose little: the Elizabeth line takes about 28 minutes to Paddington and Vy's regional trains about 23 to Oslo S.<span class="refs"><a class="ref" href="#s36" aria-label="Source 36">36</a><a class="ref" href="#s27" aria-label="Source 27">27</a></span> At Arlanda the SL commuter train takes about 38 minutes and leaves from a separate station that charges its own fee.<span class="refs"><a class="ref" href="#s28" aria-label="Source 28">28</a></span> In Rome the cheaper FL1 regional train skips Termini altogether.<span class="refs"><a class="ref" href="#s84" aria-label="Source 84">84</a></span></p>
+</section>
+<aside class="aside">
+<p><strong>Most often missed.</strong> Barcelona's R2 Nord train leaves only from Terminal 2.<span class="refs"><a class="ref" href="#s71" aria-label="Source 71">71</a></span> Lisbon's metro serves only Terminal 1.<span class="refs"><a class="ref" href="#s79" aria-label="Source 79">79</a></span> Frankfurt and Charles de Gaulle each have two stations, and the wrong one costs time.<span class="refs"><a class="ref" href="#s10" aria-label="Source 10">10</a><a class="ref" href="#s45" aria-label="Source 45">45</a></span></p>
+</aside>
+</div>
+
+<section class="prose" aria-labelledby="h-far">
+<h2 id="h-far">Airports named for somewhere else</h2>
+<p>Plenty of low-cost flights land a long way from the city printed on the ticket. Four of them sit at the bottom of this index, and the reason is the road between the runway and the city.</p>
+<p><strong>Paris Beauvais</strong> is 65 km from Porte Maillot in a straight line and, by the regional tourist board's reckoning, about 85 km from Paris. Its shuttle coach takes 75 to 90 minutes, leaving about 20 minutes after each flight lands; going the other way it leaves Porte Maillot about three hours before each departure.<span class="refs"><a class="ref" href="#s48" aria-label="Source 48">48</a><a class="ref" href="#s46" aria-label="Source 46">46</a><a class="ref" href="#s49" aria-label="Source 49">49</a></span></p>
+<p><strong>Brussels South Charleroi</strong> is 42.5 km from Bruxelles-Midi. The Flibco coach takes 55 to 60 minutes and runs to a fixed timetable, every 20 minutes by Flibco's account and every 30 by the airport's. The alternative is the TEC A1 bus to Charleroi-Central, the station called Charleroi-Sud until December 2022, and a train from there.<span class="refs"><a class="ref" href="#s51" aria-label="Source 51">51</a><a class="ref" href="#s52" aria-label="Source 52">52</a><a class="ref" href="#s54" aria-label="Source 54">54</a></span></p>
+<p><strong>Girona</strong>, sold as Barcelona, is about 90 km from the city centre with no rail link. The Sagalés coach to Barcelona Nord takes about 75 minutes and is timed to Ryanair's flights.<span class="refs"><a class="ref" href="#s75" aria-label="Source 75">75</a><a class="ref" href="#s76" aria-label="Source 76">76</a><a class="ref" href="#s77" aria-label="Source 77">77</a></span></p>
+<p><strong>Milan Bergamo</strong> is 44 km from Milano Centrale, about 50 to 55 minutes by coach.<span class="refs"><a class="ref" href="#s90" aria-label="Source 90">90</a></span> A rail link of about 5 km to Bergamo station is under construction. FS Italiane's project page gives activation in 2028; in February 2026 RFI said the works had fallen behind, and in June 2026 Il Giorno reported a delay of more than a year and a completion target of December 2027.<span class="refs"><a class="ref" href="#s93" aria-label="Source 93">93</a><a class="ref" href="#s94" aria-label="Source 94">94</a><a class="ref" href="#s95" aria-label="Source 95">95</a></span></p>
+<p><strong>London Stansted</strong> is further out than any of them except Beauvais and Girona, 46 km from Liverpool Street, yet scores far better because a train leaves from beneath the terminal every 15 minutes and reaches Liverpool Street in 48 to 50 minutes.<span class="refs"><a class="ref" href="#s42" aria-label="Source 42">42</a><a class="ref" href="#s43" aria-label="Source 43">43</a></span></p>
+</section>
+
+<section class="prose" aria-labelledby="h-before">
+<h2 id="h-before">Before you rely on it</h2>
+<p>Timetables change, and engineering works change them more often. Three cases stood out in October 2026. In Vienna the S-Bahn trunk line is closed from September 2026 until the end of October 2027, and the City Airport Train runs as a coach to Wien Mitte, taking about 21 minutes, until its trains return; ÖBB's Railjets to the Hauptbahnhof, measured here, are unaffected.<span class="refs"><a class="ref" href="#s17" aria-label="Source 17">17</a><a class="ref" href="#s18" aria-label="Source 18">18</a><a class="ref" href="#s19" aria-label="Source 19">19</a></span> At Gatwick, the only overnight Gatwick Express trains in summer 2026 ran on Saturday and Monday mornings between July and September.<span class="refs"><a class="ref" href="#s41" aria-label="Source 41">41</a></span> In Rome, coaches to Termini leave through the night after the last Leonardo Express.<span class="refs"><a class="ref" href="#s83" aria-label="Source 83">83</a><a class="ref" href="#s82" aria-label="Source 82">82</a></span></p>
+<p>Madrid scores nothing for frequency because no source we could read published the Line 8 metro interval; esMadrid says Metro trains generally run every two minutes at the morning peak and every 15 after midnight.<span class="refs"><a class="ref" href="#s67" aria-label="Source 67">67</a></span> Bergamo's late-night coach times were not published on the pages we could check. Check the operator's own timetable before a late or early flight.</p>
+</section>
+
+<section class="sources" id="sources" aria-labelledby="h-src">
+<h2 id="h-src">Sources</h2>
+<ol>
+<li id="s1"><a href="https://ourairports.com/data/" rel="noopener">Airports data (airports.csv)</a>, <span class="pub">OurAirports</span></li>
+<li id="s2"><a href="https://nominatim.openstreetmap.org/" rel="noopener">Nominatim geocoding of station and square locations</a>, <span class="pub">OpenStreetMap contributors</span></li>
+<li id="s3"><a href="https://en.wikipedia.org/wiki/Zurich_Airport_railway_station" rel="noopener">Zurich Airport railway station</a>, <span class="pub">Wikipedia</span></li>
+<li id="s4"><a href="https://www.raileurope.com/en-us/destinations/airports/zurich-airport" rel="noopener">Zurich Airport</a>, <span class="pub">Rail Europe</span></li>
+<li id="s5"><a href="https://www.inyourpocket.com/switzerland/zurich/arrival-and-transport/public-transport" rel="noopener">Getting around Zurich: trams, trains, buses and boats</a>, <span class="pub">In Your Pocket</span></li>
+<li id="s6"><a href="https://www.gva.ch/en/passengers/access-and-transport/trains/train-access" rel="noopener">Train access</a>, <span class="pub">Genève Aéroport</span></li>
+<li id="s7"><a href="https://www.lake-geneva-switzerland.com/geneve/geneva-airport-gva/getting-to-geneva-airport-gva-by-train/" rel="noopener">Getting to Geneva Airport GVA by train</a>, <span class="pub">lake-geneva-switzerland.com</span></li>
+<li id="s8"><a href="https://www.schiphol.nl/en/from-to-schiphol/by-public-transport/train" rel="noopener">Schiphol by train</a>, <span class="pub">Schiphol</span></li>
+<li id="s9"><a href="https://www.rijdendetreinen.nl/en/information/trains-schiphol-airport-amsterdam" rel="noopener">Trains from Schiphol Airport to Amsterdam</a>, <span class="pub">Rijden de Treinen</span></li>
+<li id="s10"><a href="https://www.frankfurt-airport.com/en/transport-and-parking/by-train/local-public-transportation.html/a20250715ay1415.html" rel="noopener">Local public transportation</a>, <span class="pub">Frankfurt Airport (Fraport)</span></li>
+<li id="s11"><a href="https://www.bahnhof.de/en/frankfurt-main-hbf/journey-to-frankfurt-airport" rel="noopener">Journey to Frankfurt Airport</a>, <span class="pub">Deutsche Bahn (bahnhof.de)</span></li>
+<li id="s12"><a href="https://www.rmv.de/c/en/timetables/networks/night-travel/night-travel-frankfurtrheinmain" rel="noopener">Night travel FrankfurtRheinMain</a>, <span class="pub">RMV</span></li>
+<li id="s13"><a href="https://www.munich-airport.com/oeffentliche-verkehrsmittel-90215" rel="noopener">Öffentliche Verkehrsmittel</a>, <span class="pub">Flughafen München</span></li>
+<li id="s14"><a href="https://en.wikipedia.org/wiki/Munich_Airport_Terminal_station" rel="noopener">Munich Airport Terminal station</a>, <span class="pub">Wikipedia</span></li>
+<li id="s15"><a href="https://www.viennaairport.com/en/passengers/arrival__parking/s-bahn__suburban_railway" rel="noopener">S-Bahn / suburban railway</a>, <span class="pub">Vienna Airport</span></li>
+<li id="s16"><a href="https://www.oebb.at/de/regionale-angebote/ueberregionale-angebote/anreise-zum-flughafen/anreise-wien" rel="noopener">Anreise zum Flughafen Wien</a>, <span class="pub">ÖBB</span></li>
+<li id="s17"><a href="https://www.oebb.at/dam/jcr:b538f024-4d3d-48e7-8c32-5b0e80b776a7/anbindung-flughafen-wien.pdf" rel="noopener">Anbindung Flughafen Wien (closure leaflet)</a>, <span class="pub">ÖBB</span></li>
+<li id="s18"><a href="https://www.cityairporttrain.com/en" rel="noopener">City Airport Train</a>, <span class="pub">City Airport Train</span></li>
+<li id="s19"><a href="https://www.vienna.at/12-minuten-takt-cat-bringt-neue-flughafenverbindung/10404197" rel="noopener">12-Minuten-Takt: CAT bringt neue Flughafenverbindung</a>, <span class="pub">vienna.at</span></li>
+<li id="s20"><a href="https://www.visitcopenhagen.com/copenhagen/planning/transportation/copenhagen-airport-to-city-center-all-your-options" rel="noopener">Copenhagen Airport to city center: all your options</a>, <span class="pub">VisitCopenhagen</span></li>
+<li id="s21"><a href="https://www.cph.dk/en/parking-transport/bus-train-metro-taxi/metro" rel="noopener">Metro</a>, <span class="pub">Copenhagen Airports</span></li>
+<li id="s22"><a href="https://m.dk/en/travel-with-the-metro/from-copenhagen-airport-to-copenhagen-central-station-the-easiest-way-to-travel/" rel="noopener">From Copenhagen Airport to Copenhagen Central Station</a>, <span class="pub">Metroselskabet</span></li>
+<li id="s23"><a href="https://www.routesnorth.com/copenhagen/getting-from-copenhagen-airport-to-the-city-centre/" rel="noopener">Getting from Copenhagen Airport to the city centre</a>, <span class="pub">Routes North</span></li>
+<li id="s24"><a href="https://flytoget.no/en/to-and-from-airport/train-from-oslo-airport-to-city/" rel="noopener">Train from Oslo Airport to city</a>, <span class="pub">Flytoget</span></li>
+<li id="s25"><a href="https://www.visitoslo.com/transport/transport-airport/oslo-gardermoen" rel="noopener">Oslo Gardermoen: transport to and from the airport</a>, <span class="pub">VisitOslo</span></li>
+<li id="s26"><a href="https://www.avinor.no/flyplass/oslo/info/kollektivt/" rel="noopener">Kollektivtransport, Oslo lufthavn</a>, <span class="pub">Avinor</span></li>
+<li id="s27"><a href="https://www.oslo-spirit.com/guides/oslo-airport-to-city/" rel="noopener">Oslo Airport to city centre: every transfer option compared</a>, <span class="pub">Oslo Spirit</span></li>
+<li id="s28"><a href="https://swedavia.com/arlanda/trains" rel="noopener">Train services to and from Arlanda airport</a>, <span class="pub">Swedavia</span></li>
+<li id="s29"><a href="https://www.su.se/english/divisions/department-of-swedish-language-and-multilingualism/about-the-department/find-us/travel-from-stockholm-airports" rel="noopener">Travel from Stockholm airports</a>, <span class="pub">Stockholm University</span></li>
+<li id="s30"><a href="https://www.ecio.org/wp-content/uploads/sites/2/2023/02/Arlanda_express_a4_leaflet.pdf" rel="noopener">Arlanda Express leaflet</a>, <span class="pub">Arlanda Express (hosted by ECIO)</span></li>
+<li id="s31"><a href="https://www.thelocal.com/20250603/how-taking-the-train-to-arlanda-airport-could-get-way-cheaper" rel="noopener">How taking the train to Arlanda airport could get way cheaper</a>, <span class="pub">The Local Sweden</span></li>
+<li id="s32"><a href="https://www.finavia.fi/en/helguide/transportation" rel="noopener">Transportation from the airport</a>, <span class="pub">Finavia</span></li>
+<li id="s33"><a href="https://www.finavia.fi/sv/node/4198" rel="noopener">Ring Rail Line</a>, <span class="pub">Finavia</span></li>
+<li id="s34"><a href="https://www.helsinki.fi/en/conferences/social-psychology-of-history-history-of-social-psychology/about/from-the-airport-to-helsinki" rel="noopener">From the airport to Helsinki</a>, <span class="pub">University of Helsinki</span></li>
+<li id="s35"><a href="https://www.heathrowexpress.com/the-route/journey-time" rel="noopener">Our journey time: Paddington to Heathrow in 15 minutes</a>, <span class="pub">Heathrow Express</span></li>
+<li id="s36"><a href="https://www.heathrow.com/transport-and-directions/by-rail-or-train/elizabeth-line" rel="noopener">Elizabeth line</a>, <span class="pub">Heathrow Airport</span></li>
+<li id="s37"><a href="https://www.heathrow.com/transport-and-directions/by-rail-or-train/london-underground" rel="noopener">London Underground</a>, <span class="pub">Heathrow Airport</span></li>
+<li id="s38"><a href="https://visitlondon.com/traveller-information/travel-to-london/airport/heathrow" rel="noopener">London Heathrow Airport</a>, <span class="pub">Visit London</span></li>
+<li id="s39"><a href="https://gatwickairport.com/to-from-london.html" rel="noopener">To and from London</a>, <span class="pub">Gatwick Airport</span></li>
+<li id="s40"><a href="https://www.gatwickairport.com/to-and-from/rail/?mode=b" rel="noopener">Rail</a>, <span class="pub">Gatwick Airport</span></li>
+<li id="s41"><a href="https://www.mediacentre.gatwickairport.com/news/overnight-public-transport-boost-for-london-gatwick-passengers-ahead-of-summer-getaway-season-5bb31-40f32.html" rel="noopener">Overnight public transport boost for London Gatwick passengers (17 June 2026)</a>, <span class="pub">Gatwick Airport media centre</span></li>
+<li id="s42"><a href="https://www.stanstedairport.com/getting-to-and-from/by-stansted-express/" rel="noopener">By Stansted Express</a>, <span class="pub">London Stansted Airport</span></li>
+<li id="s43"><a href="https://www.stanstedairport.com/getting-to-and-from/by-train" rel="noopener">By train</a>, <span class="pub">London Stansted Airport</span></li>
+<li id="s44"><a href="https://cdgfacile.com/acces-transports-paris-cdg/rer-b/" rel="noopener">RER B</a>, <span class="pub">CDG Facile</span></li>
+<li id="s45"><a href="https://parisjetaime.com/eng/article/from-paris-charles-de-gaulle-airport-a078" rel="noopener">From Paris-Charles de Gaulle airport</a>, <span class="pub">Paris je t&#x27;aime (Paris tourist office)</span></li>
+<li id="s46"><a href="https://www.visitparisregion.com/fr/en-pratique/se-deplacer-paris/arriver-paris-region" rel="noopener">Arriver en Paris Region</a>, <span class="pub">Visit Paris Region</span></li>
+<li id="s47"><a href="https://parisbytrain.com/charles-de-gaulle-airport-cdg-to-paris-by-train/" rel="noopener">Charles de Gaulle Airport (CDG) to Paris by train</a>, <span class="pub">Paris by Train</span></li>
+<li id="s48"><a href="https://parisjetaime.com/eng/transport/aeroport-paris-beauvais-p3686" rel="noopener">Aéroport Paris-Beauvais</a>, <span class="pub">Paris je t&#x27;aime (Paris tourist office)</span></li>
+<li id="s49"><a href="https://www.sortiraparis.com/en/news/in-paris/articles/291232-how-do-i-get-to-paris-from-beauvais-airport-and-how-much-does-it-cost" rel="noopener">How do I get to Paris from Beauvais airport</a>, <span class="pub">Sortiraparis</span></li>
+<li id="s50"><a href="https://www.brusselsairport.be/en/passenger/mobility/public-transport/train" rel="noopener">Train</a>, <span class="pub">Brussels Airport</span></li>
+<li id="s51"><a href="https://www.flibco.com/en/shuttle-brussels-charleroi" rel="noopener">Shuttle Brussels Charleroi</a>, <span class="pub">Flibco</span></li>
+<li id="s52"><a href="https://www.brussels-charleroi-airport.com/en/mobility" rel="noopener">Mobility</a>, <span class="pub">Brussels South Charleroi Airport</span></li>
+<li id="s53"><a href="https://brusselstimes.com/617157/how-to-get-to-charleroi-airport-for-cheap" rel="noopener">How to get to Charleroi Airport (for cheap)</a>, <span class="pub">The Brussels Times</span></li>
+<li id="s54"><a href="https://www.rtbf.be/article/la-gare-de-charleroi-sud-devient-charleroi-central-11118121" rel="noopener">La gare de Charleroi-Sud devient Charleroi-Central</a>, <span class="pub">RTBF</span></li>
+<li id="s55"><a href="https://www.aircoach.ie/plan-journey/blog/how-to-get-from-dublin-airport-to-city-centre" rel="noopener">How to get from Dublin Airport to city centre</a>, <span class="pub">Aircoach</span></li>
+<li id="s56"><a href="https://www.tcd.ie/study/international/arriving-in-ireland/airport/" rel="noopener">Arriving in Ireland: airport</a>, <span class="pub">Trinity College Dublin</span></li>
+<li id="s57"><a href="https://dublinairport.com/to-from-the-airport/by-bus/dublin-buses" rel="noopener">Dublin buses</a>, <span class="pub">Dublin Airport</span></li>
+<li id="s58"><a href="https://edinburghairport.com/transport-links/trams" rel="noopener">Trams</a>, <span class="pub">Edinburgh Airport</span></li>
+<li id="s59"><a href="https://edinburghtrams.com/stop/edinburgh-airport" rel="noopener">Edinburgh Airport stop</a>, <span class="pub">Edinburgh Trams</span></li>
+<li id="s60"><a href="https://en.wikipedia.org/wiki/Lothian_Airlink" rel="noopener">Lothian Airlink</a>, <span class="pub">Wikipedia</span></li>
+<li id="s61"><a href="https://everythingedinburgh.com/edinburgh-to-edinburgh-airport/" rel="noopener">Edinburgh to Edinburgh Airport</a>, <span class="pub">Everything Edinburgh</span></li>
+<li id="s62"><a href="https://ber.berlin-airport.de/en/orientierung/getting-here/public-transport.html" rel="noopener">Public transport</a>, <span class="pub">BER Airport</span></li>
+<li id="s63"><a href="https://ber.berlin-airport.de/de/news/2025-12-12-bahnanbindung-ber.html" rel="noopener">Bahnanbindung BER (12 December 2025)</a>, <span class="pub">BER Airport</span></li>
+<li id="s64"><a href="https://www.vbb.de/en/driving-information/ber-airport/all-you-need-to-know/" rel="noopener">BER Airport: all you need to know</a>, <span class="pub">VBB</span></li>
+<li id="s65"><a href="https://www.aena.es/en/adolfo-suarez-madrid-barajas/getting-there/underground.html" rel="noopener">How to get here by underground</a>, <span class="pub">Aena</span></li>
+<li id="s66"><a href="https://www.esmadrid.com/en/getting-madrid-plane" rel="noopener">Getting to Madrid by plane</a>, <span class="pub">esMadrid (Madrid City Council)</span></li>
+<li id="s67"><a href="https://www.esmadrid.com/en/madrid-metro" rel="noopener">Getting around Madrid by Metro</a>, <span class="pub">esMadrid (Madrid City Council)</span></li>
+<li id="s68"><a href="https://www.esmadrid.com/en/airport-express-shuttle" rel="noopener">Airport express shuttle</a>, <span class="pub">esMadrid (Madrid City Council)</span></li>
+<li id="s69"><a href="https://www.crtm.es/datos_lineas/horarios/5C10H2.pdf" rel="noopener">Horarios Cercanías C-10</a>, <span class="pub">Consorcio Regional de Transportes de Madrid</span></li>
+<li id="s70"><a href="https://www.atm.cat/com-arribar-a-barcelona-des-de-l-aeroport" rel="noopener">Getting from Barcelona Airport to the city centre</a>, <span class="pub">Autoritat del Transport Metropolità</span></li>
+<li id="s71"><a href="https://www.aena.es/en/josep-tarradellas-barcelona-el-prat/getting-there/trains.html" rel="noopener">How to get here by train</a>, <span class="pub">Aena</span></li>
+<li id="s72"><a href="https://www.tmb.cat/en/visit-barcelona/public-transport/metro-airport" rel="noopener">Accessing Barcelona from the airport by metro</a>, <span class="pub">TMB</span></li>
+<li id="s73"><a href="https://www.travelguide.barcelona/?p=3566" rel="noopener">Which train goes from the airport to downtown Barcelona?</a>, <span class="pub">travelguide.barcelona</span></li>
+<li id="s74"><a href="https://barcelonaurbana.com/en/blog/barcelona-airport-to-city-center-transport" rel="noopener">Barcelona airport to city center transport</a>, <span class="pub">Barcelona Urbana</span></li>
+<li id="s75"><a href="https://www.sagales.com/en/trip/17/transfer-girona-airport-barcelona-centre" rel="noopener">Transfer Girona Airport to Barcelona centre</a>, <span class="pub">Sagalés</span></li>
+<li id="s76"><a href="https://www.travelguide.barcelona/?p=6690" rel="noopener">How do I get from Girona airport to Barcelona city centre?</a>, <span class="pub">travelguide.barcelona</span></li>
+<li id="s77"><a href="https://www.barcelona.com/es/transporte/aeropuerto-barcelona-bcn/aeropuerto-barcelona-girona" rel="noopener">Aeropuerto Barcelona Girona</a>, <span class="pub">Barcelona.com</span></li>
+<li id="s78"><a href="https://www.lisbonairport.pt/en/lis/access-parking/getting-to-and-from-the-airport/public-transportation" rel="noopener">Public transportation</a>, <span class="pub">Lisbon Airport (ANA)</span></li>
+<li id="s79"><a href="https://www.lisbonairport.pt/en/lis/access-parking/getting-to-and-from-the-airport/terminal-2" rel="noopener">Terminal 2</a>, <span class="pub">Lisbon Airport (ANA)</span></li>
+<li id="s80"><a href="https://www.metrolisboa.pt/en/travel/timetables-and-frequency/" rel="noopener">Timetables and frequency</a>, <span class="pub">Metropolitano de Lisboa</span></li>
+<li id="s81"><a href="https://en.wikipedia.org/wiki/Lisbon_Metro_Red_Line" rel="noopener">Lisbon Metro Red Line</a>, <span class="pub">Wikipedia</span></li>
+<li id="s82"><a href="https://www.adr.it/web/aeroporti-di-roma-en/pax-fco-train" rel="noopener">Fiumicino Airport train: tickets and timetables</a>, <span class="pub">Aeroporti di Roma</span></li>
+<li id="s83"><a href="https://www.adr.it/web/aeroporti-di-roma-en/pax-fco-bus" rel="noopener">To and from Fiumicino: bus</a>, <span class="pub">Aeroporti di Roma</span></li>
+<li id="s84"><a href="https://www.turismoroma.it/en/page/plane" rel="noopener">By plane</a>, <span class="pub">Turismo Roma (Roma Capitale)</span></li>
+<li id="s85"><a href="https://en.wikipedia.org/wiki/Leonardo_Express" rel="noopener">Leonardo Express</a>, <span class="pub">Wikipedia</span></li>
+<li id="s86"><a href="https://malpensaexpress.it/en/lines-and-timetable/how-to-reach-malpensa/reaching-terminal-1" rel="noopener">Reaching Terminal 1</a>, <span class="pub">Malpensa Express (Trenord)</span></li>
+<li id="s87"><a href="https://www.trenord.it/en/routes-and-timetables/services/airport-routes-mxp/" rel="noopener">Malpensa Express airport railway lines</a>, <span class="pub">Trenord</span></li>
+<li id="s88"><a href="https://www.malpensaexpress.it/en/lines-and-timetable/lines-and-timetables/our-lines/malpensa-milano-cadorna/?code=MXP1" rel="noopener">Malpensa–Milano Cadorna airport line</a>, <span class="pub">Malpensa Express (Trenord)</span></li>
+<li id="s89"><a href="https://milanomalpensa-airport.com/en/from-to/by-train" rel="noopener">By train</a>, <span class="pub">Milano Malpensa Airport (SEA)</span></li>
+<li id="s90"><a href="https://terravision.eu/airport_transfer/bus-bergamo-airport-milan/" rel="noopener">Bus Bergamo Airport to Milan Central Station</a>, <span class="pub">Terravision</span></li>
+<li id="s91"><a href="https://www.milanbergamoairport.it/en/bus/" rel="noopener">Bus</a>, <span class="pub">Milan Bergamo Airport (SACBO)</span></li>
+<li id="s92"><a href="https://www.milanbergamoairport.it/en/train/" rel="noopener">Train</a>, <span class="pub">Milan Bergamo Airport (SACBO)</span></li>
+<li id="s93"><a href="https://www.fsitaliane.it/en/strategic-projects/connection-with-the-orio-al-serio-airport.html" rel="noopener">Connection with the Orio al Serio airport</a>, <span class="pub">FS Italiane</span></li>
+<li id="s94"><a href="https://www.rfi.it/it/news-e-media/comunicati-stampa-e-news/2026/2/23/rfi---lombardia--il-punto-sui-lavori-nel-territorio-di-bergamo.html" rel="noopener">Lombardia: il punto sui lavori nel territorio di Bergamo (23 February 2026)</a>, <span class="pub">RFI</span></li>
+<li id="s95"><a href="https://www.ilgiorno.it/bergamo/cronaca/ritardi-cantieri-orio-rfi-task-force-ecd3n9n1" rel="noopener">Ritardi cantieri Orio, RFI task force (8 June 2026)</a>, <span class="pub">Il Giorno</span></li>
+<li id="s96"><a href="https://www.prg.aero/en/how-long-does-it-take-reach-city-centre" rel="noopener">How long does it take to reach the city centre?</a>, <span class="pub">Letiště Praha</span></li>
+<li id="s97"><a href="https://www.prg.aero/en/how-can-i-travel-city-centre" rel="noopener">How can I travel to the city centre?</a>, <span class="pub">Letiště Praha</span></li>
+<li id="s98"><a href="https://pid.cz/en/travel-information/how-do-i-get-from/" rel="noopener">How do I get from…?</a>, <span class="pub">Prague Integrated Transport (PID)</span></li>
+<li id="s99"><a href="https://www.spravazeleznic.cz/en/web/en/-/new-construction-of-airport-line-between-ruzyne-and-vaclav-havel-airport-in-final-stage-of-project-preparation" rel="noopener">New construction of airport line between Ruzyně and Václav Havel Airport</a>, <span class="pub">Správa železnic</span></li>
+<li id="s100"><a href="https://www.railwaypro.com/wp/eib-to-provide-eur-500-million-for-prague-kladno-project/" rel="noopener">EIB to provide EUR 500 million for Prague–Kladno project</a>, <span class="pub">Railway Pro</span></li>
+<li id="s101"><a href="https://bkk.hu/en/travel-information/airport-express/" rel="noopener">Airport Express</a>, <span class="pub">BKK (Budapest Transport Centre)</span></li>
+<li id="s102"><a href="https://en.wikipedia.org/wiki/Budapest_bus_route_100E" rel="noopener">Budapest bus route 100E</a>, <span class="pub">Wikipedia</span></li>
+<li id="s103"><a href="https://xpatloop.com/channels/2026/03/new-update-on-budapest-airport-upgrades-reveals-when-rapid-rail-link-should-be-in-use.html" rel="noopener">New update on Budapest airport upgrades reveals when rapid rail link should be in use</a>, <span class="pub">Xpatloop</span></li>
+<li id="s104"><a href="https://www.thisisathens.org/acvb/getting-around/airport-transportation-metro-bus-taxi" rel="noopener">Coming from the airport</a>, <span class="pub">This is Athens (Athens Convention &amp; Visitors Bureau)</span></li>
+<li id="s105"><a href="https://www.oasa.gr/en/visit-athens/airport-express-bus-lines/" rel="noopener">Airport express bus lines</a>, <span class="pub">OASA</span></li>
+<li id="s106"><a href="https://www.aia.gr/en/traveller/transportation-airport" rel="noopener">Transportation at airport</a>, <span class="pub">Athens International Airport</span></li>
+</ol>
+</section>
+</div>
+</main>
+
+<footer><div class="wrap">
+<p>Published 26 October 2026 in Daily by Nick Carbone · Researched and designed with Claude</p>
+<p><a href="/daily/">More from Daily</a> · <a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20The%20Airport-to-City%20Reality%20Index&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-10-26-the-airport-to-city-reality-index%2F">Spot an error? Suggest a correction</a></p>
+</div></footer>
+
+<script>
+(function(){
+  var D = [{"i": "FRA", "n": "Frankfurt", "mode": "rail", "tm": 12, "ch": 0, "km": 11.6, "s": 96.5, "lp": 15, "guided": true}, {"i": "CPH", "n": "Copenhagen", "mode": "rail", "tm": 12, "ch": 0, "km": 8.4, "s": 96.5, "lp": 15, "guided": true}, {"i": "AMS", "n": "Amsterdam Schiphol", "mode": "rail", "tm": 14, "ch": 0, "km": 12.1, "s": 95.5, "lp": 15, "guided": true}, {"i": "ZRH", "n": "Zurich", "mode": "rail", "tm": 9, "ch": 0, "km": 8.9, "s": 91.0, "lp": 8, "guided": true}, {"i": "BCN", "n": "Barcelona El Prat", "mode": "rail", "tm": 26, "ch": 0, "km": 12.8, "s": 89.5, "lp": 15, "guided": true}, {"i": "GVA", "n": "Geneva", "mode": "rail", "tm": 6, "ch": 0, "km": 4.2, "s": 87.5, "lp": 8, "guided": true}, {"i": "EDI", "n": "Edinburgh", "mode": "tram", "tm": 30, "ch": 0, "km": 11.3, "s": 87.5, "lp": 15, "guided": true}, {"i": "BRU", "n": "Brussels", "mode": "rail", "tm": 18, "ch": 0, "km": 10.9, "s": 86.5, "lp": 8, "guided": true}, {"i": "LIS", "n": "Lisbon", "mode": "metro", "tm": 20, "ch": 0, "km": 5.2, "s": 85.5, "lp": 8, "guided": true}, {"i": "LHR", "n": "London Heathrow", "mode": "rail", "tm": 15, "ch": 0, "km": 20.2, "s": 85.0, "lp": 15, "guided": true}, {"i": "OSL", "n": "Oslo Gardermoen", "mode": "rail", "tm": 19, "ch": 0, "km": 36.9, "s": 83.0, "lp": 15, "guided": true}, {"i": "MAD", "n": "Madrid-Barajas", "mode": "metro", "tm": 12, "ch": 0, "km": 11.4, "s": 81.5, "lp": 15, "guided": true}, {"i": "BER", "n": "Berlin Brandenburg", "mode": "rail", "tm": 23, "ch": 0, "km": 20.3, "s": 81.0, "lp": 15, "guided": true}, {"i": "VIE", "n": "Vienna", "mode": "rail", "tm": 15, "ch": 0, "km": 16.5, "s": 78.0, "lp": 8, "guided": true}, {"i": "CDG", "n": "Paris Charles de Gaulle", "mode": "rail", "tm": 30, "ch": 0, "km": 20.3, "s": 77.5, "lp": 15, "guided": true}, {"i": "MUC", "n": "Munich", "mode": "rail", "tm": 40, "ch": 0, "km": 29.1, "s": 77.5, "lp": 15, "guided": true}, {"i": "FCO", "n": "Rome Fiumicino", "mode": "rail", "tm": 32, "ch": 0, "km": 23.3, "s": 76.5, "lp": 15, "guided": true}, {"i": "ARN", "n": "Stockholm Arlanda", "mode": "rail", "tm": 18, "ch": 0, "km": 36.1, "s": 71.5, "lp": 8, "guided": true}, {"i": "HEL", "n": "Helsinki-Vantaa", "mode": "rail", "tm": 30, "ch": 0, "km": 16.4, "s": 70.5, "lp": 8, "guided": true}, {"i": "DUB", "n": "Dublin", "mode": "bus", "tm": 20, "ch": 0, "km": 8.6, "s": 67.5, "lp": 15, "guided": false}, {"i": "ATH", "n": "Athens", "mode": "metro", "tm": 40, "ch": 0, "km": 18.8, "s": 67.5, "lp": 15, "guided": true}, {"i": "LGW", "n": "London Gatwick", "mode": "rail", "tm": 30, "ch": 0, "km": 38.6, "s": 60.5, "lp": 8, "guided": true}, {"i": "PRG", "n": "Prague", "mode": "busmetro", "tm": 30, "ch": 1, "km": 11.8, "s": 60.5, "lp": 8, "guided": false}, {"i": "BUD", "n": "Budapest", "mode": "bus", "tm": 40, "ch": 0, "km": 17.4, "s": 57.5, "lp": 15, "guided": false}, {"i": "MXP", "n": "Milan Malpensa", "mode": "rail", "tm": 37, "ch": 0, "km": 39.2, "s": 57.0, "lp": 8, "guided": true}, {"i": "STN", "n": "London Stansted", "mode": "rail", "tm": 48, "ch": 0, "km": 46.2, "s": 56.5, "lp": 8, "guided": true}, {"i": "CRL", "n": "Brussels South Charleroi", "mode": "coach", "tm": 55, "ch": 0, "km": 42.5, "s": 28.0, "lp": 8, "guided": false}, {"i": "BGY", "n": "Milan Bergamo", "mode": "coach", "tm": 50, "ch": 0, "km": 44.3, "s": 22.5, "lp": 0, "guided": false}, {"i": "BVA", "n": "Paris Beauvais", "mode": "coach", "tm": 75, "ch": 0, "km": 65.3, "s": 13.0, "lp": 8, "guided": false}, {"i": "GRO", "n": "Girona", "mode": "coach", "tm": 75, "ch": 0, "km": 74.4, "s": 13.0, "lp": 8, "guided": false}];
+  var by = {}; D.forEach(function(d){ by[d.i] = d; });
+  var form = document.getElementById('controls'), tb = document.querySelector('#dir tbody');
+  if(!form || !tb) return;
+  form.hidden = false;
+  var rows = Array.prototype.slice.call(tb.querySelectorAll('tr'));
+  document.querySelectorAll('.sl').forEach(function(li, n){ li.style.setProperty('--i', n); });
+  function apply(){
+    var f = form.elements, key = f.sort.value, shown = 0;
+    rows.sort(function(a, b){
+      var x = by[a.dataset.i], y = by[b.dataset.i];
+      if(key === 's') return y.s - x.s || x.tm - y.tm;
+      if(key === 'n') return x.n.localeCompare(y.n);
+      return x[key] - y[key] || y.s - x.s;
+    });
+    rows.forEach(function(tr){
+      var d = by[tr.dataset.i];
+      var ok = (!f.guided.checked || d.guided) && (!f.nochange.checked || d.ch === 0) &&
+               (!f.night.checked || d.lp === 15) && (!f.fast.checked || d.tm < 25);
+      tr.hidden = !ok; if(ok) shown++;
+      tb.appendChild(tr);
+    });
+    document.getElementById('count').textContent = 'Showing ' + shown + ' of ' + D.length;
+    document.getElementById('empty').hidden = shown > 0;
+  }
+  form.addEventListener('change', apply);
+  apply();
+})();
+</script>
+</body>
+</html>

@@ -24,20 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Airport-to-City Reality Index
-The question: Which airports make it easiest to start living like a local immediately after landing, and which quietly consume an hour of your trip?
-This connects your interest in airport systems with your preference for efficient travel and avoiding unnecessary driving.
-What to include
-- 30 airports serving interesting European cities.
-- Rail, metro, tram, and bus availability.
-- Typical journey time to a central transit hub.
-- Number of transfers and whether services run late.
-- Whether the airport is actually near the city it claims to serve.
-- A separate note for low-cost airports located far outside their advertised destination.
-Interactive element: A sortable airport directory with filters for direct rail, journey time, overnight service, and transfer count. A simple scorecard could rate convenience, provided the scoring rules are visible.
-Sources to start with: International Air Rail Organisation, Eurostat's airport transport dataset, and official airport and railway websites. The IARO directory is a particularly useful starting point for identifying airport rail links. 
-Finish line: 30 airports, comparable access data for each, and a ranked list of the 10 most convenient arrivals.
-
 The Everyday Infrastructure Atlas
 The question: What unusual or overlooked infrastructure makes certain cities especially pleasant to live in, navigate, or explore?
 This is the most systems-oriented idea of the five. It looks at the practical mechanisms behind a city's character rather than merely describing its attractions.

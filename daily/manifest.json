@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 8,
+      "slug": "2026-10-26-the-airport-to-city-reality-index",
+      "date": "2026-10-26",
+      "title": "The Airport-to-City Reality Index",
+      "dek": "Thirty European airports scored on how fast, how often and how late public transport gets you from the terminal to the middle of town, with the scoring rules on show.",
+      "kind": "Scored directory",
+      "readingMinutes": 22,
+      "design": "Bricolage Grotesque, Spectral; platform-tile grey, navy ink, mode colours (signal red, metro green, tram amber, coach violet); in-carriage strip-map hero, ruled sortable directory.",
+      "source": "queue",
+      "brief": "The Airport-to-City Reality Index\nThe question: Which airports make it easiest to start living like a local immediately after landing, and which quietly consume an hour of your trip?\nThis connects your interest in airport systems with your preference for efficient travel and avoiding unnecessary driving.\nWhat to include\n- 30 airports serving interesting European cities.\n- Rail, metro, tram, and bus availability.\n- Typical journey time to a central transit hub.\n- Number of transfers and whether services run late.\n- Whether the airport is actually near the city it claims to serve.\n- A separate note for low-cost airports located far outside their advertised destination.\nInteractive element: A sortable airport directory with filters for direct rail, journey time, overnight service, and transfer count. A simple scorecard could rate convenience, provided the scoring rules are visible.\nSources to start with: International Air Rail Organisation, Eurostat's airport transport dataset, and official airport and railway websites. The IARO directory is a particularly useful starting point for identifying airport rail links. \nFinish line: 30 airports, comparable access data for each, and a ranked list of the 10 most convenient arrivals.",
+      "factcheck": {
+        "claims": 140,
+        "fixed": 15
+      },
+      "corrections": []
+    },
+    {
       "no": 7,
       "slug": "2026-10-25-the-heist-file",
       "date": "2026-10-25",
