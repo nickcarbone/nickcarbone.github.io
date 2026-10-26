@@ -98,12 +98,30 @@ Sources to start with: OCCRP, INTERPOL's stolen works of art database, and the N
 Finish line: Six city profiles, 15–20 documented entities or institutions, a sourced relationship map, and five case studies. Label allegations carefully and avoid implying that ordinary businesses are involved in crime without evidence.
 Review: yes
 
+The Things Countries Actually Wrote Down
+Create a self-contained interactive HTML guide exploring the most astonishing, consequential, or overlooked provisions in countries’ constitutions, foundational laws, declarations, and official records.
+Find authentic passages involving unusual rights, citizen duties, state powers, historical compromises, and unexpected national commitments.
+For each, provide the exact wording, country, document, date, legal status, historical context, and real-world implications.
+Distinguish current law from repealed provisions, proposals, mistranslations, and misleading quotations.
+Build a searchable explorer with filters by country, subject, era, and legal status, plus side-by-side comparisons.
+Prioritize discoveries that reveal something profound or surprising about a country's history or political system.
+Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
+
 Houses That Tell You Who Lived There
 A building-by-building guide to landmark European houses and apartment buildings designed for wealthy clients, and what each one says about how its owners wanted to live. Where The Secret Geography of European Luxury maps districts, this one goes inside single buildings: the commission, the architect, the plan, the materials, and how the design signalled status in its day.
 Include: 15 buildings from about 1890 to the present, favouring ones that are now museums, heritage-listed or thoroughly documented (the level of Villa Tugendhat, Palais Stoclet or Casa Malaparte). Simple drawn plans or sections where they help. For each house, a short note on what it would tell a novelist about a character who lived there.
 Avoid: current private residents, property prices, live listings.
 Look: an architectural monograph or plan book.
 Finish line: 15 building profiles, a timeline of styles, and a comparison matrix of how each house balances privacy against display.
+
+The Decisions That Accidentally Built Our World
+Create an interactive HTML guide to obscure decisions, treaties, technical standards, and bureaucratic choices that unexpectedly shaped the modern world.
+Investigate how small groups or individual officials made decisions with lasting consequences for borders, commerce, infrastructure, communication, or identity.
+For each case, explain the original problem, decision-makers, alternatives, motivations, and long-term effects.
+Distinguish unintended consequences from deliberate outcomes and later historical myths.
+Include interactive timelines, consequence chains, and clearly labeled counterfactual scenarios.
+Focus on overlooked turning points that help explain why today's world works the way it does.
+Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
 
 The Urban Waterfront Access Atlas
 Research question: Which cities make their waterfronts part of ordinary urban life, and which effectively separate the city from the water?
@@ -118,6 +136,22 @@ Proposed contents
 Interactive element: A filterable atlas organized by waterfront type, public accessibility, and urban integration. Include original CSS-based access diagrams showing how the built environment connects—or fails to connect—to the water.
 Sources to start from: Use verified municipal planning information and public-access information during research.
 Finish line: 20 cities classified into four waterfront types, plus a comparative scorecard for public access and urban integration.
+
+The Secret Histories of Ordinary Life
+Create an interactive HTML guide uncovering the surprising histories behind ordinary things such as passports, hotel keys, time zones, barcodes, shipping containers, electrical plugs, and street addresses.
+Explain what existed before each system, why it emerged, who standardized it, and how it changed society.
+Explore the political, commercial, technological, and cultural consequences hidden behind seemingly mundane conventions.
+Prioritize stories that fundamentally change how readers understand everyday life, not merely amusing invention trivia.
+Build an interactive atlas with historical timelines, before-and-after comparisons, and “still with us” explanations.
+Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
+
+The Ghosts of Empires
+Create an interactive HTML guide tracing overlooked colonial and imperial arrangements that continue to shape the modern world.
+Investigate specific inherited borders, legal systems, property rules, infrastructure networks, language policies, resource concessions, and administrative categories.
+For each case, trace the original decision through historical turning points to its documented present-day consequences.
+Explain what survived independence, what changed, and who benefited or suffered, without reducing complex histories to simplistic explanations.
+Include interactive timelines and original schematic maps showing how historical arrangements persist.
+Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
 
 The Overnight Geography Directory
 Research question: Where can you travel overnight, wake up somewhere genuinely different, and still have a useful amount of time to explore before returning?
@@ -153,6 +187,15 @@ Proposed Contents: 20 classic and craft breweries across Belgium, Germany, the U
 Interactive Element: A line-by-line transit map UI displaying brewery stops sequentially along major rail corridors (e.g., Brussels–Gent–Brugge or Munich–Salzburg).
 Finish Line: 20 platform-to-taproom profiles with step-by-step walking guides and rail schedule notes.
 
+When the Official Story Fell Apart
+Create an interactive HTML guide to consequential historical claims, public myths, and official narratives that changed when new evidence emerged.
+Investigate declassified documents, fabricated evidence, forgotten testimony, forensic discoveries, and events whose popular retelling obscures important facts.
+For each case, explain the original story, the evidence behind it, what later emerged, and how historical understanding changed.
+Separate established facts from contested interpretations; do not treat unsupported conspiracy theories as equivalent to documented evidence.
+Build evidence timelines and interactive “myth versus evidence” comparisons.
+Focus on revelations that genuinely changed our understanding of history, power, or public memory.
+Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
+
 The Micro-Brewery & Industrial Taproom Radar
 Research Question: How are independent craft breweries repurposing industrial heritage sites—dockyards, brick warehouses, and old railway arches—into vibrant community third places?
 Proposed Contents: 18 independent breweries operating out of converted industrial spaces. Architectural provenance, outdoor seating, dog-friendliness, local neighborhood integration, transit access, and flagship draft offerings.
@@ -164,6 +207,24 @@ Research Question: Which secondary European airports offer seamless high-speed r
 Proposed Contents: 20 airports serving major regional hubs. Dedicated express train lines vs. regional buses, transit costs, journey times, ticket integration, and door-to-door efficiency compared to main central station hubs.
 Interactive Element: An interactive route calculator comparing total transit cost and time from platform to city center across all 20 airports.
 Finish Line: 20 verified airport profiles ranked by connection friction, complete with explicit "avoid/use" ground transport recommendation
+
+Legal Yesterday
+Create an interactive HTML guide to forgotten laws that reveal surprising, disturbing, or consequential aspects of everyday life in the past.
+Investigate historical restrictions on movement, work, property, family life, commerce, personal freedoms, and public behavior.
+For each law, explain its exact wording, jurisdiction, date, original purpose, enforcement, affected populations, and eventual fate.
+Distinguish enacted laws from proposals, popular legends, repealed provisions, and rules that remain in force.
+Build a searchable historical law index with timelines showing introduction, enforcement, challenges, and repeal.
+Focus on how ordinary administrative rules can institutionalize power and reshape society.
+Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
+
+The Hidden Machinery of Civilization
+Create an interactive HTML field guide to the obscure international standards, protocols, and administrative systems that make modern civilization function.
+Explore country identifiers, shipping containers, financial messaging, timekeeping, aviation procedures, telecommunications, postal systems, and measurement standards.
+Explain why each system emerged, who established it, what compromises shaped it, and how it influences everyday life.
+Investigate surprising edge cases, historical quirks, system failures, and the difficulty of changing conventions once global infrastructure depends on them.
+Build an interactive dependency explorer showing how ordinary activities rely on multiple interconnected systems.
+Prioritize consequential mechanisms that are largely invisible to the public.
+Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
 
 The World's Hidden Standards
 New territory: standards engineering, industrial history, interoperability
