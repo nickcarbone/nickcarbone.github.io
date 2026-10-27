@@ -167,6 +167,13 @@ Interactive element: A searchable directory with filters for onward transport, t
 Sources to start from: Omit source recommendations in the generated guide; populate individual entries using verified transport data during research.
 Finish line: 25 destinations, four filters, and a ranked list of 10 places with unusually manageable last-mile connections.
 
+How the World Drinks Beer Differently
+Create an interactive HTML guide comparing beer cultures across countries, exploring what people drink, where they drink it, how it is served, and what they eat alongside it.
+Investigate how climate, agriculture, religion, labor patterns, immigration, taxation, and social customs shaped distinctive drinking traditions.
+Compare countries and regions through signature styles, drinking venues, serving rituals, food pairings, and everyday habits.
+Explain the historical reasons behind surprising differences, challenging stereotypes and distinguishing regional traditions from modern trends.
+Build an interactive world atlas with country comparisons, cultural profiles, and a “same beer, different culture” exploration.
+
 The European Brewery & Taproom Railway Atlas
 Research Question: Where can a traveler plan an itinerary centered on world-class, historic, or independent microbreweries located within a 15-minute walk of regional railway stations?
 Proposed Contents: 20 classic and craft breweries across Belgium, Germany, the UK, the Netherlands, and Scandinavia located directly adjacent to passenger rail stops. Details include foot transit time from platform, taproom hours, flagship beer styles, food availability, and rail line hub connections.
@@ -188,11 +195,8 @@ Proposed Contents: 18 independent breweries operating out of converted industria
 Interactive Element: A searchable directory tagged by architectural type (rail arch, dockyard, warehouse, historic maltings), seating setup, and transit walkability.
 Finish Line: 18 taproom profiles celebrating industrial preservation and craft beer culture.
 
-The Secondary Airport-to-City Transit Scorecard
-Research Question: Which secondary European airports offer seamless high-speed rail connections into city centers, and which trap travelers in costly, slow bus transfers?
-Proposed Contents: 20 airports serving major regional hubs. Dedicated express train lines vs. regional buses, transit costs, journey times, ticket integration, and door-to-door efficiency compared to main central station hubs.
-Interactive Element: An interactive route calculator comparing total transit cost and time from platform to city center across all 20 airports.
-Finish Line: 20 verified airport profiles ranked by connection friction, complete with explicit "avoid/use" ground transport recommendation
+The World's Great Drinking Institutions
+The history of British pubs, German beer halls, Belgian cafés, Czech hospodas, Japanese beer gardens, and American neighborhood taverns. Explore how these venues became social infrastructure rather than simply places to drink.
 
 Legal Yesterday
 Create an interactive HTML guide to forgotten laws that reveal surprising, disturbing, or consequential aspects of everyday life in the past.
@@ -202,6 +206,9 @@ Distinguish enacted laws from proposals, popular legends, repealed provisions, a
 Build a searchable historical law index with timelines showing introduction, enforcement, challenges, and repeal.
 Focus on how ordinary administrative rules can institutionalize power and reshape society.
 Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
+
+The Lost Beers of the World
+Investigate forgotten beer styles, defunct breweries, discontinued brands, and regional traditions pushed aside by industrial lager. Explain what made each distinctive and whether modern brewers have revived it.
 
 The Hidden Machinery of Civilization
 Create an interactive HTML field guide to the obscure international standards, protocols, and administrative systems that make modern civilization function.
@@ -313,6 +320,13 @@ Why do some objects get repaired for decades while others are discarded after a 
 Interactive element: An object repairability index with filters for parts availability, tool requirements, skill level, cost, and expected service life.
 Finish line: 20 repair traditions or businesses, a cross-category repairability comparison, and a practical framework for buying objects that can be maintained rather than replaced.
 
+Heads Up
+Create an interactive HTML field guide to the world's beer pouring techniques and glassware traditions, explaining why different beers are poured into particular glasses and served using specific methods.
+Cover styles such as German hefeweizen, Czech pilsner, Belgian saison, Irish stout, British cask ale, and Japanese lager, including distinctive pours, foam levels, temperatures, and serving rituals.
+Explain the science behind carbonation, head formation, aroma release, nucleation, and glass shape, distinguishing proven effects from tradition and marketing.
+Include side-by-side glass profiles, step-by-step pouring instructions, common mistakes, and regional customs that reveal the cultural history behind each technique.
+Build an interactive beer-to-glass matcher and a pour simulator that lets readers explore how technique changes the appearance, aroma, and texture of a beer.
+
 The Hidden Economics of Going Out
 What actually determines whether a night out is inexpensive, luxurious, memorable, or frustrating? Build a comparative model of the businesses and decisions behind an evening: neighborhood bars, hotel lounges, neighborhood restaurants, destination dining, live-music venues, late-night cafés, and other social spaces. Examine rent, labor, capacity, turnover, purchasing, licensing, menu pricing, location, and the trade-offs between atmosphere and profitability. Compare the economics of a packed neighborhood bar with those of a low-volume luxury lounge, and show why the highest-priced venue is not necessarily the most profitable.
 Interactive element: A venue economics simulator where users adjust rent, staffing, average spend, occupancy, opening hours, and customer turnover to see the effects on revenue and operating margin.
@@ -321,4 +335,8 @@ Finish line: Six venue business models, a set of worked financial scenarios, and
 ---
 
 # Parked
-
+The Secondary Airport-to-City Transit Scorecard
+Research Question: Which secondary European airports offer seamless high-speed rail connections into city centers, and which trap travelers in costly, slow bus transfers?
+Proposed Contents: 20 airports serving major regional hubs. Dedicated express train lines vs. regional buses, transit costs, journey times, ticket integration, and door-to-door efficiency compared to main central station hubs.
+Interactive Element: An interactive route calculator comparing total transit cost and time from platform to city center across all 20 airports.
+Finish Line: 20 verified airport profiles ranked by connection friction, complete with explicit "avoid/use" ground transport recommendation
