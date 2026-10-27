@@ -1,7 +1,15 @@
 {
-  "generated": "2026-10-27T12:09:06.339Z",
+  "generated": "2026-10-27T15:00:54.633Z",
   "count": 84,
   "pages": [
+    {
+      "slug": "evening-edition",
+      "url": "https://nickcarbone.github.io/evening-edition/",
+      "title": "Evening Edition",
+      "description": "",
+      "updated": "2026-10-27T13:35:19Z",
+      "created": "2026-10-20T14:56:45Z"
+    },
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
@@ -9,14 +17,6 @@
       "description": "",
       "updated": "2026-10-27T09:29:05Z",
       "created": "2026-07-10T01:19:16Z"
-    },
-    {
-      "slug": "evening-edition",
-      "url": "https://nickcarbone.github.io/evening-edition/",
-      "title": "Evening Edition",
-      "description": "",
-      "updated": "2026-10-27T06:50:45Z",
-      "created": "2026-10-20T14:56:45Z"
     },
     {
       "slug": "first-light",
@@ -270,7 +270,7 @@
       "slug": "europe-flats",
       "url": "https://nickcarbone.github.io/europe-flats/",
       "title": "Europe Flats",
-      "description": "Published via Publisher �� nickcarbone.github.io/europe-flats/",
+      "description": "nickcarbone.github.io/europe-flats/",
       "updated": "2026-07-02T01:12:08Z",
       "created": "2026-07-02T01:11:58Z"
     },
