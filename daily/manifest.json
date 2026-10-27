@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 9,
+      "slug": "2026-10-27-the-everyday-infrastructure-atlas",
+      "date": "2026-10-27",
+      "title": "The Everyday Infrastructure Atlas",
+      "dek": "Thirty ferries, funiculars, trams, walkways, stations and markets that make 24 places easier to live in, with what each one solves, how residents use it and how to use it yourself.",
+      "kind": "Filterable atlas",
+      "readingMinutes": 32,
+      "design": "Anybody, Petrona, JetBrains Mono; riso newsprint with teal, magenta, yellow overprint; composite city cross-section hero, pictogram key, world/Europe pin maps, numbered plates.",
+      "source": "queue",
+      "brief": "The Everyday Infrastructure Atlas\nThe question: What unusual or overlooked infrastructure makes certain cities especially pleasant to live in, navigate, or explore?\nThis is the most systems-oriented idea of the five. It looks at the practical mechanisms behind a city's character rather than merely describing its attractions.\nWhat to include\n- 30 examples of infrastructure that shapes daily life: ferries, funiculars, coastal trams, integrated rail terminals, public markets linked to transit, and pedestrian connections.\n- The city problem each system solves.\n- How residents use it, not just tourists.\n- A short history and a practical example of using it.\n- A comparison of similar systems in different cities.\nInteractive element: An atlas filterable by infrastructure type, geography, and everyday function. Selecting a feature reveals a map pin, a short explanation, and an official information link.\nSources to start with: OpenStreetMap, GTFS public-transit data documentation, city transport agencies, and municipal open-data portals. GTFS documentation provides a useful framework for representing stops, routes, and trips in a structured way. \nFinish line: 30 documented examples across at least 10 cities, organized into six infrastructure categories.",
+      "factcheck": {
+        "claims": 479,
+        "fixed": 41
+      },
+      "corrections": []
+    },
+    {
       "no": 8,
       "slug": "2026-10-26-the-airport-to-city-reality-index",
       "date": "2026-10-26",

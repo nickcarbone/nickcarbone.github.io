@@ -24,19 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Everyday Infrastructure Atlas
-The question: What unusual or overlooked infrastructure makes certain cities especially pleasant to live in, navigate, or explore?
-This is the most systems-oriented idea of the five. It looks at the practical mechanisms behind a city's character rather than merely describing its attractions.
-What to include
-- 30 examples of infrastructure that shapes daily life: ferries, funiculars, coastal trams, integrated rail terminals, public markets linked to transit, and pedestrian connections.
-- The city problem each system solves.
-- How residents use it, not just tourists.
-- A short history and a practical example of using it.
-- A comparison of similar systems in different cities.
-Interactive element: An atlas filterable by infrastructure type, geography, and everyday function. Selecting a feature reveals a map pin, a short explanation, and an official information link.
-Sources to start with: OpenStreetMap, GTFS public-transit data documentation, city transport agencies, and municipal open-data portals. GTFS documentation provides a useful framework for representing stops, routes, and trips in a structured way. 
-Finish line: 30 documented examples across at least 10 cities, organized into six infrastructure categories.
-
 The Lost Beer Styles Brewing Notebook
 Research question: Which historical regional beers can a modern homebrewer realistically recreate using available ingredients?
 Rather than collecting beer recipes indiscriminately, select styles with a documented regional identity and a clear reason to brew them.
