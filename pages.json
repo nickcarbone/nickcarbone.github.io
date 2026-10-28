@@ -1,22 +1,22 @@
 {
-  "generated": "2026-10-28T12:30:31.350Z",
+  "generated": "2026-10-28T22:25:11.822Z",
   "count": 84,
   "pages": [
-    {
-      "slug": "scoop-tracker",
-      "url": "https://nickcarbone.github.io/scoop-tracker/",
-      "title": "Scoop Tracker",
-      "description": "",
-      "updated": "2026-10-28T10:12:28Z",
-      "created": "2026-07-10T01:19:16Z"
-    },
     {
       "slug": "evening-edition",
       "url": "https://nickcarbone.github.io/evening-edition/",
       "title": "Evening Edition",
       "description": "",
-      "updated": "2026-10-28T08:59:27Z",
+      "updated": "2026-10-28T21:20:39Z",
       "created": "2026-10-20T14:56:45Z"
+    },
+    {
+      "slug": "scoop-tracker",
+      "url": "https://nickcarbone.github.io/scoop-tracker/",
+      "title": "Scoop Tracker",
+      "description": "",
+      "updated": "2026-10-28T17:42:36Z",
+      "created": "2026-07-10T01:19:16Z"
     },
     {
       "slug": "first-light",
