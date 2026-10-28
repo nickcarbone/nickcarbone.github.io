@@ -24,20 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Lost Beer Styles Brewing Notebook
-Research question: Which historical regional beers can a modern homebrewer realistically recreate using available ingredients?
-Rather than collecting beer recipes indiscriminately, select styles with a documented regional identity and a clear reason to brew them.
-Proposed contents
-- Six styles, such as Kentucky Common, German Lichtenhainer, French bière de garde, Polish grodziskie, Scandinavian farmhouse ale, and a historically grounded London porter.
-- Origins, historical period, and the evidence behind each reconstruction.
-- Traditional ingredients versus modern substitutes.
-- A practical recipe scaled to a five-gallon batch.
-- Estimated original gravity, bitterness, fermentation temperature, and expected flavor.
-- A sourcing list for specialty malt, hops, and yeast.
-Visual element: A regional map of beer traditions with expandable recipe cards and a timeline.
-Sources to start with: Brewers Association Beer Style Guidelines, Historical Beer: An Overview, and brewing-history resources from established brewing organizations. The Brewers Association's current guidelines include a dedicated historical beer category, while also recognizing that modern commercial examples don't always replicate historical beers exactly. 
-Finish line: Six concise style profiles and one complete recipe ready for a future brew day. Clearly distinguish documented historical ingredients from modern reconstruction choices.
-
 Election Logistics (more clever title needed)
 Pegged to the US elections coming up next week, create an interactive HTML guide exploring the hidden logistics behind elections worldwide, from voter registration and ballot printing to polling-place operations, ballot transport, counting, recounts, and certification.
 Explain how election systems differ across countries, including paper ballots, electronic voting, mail voting, voter identification, and proportional versus winner-take-all systems.

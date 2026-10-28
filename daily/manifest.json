@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 10,
+      "slug": "2026-10-28-six-lost-beers-brewed-again",
+      "date": "2026-10-28",
+      "title": "Six Lost Beers, Brewed Again",
+      "dek": "Six regional beers that faded or vanished, what the evidence says about each, and a starting recipe for every one at homebrew scale, with one written out in full for brew day.",
+      "kind": "Brewing notebook",
+      "readingMinutes": 24,
+      "design": "Young Serif, Alegreya, Azeret Mono; quadrille-paper green-grey, iron ink, hydrometer red, SRM beer colours; glass-flight hero, hydrometer strips, documented/modern ledger.",
+      "source": "queue",
+      "brief": "The Lost Beer Styles Brewing Notebook\nResearch question: Which historical regional beers can a modern homebrewer realistically recreate using available ingredients?\nRather than collecting beer recipes indiscriminately, select styles with a documented regional identity and a clear reason to brew them.\nProposed contents\n- Six styles, such as Kentucky Common, German Lichtenhainer, French bière de garde, Polish grodziskie, Scandinavian farmhouse ale, and a historically grounded London porter.\n- Origins, historical period, and the evidence behind each reconstruction.\n- Traditional ingredients versus modern substitutes.\n- A practical recipe scaled to a five-gallon batch.\n- Estimated original gravity, bitterness, fermentation temperature, and expected flavor.\n- A sourcing list for specialty malt, hops, and yeast.\nVisual element: A regional map of beer traditions with expandable recipe cards and a timeline.\nSources to start with: Brewers Association Beer Style Guidelines, Historical Beer: An Overview, and brewing-history resources from established brewing organizations. The Brewers Association's current guidelines include a dedicated historical beer category, while also recognizing that modern commercial examples don't always replicate historical beers exactly. \nFinish line: Six concise style profiles and one complete recipe ready for a future brew day. Clearly distinguish documented historical ingredients from modern reconstruction choices.",
+      "factcheck": {
+        "claims": 120,
+        "fixed": 15
+      },
+      "corrections": []
+    },
+    {
       "no": 9,
       "slug": "2026-10-27-the-everyday-infrastructure-atlas",
       "date": "2026-10-27",
