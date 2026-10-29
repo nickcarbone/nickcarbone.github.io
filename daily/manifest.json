@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 11,
+      "slug": "2026-10-29-chain-of-custody",
+      "date": "2026-10-29",
+      "title": "Chain of Custody",
+      "dek": "How a vote becomes a certified result, stage by stage: the American system that goes to the polls on 3 November, ten other democracies, and the times the chain broke.",
+      "kind": "Explainer with tools",
+      "readingMinutes": 24,
+      "design": "Libre Franklin, Crimson Pro, Overpass Mono; ballot-buff, indelible-ink violet, tamper-seal orange; sealed-ballot hero, nine-seal process chain, returns-sheet comparison, incident reports.",
+      "source": "queue",
+      "brief": "Election Logistics (more clever title needed)\nPegged to the US elections coming up next week, create an interactive HTML guide exploring the hidden logistics behind elections worldwide, from voter registration and ballot printing to polling-place operations, ballot transport, counting, recounts, and certification.\nExplain how election systems differ across countries, including paper ballots, electronic voting, mail voting, voter identification, and proportional versus winner-take-all systems.\nUse the US as the main case study but include other countries with key places in the world power structure.\nInvestigate the people, physical infrastructure, security procedures, deadlines, and logistical failure points required to turn millions of individual votes into certified results.\nInclude surprising real-world examples of election logistics succeeding, failing, or being challenged, clearly distinguishing documented facts from allegations.\nBuild an interactive election-process flowchart and country comparison tool that reveals how votes move from voter to final result.\nUse original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.",
+      "factcheck": {
+        "claims": 325,
+        "fixed": 30
+      },
+      "corrections": []
+    },
+    {
       "no": 10,
       "slug": "2026-10-28-six-lost-beers-brewed-again",
       "date": "2026-10-28",

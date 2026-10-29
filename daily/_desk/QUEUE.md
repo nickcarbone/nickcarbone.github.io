@@ -24,15 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-Election Logistics (more clever title needed)
-Pegged to the US elections coming up next week, create an interactive HTML guide exploring the hidden logistics behind elections worldwide, from voter registration and ballot printing to polling-place operations, ballot transport, counting, recounts, and certification.
-Explain how election systems differ across countries, including paper ballots, electronic voting, mail voting, voter identification, and proportional versus winner-take-all systems.
-Use the US as the main case study but include other countries with key places in the world power structure.
-Investigate the people, physical infrastructure, security procedures, deadlines, and logistical failure points required to turn millions of individual votes into certified results.
-Include surprising real-world examples of election logistics succeeding, failing, or being challenged, clearly distinguishing documented facts from allegations.
-Build an interactive election-process flowchart and country comparison tool that reveals how votes move from voter to final result.
-Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
-
 The Botanical Drinks Laboratory
 Research question: How can you create complex, savory, low-sugar drinks using herbs, spices, citrus, and other botanicals?
 This is a practical guide to flavor experimentation, drawing on your interest in infusions and drinks that aren't dominated by sweetness.

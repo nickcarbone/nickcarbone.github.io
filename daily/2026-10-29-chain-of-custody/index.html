@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chain of Custody · Daily</title>
+<meta name="description" content="How a vote becomes a certified result, stage by stage: the American system that goes to the polls on 3 November, ten other democracies, and the times the chain broke.">
+<meta property="og:title" content="Chain of Custody">
+<meta property="og:description" content="How a vote becomes a certified result, stage by stage: the American system that goes to the polls on 3 November, ten other democracies, and the times the chain broke.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-10-29-chain-of-custody/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-10-29-chain-of-custody/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600;800;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: an election-materials packet. Ballot-buff stock, indelible-ink violet, tamper-seal orange.
+   Every stage of the count is a numbered seal; the comparison is a returns sheet; failures are incident reports. */
+:root{
+  --paper:#f3efe2; --sheet:#fbf9f2; --ink:#1c1a22; --muted:#4e4a57; --rule:#cdc5ae; --faint:#e6dfcb;
+  --violet:#4f2683; --violet-soft:#e7def3; --seal:#a8360a; --seal-soft:#fbe3d4; --ok:#2f5f3a; --ok-soft:#dcebdc;
+  --link:#4f2683;
+  --head:"Libre Franklin","Franklin Gothic Medium","Arial Narrow",Arial,sans-serif;
+  --body:"Crimson Pro",Georgia,"Times New Roman",serif;
+  --mono:"Overpass Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#15131a; --sheet:#1c1a23; --ink:#ece8f2; --muted:#b3acc0; --rule:#3a3546; --faint:#26222f;
+  --violet:#c3a6f0; --violet-soft:#2c2240; --seal:#f59a62; --seal-soft:#3a2418; --ok:#8fcf9c; --ok-soft:#1d2e21;
+  --link:#cdb4f5; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --paper:#15131a; --sheet:#1c1a23; --ink:#ece8f2; --muted:#b3acc0; --rule:#3a3546; --faint:#26222f;
+  --violet:#c3a6f0; --violet-soft:#2c2240; --seal:#f59a62; --seal-soft:#3a2418; --ok:#8fcf9c; --ok-soft:#1d2e21;
+  --link:#cdb4f5; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.55}
+a{color:var(--link);text-underline-offset:2px}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--seal);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.prose{max-width:700px}
+h1,h2,h3,h4{font-family:var(--head);line-height:1.15;margin:0}
+.mono,.lab{font-family:var(--mono);font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+sup.ref{font-family:var(--mono);font-size:11px;line-height:0;margin-left:1px}
+sup.ref a{text-decoration:none;padding:0 1px}
+
+/* top strip */
+.strip{border-bottom:2px solid var(--ink);background:var(--sheet)}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;font-family:var(--mono);font-size:13px}
+.strip a{display:inline-flex;align-items:center;min-height:40px;font-weight:600;text-decoration:none}
+
+/* hero */
+.hero{padding:40px 0 24px;border-bottom:1px solid var(--rule)}
+.hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center}
+.kicker{color:var(--seal);font-weight:600}
+.hero h1{font-weight:900;font-size:clamp(46px,8vw,96px);letter-spacing:-.02em;text-transform:uppercase;margin:10px 0 14px}
+.hero h1 span{display:block;color:var(--violet)}
+.dek{font-size:23px;line-height:1.4;max-width:34ch;margin:0 0 16px}
+.byline{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.hero svg{width:100%;height:auto;display:block}
+
+/* sections */
+section{padding:40px 0;border-bottom:1px solid var(--rule)}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.sec-no{font-family:var(--mono);font-size:13px;border:2px solid var(--seal);color:var(--seal);padding:2px 8px;font-weight:600}
+.sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:800}
+.prose p{margin:0 0 1em}
+
+/* numbers board */
+.tally{display:grid;grid-template-columns:repeat(4,1fr);border:2px solid var(--ink);background:var(--sheet);margin:24px 0}
+.tally div{padding:14px 16px;border-right:1px solid var(--rule)}
+.tally div:last-child{border-right:0}
+.tally b{display:block;font-family:var(--head);font-weight:900;font-size:32px;color:var(--violet);line-height:1.1}
+.tally span{font-family:var(--mono);font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+
+/* chain */
+.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:6px 0 18px}
+.controls label{font-family:var(--mono);font-size:13px;text-transform:uppercase}
+select{font:inherit;font-family:var(--head);font-size:16px;min-height:44px;padding:6px 10px;border:2px solid var(--ink);background:var(--sheet);color:var(--ink);border-radius:0}
+.chain{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(9,1fr);gap:0;position:relative}
+.chain li{position:relative}
+.chain li:not(:last-child)::after{content:"";position:absolute;top:30px;right:-2px;width:4px;height:4px}
+.chain button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;min-height:150px;padding:0 4px 10px}
+.chain .seal{width:60px;height:60px;border-radius:50%;border:3px solid var(--ink);display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:14px;background:var(--sheet);position:relative;z-index:1}
+.chain li::before{content:"";position:absolute;top:29px;left:0;right:0;height:3px;background:repeating-linear-gradient(90deg,var(--seal) 0 10px,transparent 10px 16px)}
+.chain li:first-child::before{left:50%}
+.chain li:last-child::before{right:50%}
+.chain .nm{font-family:var(--head);font-weight:800;font-size:15px;margin-top:8px;line-height:1.15}
+.chain .sub{font-family:var(--mono);font-size:12px;overflow-wrap:anywhere;hyphens:auto;color:var(--muted);margin-top:4px;line-height:1.3}
+.chain button[aria-selected="true"] .seal{background:var(--violet);color:var(--sheet);border-color:var(--violet)}
+.chain button[aria-selected="true"] .nm{color:var(--violet)}
+.chain button:hover .seal{border-color:var(--violet)}
+.stage{background:var(--sheet);border:2px solid var(--ink);padding:22px 24px;margin-top:6px}
+.stage + .stage{margin-top:18px}
+.js .stage[hidden]{display:none}
+.stage header{display:flex;gap:14px;align-items:baseline;border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:14px;flex-wrap:wrap}
+.stage header .lab{color:var(--seal);font-weight:600}
+.stage h3{font-size:26px;font-weight:800}
+.stage-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:28px}
+.stage h4{font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--violet);margin:0 0 8px}
+.stage p{margin:0 0 .8em}
+.stage ul{margin:0 0 .8em;padding-left:1.1em}
+.stage li{margin-bottom:.45em}
+.here{background:var(--violet-soft);border-left:4px solid var(--violet);padding:10px 14px;margin:0 0 14px}
+.here .lab{color:var(--violet);font-weight:600;display:block;margin-bottom:3px}
+.breaks{border-top:2px dashed var(--seal);padding-top:10px;margin-top:6px}
+.breaks h4{color:var(--seal)}
+
+/* returns sheet */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:0;border:2px solid var(--ink);background:var(--sheet);margin-bottom:22px}
+.cmp > div{padding:16px 18px}
+.cmp > div + div{border-left:2px solid var(--ink)}
+.cmp dl{margin:0}
+.cmp dt{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted);letter-spacing:.04em;margin-top:10px}
+.cmp dd{margin:2px 0 0;font-size:17px;line-height:1.4}
+.cmp h3{font-size:24px;font-weight:900;text-transform:uppercase;color:var(--violet)}
+.tablebox{overflow-x:auto;border:2px solid var(--ink);background:var(--sheet);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:1500px;font-size:15.5px;line-height:1.35}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--rule);border-right:1px solid var(--faint)}
+thead th{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;background:var(--faint);position:sticky;top:0}
+tbody th{font-family:var(--head);font-weight:800;white-space:nowrap;position:sticky;left:0;background:var(--sheet)}
+.note{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:10px}
+
+/* incident reports */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.filters button{font-family:var(--mono);font-size:13px;text-transform:uppercase;min-height:42px;padding:6px 14px;border:2px solid var(--ink);background:var(--sheet);color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--sheet)}
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.case{background:var(--sheet);border:2px solid var(--ink);padding:0;display:flex;flex-direction:column}
+.case[hidden]{display:none}
+.case .tag{display:flex;justify-content:space-between;gap:10px;padding:8px 14px;font-family:var(--mono);font-size:12.5px;text-transform:uppercase;border-bottom:2px solid var(--ink)}
+.case.broke .tag{background:var(--seal-soft)}
+.case.held .tag{background:var(--ok-soft)}
+.case .tag b{font-weight:600}
+.case.broke .tag b{color:var(--seal)}
+.case.held .tag b{color:var(--ok)}
+.case .body{padding:14px 16px}
+.case h3{font-size:21px;font-weight:800;margin-bottom:8px}
+.case p{margin:0 0 .6em;font-size:17.5px}
+.case .est{border-top:1px solid var(--rule);padding-top:8px;margin-top:4px}
+.case .est .lab{color:var(--violet);font-weight:600}
+
+/* checklist */
+.watch{counter-reset:w;list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:2px solid var(--ink);background:var(--sheet)}
+.watch li{counter-increment:w;padding:16px 18px 16px 60px;position:relative;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule)}
+.watch li::before{content:counter(w);position:absolute;left:16px;top:14px;width:30px;height:30px;border:2px solid var(--violet);border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:14px;color:var(--violet);font-weight:600}
+.watch b{font-family:var(--head)}
+
+/* sources & footer */
+.sources ol{padding-left:2.4em;margin:0;font-size:16px;line-height:1.45;columns:2;column-gap:40px}
+.sources li{margin-bottom:.55em;break-inside:avoid}
+.sources li:target{background:var(--violet-soft)}
+.sources .pub{color:var(--muted)}
+footer{padding:28px 0 48px;font-family:var(--mono);font-size:13.5px}
+footer a{display:inline-flex;align-items:center;min-height:40px}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:20px}
+  .hero svg{max-width:440px}
+  .chain{grid-template-columns:repeat(3,1fr);row-gap:8px}
+  .chain li::before{display:none}
+  .chain button{min-height:132px}
+  .stage-grid{grid-template-columns:1fr;gap:6px}
+  .cases{grid-template-columns:1fr}
+  .watch{grid-template-columns:1fr}
+  .sources ol{columns:1}
+  .tally{grid-template-columns:repeat(2,1fr)}
+  .tally div:nth-child(2){border-right:0}
+  .tally div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+}
+@media (max-width:560px){
+  body{font-size:18px}
+  .wrap{padding:0 16px}
+  .dek{font-size:20px}
+  .stage{padding:16px}
+  .cmp{grid-template-columns:1fr}
+  .cmp > div + div{border-left:0;border-top:2px solid var(--ink)}
+  .tally b{font-size:26px}
+  .strip .wrap{font-size:12px}
+  .chain .seal{width:50px;height:50px;font-size:13px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .chain .seal{transition:background .2s,border-color .2s}
+}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 011 · Thursday 29 October 2026</span></div></div>
+
+<header class="hero">
+ <div class="wrap hero-grid">
+  <div>
+   <p class="lab kicker">Election logistics · Explainer with tools</p>
+   <h1>Chain of <span>Custody</span></h1>
+   <p class="dek">How a vote becomes a certified result, stage by stage: the American system that goes to the polls on 3 November, ten other democracies, and the times the chain broke.</p>
+   <p class="byline">By Nick Carbone · 9 stages · 11 countries · 16 incident reports</p>
+  </div>
+  <svg viewBox="0 0 420 330" role="img" aria-labelledby="herot">
+   <title id="herot">An illustrated paper ballot with filled and empty ovals, crossed by a strip of orange tamper-evident seal tape with a serial number</title>
+   <rect x="40" y="18" width="300" height="296" fill="var(--sheet)" stroke="var(--ink)" stroke-width="3"/>
+   <rect x="40" y="18" width="300" height="44" fill="var(--ink)"/>
+   <text x="190" y="47" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="900" font-size="19" fill="var(--sheet)" letter-spacing="2">OFFICIAL BALLOT</text>
+   <g font-family="Overpass Mono, monospace" font-size="10" fill="var(--muted)">
+    <text x="56" y="82">FILL THE OVAL COMPLETELY</text>
+   </g>
+   <g stroke="var(--ink)" stroke-width="2" fill="none">
+    <ellipse cx="72" cy="108" rx="11" ry="7"/><ellipse cx="72" cy="138" rx="11" ry="7" fill="var(--violet)" stroke="var(--violet)"/><ellipse cx="72" cy="168" rx="11" ry="7"/>
+    <ellipse cx="72" cy="222" rx="11" ry="7"/><ellipse cx="72" cy="252" rx="11" ry="7"/><ellipse cx="72" cy="282" rx="11" ry="7" fill="var(--violet)" stroke="var(--violet)"/>
+   </g>
+   <g fill="var(--rule)">
+    <rect x="94" y="104" width="150" height="8"/><rect x="94" y="134" width="120" height="8"/><rect x="94" y="164" width="170" height="8"/>
+    <rect x="94" y="218" width="140" height="8"/><rect x="94" y="248" width="110" height="8"/><rect x="94" y="278" width="160" height="8"/>
+   </g>
+   <line x1="56" y1="192" x2="324" y2="192" stroke="var(--rule)" stroke-width="2"/>
+   <g fill="var(--muted)"><rect x="300" y="90" width="24" height="6"/><rect x="300" y="200" width="24" height="6"/><rect x="300" y="296" width="24" height="6"/></g>
+   <g transform="rotate(-16 210 190)">
+    <rect x="-10" y="168" width="440" height="46" fill="var(--seal)"/>
+    <g stroke="var(--sheet)" stroke-width="2" opacity=".45"><path d="M-10 176 H430 M-10 206 H430"/></g>
+    <text x="210" y="197" text-anchor="middle" font-family="Overpass Mono, monospace" font-weight="600" font-size="14" fill="#fff" letter-spacing="1.5">SEALED · Nº 0003-11-2026 · DO NOT OPEN</text>
+   </g>
+   <g transform="translate(360 272)">
+    <circle r="40" fill="none" stroke="var(--violet)" stroke-width="3"/>
+    <circle r="32" fill="none" stroke="var(--violet)" stroke-width="1.5"/>
+    <text y="-6" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="900" font-size="12" fill="var(--violet)">COUNTED</text>
+    <text y="12" text-anchor="middle" font-family="Overpass Mono, monospace" font-size="10" fill="var(--violet)">CANVASS</text>
+   </g>
+  </svg>
+ </div>
+</header>
+
+<main>
+<section id="intro">
+ <div class="wrap">
+  <div class="prose">
+   <p>On 3 November, Americans will elect all 435 members of the House of Representatives, 35 senators (33 in the regular cycle plus special elections in Ohio and Florida) and 36 governors<sup class="ref"><a href="#s28">28</a></sup>. The results that appear on television that night will be unofficial. The official ones take days or weeks, and they emerge from a supply chain that most voters never see: rolls compiled months earlier, ballots proofed line by line, sealed containers signed for by two people at a time, scanners tested before anyone votes on them, and a canvass that has to reconcile every ballot against every voter who signed in.</p>
+   <p>The scale of that operation is easy to underestimate. In the 2024 general election, the US Election Assistance Commission counted:</p>
+  </div>
+  <div class="tally" role="list">
+   <div role="listitem"><b>158.2m</b><span>ballots counted, 2024<sup class="ref"><a href="#s1">1</a></sup></span></div>
+   <div role="listitem"><b>95,815</b><span>polling places<sup class="ref"><a href="#s1">1</a></sup></span></div>
+   <div role="listitem"><b>772,433</b><span>poll workers<sup class="ref"><a href="#s1">1</a></sup></span></div>
+   <div role="listitem"><b>6,461</b><span>reporting jurisdictions<sup class="ref"><a href="#s1">1</a></sup></span></div>
+  </div>
+  <div class="prose">
+   <p>That last figure is the number of units that report to the federal survey; the Brennan Center puts the number of local election jurisdictions at about 10,000<sup class="ref"><a href="#s4">4</a></sup>. There is no national election authority. Each state writes its own rules, and counties or towns carry them out, which is why almost every sentence about how Americans vote needs the words "in most states".</p>
+   <p>Other democracies have made very different choices about the same problems. India sends polling teams on foot, by boat and by helicopter so that, as a rule, no voter has to travel more than 2 km<sup class="ref"><a href="#s54">54</a></sup>. Brazil has voted entirely on electronic machines since 2000<sup class="ref"><a href="#s73">73</a></sup>. Germany uses no voting machines in federal elections and counts every ballot by hand in public<sup class="ref"><a href="#s65">65</a></sup>. Estonia now takes more than half its parliamentary votes over the internet<sup class="ref"><a href="#s109">109</a></sup>. Japanese voters write their candidate's name by hand<sup class="ref"><a href="#s83">83</a></sup>.</p>
+   <p>Below, the process is broken into nine stages. Pick a stage to see how it works in the US, how other countries handle it, and where it has failed. Pick a country to relabel the whole chain.</p>
+  </div>
+ </div>
+</section>
+
+<section id="chain">
+ <div class="wrap">
+  <div class="sec-head"><span class="sec-no">01</span><h2>The nine seals</h2></div>
+  <div class="controls" id="chainControls" hidden>
+   <label for="chainCountry">Show the chain for</label>
+   <select id="chainCountry">
+    <option value="us">United States</option><option value="in">India</option><option value="uk">United Kingdom</option><option value="de">Germany</option><option value="fr">France</option><option value="br">Brazil</option><option value="jp">Japan</option><option value="au">Australia</option><option value="mx">Mexico</option><option value="id">Indonesia</option><option value="ee">Estonia</option>
+   </select>
+  </div>
+  <ol class="chain" id="chainList" role="tablist" aria-label="Stages of an election" hidden></ol>
+
+  <div id="stages">
+  <article class="stage" id="st1" data-name="Register">
+   <header><span class="lab">Seal S-01</span><h3>Register the voters</h3></header>
+   <div class="stage-grid">
+    <div>
+     <h4>In the United States</h4>
+     <p>In most states, getting on the roll is the voter's job. Registration usually closes 15 to 30 days before an election, though Connecticut allows seven days, Colorado eight and New York ten<sup class="ref"><a href="#s5">5</a></sup>. The National Conference of State Legislatures lists 25 states plus Washington DC with same-day registration, though in a few it is available only during early voting or only in presidential races<sup class="ref"><a href="#s6">6</a></sup>, and about half the states have some form of automatic registration, typically through motor-vehicle offices<sup class="ref"><a href="#s127">127</a></sup>. North Dakota has no voter registration at all: voters show valid ID at the polls<sup class="ref"><a href="#s5">5</a></sup>.</p>
+     <p>The roll for 2024 held 211.1 million active registrations, and 234.5 million once inactive records are included<sup class="ref"><a href="#s1">1</a></sup>. Inactive records are the residue of people who moved or died; the gap between the two numbers is the maintenance problem every county clerk inherits.</p>
+    </div>
+    <div>
+     <h4>Elsewhere</h4>
+     <ul>
+      <li><b>Germany</b> builds the roll automatically from municipal residence registers. For February 2025 the cut-off was 12 January, and every voter was posted a polling card by 2 February<sup class="ref"><a href="#s66">66</a></sup>.</li>
+      <li><b>Japan</b> also compiles the register from residence records; citizens 18 and over who have lived in a municipality for three months are included without applying<sup class="ref"><a href="#s83">83</a></sup>.</li>
+      <li><b>Brazil</b> makes registration compulsory for literate citizens aged 18 to 70, and collects ten fingerprints, a photo and a signature<sup class="ref"><a href="#s74">74</a></sup><sup class="ref"><a href="#s128">128</a></sup>.</li>
+      <li><b>Great Britain</b> moved to individual registration in 2014, making each person responsible for applying<sup class="ref"><a href="#s129">129</a></sup>.</li>
+     </ul>
+    </div>
+   </div>
+  </article>
+
+  <article class="stage" id="st2" data-name="Ballot">
+   <header><span class="lab">Seal S-02</span><h3>Build and print the ballot</h3></header>
+   <div class="stage-grid">
+    <div>
+     <h4>In the United States</h4>
+     <p>Americans vote on long ballots: federal, state, county, city, school-board and judicial races, plus referendums. Every distinct combination of contests is a separate "ballot style". For November 2024, Maricopa County in Arizona said it was "creating, proofing, and printing 21,534 different ballot styles", with 265 contests across all of them, on its first two-page ballot since 2006<sup class="ref"><a href="#s7">7</a></sup>.</p>
+     <p>The EAC's guidance is to proof every style against the candidates' official filings, run each one through every scanner and accessible voting device, and test with decks of deliberately hand-marked ballots<sup class="ref"><a href="#s8">8</a></sup>. Paper itself became a risk in the 2022 cycle: the EAC warned that lead times for raw materials had grown "from days or weeks to months" and told offices to order envelopes at least four months ahead<sup class="ref"><a href="#s9">9</a></sup>.</p>
+     <p>The first hard deadline falls long before Election Day. Federal law requires states to send ballots to military and overseas voters who have asked for them at least 45 days before a federal election<sup class="ref"><a href="#s10">10</a></sup>. In 2026 that was Saturday 19 September; Michigan told its clerks the date "requires strict compliance"<sup class="ref"><a href="#s11">11</a></sup>.</p>
+    </div>
+    <div>
+     <h4>Elsewhere</h4>
+     <ul>
+      <li><b>France</b> prints a separate ballot paper for every candidate. Voters are advised to take several, to keep their choice secret, then choose in a compulsory booth and put a single paper in an envelope<sup class="ref"><a href="#s67">67</a></sup>.</li>
+      <li><b>Japan</b> prints no candidate names on national ballots: voters write the name, or a party name for the proportional vote<sup class="ref"><a href="#s83">83</a></sup>. The paper is a polypropylene film that unfolds itself in the box, which speeds up the count<sup class="ref"><a href="#s84">84</a></sup>.</li>
+      <li><b>India</b> loads candidate symbols into its machines through Symbol Loading Units, which the Supreme Court ordered in 2024 to be sealed and stored for at least 45 days after results<sup class="ref"><a href="#s51">51</a></sup>.</li>
+     </ul>
+     <div class="breaks"><h4>Where it breaks</h4><p>Palm Beach County's 2000 "butterfly ballot" (<a href="#c-fl2000">Florida 2000</a>), Antrim County's late design changes (<a href="#c-antrim">Michigan 2020</a>) and a change of paper stock in Maricopa (<a href="#c-maricopa">Arizona 2022</a>).</p></div>
+    </div>
+   </div>
+  </article>
+
+  <article class="stage" id="st3" data-name="Vote">
+   <header><span class="lab">Seal S-03</span><h3>Cast the vote</h3></header>
+   <div class="stage-grid">
+    <div>
+     <h4>In the United States</h4>
+     <p>In 2024, 52.8 million ballots were cast in person on Election Day, 48.9 million in person before it and 46.8 million by post<sup class="ref"><a href="#s1">1</a></sup>. (The EAC's own percentages, which leave out ballots of unknown type, put early in-person voting at 35.2% and Election Day at 37.4%<sup class="ref"><a href="#s2">2</a></sup>.) Eight states plus DC run their elections almost entirely by post: California, Colorado, Hawaii, Nevada, Oregon, Utah, Vermont and Washington<sup class="ref"><a href="#s15">15</a></sup>. Utah has since legislated to phase that out by 2029<sup class="ref"><a href="#s130">130</a></sup>.</p>
+     <p>Most Americans mark a paper ballot that a scanner reads. Verified Voting projected that in 2024 about 69% of registered voters lived where hand-marked paper is the norm, 25% where everyone uses a ballot-marking device that prints a paper record, and 5% where direct-recording electronic machines are used<sup class="ref"><a href="#s12">12</a></sup>. The EAC found that over 98% of jurisdictions used paper ballots or an auditable paper record; the exceptions were 80 jurisdictions in three states<sup class="ref"><a href="#s2">2</a></sup>.</p>
+     <p>Voting machines are generally kept off the internet. The federal standard adopted in 2021 denies certification to systems with wireless functions enabled<sup class="ref"><a href="#s13">13</a></sup>. Older tabulators have been fitted with modems to send unofficial results, and in 2019 researchers found more than 35 election systems that had been left online<sup class="ref"><a href="#s14">14</a></sup>.</p>
+     <p>About three dozen states (36, by Ballotpedia's count) request or require identification at the polls<sup class="ref"><a href="#s22">22</a></sup>. Staffing is the persistent weak point: 47.9% of jurisdictions reported serious difficulty recruiting or keeping poll workers in 2024<sup class="ref"><a href="#s2">2</a></sup>.</p>
+    </div>
+    <div>
+     <h4>Elsewhere</h4>
+     <ul>
+      <li><b>India</b> ran about 1.05 million polling stations with roughly 5.5 million electronic machines in 2024<sup class="ref"><a href="#s49">49</a></sup><sup class="ref"><a href="#s50">50</a></sup>. In Gir forest a team of about ten set up a booth for one voter, a monk named Mahant Haridas Udaseen<sup class="ref"><a href="#s53">53</a></sup>.</li>
+      <li><b>Indonesia</b> staffed 820,161 domestic polling stations with 5.7 million workers, seven per station, on one day in February 2024<sup class="ref"><a href="#s101">101</a></sup>. Voters mark their five ballots by punching a hole with a nail<sup class="ref"><a href="#s103">103</a></sup>.</li>
+      <li><b>Australia</b> makes voting compulsory, with a A$20 penalty for unexplained non-voting<sup class="ref"><a href="#s89">89</a></sup>. In 2025, 56% of votes were cast before polling day<sup class="ref"><a href="#s87">87</a></sup>. The "democracy sausage" from polling-station barbecues was the Australian National Dictionary Centre's word of the year for 2016<sup class="ref"><a href="#s90">90</a></sup>.</li>
+      <li><b>Great Britain</b> required photo ID at a general election for the first time in 2024; the Electoral Commission estimates 0.08% of people who tried to vote in person, about 16,000, did not get a ballot because of it<sup class="ref"><a href="#s58">58</a></sup>.</li>
+      <li><b>Estonia</b> counted 312,181 internet votes in 2023, more than the 301,620 cast on paper<sup class="ref"><a href="#s109">109</a></sup>.</li>
+     </ul>
+     <div class="breaks"><h4>Where it breaks</h4><p>Queues at 10pm (<a href="#c-uk2010">Britain 2010</a>), ballots running out (<a href="#c-berlin">Berlin 2021</a>, <a href="#c-harris">Houston 2022</a>), hoax threats (<a href="#c-threats">2024</a>) and exhaustion (<a href="#c-indonesia">Indonesia 2019</a>).</p></div>
+    </div>
+   </div>
+  </article>
+
+  <article class="stage" id="st4" data-name="Seal &amp; move">
+   <header><span class="lab">Seal S-04</span><h3>Seal, move and check</h3></header>
+   <div class="stage-grid">
+    <div>
+     <h4>In the United States</h4>
+     <p>Between the voter and the count, ballots pass through many hands, and the defence is paperwork. The EAC's chain-of-custody guidance says most materials need at least two witnesses at each transfer, often declared members of opposing parties; seal serial numbers are recorded at every handover, every broken seal is logged, drop-box collections are timed and documented, and the number of ballots is reconciled against the number of voters<sup class="ref"><a href="#s19">19</a></sup>. About two-thirds of states offered drop boxes in 2024<sup class="ref"><a href="#s3">3</a></sup>.</p>
+     <p>Postal ballots get a second gate: the envelope. Of almost 48 million returned in 2024, 584,463 (1.2%) were rejected, most often for a missing or mismatched signature<sup class="ref"><a href="#s1">1</a></sup>. NCSL lists 33 states plus DC with a process for voters to "cure" a signature problem<sup class="ref"><a href="#s16">16</a></sup>.</p>
+     <p>Deadlines differ too. Fourteen states plus DC count postal ballots cast by Election Day that arrive afterwards. On 29 June 2026, in <i>Watson v. Republican National Committee</i>, the Supreme Court ruled 5–4 that federal law allows them to<sup class="ref"><a href="#s17">17</a></sup>.</p>
+    </div>
+    <div>
+     <h4>Elsewhere</h4>
+     <ul>
+      <li><b>India</b> planned about 4 lakh (400,000) vehicles for its 2024 election; the Election Commission said 135 special trains carried security forces and 1,692 air sorties were flown<sup class="ref"><a href="#s50">50</a></sup><sup class="ref"><a href="#s131">131</a></sup>. Officials took boats to Majuli, a river island in Assam, and trekked about 12 km to Nongriat in Meghalaya, a village of 139 voters<sup class="ref"><a href="#s55">55</a></sup>.</li>
+      <li><b>Australia</b>'s remote voting teams covered 162,000 km in 2025, visiting 354 localities<sup class="ref"><a href="#s87">87</a></sup>.</li>
+      <li><b>Germany</b> counts postal ballots on boards of five to nine members, at least five present for the count<sup class="ref"><a href="#s65">65</a></sup>. 37% of German voters voted by post in 2025<sup class="ref"><a href="#s63">63</a></sup>.</li>
+     </ul>
+     <div class="breaks"><h4>Where it breaks</h4><p>1,370 Senate ballots that vanished between counts (<a href="#c-wa">Western Australia 2013</a>) and postal votes opened too early (<a href="#c-austria">Austria 2016</a>).</p></div>
+    </div>
+   </div>
+  </article>
+
+  <article class="stage" id="st5" data-name="Count">
+   <header><span class="lab">Seal S-05</span><h3>Count</h3></header>
+   <div class="stage-grid">
+    <div>
+     <h4>In the United States</h4>
+     <p>Most ballots are read by optical scanners, either at the polling place or at a central count. The pace of the count depends heavily on when states let officials start opening and checking postal ballots. Pennsylvania's pre-canvass cannot begin until 7am on Election Day, and Wisconsin opens and tabulates postal ballots only on Election Day itself. Georgia may begin processing on the third Monday before the election, and Nevada scans from 15 days out<sup class="ref"><a href="#s18">18</a></sup>. States that start late report postal votes late, which is why the order in which results arrive says little about who will win.</p>
+    </div>
+    <div>
+     <h4>Elsewhere</h4>
+     <ul>
+      <li><b>Germany</b> counts at each polling station in public, and anyone may watch<sup class="ref"><a href="#s65">65</a></sup>. About 675,000 volunteers staffed the 2025 election<sup class="ref"><a href="#s64">64</a></sup>.</li>
+      <li><b>France</b> also counts by hand at the polling station, and voters can volunteer to help<sup class="ref"><a href="#s67">67</a></sup>.</li>
+      <li><b>Britain</b> moves sealed boxes to constituency count centres, where counting usually runs through the night.</li>
+      <li><b>Japan</b> reads the handwritten names with sorting machines; the market leader, Musashi, says its machines handle 660 ballots a minute<sup class="ref"><a href="#s85">85</a></sup>.</li>
+      <li><b>India</b> held seven phases of polling between 19 April and 1 June 2024, then counted the votes on 4 June<sup class="ref"><a href="#s48">48</a></sup>.</li>
+      <li><b>Estonia</b> decrypts internet votes on election night with a key held by members of the National Electoral Committee, after stripping voters' digital signatures from their votes<sup class="ref"><a href="#s110">110</a></sup>.</li>
+     </ul>
+    </div>
+   </div>
+  </article>
+
+  <article class="stage" id="st6" data-name="Report">
+   <header><span class="lab">Seal S-06</span><h3>Report unofficial results</h3></header>
+   <div class="stage-grid">
+    <div>
+     <h4>In the United States</h4>
+     <p>Election-night numbers are unofficial. They come from counties uploading tabulator results, are revised as postal and provisional ballots are processed, and become final only once the canvass is certified<sup class="ref"><a href="#s23">23</a></sup>. Reporting errors at this stage are usually caught later. Two recent examples: in Antrim County, Michigan, in 2020 and in the New York City mayoral primary of 2021, when the Board of Elections published a ranked-choice tally that included 135,000 test ballots<sup class="ref"><a href="#s32">32</a></sup><sup class="ref"><a href="#s46">46</a></sup>.</p>
+    </div>
+    <div>
+     <h4>Elsewhere</h4>
+     <ul>
+      <li><b>Brazil</b>'s machines each print a results bulletin that is posted on the polling-place door, then send their results to the Superior Electoral Court (TSE), which starts publishing totals at 17:00 Brasília time<sup class="ref"><a href="#s75">75</a></sup>.</li>
+      <li><b>Mexico</b> runs a preliminary results system and a statistical quick count; in 2024 the electoral institute announced the quick count at about midnight<sup class="ref"><a href="#s95">95</a></sup>.</li>
+      <li><b>Germany</b>'s Federal Returning Officer announces a provisional result on election night<sup class="ref"><a href="#s132">132</a></sup>.</li>
+     </ul>
+     <div class="breaks"><h4>Where it breaks</h4><p>Results transmission was central to the court's ruling in <a href="#c-kenya">Kenya 2017</a>.</p></div>
+    </div>
+   </div>
+  </article>
+
+  <article class="stage" id="st7" data-name="Canvass &amp; audit">
+   <header><span class="lab">Seal S-07</span><h3>Canvass and audit</h3></header>
+   <div class="stage-grid">
+    <div>
+     <h4>In the United States</h4>
+     <p>The canvass is the slow, dull part, and the part that matters: counties add in late and provisional ballots, check the number of ballots against the number of voters, and investigate any gap. Almost 93% of states reported running logic and accuracy tests on their equipment in 2024<sup class="ref"><a href="#s3">3</a></sup>.</p>
+     <p>As of April 2026, every state has a post-election audit in law; Alabama was the last, in April 2026<sup class="ref"><a href="#s20">20</a></sup>. Seven states require risk-limiting audits, which hand-check a statistically chosen sample of paper ballots large enough to catch a wrong outcome: Colorado, Georgia, Maryland, Nevada, Rhode Island, Texas and Virginia<sup class="ref"><a href="#s20">20</a></sup><sup class="ref"><a href="#s21">21</a></sup>.</p>
+    </div>
+    <div>
+     <h4>Elsewhere</h4>
+     <ul>
+      <li><b>India</b> hand-counts the paper slips from five randomly chosen machines per assembly segment, a number the Supreme Court raised from one in 2019<sup class="ref"><a href="#s52">52</a></sup>. In April 2024 it rejected petitions for checking every machine<sup class="ref"><a href="#s51">51</a></sup>.</li>
+      <li><b>Australia</b> recounts every House ballot after election night and distributes preferences in full; 88 of 150 seats needed a full distribution in 2025<sup class="ref"><a href="#s88">88</a></sup><sup class="ref"><a href="#s91">91</a></sup>.</li>
+      <li><b>Mexico</b>'s district councils reopened and recounted 116,397 ballot packages, 68.16% of polling stations, in 2024<sup class="ref"><a href="#s100">100</a></sup>.</li>
+     </ul>
+     <div class="breaks"><h4>When it held</h4><p>Georgia's full hand tally of about 5 million presidential ballots (<a href="#c-georgia">2020</a>).</p></div>
+    </div>
+   </div>
+  </article>
+
+  <article class="stage" id="st8" data-name="Recount">
+   <header><span class="lab">Seal S-08</span><h3>Recount and contest</h3></header>
+   <div class="stage-grid">
+    <div>
+     <h4>In the United States</h4>
+     <p>Ballotpedia counts 29 states plus DC with automatic recount rules, many triggered by a margin of 0.5%<sup class="ref"><a href="#s24">24</a></sup>; nine states changed their recount laws in 2025, so specific thresholds need checking. In November 2024 Pennsylvania's US Senate race went to an automatic statewide recount with a margin of about 28,000 votes out of more than 6.9 million<sup class="ref"><a href="#s25">25</a></sup>.</p>
+     <p>Voters whose eligibility is in doubt cast provisional ballots, which are counted only once verified. The Help America Vote Act of 2002 made them a federal requirement and paid states to replace punch-card and lever machines after the Florida recount<sup class="ref"><a href="#s26">26</a></sup>.</p>
+    </div>
+    <div>
+     <h4>Elsewhere</h4>
+     <p>Courts in Austria, Kenya, Australia and Germany have all ordered elections re-run after logistical failures, usually without finding fraud. In most of these cases the test was whether the irregularities could have changed the result; Kenya's court held that failing to run the election lawfully was enough on its own.</p>
+     <div class="breaks"><h4>Where it was contested</h4><p><a href="#c-fl2000">Florida 2000</a>, <a href="#c-maricopa">Arizona 2022</a>, <a href="#c-austria">Austria 2016</a>, <a href="#c-kenya">Kenya 2017</a>, <a href="#c-brazil">Brazil 2022</a>.</p></div>
+    </div>
+   </div>
+  </article>
+
+  <article class="stage" id="st9" data-name="Certify">
+   <header><span class="lab">Seal S-09</span><h3>Certify</h3></header>
+   <div class="stage-grid">
+    <div>
+     <h4>In the United States</h4>
+     <p>Each state sets its own certification deadline, from a couple of days after the election to more than a month<sup class="ref"><a href="#s23">23</a></sup>. Certification is meant to be ministerial: officials confirm the count, they do not judge it. When the Cochise County supervisors in Arizona missed their deadline in 2022, a judge ordered them to certify the same day (<a href="#c-cochise">see the report</a>).</p>
+     <p>For presidential elections, the Electoral Count Reform Act of 2022 names the governor (unless state law says otherwise) as the official who certifies a state's electors, makes the vice-president's role in the count "solely ministerial", and raises the bar for objections in Congress to one-fifth of each chamber<sup class="ref"><a href="#s27">27</a></sup>.</p>
+    </div>
+    <div>
+     <h4>Elsewhere</h4>
+     <ul>
+      <li><b>Germany</b>: the Federal Electoral Committee fixed the final 2025 result on 14 March, 19 days after the vote<sup class="ref"><a href="#s63">63</a></sup>.</li>
+      <li><b>Mexico</b>: the Electoral Tribunal declared the 2024 presidential election valid on 14 August, ten weeks after polling day<sup class="ref"><a href="#s99">99</a></sup>.</li>
+      <li><b>Indonesia</b>: the 2024 national result was set on 20 March, 35 days after the vote<sup class="ref"><a href="#s101">101</a></sup>.</li>
+      <li><b>France</b>: the Constitutional Council proclaims the presidential result; in 2022 it did so three days after the run-off<sup class="ref"><a href="#s133">133</a></sup>.</li>
+      <li><b>Australia</b>: seats are declared only when the outcome is mathematically certain, and the 2025 writs were returned on 12 June<sup class="ref"><a href="#s87">87</a></sup><sup class="ref"><a href="#s88">88</a></sup>.</li>
+     </ul>
+     <div class="breaks"><h4>Where it breaks</h4><p><a href="#c-cochise">Cochise County 2022</a>.</p></div>
+    </div>
+   </div>
+  </article>
+  </div>
+ </div>
+</section>
+
+<section id="compare">
+ <div class="wrap">
+  <div class="sec-head"><span class="sec-no">02</span><h2>The returns sheet</h2></div>
+  <div class="prose"><p>Eleven democracies, set out on the same form. Each row uses the most recent national election as of October 2026. Turnout is measured differently from country to country (against registered voters, eligible voters or the citizen voting-age population), so read it as a rough guide.</p></div>
+  <div class="controls" id="cmpControls" hidden>
+   <label for="cmpA">Compare</label><select id="cmpA" aria-label="First country"></select>
+   <label for="cmpB">with</label><select id="cmpB" aria-label="Second country"></select>
+  </div>
+  <div class="cmp" id="cmpOut" hidden aria-live="polite"></div>
+  <div class="tablebox" tabindex="0" role="region" aria-label="Country comparison table, scrolls sideways">
+  <table id="cmpTable">
+   <thead><tr><th>Country</th><th>Election</th><th>System</th><th>Electorate</th><th>Turnout</th><th>How you vote</th><th>Polling day</th><th>Registration</th><th>Compulsory?</th><th>ID at the polls</th><th>Postal, early, proxy</th><th>Who runs polling stations</th><th>Where it's counted</th><th>Who makes it official</th></tr></thead>
+   <tbody>
+    <tr data-c="us"><th>United States</th><td>General, 5 Nov 2024</td><td>Mostly first-past-the-post; president via the Electoral College</td><td>211.1m active registrations<sup class="ref"><a href="#s1">1</a></sup></td><td>64.7% of citizen voting-age population<sup class="ref"><a href="#s1">1</a></sup></td><td>Mostly hand-marked paper read by scanners<sup class="ref"><a href="#s12">12</a></sup></td><td>Tuesday</td><td>Voter applies; about half the states have automatic registration; none in North Dakota<sup class="ref"><a href="#s5">5</a></sup><sup class="ref"><a href="#s127">127</a></sup></td><td>No</td><td>36 states request or require it<sup class="ref"><a href="#s22">22</a></sup></td><td>Postal voting in every state; about 30% of 2024 ballots by post<sup class="ref"><a href="#s3">3</a></sup></td><td>772,433 poll workers hired by counties and towns<sup class="ref"><a href="#s1">1</a></sup></td><td>Polling places or central count</td><td>County canvass boards, then state officials<sup class="ref"><a href="#s23">23</a></sup></td></tr>
+    <tr data-c="in"><th>India</th><td>Lok Sabha, Apr–Jun 2024</td><td>First-past-the-post, 543 seats</td><td>About 980m<sup class="ref"><a href="#s49">49</a></sup></td><td>65.79% (excluding postal ballots)<sup class="ref"><a href="#s49">49</a></sup></td><td>Electronic voting machines with a paper audit slip (VVPAT)<sup class="ref"><a href="#s51">51</a></sup></td><td>Seven phases, 19 Apr to 1 Jun<sup class="ref"><a href="#s48">48</a></sup></td><td>Voter applies to the Election Commission</td><td>No</td><td>Voter ID card or one of 12 alternatives<sup class="ref"><a href="#s134">134</a></sup></td><td>Home voting for over-85s and disabled voters; postal ballots for some groups<sup class="ref"><a href="#s48">48</a></sup></td><td>About 1.05m polling stations<sup class="ref"><a href="#s49">49</a></sup></td><td>District counting centres, all on one day (4 Jun)<sup class="ref"><a href="#s48">48</a></sup></td><td>Returning officers declare each seat</td></tr>
+    <tr data-c="uk"><th>United Kingdom</th><td>General, 4 Jul 2024</td><td>First-past-the-post, 650 seats</td><td>About 48.2m<sup class="ref"><a href="#s57">57</a></sup></td><td>60.0% (Electoral Commission measure)<sup class="ref"><a href="#s57">57</a></sup></td><td>Paper, marked with an X<sup class="ref"><a href="#s59">59</a></sup></td><td>Thursday, 7am–10pm<sup class="ref"><a href="#s59">59</a></sup></td><td>Individual registration; voter applies<sup class="ref"><a href="#s129">129</a></sup></td><td>No</td><td>Photo ID in Great Britain since 2023<sup class="ref"><a href="#s58">58</a></sup></td><td>Postal and proxy voting on request<sup class="ref"><a href="#s57">57</a></sup></td><td>Local returning officers' staff</td><td>Constituency count centres, usually overnight</td><td>Returning officer declares each seat</td></tr>
+    <tr data-c="de"><th>Germany</th><td>Bundestag, 23 Feb 2025</td><td>Mixed-member proportional; two votes; 630 seats<sup class="ref"><a href="#s62">62</a></sup></td><td>About 59.2m<sup class="ref"><a href="#s62">62</a></sup></td><td>82.5%<sup class="ref"><a href="#s63">63</a></sup></td><td>Paper, two crosses; no machines<sup class="ref"><a href="#s62">62</a></sup><sup class="ref"><a href="#s65">65</a></sup></td><td>Sunday, 8am–6pm (law requires a Sunday or public holiday)<sup class="ref"><a href="#s62">62</a></sup></td><td>Automatic, from residence registers<sup class="ref"><a href="#s66">66</a></sup></td><td>No</td><td>Have ID ready; checked if asked</td><td>Postal vote on request (37% in 2025)<sup class="ref"><a href="#s63">63</a></sup></td><td>About 675,000 volunteers<sup class="ref"><a href="#s64">64</a></sup></td><td>At each polling station, in public<sup class="ref"><a href="#s65">65</a></sup></td><td>Federal Electoral Committee (final result 14 Mar)<sup class="ref"><a href="#s63">63</a></sup></td></tr>
+    <tr data-c="fr"><th>France</th><td>Legislative, 30 Jun &amp; 7 Jul 2024</td><td>Two-round, 577 seats</td><td>About 49.5m (May 2024 lists)<sup class="ref"><a href="#s69">69</a></sup></td><td>66.71% first round, 66.63% second<sup class="ref"><a href="#s70">70</a></sup></td><td>Paper: one ballot per candidate, in an envelope<sup class="ref"><a href="#s67">67</a></sup></td><td>Sunday</td><td>Automatic at 18; otherwise voter applies<sup class="ref"><a href="#s69">69</a></sup></td><td>No</td><td>Photo ID in communes of 1,000 or more<sup class="ref"><a href="#s67">67</a></sup></td><td>Proxy voting (procuration); online voting for citizens abroad<sup class="ref"><a href="#s68">68</a></sup></td><td>Town halls, councillors and volunteers<sup class="ref"><a href="#s67">67</a></sup></td><td>By hand at each polling station, in public<sup class="ref"><a href="#s67">67</a></sup></td><td>Departmental counting commissions proclaim each seat; the Constitutional Council rules on challenges</td></tr>
+    <tr data-c="br"><th>Brazil</th><td>General, 4 &amp; 25 Oct 2026</td><td>Two-round for president</td><td>158.7m<sup class="ref"><a href="#s71">71</a></sup></td><td>About 81% in the run-off (TSE: 128.2m voted)<sup class="ref"><a href="#s72">72</a></sup></td><td>Electronic machines (urna eletrônica)<sup class="ref"><a href="#s73">73</a></sup></td><td>Sunday, 8am–5pm Brasília time<sup class="ref"><a href="#s75">75</a></sup></td><td>Compulsory for literate 18–70s; fingerprints taken at enrolment<sup class="ref"><a href="#s128">128</a></sup></td><td>Yes, literate citizens aged 18–70<sup class="ref"><a href="#s74">74</a></sup></td><td>Official photo document<sup class="ref"><a href="#s128">128</a></sup></td><td>None; absent voters justify their absence. Citizens abroad vote at consulates<sup class="ref"><a href="#s71">71</a></sup></td><td>Poll workers (mesários) called up or volunteering; 499,248 machines in the run-off<sup class="ref"><a href="#s72">72</a></sup></td><td>On each machine; results sent to the TSE<sup class="ref"><a href="#s75">75</a></sup></td><td>Electoral courts (diplomação)<sup class="ref"><a href="#s75">75</a></sup></td></tr>
+    <tr data-c="jp"><th>Japan</th><td>House of Representatives, 8 Feb 2026</td><td>Parallel: 289 single seats plus 176 list seats</td><td>103.2m<sup class="ref"><a href="#s81">81</a></sup></td><td>56.26% (preliminary)<sup class="ref"><a href="#s81">81</a></sup></td><td>Paper; voter writes the name by hand<sup class="ref"><a href="#s83">83</a></sup></td><td>Sunday, generally 7am–8pm<sup class="ref"><a href="#s83">83</a></sup></td><td>Automatic, from resident register<sup class="ref"><a href="#s83">83</a></sup></td><td>No</td><td>None required<sup class="ref"><a href="#s83">83</a></sup></td><td>Early voting at ward offices; a record 27.0m used it in 2026<sup class="ref"><a href="#s82">82</a></sup></td><td>Municipal election boards</td><td>Municipal counting centres the same night, with sorting machines<sup class="ref"><a href="#s85">85</a></sup></td><td>Election boards</td></tr>
+    <tr data-c="au"><th>Australia</th><td>Federal, 3 May 2025</td><td>Preferential (House); single transferable vote (Senate)<sup class="ref"><a href="#s86">86</a></sup></td><td>18.1m<sup class="ref"><a href="#s87">87</a></sup></td><td>90.70% (House)<sup class="ref"><a href="#s87">87</a></sup></td><td>Paper; number every box on the House ballot, at least 6 above the line (or 12 below) for the Senate<sup class="ref"><a href="#s86">86</a></sup></td><td>Saturday, 8am–6pm</td><td>Compulsory enrolment; the electoral commission also enrols people from government data</td><td>Yes, since 1924<sup class="ref"><a href="#s89">89</a></sup></td><td>None; voters state name and address<sup class="ref"><a href="#s86">86</a></sup></td><td>56% voted early or by post in 2025<sup class="ref"><a href="#s87">87</a></sup></td><td>84,010 temporary workers filling 98,931 positions<sup class="ref"><a href="#s87">87</a></sup></td><td>At polling places on the night, then a full second count<sup class="ref"><a href="#s91">91</a></sup></td><td>Australian Electoral Commission; writs returned 12 Jun<sup class="ref"><a href="#s87">87</a></sup></td></tr>
+    <tr data-c="mx"><th>Mexico</th><td>General, 2 Jun 2024</td><td>Plurality for president; mixed for the Chamber</td><td>98.3m<sup class="ref"><a href="#s95">95</a></sup></td><td>61.04%<sup class="ref"><a href="#s96">96</a></sup></td><td>Paper</td><td>Sunday</td><td>Voter collects a photo credential from the INE<sup class="ref"><a href="#s95">95</a></sup></td><td>A constitutional duty, with no penalty</td><td>INE voter credential<sup class="ref"><a href="#s95">95</a></sup></td><td>Online, postal or consulate voting from abroad; early voting for some groups<sup class="ref"><a href="#s95">95</a></sup></td><td>About 1.5m citizens, appointed from a pool drawn by lottery<sup class="ref"><a href="#s95">95</a></sup><sup class="ref"><a href="#s97">97</a></sup></td><td>At each polling station, then district councils<sup class="ref"><a href="#s100">100</a></sup></td><td>Electoral Tribunal (TEPJF)<sup class="ref"><a href="#s99">99</a></sup></td></tr>
+    <tr data-c="id"><th>Indonesia</th><td>General, 14 Feb 2024</td><td>Majority for president; list PR for parliament<sup class="ref"><a href="#s101">101</a></sup></td><td>204.8m<sup class="ref"><a href="#s102">102</a></sup></td><td>81.78% (presidential)<sup class="ref"><a href="#s126">126</a></sup></td><td>Five paper ballots, punched with a nail<sup class="ref"><a href="#s103">103</a></sup></td><td>Wednesday, declared a holiday; 7am–1pm<sup class="ref"><a href="#s101">101</a></sup></td><td>Compiled by the state from ID records<sup class="ref"><a href="#s101">101</a></sup></td><td>No</td><td>Electronic ID card (e-KTP)<sup class="ref"><a href="#s101">101</a></sup></td><td>Only for voters abroad<sup class="ref"><a href="#s101">101</a></sup></td><td>5.7m workers at 820,161 stations<sup class="ref"><a href="#s101">101</a></sup></td><td>By hand at each station, immediately<sup class="ref"><a href="#s101">101</a></sup></td><td>Election commission (KPU); 2024 result set on 20 Mar<sup class="ref"><a href="#s101">101</a></sup></td></tr>
+    <tr data-c="ee"><th>Estonia</th><td>Riigikogu, 5 Mar 2023</td><td>List PR, 101 seats<sup class="ref"><a href="#s108">108</a></sup></td><td>966,129<sup class="ref"><a href="#s109">109</a></sup></td><td>63.7%<sup class="ref"><a href="#s109">109</a></sup></td><td>Paper or internet (about 51% online)<sup class="ref"><a href="#s109">109</a></sup></td><td>Sunday, after six days of advance voting<sup class="ref"><a href="#s111">111</a></sup></td><td>Automatic</td><td>No</td><td>ID document at polling places; ID card or mobile ID online<sup class="ref"><a href="#s111">111</a></sup></td><td>Internet voting for six days; re-voting allowed, last vote counts<sup class="ref"><a href="#s111">111</a></sup></td><td>Local polling commissions</td><td>Paper at polling places; i-votes decrypted centrally<sup class="ref"><a href="#s110">110</a></sup></td><td>National Electoral Committee</td></tr>
+   </tbody>
+  </table>
+  </div>
+  <p class="note">Swipe or scroll the table sideways on small screens. Brazil's run-off was four days before publication; as of 29 October 2026, the losing candidate had said he would seek to annul it<sup class="ref"><a href="#s76">76</a></sup>.</p>
+ </div>
+</section>
+
+<section id="incidents">
+ <div class="wrap">
+  <div class="sec-head"><span class="sec-no">03</span><h2>Incident reports</h2></div>
+  <div class="prose"><p>Sixteen times the chain broke, bent or held under pressure. Each report separates what happened from what courts or official reviews established. Where someone alleged wrongdoing, the report says who and whether it was proven.</p></div>
+  <div class="filters" id="caseFilters" hidden role="group" aria-label="Filter incident reports">
+   <button type="button" data-f="all" aria-pressed="true">All 16</button>
+   <button type="button" data-f="broke" aria-pressed="false">Chain broke</button>
+   <button type="button" data-f="held" aria-pressed="false">Chain held</button>
+   <button type="button" data-f="us" aria-pressed="false">United States</button>
+   <button type="button" data-f="world" aria-pressed="false">Elsewhere</button>
+  </div>
+  <div class="cases">
+
+   <article class="case broke" data-g="us" id="c-fl2000">
+    <div class="tag"><b>Ballot design · Recount</b><span>Florida · 2000</span></div>
+    <div class="body"><h3>The butterfly ballot and the 537 votes</h3>
+     <p>George W. Bush carried Florida, and with it the presidency, by 537 votes out of almost six million<sup class="ref"><a href="#s29">29</a></sup>. Palm Beach County's two-column "butterfly" ballot confused voters; a peer-reviewed study later estimated it caused more than 2,000 Democratic voters to pick Pat Buchanan by mistake<sup class="ref"><a href="#s30">30</a></sup>. The recount of punch cards with partly detached "chads" was stopped by the Supreme Court.</p>
+     <p class="est"><span class="lab">Established:</span> In <i>Bush v. Gore</i> (12 December 2000) the Court held that recounting under standards that varied from county to county violated equal protection, and that no valid recount could finish in time<sup class="ref"><a href="#s31">31</a></sup>. Congress passed the Help America Vote Act in 2002<sup class="ref"><a href="#s26">26</a></sup>. The butterfly-ballot figure is a scholarly estimate, not a court finding.</p></div>
+   </article>
+
+   <article class="case broke" data-g="world" id="c-austria">
+    <div class="tag"><b>Postal votes</b><span>Austria · 2016</span></div>
+    <div class="body"><h3>Annulled, then delayed by glue</h3>
+     <p>Alexander Van der Bellen won the May 2016 presidential run-off by about 30,000 votes. On 1 July the Constitutional Court annulled it: in 14 districts covering about 77,000 votes, postal ballots had been opened early or handled by unauthorised people, and partial results had gone to media before polls closed<sup class="ref"><a href="#s114">114</a></sup>. The re-run set for 2 October was then postponed to 4 December because the glue on some postal envelopes was failing<sup class="ref"><a href="#s115">115</a></sup><sup class="ref"><a href="#s116">116</a></sup>.</p>
+     <p class="est"><span class="lab">Established:</span> The court did not rule that any manipulation took place. It annuls when rules against abuse are broken and the votes affected could have changed the outcome, "without speculating whether the violations of the law have actually resulted in manipulation"<sup class="ref"><a href="#s114">114</a></sup>. Van der Bellen won the re-run.</p></div>
+   </article>
+
+   <article class="case broke" data-g="world" id="c-wa">
+    <div class="tag"><b>Custody · Transport</b><span>Western Australia · 2013</span></div>
+    <div class="body"><h3>The 1,370 missing Senate ballots</h3>
+     <p>During a recount of Western Australia's Senate seats, the electoral commission found that 1,370 ballot papers had disappeared: 1,139 from the Division of Pearce and 231 from Forrest<sup class="ref"><a href="#s92">92</a></sup>. An inquiry by a former federal police commissioner, Mick Keelty, concluded their fate was "not likely to be ever fully explained" and made 32 findings on ballot handling and transport<sup class="ref"><a href="#s92">92</a></sup>.</p>
+     <p class="est"><span class="lab">Established:</span> The commission itself asked the High Court to void the result. In February 2014 the court did so: at one critical point in the count the margin had been 14 votes, and 12 the other way in the recount, so the lost papers could have changed the outcome<sup class="ref"><a href="#s93">93</a></sup>. The state voted again on 5 April 2014<sup class="ref"><a href="#s94">94</a></sup>.</p></div>
+   </article>
+
+   <article class="case broke" data-g="world" id="c-berlin">
+    <div class="tag"><b>Supplies · Queues</b><span>Berlin · 2021</span></div>
+    <div class="body"><h3>Three elections, a referendum and a marathon</h3>
+     <p>On 26 September 2021 Berliners voted in federal, state and district elections and a referendum, on the day of the Berlin Marathon. Ballots ran out, road closures held up deliveries, some voters got papers for the wrong district, and about half the 2,256 polling stations were still taking votes after 18:00<sup class="ref"><a href="#s117">117</a></sup><sup class="ref"><a href="#s120">120</a></sup>.</p>
+     <p class="est"><span class="lab">Established:</span> Berlin's constitutional court found "serious systemic flaws" and voided the state and district elections, which were re-run on 12 February 2023<sup class="ref"><a href="#s117">117</a></sup>. The Federal Constitutional Court ordered the federal vote repeated in 455 of the 2,256 districts, which happened on 11 February 2024<sup class="ref"><a href="#s118">118</a></sup><sup class="ref"><a href="#s119">119</a></sup>.</p></div>
+   </article>
+
+   <article class="case broke" data-g="world" id="c-kenya">
+    <div class="tag"><b>Results transmission</b><span>Kenya · 2017</span></div>
+    <div class="body"><h3>A presidential result thrown out</h3>
+     <p>The electoral commission declared Uhuru Kenyatta the winner of the August 2017 presidential election with about 54%. Raila Odinga challenged it. On 1 September the Supreme Court declared the result "invalid, null and void" by four judges to two<sup class="ref"><a href="#s121">121</a></sup><sup class="ref"><a href="#s122">122</a></sup>. It was widely reported as the first such ruling in sub-Saharan Africa<sup class="ref"><a href="#s123">123</a></sup>.</p>
+     <p class="est"><span class="lab">Established:</span> The court, led by Chief Justice David Maraga, found the commission "committed irregularities and illegalities in the transmission of results". The court did not find wrongdoing by Kenyatta, and the dissenting judges said rigging had not been proved<sup class="ref"><a href="#s121">121</a></sup>. Odinga boycotted the re-run on 26 October 2017, which Kenyatta won<sup class="ref"><a href="#s124">124</a></sup>.</p></div>
+   </article>
+
+   <article class="case broke" data-g="world" id="c-indonesia">
+    <div class="tag"><b>Staffing</b><span>Indonesia · 2019</span></div>
+    <div class="body"><h3>The cost of one day</h3>
+     <p>Indonesia elected its president and its national and regional legislatures on a single day in April 2019: more than 190 million registered voters, five ballots each, all counted by hand at more than 800,000 polling stations<sup class="ref"><a href="#s125">125</a></sup><sup class="ref"><a href="#s105">105</a></sup>.</p>
+     <p class="est"><span class="lab">Established:</span> The election commission's figure, reported by the state news agency ANTARA, is 894 polling-station workers dead and 5,175 ill; officials attributed the deaths to heavy workloads, fatigue and existing illnesses, and most of those who died were over 50 with existing conditions<sup class="ref"><a href="#s104">104</a></sup>. For 2024 the commission capped workers' age at 55 and required health certificates<sup class="ref"><a href="#s106">106</a></sup>. The Health Ministry still recorded 108 deaths among workers in February 2024<sup class="ref"><a href="#s107">107</a></sup>.</p></div>
+   </article>
+
+   <article class="case broke" data-g="world" id="c-uk2010">
+    <div class="tag"><b>Queues · Closing time</b><span>Britain · 2010</span></div>
+    <div class="body"><h3>Locked out at ten o'clock</h3>
+     <p>At the May 2010 general election, just over 1,200 people who were queuing when polls closed at 10pm were not allowed to vote, at 27 polling places in 16 constituencies<sup class="ref"><a href="#s61">61</a></sup>. The Electoral Commission blamed poor planning, unsuitable buildings and inadequate staffing.</p>
+     <p class="est"><span class="lab">Established:</span> Parliament changed the law. Section 19 of the Electoral Registration and Administration Act 2013 lets anyone in the queue at close of poll apply for a ballot<sup class="ref"><a href="#s60">60</a></sup>.</p></div>
+   </article>
+
+   <article class="case broke" data-g="us" id="c-antrim">
+    <div class="tag"><b>Ballot programming</b><span>Michigan · 2020</span></div>
+    <div class="body"><h3>Antrim County's wrong numbers</h3>
+     <p>On election night, Antrim County's unofficial results were badly wrong. The county had changed ballot designs in October but did not update most of its scanners' memory cards, so votes were reported against the wrong contests<sup class="ref"><a href="#s32">32</a></sup>. The error became a centrepiece of claims that machines had switched votes.</p>
+     <p class="est"><span class="lab">Established:</span> A review by the computer scientist J. Alex Halderman for Michigan's secretary of state found human error, "not caused by a security breach", and "no credible evidence" it was deliberate. A hand count of the presidential race matched the final reported results to within 0.08%<sup class="ref"><a href="#s32">32</a></sup>.</p></div>
+   </article>
+
+   <article class="case broke" data-g="us" id="c-maricopa">
+    <div class="tag"><b>Printing · Paper</b><span>Arizona · 2022</span></div>
+    <div class="body"><h3>Too faint to scan</h3>
+     <p>On Election Day 2022, print-on-demand printers at some Maricopa County vote centres produced ballots too faint for the on-site scanners. Voters could leave them to be counted centrally. Kari Lake, the losing Republican candidate for governor, sued to overturn the result.</p>
+     <p class="est"><span class="lab">Established:</span> A review led by a retired chief justice of Arizona, Ruth McGregor, found the failures were caused by changes to the paper, not by malicious actions: the county had switched to a longer ballot on heavier paper, and the printers' fusers could not hold temperature<sup class="ref"><a href="#s35">35</a></sup>. Courts rejected Lake's claims, the last in 2024<sup class="ref"><a href="#s36">36</a></sup><sup class="ref"><a href="#s37">37</a></sup>.</p></div>
+   </article>
+
+   <article class="case broke" data-g="us" id="c-harris">
+    <div class="tag"><b>Supplies</b><span>Texas · 2022</span></div>
+    <div class="body"><h3>Harris County runs short of paper</h3>
+     <p>Republicans said polling places in Harris County, which includes Houston, ran out of ballot paper in November 2022. A state audit agreed that the county "failed to supply appropriate amounts of ballot paper to numerous polling locations", because of a flawed method of estimating need made worse by equipment jams<sup class="ref"><a href="#s43">43</a></sup><sup class="ref"><a href="#s44">44</a></sup>.</p>
+     <p class="est"><span class="lab">Established:</span> The audit did not find that any outcome changed. Of 21 election contests Republicans brought, a judge upheld 20 results and voided one, a judicial race decided by 449 votes, on the basis of 1,430 illegal votes, not the paper shortage<sup class="ref"><a href="#s45">45</a></sup>.</p></div>
+   </article>
+
+   <article class="case broke" data-g="us" id="c-nyc">
+    <div class="tag"><b>Tabulation</b><span>New York · 2021</span></div>
+    <div class="body"><h3>135,000 test ballots</h3>
+     <p>A week after the 2021 Democratic mayoral primary, New York City's Board of Elections released a preliminary ranked-choice tally, then withdrew it: it had "inadvertently included 135,000 test ballots in the count"<sup class="ref"><a href="#s46">46</a></sup>.</p>
+     <p class="est"><span class="lab">Established:</span> The board apologised and corrected the tally. Eric Adams was declared the winner on 6 July by 8,426 votes<sup class="ref"><a href="#s47">47</a></sup>.</p></div>
+   </article>
+
+   <article class="case broke" data-g="us" id="c-cochise">
+    <div class="tag"><b>Certification</b><span>Arizona · 2022</span></div>
+    <div class="body"><h3>A county that would not certify</h3>
+     <p>Cochise County's Republican-majority Board of Supervisors missed the 28 November 2022 deadline to certify its canvass. The secretary of state and a retirees' group sued.</p>
+     <p class="est"><span class="lab">Established:</span> On 1 December a judge ruled the board had "exceeded its lawful authority" and ordered it to certify; it did that day<sup class="ref"><a href="#s38">38</a></sup>. Supervisors Peggy Judd and Tom Crosby were later indicted<sup class="ref"><a href="#s39">39</a></sup>. Judd pleaded guilty in October 2024 to a misdemeanour of failing to perform her duty as an election officer<sup class="ref"><a href="#s40">40</a></sup>; Crosby's case had not gone to trial as of May 2025, the latest report we found.</p></div>
+   </article>
+
+   <article class="case broke" data-g="us" id="c-threats">
+    <div class="tag"><b>Security</b><span>United States · 2024</span></div>
+    <div class="body"><h3>Hoax bomb threats</h3>
+     <p>On Election Day 2024 polling places in several states received bomb threats. In Fulton County, Georgia, the police chief said 32 of 177 polling places were targeted; two sites were evacuated for about 30 minutes and the county sought court orders to extend hours<sup class="ref"><a href="#s42">42</a></sup>.</p>
+     <p class="est"><span class="lab">Established:</span> The FBI said many of the threats "appear to originate from Russian email domains" and that none had so far been found credible<sup class="ref"><a href="#s41">41</a></sup>. The FBI's wording describes where the emails came from, not who sent them.</p></div>
+   </article>
+
+   <article class="case held" data-g="us" id="c-georgia">
+    <div class="tag"><b>Audit · Recount</b><span>Georgia · 2020</span></div>
+    <div class="body"><h3>Counted three times</h3>
+     <p>Georgia's risk-limiting audit in November 2020 hand-tallied about 5 million presidential ballots in 41,881 batches. Four counties found ballots that had not been scanned or uploaded, but Joe Biden's lead held<sup class="ref"><a href="#s33">33</a></sup>.</p>
+     <p class="est"><span class="lab">Established:</span> After a machine recount requested by the Trump campaign, the state recertified on 7 December with a margin of 11,779. "We have now counted legally cast ballots three times, and the results remain unchanged," said the secretary of state, Brad Raffensperger<sup class="ref"><a href="#s34">34</a></sup>.</p></div>
+   </article>
+
+   <article class="case held" data-g="world" id="c-india">
+    <div class="tag"><b>Scale</b><span>India · 2024</span></div>
+    <div class="body"><h3>642 million votes, one counting day</h3>
+     <p>The Election Commission said 642 million people voted in 2024, including 312 million women<sup class="ref"><a href="#s56">56</a></sup><sup class="ref"><a href="#s131">131</a></sup>. Votes were counted on 4 June in 542 of the 543 constituencies; Surat's seat had already gone to a candidate returned unopposed<sup class="ref"><a href="#s135">135</a></sup>.</p>
+     <p class="est"><span class="lab">Established:</span> Repolls were needed at 40 polling stations, against 540 in 2019<sup class="ref"><a href="#s49">49</a></sup>. The Supreme Court rejected petitions to check every machine's paper slips<sup class="ref"><a href="#s51">51</a></sup>.</p></div>
+   </article>
+
+   <article class="case held" data-g="world" id="c-brazil">
+    <div class="tag"><b>Speed · Challenge</b><span>Brazil · 2022</span></div>
+    <div class="body"><h3>Results within hours, and a challenge rejected</h3>
+     <p>In the October 2022 run-off, Luiz Inácio Lula da Silva was mathematically elected under three hours after polls closed, by one account<sup class="ref"><a href="#s77">77</a></sup>. The court that runs Brazil's elections holds public tests in which outside specialists attack its system<sup class="ref"><a href="#s78">78</a></sup>. Jair Bolsonaro's Liberal Party asked for votes from most machines to be annulled, citing a log bug.</p>
+     <p class="est"><span class="lab">Established:</span> The TSE's president rejected the request for "total absence of any evidence of irregularities" and fined the party about 23 million reais<sup class="ref"><a href="#s79">79</a></sup>. In June 2023 the TSE barred Bolsonaro from office for eight years for abuse of power and misuse of the media over a 2022 meeting with ambassadors at which he attacked the voting system; the ruling concerned his conduct, not the machines<sup class="ref"><a href="#s80">80</a></sup>.</p></div>
+   </article>
+
+  </div>
+  <div class="prose" style="margin-top:22px"><p><b>Estonia, a dispute without an incident.</b> In 2014 a team of independent researchers who had observed the 2013 municipal elections reported "serious architectural limitations and procedural gaps" in Estonia's internet voting and showed in a lab that malware could change votes; they recommended stopping i-voting<sup class="ref"><a href="#s112">112</a></sup>. Estonia's electoral officials called the report unfair and said its threats were already known<sup class="ref"><a href="#s113">113</a></sup>. The researchers did not claim any real election had been compromised, and Estonia kept the system.</p></div>
+ </div>
+</section>
+
+<section id="watch">
+ <div class="wrap">
+  <div class="sec-head"><span class="sec-no">04</span><h2>Reading the American count</h2></div>
+  <div class="prose"><p>What the chain means for the night of 3 November and the weeks after it. Rules are as of October 2026 and vary by state.</p></div>
+  <ol class="watch">
+   <li><b>Election-night numbers are unofficial.</b> They will move as postal, late and provisional ballots are added during the canvass<sup class="ref"><a href="#s23">23</a></sup>.</li>
+   <li><b>The order of the count reflects state law.</b> Pennsylvania and Wisconsin cannot start processing postal ballots until Election Day; Georgia, Nevada and others start weeks earlier<sup class="ref"><a href="#s18">18</a></sup>.</li>
+   <li><b>Some ballots arrive after the day.</b> Fourteen states plus DC count postal ballots cast by Election Day that arrive later, and the Supreme Court upheld that in June 2026<sup class="ref"><a href="#s17">17</a></sup>.</li>
+   <li><b>Signature problems can be fixed.</b> In 33 states plus DC, voters whose envelope signature is questioned can cure it, within deadlines ranging from poll close to about three weeks after<sup class="ref"><a href="#s16">16</a></sup>.</li>
+   <li><b>Close races trigger recounts.</b> Many states recount automatically at a margin of 0.5%<sup class="ref"><a href="#s24">24</a></sup>.</li>
+   <li><b>Paper gets checked.</b> Every state now has a post-election audit law, and seven require risk-limiting audits<sup class="ref"><a href="#s20">20</a></sup>.</li>
+   <li><b>Certification dates differ.</b> From about two days after the vote to more than a month, depending on the state<sup class="ref"><a href="#s23">23</a></sup>.</li>
+   <li><b>Military and overseas ballots went out first.</b> The federal deadline for sending them was 19 September 2026<sup class="ref"><a href="#s11">11</a></sup>.</li>
+  </ol>
+ </div>
+</section>
+
+<section class="sources" id="sources">
+ <div class="wrap">
+  <div class="sec-head"><span class="sec-no">05</span><h2>Sources</h2></div>
+  <ol>
+   <li id="s1"><a href="https://eac.gov/sites/default/files/2025-07/2024_EAVS_Report_508.pdf">2024 Election Administration and Voting Survey Comprehensive Report</a> <span class="pub">· US Election Assistance Commission, 2025</span></li>
+   <li id="s2"><a href="https://eac.gov/news/2025/06/30/us-election-assistance-commission-releases-2024-election-administration-and-voting">EAC releases 2024 Election Administration and Voting Survey report</a> <span class="pub">· US Election Assistance Commission, 30 June 2025</span></li>
+   <li id="s3"><a href="https://www.everycrsreport.com/reports/IF13056.html">The Election Administration and Voting Survey: Overview and 2024 Findings (IF13056)</a> <span class="pub">· Congressional Research Service, 8 July 2025</span></li>
+   <li id="s4"><a href="https://www.brennancenter.org/our-work/research-reports/5-things-you-may-not-know-about-local-election-officials">5 Things You May Not Know About Local Election Officials</a> <span class="pub">· Brennan Center for Justice, 2020</span></li>
+   <li id="s5"><a href="https://www.ncsl.org/elections-and-campaigns/voter-registration-deadlines">Voter Registration Deadlines</a> <span class="pub">· National Conference of State Legislatures</span></li>
+   <li id="s6"><a href="https://www.ncsl.org/elections-and-campaigns/same-day-voter-registration">Same-Day Voter Registration</a> <span class="pub">· NCSL</span></li>
+   <li id="s7"><a href="https://elections.maricopa.gov/news-and-information/elections-news/two-page-ballot2024-general-election.html">Two-page ballot for 2024 General Election</a> <span class="pub">· Maricopa County Elections Department, 4 Sept 2024</span></li>
+   <li id="s8"><a href="https://www.eac.gov/sites/default/files/electionofficials/QuickStartGuides/Ballot_Building_EAC_Quick_Start_Guide_508.pdf">Ballot Building Quick Start Guide</a> <span class="pub">· US Election Assistance Commission, 2022</span></li>
+   <li id="s9"><a href="https://www.eac.gov/sites/default/files/electionofficials/SupplyChain/Paper_Supply_Chain_Risk_Management_EAC_508.pdf">Paper Supply Chain Risk Management</a> <span class="pub">· US Election Assistance Commission</span></li>
+   <li id="s10"><a href="https://www.justice.gov/archives/opa/pr/fact-sheet-move-act">Fact Sheet: MOVE Act</a> <span class="pub">· US Department of Justice</span></li>
+   <li id="s11"><a href="https://content.govdelivery.com/accounts/MISOS/bulletins/427bcaf">Bureau of Elections newsletter to clerks</a> <span class="pub">· Michigan Department of State, 2026</span></li>
+   <li id="s12"><a href="https://api.politifact.com/article/2023/sep/19/vivek-ramaswamy-has-called-for-paper-ballots-most/">Most Americans already live in jurisdictions that use paper ballots (citing Verified Voting)</a> <span class="pub">· PolitiFact, 19 Sept 2023</span></li>
+   <li id="s13"><a href="https://www.eac.gov/sites/default/files/TestingCertification/VVSG_2_Dispelling_Misinformation.pdf">VVSG 2.0: Dispelling Misinformation</a> <span class="pub">· US Election Assistance Commission</span></li>
+   <li id="s14"><a href="https://www.euronews.com/2020/01/11/online-vulnerable-experts-find-nearly-three-dozen-u-s-voting-n1112436">'Online and vulnerable': experts find nearly three dozen US voting systems connected to internet</a> <span class="pub">· NBC News via Euronews, Jan 2020</span></li>
+   <li id="s15"><a href="https://www.ncsl.org/elections-and-campaigns/table-18-states-with-all-mail-elections">Table 18: States With Mostly Mail Elections</a> <span class="pub">· NCSL</span></li>
+   <li id="s16"><a href="https://www.ncsl.org/elections-and-campaigns/table-15-states-with-signature-cure-processes">Table 15: States With Signature Cure Processes</a> <span class="pub">· NCSL</span></li>
+   <li id="s17"><a href="https://www.votebeat.org/national/2026/06/29/supreme-court-watson-rnc-mail-ballots-absentee-deadline-grace-period/">Supreme Court allows states to accept mail ballots that arrive after Election Day</a> <span class="pub">· Votebeat, 29 June 2026</span>; also <a href="https://www.cbsnews.com/news/supreme-court-mail-ballots-mississippi-law-watson-v-rnc/">CBS News</a></li>
+   <li id="s18"><a href="https://www.ncsl.org/elections-and-campaigns/table-16-when-absentee-mail-ballot-processing-and-counting-can-begin">Table 16: When Absentee/Mail Ballot Processing and Counting Can Begin</a> <span class="pub">· NCSL</span></li>
+   <li id="s19"><a href="https://eac.gov/election-officials/chain-custody-best-practices">Chain of Custody Best Practices</a> <span class="pub">· US Election Assistance Commission, 2021</span></li>
+   <li id="s20"><a href="https://www.ncsl.org/state-legislatures-news/details/every-state-has-now-enacted-a-post-election-audit-law">Every State Has Now Enacted a Post-Election Audit Law</a> <span class="pub">· NCSL, 30 Apr 2026</span></li>
+   <li id="s21"><a href="https://mapresearch.org/wp-content/uploads/2026/02/citations-risk-limiting-audits.pdf">Risk-Limiting Audits: citations</a> <span class="pub">· Movement Advancement Project, June 2026</span></li>
+   <li id="s22"><a href="https://news.ballotpedia.org/2025/12/07/voters-in-north-carolina-and-nevada-will-decide-voter-id-amendments-in-2026-signatures-being-collected-for-california-voter-id-initiative/">Voters in North Carolina and Nevada will decide voter ID amendments in 2026</a> <span class="pub">· Ballotpedia News, 7 Dec 2025</span></li>
+   <li id="s23"><a href="https://bipartisanpolicy.org/article/state-election-results/">Certified Stamp of Approval: When the Election Results Will Be Final in Each State</a> <span class="pub">· Bipartisan Policy Center, 2020</span></li>
+   <li id="s24"><a href="https://www.ballotpedia.org/Election_recount_laws_and_procedures_in_the_50_states">Election recount laws and procedures in the 50 states</a> <span class="pub">· Ballotpedia</span>; <a href="https://news.ballotpedia.org/2025/10/03/nine-states-have-changed-their-recount-laws-in-2025/">Nine states have changed their recount laws in 2025</a></li>
+   <li id="s25"><a href="https://www.fox29.com/news/casey-mccormick-u-s-senate-pennsylvania-race-heads-mandatory-recount-officials">Casey–McCormick US Senate race heads to mandatory recount</a> <span class="pub">· FOX 29 Philadelphia, Nov 2024</span></li>
+   <li id="s26"><a href="https://www.congress.gov/107/plaws/publ252/PLAW-107publ252.htm">Help America Vote Act of 2002, Public Law 107-252</a> <span class="pub">· Congress.gov</span></li>
+   <li id="s27"><a href="https://protectdemocracy.org/work/understanding-the-electoral-count-reform-act-of-2022/">Understanding the Electoral Count Reform Act of 2022</a> <span class="pub">· Protect Democracy</span>; <a href="https://www.collins.senate.gov/download/12/19/2022/one-pager-on-electoral-count-reform-act-of-2022?download=1">one-pager</a> <span class="pub">· Office of Sen. Susan Collins</span></li>
+   <li id="s28"><a href="https://news.ballotpedia.org/2026/03/09/both-gubernatorial-and-u-s-senate-elections-are-happening-in-26-states-in-2026/">Both gubernatorial and US Senate elections are happening in 26 states in 2026</a> <span class="pub">· Ballotpedia News, 9 Mar 2026</span></li>
+   <li id="s29"><a href="https://www.presidency.ucsb.edu/statistics/elections/2000">Election of 2000</a> <span class="pub">· The American Presidency Project, UC Santa Barbara</span></li>
+   <li id="s30"><a href="https://www.cambridge.org/core/journals/american-political-science-review/article/butterfly-did-it-the-aberrant-vote-for-buchanan-in-palm-beach-county-florida/90253BB8ADFD43F862FCBFA4F0BF00A3">The Butterfly Did It: The Aberrant Vote for Buchanan in Palm Beach County</a> <span class="pub">· Wand et al., American Political Science Review, 2001</span></li>
+   <li id="s31"><a href="https://law.justia.com/cases/federal/us/531/98/">Bush v. Gore, 531 U.S. 98 (2000)</a> <span class="pub">· Justia</span></li>
+   <li id="s32"><a href="https://www.michigan.gov/documents/sos/Antrim_720623_7.pdf">Analysis of the Antrim County, Michigan November 2020 Election Incident</a> <span class="pub">· J. Alex Halderman for the Michigan Department of State, 26 Mar 2021</span></li>
+   <li id="s33"><a href="https://www.gpb.org/news/2020/11/19/risk-limiting-audit-confirms-biden-won-georgia">Risk-limiting audit confirms Biden won Georgia</a> <span class="pub">· Georgia Public Broadcasting, 19 Nov 2020</span></li>
+   <li id="s34"><a href="https://www.bangordailynews.com/2020/12/07/national-politics/georgia-again-certifies-election-results-showing-joe-biden-won/">Georgia again certifies election results showing Joe Biden won</a> <span class="pub">· Associated Press via Bangor Daily News, 7 Dec 2020</span></li>
+   <li id="s35"><a href="https://www.maricopa.gov/CivicAlerts.aspx?AID=2690">Independent review of Election Day printer issues</a> <span class="pub">· Maricopa County, Apr 2023</span>; <a href="https://www.click2houston.com/news/politics/2023/04/10/paper-changes-caused-maricopa-county-printer-failure-report/">AP report</a></li>
+   <li id="s36"><a href="https://ktla.com/news/politics/ap-politics/ap-judge-dismisses-kari-lakes-final-claim-in-election-loss-for-arizona-governor/amp/">Judge dismisses Kari Lake's final claim in election loss</a> <span class="pub">· Associated Press via KTLA, 22 May 2023</span></li>
+   <li id="s37"><a href="https://azmirror.com/2024/11/07/az-supreme-court-rejects-kari-lakes-last-remaining-bid-to-overturn-her-2022-loss/">AZ Supreme Court rejects Kari Lake's last remaining bid to overturn her 2022 loss</a> <span class="pub">· Arizona Mirror, 7 Nov 2024</span></li>
+   <li id="s38"><a href="https://azmirror.com/2022/12/01/cochise-county-certifies-election-results-after-ordered-to-by-a-judge/">Cochise County certifies election results after ordered to by a judge</a> <span class="pub">· Arizona Mirror, 1 Dec 2022</span></li>
+   <li id="s39"><a href="https://ktar.com/arizona-news/2-arizona-county-officials-indicted-on-election-interference-charges-from-2022">2 Arizona county officials indicted on election interference charges</a> <span class="pub">· KTAR News, Nov 2023</span></li>
+   <li id="s40"><a href="https://www.azcapitoltimes.com/news/issues/tom-crosby">Tom Crosby coverage (Judd plea)</a> <span class="pub">· Arizona Capitol Times</span>; <a href="https://azmirror.com/2025/05/02/election-certification-trial-pushed-back-pending-judges-decision-on-motion-to-dismiss/">Arizona Mirror, 2 May 2025</a></li>
+   <li id="s41"><a href="https://www.globalsecurity.org/security/library/news/2024/11/sec-241105-fbi01.htm">FBI statement on bomb threats to polling locations</a> <span class="pub">· FBI via GlobalSecurity.org, 5 Nov 2024</span>; <a href="https://www.nextgov.com/cybersecurity/2024/11/russian-email-domains-sent-uncredible-bomb-threats-polling-places-fbi-says/400838/">Nextgov/FCW</a></li>
+   <li id="s42"><a href="https://www.kxii.com/2024/11/05/2-georgia-polls-evacuated-after-several-non-credible-bomb-threats-officials-say">2 Georgia polls evacuated after several non-credible bomb threats</a> <span class="pub">· Gray TV/AP via KXII, 5 Nov 2024</span></li>
+   <li id="s43"><a href="https://www.sos.texas.gov/elections/fad/forms/harris-county-executive-summary-final.pdf">Harris County audit: executive summary</a> <span class="pub">· Texas Secretary of State</span></li>
+   <li id="s44"><a href="https://www.texastribune.org/2023/10/19/harris-county-election-2022-audit/">Harris County 2022 election audit</a> <span class="pub">· Texas Tribune, 19 Oct 2023</span></li>
+   <li id="s45"><a href="https://texastribune.org/2024/05/15/harris-county-election-challenge-180th-district-court">Judge overturns 180th District Court result</a> <span class="pub">· Texas Tribune, 15 May 2024</span></li>
+   <li id="s46"><a href="https://www.wxyz.com/news/national-politics/new-york-city-board-of-elections-withdraws-updated-results-in-mayoral-primary-cites-counting-error">NYC Board of Elections withdraws updated results, cites counting error</a> <span class="pub">· Associated Press via WXYZ, June 2021</span></li>
+   <li id="s47"><a href="https://www.wamc.org/new-york-news/2021-07-07/eric-adams-wins-democratic-primary-in-nycs-mayoral-race">Eric Adams wins Democratic primary in NYC's mayoral race</a> <span class="pub">· AP via WAMC, 7 July 2021</span></li>
+   <li id="s48"><a href="https://www.newsonair.gov.in/bulletins-detail/39292">Lok Sabha polls schedule</a> <span class="pub">· All India Radio News, 2024</span></li>
+   <li id="s49"><a href="https://www.deccanchronicle.com/nation/ec-data-on-ls-polls-women-outshine-men-again-in-exercising-franchise-1849806">EC data on LS polls: women outshine men again</a> <span class="pub">· Deccan Chronicle (PTI), 2024</span>; <a href="https://www.dtnext.in/news/national/6579-turnout-recorded-in-lok-sabha-polls-excluding-postal-ballots-ec-788871">DT Next</a>; <a href="https://m.greaterkashmir.com/article/97-crore-voters-to-vote-across-10-5-lakh-polling-stations/286273">Greater Kashmir</a></li>
+   <li id="s50"><a href="https://www.deccanherald.com/amp/story/elections%2Findia%2Flok-sabha-polls-biggest-peacetime-movement-of-men-material-in-world-2940327">Lok Sabha polls: biggest peacetime movement of men, material in world</a> <span class="pub">· Deccan Herald (PTI), 17 Mar 2024</span></li>
+   <li id="s51"><a href="https://www.livelaw.in/top-stories/-supreme-court-rejects-pleas-seeking-100-evm-vvpat-cross-verification-issues-directions-to-seal-symbol-loading-unit-256174">Supreme Court rejects plea for 100% EVM-VVPAT verification</a> <span class="pub">· LiveLaw, 26 Apr 2024</span>; <a href="https://www.scconline.com/blog/post/2024/04/26/supreme-court-rejects-plea-for-100-evm-vvpat-verification-legal-news/">SCC Online</a></li>
+   <li id="s52"><a href="https://www.scobserver.in/journal/6-vvpat/">VVPAT case page</a> <span class="pub">· Supreme Court Observer</span></li>
+   <li id="s53"><a href="https://www.aljazeera.com/gallery/2024/5/8/an-election-booth-inside-a-forest-in-india-for-just-one-voter">An election booth inside a forest in India for just one voter</a> <span class="pub">· Al Jazeera, 8 May 2024</span></li>
+   <li id="s54"><a href="https://ceodelhi.gov.in/PDFFolders/TrgMaterial/Polling_Stations.pdf">Polling Stations (training material)</a> <span class="pub">· Chief Electoral Officer, Delhi</span></li>
+   <li id="s55"><a href="https://www.gulf-times.com/article/680910/international/poll-officials-travel-across-hills-rivers-to-reach-voters/amp">Poll officials travel across hills, rivers to reach voters</a> <span class="pub">· Reuters via Gulf Times, 19 Apr 2024</span></li>
+   <li id="s56"><a href="https://www.malaymail.com/news/world/2024/06/03/india-poll-panel-says-642-million-voters-cast-ballots-in-general-election/137871">India poll panel says 642 million voters cast ballots</a> <span class="pub">· Reuters via Malay Mail, 3 June 2024</span></li>
+   <li id="s57"><a href="https://www.electoralcommission.org.uk/research-reports-and-data/our-reports-and-data-past-elections-and-referendums/report-2024-uk-parliamentary-general-election-and-may-2024-elections">Report on the 2024 UK Parliamentary general election</a> <span class="pub">· Electoral Commission</span>; <a href="https://www.electoralcommission.org.uk/sites/default/files/2024-11/Report%20on%20the%202024%20UK%20Parliamentary%20general%20election.pdf">full report (PDF)</a></li>
+   <li id="s58"><a href="https://www.electoralcommission.org.uk/research-reports-and-data/our-reports-and-data-past-elections-and-referendums/voter-id-2024-uk-general-election">Voter ID at the 2024 UK general election</a> <span class="pub">· Electoral Commission</span></li>
+   <li id="s59"><a href="https://www.electoralcommission.org.uk/resources/resources-young-people/your-vote/ways-vote/voting-person">Voting in person</a> <span class="pub">· Electoral Commission</span></li>
+   <li id="s60"><a href="https://www.legislation.gov.uk/ukpga/2013/6/section/19">Electoral Registration and Administration Act 2013, section 19</a> <span class="pub">· legislation.gov.uk</span></li>
+   <li id="s61"><a href="https://ukhumanrightsblog.com/2010/07/27/watchdog-calls-for-rule-changes-after-barred-voters-fiasco">Watchdog calls for rule changes after barred voters fiasco</a> <span class="pub">· UK Human Rights Blog, 27 July 2010 (summarising the Electoral Commission's report)</span></li>
+   <li id="s62"><a href="https://www.bundesregierung.de/breg-de/service/archiv-bundesregierung/bundestagswahl-2025/bundestagswahl-fakten-1929832">Fakten und Zahlen zur Wahl</a> <span class="pub">· Bundesregierung (German federal government), 2025</span></li>
+   <li id="s63"><a href="https://www.bundeswahlleiterin.de/info/presse/mitteilungen/bundestagswahl-2025/29_25_endgueltiges-ergebnis.html">Press release 29/25: final result</a> <span class="pub">· Federal Returning Officer (Bundeswahlleiterin), 14 Mar 2025</span></li>
+   <li id="s64"><a href="https://www.bundeswahlleiterin.de/info/presse/mitteilungen/bundestagswahl-2025/15_25_einsatz-wahlhelfer.html">Press release 15/25: poll workers</a> <span class="pub">· Federal Returning Officer, 2025</span></li>
+   <li id="s65"><a href="https://www.bundeswahlleiterin.de/dam/jcr/3a763d75-2fe1-42fc-92bb-603a002d538a/btw25_infoblatt_fakten-gegen-desinformation.pdf">Fakten gegen Desinformation</a> <span class="pub">· Federal Returning Officer, 2025</span></li>
+   <li id="s66"><a href="https://www.bundeswahlleiterin.de/info/presse/mitteilungen/bundestagswahl-2025/05_25_wahlbenachrichtigung.html">Press release 05/25: polling cards</a> <span class="pub">· Federal Returning Officer, 2025</span></li>
+   <li id="s67"><a href="https://www.elections.interieur.gouv.fr/comprendre-elections/comment-je-vote/lelecteur-jour-du-vote">L'électeur, le jour du vote</a> <span class="pub">· French Ministry of the Interior</span></li>
+   <li id="s68"><a href="https://www.elections.interieur.gouv.fr/comprendre-elections/comment-je-vote/vote-par-procuration">Le vote par procuration</a> <span class="pub">· French Ministry of the Interior</span>; <a href="https://lepetitjournal.com/expat-politique/actualites/legislatives-2024-comment-deroule-vote-ligne-internet-francais-expatries-etranger-388744">Lepetitjournal (online voting abroad)</a></li>
+   <li id="s69"><a href="https://www.insee.fr/fr/statistiques/8192479">INSEE Focus: electoral lists, May 2024</a> <span class="pub">· INSEE</span></li>
+   <li id="s70"><a href="https://acteurspublics.fr/articles/66-63-de-participation/">66,63 % de participation</a> <span class="pub">· Acteurs publics, July 2024</span></li>
+   <li id="s71"><a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/eleicoes-2026-em-numeros-158-7-milhoes-de-eleitores-estao-aptos-a-votar">Eleições 2026 em números</a> <span class="pub">· Tribunal Superior Eleitoral, Oct 2026</span></li>
+   <li id="s72"><a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/presidente-do-tse-anuncia-reeleicao-de-lula-e-faz-balanco-do-2o-turno-das-eleicoes-2026">Presidente do TSE anuncia reeleição de Lula e faz balanço do 2º turno</a> <span class="pub">· Tribunal Superior Eleitoral, 26 Oct 2026</span></li>
+   <li id="s73"><a href="https://www.tse.jus.br/comunicacao/noticias/2026/Maio/30-anos-da-urna-eletronica-adocao-do-equipamento-agilizou-voto-e-eliminou-fraudes">30 anos da urna eletrônica</a> <span class="pub">· Tribunal Superior Eleitoral, May 2026</span></li>
+   <li id="s74"><a href="https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-19-dias-saiba-para-quem-o-voto-e-obrigatorio-ou-facultativo">Saiba para quem o voto é obrigatório ou facultativo</a> <span class="pub">· Tribunal Superior Eleitoral, Sept 2026</span></li>
+   <li id="s75"><a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/apuracao-dos-votos-comeca-as-17h-no-horario-de-brasilia">Apuração dos votos começa às 17h</a> <span class="pub">· Tribunal Superior Eleitoral, Oct 2026</span>; <a href="https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/faltam-6-dias-saiba-como-e-o-trabalho-das-mesarias-e-dos-mesarios-na-secao-eleitoral">o trabalho dos mesários</a></li>
+   <li id="s76"><a href="https://www.ewn.co.za/brazils-lula-clinches-poll-victory-bolsonaro-seeks-to-annul-election/">Brazil's Lula clinches poll victory, Bolsonaro seeks to annul election</a> <span class="pub">· AFP via Eyewitness News, Oct 2026</span></li>
+   <li id="s77"><a href="https://www.democrata.es/en/international/how-the-electoral-counting-works-in-brazil-electronic-ballots-since-1996-and-results-in-few-hours/">How the electoral counting works in Brazil</a> <span class="pub">· Demócrata, Oct 2022</span></li>
+   <li id="s78"><a href="https://international.tse.jus.br/en/electronic-ballot-box/public-safety-tests-psts">Public safety tests (PSTs)</a> <span class="pub">· Tribunal Superior Eleitoral</span></li>
+   <li id="s79"><a href="https://krdo.com/news/ap-national-news/2022/11/23/brazil-election-agency-rejects-bolsonaro-push-to-void-votes/">Brazil election agency rejects Bolsonaro push to void votes</a> <span class="pub">· Associated Press via KRDO, 23 Nov 2022</span>; <a href="https://www.aljazeera.com/news/2022/11/24/brazilian-judge-rejects-attempt-to-overturn-lula-election-victory">Al Jazeera</a></li>
+   <li id="s80"><a href="https://www.npr.org/2023/06/30/1185364211/brazil-bolsonaro-court-banned-election">A Brazil court has banned Bolsonaro from running for election until 2030</a> <span class="pub">· NPR, 30 June 2023</span></li>
+   <li id="s81"><a href="https://www.soumu.go.jp/main_content/001055230.pdf">令和8年2月8日執行 衆議院議員総選挙 結果調（速報）</a> <span class="pub">· Ministry of Internal Affairs and Communications, Japan, 2026</span>; <a href="https://www.nippon.com/en/news/yjj2026020900215">Jiji Press</a></li>
+   <li id="s82"><a href="https://english.adnkronos.com/2026/02/08/record-27-01-m-people-vote-early-in-japan-general-election/">Record 27.01m people vote early in Japan general election</a> <span class="pub">· Jiji Press via Adnkronos, 8 Feb 2026</span></li>
+   <li id="s83"><a href="https://en.city.yokohama.lg.jp/city-info/senkyo/faq.html">Election FAQ</a> <span class="pub">· City of Yokohama</span></li>
+   <li id="s84"><a href="https://web-japan.org/niponica/niponica18/en/feature/feature03.html">niponica No. 18 feature</a> <span class="pub">· Web Japan (Ministry of Foreign Affairs of Japan), 2016</span></li>
+   <li id="s85"><a href="https://www.itmedia.co.jp/business/spv/2207/10/news040.html">Musashi ballot-sorting machines</a> <span class="pub">· ITmedia Business, 10 July 2022</span></li>
+   <li id="s86"><a href="https://www.aec.gov.au/election/fe25/files/official-guide/fe25-official-guide.pdf">Your official guide to the 2025 federal election</a> <span class="pub">· Australian Electoral Commission</span></li>
+   <li id="s87"><a href="https://www.aec.gov.au/Elections/federal_elections/2025/2025-Federal-Election-Report.pdf">2025 Federal Election Report</a> <span class="pub">· Australian Electoral Commission</span></li>
+   <li id="s88"><a href="https://www.aec.gov.au/media/2025/10-01.htm">Publication of the 2025 federal election report</a> <span class="pub">· Australian Electoral Commission</span></li>
+   <li id="s89"><a href="https://www.aec.gov.au/about_aec/publications/backgrounders/compulsory-voting.htm">Electoral Backgrounder: Compulsory voting</a> <span class="pub">· Australian Electoral Commission</span></li>
+   <li id="s90"><a href="https://reporter.anu.edu.au/all-stories/democracy-sausage-wins-australias-2016-word-of-the-year">Democracy sausage wins Australia's 2016 word of the year</a> <span class="pub">· ANU Reporter, Australian National University</span></li>
+   <li id="s91"><a href="https://www.aec.gov.au/Voting/counting/">Counting the votes</a> <span class="pub">· Australian Electoral Commission</span></li>
+   <li id="s92"><a href="https://www.anao.gov.au/work/performance-audit/the-australian-electoral-commissions-storage-and-transport-completed-ballot-papers-the-september">The AEC's storage and transport of completed ballot papers at the September 2013 federal general election</a> <span class="pub">· Australian National Audit Office</span></li>
+   <li id="s93"><a href="https://www.hcourt.gov.au/sites/default/files/eresources/2014/HCA/5.pdf">Australian Electoral Commission v Johnston &amp; Ors [2014] HCA 5</a> <span class="pub">· High Court of Australia</span></li>
+   <li id="s94"><a href="https://www.sbs.com.au/news/article/2014/04/01/explainer-wa-senate-re-election">Explainer: the WA Senate re-election</a> <span class="pub">· SBS News, 1 Apr 2014</span></li>
+   <li id="s95"><a href="https://repositoriodocumental.ine.mx/xmlui/bitstream/handle/123456789/177971/MEX.EU.EEM.2024.FinalReport.ES.VERSION.pdf">Misión de Expertos Electorales de la UE, México 2024: Informe Final</a> <span class="pub">· European Union Electoral Expert Mission</span></li>
+   <li id="s96"><a href="https://centralelectoral.ine.mx/2024/06/09/votacion-total-cuantificada-de-los-computos-distritales-indico-que-la-participacion-ciudadana-en-elecciones-2024-fue-del-61-por-ciento/">Participación ciudadana en elecciones 2024 fue del 61%</a> <span class="pub">· Instituto Nacional Electoral, 9 June 2024</span></li>
+   <li id="s97"><a href="https://centralelectoral.ine.mx/2023/12/07/ciudadania-mexicana-nacida-en-marzo-y-abril-conformara-las-170-mil-casillas-electorales-del-pef-2023-2024/">Ciudadanía nacida en marzo y abril conformará las 170 mil casillas</a> <span class="pub">· Instituto Nacional Electoral, 7 Dec 2023</span></li>
+   <li id="s98"><a href="https://centralelectoral.ine.mx/2024/02/01/ciudadanas-y-ciudadanos-nacidos-en-marzo-y-abril-cuyo-primer-apellido-inicie-con-la-letra-a-se-tomaran-como-base-para-integrar-las-casillas-el-2-de-junio/">Letra A como base para integrar las casillas</a> <span class="pub">· Instituto Nacional Electoral, 1 Feb 2024</span></li>
+   <li id="s99"><a href="https://www.adn40.mx/politica/2024-08-14/tepjf-declara-oficialmente-claudia-sheinbaum-presidenta-valida-elecciones-2024/">TEPJF declara válida la elección presidencial</a> <span class="pub">· adn40, 14 Aug 2024</span></li>
+   <li id="s100"><a href="https://centralelectoral.ine.mx/2024/06/11/el-universal-publica-articulo-de-la-consejera-electoral-carla-humphrey-titulado-la-eleccion-presidencial-en-numeros/">La elección presidencial en números (Carla Humphrey)</a> <span class="pub">· Instituto Nacional Electoral, 11 June 2024</span></li>
+   <li id="s101"><a href="https://www.ifes.org/sites/default/files/2024-02/2024_Elections_FAQ_Final.pdf">Elections in Indonesia: 2024 General Elections FAQ</a> <span class="pub">· IFES, Feb 2024</span></li>
+   <li id="s102"><a href="https://megapolitan.antaranews.com/berita/249408/kpu-ri-tetapkan-204807222-dpt-baik-dalam-dan-luar-negeri-untuk-pemilu-2024">KPU sets 204,807,222 voters for 2024 election</a> <span class="pub">· ANTARA, July 2023</span></li>
+   <li id="s103"><a href="https://interactives.lowyinstitute.org/features/indonesia-votes">Indonesia votes</a> <span class="pub">· Lowy Institute, 2019</span></li>
+   <li id="s104"><a href="https://mataram.antaranews.com/berita/322749/kpu-strives-to-prevent-recurrence-of-election-officers-deaths">KPU strives to prevent recurrence of election officers' deaths</a> <span class="pub">· ANTARA, 31 Jan 2024</span></li>
+   <li id="s105"><a href="https://learningenglish.voanews.com/a/deaths-of-indonesian-election-officials-lead-to-talk-of-changes/4906250.html">Deaths of Indonesian election officials lead to talk of changes</a> <span class="pub">· VOA, May 2019</span></li>
+   <li id="s106"><a href="https://mataram.antaranews.com/berita/314997/indonesias-kpu-tightens-officer-health-requirements-after-2019-deaths">KPU tightens officer health requirements after 2019 deaths</a> <span class="pub">· ANTARA</span></li>
+   <li id="s107"><a href="https://inp.polri.go.id/artikel/health-ministry-reports-108-kpps-members-died-during-2024-election">Health Ministry reports 108 KPPS members died during 2024 election</a> <span class="pub">· Indonesian National Police</span></li>
+   <li id="s108"><a href="https://news.err.ee/1608882275/how-does-estonia-s-riigikogu-electoral-system-work">How does Estonia's Riigikogu electoral system work?</a> <span class="pub">· ERR News</span></li>
+   <li id="s109"><a href="https://www.valimised.ee/en/voter-turnout-riigikogu-elections-was-637">Voter turnout at the Riigikogu elections was 63.7%</a> <span class="pub">· State Electoral Office of Estonia, 2023</span>; <a href="https://news.err.ee/1608908612/riigikogu-election-turnout-confirmed-as-63-7-percent">ERR News</a></li>
+   <li id="s110"><a href="https://www.valimised.ee/en/internet-voting/more-about-i-voting/introduction-i-voting">Introduction to i-voting</a> <span class="pub">· State Electoral Office of Estonia</span></li>
+   <li id="s111"><a href="https://www.valimised.ee/en/internet-voting-estonia">Internet voting in Estonia</a> <span class="pub">· State Electoral Office of Estonia</span>; <a href="https://www.valimised.ee/en/parliamentary-elections-2023/parliamentary-elections-2023">Parliamentary elections 2023</a>; <a href="https://www.valimised.ee/en/riigikogu-elected-today">The Riigikogu is elected today</a></li>
+   <li id="s112"><a href="https://estoniaevoting.org/findings/paper/">Security Analysis of the Estonian Internet Voting System</a> <span class="pub">· Springall, Halderman et al., ACM CCS 2014</span></li>
+   <li id="s113"><a href="https://news.err.ee/112524/">Government calls group's criticism of national e-voting system unfair</a> <span class="pub">· ERR News, 13 May 2014</span></li>
+   <li id="s114"><a href="https://www.vfgh.gv.at/timeline/2016__Bundespraesidentenstichwahl.en.html">2016 Bundespräsidentenstichwahl</a> <span class="pub">· Constitutional Court of Austria</span></li>
+   <li id="s115"><a href="https://www.aljazeera.com/news/2016/9/12/austria-delays-presidential-vote-re-run-to-december-4">Austria delays presidential vote re-run to December 4</a> <span class="pub">· Al Jazeera, 12 Sept 2016</span></li>
+   <li id="s116"><a href="https://www.euronews.com/2016/09/12/austrian-presidential-poll-postponed-over-faulty-glue">Austrian presidential poll postponed over faulty glue</a> <span class="pub">· Euronews, 12 Sept 2016</span></li>
+   <li id="s117"><a href="https://www.berlin.de/en/news/7872873-5559700-repeat-elections-february.en.html">Repeat elections in February</a> <span class="pub">· berlin.de, 17 Nov 2022</span></li>
+   <li id="s118"><a href="https://www.bundesverfassungsgericht.de/SharedDocs/Pressemitteilungen/EN/2023/bvg23-119.html">Press release 119/2023: partial repeat of the 2021 Bundestag election in Berlin</a> <span class="pub">· Federal Constitutional Court, 19 Dec 2023</span></li>
+   <li id="s119"><a href="https://bundeswahlleiterin.de/en/info/presse/mitteilungen/bundestagswahl-2021/05_24_vorlaeufiges-ergebnis.html">Press release 05/24: provisional result of the repeat election</a> <span class="pub">· Federal Returning Officer, 12 Feb 2024</span></li>
+   <li id="s120"><a href="https://pw-portal.de/themen/berlin-s-extraordinary-election-flaws-failures-and-their-consequences">Berlin's Extraordinary Election: Flaws, Failures, and Their Consequences</a> <span class="pub">· Portal für Politikwissenschaft</span></li>
+   <li id="s121"><a href="https://www.bostonglobe.com/news/world/2017/09/01/kenya-supreme-court-nullifies-presidential-election/JGGZthsWyN9S2S9MqnKTbJ/story.html">Kenya Supreme Court nullifies presidential election</a> <span class="pub">· Boston Globe (wire), 1 Sept 2017</span></li>
+   <li id="s122"><a href="https://www.theeastafrican.co.ke/news/Kenya-top-court-annuls-presidential-poll-results/2558-4079780-hutxvg/index.html">Kenya's Supreme Court annuls presidential poll results</a> <span class="pub">· The EastAfrican, 1 Sept 2017</span></li>
+   <li id="s123"><a href="https://www.aljazeera.com/news/2020/2/3/malawi-top-court-annuls-presidential-election-results">Malawi top court annuls presidential election results</a> <span class="pub">· Al Jazeera, 3 Feb 2020</span></li>
+   <li id="s124"><a href="https://www.voanews.com/a/post-vote-kenya-braces-as-opposition-leader-set-to-speak/4093669.html">Post-vote Kenya braces as opposition leader set to speak</a> <span class="pub">· VOA, Oct 2017</span></li>
+   <li id="s125"><a href="https://www.ifes.org/news/indonesia-holds-worlds-largest-single-day-election">Indonesia holds world's largest single-day election</a> <span class="pub">· IFES, 2019</span></li>
+   <li id="s126"><a href="https://kabar24.bisnis.com/read/20240325/15/1752488/pemilu-2024-partisipasi-pemilih-turun-golput-naik">Pemilu 2024: partisipasi pemilih</a> <span class="pub">· Bisnis.com, 25 Mar 2024</span></li>
+   <li id="s127"><a href="https://www.ncsl.org/elections-and-campaigns/automatic-voter-registration">Automatic Voter Registration</a> <span class="pub">· NCSL</span></li>
+   <li id="s128"><a href="https://www.tse.jus.br/comunicacao/noticias/2026/Maio/por-dentro-das-eleicoes-tudo-o-que-voce-precisa-saber-sobre-alistamento-eleitoral">Por dentro das eleições: alistamento eleitoral</a> <span class="pub">· Tribunal Superior Eleitoral, May 2026</span>; <a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/veja-o-que-voce-precisa-saber-para-votar-com-tranquilidade-neste-domingo-4">what to know before voting</a></li>
+   <li id="s129"><a href="https://www.electoralcommission.org.uk/news-and-views/our-priorities-reforming-elections/a-modern-electoral-register/modernising-electoral-registration-feasibility-studies/electoral-registration-need-reform">Electoral registration: the need for reform</a> <span class="pub">· Electoral Commission</span></li>
+   <li id="s130"><a href="https://utahnewsdispatch.com/?p=9093">Utah Legislature approves bill to phase out automatic voting by mail by 2029</a> <span class="pub">· Utah News Dispatch, Mar 2025</span></li>
+   <li id="s131"><a href="https://www.tribuneindia.com/news/india/ec-several-milestones-reached-record-312-million-women-voted-627562">EC: several milestones reached, record 312 million women voted</a> <span class="pub">· Tribune India, 3 June 2024</span></li>
+   <li id="s132"><a href="https://www.bundeswahlleiterin.de/info/presse/mitteilungen/bundestagswahl-2025/22_25_prognose-hochrechnung-ergebnis.html">Press release 22/25: forecast, projection, result</a> <span class="pub">· Federal Returning Officer, 2025</span></li>
+   <li id="s133"><a href="https://next.ink/brief-article/lagenda-de-proclamation-des-resultats-pour-le-premier-tour-de-lelection-presidentielle/">L'agenda de proclamation des résultats</a> <span class="pub">· Next, 2022</span></li>
+   <li id="s134"><a href="https://www.ceogoa.nic.in/pdf/19.03.2024ECOrder.pdf">Election Commission order on identity documents, 19 Mar 2024</a> <span class="pub">· Election Commission of India via CEO Goa</span>; <a href="https://www.tribuneindia.com/news/chandigarh/voters-may-present-12-documents-to-vote-deo-625205">The Tribune</a></li>
+   <li id="s135"><a href="https://scroll.in/latest/1066930/bjp-surat-lok-sabha-candidate-elected-unopposed-as-congress-nominee-is-disqualified-others-withdraw">BJP Surat Lok Sabha candidate elected unopposed</a> <span class="pub">· Scroll.in, Apr 2024</span>; <a href="https://www.deccanherald.com/elections/india/bjp-registers-first-victory-as-surat-candidate-mukesh-dalal-wins-unopposed-2988832">Deccan Herald</a></li>
+  </ol>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <p>Published 29 October 2026 in Daily by Nick Carbone · Researched and designed with Claude</p>
+  <p><a href="/daily/">← All Daily pieces</a> · <a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20Chain%20of%20Custody&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-10-29-chain-of-custody%2F" rel="noopener">Spot an error? Suggest a correction</a></p>
+ </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  // Short per-country labels for each of the nine stages
+  var L = {
+    us:["Voter applies; ND none","21,534 styles in one county","Paper + scanners","Two-person custody","Scanners; mail start varies","Unofficial on the night","Canvass; audits in every state","Automatic at ~0.5% in many states","State deadlines vary"],
+    in:["Voter applies to ECI","Symbols loaded into EVMs","EVM + paper slip","Teams by boat, foot, air","All on one day","Constituency trends","5 machines' slips per segment","Election petitions","Returning officers"],
+    uk:["Individual registration","Paper, one X","Photo ID; 7am–10pm","Sealed boxes to count","Overnight count centres","Seat by seat","Recount on request","Election petitions","Returning officer declares"],
+    de:["Automatic, from residence","Two votes on one paper","Paper only; Sunday","Postal boards of 5–9","Public, at each station","Provisional, same night","Committees check records","Scrutiny of elections","Final result ~3 weeks"],
+    fr:["Automatic at 18","A paper per candidate","Envelope + transparent box","Proxy, not post","Public hand count","Via prefectures overnight","Departmental commissions","Constitutional Council","Council proclaims"],
+    br:["Compulsory, biometric","Machines programmed","Urna eletrônica","No postal votes","Counted on the machine","Bulletin on the door","Public security tests","Electoral courts","Diplomação"],
+    jp:["Automatic, resident register","No names printed","Name written by hand","Early voting at ward offices","OCR sorting machines","Same night","Election boards","Courts","Election boards"],
+    au:["Compulsory enrolment","Green and white papers","Number every box","Remote teams, 162,000 km","Counted at polling places","Indicative on the night","Full second count","Court of Disputed Returns","Writs returned"],
+    mx:["INE photo credential","Paper ballots","Lottery-picked officials","Packages to districts","At each casilla","Quick count by midnight","68% of packages recounted","Electoral Tribunal","TEPJF validates"],
+    id:["State-compiled from e-KTP","Five ballots each","Punched with a nail","820,161 stations","Hand count, held up to view","Form photos to Sirekap","Tiered recapitulation","Constitutional Court","KPU sets result"],
+    ee:["Automatic","Paper or online","51% voted online","Re-vote; last vote counts","i-votes decrypted centrally","Election night","Paper votes recounted","Electoral committee","Electoral committee"]
+  };
+  var stages = Array.prototype.slice.call(document.querySelectorAll('#stages .stage'));
+  var list = document.getElementById('chainList');
+  var sel = document.getElementById('chainCountry');
+  stages.forEach(function(st,i){
+    var li = document.createElement('li');
+    var b = document.createElement('button');
+    b.type='button'; b.setAttribute('role','tab'); b.id='tab'+(i+1);
+    b.setAttribute('aria-controls',st.id);
+    b.innerHTML='<span class="seal">S-0'+(i+1)+'</span><span class="nm">'+st.getAttribute('data-name')+'</span><span class="sub"></span>';
+    b.addEventListener('click',function(){show(i,true)});
+    b.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();var n=(i+(e.key==='ArrowRight'?1:-1)+stages.length)%stages.length;show(n,true);list.querySelectorAll('button')[n].focus();}
+    });
+    li.appendChild(b); list.appendChild(li);
+    st.setAttribute('role','tabpanel'); st.setAttribute('aria-labelledby','tab'+(i+1));
+  });
+  function show(n){
+    stages.forEach(function(st,i){st.hidden=(i!==n)});
+    list.querySelectorAll('button').forEach(function(b,i){b.setAttribute('aria-selected',i===n?'true':'false');b.tabIndex=(i===n?0:-1)});
+  }
+  function relabel(){
+    var c=L[sel.value]||L.us;
+    list.querySelectorAll('.sub').forEach(function(s,i){s.textContent=c[i]});
+  }
+  sel.addEventListener('change',relabel);
+  list.hidden=false; document.getElementById('chainControls').hidden=false;
+  relabel(); show(0);
+  // stage links to incident reports: make sure case is visible
+  document.querySelectorAll('a[href^="#c-"]').forEach(function(a){a.addEventListener('click',function(){setFilter('all')})});
+
+  // Comparison tool, built from the static table
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#cmpTable tbody tr'));
+  var heads = Array.prototype.slice.call(document.querySelectorAll('#cmpTable thead th')).map(function(th){return th.textContent});
+  var A=document.getElementById('cmpA'), B=document.getElementById('cmpB'), out=document.getElementById('cmpOut');
+  rows.forEach(function(r){
+    var name=r.querySelector('th').textContent;
+    [A,B].forEach(function(s){var o=document.createElement('option');o.value=r.getAttribute('data-c');o.textContent=name;s.appendChild(o)});
+  });
+  A.value='us'; B.value='de';
+  function card(code){
+    var r=rows.filter(function(x){return x.getAttribute('data-c')===code})[0];
+    var cells=r.querySelectorAll('td');
+    var h='<h3>'+r.querySelector('th').textContent+'</h3><dl>';
+    for(var i=0;i<cells.length;i++){h+='<dt>'+heads[i+1]+'</dt><dd>'+cells[i].innerHTML+'</dd>'}
+    return '<div>'+h+'</dl></div>';
+  }
+  function render(){out.innerHTML=card(A.value)+card(B.value)}
+  A.addEventListener('change',render); B.addEventListener('change',render);
+  document.getElementById('cmpControls').hidden=false; out.hidden=false; render();
+
+  // Incident filters
+  var fbtns=document.querySelectorAll('#caseFilters button'), cases=document.querySelectorAll('.case');
+  function setFilter(f){
+    fbtns.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-f')===f?'true':'false')});
+    cases.forEach(function(c){
+      var ok = f==='all' || c.classList.contains(f) || c.getAttribute('data-g')===f;
+      c.hidden=!ok;
+    });
+  }
+  fbtns.forEach(function(b){b.addEventListener('click',function(){setFilter(b.getAttribute('data-f'))})});
+  document.getElementById('caseFilters').hidden=false;
+})();
+</script>
+</body>
+</html>
