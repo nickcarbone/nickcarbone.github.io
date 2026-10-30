@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 12,
+      "slug": "2026-10-30-the-botanical-drinks-laboratory",
+      "date": "2026-10-30",
+      "title": "The Botanical Drinks Laboratory",
+      "dek": "A working reference for building complex, low-sugar drinks from herbs, spices and peel: what twelve botanicals contribute, how extraction changes them, and three prototype recipes to start from.",
+      "kind": "Interactive lab manual",
+      "readingMinutes": 17,
+      "design": "IM Fell English, Hanken Grotesk, Cutive Mono; herbarium-board grey-green, leaf green, kraft label slips; mounted-specimen hero, compound range strips, pairing matrix, tasting radar.",
+      "source": "queue",
+      "brief": "The Botanical Drinks Laboratory\nResearch question: How can you create complex, savory, low-sugar drinks using herbs, spices, citrus, and other botanicals?\nThis is a practical guide to flavor experimentation, drawing on your interest in infusions and drinks that aren't dominated by sweetness.\nProposed contents\n- A flavor reference for coriander seed, rosemary, mint, citrus peel, ginger, black pepper, and other botanicals.\n- Water-based infusions versus oil- or alcohol-based extraction.\n- How steeping time, temperature, and ingredient size influence extraction.\n- Three prototype directions: a bitter-citrus spritz base, a savory herbal tonic, and a ginger-spice concentrate.\n- A tasting sheet for aroma, bitterness, acidity, body, and finish.\n- Ingredient cost per serving and batch scaling.\nVisual element: A botanical pairing matrix. Select a base ingredient and a desired flavor profile to reveal promising combinations and suggested starting ratios.\nSources to start with: Harold McGee's Curious Cook for food chemistry, NIST Chemistry WebBook for reference data on individual compounds, and USDA FoodData Central for ingredient composition.\nFinish line: A 12-ingredient reference table and three small-batch recipes with a standardized tasting worksheet. Keep any room-temperature storage claims out of scope unless the preservation process has been validated.",
+      "factcheck": {
+        "claims": 78,
+        "fixed": 14
+      },
+      "corrections": []
+    },
+    {
       "no": 11,
       "slug": "2026-10-29-chain-of-custody",
       "date": "2026-10-29",

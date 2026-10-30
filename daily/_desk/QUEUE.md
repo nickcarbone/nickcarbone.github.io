@@ -24,20 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Botanical Drinks Laboratory
-Research question: How can you create complex, savory, low-sugar drinks using herbs, spices, citrus, and other botanicals?
-This is a practical guide to flavor experimentation, drawing on your interest in infusions and drinks that aren't dominated by sweetness.
-Proposed contents
-- A flavor reference for coriander seed, rosemary, mint, citrus peel, ginger, black pepper, and other botanicals.
-- Water-based infusions versus oil- or alcohol-based extraction.
-- How steeping time, temperature, and ingredient size influence extraction.
-- Three prototype directions: a bitter-citrus spritz base, a savory herbal tonic, and a ginger-spice concentrate.
-- A tasting sheet for aroma, bitterness, acidity, body, and finish.
-- Ingredient cost per serving and batch scaling.
-Visual element: A botanical pairing matrix. Select a base ingredient and a desired flavor profile to reveal promising combinations and suggested starting ratios.
-Sources to start with: Harold McGee's Curious Cook for food chemistry, NIST Chemistry WebBook for reference data on individual compounds, and USDA FoodData Central for ingredient composition.
-Finish line: A 12-ingredient reference table and three small-batch recipes with a standardized tasting worksheet. Keep any room-temperature storage claims out of scope unless the preservation process has been validated.
-
 Radio Intelligence & Broadcast Verification Guide
 The Concept: A technical field manual for verifying live news, eyewitness feeds, and radio broadcasts during major geopolitical events. Move beyond standard social media OSINT to focus on audio-visual signal verification and newsroom-grade source assessment.
 Key Content: Cross-referencing shortwave/digital radio feeds, verifying live audio broadcasts (e.g., evaluating live coverage from international news outlets), audio spectrum analysis, verifying timestamps against daylight/timezones, and cross-checking eyewitness statements with local emergency services.
