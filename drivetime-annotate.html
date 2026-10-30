@@ -72,6 +72,8 @@ td.flag { white-space: normal; font-size: 11.5px; color: var(--ink-faint); }
   display: flex; align-items: center; justify-content: center; font: 600 10px var(--sans); box-shadow: 0 1px 4px rgba(0,0,0,.6); }
 .pin-icon.warn { background: var(--warn); color: #111; }
 .pin-icon.bad { background: var(--bad); }
+.pin-icon.draft { background: #55585e; border-style: dashed; cursor: pointer; }
+tr.draft td { color: var(--ink-faint); }
 .foot { display: flex; gap: 6px; padding: 8px 10px; border-top: 1px solid var(--hairline); flex-wrap: wrap; align-items: center; }
 #toast { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 900; background: var(--glass-hi);
   border: 1px solid var(--hairline); border-radius: 9px; padding: 8px 14px; opacity: 0; transition: opacity .2s; pointer-events: none; max-width: 90vw; }
@@ -106,6 +108,7 @@ td.flag { white-space: normal; font-size: 11.5px; color: var(--ink-faint); }
         <li>Pick a city and drive. Play it at 2× and watch for places you can find on the map: junctions, landmarks, bridges.</li>
         <li>When you know where the car is, press <kbd>Space</kbd> to pause and click that spot on the map. The pin records the video time.</li>
         <li>Pin every turn, a few car-lengths <em>after</em> the car has turned (pins in the middle of a junction can snap to the cross street). On long straight runs, add one about every minute.</li>
+        <li>Some drives come with <b>suggested pins</b> (grey, marked ?) traced from the creator's own route map. Click each one as the car passes it to give it the time. Delete any the car never reaches.</li>
         <li>Drag a pin to move it. Click its time in the list to jump the video there.</li>
         <li>Press <b>Snap to roads</b>. Check the blue line follows the video. Any row flagged orange or red is worth a second look.</li>
         <li>Press <b>Copy for page</b> and paste the result inside <code>const ROUTES = { … }</code> in drivetime-tesla.html, with a comma between entries.</li>
@@ -118,6 +121,7 @@ td.flag { white-space: normal; font-size: 11.5px; color: var(--ink-faint); }
       <button class="btn" id="copy" disabled>Copy for page</button>
       <button class="btn" id="copy-all">Copy all saved routes</button>
       <div style="flex:1"></div>
+      <button class="btn" id="suggest" hidden>Reload suggested pins</button>
       <button class="btn" id="clear">Clear this drive</button>
     </div>
   </section>
@@ -140,10 +144,50 @@ const PAGE = "drivetime-tesla.html";
 const OSRM = "https://router.project-osrm.org/route/v1/driving/";
 const CHUNK = 40;                       // waypoints per OSRM request
 
+/* SUGGESTED PINS — traced by hand from route maps that some creators
+   show in their videos. They're in the right places, roughly, but have
+   no times: click each one as the car passes it and it becomes a real
+   pin. The order sorts itself out from the times, so a guessed order
+   doesn't matter. Drag any that sit on the wrong side of a road. */
+const DRAFTS = {
+  // London · Day — "4K Driving Tour of London", The Travel Docket (map shown at 0:33)
+  "lCvWZj_kFgo": [
+    ["Chelsea Bridge Road (start)", 51.487, -0.1535],
+    ["Grosvenor Place", 51.4997, -0.148],
+    ["Hyde Park Corner", 51.5025, -0.152],
+    ["Park Lane", 51.5075, -0.1528],
+    ["Marble Arch", 51.5136, -0.157],
+    ["Oxford Street (Bond Street)", 51.5143, -0.1492],
+    ["Oxford Circus", 51.5153, -0.142],
+    ["Regent Street", 51.5115, -0.1385],
+    ["Piccadilly Circus", 51.5099, -0.1345],
+    ["Trafalgar Square", 51.5076, -0.128],
+    ["Whitehall", 51.504, -0.1262],
+    ["Parliament Square", 51.5008, -0.1262],
+    ["Westminster Bridge", 51.5008, -0.1215],
+    ["York Road, Waterloo", 51.503, -0.116],
+    ["Waterloo Road", 51.502, -0.1105],
+    ["Victoria Embankment (Westminster)", 51.5025, -0.1235],
+    ["Victoria Embankment (Embankment)", 51.5075, -0.1215],
+    ["Victoria Embankment (Temple)", 51.5108, -0.112],
+    ["Blackfriars", 51.5118, -0.104],
+    ["Farringdon Street", 51.516, -0.1045],
+    ["Smithfield / St Bart's", 51.518, -0.1005],
+    ["St Paul's", 51.514, -0.099],
+    ["Bankside (Tate Modern)", 51.5075, -0.1],
+    ["Cannon Street", 51.5115, -0.0905],
+    ["Eastcheap", 51.5105, -0.083],
+    ["Tower Hill", 51.5095, -0.076],
+    ["Tower Bridge", 51.5055, -0.0754],
+    ["Tower Bridge Road (end)", 51.501, -0.078]
+  ],
+};
+
 const $ = id => document.getElementById(id);
 let CITIES = [], ROUTES = {}, CARTO_KEY = "";
 let city = null, video = null;
 let pins = [];          // [{t, lat, lng}]
+let drafts = [];        // [[label, lat, lng]] — suggested places with no time yet
 let snapped = null;     // {line:[[lat,lng]], marks:[], steps:[], legs:[{dist, straight}]}
 let player = null, playerReady = false, ytReady = false;
 let map, pinLayer, rawLine, snapLine;
@@ -252,7 +296,7 @@ setInterval(() => { $("time").textContent = fmtT(now()); }, 100);
 /* ---------- pins ---------- */
 const key = () => "dt-route:" + video.id;
 function save() {
-  const entry = { city: city.name, label: video.label, pins, snapped: snapped ? { line: encodePolyline(snapped.line), marks: snapped.marks, steps: snapped.steps, legs: snapped.legs } : null };
+  const entry = { city: city.name, label: video.label, pins, drafts, snapped: snapped ? { line: encodePolyline(snapped.line), marks: snapped.marks, steps: snapped.steps, legs: snapped.legs } : null };
   store.set(key(), entry);
 }
 function addPin(lat, lng) {
@@ -262,6 +306,16 @@ function addPin(lat, lng) {
   pins.push({ t, lat: +lat.toFixed(6), lng: +lng.toFixed(6) });
   pins.sort((a, b) => a.t - b.t);
   invalidateSnap(); save(); render();
+}
+function stampDraft(i) {
+  const t = Math.round(now() * 10) / 10;
+  if (pins.some(p => Math.abs(p.t - t) < 0.3)) { toast("There's already a pin at " + fmtT(t) + " — move the video on first"); return; }
+  const [label, lat, lng] = drafts[i];
+  drafts.splice(i, 1);
+  pins.push({ t, lat, lng });
+  pins.sort((a, b) => a.t - b.t);
+  invalidateSnap(); save(); render();
+  toast(label + " set to " + fmtT(t) + (drafts.length ? " · " + drafts.length + " suggested pins left" : " · all suggested pins timed"));
 }
 function invalidateSnap() { snapped = null; snapLine.setLatLngs([]); $("copy").disabled = true; }
 
@@ -296,22 +350,37 @@ function render() {
     m.on("dragend", e => { const ll = e.target.getLatLng(); p.lat = +ll.lat.toFixed(6); p.lng = +ll.lng.toFixed(6); invalidateSnap(); save(); render(); });
     m.on("click", () => { if (playerReady) player.seekTo(p.t, true); });
   });
+  drafts.forEach((d, i) => {
+    const m = L.marker([d[1], d[2]], {
+      draggable: true,
+      icon: L.divIcon({ className: "", html: '<div class="pin-icon draft">?</div>', iconSize: [22, 22], iconAnchor: [11, 11] }),
+    }).addTo(pinLayer);
+    m.bindTooltip(d[0] + " — click when the car is here", { direction: "top", offset: [0, -10] });
+    m.on("dragend", e => { const ll = e.target.getLatLng(); d[1] = +ll.lat.toFixed(6); d[2] = +ll.lng.toFixed(6); save(); });
+    m.on("click", () => stampDraft(i));
+  });
   rawLine.setLatLngs(pins.map(p => [p.lat, p.lng]));
 
   const box = $("pins");
-  if (!pins.length) { box.innerHTML = '<div class="empty">No pins yet. Play the drive, pause where you recognise the spot, and click the map.</div>'; return; }
+  if (!pins.length && !drafts.length) { box.innerHTML = '<div class="empty">No pins yet. Play the drive, pause where you recognise the spot, and click the map.</div>'; return; }
+  const esc = t => String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;");
   box.innerHTML = "<table><thead><tr><th>#</th><th>Video time</th><th>Check</th><th></th></tr></thead><tbody>" +
     pins.map((p, i) => '<tr class="' + flags[i].cls + '"><td class="num">' + (i + 1) + '</td><td><button class="jump" data-i="' + i + '">' + fmtT(p.t) +
       '</button></td><td class="flag">' + flags[i].text + '</td><td><button class="x" data-i="' + i + '" aria-label="Delete pin ' + (i + 1) + '">✕</button></td></tr>').join("") +
+    drafts.map((d, i) => '<tr class="draft"><td>?</td><td><button class="jump draft-go" data-d="' + i + '">not timed</button></td><td class="flag">Suggested: ' + esc(d[0]) +
+      '</td><td><button class="x draft-x" data-d="' + i + '" aria-label="Delete suggested pin">✕</button></td></tr>').join("") +
     "</tbody></table>";
-  box.querySelectorAll(".jump").forEach(b => b.addEventListener("click", () => { const p = pins[+b.dataset.i]; if (playerReady) player.seekTo(p.t, true); map.panTo([p.lat, p.lng]); }));
-  box.querySelectorAll(".x").forEach(b => b.addEventListener("click", () => { pins.splice(+b.dataset.i, 1); invalidateSnap(); save(); render(); }));
+  box.querySelectorAll(".draft-go").forEach(b => b.addEventListener("click", () => { const d = drafts[+b.dataset.d]; map.panTo([d[1], d[2]]); }));
+  box.querySelectorAll(".draft-x").forEach(b => b.addEventListener("click", () => { drafts.splice(+b.dataset.d, 1); save(); render(); }));
+  box.querySelectorAll(".jump:not(.draft-go)").forEach(b => b.addEventListener("click", () => { const p = pins[+b.dataset.i]; if (playerReady) player.seekTo(p.t, true); map.panTo([p.lat, p.lng]); }));
+  box.querySelectorAll(".x:not(.draft-x)").forEach(b => b.addEventListener("click", () => { pins.splice(+b.dataset.i, 1); invalidateSnap(); save(); render(); }));
 }
 
 /* ---------- snapping (OSRM public server; please keep it gentle) ---------- */
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function snap() {
   if (pins.length < 2) { toast("Add at least two pins first"); return; }
+  if (drafts.length) toast(drafts.length + " suggested pins aren't timed yet, so they're left out of this snap");
   $("snap").disabled = true;
   const line = [], marks = [], steps = [], legs = [];
   let prevBearing = null;
@@ -400,11 +469,18 @@ $("copy-all").addEventListener("click", () => {
   copyText(out.join(",\n") + ",", out.length + " route" + (out.length > 1 ? "s" : ""));
 });
 $("clear").addEventListener("click", () => {
-  if (!video || !pins.length) return;
-  if (!confirm("Remove all " + pins.length + " pins for this drive?")) return;
-  pins = []; invalidateSnap(); save(); render();
+  if (!video || (!pins.length && !drafts.length)) return;
+  if (!confirm("Remove all " + (pins.length + drafts.length) + " pins for this drive?")) return;
+  pins = []; drafts = []; invalidateSnap(); save(); render();
 });
 $("snap").addEventListener("click", snap);
+$("suggest").addEventListener("click", () => {
+  const src = DRAFTS[video.id] || [];
+  const have = new Set(drafts.map(d => d[0]));
+  const add = src.filter(d => !have.has(d[0])).map(d => d.slice());
+  drafts = drafts.concat(add); save(); render();
+  toast(add.length ? add.length + " suggested pins added back" : "All suggested pins are already on the map");
+});
 
 /* ---------- search (Nominatim, limited to the city's area) ---------- */
 $("search").addEventListener("submit", async e => {
@@ -431,21 +507,31 @@ function fillDrives() {
 function selectDrive(i) {
   video = city.videos[i];
   const saved = store.get(key(), null);
+  drafts = [];
   if (saved && saved.pins) {
     pins = saved.pins;
+    drafts = saved.drafts || [];
     snapped = saved.snapped ? { line: decodePolyline(saved.snapped.line), marks: saved.snapped.marks, steps: saved.snapped.steps, legs: saved.snapped.legs || [] } : null;
   } else if (ROUTES[video.id]) {
     const r = ROUTES[video.id];
     pins = r.pts.map(p => ({ t: p[0], lat: p[1], lng: p[2] }));
     snapped = null;
     toast("Loaded the route already in the page. Snap again before copying.");
-  } else { pins = []; snapped = null; }
+  } else {
+    pins = []; snapped = null;
+    if (DRAFTS[video.id]) {
+      drafts = DRAFTS[video.id].map(d => d.slice());
+      toast(drafts.length + " suggested pins loaded from the creator's route map. Click each grey pin as the car passes it.");
+    }
+  }
   snapLine.setLatLngs(snapped ? snapped.line : []);
   $("copy").disabled = !snapped;
-  $("help").open = !pins.length;
+  $("help").open = !pins.length && !drafts.length;
   $("status").textContent = pins.length ? pins.length + " pins" + (snapped ? ", snapped" : "") : "No pins yet";
-  if (pins.length) map.fitBounds(L.latLngBounds(pins.map(p => [p.lat, p.lng])).pad(0.2));
+  const all = pins.map(p => [p.lat, p.lng]).concat(drafts.map(d => [d[1], d[2]]));
+  if (all.length) map.fitBounds(L.latLngBounds(all).pad(0.1));
   else map.setView([city.lat, city.lng], 14);
+  $("suggest").hidden = !DRAFTS[video.id];
   loadVideo();
   render();
 }
