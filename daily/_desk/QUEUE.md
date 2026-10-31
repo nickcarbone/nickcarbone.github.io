@@ -24,11 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-Radio Intelligence & Broadcast Verification Guide
-The Concept: A technical field manual for verifying live news, eyewitness feeds, and radio broadcasts during major geopolitical events. Move beyond standard social media OSINT to focus on audio-visual signal verification and newsroom-grade source assessment.
-Key Content: Cross-referencing shortwave/digital radio feeds, verifying live audio broadcasts (e.g., evaluating live coverage from international news outlets), audio spectrum analysis, verifying timestamps against daylight/timezones, and cross-checking eyewitness statements with local emergency services.
-Finish Line: A clean, single-page verification flowchart plus a case study examining a breaking live news broadcast and how to spot synthetic audio or misattributed recordings.
-
 The Geography of Disappearing Wealth
 Research question: How do luxury goods, money, and ownership move between legitimate commercial centers, and what can those networks tell us about the geography of modern crime?
 This is the most direct extension of your Pink Panthers research. The focus is not on reconstructing how to commit a theft, but on the legitimate industries and cross-border relationships surrounding valuable objects.

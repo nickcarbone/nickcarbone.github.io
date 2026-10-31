@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 13,
+      "slug": "2026-10-31-signal-check",
+      "date": "2026-10-31",
+      "title": "Signal Check",
+      "dek": "A newsroom field manual for verifying radio broadcasts, live feeds and audio recordings while a big story is breaking, with a one-page verification flowchart and six case files.",
+      "kind": "Field manual",
+      "readingMinutes": 18,
+      "design": "Schibsted Grotesk, Brygada 1918, Fragment Mono; spectrogram indigo-to-lime (viridis) on teleprinter ivory; waterfall hero with tuning dial, log-sheet procedures, signal-path flowchart.",
+      "source": "queue",
+      "brief": "Radio Intelligence & Broadcast Verification Guide\nThe Concept: A technical field manual for verifying live news, eyewitness feeds, and radio broadcasts during major geopolitical events. Move beyond standard social media OSINT to focus on audio-visual signal verification and newsroom-grade source assessment.\nKey Content: Cross-referencing shortwave/digital radio feeds, verifying live audio broadcasts (e.g., evaluating live coverage from international news outlets), audio spectrum analysis, verifying timestamps against daylight/timezones, and cross-checking eyewitness statements with local emergency services.\nFinish Line: A clean, single-page verification flowchart plus a case study examining a breaking live news broadcast and how to spot synthetic audio or misattributed recordings.",
+      "factcheck": {
+        "claims": 70,
+        "fixed": 10
+      },
+      "corrections": []
+    },
+    {
       "no": 12,
       "slug": "2026-10-30-the-botanical-drinks-laboratory",
       "date": "2026-10-30",

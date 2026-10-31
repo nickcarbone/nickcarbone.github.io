@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal Check · Daily</title>
+<meta name="description" content="A newsroom field manual for verifying radio broadcasts, live feeds and audio recordings while a big story is breaking, with a one-page verification flowchart and six case files.">
+<meta property="og:title" content="Signal Check">
+<meta property="og:description" content="A newsroom field manual for verifying radio broadcasts, live feeds and audio recordings while a big story is breaking, with a one-page verification flowchart and six case files.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-10-31-signal-check/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-10-31-signal-check/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400;0,600;1,400&family=Fragment+Mono&family=Schibsted+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+ --paper:#F2F0E8; --sheet:#FBFAF5; --ink:#15171F; --ink2:#454857; --rule:#C9C6B8; --faint:#E4E1D5;
+ --v0:#1E1640; --v1:#2F2A6E; --v2:#2C5C8A; --v3:#1F7F80; --v4:#2E9C68; --v5:#8CC63F; --v6:#D9E64A;
+ --teal-d:#155E5F; --flag:#7A1F5C;
+ --disp:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+ --body:"Brygada 1918", Georgia, "Times New Roman", serif;
+ --mono:"Fragment Mono", "Courier New", monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.62 var(--body)}
+a{color:var(--teal-d);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--flag)}
+:focus-visible{outline:3px solid var(--flag);outline-offset:2px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.col{max-width:700px}
+h1,h2,h3,h4{font-family:var(--disp);line-height:1.12;margin:0}
+p{margin:0 0 1em}
+sup.ref{font:600 12px/0 var(--mono);vertical-align:super}
+sup.ref a{text-decoration:none;color:var(--teal-d);padding:0 1px}
+.mono{font-family:var(--mono)}
+.kick{font:500 13px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+
+/* strip */
+.strip{background:var(--v0);color:#E9E7F5;font:14px/1 var(--mono)}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;min-height:44px;gap:10px;flex-wrap:wrap}
+.strip a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;padding-right:10px}
+.strip a:hover{text-decoration:underline;color:var(--v6)}
+
+/* hero */
+.hero{background:var(--v0);color:#F3F2FA;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:2;padding-top:44px;padding-bottom:36px}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.55}
+.hero .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(30,22,64,.97) 0%,rgba(30,22,64,.86) 46%,rgba(30,22,64,.25) 100%)}
+.hero .kick{color:var(--v6)}
+.hero h1{font-weight:900;font-size:clamp(52px,11vw,124px);letter-spacing:-.03em;margin:12px 0 14px;line-height:.92}
+.hero h1 span{display:block;color:var(--v6)}
+.dek{font:400 clamp(19px,2.4vw,23px)/1.45 var(--body);max-width:620px;margin:0 0 22px;color:#E5E3F2}
+.hero .meta{font:13px/1.5 var(--mono);color:#C4C1DD}
+.dial{margin-top:30px;border-top:1px solid rgba(255,255,255,.35);position:relative;height:46px}
+.dial svg{width:100%;height:46px;display:block}
+
+/* tuning nav */
+.tuner{background:var(--sheet);border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:20}
+.tuner .wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tuner ol{list-style:none;margin:0;padding:0;display:flex;gap:0;min-width:max-content}
+.tuner li{border-left:1px solid var(--faint)}
+.tuner li:first-child{border-left:0}
+.tuner a{display:flex;flex-direction:column;justify-content:center;min-height:52px;padding:6px 16px;text-decoration:none;color:var(--ink)}
+.tuner a b{font:500 11px/1.2 var(--mono);color:var(--ink2);letter-spacing:.06em}
+.tuner a span{font:700 15px/1.2 var(--disp)}
+.tuner a:hover span{color:var(--flag)}
+
+/* sections */
+section{padding:56px 0 8px}
+.sechead{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:end;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:26px}
+.sechead .freq{font:500 13px/1.2 var(--mono);color:var(--teal-d);grid-row:1/3;align-self:stretch;display:flex;align-items:flex-end;border-right:1px solid var(--rule);padding-right:16px}
+.sechead h2{font-size:clamp(30px,5vw,46px);font-weight:900;letter-spacing:-.02em}
+.sechead p{margin:0;color:var(--ink2);font-size:16px}
+.lede p:first-child::first-letter{font:900 3.4em/0.8 var(--disp);float:left;margin:6px 10px 0 0;color:var(--v1)}
+.pull{border-left:4px solid var(--v4);padding:4px 0 4px 18px;margin:26px 0;font:600 22px/1.35 var(--body);color:var(--v1)}
+
+/* five questions */
+.five{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--ink);background:var(--sheet);margin:10px 0 18px}
+.five div{padding:16px 14px 18px;border-left:1px solid var(--rule)}
+.five div:first-child{border-left:0}
+.five b{display:block;font:500 12px/1 var(--mono);color:var(--teal-d);margin-bottom:8px}
+.five h3{font-size:20px;margin-bottom:6px}
+.five p{font-size:16px;line-height:1.45;margin:0}
+.five .band{height:8px;margin:-16px -14px 14px}
+@media (max-width:860px){.five{grid-template-columns:1fr 1fr}.five div{border-top:1px solid var(--rule)}.five div:nth-child(odd){border-left:0}.five div:nth-child(-n+2){border-top:0}.five div:last-child{grid-column:1/-1}}
+@media (max-width:480px){.five{grid-template-columns:1fr}.five div{border-left:0!important;border-top:1px solid var(--rule)!important}.five div:first-child{border-top:0!important}}
+
+/* procedures as log sheet */
+.log{border:1px solid var(--ink);background:var(--sheet)}
+.proc{display:grid;grid-template-columns:120px 1fr;border-top:1px solid var(--rule)}
+.proc:first-child{border-top:0}
+.proc .tag{background:var(--faint);padding:18px 14px;font:500 13px/1.35 var(--mono);color:var(--ink2);border-right:1px solid var(--rule)}
+.proc .tag strong{display:block;font:900 34px/1 var(--disp);color:var(--v1);margin-bottom:6px}
+.proc .body{padding:18px 22px 10px}
+.proc h3{font-size:24px;margin-bottom:10px}
+.proc ul{margin:0 0 1em;padding-left:1.1em}
+.proc li{margin-bottom:.45em}
+.proc .why{font-size:16px;color:var(--ink2);border-top:1px dashed var(--rule);padding-top:10px}
+@media (max-width:640px){.proc{grid-template-columns:1fr}.proc .tag{border-right:0;border-bottom:1px solid var(--rule);display:flex;gap:12px;align-items:center;padding:12px 16px}.proc .tag strong{margin:0;font-size:28px}.proc .body{padding:16px 16px 6px}}
+
+/* ENF figure */
+figure{margin:24px 0}
+figcaption{font:13px/1.5 var(--mono);color:var(--ink2);margin-top:8px}
+.fig{background:var(--v0);border-radius:2px;padding:12px}
+.fig svg{display:block;width:100%;height:auto}
+
+/* flowchart */
+.flowwrap{background:var(--sheet);border:1px solid var(--ink);padding:22px}
+.flow{display:grid;grid-template-columns:1fr 210px;gap:0 18px;position:relative}
+.node{grid-column:1;background:#fff;border:2px solid var(--ink);padding:12px 16px;position:relative;margin-bottom:34px}
+.node::after{content:"";position:absolute;left:50%;bottom:-34px;width:2px;height:32px;background:var(--ink)}
+.node::before{content:"YES";position:absolute;left:calc(50% + 8px);bottom:-26px;font:500 11px/1 var(--mono);color:var(--v4)}
+.node.last::after,.node.last::before{display:none}
+.node b{font:500 11px/1 var(--mono);color:var(--teal-d);letter-spacing:.06em}
+.node h4{font-size:19px;margin:4px 0 4px}
+.node p{font-size:15px;line-height:1.4;margin:0;color:var(--ink2)}
+.no{grid-column:2;align-self:start;border:2px dashed var(--flag);padding:10px 12px;font-size:15px;line-height:1.35;position:relative;background:#FFF8FC;margin-bottom:34px}
+.no::before{content:"NO →";position:absolute;left:-46px;top:12px;font:500 11px/1 var(--mono);color:var(--flag)}
+.no b{display:block;font:500 11px/1.2 var(--mono);color:var(--flag);margin-bottom:4px}
+.outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+.out{padding:14px 16px;border:2px solid var(--ink);font-size:15px;line-height:1.4}
+.out h4{font-size:18px;margin-bottom:4px}
+.out.g{background:#E3F2D3}.out.a{background:#F5F3C8}.out.r{background:#F7E1EE}
+@media (max-width:760px){.flow{grid-template-columns:1fr}.no{grid-column:1;margin:-22px 0 34px 22px}.no::before{content:"NO ↘";left:-2px;top:-16px}.outcomes{grid-template-columns:1fr}.flowwrap{padding:14px}}
+@media print{.tuner,.hero canvas{display:none}.flowwrap{break-inside:avoid}}
+
+/* check sheet */
+.sheet{background:var(--sheet);border:1px solid var(--ink);padding:18px 20px;margin-top:22px}
+.sheet h3{font-size:22px;margin-bottom:6px}
+.sheet fieldset{border:0;margin:0;padding:0}
+.sheet label{display:flex;gap:12px;align-items:flex-start;min-height:44px;padding:8px 0;border-top:1px solid var(--faint);font-size:16px;line-height:1.4;cursor:pointer}
+.sheet input{width:22px;height:22px;margin:1px 0 0;flex:none;accent-color:var(--v3)}
+.verdict{margin-top:12px;padding:12px 14px;font:500 14px/1.45 var(--mono);border-left:6px solid var(--flag);background:#F7E1EE}
+.verdict.amber{border-color:#9A8A10;background:#F5F3C8}
+.verdict.green{border-color:var(--v4);background:#E3F2D3}
+.btn{font:500 14px var(--mono);min-height:44px;padding:0 16px;border:1px solid var(--ink);background:#fff;cursor:pointer;margin-top:10px}
+
+/* case files */
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.case{background:var(--sheet);border:1px solid var(--ink);display:flex;flex-direction:column}
+.case.wide{grid-column:1/-1}
+.case .wf{height:54px;display:block;width:100%}
+.case .hd{padding:14px 18px 6px;border-bottom:1px solid var(--rule)}
+.case .hd .kick{color:var(--teal-d)}
+.case h3{font-size:24px;margin:6px 0 4px}
+.case .bd{padding:14px 18px 6px;font-size:17px}
+.case dl{display:grid;grid-template-columns:110px 1fr;gap:6px 14px;margin:0 0 14px;font-size:16px;line-height:1.45}
+.case dt{font:500 12px/1.5 var(--mono);color:var(--ink2);text-transform:uppercase;letter-spacing:.05em;padding-top:2px}
+.case dd{margin:0}
+.lesson{margin:auto 0 0;padding:12px 18px;background:var(--v0);color:#F0EFF8;font-size:16px;line-height:1.45}
+.lesson b{font:500 12px/1 var(--mono);color:var(--v6);display:block;margin-bottom:5px;letter-spacing:.06em}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 14px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--faint)}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 14px/1.6 var(--mono);color:var(--teal-d)}
+.steps strong{font-family:var(--disp)}
+@media (max-width:760px){.cases{grid-template-columns:1fr}.case dl{grid-template-columns:1fr;gap:0 0}.case dd{margin-bottom:8px}}
+
+/* glossary */
+.gloss{display:grid;grid-template-columns:repeat(2,1fr);gap:0 34px}
+.gloss div{border-top:1px solid var(--rule);padding:12px 0}
+.gloss dt{font:700 18px/1.3 var(--disp)}
+.gloss dd{margin:4px 0 0;font-size:16px;line-height:1.5}
+@media (max-width:640px){.gloss{grid-template-columns:1fr}}
+
+/* sources */
+.sources ol{padding-left:2.2em;font-size:15.5px;line-height:1.5;columns:2;column-gap:40px}
+.sources li{margin-bottom:.7em;break-inside:avoid}
+.sources .pub{color:var(--ink2)}
+@media (max-width:760px){.sources ol{columns:1}}
+
+footer{margin-top:56px;background:var(--v0);color:#DCDAEE;padding:28px 0 40px;font:14px/1.6 var(--mono)}
+footer a{color:var(--v6);display:inline-flex;align-items:center;min-height:44px}
+footer p{margin:0 0 6px}
+.note{font-size:16px;color:var(--ink2);border:1px solid var(--rule);background:var(--sheet);padding:12px 16px;margin:18px 0}
+@media (max-width:480px){.dial{display:none}body{font-size:17px}.wrap{padding:0 16px}section{padding-top:42px}}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 013 · Saturday 31 October 2026</span></div></div>
+
+<header class="hero">
+ <canvas id="wf" aria-hidden="true"></canvas>
+ <div class="veil" aria-hidden="true"></div>
+ <div class="wrap">
+  <p class="kick">Field manual · Broadcast and audio verification</p>
+  <h1>Signal <span>Check</span></h1>
+  <p class="dek">A newsroom field manual for verifying radio broadcasts, live feeds and audio recordings while a big story is breaking, with a one-page verification flowchart and six case files.</p>
+  <p class="meta">Reading time about 18 minutes · 29 sources · Printable flowchart in section 03</p>
+  <div class="dial" aria-hidden="true">
+   <svg viewBox="0 0 1100 46" preserveAspectRatio="none" id="dialsvg"></svg>
+  </div>
+ </div>
+</header>
+
+<nav class="tuner" aria-label="Sections">
+ <div class="wrap"><ol>
+  <li><a href="#why"><b>01</b><span>The weak link</span></a></li>
+  <li><a href="#procedures"><b>02</b><span>Eight procedures</span></a></li>
+  <li><a href="#flowchart"><b>03</b><span>Flowchart</span></a></li>
+  <li><a href="#case-mir"><b>04</b><span>Case study</span></a></li>
+  <li><a href="#cases"><b>05</b><span>Case files</span></a></li>
+  <li><a href="#glossary"><b>06</b><span>Glossary</span></a></li>
+  <li><a href="#sources"><b>07</b><span>Sources</span></a></li>
+ </ol></div>
+</nav>
+
+<main>
+<section id="why">
+ <div class="wrap">
+  <div class="sechead"><span class="freq">01</span><h2>Why sound is the weak link</h2><p>What makes audio harder to check than pictures</p></div>
+  <div class="col lede">
+   <p>On 5 June 2023, listeners to Mir, a Moscow-based public broadcaster, in three Russian regions bordering Ukraine heard what sounded like Vladimir Putin announcing that Ukrainian forces had crossed the border, that martial law was in force and that residents should evacuate deeper into Russia.<sup class="ref"><a href="#s21">21</a></sup><sup class="ref"><a href="#s22">22</a></sup> The Kremlin's spokesman, Dmitry Peskov, said the broadcast was a hack. Within hours the story was being told around the world as a "deepfake Putin". Nobody had shown that it was.<sup class="ref"><a href="#s22">22</a></sup></p>
+   <p>That episode, which this manual works through in detail in section 04, contains most of the problems a newsroom faces with audio during a breaking event. A real channel carried a false message. The main confirmation came from the people with the most reason to deny it. And the most widely repeated label for what had happened ran ahead of the evidence.</p>
+   <p>Audio is harder to verify than pictures for plain practical reasons. A voice carries no landmarks to geolocate, no shadows to measure and no street signs to read. A clip can be a few seconds of speech laid over a still photograph, which is how a fabricated conversation spread in Slovakia two days before its 2023 parliamentary election.<sup class="ref"><a href="#s24">24</a></sup><sup class="ref"><a href="#s25">25</a></sup> And the cost of a convincing imitation has collapsed. In January 2023 Microsoft researchers described VALL-E, a speech model that could mimic a voice from a three-second sample; Microsoft did not release it publicly.<sup class="ref"><a href="#s3">3</a></sup></p>
+   <p class="pull">Detection software will not settle the question for you. Treat it as one opinion among several.</p>
+   <p>Automated detectors exist, and a desk under pressure will be tempted to paste a clip into one and take the score. A 2025 guide for journalists from Columbia University's Tow Center found that detection systems often fail on fakes made with techniques absent from their training data, and cited a 2023 review concluding that the ability of audio deepfake detectors to generalise "is still poor".<sup class="ref"><a href="#s4">4</a></sup> Britain's Full Fact, when it rated a fake clip of London's mayor in 2024, said it does not cite AI-detection tools at all, because they have not been consistently reliable.<sup class="ref"><a href="#s5">5</a></sup></p>
+   <p>What does work is the discipline verification desks have used for years on pictures and text, applied to sound. First Draft, the verification non-profit, reduced it to five questions.<sup class="ref"><a href="#s1">1</a></sup></p>
+  </div>
+  <div class="five" role="list">
+   <div role="listitem"><div class="band" style="background:var(--v1)"></div><b>Q1</b><h3>Provenance</h3><p>Is this the original recording, or a copy, clip or re-upload?</p></div>
+   <div role="listitem"><div class="band" style="background:var(--v2)"></div><b>Q2</b><h3>Source</h3><p>Who recorded it, or which channel aired it?</p></div>
+   <div role="listitem"><div class="band" style="background:var(--v3)"></div><b>Q3</b><h3>Date</h3><p>When was it recorded or broadcast?</p></div>
+   <div role="listitem"><div class="band" style="background:var(--v4)"></div><b>Q4</b><h3>Location</h3><p>Where was it captured, or where was it transmitted?</p></div>
+   <div role="listitem"><div class="band" style="background:var(--v5)"></div><b>Q5</b><h3>Motivation</h3><p>Why was it made, and why is it reaching you now?</p></div>
+  </div>
+  <p class="col" style="font-size:16px;color:var(--ink2)">The five pillars come from First Draft's guide <i>Verifying Online Information</i> (2020).<sup class="ref"><a href="#s1">1</a></sup> The first four match the checklist Claire Wardle set out in the European Journalism Centre's <i>Verification Handbook</i>, which also warns that dating content is "one of the most difficult elements of verification".<sup class="ref"><a href="#s2">2</a></sup></p>
+ </div>
+</section>
+
+<section id="procedures">
+ <div class="wrap">
+  <div class="sechead"><span class="freq">02</span><h2>Eight procedures</h2><p>Run them in order; stop and hold if one fails</p></div>
+  <div class="log">
+
+   <article class="proc" id="p1">
+    <div class="tag"><strong>P1</strong>Provenance</div>
+    <div class="body">
+     <h3>Find the first copy</h3>
+     <ul>
+      <li>Work back from the clip you were sent to the earliest upload you can find. Reposts lose context, trim the start and end, and get re-captioned.</li>
+      <li>Search for distinctive phrases from the audio, and run reverse image searches on any picture or video frame attached to it. The <i>Verification Handbook</i> recommends reverse image search for exactly this: finding out whether the material was posted before.<sup class="ref"><a href="#s2">2</a></sup></li>
+      <li>Check platform timestamps against time zones before concluding that a clip predates an event. Wardle notes that YouTube upload times are shown in US Pacific time, which can make an upload appear to come before the thing it shows.<sup class="ref"><a href="#s2">2</a></sup></li>
+     </ul>
+     <p class="why">A clip with a still image and burnt-in subtitles, like the Slovak fake, gives you almost nothing to trace except the account that posted it first.<sup class="ref"><a href="#s24">24</a></sup> That account is the lead.</p>
+    </div>
+   </article>
+
+   <article class="proc" id="p2">
+    <div class="tag"><strong>P2</strong>Source</div>
+    <div class="body">
+     <h3>Reach the person who pressed record</h3>
+     <ul>
+      <li>The goal, in Wardle's words, is to "identify the original uploader and get in touch with them".<sup class="ref"><a href="#s2">2</a></sup></li>
+      <li>Ask where they were standing, what they could see and what device they used. Direct questions often reveal that someone did not make the recording themselves.<sup class="ref"><a href="#s2">2</a></sup></li>
+      <li>For a recording that claims to capture a known speaker, compare it with verified recordings of that person: tone, accent, pace and whether the content is in character.<sup class="ref"><a href="#s6">6</a></sup></li>
+     </ul>
+     <p class="why">An eyewitness who cannot describe their surroundings, or whose account changes between calls, is telling you something about the recording.</p>
+    </div>
+   </article>
+
+   <article class="proc" id="p3">
+    <div class="tag"><strong>P3</strong>Channel</div>
+    <div class="body">
+     <h3>Confirm the channel was what it claims to be</h3>
+     <ul>
+      <li>For a broadcast, check that the station really transmits on that frequency at that hour. International shortwave schedules change twice a year, for a summer and a winter season, and are coordinated through the High Frequency Co-ordination Conference, a non-profit association that is a member of the ITU's radiocommunication sector.<sup class="ref"><a href="#s7">7</a></sup> Broadcasters publish their own schedules too.</li>
+      <li>Listen independently. Networks of remote receivers such as KiwiSDR and WebSDR let anyone tune a receiver in another country from a browser, free of charge.<sup class="ref"><a href="#s9">9</a></sup> The receiver at the University of Twente in the Netherlands has been publicly available since April 2008 and covers 0 to 29 MHz.<sup class="ref"><a href="#s8">8</a></sup></li>
+      <li>Remember what reception does and does not prove. Clear reception at one site is weak evidence of where a transmitter is: one <i>Radio World</i> columnist got his best reception of a Spanish broadcaster on a receiver in Newfoundland.<sup class="ref"><a href="#s9">9</a></sup></li>
+      <li>Use the professionals. BBC Monitoring has translated and analysed foreign broadcasts since 26 August 1939 and covers media from about 150 countries in up to 100 languages.<sup class="ref"><a href="#s10">10</a></sup> Big newsrooms now run their own verification units; BBC Verify launched in May 2023 with about 60 journalists.<sup class="ref"><a href="#s29">29</a></sup></li>
+     </ul>
+     <p class="why">A genuine frequency or a genuine channel can still carry false content. In the Mir case the station was real and the message was not.<sup class="ref"><a href="#s22">22</a></sup></p>
+    </div>
+   </article>
+
+   <article class="proc" id="p4">
+    <div class="tag"><strong>P4</strong>Date</div>
+    <div class="body">
+     <h3>Check the clock</h3>
+     <ul>
+      <li>Convert every time you are given to UTC before comparing it with anything else.</li>
+      <li>If the audio comes with pictures, the sun can date them. Bellingcat's method compares the ratio of an object's height to its shadow's length with the sun's position on a simulator such as SunCalc. It needs a known date and place, a shadow on level ground, and a check of the shadow's direction, because each length occurs once in the morning and again in the afternoon. Give a time window, not a minute.<sup class="ref"><a href="#s11">11</a></sup></li>
+      <li>Weather records, and other uploads from the same place and day, can confirm or rule out a claimed date.<sup class="ref"><a href="#s2">2</a></sup></li>
+      <li>For a high-stakes recording, ask a forensic audio lab about electrical network frequency (ENF) analysis, explained below.</li>
+     </ul>
+    </div>
+   </article>
+
+   <article class="proc" id="p5">
+    <div class="tag"><strong>P5</strong>Sound</div>
+    <div class="body">
+     <h3>Listen like an examiner</h3>
+     <ul>
+      <li>Listen several times on good headphones before you open any tool. Investigators quoted by IJNet point to unnatural pauses, odd speech patterns and shaky pronunciation as signs of synthetic speech.<sup class="ref"><a href="#s6">6</a></sup> Full Fact cited unnatural pauses and an odd turn of phrase in the fake Sadiq Khan clip.<sup class="ref"><a href="#s5">5</a></sup></li>
+      <li>Open the file in a spectrogram view. Free software such as Audacity shows one, with level meters.<sup class="ref"><a href="#s6">6</a></sup> Look for abrupt changes in the background, which can mark an edit.</li>
+      <li>The investigator Lawrence Abu Hamdan of Earshot notes that inserted audio may leave irregular breaks in the background electromagnetic interference.<sup class="ref"><a href="#s6">6</a></sup></li>
+      <li>If you run a detector, find out what it was trained on and when it was last updated, and record its result as one input.<sup class="ref"><a href="#s4">4</a></sup> A score of "70 per cent human" does not tell you what was altered.</li>
+     </ul>
+     <p class="why">Your ears and a spectrogram will catch crude edits. They will not reliably catch a good synthetic voice. When it matters, bring in a media-forensics specialist.<sup class="ref"><a href="#s6">6</a></sup></p>
+    </div>
+   </article>
+
+   <article class="proc" id="p6">
+    <div class="tag"><strong>P6</strong>Pictures</div>
+    <div class="body">
+     <h3>Check what came with the sound</h3>
+     <ul>
+      <li>Combat "footage" is often from a video game. Bohemia Interactive, maker of the military game <i>Arma 3</i>, lists the signs: deliberately low resolution, an exaggerated shaky camera, night scenes that hide detail, little or no sound, stiff human movement, on-screen game interface, smoke and fire that break into separate cloudlets, and vehicles or insignia that do not fit the conflict.<sup class="ref"><a href="#s14">14</a></sup></li>
+      <li>Game footage often has little or no real sound. A clip with dramatic audio and no ambient noise deserves a second look.</li>
+     </ul>
+    </div>
+   </article>
+
+   <article class="proc" id="p7">
+    <div class="tag"><strong>P7</strong>Confirm</div>
+    <div class="body">
+     <h3>Call the people who would know</h3>
+     <ul>
+      <li>Ring the person heard on the recording, the broadcaster that carried it, and the police, fire or emergency service for the place it describes. Check their official channels for statements.</li>
+      <li>Treat every confirmation and denial as a claim with an interest behind it. Attribute it by name. The Kremlin's statement that the Mir broadcast was a hack remains the main official account; regional officials said the same.<sup class="ref"><a href="#s22">22</a></sup></li>
+      <li>Emergency services post on social media too, and false information spreads fast during emergencies. The <i>Verification Handbook</i>'s rule is to treat content as wrong until you have verified it.<sup class="ref"><a href="#s2">2</a></sup></li>
+     </ul>
+    </div>
+   </article>
+
+   <article class="proc" id="p8">
+    <div class="tag"><strong>P8</strong>Publish</div>
+    <div class="body">
+     <h3>Publish with the doubt showing</h3>
+     <ul>
+      <li>Say what you checked, what you could not check, and who says what. "The Kremlin said the broadcast was a hack" is verifiable. "A deepfake Putin" was not.</li>
+      <li>Do not rebroadcast unverified audio in full on air. Describe it, or play a short excerpt clearly labelled as unverified.</li>
+      <li>Keep notes of every step and timestamp. You may need them for a correction, or for a regulator.</li>
+     </ul>
+    </div>
+   </article>
+  </div>
+
+  <figure>
+   <div class="fig">
+    <svg viewBox="0 0 900 260" role="img" aria-labelledby="enft enfd">
+     <title id="enft">Illustration of electrical network frequency matching</title>
+     <desc id="enfd">A schematic, not real data. The top line is a reference log of mains frequency wandering slightly above and below its nominal value. The lower line is the hum extracted from a recording; its pattern lines up with one stretch of the log, which dates the recording, and a gap shows where audio was cut.</desc>
+     <g font-family="Fragment Mono, monospace" font-size="12" fill="#C9C6E6">
+      <text x="14" y="22">REFERENCE LOG · GRID FREQUENCY, CONTINUOUS</text>
+      <text x="14" y="160">HUM EXTRACTED FROM RECORDING</text>
+      <text x="14" y="250" fill="#8CC63F">Schematic only. Not real data.</text>
+     </g>
+     <line x1="14" x2="886" y1="80" y2="80" stroke="#4A4580" stroke-dasharray="3 5"/>
+     <text x="836" y="100" font-family="Fragment Mono, monospace" font-size="11" fill="#9C98C8">nominal</text>
+     <path id="ref" fill="none" stroke="#D9E64A" stroke-width="2"/>
+     <rect id="win" y="34" height="92" fill="rgba(46,156,104,.18)" stroke="#2E9C68" stroke-width="1.5"/>
+     <line x1="14" x2="886" y1="205" y2="205" stroke="#4A4580" stroke-dasharray="3 5"/>
+     <path id="rec" fill="none" stroke="#7FD3D4" stroke-width="2"/>
+     <g id="gap"></g>
+    </svg>
+   </div>
+   <figcaption>How ENF analysis works. Mains electricity is nominally 50 Hz in Britain but wanders by tiny amounts as supply and demand shift, and digital recorders near a power source pick up that hum even when it is inaudible. Labs extract the hum and match it against a continuous log of the grid's frequency; a match gives a date and time, and a missing or mismatched stretch exposes splicing or stop-start recording.<sup class="ref"><a href="#s12">12</a></sup> The technique was described in the forensic literature by Catalin Grigoras in 2005.<sup class="ref"><a href="#s13">13</a></sup> It only works if the recording carries a usable hum and someone has logged the right grid.<sup class="ref"><a href="#s12">12</a></sup></figcaption>
+  </figure>
+ </div>
+</section>
+
+<section id="flowchart">
+ <div class="wrap">
+  <div class="sechead"><span class="freq">03</span><h2>The verification flowchart</h2><p>One page for the desk. Prints on A4.</p></div>
+  <div class="flowwrap" role="group" aria-label="Verification flowchart">
+   <div class="flow">
+    <div class="node"><b>START · P1</b><h4>Have you found the earliest copy?</h4><p>Original upload, broadcaster's own stream or recording, with its timestamp in UTC.</p></div>
+    <div class="no"><b>HOLD</b>Keep tracing. Treat the clip as unverified and say so if you mention it.</div>
+    <div class="node"><b>P2</b><h4>Can you identify and reach whoever recorded or aired it?</h4><p>Their account of where, when and on what device holds together.</p></div>
+    <div class="no"><b>HOLD</b>Attribute only to the account that posted it. Do not present it as eyewitness material.</div>
+    <div class="node"><b>P3</b><h4>Does the channel check out?</h4><p>The station is on that frequency at that hour; independent reception or the broadcaster's own output matches.</p></div>
+    <div class="no"><b>FLAG</b>Possible spoof or hijack. Contact the broadcaster before going further.</div>
+    <div class="node"><b>P4</b><h4>Does the time check out?</h4><p>Time zones, daylight, weather and other uploads agree with the claimed date.</p></div>
+    <div class="no"><b>FLAG</b>Possibly old or misdated material. Search for earlier versions.</div>
+    <div class="node"><b>P5 · P6</b><h4>Does the sound, and any picture with it, hold up?</h4><p>No audible edits or synthetic tells; spectrogram consistent; pictures are not game footage.</p></div>
+    <div class="no"><b>ESCALATE</b>Send to a forensic specialist. Detector scores are not a verdict.</div>
+    <div class="node last"><b>P7</b><h4>Have the people involved confirmed or denied it?</h4><p>The speaker, the broadcaster, the emergency services. Every answer attributed.</p></div>
+    <div class="no" style="margin-bottom:0"><b>CAUTION</b>No response is not confirmation. Report what you know and what you do not.</div>
+   </div>
+   <div class="outcomes" aria-label="Outcomes">
+    <div class="out g"><h4>Verified</h4>Every step passed, independently. Publish, still showing your working.</div>
+    <div class="out a"><h4>Partly verified</h4>The channel or time is confirmed, the content is not. Publish only with clear attribution and stated doubt.</div>
+    <div class="out r"><h4>Not verified</h4>Any step failed. Hold, or report that unverified audio is circulating and say what is known about it.</div>
+   </div>
+  </div>
+
+  <form class="sheet" id="sheet" onsubmit="return false">
+   <h3>Desk check sheet</h3>
+   <p style="font-size:16px;color:var(--ink2);margin-bottom:6px">Tick each step as it is done. The sheet suggests a status; the editor decides.</p>
+   <fieldset>
+    <legend class="kick" style="margin-bottom:4px">Steps completed</legend>
+    <label><input type="checkbox" data-k="p1"> P1 · Earliest copy found and timestamped in UTC</label>
+    <label><input type="checkbox" data-k="p2"> P2 · Recorder or broadcaster identified and contacted</label>
+    <label><input type="checkbox" data-k="p3"> P3 · Channel, frequency and schedule confirmed independently</label>
+    <label><input type="checkbox" data-k="p4"> P4 · Date and time consistent across independent checks</label>
+    <label><input type="checkbox" data-k="p5"> P5 · Audio reviewed by ear and on a spectrogram; specialist consulted if stakes are high</label>
+    <label><input type="checkbox" data-k="p6"> P6 · Any pictures checked for re-use and game footage</label>
+    <label><input type="checkbox" data-k="p7"> P7 · Speaker, broadcaster and emergency services asked; answers attributed</label>
+   </fieldset>
+   <div class="verdict" id="verdict" aria-live="polite">Not verified · 0 of 7 steps done. Hold.</div>
+   <button class="btn" type="button" id="reset">Clear the sheet</button>
+  </form>
+ </div>
+</section>
+
+<section id="case-mir">
+ <div class="wrap">
+  <div class="sechead"><span class="freq">04</span><h2>Case study: the Mir broadcast</h2><p>5 June 2023 · Belgorod, Rostov and Voronezh regions, Russia</p></div>
+  <div class="col">
+   <p>The broadcast that day reached television and radio outlets of Mir, a public broadcaster headquartered in Moscow, in three regions on the Ukrainian border.<sup class="ref"><a href="#s22">22</a></sup> The voice, presented as Putin's, said Ukrainian forces had entered the Kursk, Belgorod and Bryansk regions, that martial law was being imposed there, that residents should "evacuate deep into Russia", and that a general mobilisation would follow.<sup class="ref"><a href="#s21">21</a></sup> Here is how the flowchart handles it, using only what was public at the time and soon after.</p>
+   <ol class="steps">
+    <li><div><strong>Earliest copy.</strong> The material reached the wider world as clips posted by listeners and viewers, and through reports attributed to the journalist Ksenia Sobchak and the Telegram channel 7x7.<sup class="ref"><a href="#s21">21</a></sup> A desk outside Russia had second-hand copies and no broadcaster's own recording.</div></li>
+    <li><div><strong>Who aired it.</strong> The channel was real and identifiable: Mir's regional outlets.<sup class="ref"><a href="#s22">22</a></sup> That passes the source test for the <em>channel</em> and tells you nothing yet about the <em>speaker</em>.</div></li>
+    <li><div><strong>Does the channel check out?</strong> This is where the flowchart flags it. A national emergency address that surfaces only on regional outlets in three regions is a warning sign in itself. Officials in Belgorod and Voronezh blamed hackers trying to "sow panic".<sup class="ref"><a href="#s21">21</a></sup></div></li>
+    <li><div><strong>Does the time check out?</strong> The broadcast went out on Monday 5 June and the address was presented as current. No conflict, and no help.</div></li>
+    <li><div><strong>Does the sound hold up?</strong> Logically, the fact-checking company, found the footage "reasonably well executed", with small oddities such as wrinkles that seemed to disappear, and said there was not enough information to confirm that AI had been used.<sup class="ref"><a href="#s22">22</a></sup> A trained impersonator or an edit of old speeches would have looked much the same to a newsroom. This step stays open.</div></li>
+    <li><div><strong>Confirmed or denied?</strong> Peskov told state media that hackers had aired the message and that the government had taken control of the affected broadcasters.<sup class="ref"><a href="#s22">22</a></sup> The Kremlin denied the recording was authentic.<sup class="ref"><a href="#s21">21</a></sup></div></li>
+   </ol>
+   <p><b>Outcome on the flowchart: partly verified.</b> The broadcast happened, on real channels, and the Kremlin said it was a hack. The content was false on the Kremlin's account. Who made it, and how, was not established. Logically called a Ukrainian state actor or a sympathetic third party the likely source, without proof.<sup class="ref"><a href="#s22">22</a></sup></p>
+   <p>The accurate headline was available from the first hour: <i>Russian regional broadcasts hijacked with fake Putin address, Kremlin says</i>. The word "deepfake" added a technical claim nobody had checked.</p>
+   <p>It was not a one-off. Radio Free Europe/Radio Liberty reported that a week later, on Russia Day, stations in the Stavropol and Krasnodar regions broadcast air-raid sirens and shelter warnings, and that intrusions of this kind were becoming common in regions near Ukraine.<sup class="ref"><a href="#s23">23</a></sup> For a desk, a repeat pattern is a reason to slow down, because a second hijack is easier to believe than the first.</p>
+  </div>
+ </div>
+</section>
+
+<section id="cases">
+ <div class="wrap">
+  <div class="sechead"><span class="freq">05</span><h2>Case files</h2><p>Five more incidents, and what each teaches</p></div>
+  <div class="cases">
+
+   <article class="case">
+    <canvas class="wf" data-seed="3" aria-hidden="true"></canvas>
+    <div class="hd"><p class="kick">File A · Live TV hijack</p><h3>The Zelensky "surrender"</h3></div>
+    <div class="bd">
+     <dl>
+      <dt>When</dt><dd>16 March 2022</dd>
+      <dt>What</dt><dd>Hackers broke into the live broadcasts of Ukraine 24 and the Today channel to push a fake message in which President Volodymyr Zelensky appeared to tell Ukrainians to lay down their arms.<sup class="ref"><a href="#s20">20</a></sup></dd>
+      <dt>Tells</dt><dd>A poorly made deepfake: Lead Stories noted that "Zelenskyy's neck is grossly out of proportion" compared with genuine images.<sup class="ref"><a href="#s19">19</a></sup></dd>
+      <dt>Response</dt><dd>Zelensky posted his own video calling it a provocation; Meta removed the fake for breaking its manipulated-media policy.<sup class="ref"><a href="#s19">19</a></sup><sup class="ref"><a href="#s20">20</a></sup> Ukraine's Land Forces had warned on 2 March of a heightened risk of deepfakes.<sup class="ref"><a href="#s19">19</a></sup></dd>
+     </dl>
+    </div>
+    <p class="lesson"><b>LESSON</b>A prior warning and a fast, direct denial from the subject can travel faster than any forensic analysis.</p>
+   </article>
+
+   <article class="case">
+    <canvas class="wf" data-seed="7" aria-hidden="true"></canvas>
+    <div class="hd"><p class="kick">File B · Election audio</p><h3>The Slovak "rigging" call</h3></div>
+    <div class="bd">
+     <dl>
+      <dt>When</dt><dd>28 September 2023, two days before the parliamentary election, during the pre-election moratorium.<sup class="ref"><a href="#s25">25</a></sup></dd>
+      <dt>What</dt><dd>A fabricated conversation about electoral fraud between Michal Šimečka, leader of Progressive Slovakia, and Monika Tódová, a journalist at Denník N, played over a still image with subtitles.<sup class="ref"><a href="#s24">24</a></sup></dd>
+      <dt>Debunk</dt><dd>Both denied it. AFP flagged it the same day, citing experts who found "numerous signs of manipulation" in the voices and speech patterns.<sup class="ref"><a href="#s24">24</a></sup><sup class="ref"><a href="#s25">25</a></sup> It began on Telegram and spread on Facebook and by email.<sup class="ref"><a href="#s24">24</a></sup></dd>
+      <dt>Status</dt><dd>The creator has not been identified. Police twice declined or halted the case; after a complaint by Tódová, a third investigation was opened.<sup class="ref"><a href="#s25">25</a></sup></dd>
+     </dl>
+    </div>
+    <p class="lesson"><b>LESSON</b>Timing is part of the evidence. A clip released when the subjects are least able to respond is a reason for more caution.</p>
+   </article>
+
+   <article class="case">
+    <canvas class="wf" data-seed="11" aria-hidden="true"></canvas>
+    <div class="hd"><p class="kick">File C · Phone audio</p><h3>The New Hampshire robocall</h3></div>
+    <div class="bd">
+     <dl>
+      <dt>When</dt><dd>21 January 2024, two days before the state's presidential primary.<sup class="ref"><a href="#s26">26</a></sup></dd>
+      <dt>What</dt><dd>Calls using an AI-cloned voice imitating President Joe Biden, including his phrase "What a bunch of malarkey", urged thousands of residents not to vote in the primary. The calls were spoofed to appear to come from a local political figure.<sup class="ref"><a href="#s27">27</a></sup><sup class="ref"><a href="#s26">26</a></sup></dd>
+      <dt>Findings</dt><dd>The FCC proposed a $6 million fine against the political consultant Steve Kramer in May 2024 and imposed it that September; Lingo Telecom, which carried the calls, agreed to pay $1 million.<sup class="ref"><a href="#s26">26</a></sup><sup class="ref"><a href="#s27">27</a></sup> Kramer said he made the calls as a warning about AI. In June 2025 a New Hampshire jury acquitted him of all 11 voter-suppression and 11 impersonation charges.<sup class="ref"><a href="#s28">28</a></sup></dd>
+     </dl>
+    </div>
+    <p class="lesson"><b>LESSON</b>Phone audio has a carrier chain. The FCC's case set out the chain of companies that placed the calls.<sup class="ref"><a href="#s26">26</a></sup></p>
+   </article>
+
+   <article class="case">
+    <canvas class="wf" data-seed="17" aria-hidden="true"></canvas>
+    <div class="hd"><p class="kick">File D · Leaked "recording"</p><h3>The Sadiq Khan clip</h3></div>
+    <div class="bd">
+     <dl>
+      <dt>When</dt><dd>November 2023, ahead of a pro-Palestinian march planned for Armistice Day weekend; recirculated on TikTok in April 2024.<sup class="ref"><a href="#s5">5</a></sup></dd>
+      <dt>What</dt><dd>A voice resembling the Mayor of London's appeared to dismiss Remembrance weekend and to claim "I control the Met Police".<sup class="ref"><a href="#s5">5</a></sup></dd>
+      <dt>Findings</dt><dd>Full Fact found no evidence it was genuine and judged it likely to be a deepfake, citing unnatural pauses and an odd turn of phrase. The Metropolitan Police said the recording was not genuine and that it did not constitute a criminal offence.<sup class="ref"><a href="#s5">5</a></sup></dd>
+     </dl>
+    </div>
+    <p class="lesson"><b>LESSON</b>"Likely a deepfake" is an honest verdict. Proving synthesis is often impossible; proving there is no evidence of authenticity is not.</p>
+   </article>
+
+   <article class="case wide">
+    <canvas class="wf" data-seed="23" aria-hidden="true"></canvas>
+    <div class="hd"><p class="kick">File E · Misattributed footage</p><h3>When the war was a video game</h3></div>
+    <div class="bd">
+     <dl>
+      <dt>2011</dt><dd>ITV's documentary <i>Gaddafi and the IRA</i> presented footage of a helicopter being attacked as an IRA attack. It came from the game <i>ARMA 2</i>. ITV blamed deadline pressure and "human error"; a compliance officer had raised concerns that producers did not follow up. Ofcom ruled the programme materially misleading.<sup class="ref"><a href="#s16">16</a></sup></dd>
+      <dt>2022</dt><dd>A clip of the "Ghost of Kyiv", a supposed Ukrainian ace, shooting down a Russian jet spread on 25 February. It was made in Digital Combat Simulator and first posted to YouTube labelled as a simulation.<sup class="ref"><a href="#s17">17</a></sup> On 30 April Ukraine's air force asked people to stop spreading fake news about the legend.<sup class="ref"><a href="#s18">18</a></sup></dd>
+      <dt>2022</dt><dd>On 28 November Bohemia Interactive said <i>Arma 3</i> clips were being passed off as footage from Ukraine and other conflicts, and that for every video taken down, "ten more are uploaded each day". It now works with fact-checkers including AFP and Reuters.<sup class="ref"><a href="#s14">14</a></sup><sup class="ref"><a href="#s15">15</a></sup></dd>
+     </dl>
+    </div>
+    <p class="lesson"><b>LESSON</b>The original upload often says exactly what the clip is. Provenance (P1) would have caught every one of these.</p>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section id="glossary">
+ <div class="wrap">
+  <div class="sechead"><span class="freq">06</span><h2>Glossary</h2><p>Terms used on the desk</p></div>
+  <dl class="gloss">
+   <div><dt>Chronolocation</dt><dd>Working out when an image or recording was made from evidence inside it, such as shadows, weather or visible events.<sup class="ref"><a href="#s11">11</a></sup></dd></div>
+   <div><dt>Deepfake</dt><dd>Audio or video generated or altered by machine learning to show someone saying or doing something they did not. Use the word only when synthesis has been shown; otherwise say "fake" or "unverified".</dd></div>
+   <div><dt>ENF analysis</dt><dd>Electrical network frequency analysis: dating and checking the integrity of a recording by matching the mains hum it captured against a log of grid frequency.<sup class="ref"><a href="#s12">12</a></sup><sup class="ref"><a href="#s13">13</a></sup></dd></div>
+   <div><dt>HFCC</dt><dd>High Frequency Co-ordination Conference: a non-profit association that coordinates international shortwave schedules for each summer and winter season.<sup class="ref"><a href="#s7">7</a></sup></dd></div>
+   <div><dt>Hijack</dt><dd>Unauthorised content inserted into a genuine broadcast, as on Ukraine 24 in 2022 and Mir in 2023.<sup class="ref"><a href="#s20">20</a></sup><sup class="ref"><a href="#s22">22</a></sup></dd></div>
+   <div><dt>Provenance</dt><dd>Whether you are looking at the original piece of content.<sup class="ref"><a href="#s1">1</a></sup></dd></div>
+   <div><dt>SDR</dt><dd>Software-defined radio: a receiver whose tuning and demodulation are done in software, which allows receivers to be shared over the web.<sup class="ref"><a href="#s9">9</a></sup></dd></div>
+   <div><dt>Spectrogram</dt><dd>A picture of sound with time across, frequency up and loudness as colour, as in this page's header. Useful for spotting cuts and changes in background noise.<sup class="ref"><a href="#s6">6</a></sup></dd></div>
+   <div><dt>Spoofing</dt><dd>Faking the apparent origin of a call or message, such as caller ID, as in the New Hampshire robocall.<sup class="ref"><a href="#s27">27</a></sup></dd></div>
+   <div><dt>WebSDR / KiwiSDR</dt><dd>Networks of receivers open to the public through a browser, used to hear a broadcast from somewhere other than your own location.<sup class="ref"><a href="#s8">8</a></sup><sup class="ref"><a href="#s9">9</a></sup></dd></div>
+  </dl>
+ </div>
+</section>
+
+<section id="sources" class="sources">
+ <div class="wrap">
+  <div class="sechead"><span class="freq">07</span><h2>Sources</h2><p>Numbered as cited above</p></div>
+  <ol>
+   <li id="s1"><a href="https://firstdraftnews.org/long-form-article/verifying-online-information/">Verifying Online Information</a> <span class="pub">· Shaydanay Urbani, First Draft, 2020</span></li>
+   <li id="s2"><a href="https://datajournalism.com/read/handbook/verification-1/verifying-user-generated-content">Verifying User-Generated Content</a> <span class="pub">· Claire Wardle, <i>Verification Handbook</i>, European Journalism Centre (DataJournalism.com)</span></li>
+   <li id="s3"><a href="https://techxplore.com/news/2023-01-microsoft-vall-e-faithfully-voice.html">Microsoft's VALL-E can faithfully mimic a voice from a three-second sample</a> <span class="pub">· Tech Xplore, January 2023</span></li>
+   <li id="s4"><a href="https://www.cjr.org/tow_center/what-journalists-should-know-about-deepfake-detection-technology-in-2025-a-non-technical-guide.php">What journalists should know about deepfake detection technology in 2025</a> <span class="pub">· Kaylee Williams, Columbia Journalism Review / Tow Center, 11 March 2025</span></li>
+   <li id="s5"><a href="https://fullfact.org/online/remembrance-day-audio-sadiq-khan-fake/">No evidence audio of Sadiq Khan about Remembrance weekend is genuine</a> <span class="pub">· Full Fact, 12 April 2024</span></li>
+   <li id="s6"><a href="https://ijnet.org/en/story/tips-and-tools-conducting-forensic-audio-investigations">Tips and tools for conducting forensic audio investigations</a> <span class="pub">· Arinze Chijioke, IJNet, 3 June 2025</span></li>
+   <li id="s7"><a href="https://www.fcc.gov/general/high-frequency-broadcasting">High Frequency Broadcasting</a> <span class="pub">· US Federal Communications Commission</span></li>
+   <li id="s8"><a href="https://sdr.voorbij.duckdns.org/oldnews.html">Old news (history) of the Twente WebSDR</a> <span class="pub">· Twente WebSDR, University of Twente amateur radio club</span></li>
+   <li id="s9"><a href="https://www.radioworld.com/global/the-world-is-at-your-mouse-click">The world is at your mouse click</a> <span class="pub">· James Careless, Radio World, September 2025</span></li>
+   <li id="s10"><a href="https://en.wikipedia.org/wiki/BBC_Monitoring">BBC Monitoring</a> <span class="pub">· Wikipedia</span></li>
+   <li id="s11"><a href="https://www.bellingcat.com/resources/2021/05/18/unsure-when-a-video-or-photo-was-taken-how-to-tell-by-measuring-the-length-of-shadows/">Unsure when a video or photo was taken? How to tell by measuring the length of shadows</a> <span class="pub">· Nick Waters, Bellingcat, 18 May 2021</span></li>
+   <li id="s12"><a href="https://gwern.net/doc/www/www.bbc.co.uk/b6836196ca269a542d2f4077be2e82aa4ac0cb26.html">The hum that helps to fight crime</a> <span class="pub">· BBC News, 2012 (archived copy)</span></li>
+   <li id="s13"><a href="https://journal.equinoxpub.com/IJSLL/article/view/9977">Digital audio recording analysis: the Electric Network Frequency (ENF) Criterion</a> <span class="pub">· Catalin Grigoras, <i>International Journal of Speech, Language and the Law</i> 12(1), 2005</span></li>
+   <li id="s14"><a href="https://arma3.com/news/arma-3-footage-being-used-as-fake-news">Arma 3 footage being used as fake news</a> <span class="pub">· Bohemia Interactive, 28 November 2022</span></li>
+   <li id="s15"><a href="https://www.videogameschronicle.com/news/arma-3-studio-says-game-footage-is-being-used-to-spread-fake-news-about-the-ukraine-war">Arma 3 studio says game footage is being used to spread fake news about the Ukraine war</a> <span class="pub">· Video Games Chronicle, 29 November 2022</span></li>
+   <li id="s16"><a href="https://www.pcgamer.com/uk/itv-documentary-that-featured-arma-2-footage-declared-materially-misleading-by-regulator">ITV documentary that featured ARMA 2 footage declared "materially misleading" by regulator</a> <span class="pub">· PC Gamer, 23 January 2012</span></li>
+   <li id="s17"><a href="https://www.snopes.com/fact-check/is-this-ghost-of-kyiv-video-real/">Is this 'Ghost of Kyiv' video real?</a> <span class="pub">· Snopes, 2022</span></li>
+   <li id="s18"><a href="https://theaviationist.com/2022/04/30/ghost-of-kyiv-eventually-debunked/">'Stop spreading fake news: the Ghost of Kyiv is a legend', Ukrainian military says</a> <span class="pub">· The Aviationist, 30 April 2022</span></li>
+   <li id="s19"><a href="https://leadstories.com/hoax-alert/2022/03/fact-check-surrender-video-of-zelenskyy-is-deepfake.html">Fact check: video does not show Zelenskyy surrendering; it's a low-quality deepfake</a> <span class="pub">· Lead Stories, 17 March 2022</span></li>
+   <li id="s20"><a href="https://www.euronews.com/my-europe/amp/2022/03/16/deepfake-zelenskyy-surrender-video-is-the-first-intentionally-used-in-ukraine-war">Deepfake Zelenskyy surrender video is the first intentionally used in Ukraine war</a> <span class="pub">· Euronews, 16 March 2022</span></li>
+   <li id="s21"><a href="https://meduza.io/en/news/2023/06/05/putin-s-martial-law-address-broadcast-in-3-russian-regions-the-kremlin-says-radio-stations-were-hacked-denies-authenticity-of-recording">Putin's 'martial law address' broadcast in 3 Russian regions; the Kremlin says radio stations were hacked</a> <span class="pub">· Meduza, 5 June 2023</span></li>
+   <li id="s22"><a href="https://www.logicallyfacts.com/en/article/fake-putin-emergency-appeal">Fake Putin emergency appeal</a> <span class="pub">· Sam Doak, Logically Facts, 7 June 2023</span></li>
+   <li id="s23"><a href="https://www.rferl.org/a/pro-ukraine-hackers-russian-broadcasts-/32474061.html">Pro-Ukraine hackers and Russian broadcasts</a> <span class="pub">· Radio Free Europe/Radio Liberty, 24 June 2023</span></li>
+   <li id="s24"><a href="https://ipi.media/slovakia-deepfake-audio-of-dennik-n-journalist-offers-worrying-example-of-ai-abuse/">Slovakia: deepfake audio of Denník N journalist offers worrying example of AI abuse</a> <span class="pub">· International Press Institute, 2023</span></li>
+   <li id="s25"><a href="https://cedmohub.eu/how-ai-generated-content-influenced-parliamentary-elections-in-slovakia-the-slovak-police-will-investigate-the-recording-for-a-third-time">How AI-generated content influenced parliamentary elections in Slovakia</a> <span class="pub">· CEDMO, 2024</span></li>
+   <li id="s26"><a href="https://docs.fcc.gov/public/attachments/DOC-402762A1.pdf">FCC proposes $6 million fine for illegal robocalls that used Biden deepfake voice</a> <span class="pub">· US Federal Communications Commission, 23 May 2024</span></li>
+   <li id="s27"><a href="https://www.wbur.org/news/2024/09/27/steve-kramer-biden-robocalls-fines">Political consultant fined $6 million over Biden robocalls</a> <span class="pub">· NHPR via WBUR, 27 September 2024</span></li>
+   <li id="s28"><a href="https://www.wshu.org/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty">Political operative behind fake Biden robocalls found not guilty</a> <span class="pub">· WSHU / NHPR, 13 June 2025</span></li>
+   <li id="s29"><a href="https://www.newscaststudio.com/2023/05/23/bbc-verify-launch">BBC launches 'Verify' brand</a> <span class="pub">· NewscastStudio, 23 May 2023</span></li>
+  </ol>
+  <p class="note">This manual gives verification methods only. It deliberately leaves out any detail on how broadcasts are intercepted or how synthetic audio is made. All times and statuses are as reported in the sources listed; the Slovak investigation was ongoing at the time of the CEDMO report.</p>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <p>Published 31 October 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+  <p><a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20Signal%20Check&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-10-31-signal-check%2F">Spot an error? Suggest a correction</a></p>
+  <p><a href="/daily/">← Back to Daily</a></p>
+ </div>
+</footer>
+
+<script>
+(function(){
+ var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var pal=[[30,22,64],[47,42,110],[44,92,138],[31,127,128],[46,156,104],[140,198,63],[217,230,74]];
+ function col(t){t=Math.max(0,Math.min(1,t));var x=t*(pal.length-1),i=Math.floor(x),f=x-i,a=pal[i],b=pal[Math.min(i+1,pal.length-1)];return 'rgb('+[0,1,2].map(function(k){return Math.round(a[k]+(b[k]-a[k])*f)}).join(',')+')'}
+ function rng(s){return function(){s=(s*9301+49297)%233280;return s/233280}}
+ function value(r,x,y,seed){
+  // speech-like formant bands with syllable gating
+  var syl=0.5+0.5*Math.sin(x*0.21+seed)*Math.sin(x*0.047+seed*2);
+  var v=0.08+r()*0.12;
+  [0.18,0.34,0.55,0.72].forEach(function(f,j){var c=f+0.04*Math.sin(x*0.05+j+seed);var d=Math.abs(y-c);v+=Math.max(0,0.5-d*9)*syl*(1-j*0.18)});
+  if(Math.abs(y-0.92)<0.012) v+=0.35; // steady hum line
+  return v;
+ }
+ function paint(cv,seed,cell){
+  var w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;
+  cv.width=w;cv.height=h;var g=cv.getContext('2d'),r=rng(seed*97+5);
+  for(var x=0;x<w;x+=cell){for(var y=0;y<h;y+=cell){g.fillStyle=col(value(r,x/cell,1-y/h,seed));g.fillRect(x,y,cell,cell)}}
+ }
+ var hero=document.getElementById('wf');
+ function all(){paint(hero,1,6);document.querySelectorAll('canvas.wf').forEach(function(c){paint(c,+c.dataset.seed,4)})}
+ all();var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(all,200)});
+
+ // dial scale
+ var d=document.getElementById('dialsvg'),s='';
+ for(var i=0;i<=110;i++){var x=i*10,big=i%10===0;s+='<line x1="'+x+'" x2="'+x+'" y1="0" y2="'+(big?18:i%5===0?12:7)+'" stroke="rgba(255,255,255,.55)" stroke-width="1"/>';if(big&&i<110)s+='<text x="'+(x+3)+'" y="34" fill="rgba(255,255,255,.6)" font-family="Fragment Mono,monospace" font-size="11">'+(3+i/10*2)+' MHz</text>'}
+ s+='<line x1="655" x2="655" y1="0" y2="46" stroke="#D9E64A" stroke-width="3"/>';
+ d.innerHTML=s;
+
+ // ENF schematic
+ function wander(n,seed){var r=rng(seed),a=[],v=0;for(var i=0;i<n;i++){v+= (r()-0.5)*0.9; v*=0.93; a.push(v)}return a}
+ var ref=wander(220,42),pts='',X0=14,W=872,step=W/(ref.length-1);
+ ref.forEach(function(v,i){pts+=(i?'L':'M')+(X0+i*step).toFixed(1)+' '+(80-v*16).toFixed(1)});
+ document.getElementById('ref').setAttribute('d',pts);
+ var s0=120,len=70,win=document.getElementById('win');win.setAttribute('x',X0+s0*step);win.setAttribute('width',len*step);
+ var rp='',sx=X0+s0*step, gapA=30,gapB=38;
+ for(var k=0;k<len;k++){var px=sx+k*step,py=205-ref[s0+k]*16;if(k>=gapA&&k<gapB){continue}rp+=((k===0||k===gapB)?'M':'L')+px.toFixed(1)+' '+py.toFixed(1)}
+ document.getElementById('rec').setAttribute('d',rp);
+ var gx=sx+gapA*step,gw=(gapB-gapA)*step;
+ document.getElementById('gap').innerHTML='<rect x="'+gx+'" y="172" width="'+gw+'" height="66" fill="rgba(122,31,92,.35)" stroke="#E07AB8" stroke-dasharray="3 3"/><text x="'+(gx+gw+6)+'" y="236" fill="#F1A9D3" font-family="Fragment Mono,monospace" font-size="11">gap: no match, possible cut</text><line x1="'+sx+'" x2="'+sx+'" y1="126" y2="180" stroke="#2E9C68" stroke-dasharray="2 4"/><line x1="'+(sx+len*step)+'" x2="'+(sx+len*step)+'" y1="126" y2="180" stroke="#2E9C68" stroke-dasharray="2 4"/><text x="'+(sx)+'" y="146" fill="#8CE0B0" font-family="Fragment Mono,monospace" font-size="11" text-anchor="end" dx="-6">match = date and time</text>';
+
+ // check sheet
+ var boxes=[].slice.call(document.querySelectorAll('#sheet input')),out=document.getElementById('verdict');
+ function upd(){var n=boxes.filter(function(b){return b.checked}).length,ok=function(k){return document.querySelector('[data-k="'+k+'"]').checked};
+  var cls='',msg;
+  if(n===7){cls='green';msg='Verified · all 7 steps done. Publish, showing your working.'}
+  else if(ok('p1')&&ok('p3')&&ok('p7')){cls='amber';msg='Partly verified · '+n+' of 7. Channel and response confirmed; publish only with attribution and stated doubt.'}
+  else{msg='Not verified · '+n+' of 7 steps done. Hold, or report only that unverified audio is circulating.'}
+  out.className='verdict '+cls;out.textContent=msg}
+ boxes.forEach(function(b){b.addEventListener('change',upd)});
+ document.getElementById('reset').addEventListener('click',function(){boxes.forEach(function(b){b.checked=false});upd()});
+})();
+</script>
+</body>
+</html>
