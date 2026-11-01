@@ -24,20 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Geography of Disappearing Wealth
-Research question: How do luxury goods, money, and ownership move between legitimate commercial centers, and what can those networks tell us about the geography of modern crime?
-This is the most direct extension of your Pink Panthers research. The focus is not on reconstructing how to commit a theft, but on the legitimate industries and cross-border relationships surrounding valuable objects.
-Proposed contents
-- A geographic dossier covering Antwerp, Belgrade, Milan, Monaco, Geneva, and London.
-- The roles of jewelers, gem laboratories, auction houses, dealers, and luxury resale businesses.
-- The difference between an object's physical movement and its documented ownership.
-- Documented cases illustrating how investigators trace stolen goods.
-- A glossary of trade terminology and an evidence table separating established facts from reporting and speculation.
-Visual element: An interactive network map linking cities, institutions, industries, and documented cases. Each connection should explain what is established and cite its source.
-Sources to start with: OCCRP, INTERPOL's stolen works of art database, and the New Yorker's reporting on the Pink Panthers. The latter is particularly useful for understanding how the investigation crossed national borders and why the group's organization remained uncertain. 
-Finish line: Six city profiles, 15–20 documented entities or institutions, a sourced relationship map, and five case studies. Label allegations carefully and avoid implying that ordinary businesses are involved in crime without evidence.
-Review: yes
-
 The Things Countries Actually Wrote Down
 Create a self-contained interactive HTML guide exploring the most astonishing, consequential, or overlooked provisions in countries’ constitutions, foundational laws, declarations, and official records.
 Find authentic passages involving unusual rights, citizen duties, state powers, historical compromises, and unexpected national commitments.

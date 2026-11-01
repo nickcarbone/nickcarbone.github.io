@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 14,
+      "slug": "2026-11-01-the-geography-of-disappearing-wealth",
+      "date": "2026-11-01",
+      "title": "The Geography of Disappearing Wealth",
+      "dek": "A dossier on six cities where diamonds, watches and art are legitimately traded, stored and checked, and on what documented cases show about how stolen valuables are traced across borders.",
+      "kind": "Geographic dossier",
+      "readingMinutes": 23,
+      "design": "Fraunces, PT Serif, Space Mono; diamond-parcel paper, lining ultramarine, trace teal, ochre; opened-parcel hero, object/paper track diagram, sourced network map, case tabs.",
+      "source": "queue",
+      "brief": "The Geography of Disappearing Wealth\nResearch question: How do luxury goods, money, and ownership move between legitimate commercial centers, and what can those networks tell us about the geography of modern crime?\nThis is the most direct extension of your Pink Panthers research. The focus is not on reconstructing how to commit a theft, but on the legitimate industries and cross-border relationships surrounding valuable objects.\nProposed contents\n- A geographic dossier covering Antwerp, Belgrade, Milan, Monaco, Geneva, and London.\n- The roles of jewelers, gem laboratories, auction houses, dealers, and luxury resale businesses.\n- The difference between an object's physical movement and its documented ownership.\n- Documented cases illustrating how investigators trace stolen goods.\n- A glossary of trade terminology and an evidence table separating established facts from reporting and speculation.\nVisual element: An interactive network map linking cities, institutions, industries, and documented cases. Each connection should explain what is established and cite its source.\nSources to start with: OCCRP, INTERPOL's stolen works of art database, and the New Yorker's reporting on the Pink Panthers. The latter is particularly useful for understanding how the investigation crossed national borders and why the group's organization remained uncertain. \nFinish line: Six city profiles, 15–20 documented entities or institutions, a sourced relationship map, and five case studies. Label allegations carefully and avoid implying that ordinary businesses are involved in crime without evidence.\nReview: yes",
+      "factcheck": {
+        "claims": 78,
+        "fixed": 24
+      },
+      "corrections": []
+    },
+    {
       "no": 13,
       "slug": "2026-10-31-signal-check",
       "date": "2026-10-31",
