@@ -195,6 +195,13 @@ The Wires
 A field guide to 20 news agencies: AP, Reuters, AFP, dpa, EFE, ANSA, Kyodo, PTI, Xinhua, TASS, Anadolu and others.
 Contents: ownership and state funding, language services, how to read datelines and priority codes, and fine print on editorial independence.
 
+The Lie Detector’s Evidence Problem
+Create an interactive HTML guide examining polygraphs and other methods used to detect deception, from physiological stress measurements to voice analysis, eye tracking, and newer AI-based approaches.
+Explain what each method actually measures, what researchers can reasonably infer, and why stress, fear, memory, and truthfulness are difficult to separate.
+Compare real-world accuracy, false positives, false negatives, and the conditions under which each technique performs better or worse.
+Explore landmark cases, disputed claims, and the use of lie detection in policing, intelligence, employment, and security screening.
+Build an interactive method comparison and a case explorer that separates scientific evidence from popular belief.
+
 Two Prices for Money
 Countries with parallel exchange rates: what the gap means for travelers, prices and journalism.
 Builds on: your hawala and M-Pesa pages.
@@ -208,6 +215,13 @@ Fine print: the fight over who may legally say “bespoke.” The 2008 UK advert
 Sleeping at Sea 
 Overnight ferries as hotels: Stockholm–Helsinki, Genoa–Palermo, Newcastle–Amsterdam, Harwich–Hook of Holland, Japan’s long-distance routes.
 Finish: 15 routes with cabin classes, dining, and rail connections at each end.
+
+Can You Beat the Lie Detector?
+Create an interactive HTML guide exploring how polygraphs and other deception-detection methods can be manipulated, fooled, or misinterpreted.
+Examine countermeasures, examiner errors, deceptive interview tactics, and the limits of interpreting physiological or behavioral signals.
+Explain why apparent “tells”—such as gaze, fidgeting, pauses, or vocal changes—are unreliable indicators of lying, and distinguish documented vulnerabilities from myths.
+Use historical cases and controlled research to investigate what happens when subjects are truthful but anxious, deceptive but calm, or deliberately attempting to influence a test.
+Build an interactive scenario explorer showing how the same signals can support competing interpretations, without presenting any method as a reliable way to identify lies.
 
 Reconstructing the Day History Changed
 Create an interactive HTML investigation reconstructing one consequential historical event from contemporaneous evidence rather than hindsight.
@@ -225,6 +239,13 @@ The Architecture of Getting Lost
 How do some cities make wandering feel effortless while others leave pedestrians stranded between roads, private developments, dead ends, and disconnected districts? Compare the street patterns, passageways, arcades, courtyards, public staircases, mixed-use blocks, and informal shortcuts that determine whether a place rewards exploration. Include 15 cities, practical examples of routes that reveal hidden layers of each city, and original diagrams explaining how urban form creates or suppresses spontaneous discovery.
 Interactive element: A city-wandering scorecard comparing permeability, pedestrian continuity, interesting detours, and access to everyday local life.
 Finish line: 15 city profiles and a practical framework for identifying cities and neighborhoods that reward aimless exploration.
+
+The Criminal’s Digital Footprint
+Create an interactive HTML guide exploring how digital traces help investigators reconstruct crimes, identify suspects, and test alibis.
+Cover location data, CCTV, phone records, metadata, social media, vehicle systems, transaction records, and connected devices.
+Explain what each trace can reveal, how it can be misleading, and how investigators establish provenance and corroboration.
+Use documented cases to show how seemingly minor digital artifacts changed an investigation.
+Build a timeline reconstruction tool that combines fictionalized evidence items and marks gaps, conflicts, and confidence levels.
 
 The Invisible Life of a Hotel
 A hotel is simultaneously a building, a workplace, a logistics operation, a temporary home, and a carefully managed social environment. Follow the journey of a room from checkout to check-in, exploring housekeeping, laundry, linen circulation, maintenance, procurement, staffing, front-desk systems, and the economics of keeping a property running. Contrast a large international luxury hotel, a design-led boutique property, and an older European grand hotel, including how their physical layouts shape the experience.
@@ -251,6 +272,14 @@ Why do some objects get repaired for decades while others are discarded after a 
 Interactive element: An object repairability index with filters for parts availability, tool requirements, skill level, cost, and expected service life.
 Finish line: 20 repair traditions or businesses, a cross-category repairability comparison, and a practical framework for buying objects that can be maintained rather than replaced.
 
+The World Behind a Photograph
+Create an interactive HTML guide exploring how a single photograph can reveal its location, time, context, and history.
+Examine visual clues such as architecture, road markings, terrain, shadows, signage, weather, and objects in the frame.
+Use original fictionalized image descriptions and diagrams to teach a step-by-step method for narrowing possibilities without relying on image search.
+Build an interactive geolocation challenge where each clue changes the likely location and readers track their confidence.
+Show how to distinguish a strong identification from a plausible guess.
+
+
 Heads Up
 Create an interactive HTML field guide to the world's beer pouring techniques and glassware traditions, explaining why different beers are poured into particular glasses and served using specific methods.
 Cover styles such as German hefeweizen, Czech pilsner, Belgian saison, Irish stout, British cask ale, and Japanese lager, including distinctive pours, foam levels, temperatures, and serving rituals.
@@ -262,6 +291,34 @@ The Hidden Economics of Going Out
 What actually determines whether a night out is inexpensive, luxurious, memorable, or frustrating? Build a comparative model of the businesses and decisions behind an evening: neighborhood bars, hotel lounges, neighborhood restaurants, destination dining, live-music venues, late-night cafés, and other social spaces. Examine rent, labor, capacity, turnover, purchasing, licensing, menu pricing, location, and the trade-offs between atmosphere and profitability. Compare the economics of a packed neighborhood bar with those of a low-volume luxury lounge, and show why the highest-priced venue is not necessarily the most profitable.
 Interactive element: A venue economics simulator where users adjust rent, staffing, average spend, occupancy, opening hours, and customer turnover to see the effects on revenue and operating margin.
 Finish line: Six venue business models, a set of worked financial scenarios, and a practical framework for understanding what makes a social space commercially sustainable.
+
+The Criminal Investigation Decision Tree
+Create an interactive HTML guide showing how investigators make decisions under uncertainty, from the first report of a crime through suspect development and case closure.
+Explore competing hypotheses, evidence prioritization, witness reliability, resource constraints, and the danger of confirmation bias.
+Use real cases to show how early assumptions shaped later decisions, including investigations that corrected course and those that did not.
+Build a branching investigation simulator where readers choose which lead to pursue and see how each choice affects the evidence available.
+Make clear that the simulation is illustrative, not a model of any single department’s procedures.
+
+The Internet’s Invisible Geography
+Create an interactive HTML guide exploring the geography hidden inside the internet.
+Investigate how domains, language, hosting, routing, platform availability, local regulations, and digital services shape what people can access.
+Explain why a website’s domain, server location, ownership, and intended audience may point to different places.
+Build an interactive website profile that separates these geographic signals and shows what each can—and cannot—establish.
+Explore how the online world reflects borders, infrastructure, and power.
+
+The World’s Hidden Networks
+Create an interactive HTML guide exploring how public information can reveal networks connecting people, companies, institutions, infrastructure, and places.
+Use examples from shipping, aviation, corporate ownership, international events, media, and public administration.
+Explain entity resolution, relationship types, time-sensitive connections, and the danger of treating association as proof of coordination.
+Build an interactive network explorer where readers can inspect the evidence behind each connection and distinguish direct links from inference.
+Show how small public traces can reveal larger systems.
+
+The World’s Operational Clocks
+Create an interactive HTML guide exploring the schedules and timing systems that reveal how the world operates.
+Investigate flight movements, port calls, rail timetables, government briefings, market openings, public hearings, and broadcast schedules.
+Show how to infer activity and sequence from public schedules while accounting for delays, time zones, and stale information.
+Build an interactive global timeline that aligns events across regions and reveals how seemingly separate systems connect.
+Treat schedules as evidence of intended activity, not proof that an event actually occurred.
 
 ---
 
