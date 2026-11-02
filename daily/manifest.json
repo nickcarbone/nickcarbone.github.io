@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 15,
+      "slug": "2026-11-02-the-things-countries-actually-wrote-down",
+      "date": "2026-11-02",
+      "title": "The Things Countries Actually Wrote Down",
+      "dek": "Fifty-one clauses from constitutions and founding laws, quoted in their own words, with what they meant, what became of them, and the famous lines that were never written at all.",
+      "kind": "Searchable explorer",
+      "readingMinutes": 30,
+      "design": "EB Garamond, Inria Sans, Sometype Mono; statute-paper white, iron-gall ink, legal pink tape; tied-bundle hero, side-noted clauses, status tabs, side-by-side concordance.",
+      "source": "queue",
+      "brief": "The Things Countries Actually Wrote Down\nCreate a self-contained interactive HTML guide exploring the most astonishing, consequential, or overlooked provisions in countries’ constitutions, foundational laws, declarations, and official records.\nFind authentic passages involving unusual rights, citizen duties, state powers, historical compromises, and unexpected national commitments.\nFor each, provide the exact wording, country, document, date, legal status, historical context, and real-world implications.\nDistinguish current law from repealed provisions, proposals, mistranslations, and misleading quotations.\nBuild a searchable explorer with filters by country, subject, era, and legal status, plus side-by-side comparisons.\nPrioritize discoveries that reveal something profound or surprising about a country's history or political system.\nUse original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.",
+      "factcheck": {
+        "claims": 175,
+        "fixed": 10
+      },
+      "corrections": []
+    },
+    {
       "no": 14,
       "slug": "2026-11-01-the-geography-of-disappearing-wealth",
       "date": "2026-11-01",

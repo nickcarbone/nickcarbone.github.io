@@ -24,15 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Things Countries Actually Wrote Down
-Create a self-contained interactive HTML guide exploring the most astonishing, consequential, or overlooked provisions in countries’ constitutions, foundational laws, declarations, and official records.
-Find authentic passages involving unusual rights, citizen duties, state powers, historical compromises, and unexpected national commitments.
-For each, provide the exact wording, country, document, date, legal status, historical context, and real-world implications.
-Distinguish current law from repealed provisions, proposals, mistranslations, and misleading quotations.
-Build a searchable explorer with filters by country, subject, era, and legal status, plus side-by-side comparisons.
-Prioritize discoveries that reveal something profound or surprising about a country's history or political system.
-Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
-
 Houses That Tell You Who Lived There
 A building-by-building guide to landmark European houses and apartment buildings designed for wealthy clients, and what each one says about how its owners wanted to live. Where The Secret Geography of European Luxury maps districts, this one goes inside single buildings: the commission, the architect, the plan, the materials, and how the design signalled status in its day.
 Include: 15 buildings from about 1890 to the present, favouring ones that are now museums, heritage-listed or thoroughly documented (the level of Villa Tugendhat, Palais Stoclet or Casa Malaparte). Simple drawn plans or sections where they help. For each house, a short note on what it would tell a novelist about a character who lived there.
