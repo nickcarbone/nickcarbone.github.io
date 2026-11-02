@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T05:28:27.421Z",
+  "generated": "2026-11-02T13:25:41.433Z",
   "count": 84,
   "pages": [
     {
@@ -7,7 +7,7 @@
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-11-02T03:33:11Z",
+      "updated": "2026-11-02T11:53:05Z",
       "created": "2026-07-10T01:19:16Z"
     },
     {
@@ -15,8 +15,16 @@
       "url": "https://nickcarbone.github.io/evening-edition/",
       "title": "Evening Edition",
       "description": "",
-      "updated": "2026-11-02T02:45:07Z",
+      "updated": "2026-11-02T11:41:09Z",
       "created": "2026-10-20T14:56:45Z"
+    },
+    {
+      "slug": "new-networks",
+      "url": "https://nickcarbone.github.io/new-networks/",
+      "title": "New Networks",
+      "description": "",
+      "updated": "2026-11-02T11:12:46Z",
+      "created": "2026-10-20T14:53:19Z"
     },
     {
       "slug": "first-light",
@@ -41,14 +49,6 @@
       "description": "nickcarbone.github.io/one-pound/",
       "updated": "2026-10-21T03:11:39Z",
       "created": "2026-10-21T03:11:22Z"
-    },
-    {
-      "slug": "new-networks",
-      "url": "https://nickcarbone.github.io/new-networks/",
-      "title": "New Networks",
-      "description": "",
-      "updated": "2026-10-20T14:57:55Z",
-      "created": "2026-10-20T14:53:19Z"
     },
     {
       "slug": "europe-dining-cars",
