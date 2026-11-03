@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 16,
+      "slug": "2026-11-03-houses-that-tell-you-who-lived-there",
+      "date": "2026-11-03",
+      "title": "Houses That Tell You Who Lived There",
+      "dek": "Fifteen landmark European houses built for rich clients between 1894 and 1959, and what each plan, material and doorway reveals about how its owners wanted to live.",
+      "kind": "Architectural plan book",
+      "readingMinutes": 30,
+      "design": "Josefin Sans, Cardo, Inconsolata; drafting-grid paper, graphite, ochre/verdigris/brick use-codes; title-block hero of floor stacks, plates with section keys, privacy–display scatter.",
+      "source": "queue",
+      "brief": "Houses That Tell You Who Lived There\nA building-by-building guide to landmark European houses and apartment buildings designed for wealthy clients, and what each one says about how its owners wanted to live. Where The Secret Geography of European Luxury maps districts, this one goes inside single buildings: the commission, the architect, the plan, the materials, and how the design signalled status in its day.\nInclude: 15 buildings from about 1890 to the present, favouring ones that are now museums, heritage-listed or thoroughly documented (the level of Villa Tugendhat, Palais Stoclet or Casa Malaparte). Simple drawn plans or sections where they help. For each house, a short note on what it would tell a novelist about a character who lived there.\nAvoid: current private residents, property prices, live listings.\nLook: an architectural monograph or plan book.\nFinish line: 15 building profiles, a timeline of styles, and a comparison matrix of how each house balances privacy against display.",
+      "factcheck": {
+        "claims": 245,
+        "fixed": 52
+      },
+      "corrections": []
+    },
+    {
       "no": 15,
       "slug": "2026-11-02-the-things-countries-actually-wrote-down",
       "date": "2026-11-02",

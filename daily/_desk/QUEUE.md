@@ -24,13 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-Houses That Tell You Who Lived There
-A building-by-building guide to landmark European houses and apartment buildings designed for wealthy clients, and what each one says about how its owners wanted to live. Where The Secret Geography of European Luxury maps districts, this one goes inside single buildings: the commission, the architect, the plan, the materials, and how the design signalled status in its day.
-Include: 15 buildings from about 1890 to the present, favouring ones that are now museums, heritage-listed or thoroughly documented (the level of Villa Tugendhat, Palais Stoclet or Casa Malaparte). Simple drawn plans or sections where they help. For each house, a short note on what it would tell a novelist about a character who lived there.
-Avoid: current private residents, property prices, live listings.
-Look: an architectural monograph or plan book.
-Finish line: 15 building profiles, a timeline of styles, and a comparison matrix of how each house balances privacy against display.
-
 The Decisions That Accidentally Built Our World
 Create an interactive HTML guide to obscure decisions, treaties, technical standards, and bureaucratic choices that unexpectedly shaped the modern world.
 Investigate how small groups or individual officials made decisions with lasting consequences for borders, commerce, infrastructure, communication, or identity.
