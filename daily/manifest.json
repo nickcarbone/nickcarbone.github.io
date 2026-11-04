@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 17,
+      "slug": "2026-11-04-decisions-that-accidentally-built-our-world",
+      "date": "2026-11-04",
+      "title": "The Decisions That Accidentally Built Our World",
+      "dek": "Seventeen treaties, standards and committee choices, from Tordesillas to the 160-character text, with who made each one, what they were trying to do, and what followed that nobody planned.",
+      "kind": "Annotated casebook",
+      "readingMinutes": 28,
+      "design": "Bodoni Moda, Newsreader, Archivo Narrow; conference-baize green, cool minute-paper, sealing-wax red, brass; top-down table hero, agenda items with Resolved blocks, consequence chains, myth/record boxes.",
+      "source": "queue",
+      "brief": "The Decisions That Accidentally Built Our World\nCreate an interactive HTML guide to obscure decisions, treaties, technical standards, and bureaucratic choices that unexpectedly shaped the modern world.\nInvestigate how small groups or individual officials made decisions with lasting consequences for borders, commerce, infrastructure, communication, or identity.\nFor each case, explain the original problem, decision-makers, alternatives, motivations, and long-term effects.\nDistinguish unintended consequences from deliberate outcomes and later historical myths.\nInclude interactive timelines, consequence chains, and clearly labeled counterfactual scenarios.\nFocus on overlooked turning points that help explain why today's world works the way it does.\nUse original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.",
+      "factcheck": {
+        "claims": 205,
+        "fixed": 27
+      },
+      "corrections": []
+    },
+    {
       "no": 16,
       "slug": "2026-11-03-houses-that-tell-you-who-lived-there",
       "date": "2026-11-03",

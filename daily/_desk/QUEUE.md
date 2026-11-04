@@ -24,15 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Decisions That Accidentally Built Our World
-Create an interactive HTML guide to obscure decisions, treaties, technical standards, and bureaucratic choices that unexpectedly shaped the modern world.
-Investigate how small groups or individual officials made decisions with lasting consequences for borders, commerce, infrastructure, communication, or identity.
-For each case, explain the original problem, decision-makers, alternatives, motivations, and long-term effects.
-Distinguish unintended consequences from deliberate outcomes and later historical myths.
-Include interactive timelines, consequence chains, and clearly labeled counterfactual scenarios.
-Focus on overlooked turning points that help explain why today's world works the way it does.
-Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
-
 The Urban Waterfront Access Atlas
 Research question: Which cities make their waterfronts part of ordinary urban life, and which effectively separate the city from the water?
 This is a way to explore your interest in coastal cities, waterfront architecture, overlooked luxury districts, and places where geography shapes everyday life.
