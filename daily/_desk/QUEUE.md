@@ -24,20 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Urban Waterfront Access Atlas
-Research question: Which cities make their waterfronts part of ordinary urban life, and which effectively separate the city from the water?
-This is a way to explore your interest in coastal cities, waterfront architecture, overlooked luxury districts, and places where geography shapes everyday life.
-Proposed contents
-- 20 waterfront cities, including riverfront, harbor, lakefront, and seafront examples.
-- Public access to the water and continuity of walking routes.
-- Ferries, promenades, beaches, waterfront markets, and public transport.
-- The relationship between residential neighborhoods, commercial districts, and the waterfront.
-- Barriers such as highways, port facilities, steep terrain, or private developments.
-- A short profile of what makes each waterfront distinctive.
-Interactive element: A filterable atlas organized by waterfront type, public accessibility, and urban integration. Include original CSS-based access diagrams showing how the built environment connects—or fails to connect—to the water.
-Sources to start from: Use verified municipal planning information and public-access information during research.
-Finish line: 20 cities classified into four waterfront types, plus a comparative scorecard for public access and urban integration.
-
 The Secret Histories of Ordinary Life
 Create an interactive HTML guide uncovering the surprising histories behind ordinary things such as passports, hotel keys, time zones, barcodes, shipping containers, electrical plugs, and street addresses.
 Explain what existed before each system, why it emerged, who standardized it, and how it changed society.
