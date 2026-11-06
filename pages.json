@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-06T05:59:11.037Z",
+  "generated": "2026-11-06T13:16:11.343Z",
   "count": 84,
   "pages": [
     {
@@ -7,7 +7,7 @@
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-11-06T03:41:55Z",
+      "updated": "2026-11-06T11:43:30Z",
       "created": "2026-07-10T01:19:16Z"
     },
     {
@@ -15,7 +15,7 @@
       "url": "https://nickcarbone.github.io/evening-edition/",
       "title": "Evening Edition",
       "description": "",
-      "updated": "2026-11-06T00:34:27Z",
+      "updated": "2026-11-06T07:24:08Z",
       "created": "2026-10-20T14:56:45Z"
     },
     {
@@ -38,7 +38,7 @@
       "slug": "brewed-with",
       "url": "https://nickcarbone.github.io/brewed-with/",
       "title": "Brewed With",
-      "description": "nickcarbone.github.io/brewed-with/",
+      "description": "Published via Publisher �� nickcarbone.github.io/brewed-with/",
       "updated": "2026-10-21T03:12:15Z",
       "created": "2026-10-21T03:12:04Z"
     },
@@ -110,7 +110,7 @@
       "slug": "menu-cabinet",
       "url": "https://nickcarbone.github.io/menu-cabinet/",
       "title": "Menu Cabinet",
-      "description": "Published via Publisher �� nickcarbone.github.io/menu-cabinet/",
+      "description": "nickcarbone.github.io/menu-cabinet/",
       "updated": "2026-09-01T11:41:53Z",
       "created": "2026-09-01T11:38:26Z"
     },
