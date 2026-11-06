@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 19,
+      "slug": "2026-11-06-secret-histories-of-ordinary-life",
+      "date": "2026-11-06",
+      "title": "The Secret Histories of Ordinary Life",
+      "dek": "Ten everyday systems, from house numbers and surnames to plugs and price tags, traced from what came before to who fixed them and what they quietly changed.",
+      "kind": "Illustrated index",
+      "readingMinutes": 24,
+      "design": "Big Shoulders Display, Source Serif 4, IBM Plex Mono; enamel street-sign cobalt on plaster wall, signal red, brass; number-plate index, before/after panels, lane timeline.",
+      "source": "queue",
+      "brief": "The Secret Histories of Ordinary Life\nCreate an interactive HTML guide uncovering the surprising histories behind ordinary things such as passports, hotel keys, time zones, barcodes, shipping containers, electrical plugs, and street addresses.\nExplain what existed before each system, why it emerged, who standardized it, and how it changed society.\nExplore the political, commercial, technological, and cultural consequences hidden behind seemingly mundane conventions.\nPrioritize stories that fundamentally change how readers understand everyday life, not merely amusing invention trivia.\nBuild an interactive atlas with historical timelines, before-and-after comparisons, and “still with us” explanations.\nUse original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.",
+      "factcheck": {
+        "claims": 177,
+        "fixed": 26
+      },
+      "corrections": []
+    },
+    {
       "no": 18,
       "slug": "2026-11-05-reaching-the-water",
       "date": "2026-11-05",

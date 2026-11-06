@@ -24,14 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Secret Histories of Ordinary Life
-Create an interactive HTML guide uncovering the surprising histories behind ordinary things such as passports, hotel keys, time zones, barcodes, shipping containers, electrical plugs, and street addresses.
-Explain what existed before each system, why it emerged, who standardized it, and how it changed society.
-Explore the political, commercial, technological, and cultural consequences hidden behind seemingly mundane conventions.
-Prioritize stories that fundamentally change how readers understand everyday life, not merely amusing invention trivia.
-Build an interactive atlas with historical timelines, before-and-after comparisons, and “still with us” explanations.
-Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
-
 The Ghosts of Empires
 Create an interactive HTML guide tracing overlooked colonial and imperial arrangements that continue to shape the modern world.
 Investigate specific inherited borders, legal systems, property rules, infrastructure networks, language policies, resource concessions, and administrative categories.
