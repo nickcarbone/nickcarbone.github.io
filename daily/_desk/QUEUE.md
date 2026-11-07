@@ -24,14 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Ghosts of Empires
-Create an interactive HTML guide tracing overlooked colonial and imperial arrangements that continue to shape the modern world.
-Investigate specific inherited borders, legal systems, property rules, infrastructure networks, language policies, resource concessions, and administrative categories.
-For each case, trace the original decision through historical turning points to its documented present-day consequences.
-Explain what survived independence, what changed, and who benefited or suffered, without reducing complex histories to simplistic explanations.
-Include interactive timelines and original schematic maps showing how historical arrangements persist.
-Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
-
 The Overnight Geography Directory
 Research question: Where can you travel overnight, wake up somewhere genuinely different, and still have a useful amount of time to explore before returning?
 Rather than listing sleeper trains alone, this guide investigates the geography of overnight travel: night trains, late ferries, overnight coaches, and useful early-morning arrivals.
