@@ -24,20 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Overnight Geography Directory
-Research question: Where can you travel overnight, wake up somewhere genuinely different, and still have a useful amount of time to explore before returning?
-Rather than listing sleeper trains alone, this guide investigates the geography of overnight travel: night trains, late ferries, overnight coaches, and useful early-morning arrivals.
-Proposed contents
-- 20 origin–destination connections.
-- Departure and arrival times, journey duration, and arrival-day usefulness.
-- Available accommodation types or seating arrangements.
-- Connections to local transit upon arrival.
-- Seasonal operation and booking constraints.
-- A distinction between journeys that save hotel costs and those that primarily save daytime travel.
-Interactive element: A route planner that filters by mode, overnight duration, arrival time, and whether the destination offers a full usable day. Use original HTML route cards rather than embedded map imagery.
-Sources to start from: Verify current schedules, seasonal services, and booking conditions when researching each route.
-Finish line: 20 verified routes, five useful route comparisons, and a filterable directory that identifies the strongest options for maximizing time at the destination.
-
 The Last-Mile Atlas
 Research question: Which interesting European destinations look easy to reach on a map but become surprisingly difficult once you account for the final connection from the railway station?
 Build a directory of places where the last 5–30 km can determine whether a trip is practical: coastal towns, island gateways, mountain communities, and overlooked resort areas.

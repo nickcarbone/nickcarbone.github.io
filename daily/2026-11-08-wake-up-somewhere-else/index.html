@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wake Up Somewhere Else · Daily</title>
+<meta name="description" content="Twenty overnight trains, ferries and coaches on five continents, timed from evening departure to morning arrival, with how much of the next day each one really gives you.">
+<meta property="og:title" content="Wake Up Somewhere Else">
+<meta property="og:description" content="Twenty overnight trains, ferries and coaches on five continents, timed from evening departure to morning arrival, with how much of the next day each one really gives you.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-08-wake-up-somewhere-else/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-08-wake-up-somewhere-else/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Red+Hat+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>:root{
+ --bg:#F2EEE5;--paper:#FBF9F4;--ink:#1B2230;--muted:#525A68;--rule:#D5CEBF;--soft:#E8E2D5;
+ --train:#0E6A5D;--ferry:#A1365A;--coach:#855700;--trainbg:#DCEDE8;--ferrybg:#F4DFE6;--coachbg:#F3E7CF;
+ --night:#1E2944;--night2:#3A3260;--dusk:#C9785F;--dawn:#E8B48A;--link:#8E2F4F;
+ --disp:'Red Hat Display',system-ui,sans-serif;--serif:'Literata',Georgia,serif;--mono:'Red Hat Mono',ui-monospace,monospace;
+ color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#121620;--paper:#1A1F2B;--ink:#E9E5DB;--muted:#A9B0BC;--rule:#2F3746;--soft:#232a38;
+ --train:#5FC9B4;--ferry:#EC8DAB;--coach:#E4B455;--trainbg:#18322f;--ferrybg:#3a2230;--coachbg:#352a17;
+ --link:#F0A0BA;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121620;--paper:#1A1F2B;--ink:#E9E5DB;--muted:#A9B0BC;--rule:#2F3746;--soft:#232a38;
+ --train:#5FC9B4;--ferry:#EC8DAB;--coach:#E4B455;--trainbg:#18322f;--ferrybg:#3a2230;--coachbg:#352a17;--link:#F0A0BA;color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.62 var(--serif);overflow-x:hidden}
+a{color:var(--link);text-underline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+h1,h2,h3{font-family:var(--disp);line-height:1.1;letter-spacing:-.01em}
+h2{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:900;margin:2.6em 0 .4em}
+.lede{color:var(--muted);max-width:68ch;margin-top:0}
+sup.ref{font:500 .68em/1 var(--mono);margin-left:1px;white-space:nowrap}
+sup.ref a{text-decoration:none;color:var(--muted);padding:0 1px}
+sup.ref a:hover{color:var(--link);text-decoration:underline}
+/* strip */
+.strip{background:var(--night);color:#DCD8EA;font:500 .82rem/1 var(--mono)}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;flex-wrap:wrap}
+.strip a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.strip a:hover{text-decoration:underline}
+/* hero */
+.hero{background:linear-gradient(180deg,var(--night) 0%,var(--night2) 52%,#7A4D6A 78%,var(--dusk) 92%,var(--dawn) 100%);color:#F6F1E8;padding:44px 0 36px;overflow:hidden}
+.hgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+.kicker{font:500 .8rem/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#E9CDB8;margin:0 0 14px}
+.hero h1{font-size:clamp(2.6rem,7.4vw,5.6rem);font-weight:900;margin:0 0 18px;letter-spacing:-.03em;line-height:.95}
+.dek{font-size:clamp(1.1rem,2vw,1.35rem);line-height:1.45;max-width:36ch;margin:0;color:#F3EADF}
+.dial{width:100%;max-width:440px;justify-self:end;height:auto}
+.dial .tick{stroke:rgba(255,255,255,.45);stroke-width:1.4}
+.dial .hr{fill:rgba(255,255,255,.8);font:500 13px var(--mono);text-anchor:middle}
+.dial .arc{fill:none;stroke-width:4.2;stroke-linecap:round;opacity:.95}
+.dial .arc.train{stroke:#8FE3D1}.dial .arc.ferry{stroke:#FFB3C9}.dial .arc.coach{stroke:#FFD37A}
+.dial .dot{fill:#fff}
+.dial .ctr{fill:#fff;font:900 22px var(--disp);text-anchor:middle}
+.dial .ctr2{fill:rgba(255,255,255,.75);font:500 11px var(--mono);text-anchor:middle}
+/* intro */
+.intro{max-width:760px;margin-top:40px;font-size:1.12rem}
+.intro .first::first-line{font-family:var(--disp);font-weight:700}
+.defs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);margin:32px 0 0}
+.defs div{padding:14px 16px 14px 0;border-right:1px solid var(--rule);margin-right:16px}
+.defs div:last-child{border-right:0}
+.defs dt{font:700 .78rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.defs dd{margin:0;font-size:.95rem;color:var(--muted);line-height:1.5}
+/* chart */
+.chart{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:14px 16px 12px}
+.chead,.crow{display:grid;grid-template-columns:200px 1fr;align-items:center;gap:12px}
+.crows{list-style:none;margin:0;padding:0}
+.crow{min-height:30px;border-top:1px solid var(--soft)}
+.clab{font:500 .82rem/1.2 var(--disp);color:var(--ink);text-decoration:none;padding:6px 0}
+a.clab:hover{color:var(--link);text-decoration:underline}
+.ctrack{position:relative;height:22px;background:linear-gradient(90deg,transparent 0%,transparent 15%,rgba(30,41,68,.10) 25%,rgba(30,41,68,.13) 45%,rgba(30,41,68,.10) 65%,transparent 78%)}
+.ticks{height:20px;background:none}
+.tk{position:absolute;top:0;transform:translateX(-50%);font:500 .72rem/20px var(--mono);color:var(--muted)}
+.cbar{position:absolute;top:4px;height:14px;border-radius:7px;display:flex;justify-content:space-between;align-items:center}
+.cbar.train{background:var(--train)}.cbar.ferry{background:var(--ferry)}.cbar.coach{background:var(--coach)}
+.cbar.approx{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.0) 0 5px,rgba(255,255,255,.35) 5px 8px)}
+.ct{font:700 .66rem/1 var(--mono);color:#fff;padding:0 6px;white-space:nowrap}
+:root[data-theme="dark"] .ct{color:#0f1420}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ct{color:#0f1420}:root:not([data-theme="light"]) .ctrack:not(.ticks){background:linear-gradient(90deg,transparent 15%,rgba(160,170,220,.08) 25%,rgba(160,170,220,.12) 45%,rgba(160,170,220,.08) 65%,transparent 78%)}}
+.ckey{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:12px;font:400 .8rem/1.4 var(--mono);color:var(--muted)}
+.sw{display:inline-block;width:18px;height:10px;border-radius:5px;margin-right:6px;vertical-align:-1px}
+.sw.train{background:var(--train)}.sw.ferry{background:var(--ferry)}.sw.coach{background:var(--coach)}
+.sw.approx{background:var(--muted);background-image:repeating-linear-gradient(135deg,transparent 0 5px,rgba(255,255,255,.5) 5px 8px)}
+/* filters */
+.filters{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:14px 16px;margin:0 0 22px;display:flex;flex-wrap:wrap;gap:12px 22px}
+.filters fieldset{border:0;margin:0;padding:0;min-width:0}
+.filters legend{font:700 .72rem/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px;padding:0}
+.seg{display:flex;flex-wrap:wrap;gap:4px}
+.seg button,.reset{font:500 .85rem/1 var(--disp);min-height:40px;padding:0 12px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:20px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg button:focus-visible,.reset:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--link);outline-offset:2px}
+.frow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;width:100%}
+.chk{display:flex;align-items:center;gap:8px;min-height:40px;font:500 .9rem/1.2 var(--disp)}
+.chk input{width:22px;height:22px;accent-color:var(--train)}
+.sel{font:500 .9rem/1 var(--disp);display:flex;align-items:center;gap:8px}
+.sel select{font:500 .9rem var(--disp);min-height:40px;padding:0 8px;border:1px solid var(--rule);border-radius:4px;background:var(--bg);color:var(--ink)}
+.count{font:500 .85rem/1 var(--mono);color:var(--muted);margin-left:auto}
+.filters[data-compact] fieldset{display:none}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.card{background:var(--paper);border:1px solid var(--rule);border-top:6px solid var(--train);border-radius:4px;padding:20px 22px 18px;position:relative;scroll-margin-top:90px}
+.card.ferry{border-top-color:var(--ferry)}.card.coach{border-top-color:var(--coach)}
+.card[hidden]{display:none}
+.cno{font:500 .74rem/1.3 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+.card h3{font-size:1.55rem;font-weight:900;margin:0 0 4px}
+.card h3 .to{font-weight:500;color:var(--muted);font-size:.8em}
+.cop{margin:0 0 14px;font:500 .9rem/1.35 var(--disp);color:var(--muted)}
+.chain{display:flex;align-items:center;gap:0;margin:0 0 12px;padding:12px 0;border-top:1px dashed var(--rule);border-bottom:1px dashed var(--rule)}
+.node{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.node b{font:700 1.5rem/1 var(--mono);letter-spacing:-.02em}
+.node small,.link small{font:500 .72rem/1.25 var(--mono);color:var(--muted)}
+.node.on small{color:var(--ink);background:var(--soft);padding:4px 7px;border-radius:3px}
+.link{flex:1;min-width:24px;height:2px;margin:0 10px;background:repeating-linear-gradient(90deg,var(--ink) 0 6px,transparent 6px 10px);position:relative;display:flex;justify-content:center}
+.link small{position:absolute;top:-18px;white-space:nowrap;background:var(--paper);padding:0 4px}
+.link.onl{flex:0 0 26px;background:var(--rule)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.tag,.flag{font:500 .76rem/1.2 var(--mono);padding:5px 8px;border-radius:3px;background:var(--soft)}
+.tag.k-hotel{background:var(--trainbg)}.tag.k-day{background:var(--coachbg)}
+.flag{background:var(--ferrybg)}
+.card dl{margin:0}
+.card dl div{display:grid;grid-template-columns:92px 1fr;gap:10px;padding:7px 0;border-top:1px solid var(--soft)}
+.card dt{font:700 .72rem/1.6 var(--mono);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.card dd{margin:0;font-size:.97rem;line-height:1.55}
+.days{color:var(--muted)}
+.fact{margin:12px 0 0;padding:10px 12px;background:var(--bg);border-left:3px solid var(--rule);font-style:italic;font-size:.95rem}
+.none{font:500 1rem var(--disp);padding:20px;background:var(--paper);border:1px dashed var(--rule)}
+/* compare */
+.cmp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px}
+.cmp article{border-top:2px solid var(--ink);padding-top:10px;margin-bottom:22px}
+.cmp h3{font-size:1.25rem;font-weight:700;margin:0 0 6px}
+.cmp p{margin:0}
+/* rank */
+.rank{list-style:none;counter-reset:r;margin:0;padding:0;max-width:880px}
+.rank li{counter-increment:r;display:grid;grid-template-columns:28px minmax(150px,240px) 1fr 70px;gap:10px;align-items:center;min-height:40px;border-top:1px solid var(--soft)}
+.rank li::before{content:counter(r);font:700 .9rem var(--mono);color:var(--muted)}
+.rank a{font:500 .92rem/1.2 var(--disp);color:var(--ink)}
+.rb{height:12px;background:var(--soft);border-radius:6px;overflow:hidden}
+.rbar{display:block;height:100%;border-radius:6px}
+.rbar.train{background:var(--train)}.rbar.ferry{background:var(--ferry)}.rbar.coach{background:var(--coach)}
+.rv{font:700 .85rem var(--mono);text-align:right}
+/* hold, method, sources */
+.hold{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.hold p{margin:0;background:var(--paper);border:1px dashed var(--muted);padding:14px 16px;border-radius:4px}
+.method p{max-width:75ch}
+.sources ol{font-size:.86rem;line-height:1.5;columns:2;column-gap:36px;padding-left:2.2em}
+.sources li{break-inside:avoid;margin-bottom:6px;overflow-wrap:anywhere}
+.sources li:target{background:var(--soft)}
+.foot{margin-top:56px;background:var(--night);color:#DCD8EA;padding:26px 0;font:400 .9rem/1.6 var(--mono)}
+.foot a{color:#fff;display:inline-flex;align-items:center;min-height:40px}
+.foot p{margin:4px 0}
+@media (max-width:900px){
+ .hgrid{grid-template-columns:1fr}.dial{justify-self:center;max-width:340px}
+ .defs{grid-template-columns:1fr 1fr}.defs div:nth-child(2){border-right:0}
+ .cards,.cmp,.hold{grid-template-columns:1fr}
+ .sources ol{columns:1}
+}
+@media (max-width:600px){
+ .wrap{padding:0 16px}
+ body{font-size:1.03rem}
+ .defs{grid-template-columns:1fr}.defs div{border-right:0;margin-right:0;border-bottom:1px solid var(--soft)}
+ .chead,.crow{grid-template-columns:96px 1fr;gap:8px}
+ .clab{font-size:.74rem}
+ .ct{display:none}
+ .tk:nth-child(even){display:none}
+ .card{padding:16px 14px}
+ .card dl div{grid-template-columns:1fr;gap:2px}
+ .node b{font-size:1.2rem}
+ .link small{display:none}
+ .link{margin:0 6px;min-width:14px}
+ .link.onl,.node.on{display:none}
+ .rank li{grid-template-columns:24px 1fr 62px;grid-template-areas:"n a v" "n b b"}
+ .rank li::before{grid-area:n}.rank a{grid-area:a}.rank .rb{grid-area:b;margin-bottom:8px}.rank .rv{grid-area:v}
+ .filters{position:static}
+}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 021 · Sunday 8 November 2026</span></div></div>
+<header class="hero">
+<div class="wrap hgrid">
+<div class="htext">
+<p class="kicker">Directory · times checked 8 November 2026</p>
+<h1>Wake Up Somewhere Else</h1>
+<p class="dek">Twenty overnight trains, ferries and coaches on five continents, timed from evening departure to morning arrival, with how much of the next day each one really gives you.</p>
+</div>
+<svg viewBox="0 0 520 520" class="dial" role="img" aria-label="A 24-hour dial with twenty arcs, one per route, each running from its evening departure to its morning arrival. Most arcs start between 19:00 and 23:00 and end between 06:00 and 10:00."><line x1="260.0" y1="22.0" x2="260.0" y2="4.0" class="tick"/><text x="260.0" y="46.0" class="hr">00</text><line x1="321.6" y1="30.1" x2="324.7" y2="18.5" class="tick"/><line x1="379.0" y1="53.9" x2="385.0" y2="43.5" class="tick"/><line x1="428.3" y1="91.7" x2="436.8" y2="83.2" class="tick"/><line x1="466.1" y1="141.0" x2="476.5" y2="135.0" class="tick"/><line x1="489.9" y1="198.4" x2="501.5" y2="195.3" class="tick"/><line x1="498.0" y1="260.0" x2="516.0" y2="260.0" class="tick"/><text x="478.0" y="264.0" class="hr">06</text><line x1="489.9" y1="321.6" x2="501.5" y2="324.7" class="tick"/><line x1="466.1" y1="379.0" x2="476.5" y2="385.0" class="tick"/><line x1="428.3" y1="428.3" x2="436.8" y2="436.8" class="tick"/><line x1="379.0" y1="466.1" x2="385.0" y2="476.5" class="tick"/><line x1="321.6" y1="489.9" x2="324.7" y2="501.5" class="tick"/><line x1="260.0" y1="498.0" x2="260.0" y2="516.0" class="tick"/><text x="260.0" y="482.0" class="hr">12</text><line x1="198.4" y1="489.9" x2="195.3" y2="501.5" class="tick"/><line x1="141.0" y1="466.1" x2="135.0" y2="476.5" class="tick"/><line x1="91.7" y1="428.3" x2="83.2" y2="436.8" class="tick"/><line x1="53.9" y1="379.0" x2="43.5" y2="385.0" class="tick"/><line x1="30.1" y1="321.6" x2="18.5" y2="324.7" class="tick"/><line x1="22.0" y1="260.0" x2="4.0" y2="260.0" class="tick"/><text x="42.0" y="264.0" class="hr">18</text><line x1="30.1" y1="198.4" x2="18.5" y2="195.3" class="tick"/><line x1="53.9" y1="141.0" x2="43.5" y2="135.0" class="tick"/><line x1="91.7" y1="91.7" x2="83.2" y2="83.2" class="tick"/><line x1="141.0" y1="53.9" x2="135.0" y2="43.5" class="tick"/><line x1="198.4" y1="30.1" x2="195.3" y2="18.5" class="tick"/><path d="M259.7,198.0 A62.0,62.0 0 0 1 320.8,272.1" class="arc coach"><title>Mexico City to Oaxaca, 23:59–06:45</title></path><circle cx="320.8" cy="272.1" r="2.6" class="dot coach"/><path d="M225.2,199.7 A69.6,69.6 0 0 1 329.5,257.0" class="arc train"><title>Hanoi to Lao Cai (for Sapa), 22:00–05:50</title></path><circle cx="329.5" cy="257.0" r="2.6" class="dot train"/><path d="M230.5,188.7 A77.2,77.2 0 0 1 336.7,268.4" class="arc coach"><title>Tokyo to Kyoto, 22:30–06:25</title></path><circle cx="336.7" cy="268.4" r="2.6" class="dot coach"/><path d="M254.5,175.4 A84.8,84.8 0 0 1 335.2,299.2" class="arc train"><title>London to Penzance, 23:45–07:50</title></path><circle cx="335.2" cy="299.2" r="2.6" class="dot train"/><path d="M194.7,194.7 A92.4,92.4 0 0 1 351.6,272.1" class="arc ferry"><title>Athens (Piraeus) to Heraklion, 21:00–06:30</title></path><circle cx="351.6" cy="272.1" r="2.6" class="dot ferry"/><path d="M184.0,195.1 A100.0,100.0 0 0 1 352.4,298.3" class="arc train"><title>Sydney to Melbourne, 20:42–07:30</title></path><circle cx="352.4" cy="298.3" r="2.6" class="dot train"/><path d="M193.4,175.5 A107.6,107.6 0 0 1 344.2,327.0" class="arc train"><title>Vienna to Venice, 21:27–08:34</title></path><circle cx="344.2" cy="327.0" r="2.6" class="dot train"/><path d="M147.0,237.5 A115.19999999999999,115.19999999999999 0 0 1 375.2,260.0" class="arc ferry"><title>Geelong to Devonport, Tasmania, 18:45–06:00</title></path><circle cx="375.2" cy="260.0" r="2.6" class="dot ferry"/><path d="M162.6,185.2 A122.8,122.8 0 1 1 346.8,346.8" class="arc ferry"><title>Hull to Rotterdam, 20:30–09:00</title></path><circle cx="346.8" cy="346.8" r="2.6" class="dot ferry"/><path d="M164.2,171.5 A130.39999999999998,130.39999999999998 0 0 1 360.6,342.9" class="arc train"><title>Paris to Briançon, 20:51–08:38</title></path><circle cx="360.6" cy="342.9" r="2.6" class="dot train"/><path d="M127.5,221.4 A138.0,138.0 0 0 1 394.0,292.8" class="arc ferry"><title>Osaka to Beppu, 19:05–06:55</title></path><circle cx="394.0" cy="292.8" r="2.6" class="dot ferry"/><path d="M148.9,165.9 A145.6,145.6 0 0 1 373.6,351.1" class="arc train"><title>Beijing to Xi’an, 20:41–08:35</title></path><circle cx="373.6" cy="351.1" r="2.6" class="dot train"/><path d="M164.6,140.1 A153.2,153.2 0 1 1 336.6,392.7" class="arc train"><title>Tokyo to Izumo, 21:26–10:00</title></path><circle cx="336.6" cy="392.7" r="2.6" class="dot train"/><path d="M101.6,232.1 A160.8,160.8 0 1 1 412.3,311.7" class="arc train"><title>Bangkok to Chiang Mai, 18:40–07:15</title></path><circle cx="412.3" cy="311.7" r="2.6" class="dot train"/><path d="M149.0,133.4 A168.39999999999998,168.39999999999998 0 1 1 344.2,405.8" class="arc train"><title>London to Fort William, 21:15–10:00</title></path><circle cx="344.2" cy="405.8" r="2.6" class="dot train"/><path d="M114.1,161.6 A176.0,176.0 0 1 1 381.2,387.7" class="arc train"><title>Rome to Palermo, 20:16–09:06</title></path><circle cx="381.2" cy="387.7" r="2.6" class="dot train"/><path d="M95.3,178.8 A183.6,183.6 0 1 1 374.9,403.2" class="arc train"><title>Cairo to Aswan, 19:45–09:25</title></path><circle cx="374.9" cy="403.2" r="2.6" class="dot train"/><path d="M80.9,193.0 A191.2,191.2 0 1 1 309.5,444.7" class="arc train"><title>Brussels to Prague, 19:22–11:00</title></path><circle cx="309.5" cy="444.7" r="2.6" class="dot train"/><path d="M71.8,323.9 A198.79999999999998,198.79999999999998 0 1 1 336.1,443.7" class="arc ferry"><title>Stockholm to Helsinki, 16:45–10:30</title></path><circle cx="336.1" cy="443.7" r="2.6" class="dot ferry"/><path d="M81.3,363.2 A206.4,206.4 0 1 1 406.6,405.3" class="arc train"><title>Lorton, Virginia to Sanford, Florida, 16:00–08:59</title></path><circle cx="406.6" cy="405.3" r="2.6" class="dot train"/><text x="260" y="254" class="ctr">20 nights</text><text x="260" y="274" class="ctr2">departure → arrival</text></svg>
+</div>
+</header>
+<main>
+<section class="intro wrap"><p class="first">An overnight journey is a trade. You give up a hotel bed, and usually some sleep, and in return you keep the evening before and get the whole of the next day somewhere else. Some night services make that trade well. A train that arrives at 05:50 buys a long day with a short night; one that arrives at 11:00 buys a proper sleep and half a day. A few are less about the next day than about not losing one to the journey.</p>
+<p>This directory sets out twenty routes on five continents: thirteen trains, five ferries and two coaches. For each it gives the times, what you sleep in, what is waiting when you get off, whether you can come back the same night, and what is most likely to go wrong. The times were checked on 8 November 2026 against the operator wherever its timetable could be read, and against independent timetables and guides where it couldn’t. Where sources disagree, the entry says so.</p>
+<p>Clock times move. Many European timetables, the Caledonian Sleeper’s among them, run only to 12 December 2026,<sup class="ref">[<a href="#s1">1</a>]</sup> and the Sunrise Izumo left Tokyo 24 minutes earlier from March 2026, which older guides still miss.<sup class="ref">[<a href="#s2">2</a>]</sup> Treat every time here as a starting point and check your date before you book.</p></section>
+<section class="wrap rules" aria-labelledby="rules-h"><h2 id="rules-h" class="sr">How to read the entries</h2>
+<dl class="defs">
+<div><dt>Hours on the ground</dt><dd>The timetabled gap between arriving and the same evening’s departure home, on the same service or its return working. It ignores transfers, check-in and delays, so it flatters every route a little. Hull–Rotterdam is the exception: its port is 40 km out, so it is counted from coach to coach.</dd></div>
+<div><dt>Swaps a hotel night</dt><dd>Under 12 hours aboard. The main gain is the bed: you sleep in transit instead of paying for a room.</dd></div>
+<div><dt>Gives back a travel day</dt><dd>12 hours aboard or more. Made in daylight on the same kind of service, the trip would eat most of a waking day, so running it overnight hands that day back. This split is the desk’s own rule of thumb.</dd></div>
+<div><dt>Short night</dt><dd>Arrives at or before 06:30.</dd></div>
+</dl></section>
+<section class="wrap" id="chart" aria-labelledby="chart-h">
+<h2 id="chart-h">The night, route by route</h2>
+<p class="lede">Each bar runs from departure to arrival on the local clock, from four in the afternoon to midday. Tap a route to jump to its entry.</p>
+<div class="chart" role="figure" aria-label="Timeline of the twenty journeys from 16:00 to midday next day">
+<div class="chead"><span class="clab"></span><span class="ctrack ticks"><span class="tk" style="left:0.000%">16</span><span class="tk" style="left:10.000%">18</span><span class="tk" style="left:20.000%">20</span><span class="tk" style="left:30.000%">22</span><span class="tk" style="left:40.000%">00</span><span class="tk" style="left:50.000%">02</span><span class="tk" style="left:60.000%">04</span><span class="tk" style="left:70.000%">06</span><span class="tk" style="left:80.000%">08</span><span class="tk" style="left:90.000%">10</span><span class="tk" style="left:100.000%">12</span></span></div>
+<ol class="crows"><li class="crow"><a class="clab" href="#autotrain">Lorton, Virginia → Sanford, Florida</a><span class="ctrack"><span class="cbar train" style="left:0.000%;width:84.917%"><span class="ct">16:00</span><span class="ct ct2">08:59</span></span></span></li><li class="crow"><a class="clab" href="#helsinki">Stockholm → Helsinki</a><span class="ctrack"><span class="cbar ferry" style="left:3.750%;width:88.750%"><span class="ct">16:45</span><span class="ct ct2">10:30</span></span></span></li><li class="crow"><a class="clab" href="#chiangmai">Bangkok → Chiang Mai</a><span class="ctrack"><span class="cbar train" style="left:13.333%;width:62.917%"><span class="ct">18:40</span><span class="ct ct2">07:15</span></span></span></li><li class="crow"><a class="clab" href="#devonport">Geelong → Devonport, Tasmania</a><span class="ctrack"><span class="cbar ferry" style="left:13.750%;width:56.250%"><span class="ct">18:45</span><span class="ct ct2">06:00</span></span></span></li><li class="crow"><a class="clab" href="#beppu">Osaka → Beppu</a><span class="ctrack"><span class="cbar ferry" style="left:15.417%;width:59.167%"><span class="ct">19:05</span><span class="ct ct2">06:55</span></span></span></li><li class="crow"><a class="clab" href="#prague">Brussels → Prague</a><span class="ctrack"><span class="cbar train approx" style="left:16.833%;width:78.167%"><span class="ct">19:22</span><span class="ct ct2">11:00</span></span></span></li><li class="crow"><a class="clab" href="#aswan">Cairo → Aswan</a><span class="ctrack"><span class="cbar train" style="left:18.750%;width:68.333%"><span class="ct">19:45</span><span class="ct ct2">09:25</span></span></span></li><li class="crow"><a class="clab" href="#palermo">Rome → Palermo</a><span class="ctrack"><span class="cbar train approx" style="left:21.333%;width:64.167%"><span class="ct">20:16</span><span class="ct ct2">09:06</span></span></span></li><li class="crow"><a class="clab" href="#rotterdam">Hull → Rotterdam</a><span class="ctrack"><span class="cbar ferry approx" style="left:22.500%;width:62.500%"><span class="ct">20:30</span><span class="ct ct2">09:00</span></span></span></li><li class="crow"><a class="clab" href="#xian">Beijing → Xi’an</a><span class="ctrack"><span class="cbar train approx" style="left:23.417%;width:59.500%"><span class="ct">20:41</span><span class="ct ct2">08:35</span></span></span></li><li class="crow"><a class="clab" href="#melbourne">Sydney → Melbourne</a><span class="ctrack"><span class="cbar train" style="left:23.500%;width:54.000%"><span class="ct">20:42</span><span class="ct ct2">07:30</span></span></span></li><li class="crow"><a class="clab" href="#briancon">Paris → Briançon</a><span class="ctrack"><span class="cbar train approx" style="left:24.250%;width:58.917%"><span class="ct">20:51</span><span class="ct ct2">08:38</span></span></span></li><li class="crow"><a class="clab" href="#heraklion">Athens (Piraeus) → Heraklion</a><span class="ctrack"><span class="cbar ferry" style="left:25.000%;width:47.500%"><span class="ct">21:00</span><span class="ct ct2">06:30</span></span></span></li><li class="crow"><a class="clab" href="#fortwilliam">London → Fort William</a><span class="ctrack"><span class="cbar train" style="left:26.250%;width:63.750%"><span class="ct">21:15</span><span class="ct ct2">10:00</span></span></span></li><li class="crow"><a class="clab" href="#izumo">Tokyo → Izumo</a><span class="ctrack"><span class="cbar train" style="left:27.167%;width:62.833%"><span class="ct">21:26</span><span class="ct ct2">10:00</span></span></span></li><li class="crow"><a class="clab" href="#venice">Vienna → Venice</a><span class="ctrack"><span class="cbar train approx" style="left:27.250%;width:55.583%"><span class="ct">21:27</span><span class="ct ct2">08:34</span></span></span></li><li class="crow"><a class="clab" href="#laocai">Hanoi → Lao Cai (for Sapa)</a><span class="ctrack"><span class="cbar train" style="left:30.000%;width:39.167%"><span class="ct">22:00</span><span class="ct ct2">05:50</span></span></span></li><li class="crow"><a class="clab" href="#kyoto">Tokyo → Kyoto</a><span class="ctrack"><span class="cbar coach" style="left:32.500%;width:39.583%"><span class="ct">22:30</span><span class="ct ct2">06:25</span></span></span></li><li class="crow"><a class="clab" href="#penzance">London → Penzance</a><span class="ctrack"><span class="cbar train" style="left:38.750%;width:40.417%"><span class="ct">23:45</span><span class="ct ct2">07:50</span></span></span></li><li class="crow"><a class="clab" href="#oaxaca">Mexico City → Oaxaca</a><span class="ctrack"><span class="cbar coach approx" style="left:39.917%;width:33.833%"><span class="ct">23:59</span><span class="ct ct2">06:45</span></span></span></li></ol>
+<div class="ckey"><span><i class="sw train"></i>Train</span><span><i class="sw ferry"></i>Ferry</span><span><i class="sw coach"></i>Coach</span><span><i class="sw approx"></i>Times vary or not confirmed by the operator</span><span>Clock times are local; Hull–Rotterdam and Stockholm–Helsinki each cross into a time zone an hour ahead.</span></div>
+</div>
+</section>
+<section class="wrap" id="directory" aria-labelledby="dir-h">
+<h2 id="dir-h">The directory</h2>
+<form class="filters" id="filters" aria-label="Filter the routes" hidden>
+<fieldset><legend>Mode</legend><div class="seg" data-f="mode"><button type="button" aria-pressed="true" data-v="all">All</button><button type="button" aria-pressed="false" data-v="train">Train</button><button type="button" aria-pressed="false" data-v="ferry">Ferry</button><button type="button" aria-pressed="false" data-v="coach">Coach</button></div></fieldset>
+<fieldset><legend>Arrives</legend><div class="seg" data-f="arr"><button type="button" aria-pressed="true" data-v="all">Any time</button><button type="button" aria-pressed="false" data-v="early">Before 07:00</button><button type="button" aria-pressed="false" data-v="mid">07:00–09:30</button><button type="button" aria-pressed="false" data-v="late">After 09:30</button></div></fieldset>
+<fieldset><legend>Time aboard</legend><div class="seg" data-f="len"><button type="button" aria-pressed="true" data-v="all">Any</button><button type="button" aria-pressed="false" data-v="short">Under 9 h</button><button type="button" aria-pressed="false" data-v="mid">9–12 h</button><button type="button" aria-pressed="false" data-v="long">12 h or more</button></div></fieldset>
+<fieldset><legend>What it saves</legend><div class="seg" data-f="kind"><button type="button" aria-pressed="true" data-v="all">Either</button><button type="button" aria-pressed="false" data-v="hotel">A hotel night</button><button type="button" aria-pressed="false" data-v="day">A travel day</button></div></fieldset>
+<div class="frow"><label class="chk"><input type="checkbox" id="fret"> Full day out, back the same night</label>
+<label class="sel">Sort <select id="sort"><option value="dir">Directory order</option><option value="ground">Most hours on the ground</option><option value="dep">Departure time</option><option value="arrm">Arrival time</option><option value="lenm">Shortest night</option></select></label>
+<span class="count" id="count" aria-live="polite"></span><button type="button" class="reset" id="reset">Reset</button></div>
+</form>
+<div class="cards" id="cards"><article class="card train" id="fortwilliam" data-mode="train" data-arr="late" data-len="long" data-ret="yes" data-kind="day" data-region="Europe" data-dep="1275" data-arrm="2040" data-lenm="765" data-ground="590">
+<header class="ch">
+<p class="cno">01 · Train · United Kingdom</p>
+<h3>London <span class="to">to</span> Fort William</h3>
+<p class="cop">Caledonian Sleeper, Highland service (Fort William portion)</p>
+</header>
+<div class="chain" aria-label="Departure 21:15, arrival 10:00, then ScotRail to Mallaig">
+<span class="node"><b>21:15</b><small>London</small></span>
+<span class="link"><small>12 h 45 min</small></span>
+<span class="node"><b>10:00</b><small>Fort William</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>ScotRail to Mallaig</small></span>
+</div>
+<p class="tags"><span class="tag">12 h 45 aboard</span><span class="tag k-day">Gives back a travel day</span><span class="tag gr"><b>9 h 50</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>Euston 21:15 Monday to Friday, Fort William 10:00, in the timetable valid to 12 December 2026. The Sunday departure differs; check the date.<sup class="ref">[<a href="#s1">1</a>,<a href="#s3">3</a>]</sup> The 16-coach train leaves London as one train and splits into three at Edinburgh, for Aberdeen, Fort William and Inverness.<sup class="ref">[<a href="#s4">4</a>]</sup> <span class="days">Sunday to Friday nights; no Saturday train.</span></dd></div>
+<div><dt>On board</dt><dd>Classic Room, Club En-suite Room, Caledonian Double En-suite, accessible rooms, and a Seated Coach. A Club Car serves food and drink.<sup class="ref">[<a href="#s4">4</a>,<a href="#s5">5</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>The station sits at the northern end of the High Street.<sup class="ref">[<a href="#s6">6</a>]</sup> ScotRail trains run on along the West Highland line to Mallaig several times a day, and coaches go to Oban, Skye and Inverness.<sup class="ref">[<a href="#s6">6</a>,<a href="#s7">7</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>Fort William 19:50 Monday to Friday, 19:00 on Sundays<sup class="ref">[<a href="#s1">1</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Fort William trains are amended on 13–17 and 20–24 November 2026, with more changes listed for January 2027.<sup class="ref">[<a href="#s3">3</a>]</sup> Tickets go on sale up to 12 months ahead.<sup class="ref">[<a href="#s8">8</a>]</sup> Rooms must be vacated by 10:00 on arrival.<sup class="ref">[<a href="#s5">5</a>]</sup></dd></div>
+</dl>
+<p class="fact">The last two hours are the West Highland line across open moorland: the train calls at Rannoch at 08:44 and Corrour at 08:58 before running down to Fort William.<sup class="ref">[<a href="#s1">1</a>]</sup></p>
+</article><article class="card train" id="penzance" data-mode="train" data-arr="mid" data-len="short" data-ret="yes" data-kind="hotel" data-region="Europe" data-dep="1425" data-arrm="1910" data-lenm="485" data-ground="835">
+<header class="ch">
+<p class="cno">02 · Train · United Kingdom</p>
+<h3>London <span class="to">to</span> Penzance</h3>
+<p class="cop">Great Western Railway, Night Riviera Sleeper</p>
+</header>
+<div class="chain" aria-label="Departure 23:45, arrival 07:50, then Bus 1 or Scilly ferry">
+<span class="node"><b>23:45</b><small>London</small></span>
+<span class="link"><small>8 h 05 min</small></span>
+<span class="node"><b>07:50</b><small>Penzance</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Bus 1 or Scilly ferry</small></span>
+</div>
+<p class="tags"><span class="tag">8 h 05 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="tag gr"><b>13 h 55</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>Paddington 23:45 Monday to Friday (23:50 Sundays), Penzance 07:50 (07:54 Sundays). Boarding opens at 22:30.<sup class="ref">[<a href="#s9">9</a>]</sup> <span class="days">Sunday to Friday nights.</span></dd></div>
+<div><dt>On board</dt><dd>Free airline-style seats, single and twin cabins, one accessible cabin per train, and a lounge bar. On 8 November 2026 GWR listed cabins from £49 (single) and £59 (twin), on top of a rail ticket.<sup class="ref">[<a href="#s9">9</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Penzance is a terminus built on the sea wall by the harbour.<sup class="ref">[<a href="#s10">10</a>]</sup> The Isles of Scilly ferry quay is under 15 minutes on foot,<sup class="ref">[<a href="#s11">11</a>]</sup> and First Kernow bus 1 runs to Land’s End via Newlyn and Porthcurno.<sup class="ref">[<a href="#s12">12</a>]</sup> 2026 is the last season for the Scillonian III, which sails until November; as of March 2026 her replacement was due in March 2027.<sup class="ref">[<a href="#s13">13</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>Penzance 21:45 Monday to Friday, 21:15 on Sundays<sup class="ref">[<a href="#s9">9</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>On 28–29 November 2026 Paddington is closed and the sleeper uses Euston. From 24 to 28 January 2027 it starts and ends at Truro or Plymouth.<sup class="ref">[<a href="#s14">14</a>]</sup> Advance tickets are on sale to 7 May 2027.<sup class="ref">[<a href="#s9">9</a>]</sup></dd></div>
+</dl>
+<p class="fact">The service took the name Night Riviera on 11 July 1983. Its Mark 3 carriages were rebuilt in 2017–18 with keycard locks and an accessible berth.<sup class="ref">[<a href="#s15">15</a>]</sup></p>
+</article><article class="card train" id="briancon" data-mode="train" data-arr="mid" data-len="mid" data-ret="yes" data-kind="hotel" data-region="Europe" data-dep="1251" data-arrm="1958" data-lenm="707" data-ground="680">
+<header class="ch">
+<p class="cno">03 · Train · France</p>
+<h3>Paris <span class="to">to</span> Briançon</h3>
+<p class="cop">SNCF Intercités de Nuit</p>
+</header>
+<div class="chain" aria-label="Departure 20:51, arrival 08:38, then AltiGo bus or ZOU 76">
+<span class="node"><b>20:51</b><small>Paris</small></span>
+<span class="link"><small>about 12 h</small></span>
+<span class="node"><b>08:38</b><small>Briançon</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>AltiGo bus or ZOU 76</small></span>
+</div>
+<p class="tags"><span class="tag">11 h 47 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="tag gr"><b>11 h 20</b> on the ground (approx.)</span></p>
+<dl>
+<div><dt>Times</dt><dd>The usual pattern is Paris Austerlitz 20:51, Briançon 08:38.<sup class="ref">[<a href="#s16">16</a>]</sup> Works shift it: SNCF Connect showed 20:30 to 08:00 for 9 November 2026.<sup class="ref">[<a href="#s17">17</a>]</sup> Check the date. <span class="days">Nightly, with frequent engineering changes.</span></dd></div>
+<div><dt>On board</dt><dd>Seats and six-berth couchettes in second class, four-berth couchettes in first, women-only compartments, and whole compartments to yourself from €150 (second) or €180 (first), as listed on 8 November 2026.<sup class="ref">[<a href="#s18">18</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Briançon is the end of the line, with onward TER trains to Gap, Valence and Marseille.<sup class="ref">[<a href="#s19">19</a>]</sup> The local AltiGo network runs eight daily routes, and ZOU coach 76 crosses to Oulx in Italy for TGVs; it has to be booked 48 hours ahead.<sup class="ref">[<a href="#s20">20</a>,<a href="#s21">21</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>Briançon about 19:57–19:58, reaching Austerlitz at 07:53<sup class="ref">[<a href="#s16">16</a>,<a href="#s22">22</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>SNCF’s works plan lists heavy-works weekends on 21–22 November and 5–6 December 2026; some trains are replaced by coaches.<sup class="ref">[<a href="#s16">16</a>,<a href="#s23">23</a>]</sup> Booking usually opens four months ahead.<sup class="ref">[<a href="#s18">18</a>]</sup></dd></div>
+</dl>
+<p class="fact">The line up to Briançon opened in 1884, and the coaches, built in the 1970s and 1980s, have been renovated since 2021.<sup class="ref">[<a href="#s16">16</a>]</sup></p>
+</article><article class="card train" id="venice" data-mode="train" data-arr="mid" data-len="mid" data-ret="yes" data-kind="hotel" data-region="Europe" data-dep="1287" data-arrm="1954" data-lenm="667" data-ground="751">
+<header class="ch">
+<p class="cno">04 · Train · Austria → Italy</p>
+<h3>Vienna <span class="to">to</span> Venice</h3>
+<p class="cop">ÖBB Nightjet NJ 40466 / NJ 40236</p>
+</header>
+<div class="chain" aria-label="Departure 21:27, arrival 08:34, then Vaporetto 1 or 2">
+<span class="node"><b>21:27</b><small>Vienna</small></span>
+<span class="link"><small>about 11 h</small></span>
+<span class="node"><b>08:34</b><small>Venice</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Vaporetto 1 or 2</small></span>
+</div>
+<p class="tags"><span class="tag">11 h 07 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="tag gr"><b>12 h 31</b> on the ground (approx.)</span></p>
+<dl>
+<div><dt>Times</dt><dd>Wien Hbf about 21:30 (sources give 21:27 and 21:39), Venezia Santa Lucia 08:34.<sup class="ref">[<a href="#s24">24</a>,<a href="#s25">25</a>]</sup> Nightride showed bookable departures every night of 7–13 November 2026.<sup class="ref">[<a href="#s26">26</a>]</sup> <span class="days">Nightly.</span></dd></div>
+<div><dt>On board</dt><dd>Seats, couchettes and sleeping cars.<sup class="ref">[<a href="#s27">27</a>]</sup> ÖBB’s new-generation mini cabins run only on its newer trains; this route is not listed among them, so don’t count on one.<sup class="ref">[<a href="#s27">27</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Santa Lucia faces the Grand Canal in Cannaregio.<sup class="ref">[<a href="#s28">28</a>]</sup> From the Ferrovia stop, vaporetto line 2 reaches Rialto in about 10 minutes and line 1, which calls everywhere, in about 20.<sup class="ref">[<a href="#s29">29</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>NJ 40236 leaves Santa Lucia at 21:05 and reaches Vienna about 08:00<sup class="ref">[<a href="#s25">25</a>,<a href="#s30">30</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>ÖBB warns that engineering works can reroute its trains.<sup class="ref">[<a href="#s27">27</a>]</sup> When it cut its La Spezia Nightjets for 2026, the Venice and Rome trains were left running as normal.<sup class="ref">[<a href="#s31">31</a>]</sup></dd></div>
+</dl>
+<p class="fact">The train spends about an hour and a half standing in Salzburg after midnight, then crosses into Italy at Tarvisio before dawn and comes down onto the Venetian plain at breakfast.<sup class="ref">[<a href="#s24">24</a>,<a href="#s30">30</a>]</sup></p>
+</article><article class="card train" id="prague" data-mode="train" data-arr="late" data-len="long" data-ret="yes" data-kind="day" data-region="Europe" data-dep="1162" data-arrm="2100" data-lenm="938" data-ground="420">
+<header class="ch">
+<p class="cno">05 · Train · Belgium → Czechia</p>
+<h3>Brussels <span class="to">to</span> Prague</h3>
+<p class="cop">European Sleeper ES 453 / ES 452</p>
+</header>
+<div class="chain" aria-label="Departure 19:22, arrival 11:00, then Metro C or tram">
+<span class="node"><b>19:22</b><small>Brussels</small></span>
+<span class="link"><small>about 15 h 40 min</small></span>
+<span class="node"><b>11:00</b><small>Prague</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Metro C or tram</small></span>
+</div>
+<p class="tags"><span class="tag">15 h 38 aboard</span><span class="tag k-day">Gives back a travel day</span><span class="tag gr"><b>7 h</b> on the ground (approx.)</span></p>
+<dl>
+<div><dt>Times</dt><dd>Bruxelles-Midi 19:22, via Antwerp, Rotterdam, Amsterdam (22:34) and Berlin, Praha hlavní nádraží about 11:00 (sources give 10:51 to 11:00).<sup class="ref">[<a href="#s32">32</a>,<a href="#s33">33</a>]</sup> It leaves Brussels on Monday, Wednesday and Friday nights.<sup class="ref">[<a href="#s34">34</a>]</sup> <span class="days">From Brussels Monday, Wednesday and Friday.</span></dd></div>
+<div><dt>On board</dt><dd>Comfort Plus (one to three beds), Comfort Standard (a made-up couchette for up to three), Classic five-berth couchettes and Budget seats. There is no dining car; breakfast is included with Comfort Plus.<sup class="ref">[<a href="#s33">33</a>,<a href="#s35">35</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>The main station is about 10 minutes’ walk from Wenceslas Square, with metro line C underneath and trams 5, 8, 9, 15 and 26 across the park.<sup class="ref">[<a href="#s36">36</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>ES 452 leaves Prague at 18:00 on Tuesday, Thursday and Sunday, so you can come back the same evening after a Monday or Wednesday departure, but not after a Friday one<sup class="ref">[<a href="#s34">34</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Through October and November 2026 the train calls at Berlin Gesundbrunnen instead of the main station, and on 10 and 12 November it terminates in Dresden, with buses to Prague.<sup class="ref">[<a href="#s37">37</a>]</sup> Trackwork can move it by up to an hour at a few weeks’ notice.<sup class="ref">[<a href="#s33">33</a>]</sup></dd></div>
+</dl>
+<p class="fact">The Brussels–Berlin train started in May 2023 and reached Prague in March 2024;<sup class="ref">[<a href="#s33">33</a>]</sup> in September 2024 that extension was briefly in doubt over missing German path data.<sup class="ref">[<a href="#s38">38</a>]</sup></p>
+</article><article class="card train" id="palermo" data-mode="train" data-arr="mid" data-len="long" data-ret="yes" data-kind="day" data-region="Europe" data-dep="1216" data-arrm="1986" data-lenm="770" data-ground="582">
+<header class="ch">
+<p class="cno">06 · Train · Italy</p>
+<h3>Rome <span class="to">to</span> Palermo</h3>
+<p class="cop">Trenitalia Intercity Notte</p>
+</header>
+<div class="chain" aria-label="Departure 20:16, arrival 09:06, then Tram 1 or bus">
+<span class="node"><b>20:16</b><small>Rome</small></span>
+<span class="link"><small>about 12 h 50 min</small></span>
+<span class="node"><b>09:06</b><small>Palermo</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Tram 1 or bus</small></span>
+</div>
+<p class="tags"><span class="tag">12 h 50 aboard</span><span class="tag k-day">Gives back a travel day</span><span class="tag gr"><b>9 h 42</b> on the ground (approx.)</span></p>
+<dl>
+<div><dt>Times</dt><dd>Roma Termini 20:16 (20:31 at weekends), Villa San Giovanni 03:30, Messina 05:15, Cefalù 08:16, Palermo Centrale 09:06, according to Seat 61’s 2026 timetable.<sup class="ref">[<a href="#s39">39</a>]</sup> Running days vary with trackwork, so check the date.<sup class="ref">[<a href="#s39">39</a>,<a href="#s40">40</a>]</sup> <span class="days">Daily, with date-by-date changes.</span></dd></div>
+<div><dt>On board</dt><dd>Relax sleepers with one, two or three beds and a washbasin, sold by the compartment, and four-berth Comfort couchettes sold by the berth. There are no seats on this train.<sup class="ref">[<a href="#s39">39</a>]</sup> Reservation is compulsory.<sup class="ref">[<a href="#s40">40</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Palermo Centrale is in the middle of the city, at the end of tram line 1, with city buses and a rail link to the airport.<sup class="ref">[<a href="#s41">41</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>Palermo 18:48 daily, reaching Rome at 07:24<sup class="ref">[<a href="#s39">39</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Booking opens up to four months ahead, and sleepers sometimes go on sale later than day trains. Trains can run an hour or two late.<sup class="ref">[<a href="#s39">39</a>]</sup></dd></div>
+</dl>
+<p class="fact">At Villa San Giovanni the carriages are shunted onto a train ferry and sailed across the Strait of Messina, about 20 minutes on the water. Sleeper passengers can stay in bed.<sup class="ref">[<a href="#s39">39</a>]</sup></p>
+</article><article class="card ferry" id="helsinki" data-mode="ferry" data-arr="late" data-len="long" data-ret="yes" data-kind="day" data-region="Europe" data-dep="1005" data-arrm="2070" data-lenm="1005" data-ground="390">
+<header class="ch">
+<p class="cno">07 · Ferry · Sweden → Finland</p>
+<h3>Stockholm <span class="to">to</span> Helsinki</h3>
+<p class="cop">Tallink Silja Line, Silja Serenade / Silja Symphony</p>
+</header>
+<div class="chain" aria-label="Departure 16:45, arrival 10:30, then Tram 2 or 3">
+<span class="node"><b>16:45</b><small>Stockholm</small></span>
+<span class="link"><small>16 h 45 min</small></span>
+<span class="node"><b>10:30</b><small>Helsinki</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Tram 2 or 3</small></span>
+</div>
+<p class="tags"><span class="tag">16 h 45 aboard</span><span class="tag k-day">Gives back a travel day</span><span class="tag gr"><b>6 h 30</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>Värtahamnen 16:45, Mariehamn on Åland at 23:45, Helsinki Olympia Terminal 10:30 Finnish time, an hour ahead of Stockholm. These are the times in Tallink’s 2024–25 timetable, and Seat 61 and Ferryhopper give the same for 2026.<sup class="ref">[<a href="#s42">42</a>,<a href="#s43">43</a>,<a href="#s44">44</a>]</sup> Viking Line sails the same night from Stadsgården at 16:30 to Katajanokka.<sup class="ref">[<a href="#s43">43</a>,<a href="#s44">44</a>]</sup> <span class="days">Daily, except dry-dock periods.</span></dd></div>
+<div><dt>On board</dt><dd>Cabins from C-Economy inside up through Standard, Deluxe and suites, plus Moomin-themed family cabins.<sup class="ref">[<a href="#s45">45</a>]</sup> Standard cabins have their own shower and toilet.<sup class="ref">[<a href="#s46">46</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Olympia Terminal is about 1.8 km, or a 23-minute walk, from Helsinki station; trams 2 and 3 stop about 100 m away.<sup class="ref">[<a href="#s46">46</a>]</sup> In Stockholm, Gärdet metro is about 12 minutes’ walk from the terminal.<sup class="ref">[<a href="#s43">43</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>The other ship leaves Helsinki at 17:00, back in Stockholm at about 10:00<sup class="ref">[<a href="#s42">42</a>,<a href="#s46">46</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Check-in for the return in Helsinki runs 14:45–16:15.<sup class="ref">[<a href="#s47">47</a>]</sup> Guides published before 2026 can carry old times; check the date on tallink.com.</dd></div>
+</dl>
+<p class="fact">Silja Serenade and Silja Symphony entered service in 1990 and 1991,<sup class="ref">[<a href="#s48">48</a>]</sup> and the boarding pass on your phone is also your cabin key.<sup class="ref">[<a href="#s46">46</a>]</sup></p>
+</article><article class="card ferry" id="rotterdam" data-mode="ferry" data-arr="mid" data-len="mid" data-ret="yes" data-kind="hotel" data-region="Europe" data-dep="1230" data-arrm="1980" data-lenm="690" data-ground="420">
+<header class="ch">
+<p class="cno">08 · Ferry · United Kingdom → Netherlands</p>
+<h3>Hull <span class="to">to</span> Rotterdam</h3>
+<p class="cop">P&amp;O Ferries, Pride of Hull / Pride of Rotterdam</p>
+</header>
+<div class="chain" aria-label="Departure 20:30, arrival 09:00, then P&amp;O coach to Centraal">
+<span class="node"><b>20:30</b><small>Hull</small></span>
+<span class="link"><small>about 11 h 30 min</small></span>
+<span class="node"><b>09:00</b><small>Rotterdam</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>P&amp;O coach to Centraal</small></span>
+</div>
+<p class="tags"><span class="tag">11 h 30 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="tag gr"><b>7 h</b> on the ground (approx.)</span></p>
+<dl>
+<div><dt>Times</dt><dd>P&O’s route page gives Hull departures at 20:30 on weekdays and 20:00 at weekends, about 11½ hours.<sup class="ref">[<a href="#s49">49</a>]</sup> Its own dated sailings and Seat 61 put arrival at Europoort between 08:30 and 09:00, local time, an hour ahead of Hull.<sup class="ref">[<a href="#s50">50</a>,<a href="#s51">51</a>]</sup> <span class="days">Most nights; check the date.</span></dd></div>
+<div><dt>On board</dt><dd>Standard, Club, Premier and State Room cabins, accessible and dog-friendly cabins.<sup class="ref">[<a href="#s49">49</a>,<a href="#s52">52</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Europoort is about 40 km west of Rotterdam with no regular public transport.<sup class="ref">[<a href="#s53">53</a>]</sup> P&O’s coach, which has to be added to the booking, takes about 45 minutes to a stop on Conradstraat beside Rotterdam Centraal.<sup class="ref">[<a href="#s50">50</a>,<a href="#s51">51</a>]</sup> Trains from there reach Amsterdam in about 41 minutes.<sup class="ref">[<a href="#s51">51</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>The coach back leaves Conradstraat at 17:00 for the 21:00 sailing (20:30 at weekends)<sup class="ref">[<a href="#s50">50</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Ferryhopper’s calendar suggests not every night is served in every month.<sup class="ref">[<a href="#s53">53</a>]</sup> Check-in closes 90 minutes before sailing, and under-16s must travel with an adult.<sup class="ref">[<a href="#s54">54</a>]</sup></dd></div>
+</dl>
+<p class="fact">Pride of Hull is 215 m long, 59,925 gross tons, with 546 cabins and room for 1,360 passengers.<sup class="ref">[<a href="#s52">52</a>]</sup></p>
+</article><article class="card train" id="izumo" data-mode="train" data-arr="late" data-len="long" data-ret="yes" data-kind="day" data-region="Asia" data-dep="1286" data-arrm="2040" data-lenm="754" data-ground="537">
+<header class="ch">
+<p class="cno">09 · Train · Japan</p>
+<h3>Tokyo <span class="to">to</span> Izumo</h3>
+<p class="cop">JR Sunrise Izumo (with Sunrise Seto)</p>
+</header>
+<div class="chain" aria-label="Departure 21:26, arrival 10:00, then Ichibata bus or train">
+<span class="node"><b>21:26</b><small>Tokyo</small></span>
+<span class="link"><small>12 h 34 min</small></span>
+<span class="node"><b>10:00</b><small>Izumo</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Ichibata bus or train</small></span>
+</div>
+<p class="tags"><span class="tag">12 h 34 aboard</span><span class="tag k-day">Gives back a travel day</span><span class="tag gr"><b>8 h 57</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>Tokyo 21:26, Okayama 06:27, Izumo-shi 10:00, in JR East’s November 2026 timetable.<sup class="ref">[<a href="#s55">55</a>,<a href="#s56">56</a>]</sup> At Okayama the two trains part: the Seto reaches Takamatsu on Shikoku at 07:27.<sup class="ref">[<a href="#s55">55</a>]</sup> <span class="days">Daily.</span></dd></div>
+<div><dt>On board</dt><dd>A-class Single Deluxe; B-class Solo, Single, Single Twin and Sunrise Twin rooms; and Nobinobi, carpeted lie-flat spaces sold as seats.<sup class="ref">[<a href="#s55">55</a>,<a href="#s56">56</a>,<a href="#s57">57</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>The private Ichibata line’s Dentetsu-Izumoshi station is about 100 m east of the JR station.<sup class="ref">[<a href="#s58">58</a>]</sup> Ichibata buses from stop 1 reach the great shrine, Izumo Taisha, in about 25 minutes.<sup class="ref">[<a href="#s59">59</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>Izumo-shi 18:57, Tokyo 07:08<sup class="ref">[<a href="#s60">60</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Sales open one month ahead and twin rooms often sell out at once.<sup class="ref">[<a href="#s57">57</a>]</sup> Heavy rain or snow can stop trains on the San’in line.<sup class="ref">[<a href="#s57">57</a>]</sup> Guides published before March 2026 give the old 21:50 departure.<sup class="ref">[<a href="#s2">2</a>]</sup></dd></div>
+</dl>
+<p class="fact">Since 14 March 2026 the train has left Tokyo 24 minutes earlier, because JR Central wanted longer overnight maintenance windows on the Tokaido line.<sup class="ref">[<a href="#s2">2</a>,<a href="#s61">61</a>]</sup> The service began on 10 July 1998 and five 285-series sets were built for it.<sup class="ref">[<a href="#s62">62</a>,<a href="#s63">63</a>]</sup></p>
+</article><article class="card coach" id="kyoto" data-mode="coach" data-arr="early" data-len="short" data-ret="yes" data-kind="hotel" data-region="Asia" data-dep="1350" data-arrm="1825" data-lenm="475" data-ground="975">
+<header class="ch">
+<p class="cno">10 · Coach · Japan</p>
+<h3>Tokyo <span class="to">to</span> Kyoto</h3>
+<p class="cop">WILLER EXPRESS WK156</p>
+</header>
+<div class="chain" aria-label="Departure 22:30, arrival 06:25, then Kyoto Station">
+<span class="node"><b>22:30</b><small>Tokyo</small></span>
+<span class="link"><small>7 h 55 min</small></span>
+<span class="node"><b>06:25</b><small>Kyoto</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Kyoto Station</small></span>
+</div>
+<p class="tags"><span class="tag">7 h 55 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="flag">Short night</span><span class="tag gr"><b>16 h 15</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>Tokyo Disneyland 21:30, Bus Terminal Tokyo Yaesu 22:30, Kyoto Station Hachijō exit (stop G2) 06:25, then on to Osaka Umeda at 07:45. These times come from a single booking site, kosokubus.com.<sup class="ref">[<a href="#s64">64</a>,<a href="#s65">65</a>]</sup> <span class="days">Listed nightly in November 2026 (days not confirmed).</span></dd></div>
+<div><dt>On board</dt><dd>Shell-like “dome” seats three to a row (two plus one) with a canopy, leg rest and a power socket. Most coaches have no toilet and stop every two to three hours. There is a women-only section.<sup class="ref">[<a href="#s64">64</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>The bus stops on the south (Hachijō) side of Kyoto Station, the city’s rail hub.<sup class="ref">[<a href="#s64">64</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>WILLER WX289 leaves Kyoto 22:40 for Busta Shinjuku, arriving 07:40<sup class="ref">[<a href="#s66">66</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Willer opens bookings about three months ahead.<sup class="ref">[<a href="#s67">67</a>]</sup> Buses leave on time and don’t wait.<sup class="ref">[<a href="#s64">64</a>]</sup> Several other operators run the same night, including Premium Grace from Yaesu at 21:45.<sup class="ref">[<a href="#s65">65</a>]</sup></dd></div>
+</dl>
+<p class="fact">Willer emails you the coach number a few hours before departure, so you know which of the line of buses is yours.<sup class="ref">[<a href="#s64">64</a>]</sup></p>
+</article><article class="card train" id="xian" data-mode="train" data-arr="mid" data-len="mid" data-ret="yes" data-kind="hotel" data-region="Asia" data-dep="1241" data-arrm="1955" data-lenm="714" data-ground="644">
+<header class="ch">
+<p class="cno">11 · Train · China</p>
+<h3>Beijing <span class="to">to</span> Xi’an</h3>
+<p class="cop">China Railway D19 sleeper</p>
+</header>
+<div class="chain" aria-label="Departure 20:41, arrival 08:35, then Metro line 4">
+<span class="node"><b>20:41</b><small>Beijing</small></span>
+<span class="link"><small>about 12 h</small></span>
+<span class="node"><b>08:35</b><small>Xi’an</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Metro line 4</small></span>
+</div>
+<p class="tags"><span class="tag">11 h 54 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="tag gr"><b>10 h 44</b> on the ground (approx.)</span></p>
+<dl>
+<div><dt>Times</dt><dd>Beijing West 20:41, Xi’an 08:35, according to two guides updated in July 2026.<sup class="ref">[<a href="#s68">68</a>,<a href="#s69">69</a>]</sup> Older guides list 20:18 to 07:55.<sup class="ref">[<a href="#s70">70</a>]</sup> Check the official 12306 timetable for your date. <span class="days">Daily (not confirmed by 12306).</span></dd></div>
+<div><dt>On board</dt><dd>Sleeping cars, described by guides as first-class (four-berth compartment) and second-class sleepers.<sup class="ref">[<a href="#s68">68</a>,<a href="#s69">69</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Xi’an station stands just north of the city wall, about 3.5 km from the Bell Tower, with metro line 4 underneath since 2022.<sup class="ref">[<a href="#s71">71</a>,<a href="#s72">72</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>D20 leaves Xi’an at 19:19 and reaches Beijing West at 07:08<sup class="ref">[<a href="#s68">68</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Tickets go on sale 15 days ahead. Foreigners can buy through the 12306 app once their passport is approved, or through Trip.com; names must match passports.<sup class="ref">[<a href="#s73">73</a>]</sup></dd></div>
+</dl>
+<p class="fact">Xi’an station opened in 1935 just outside the north wall, so the morning starts at the edge of the old city.<sup class="ref">[<a href="#s71">71</a>]</sup></p>
+</article><article class="card train" id="chiangmai" data-mode="train" data-arr="mid" data-len="long" data-ret="yes" data-kind="day" data-region="Asia" data-dep="1120" data-arrm="1875" data-lenm="755" data-ground="590">
+<header class="ch">
+<p class="cno">12 · Train · Thailand</p>
+<h3>Bangkok <span class="to">to</span> Chiang Mai</h3>
+<p class="cop">State Railway of Thailand, Special Express 9</p>
+</header>
+<div class="chain" aria-label="Departure 18:40, arrival 07:15, then Songthaew to the old city">
+<span class="node"><b>18:40</b><small>Bangkok</small></span>
+<span class="link"><small>12 h 35 min</small></span>
+<span class="node"><b>07:15</b><small>Chiang Mai</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Songthaew to the old city</small></span>
+</div>
+<p class="tags"><span class="tag">12 h 35 aboard</span><span class="tag k-day">Gives back a travel day</span><span class="tag gr"><b>9 h 50</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>Krung Thep Aphiwat 18:40, Chiang Mai 07:15; three guides agree.<sup class="ref">[<a href="#s74">74</a>,<a href="#s75">75</a>,<a href="#s76">76</a>]</sup> Bangkok’s long-distance trains moved there from Hua Lamphong in January 2023.<sup class="ref">[<a href="#s77">77</a>]</sup> <span class="days">Daily.</span></dd></div>
+<div><dt>On board</dt><dd>First-class sleepers in two-berth compartments with a washbasin, and open-plan second-class air-conditioned sleepers with a curtain for each berth.<sup class="ref">[<a href="#s74">74</a>,<a href="#s75">75</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Chiang Mai station is about 2.5 km east of the old city.<sup class="ref">[<a href="#s78">78</a>]</sup> Red shared trucks (songthaew) and tuk-tuks wait out front.<sup class="ref">[<a href="#s77">77</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>Special Express 14 leaves Chiang Mai 17:05, arriving 05:55; train 10 leaves at 18:00 or 18:20 (sources differ)<sup class="ref">[<a href="#s76">76</a>,<a href="#s79">79</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>SRT’s D-Ticket system has opened most long-distance trains six months ahead since mid-2024; lower berths go first.<sup class="ref">[<a href="#s74">74</a>,<a href="#s75">75</a>]</sup></dd></div>
+</dl>
+<p class="fact">The Chinese-built sleeping cars on trains 9 and 10 date from 2016, and their showers have hot water.<sup class="ref">[<a href="#s75">75</a>]</sup></p>
+</article><article class="card train" id="laocai" data-mode="train" data-arr="early" data-len="short" data-ret="yes" data-kind="hotel" data-region="Asia" data-dep="1320" data-arrm="1790" data-lenm="470" data-ground="935">
+<header class="ch">
+<p class="cno">13 · Train · Vietnam</p>
+<h3>Hanoi <span class="to">to</span> Lao Cai (for Sapa)</h3>
+<p class="cop">Vietnam Railways SP3</p>
+</header>
+<div class="chain" aria-label="Departure 22:00, arrival 05:50, then Bus to Sapa">
+<span class="node"><b>22:00</b><small>Hanoi</small></span>
+<span class="link"><small>7 h 50 min</small></span>
+<span class="node"><b>05:50</b><small>Lao Cai</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Bus to Sapa</small></span>
+</div>
+<p class="tags"><span class="tag">7 h 50 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="flag">Short night</span><span class="tag gr"><b>15 h 35</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>Hanoi 22:00, Lao Cai 05:50 on the timetable that began on 10 October 2026, which added a new pair, SP15 and SP16. SP15 leaves Hanoi at 21:45 and SP7 at 22:40.<sup class="ref">[<a href="#s80">80</a>,<a href="#s81">81</a>]</sup> <span class="days">Daily.</span></dd></div>
+<div><dt>On board</dt><dd>Four-berth soft sleepers, plus carriages run by private companies with their own names and grades, hitched to the same trains.<sup class="ref">[<a href="#s81">81</a>,<a href="#s82">82</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Sapa has no station: it is 38 km up the mountain.<sup class="ref">[<a href="#s81">81</a>,<a href="#s83">83</a>]</sup> A local bus leaves from the station car park and takes about an hour.<sup class="ref">[<a href="#s81">81</a>,<a href="#s84">84</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>SP16 leaves Lao Cai 21:25 and SP4 21:50, back in Hanoi by 05:15–05:40<sup class="ref">[<a href="#s80">80</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Times change around Tết and during engineering works.<sup class="ref">[<a href="#s81">81</a>]</sup> Agencies resell tickets at a mark-up.<sup class="ref">[<a href="#s81">81</a>]</sup></dd></div>
+</dl>
+<p class="fact">Demand pushed the railway to three pairs of passenger trains a day on the line from 10 October 2026, and to work with travel firms on premium carriages.<sup class="ref">[<a href="#s80">80</a>]</sup></p>
+</article><article class="card ferry" id="heraklion" data-mode="ferry" data-arr="early" data-len="mid" data-ret="yes" data-kind="hotel" data-region="Europe" data-dep="1260" data-arrm="1830" data-lenm="570" data-ground="870">
+<header class="ch">
+<p class="cno">14 · Ferry · Greece</p>
+<h3>Athens (Piraeus) <span class="to">to</span> Heraklion</h3>
+<p class="cop">Minoan Lines, Knossos Palace / Festos Palace</p>
+</header>
+<div class="chain" aria-label="Departure 21:00, arrival 06:30, then Walk, or KTEL bus">
+<span class="node"><b>21:00</b><small>Athens</small></span>
+<span class="link"><small>9 h 30 min</small></span>
+<span class="node"><b>06:30</b><small>Heraklion</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Walk, or KTEL bus</small></span>
+</div>
+<p class="tags"><span class="tag">9 h 30 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="flag">Short night</span><span class="tag gr"><b>14 h 30</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>Piraeus 21:00, a stop at Milos around 01:00, Heraklion 06:30. GTP’s timetable, updated 7 November 2026, runs the pattern to 24 February 2027.<sup class="ref">[<a href="#s85">85</a>,<a href="#s86">86</a>]</sup> Blue Star Ferries also leaves Piraeus at 21:00, arriving at 06:50 or 07:35 depending on the day.<sup class="ref">[<a href="#s86">86</a>]</sup> <span class="days">Daily, all year.</span></dd></div>
+<div><dt>On board</dt><dd>Deck economy, “VIP air type” seats, inside and outside cabins with shower and WC for one to four, deluxe cabins and pet-friendly cabins.<sup class="ref">[<a href="#s85">85</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>The port sits next to the town, within walking distance of the centre, with the intercity KTEL bus station opposite.<sup class="ref">[<a href="#s87">87</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>Heraklion 21:00, Piraeus 06:30<sup class="ref">[<a href="#s85">85</a>,<a href="#s88">88</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Gales bring sailing bans and can stop the ship calling at Milos; Minoan posted service notices after a ban was lifted on 15 October 2026.<sup class="ref">[<a href="#s89">89</a>]</sup></dd></div>
+</dl>
+<p class="fact">The ships are named after Minoan palaces: the Knossos Palace sails south, the Festos Palace (Phaistos) north.<sup class="ref">[<a href="#s85">85</a>]</sup></p>
+</article><article class="card ferry" id="devonport" data-mode="ferry" data-arr="early" data-len="mid" data-ret="yes" data-kind="hotel" data-region="Oceania" data-dep="1125" data-arrm="1800" data-lenm="675" data-ground="765">
+<header class="ch">
+<p class="cno">15 · Ferry · Australia</p>
+<h3>Geelong <span class="to">to</span> Devonport, Tasmania</h3>
+<p class="cop">Spirit of Tasmania IV / V</p>
+</header>
+<div class="chain" aria-label="Departure 18:45, arrival 06:00, then Your own car">
+<span class="node"><b>18:45</b><small>Geelong</small></span>
+<span class="link"><small>about 11 h 15 min</small></span>
+<span class="node"><b>06:00</b><small>Devonport</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Your own car</small></span>
+</div>
+<p class="tags"><span class="tag">11 h 15 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="flag">Short night</span><span class="tag gr"><b>12 h 45</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>The standard night sailing leaves at 6:45pm and arrives at 6:00am, in both directions.<sup class="ref">[<a href="#s90">90</a>,<a href="#s91">91</a>]</sup> On peak dates there is a day sailing too, and the night boat then leaves later in the evening.<sup class="ref">[<a href="#s90">90</a>]</sup> <span class="days">Nightly in both directions; extra day sailings on busy dates.</span></dd></div>
+<div><dt>On board</dt><dd>Recliners and business recliners, and private en-suite cabins: Deluxe, Twin, Four Bed, Family, pet-friendly and accessible.<sup class="ref">[<a href="#s92">92</a>,<a href="#s93">93</a>]</sup> Each new ship has 301 cabins.<sup class="ref">[<a href="#s94">94</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>The new Spirit Quay is in East Devonport, across the Mersey from the town centre.<sup class="ref">[<a href="#s92">92</a>,<a href="#s95">95</a>]</sup> Launceston is about 101 km away and Cradle Mountain about 83 km;<sup class="ref">[<a href="#s92">92</a>]</sup> the operator lists driving directions but no public transport.<sup class="ref">[<a href="#s96">96</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>The other ship leaves Devonport at 6:45pm, arriving in Geelong at 6:00am<sup class="ref">[<a href="#s90">90</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>The two new ships took their first passengers on 31 October 2026, replacing Spirit I and II.<sup class="ref">[<a href="#s91">91</a>,<a href="#s95">95</a>]</sup> Check-in opens 1.5 to 2.5 hours before sailing and closes 45 minutes before.<sup class="ref">[<a href="#s93">93</a>]</sup> An 11-month booking calendar returns in January 2027.<sup class="ref">[<a href="#s97">97</a>]</sup></dd></div>
+</dl>
+<p class="fact">The new ships are 212 m long and cross at about 26 knots.<sup class="ref">[<a href="#s94">94</a>]</sup> They arrived five years late and about $700 million over the original business case.<sup class="ref">[<a href="#s91">91</a>]</sup></p>
+</article><article class="card train" id="melbourne" data-mode="train" data-arr="mid" data-len="mid" data-ret="yes" data-kind="hotel" data-region="Oceania" data-dep="1242" data-arrm="1890" data-lenm="648" data-ground="740">
+<header class="ch">
+<p class="cno">16 · Train · Australia</p>
+<h3>Sydney <span class="to">to</span> Melbourne</h3>
+<p class="cop">NSW TrainLink XPT</p>
+</header>
+<div class="chain" aria-label="Departure 20:42, arrival 07:30, then Melbourne trams and trains">
+<span class="node"><b>20:42</b><small>Sydney</small></span>
+<span class="link"><small>10 h 48 min</small></span>
+<span class="node"><b>07:30</b><small>Melbourne</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Melbourne trams and trains</small></span>
+</div>
+<p class="tags"><span class="tag">10 h 48 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="tag gr"><b>12 h 20</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>Sydney Central 20:42, Melbourne Southern Cross 07:30. A daytime XPT runs too.<sup class="ref">[<a href="#s98">98</a>,<a href="#s99">99</a>]</sup> <span class="days">Daily.</span></dd></div>
+<div><dt>On board</dt><dd>Economy and First Class seats, and First Class sleepers with bedding, a shower and breakfast.<sup class="ref">[<a href="#s100">100</a>]</sup> The sleeping car has nine two-berth compartments.<sup class="ref">[<a href="#s101">101</a>,<a href="#s102">102</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Southern Cross is in Melbourne’s central business district. Opal cards aren’t valid on the XPT itself.<sup class="ref">[<a href="#s100">100</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>Southern Cross 19:50, Sydney 06:52<sup class="ref">[<a href="#s98">98</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>The XPT’s replacement, a CAF-built regional train, has seats only; it was still in testing in May 2026, while the old fleet is being refurbished.<sup class="ref">[<a href="#s102">102</a>,<a href="#s103">103</a>]</sup> Booking online or five or more days ahead is cheaper.<sup class="ref">[<a href="#s100">100</a>]</sup></dd></div>
+</dl>
+<p class="fact">XPT stands for Express Passenger Train; it is derived from British Rail’s High Speed Train and has run the overnight Melbourne service since November 1993.<sup class="ref">[<a href="#s104">104</a>]</sup></p>
+</article><article class="card train" id="autotrain" data-mode="train" data-arr="mid" data-len="long" data-ret="no" data-kind="day" data-region="Americas" data-dep="960" data-arrm="1979" data-lenm="1019" data-ground="-1">
+<header class="ch">
+<p class="cno">17 · Train · United States</p>
+<h3>Lorton, Virginia <span class="to">to</span> Sanford, Florida</h3>
+<p class="cop">Amtrak Auto Train</p>
+</header>
+<div class="chain" aria-label="Departure 16:00, arrival 08:59, then Your own car">
+<span class="node"><b>16:00</b><small>Lorton, Virginia</small></span>
+<span class="link"><small>16 h 59 min</small></span>
+<span class="node"><b>08:59</b><small>Sanford</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Your own car</small></span>
+</div>
+<p class="tags"><span class="tag">16 h 59 aboard</span><span class="tag k-day">Gives back a travel day</span><span class="tag gr"><b>No</b> practical same-evening return</span></p>
+<dl>
+<div><dt>Times</dt><dd>Lorton 4:00pm, Sanford 8:59am, non-stop for passengers over 855 miles. The times have applied since 10 November 2024.<sup class="ref">[<a href="#s105">105</a>,<a href="#s106">106</a>,<a href="#s107">107</a>]</sup> <span class="days">Daily.</span></dd></div>
+<div><dt>On board</dt><dd>Coach, Roomette, Bedroom, Family Bedroom, Accessible Bedroom and Bedroom Suite. Private rooms include dinner and a hot breakfast.<sup class="ref">[<a href="#s108">108</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Sanford is north of Orlando, at the southern end of the line.<sup class="ref">[<a href="#s109">109</a>]</sup> Cars come off in sequence; paid Priority Offloading puts yours among the first 30.<sup class="ref">[<a href="#s108">108</a>,<a href="#s110">110</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>On paper the 4:00pm back, seven hours after arrival, but vehicle check-in closes at 2:30pm and unloading takes time<sup class="ref">[<a href="#s108">108</a>,<a href="#s110">110</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>You must travel with a vehicle, within set sizes; no dual-wheel or gull-wing vehicles. Vehicle check-in runs 11:30am to 2:30pm, with no exceptions.<sup class="ref">[<a href="#s107">107</a>,<a href="#s110">110</a>]</sup> Reservations open 11 months ahead.<sup class="ref">[<a href="#s111">111</a>]</sup> A wildfire cancelled the train on 20 April 2026.<sup class="ref">[<a href="#s112">112</a>]</sup></dd></div>
+</dl>
+<p class="fact">A private Auto-Train started the run on 6 December 1971; Amtrak revived it after the company folded. Lorton was chosen because the car carriers were too tall for the tunnels further north.<sup class="ref">[<a href="#s113">113</a>]</sup></p>
+</article><article class="card coach" id="oaxaca" data-mode="coach" data-arr="early" data-len="short" data-ret="yes" data-kind="hotel" data-region="Americas" data-dep="1439" data-arrm="1845" data-lenm="406" data-ground="900">
+<header class="ch">
+<p class="cno">18 · Coach · Mexico</p>
+<h3>Mexico City <span class="to">to</span> Oaxaca</h3>
+<p class="cop">ADO / ADO Platino</p>
+</header>
+<div class="chain" aria-label="Departure 23:59, arrival 06:45, then Taxi or walk to the Zócalo">
+<span class="node"><b>23:59</b><small>Mexico City</small></span>
+<span class="link"><small>about 7 h</small></span>
+<span class="node"><b>06:45</b><small>Oaxaca</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Taxi or walk to the Zócalo</small></span>
+</div>
+<p class="tags"><span class="tag">6 h 46 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="tag gr"><b>15 h</b> on the ground (approx.)</span></p>
+<dl>
+<div><dt>Times</dt><dd>ADO lists about 40 departures a day across its ADO, GL and Platino classes, with evening and after-midnight times; the trip typically takes about seven hours.<sup class="ref">[<a href="#s114">114</a>]</sup> Guides describe a Platino departure from TAPO at 11:59pm, arriving around 6:30–7:30am, but ADO’s own pages couldn’t confirm it.<sup class="ref">[<a href="#s115">115</a>,<a href="#s116">116</a>]</sup> Check the date and class on ado.com.mx. <span class="days">Daily, many departures.</span></dd></div>
+<div><dt>On board</dt><dd>Three classes: ADO, ADO GL and ADO Platino, which ADO says has its widest seats.<sup class="ref">[<a href="#s114">114</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>The Oaxaca first-class terminal is about 1.5 km north of the Zócalo; taxis, DiDi and Uber are the usual onward options.<sup class="ref">[<a href="#s117">117</a>]</sup> In Mexico City, TAPO connects directly to San Lázaro metro, lines 1 and B.<sup class="ref">[<a href="#s118">118</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>About 23 evening departures leave Oaxaca daily; 21:45 is one listed time<sup class="ref">[<a href="#s119">119</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Some Platino departures use Terminal Sur or Terminal Norte instead of TAPO; check the ticket.<sup class="ref">[<a href="#s114">114</a>]</sup> ADO advises booking early around the Guelaguetza in July, Día de Muertos, Semana Santa and Christmas.<sup class="ref">[<a href="#s114">114</a>]</sup></dd></div>
+</dl>
+<p class="fact">TAPO, the Eastern bus terminal, opened in 1978 and connects directly to San Lázaro metro.<sup class="ref">[<a href="#s118">118</a>]</sup></p>
+</article><article class="card ferry" id="beppu" data-mode="ferry" data-arr="early" data-len="mid" data-ret="yes" data-kind="hotel" data-region="Asia" data-dep="1145" data-arrm="1855" data-lenm="710" data-ground="710">
+<header class="ch">
+<p class="cno">19 · Ferry · Japan</p>
+<h3>Osaka <span class="to">to</span> Beppu</h3>
+<p class="cop">MOL Sunflower, Sunflower Kurenai / Sunflower Murasaki</p>
+</header>
+<div class="chain" aria-label="Departure 19:05, arrival 06:55, then Bus 16, 16A or 20">
+<span class="node"><b>19:05</b><small>Osaka</small></span>
+<span class="link"><small>11 h 50 min</small></span>
+<span class="node"><b>06:55</b><small>Beppu</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Bus 16, 16A or 20</small></span>
+</div>
+<p class="tags"><span class="tag">11 h 50 aboard</span><span class="tag k-hotel">Swaps a hotel night</span><span class="tag gr"><b>11 h 50</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>Osaka Nanko 19:05, Beppu 06:55 from Sunday to Thursday; 20:05 to 07:55 on Fridays and Saturdays.<sup class="ref">[<a href="#s120">120</a>,<a href="#s121">121</a>,<a href="#s122">122</a>]</sup> One booking agent gives 19:55 for the later departure.<sup class="ref">[<a href="#s123">123</a>]</sup> <span class="days">Daily.</span></dd></div>
+<div><dt>On board</dt><dd>From suites and semi-suites with balconies down to private cabins and a shared “private bed” room. A buffet restaurant and a large sea-view bath are on board.<sup class="ref">[<a href="#s120">120</a>,<a href="#s121">121</a>,<a href="#s122">122</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Buses 16, 16A and 20 run from the port to JR Beppu Station in about 15 minutes, timed to meet the ship.<sup class="ref">[<a href="#s120">120</a>,<a href="#s124">124</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>Beppu 18:45 Sunday to Thursday, back in Osaka at 06:35; 19:20 on Friday and Saturday, arriving 07:25<sup class="ref">[<a href="#s120">120</a>,<a href="#s124">124</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Online booking closes at 14:00 on the day; how far ahead it opens differs between sources.<sup class="ref">[<a href="#s120">120</a>,<a href="#s122">122</a>,<a href="#s123">123</a>]</sup> </dd></div>
+</dl>
+<p class="fact">The operator sells the out-and-back as the “Bullet Ferry”, and will keep your luggage on board while you spend the day in Beppu. About an hour out of Osaka the ship passes under the Akashi Kaikyō Bridge.<sup class="ref">[<a href="#s121">121</a>]</sup></p>
+</article><article class="card train" id="aswan" data-mode="train" data-arr="mid" data-len="long" data-ret="yes" data-kind="day" data-region="Africa" data-dep="1185" data-arrm="2005" data-lenm="820" data-ground="470">
+<header class="ch">
+<p class="cno">20 · Train · Egypt</p>
+<h3>Cairo <span class="to">to</span> Aswan</h3>
+<p class="cop">Abela Trains sleeper, train 86</p>
+</header>
+<div class="chain" aria-label="Departure 19:45, arrival 09:25, then Walk into town">
+<span class="node"><b>19:45</b><small>Cairo</small></span>
+<span class="link"><small>13 h 40 min</small></span>
+<span class="node"><b>09:25</b><small>Aswan</small></span>
+<span class="link onl"></span>
+<span class="node on"><small>Walk into town</small></span>
+</div>
+<p class="tags"><span class="tag">13 h 40 aboard</span><span class="tag k-day">Gives back a travel day</span><span class="tag gr"><b>7 h 50</b> on the ground</span></p>
+<dl>
+<div><dt>Times</dt><dd>Cairo Upper Egypt station (Bashtil) 19:45, Giza 20:15, Luxor 06:10, Aswan 09:25. Train 82 follows at 21:10, reaching Aswan at 11:10.<sup class="ref">[<a href="#s125">125</a>,<a href="#s126">126</a>]</sup> The sleepers stopped using Ramses station when Bashtil opened in October 2024.<sup class="ref">[<a href="#s127">127</a>]</sup> <span class="days">Daily.</span></dd></div>
+<div><dt>On board</dt><dd>Two-berth compartments in two grades, Elite (refurbished) and Standard. Dinner and breakfast are served in the compartment.<sup class="ref">[<a href="#s125">125</a>]</sup></dd></div>
+<div><dt>On arrival</dt><dd>Aswan station is at the north end of town on Station Square, at the head of the souk, an easy walk from hotels.<sup class="ref">[<a href="#s128">128</a>]</sup></dd></div>
+<div><dt>Coming back</dt><dd>Train 87 leaves Aswan 17:15 for Cairo, arriving 06:25<sup class="ref">[<a href="#s125">125</a>]</sup>.</dd></div>
+<div><dt>Watch for</dt><dd>Abela took over the sleepers from the Watania company in 2023.<sup class="ref">[<a href="#s129">129</a>]</sup> Foreigners pay a separate fare in dollars, euros or pounds.<sup class="ref">[<a href="#s125">125</a>]</sup> Seat 61 says booking opens four to five months ahead; a 2026 guide describes a two-month window on Abela’s own system.<sup class="ref">[<a href="#s127">127</a>,<a href="#s130">130</a>]</sup> Trains often run late.<sup class="ref">[<a href="#s125">125</a>,<a href="#s130">130</a>]</sup></dd></div>
+</dl>
+<p class="fact">The sleeping cars were built in East Germany in the early 1980s. Train 86 also makes a good Luxor train: it arrives there at 06:10.<sup class="ref">[<a href="#s125">125</a>]</sup></p>
+</article></div>
+<p class="none" id="none" hidden>No route matches all of those filters. Try loosening one.</p>
+</section>
+<section class="wrap" id="compare" aria-labelledby="cmp-h"><h2 id="cmp-h">Five comparisons</h2>
+<div class="cmp">
+<article><h3>Britain’s two sleepers</h3>
+<p>The Night Riviera and the Caledonian Sleeper are Britain’s only two sleeper services,<sup class="ref">[<a href="#s15">15</a>]</sup> and they make opposite trades. The Riviera leaves Paddington at 23:45 and has you on the sea wall at Penzance by 07:50: a short night, but almost 14 hours before the 21:45 back.<sup class="ref">[<a href="#s9">9</a>,<a href="#s10">10</a>]</sup> The Fort William train leaves earlier, at 21:15, and takes until 10:00, so you get a full night and a little under ten hours in town before the 19:50 south.<sup class="ref">[<a href="#s1">1</a>]</sup> Neither runs on Saturday nights.<sup class="ref">[<a href="#s1">1</a>,<a href="#s9">9</a>]</sup></p></article>
+<article><h3>Out and back by sea</h3>
+<p>Every ferry in the directory turns round the same evening, so two nights aboard can buy one day ashore. How much of a day you get varies a lot. It is shortest in Helsinki: the Silja ship docks at 10:30 and its sister sails at 17:00.<sup class="ref">[<a href="#s42">42</a>]</sup> Hull–Rotterdam gives about seven hours in the city between P&amp;O’s coaches from Europoort, and P&amp;O sells it as a mini cruise.<sup class="ref">[<a href="#s50">50</a>]</sup> Sunflower’s Beppu run is the most generous of the three: it docks before seven, sails back at 18:45 and will keep your bags on board in between.<sup class="ref">[<a href="#s120">120</a>,<a href="#s121">121</a>]</sup></p></article>
+<article><h3>Japan three ways</h3>
+<p>Night departures west from Tokyo and Osaka come as a bed, a seat or a cabin. The Sunrise Izumo’s private rooms reach Izumo at 10:00.<sup class="ref">[<a href="#s55">55</a>]</sup> Willer’s WK156 coach reaches Kyoto at 06:25, after eight hours in a reclining seat with rest stops instead of a toilet, but leaves you more than 16 hours before a night bus back.<sup class="ref">[<a href="#s64">64</a>,<a href="#s66">66</a>]</sup> The Sunflower ferry from Osaka has a buffet and a large bath, and docks in Beppu at 06:55.<sup class="ref">[<a href="#s120">120</a>]</sup></p></article>
+<article><h3>The early ones</h3>
+<p>Four routes put you ashore at or before half past six: Lao Cai at 05:50, Devonport at 06:00, Kyoto at 06:25 and Heraklion at 06:30. They give some of the longest days in the directory and some of its shortest nights. From Lao Cai there is still an hour’s bus up to Sapa;<sup class="ref">[<a href="#s81">81</a>]</sup> the Heraklion ferry calls at Milos at about one in the morning;<sup class="ref">[<a href="#s85">85</a>]</sup> and the Spirit of Tasmania starts letting people off about half an hour after it docks.<sup class="ref">[<a href="#s131">131</a>]</sup></p></article>
+<article><h3>When the journey is the point</h3>
+<p>Three of the longest routes matter less for the day at the far end than for the day you don’t spend getting there. The Auto Train carries you and your car 855 miles in just under 17 hours.<sup class="ref">[<a href="#s107">107</a>]</sup> Silja’s Stockholm–Helsinki crossing takes about 16¾ hours, by way of Åland and across a time zone.<sup class="ref">[<a href="#s42">42</a>]</sup> The Cairo–Aswan sleeper takes 13 h 40 and reaches Luxor at 06:10, which makes it as useful a Luxor train as an Aswan one.<sup class="ref">[<a href="#s125">125</a>]</sup></p></article>
+</div></section>
+<section class="wrap" id="ranking" aria-labelledby="rank-h">
+<h2 id="rank-h">Ten routes for the longest day</h2>
+<p class="lede">Ranked by the timetabled gap between arriving and the same evening’s departure home. The figure ignores transfers, check-in and late running, so the real day is shorter; the entries say by how much. Mexico City–Oaxaca is left out because its overnight times couldn’t be confirmed with ADO.</p>
+<ol class="rank"><li><a href="#kyoto">Tokyo → Kyoto</a><span class="rb"><span class="rbar coach" style="width:100.0%"></span></span><span class="rv">16 h 15</span></li><li><a href="#laocai">Hanoi → Lao Cai (for Sapa)</a><span class="rb"><span class="rbar train" style="width:95.9%"></span></span><span class="rv">15 h 35</span></li><li><a href="#heraklion">Athens (Piraeus) → Heraklion</a><span class="rb"><span class="rbar ferry" style="width:89.2%"></span></span><span class="rv">14 h 30</span></li><li><a href="#penzance">London → Penzance</a><span class="rb"><span class="rbar train" style="width:85.6%"></span></span><span class="rv">13 h 55</span></li><li><a href="#devonport">Geelong → Devonport, Tasmania</a><span class="rb"><span class="rbar ferry" style="width:78.5%"></span></span><span class="rv">12 h 45</span></li><li><a href="#venice">Vienna → Venice</a><span class="rb"><span class="rbar train" style="width:77.0%"></span></span><span class="rv">12 h 31</span></li><li><a href="#melbourne">Sydney → Melbourne</a><span class="rb"><span class="rbar train" style="width:75.9%"></span></span><span class="rv">12 h 20</span></li><li><a href="#beppu">Osaka → Beppu</a><span class="rb"><span class="rbar ferry" style="width:72.8%"></span></span><span class="rv">11 h 50</span></li><li><a href="#briancon">Paris → Briançon</a><span class="rb"><span class="rbar train" style="width:69.7%"></span></span><span class="rv">11 h 20</span></li><li><a href="#xian">Beijing → Xi’an</a><span class="rb"><span class="rbar train" style="width:66.1%"></span></span><span class="rv">10 h 44</span></li></ol>
+</section>
+<section class="wrap onhold" id="onhold" aria-labelledby="hold-h"><h2 id="hold-h">Two routes on hold</h2>
+<div class="hold">
+<p><b>Stockholm to Narvik.</b> SJ runs the Swedish state’s night train to the far north, and has won the contract for December 2026 to December 2028.<sup class="ref">[<a href="#s132">132</a>]</sup> Since April 2026 passengers for Kiruna, Abisko and Narvik have had to change trains at Boden. Through couchette and sleeping cars are due back from 13 December 2026, and tickets for 13 December to 9 January went on sale on 19 October.<sup class="ref">[<a href="#s133">133</a>,<a href="#s134">134</a>,<a href="#s135">135</a>]</sup> No source we could read gave times for the restored train, so it stays out of the directory for now.</p>
+<p><b>Tangier to Marrakech.</b> Seat 61 reported in 2026 that Morocco’s overnight couchette train had been suspended indefinitely while the high-speed line to Marrakech is built.<sup class="ref">[<a href="#s136">136</a>]</sup> ONCF’s own site could not be checked. The works have closed Marrakech station before, from 21 to 23 April 2026.<sup class="ref">[<a href="#s137">137</a>]</sup></p>
+</div></section>
+<section class="wrap method" id="method" aria-labelledby="method-h"><h2 id="method-h">How this was put together</h2>
+<p>Routes were chosen for a useful morning arrival, a spread of modes and continents, and an operator that publishes enough to check. Times, accommodation names and arrival details come from operators’ timetables, booking pages and press releases where those could be read, and otherwise from independent timetable sites and established guides such as The Man in Seat 61, named in each entry. Wikipedia is used only for history and background. Every page was read on 8 November 2026.</p>
+<p>Fares appear only where an operator published them and they could be dated: the Night Riviera cabin supplements and SNCF’s private-compartment prices, both as listed on 8 November 2026. Hours on the ground are worked out from the timetables. Booking windows and departure counts are as stated by operators or guides on 8 November 2026. The labels for what a route saves are the desk’s judgement, applied by the 12-hour rule above.</p></section>
+<section class="wrap sources" id="sources">
+<h2>Sources</h2>
+<ol><li id="s1"><a href="https://www.sleeper.scot/media/ywfarxyt/table-220.pdf">National Rail Timetable 17 May to 12 December 2026, Table 220</a>. Caledonian Sleeper.</li><li id="s2"><a href="https://trafficnews.jp/post/642033">Sunrise Izumo departure moved to 21:26 (report of 9 March 2026)</a>. 乗りものニュース / trafficnews.jp.</li><li id="s3"><a href="https://www.sleeper.scot/travel-updates/engineering-works/">Engineering works</a>. Caledonian Sleeper.</li><li id="s4"><a href="https://www.sleeper.scot/about/our-trains/">Our trains</a>. Caledonian Sleeper.</li><li id="s5"><a href="https://www.sleeper.scot/destinations/a-z-destinations/fort-william/">Fort William destination page</a>. Caledonian Sleeper.</li><li id="s6"><a href="https://en.wikivoyage.org/wiki/Fort_William">Fort William</a>. Wikivoyage.</li><li id="s7"><a href="https://en.wikipedia.org/wiki/Fort_William_railway_station">Fort William railway station</a>. Wikipedia.</li><li id="s8"><a href="https://www.sleeper.scot/help-support/before-your-trip/">Before your trip</a>. Caledonian Sleeper.</li><li id="s9"><a href="https://www.gwr.com/travelling-with-us/night-riviera-sleeper">Night Riviera Sleeper</a>. Great Western Railway.</li><li id="s10"><a href="https://en.wikipedia.org/wiki/Penzance_railway_station">Penzance railway station</a>. Wikipedia.</li><li id="s11"><a href="https://www.islesofscilly-travel.co.uk/rail-connections/">Rail connections</a>. Isles of Scilly Steamship Company.</li><li id="s12"><a href="https://bustimes.org/services/1-lands-end-car-park-penzance-bus-station">1: Land&#x27;s End to Penzance Bus Station</a>. bustimes.org.</li><li id="s13"><a href="https://www.bairdmaritime.com/passenger/ferry/isles-of-scilly-steamship-lifeline-ferry-begins-final-operational-season-before-retirement">Isles of Scilly Steamship lifeline ferry begins final operational season before retirement</a>. Baird Maritime, 17 March 2026.</li><li id="s14"><a href="https://www.gwr.com/travel-information/travel-updates/planned-engineering/west-cornwall">West Cornwall: planned engineering</a>. Great Western Railway.</li><li id="s15"><a href="https://en.wikipedia.org/wiki/Night_Riviera">Night Riviera</a>. Wikipedia.</li><li id="s16"><a href="https://www.voyagerentrain.fr/paris-briancon-train-nuit/">Paris–Briançon en train de nuit</a>. Voyager en train (modified 10 September 2026).</li><li id="s17"><a href="https://www.sncf-connect.com/en-en/train/route/paris/briancon">Paris to Briançon train</a>. SNCF Connect.</li><li id="s18"><a href="https://www.sncf-connect.com/intercites/trajet/paris/briancon">Billets train de nuit Intercités Paris–Briançon</a>. SNCF Connect.</li><li id="s19"><a href="https://en.wikipedia.org/wiki/Brian%C3%A7on_station">Briançon station</a>. Wikipedia.</li><li id="s20"><a href="https://www.serre-chevalier.com/en/resort/mobility-and-transport/taxis-transports/tub">AltiGo / TUB</a>. Serre Chevalier Vallée.</li><li id="s21"><a href="https://www.serre-chevalier.com/en/resort/mobility-and-transport">Mobility and transport</a>. Serre Chevalier Vallée.</li><li id="s22"><a href="https://www.sncf-connect.com/train/horaires/briancon/paris">Horaires Briançon–Paris</a>. SNCF Connect.</li><li id="s23"><a href="https://www.sncf-voyageurs.com/medias-publics/2026-07/260716_pta_tdn_paris-briancon-nice-cerbere_juillet-decembre_2026.pdf">Plan de transport adapté, trains de nuit Paris–Briançon/Nice/Cerbère, juillet–décembre 2026</a>. SNCF Voyageurs, 16 July 2026.</li><li id="s24"><a href="https://nachtzug.net/en/wien-venedig">Vienna–Venice ÖBB Nightjet NJ 40466</a>. nachtzug.net (timetable status April 2025).</li><li id="s25"><a href="https://back-on-track.eu/night-train/obb-venezia-wien/">ÖBB Venezia–Wien</a>. Back on Track.</li><li id="s26"><a href="https://nightride.com/en/connections/from-vienna-to-venice+9c7b5f9d-c351-4a8d-abc9-ed355ca27057+9c7b5f9d-b877-450e-8220-60c75dc47e56">From Vienna to Venice</a>. Nightride.</li><li id="s27"><a href="https://www.nightjet.com/dam/jcr:1534a8e6-8af6-44f6-8881-3d8e7dfbb9f3/nightjet-folder-2026-englisch.pdf">Discover Europe with the night train (Nightjet folder 2026)</a>. ÖBB Nightjet, August 2026.</li><li id="s28"><a href="https://www.nightjet.com/en/reiseziele/italien/venedig">Venice</a>. ÖBB Nightjet.</li><li id="s29"><a href="https://www.invenicetoday.com/en/services/how-to-get-to/train-station-rialto-bridge-venice.htm">From the train station to Rialto Bridge</a>. inVeniceToday.</li><li id="s30"><a href="https://www.zug-ticket-kaufen.de/en/train/nj/40236">NJ 40236</a>. zug-ticket-kaufen.de.</li><li id="s31"><a href="https://europeanrailtimetable.eu/blogs/railway-news/newslines-december-8-2025">Newslines, 8 December 2025</a>. European Rail Timetable.</li><li id="s32"><a href="https://www.eurotrekker.com/night-trains/routes/brussels-to-prague-night-train">Brussels to Prague night train</a>. Eurotrekker (checked 30 September 2026).</li><li id="s33"><a href="https://www.seat61.com/trains-and-routes/european-sleeper.htm">European Sleeper</a>. The Man in Seat 61.</li><li id="s34"><a href="https://www.europeansleeper.eu/en/timetable">Timetable</a>. European Sleeper.</li><li id="s35"><a href="https://blog.nightride.com/european-sleeper-complete-guide/">European Sleeper: the complete guide</a>. Nightride blog (modified 30 September 2026).</li><li id="s36"><a href="https://viewfromprague.com/prague-main-train-station">Prague main train station: practical guide</a>. View from Prague.</li><li id="s37"><a href="https://europeansleeper.eu/disruptions">Disruptions</a>. European Sleeper.</li><li id="s38"><a href="https://traveltomorrow.com/brussels-prague-sleeper-train-could-be-discontinued-next-year/">Brussels–Prague sleeper train could be discontinued next year</a>. Travel Tomorrow, 26 September 2024.</li><li id="s39"><a href="https://www.seat61.com/trains-and-routes/trains-to-sicily.htm">Rome and Naples to Sicily by train</a>. The Man in Seat 61.</li><li id="s40"><a href="https://m.e656.net/amp/orario/treno/1955.html">Treno Intercity Notte 1955 Roma Termini–Siracusa</a>. e656.net.</li><li id="s41"><a href="https://en.wikipedia.org/wiki/Palermo_Centrale_railway_station">Palermo Centrale railway station</a>. Wikipedia.</li><li id="s42"><a href="https://en.tallink.com/documents/10192/109489502/Timetable_2023.pdf">Timetables 2024–2025</a>. Tallink Silja.</li><li id="s43"><a href="https://www.seat61.com/Finland.htm">London to Helsinki by train</a>. The Man in Seat 61.</li><li id="s44"><a href="https://cdn1.ferryhopper.com/en/ferry-routes/direct/stockholm-helsinki">Ferry from Stockholm to Helsinki</a>. Ferryhopper.</li><li id="s45"><a href="https://www.tallink.com/travelling/one-way/stockholm-helsinki-ferry">Stockholm–Helsinki one-way and return cruises</a>. Tallink.</li><li id="s46"><a href="https://www.seat61.com/international-trains/trains-from-Helsinki.htm">Trains and ferries from Helsinki</a>. The Man in Seat 61.</li><li id="s47"><a href="https://www.portofhelsinki.fi/en/passengers/passenger-terminals/olympia-terminal/shipping-company-olympia-terminal/">Olympia terminal: shipping company</a>. Port of Helsinki.</li><li id="s48"><a href="https://en.wikipedia.org/wiki/MS_Silja_Symphony">Silja Symphony</a>. Wikipedia.</li><li id="s49"><a href="https://www.poferries.com/en/routes/hull-to-rotterdam">Hull to Rotterdam ferries</a>. P&amp;O Ferries.</li><li id="s50"><a href="https://www.poferries.com/en/mini-cruises/country-night-mini-cruise-to-rotterdam">Country Night Mini Cruise to Rotterdam</a>. P&amp;O Ferries.</li><li id="s51"><a href="https://www.seat61.com/trains-and-routes/hull-to-rotterdam-by-ferry.htm">P&amp;O overnight ferry from Hull to Rotterdam</a>. The Man in Seat 61.</li><li id="s52"><a href="https://poferries.com/en/ships/pride-of-hull">Pride of Hull</a>. P&amp;O Ferries.</li><li id="s53"><a href="https://www.ferryhopper.com/en/ferry-routes/direct/hull-rotterdam">Ferry from Kingston upon Hull to Rotterdam</a>. Ferryhopper.</li><li id="s54"><a href="https://www.poferries.com/en/routes/hull-to-rotterdam/travel-information/passenger-travel-information">Passenger travel information: Hull to Rotterdam</a>. P&amp;O Ferries.</li><li id="s55"><a href="https://timetables.jreast.co.jp/en/2611/train/010/012851.html">Timetable: Sunrise Seto / Sunrise Izumo, November 2026</a>. JR East.</li><li id="s56"><a href="https://timetable.jr-odekake.net/train-timetable/38502?date=20261026">寝台特急サンライズ瀬戸 高松行 (timetable for 26 October 2026)</a>. JR West Odekake.</li><li id="s57"><a href="https://ekitan.com/en/article/sunrise-izumo">Sunrise Izumo timetable, fares and how to buy tickets</a>. Ekitan (information as of July 2026).</li><li id="s58"><a href="https://en.wikipedia.org/wiki/Dentetsu_Izumoshi_Station">Dentetsu Izumoshi Station</a>. Wikipedia.</li><li id="s59"><a href="https://izumooyashiro.or.jp/en/access">Access</a>. Izumo Oyashiro.</li><li id="s60"><a href="https://timetable.jr-odekake.net/train-timetable/33651?date=20261025">サンライズ瀬戸 東京行 (timetable for 25 October 2026)</a>. JR West Odekake.</li><li id="s61"><a href="https://trafficnews.jp/post/615398">JR Central announces Sunrise retiming (report of 12 December 2025)</a>. 乗りものニュース / trafficnews.jp.</li><li id="s62"><a href="https://en.wikipedia.org/wiki/Sunrise_Izumo">Sunrise Izumo</a>. Wikipedia.</li><li id="s63"><a href="https://en.wikipedia.org/wiki/285_series">285 series</a>. Wikipedia.</li><li id="s64"><a href="https://kosokubus.com/_en/bus_detail_rosen/WWK156001301/">WILLER EXPRESS WK156 route detail</a>. kosokubus.com.</li><li id="s65"><a href="https://kosokubus.com/_en/bus_list/00013-00201/00026-00520/p-3/">Tokyo to Kyoto highway buses (boarding 9 November 2026)</a>. kosokubus.com.</li><li id="s66"><a href="https://www.ekitan.com/timetable/highwaybus/section/region-00520/pref-13/all">Kyoto Station to Tokyo highway buses (listing for 15 November 2026)</a>. Ekitan.</li><li id="s67"><a href="https://travel.willer.co.jp/bus_search/tokyo/shinjuku/kyoto/kyoto/time-division_night/">Tokyo/Shinjuku to Kyoto night buses</a>. WILLER TRAVEL.</li><li id="s68"><a href="https://travelchinaguide.com/china-trains/beijing-xian-overnight.htm">Beijing to Xi&#x27;an overnight trains</a>. TravelChinaGuide (updated 7 July 2026).</li><li id="s69"><a href="https://www.wanderinchina.com/ja/transport/intercity/beijing-xian/">北京–西安 (Beijing–Xi&#x27;an)</a>. WanderInChina, 13 July 2026.</li><li id="s70"><a href="https://www.chinatravel.com/china-trains/beijing-xian-train">Beijing to Xi&#x27;an trains</a>. ChinaTravel.com (timetable 16 April 2024).</li><li id="s71"><a href="https://en.wikipedia.org/wiki/Xi%27an_railway_station">Xi&#x27;an railway station</a>. Wikipedia.</li><li id="s72"><a href="https://travelchinaguide.com/china-trains/xian-station.htm">Xi&#x27;an Railway Station</a>. TravelChinaGuide (updated 24 July 2026).</li><li id="s73"><a href="https://chinafortravelers.com/guides/beijing-to-xian/">Beijing to Xi&#x27;an</a>. China for Travelers (updated 24 August 2026).</li><li id="s74"><a href="https://www.train36.com/bangkok-to-chiang-mai-train.html">Bangkok to Chiang Mai train timetable 2026</a>. train36.com.</li><li id="s75"><a href="https://seat61.com/thailand">Train travel in Thailand</a>. The Man in Seat 61 (updated 1 October 2026).</li><li id="s76"><a href="https://www.thaitrainguide.com/?p=1338">Sleeper trains in Thailand</a>. Thai Train Guide (modified 3 February 2026).</li><li id="s77"><a href="https://www.train36.com/chiang-mai-train-station.html">Chiang Mai train station</a>. train36.com.</li><li id="s78"><a href="https://www.lonelyplanet.com/points-of-interest/chiang-mai-train-station/1244431">Chiang Mai Train Station</a>. Lonely Planet.</li><li id="s79"><a href="https://www.train36.com/train-10-timetable-thailand.html">Train 10 timetable</a>. train36.com.</li><li id="s80"><a href="https://baolaocai.vn/tuyen-duong-sat-ha-noi-lao-cai-tang-len-3-doi-tau-khach-moi-ngay-them-lua-chon-cho-du-khach-post911633.html">Tuyến đường sắt Hà Nội–Lào Cai tăng lên 3 đôi tàu khách mỗi ngày</a>. Báo Lào Cai, 11 October 2026.</li><li id="s81"><a href="https://www.vietnamtourism.com/en/transport/hanoi-sapa">Hanoi to Sapa</a>. vietnamtourism.com (commercial site; times checked 21 October 2026).</li><li id="s82"><a href="https://12go.asia/travel/Hanoi/Sapa_Lao_Cai">Hanoi to Sapa / Lao Cai</a>. 12Go.</li><li id="s83"><a href="https://mia.vn/cam-nang-du-lich/thong-tin-ga-lao-cai-15615">Thông tin ga Lào Cai</a>. Mia.vn, 8 February 2025.</li><li id="s84"><a href="https://north-vietnam.com/lao-cai-to-sapa-local-bus-taxi">Lao Cai to Sapa: local bus and taxi</a>. north-vietnam.com (updated October 2026).</li><li id="s85"><a href="https://ferries.gr/minoan/drsdom.htm">Minoan Lines schedules: Piraeus–Milos–Heraklion</a>. ferries.gr.</li><li id="s86"><a href="https://www.gtp.gr/ferries/piraeusport/heraklioport">Ferries Piraeus–Heraklio</a>. GTP Greek Travel Pages (updated 7 November 2026).</li><li id="s87"><a href="https://greeka.com/crete/heraklion/ports">Heraklion port</a>. Greeka.</li><li id="s88"><a href="https://www.gtp.gr/ferries/heraklioport/piraeusport">Ferries Heraklio–Piraeus</a>. GTP Greek Travel Pages.</li><li id="s89"><a href="https://www.minoan.gr/en/category/4/news">News</a>. Minoan Lines.</li><li id="s90"><a href="https://spiritoftasmania.com.au/before-you-sail/terminal-information/getting-to-the-geelong-terminal">Getting to the Geelong terminal</a>. Spirit of Tasmania.</li><li id="s91"><a href="https://www.abc.net.au/news/2026-10-31/new-spirit-of-tasmania-inaugural-passenger-sailings/107326936">Relief as new Spirit of Tasmania ferries start work</a>. ABC News, 31 October 2026.</li><li id="s92"><a href="https://discovertasmania.com.au/planning/transport/spiritoftasmania/">Spirit of Tasmania</a>. Discover Tasmania (Tourism Tasmania).</li><li id="s93"><a href="https://www.racv.com.au/royalauto/travel/australia/spirit-of-tasmania-guide.html">Spirit of Tasmania guide</a>. RACV RoyalAuto, 16 October 2026.</li><li id="s94"><a href="https://www.premier.tas.gov.au/latest-news/2026/august/spirit-of-tasmania-iv-arrives-in-devonport-for-the-first-time">Spirit of Tasmania IV arrives in Devonport for the first time</a>. Premier of Tasmania, 23 August 2026.</li><li id="s95"><a href="https://www.shippax.com/en/news/spirit-quay-opens-in-devonport-as-spirit-of-tasmania-i-and-ii-leave-service.aspx">Spirit Quay opens in Devonport as Spirit of Tasmania I and II leave service</a>. Shippax.</li><li id="s96"><a href="https://www.spiritoftasmania.com.au/before-you-sail/terminal-information/getting-to-the-devonport-terminal">Getting to the Devonport terminal</a>. Spirit of Tasmania.</li><li id="s97"><a href="https://www.premier.tas.gov.au/latest-news/2025/december/staged-ticket-release-for-spirit-of-tasmania-iv-and-v">Staged ticket release for Spirit of Tasmania IV and V</a>. Premier of Tasmania, 19 December 2025.</li><li id="s98"><a href="https://lvs.transportnsw.info/regional-southern-line">Regional Southern Line timetable</a>. Transport for NSW.</li><li id="s99"><a href="https://transportnsw.info/destination-route/SYD/MEL">Sydney to Melbourne</a>. transportnsw.info.</li><li id="s100"><a href="https://lvs.transportnsw.info/regional/book-sydney-to-melbourne-by-train">Book Sydney to Melbourne by train</a>. Transport for NSW.</li><li id="s101"><a href="https://transportnsw.info/regional-travel/travelling-onboard/xpt-regional-trains">XPT regional trains</a>. transportnsw.info.</li><li id="s102"><a href="https://wongm.com/2025/01/melbourne-sydney-xpt-why-losing-sleeping-carriages-isnt-big-deal/">Melbourne–Sydney XPT: why losing sleeping carriages isn&#x27;t a big deal</a>. wongm.com, January 2025.</li><li id="s103"><a href="https://www.abc.net.au/news/2026-05-02/xpt-returns-to-tracks-in-1980s-colours-after-major-refurbish/106625392">XPT retro revival as train returns to tracks after major refurbishment</a>. ABC News, 2 May 2026.</li><li id="s104"><a href="https://en.wikipedia.org/wiki/New_South_Wales_XPT">New South Wales XPT</a>. Wikipedia.</li><li id="s105"><a href="https://amtrak.com/auto-train-departure-time-change">Auto Train departure time change</a>. Amtrak.</li><li id="s106"><a href="https://content.amtrak.com/content/timetable/Auto%20Train.pdf">Auto Train timetable</a>. Amtrak (viewed 8 November 2026).</li><li id="s107"><a href="https://juckins.net/amtrak_timetables/current/timetables_Auto_Train_20260809_external.pdf">Auto Train timetable, valid 9 August 2026 to 9 August 2027 (from Amtrak GTFS data)</a>. juckins.net.</li><li id="s108"><a href="https://www.amtrak.com/auto-train-experience">Auto Train: discount details, meal options and more</a>. Amtrak.</li><li id="s109"><a href="https://www.greatamericanstations.com/stations/SFA">Sanford, FL: Auto Train station (SFA)</a>. Great American Stations (Amtrak).</li><li id="s110"><a href="https://www.amtrak.com/route-content/auto-train-boarding-and-vehicle-requirements">Auto Train vehicle and check-in requirements</a>. Amtrak.</li><li id="s111"><a href="https://www.amtrak.com/top-10-questions">Top 10 frequently asked questions</a>. Amtrak.</li><li id="s112"><a href="https://www.local10.com/news/florida/2026/04/21/amtrak-cancels-florida-auto-train-service-as-a-wildfire-disrupts-routes/">Amtrak cancels Florida auto train service as a wildfire disrupts routes</a>. Associated Press via Local 10, 21 April 2026.</li><li id="s113"><a href="https://www.greatamericanstations.com/stations/LOR">Lorton, VA: Auto Train station (LOR)</a>. Great American Stations (Amtrak).</li><li id="s114"><a href="https://international.ado.com.mx/ado-bus/mexico-city-to-oaxaca?locale=es-MX">Autobús de Ciudad de México a Oaxaca: horarios, tarifas y boletos</a>. ADO (viewed 8 November 2026).</li><li id="s115"><a href="https://www.mexicotravelandleisure.com/blog/mexico-city-to-oaxaca/">Mexico City to Oaxaca 2026: 5 ways to get there</a>. Mexico Travel &amp; Leisure, 14 March 2026.</li><li id="s116"><a href="https://geckoroutes.com/mexico/mexico-city-to-oaxaca/">Mexico City to Oaxaca</a>. Gecko Routes (updated 20 September 2026).</li><li id="s117"><a href="https://international.ado.com.mx/ado-bus/bus-station-guide/oaxaca-bus-stations">ADO bus stations in Oaxaca: terminal guide</a>. ADO.</li><li id="s118"><a href="https://international.ado.com.mx/ado-bus/bus-station-guide/mexico-city-and-central-mexico-bus-stations">Estaciones de autobuses ADO en la Ciudad de México</a>. ADO.</li><li id="s119"><a href="https://tickets.ado.com.mx/ado-bus/oaxaca-to-mexico-city">Oaxaca to Mexico City bus: times, fares and tickets</a>. ADO (viewed 8 November 2026).</li><li id="s120"><a href="https://www.gltjp.com/en/directory/item/17088/">MOL Sunflower (Kansai–Beppu route)</a>. Global Leaders Travel (gltjp.com).</li><li id="s121"><a href="https://osaka-info.jp/en/special/ferry-sunflower-bepputrip/">Ferry Sunflower Beppu trip</a>. Osaka Convention &amp; Tourism Bureau.</li><li id="s122"><a href="https://monomoney-living.com/sunflower-ferry-kansai-kyushu-2026/">さんふらわあ 関西–九州 2026</a>. monomoney-living.com (updated 8 November 2026).</li><li id="s123"><a href="https://willer-travel.com/en/ferry/carrier/71.html">Sunflower ferry carrier page</a>. WILLER TRAVEL.</li><li id="s124"><a href="https://www.japan-guide.com/ad/beppu-sunflower/">Beppu by Sunflower (sponsored feature)</a>. japan-guide.com.</li><li id="s125"><a href="https://www.seat61.com/cairo-to-luxor-and-aswan-by-sleeper-train.htm">Cairo to Luxor and Aswan by sleeper train</a>. The Man in Seat 61.</li><li id="s126"><a href="https://egypttrains.com/trains/82?lang=en">Train 82</a>. egypttrains.com.</li><li id="s127"><a href="https://www.seat61.com/Egypt.htm">Train travel in Egypt</a>. The Man in Seat 61 (updated 14 September 2026).</li><li id="s128"><a href="https://www.frommers.com/destinations/aswan/planning-a-trip/">Planning a trip to Aswan</a>. Frommer&#x27;s.</li><li id="s129"><a href="https://english.ahram.org.eg/NewsContent/1/1235/505881/Egypt/Urban--Transport/Abela-Egypt-starts-operating-amp;-managing-CairoUp.aspx">Abela Egypt starts operating and managing Cairo–Upper Egypt sleeper trains</a>. Ahram Online, 2 August 2023.</li><li id="s130"><a href="https://www.trvlogue.com/en/egypt-night-train-abela-guide">Egypt night train 2026: Cairo to Aswan travel guide</a>. trvlogue.com (updated 6 October 2026).</li><li id="s131"><a href="https://www.spiritoftasmania.com.au/guide/the-perfect-time-to-sail-with-spirit-of-tasmania">The perfect time to sail with Spirit of Tasmania</a>. Spirit of Tasmania.</li><li id="s132"><a href="https://www.trafikverket.se/om-oss/nyheter/nationella-nyheter/2026/juni/trafikverket-sakrar-nattagstrafiken-till-ovre-norrland/">Trafikverket säkrar nattågstrafiken till övre Norrland</a>. Trafikverket, 25 June 2026.</li><li id="s133"><a href="https://via.tt.se/pressmeddelande/4454773/sj-tilldelas-nattagstrafiken-till-ovre-norrland-och-umea?lang=sv">SJ tilldelas nattågstrafiken till övre Norrland och Umeå</a>. SJ press release, 25 June 2026.</li><li id="s134"><a href="https://via.tt.se/pressmeddelande/4602924/nu-gar-det-att-boka-julresan-i-sj-nattag-frantill-ovre-norrland-och-narvik?lang=sv">Nu går det att boka julresan i SJ nattåg från/till övre Norrland och Narvik</a>. SJ press release, 19 October 2026.</li><li id="s135"><a href="https://www.hourrail.voyage/en/blog/le-train-de-nuit-stockholm-narvik-est-il-en-train-de-disparaitre">Le train de nuit Stockholm–Narvik est-il en train de disparaître ?</a>. Hourrail (updated 21 October 2026).</li><li id="s136"><a href="https://www.seat61.com/train-travel-in-morocco.htm">A beginner&#x27;s guide to train travel in Morocco</a>. The Man in Seat 61.</li><li id="s137"><a href="https://www.moroccoworldnews.com/2026/04/288060/oncf-marrakech-train-service-suspended-for-lgv-works/">ONCF Marrakech train service suspended for LGV works</a>. Morocco World News, 21 April 2026.</li></ol>
+</section>
+</main>
+<footer class="foot"><div class="wrap">
+<p>Published 8 November 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+<p><a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20Wake%20Up%20Somewhere%20Else&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-08-wake-up-somewhere-else%2F">Spot an error? Suggest a correction</a></p>
+</div></footer>
+<script>(function(){
+ var form=document.getElementById('filters');if(!form)return;
+ form.hidden=false;
+ var cards=[].slice.call(document.querySelectorAll('.card'));
+ var box=document.getElementById('cards'),none=document.getElementById('none'),count=document.getElementById('count');
+ var st={mode:'all',arr:'all',len:'all',kind:'all'};
+ var ret=document.getElementById('fret'),sort=document.getElementById('sort');
+ cards.forEach(function(c,i){c.dataset.idx=i});
+ function apply(){
+  var n=0;
+  cards.forEach(function(c){
+   var ok=true;
+   for(var k in st){if(st[k]!=='all'&&c.dataset[k]!==st[k])ok=false}
+   if(ret.checked&&c.dataset.ret!=='yes')ok=false;
+   c.hidden=!ok;if(ok)n++;
+  });
+  var key=sort.value,list=cards.slice();
+  list.sort(function(a,b){
+   if(key==='dir')return a.dataset.idx-b.dataset.idx;
+   if(key==='ground')return b.dataset.ground-a.dataset.ground;
+   if(key==='dep')return a.dataset.dep-b.dataset.dep;
+   if(key==='arrm')return a.dataset.arrm-b.dataset.arrm;
+   if(key==='lenm')return a.dataset.lenm-b.dataset.lenm;
+   return 0;
+  });
+  list.forEach(function(c){box.appendChild(c)});
+  count.textContent=n+' of '+cards.length+' routes';
+  none.hidden=n>0;
+ }
+ [].forEach.call(form.querySelectorAll('.seg'),function(seg){
+  seg.addEventListener('click',function(e){
+   var b=e.target.closest('button');if(!b)return;
+   [].forEach.call(seg.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+   st[seg.dataset.f]=b.dataset.v;apply();
+  });
+ });
+ ret.addEventListener('change',apply);sort.addEventListener('change',apply);
+ document.getElementById('reset').addEventListener('click',function(){
+  for(var k in st)st[k]='all';ret.checked=false;sort.value='dir';
+  [].forEach.call(form.querySelectorAll('.seg button'),function(x){x.setAttribute('aria-pressed',x.dataset.v==='all'?'true':'false')});
+  apply();
+ });
+ apply();
+})();
+</script>
+</body>
+</html>

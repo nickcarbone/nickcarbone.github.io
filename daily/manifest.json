@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 21,
+      "slug": "2026-11-08-wake-up-somewhere-else",
+      "date": "2026-11-08",
+      "title": "Wake Up Somewhere Else",
+      "dek": "Twenty overnight trains, ferries and coaches on five continents, timed from evening departure to morning arrival, with how much of the next day each one really gives you.",
+      "kind": "Filterable directory",
+      "readingMinutes": 28,
+      "design": "Red Hat Display, Literata, Red Hat Mono; night-to-dawn gradient hero, linen paper, teal/rose-madder/ochre by mode; 24-hour arc dial, night-bar chart, connection-chain route cards.",
+      "source": "queue",
+      "brief": "The Overnight Geography Directory\nResearch question: Where can you travel overnight, wake up somewhere genuinely different, and still have a useful amount of time to explore before returning?\nRather than listing sleeper trains alone, this guide investigates the geography of overnight travel: night trains, late ferries, overnight coaches, and useful early-morning arrivals.\nProposed contents\n- 20 origin–destination connections.\n- Departure and arrival times, journey duration, and arrival-day usefulness.\n- Available accommodation types or seating arrangements.\n- Connections to local transit upon arrival.\n- Seasonal operation and booking constraints.\n- A distinction between journeys that save hotel costs and those that primarily save daytime travel.\nInteractive element: A route planner that filters by mode, overnight duration, arrival time, and whether the destination offers a full usable day. Use original HTML route cards rather than embedded map imagery.\nSources to start from: Verify current schedules, seasonal services, and booking conditions when researching each route.\nFinish line: 20 verified routes, five useful route comparisons, and a filterable directory that identifies the strongest options for maximizing time at the destination.",
+      "factcheck": {
+        "claims": 287,
+        "fixed": 27
+      },
+      "corrections": []
+    },
+    {
       "no": 20,
       "slug": "2026-11-07-the-ghosts-of-empires",
       "date": "2026-11-07",
