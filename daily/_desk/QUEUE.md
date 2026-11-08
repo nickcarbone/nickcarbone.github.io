@@ -116,6 +116,21 @@ Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted v
 The Lost Beers of the World
 Investigate forgotten beer styles, defunct breweries, discontinued brands, and regional traditions pushed aside by industrial lager. Explain what made each distinctive and whether modern brewers have revived it.
 
+The Forgery Casebook (writer’s casebook)
+Ten art forgeries that fooled museums, from Van Meegeren’s fake Vermeers to the Knoedler Gallery’s fake Rothkos. Cover how each one was finally caught, whether by lead isotopes, canvas weave, a pigment that hadn’t been invented yet or a mistake in the provenance. Explain why connoisseurs’ eyes failed where chemistry didn’t.
+
+Ten Ideas That Change How You See a Room (field guide)
+Ten ideas from philosophy, each applied to something ordinary. Stoic control applies to a delayed flight, the ship of Theseus to a renovated house, Rawls’s veil of ignorance to a city budget, and Wittgenstein’s language games to an office meeting. Give each idea its original source, the strongest objection, and a question to carry with you for a day.
+
+The Night Sky Over Twenty Cities (filterable atlas)
+What each city has lost to light pollution and what you’d see from the nearest real dark site. Include how to get there, the best month to go, and the constellations or the Milky Way core visible from each. Add a short guide to reading the sky without an app.
+
+The Smell of a Place (field guide)
+Twenty places defined by a scent: Grasse’s jasmine fields, the creosote smell of desert rain, Kyoto incense makers, the Seville orange season, the peat smoke on Islay. Explain the chemistry of each smell, why scent memory is so strong, and how perfumers build a smell from parts.
+
+How Economies Remember (explainer with dossiers)
+Why some regions stay rich or poor for centuries. Cover the evidence on medieval trade routes, colonial institutions, old railway lines and even which crops were planted, and what that research can and can’t prove. Add six case-study regions where history is still readable in today’s incomes. It’s a sequel in spirit to The Ghosts of Empires.
+
 The Hidden Machinery of Civilization
 Create an interactive HTML field guide to the obscure international standards, protocols, and administrative systems that make modern civilization function.
 Explore country identifiers, shipping containers, financial messaging, timekeeping, aviation procedures, telecommunications, postal systems, and measurement standards.
