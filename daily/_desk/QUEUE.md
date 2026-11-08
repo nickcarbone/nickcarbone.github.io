@@ -65,6 +65,27 @@ Proposed Contents: 20 classic and craft breweries across Belgium, Germany, the U
 Interactive Element: A line-by-line transit map UI displaying brewery stops sequentially along major rail corridors (e.g., Brussels–Gent–Brugge or Munich–Salzburg).
 Finish Line: 20 platform-to-taproom profiles with step-by-step walking guides and rail schedule notes.
 
+The Stadium Atlas (filterable atlas)
+Twenty-five stadiums and arenas, from Lambeau to La Bombonera, and what each site was before. Cover the land deals, transit links and public money behind each one. Show how the building shapes the way crowds arrive, eat, drink and leave, with a scorecard for getting there without a car.
+
+The Album Rooms (field guide)
+Twenty recording studios where landmark records were made, from Muscle Shoals to Hansa by the Wall. Cover what the room itself added to the sound, what stands there now, and which ones you can still visit or book. Link each entry to a playlist of the records cut there.
+
+Novels That Got the City Right (literary atlas)
+Fifteen cities, each paired with the novel locals say captures it best. Walk through the real streets, bars and buildings in the book, mark what survives, and add a one-day walking route for each.
+
+The Last Great Night Trains (field guide)
+Every sleeper route still running in Europe and beyond: cabin classes, dining cars, border crossings and what a berth really costs. Add five worked trips comparing the night train with flying door to door, judged by time, cost and sleep.
+
+The Typeface Register (annotated register)
+Fifteen typefaces that ended up running the world, from Helvetica on the New York subway to Transport on British road signs and the font on passports. Cover who designed each one, the brief they were given, and how a committee’s choice shaped what billions of people read every day.
+
+Twelve Dishes With a Paper Trail (register of certificates)
+Twelve dishes claimed by one specific restaurant, such as Caesar salad, Buffalo wings, eggs Benedict and tiramisu. Test each claim against the earliest printed record, say what stands at the address now and where to eat the best version today. This is the food version of your Cocktail Birthplace Atlas.
+
+The Private Members’ Club Atlas (field guide directory)
+Twenty historic clubs, from London’s St James’s to Tokyo, plus the bars, libraries and reading rooms that let non-members in. Cover the founding rules, the dress codes and the famous blackballings, and sort the entries by the kind of evening each one offers.
+
 When the Official Story Fell Apart
 Create an interactive HTML guide to consequential historical claims, public myths, and official narratives that changed when new evidence emerged.
 Investigate declassified documents, fabricated evidence, forgotten testimony, forensic discoveries, and events whose popular retelling obscures important facts.
