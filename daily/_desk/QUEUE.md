@@ -24,20 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Last-Mile Atlas
-Research question: Which interesting European destinations look easy to reach on a map but become surprisingly difficult once you account for the final connection from the railway station?
-Build a directory of places where the last 5–30 km can determine whether a trip is practical: coastal towns, island gateways, mountain communities, and overlooked resort areas.
-Proposed contents
-- 25 destinations across Europe.
-- Nearest useful railway station and onward transport mode.
-- Typical transfer time, frequency, and seasonal limitations.
-- Whether the final connection requires a bus, ferry, local train, or taxi.
-- A practical rating for weekend visits versus longer stays.
-- A short note on what makes each destination worth the extra effort.
-Interactive element: A searchable directory with filters for onward transport, transfer complexity, and destination type. A custom CSS indicator shows each destination's connection chain: rail → local transfer → destination.
-Sources to start from: Omit source recommendations in the generated guide; populate individual entries using verified transport data during research.
-Finish line: 25 destinations, four filters, and a ranked list of 10 places with unusually manageable last-mile connections.
-
 How the World Drinks Beer Differently
 Create an interactive HTML guide comparing beer cultures across countries, exploring what people drink, where they drink it, how it is served, and what they eat alongside it.
 Investigate how climate, agriculture, religion, labor patterns, immigration, taxation, and social customs shaped distinctive drinking traditions.

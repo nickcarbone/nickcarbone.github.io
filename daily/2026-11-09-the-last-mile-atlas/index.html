@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Last-Mile Atlas · Daily</title>
+<meta name="description" content="Twenty-five European places that look easy to reach by train, and what the final connection from the station really involves: every leg, how often it runs, when it stops, and where it catches people out.">
+<meta property="og:title" content="The Last-Mile Atlas">
+<meta property="og:description" content="Twenty-five European places that look easy to reach by train, and what the final connection from the station really involves: every leg, how often it runs, when it stops, and where it catches people out.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-09-the-last-mile-atlas/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-09-the-last-mile-atlas/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@600;800&family=Lora:ital,wght@0,400;0,600;1,400&family=Cousine:wght@400;700&display=swap" rel="stylesheet">
+<style>:root{
+ --bg:#E6D7B0;--tag:#F5EBD0;--tag2:#EFE2C0;--ink:#251C15;--muted:#5A4A39;--rule:#C8B48A;--ox:#7A1F2E;--ox2:#9B3343;
+ --twine:#9C7A4E;--hole:#E6D7B0;
+ --rail:#2F2B28;--bus:#9A3B12;--ferry:#1F4E79;--cable:#4B6A1A;--walk:#6A5641;
+ --disp:'Sofia Sans Extra Condensed','Arial Narrow',sans-serif;--serif:'Lora',Georgia,serif;--mono:'Cousine',ui-monospace,monospace;
+ color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#17120D;--tag:#241C15;--tag2:#2C231A;--ink:#F0E5CA;--muted:#C2B193;--rule:#4A3C2C;--ox:#E9919C;--ox2:#F2A9B2;
+ --twine:#A88A5E;--hole:#17120D;
+ --rail:#DDD3C2;--bus:#EE9A6C;--ferry:#8CBDE8;--cable:#B3CE76;--walk:#CDB693;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17120D;--tag:#241C15;--tag2:#2C231A;--ink:#F0E5CA;--muted:#C2B193;--rule:#4A3C2C;--ox:#E9919C;--ox2:#F2A9B2;
+ --twine:#A88A5E;--hole:#17120D;--rail:#DDD3C2;--bus:#EE9A6C;--ferry:#8CBDE8;--cable:#B3CE76;--walk:#CDB693;color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--serif);
+ background-image:radial-gradient(rgba(120,90,40,.07) 1px,transparent 1px);background-size:5px 5px}
+a{color:var(--ox)}a:hover{color:var(--ox2)}
+h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1;letter-spacing:.01em;margin:0}
+.strip{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:6px 20px;
+ font:700 13px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;border-bottom:2px dashed var(--rule);background:var(--tag2)}
+.strip a{text-decoration:none;display:inline-flex;align-items:center;min-height:40px}
+.hero{max-width:1180px;margin:0 auto;padding:40px 20px 16px;display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center}
+.kicker{font:700 13px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ox);margin:0 0 10px}
+h1{font-size:clamp(56px,10vw,120px);text-transform:uppercase;letter-spacing:-.005em}
+.dek{font-size:20px;line-height:1.5;max-width:36em;margin:18px 0 0;color:var(--ink)}
+.hero-tag{width:100%;height:auto;max-width:460px;justify-self:end}
+.hero-tag .twine{stroke:var(--twine)}
+.hero-tag .tagbody{fill:var(--tag);stroke:var(--rule);stroke-width:2}
+.hero-tag .ring{fill:none;stroke:var(--ox);stroke-width:5}.hero-tag .hole{fill:var(--hole)}
+.hero-tag .tl{font:700 12px var(--mono);letter-spacing:.14em;fill:var(--muted)}
+.hero-tag .tv{font:800 26px var(--disp);fill:var(--ink);letter-spacing:.02em}
+.hero-tag .rule{stroke:var(--rule);stroke-width:1.5;stroke-dasharray:4 3}
+.hero-tag .strip rect{fill:var(--ox)}.hero-tag .strip circle{fill:var(--hole)}.hero-tag .strip circle.open{fill:none;stroke:var(--tag);stroke-width:1.5;stroke-dasharray:2 2}
+main{max-width:1180px;margin:0 auto;padding:0 20px}
+section{margin:44px 0}
+h2{font-size:clamp(34px,5vw,48px);text-transform:uppercase;margin-bottom:12px;border-bottom:3px solid var(--ink);padding-bottom:6px}
+.intro{max-width:40em}
+.intro p{margin:0 0 1em}
+.lede{font-size:20px}
+.lede::first-letter{font-family:var(--disp);font-weight:800;float:left;font-size:4.2em;line-height:.8;padding:.06em .08em 0 0;color:var(--ox)}
+.note{color:var(--muted);font-size:15.5px;max-width:46em;margin:0 0 14px}
+/* legend */
+.legend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.legend-grid>div{background:var(--tag);border:1px solid var(--rule);padding:16px 18px;border-radius:2px}
+.legend h3{font-size:24px;text-transform:uppercase;margin-bottom:6px}
+.legend p{font-size:15.5px;margin:0 0 10px}
+.legend ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.diffkey{flex-direction:column}.diffkey li{display:flex;align-items:center;gap:10px;font:700 13px var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.m{display:inline-block;font:700 11.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;border:2px solid currentColor;border-radius:2px}
+.m-rail,.n-rail .m{color:var(--rail)}.m-bus,.n-bus .m{color:var(--bus)}.m-ferry,.n-ferry .m{color:var(--ferry)}.m-cable,.n-cable .m{color:var(--cable)}.m-walk,.n-walk .m{color:var(--walk)}
+.punch{display:inline-flex;gap:4px;padding:5px 7px;background:var(--ox);border-radius:2px}
+.punch i{width:11px;height:11px;border-radius:50%;border:1.5px dashed var(--tag);display:block}
+.punch i.on{background:var(--hole);border:1.5px solid var(--hole)}
+.stamp{display:inline-block;font:800 15px/1 var(--disp);letter-spacing:.08em;text-transform:uppercase;padding:6px 9px 5px;border:2.5px double currentColor;transform:rotate(-2deg);border-radius:3px}
+.st-works{color:var(--cable)}.st-care{color:var(--bus)}.st-long{color:var(--ox)}
+/* chart */
+.axis{position:relative;height:18px;margin-left:calc(150px + 10px);margin-right:calc(86px + 10px);font:400 12px var(--mono);color:var(--muted)}
+.axis span{position:absolute;transform:translateX(-50%)}
+.axis span:first-child{transform:none}
+.bars{list-style:none;margin:0;padding:0}
+.bars li{display:grid;grid-template-columns:150px 1fr 86px;gap:10px;align-items:center;min-height:30px;border-bottom:1px dotted var(--rule)}
+.bars a{font:600 15px/1.2 var(--serif);text-decoration:none;color:var(--ink);padding:4px 0}
+.bars a:hover{color:var(--ox)}
+.track{position:relative;height:12px;background:repeating-linear-gradient(90deg,transparent 0 calc(100%/14 - 1px),var(--rule) calc(100%/14 - 1px) calc(100%/14))}
+.bar{position:absolute;top:0;height:12px;background:var(--ox);border-radius:6px;min-width:12px}
+.d1 .bar{opacity:.35}.d2 .bar{opacity:.5}.d3 .bar{opacity:.68}.d4 .bar{opacity:.84}.d5 .bar{opacity:1}
+.rng{font:400 12.5px var(--mono);color:var(--muted);text-align:right}
+/* top */
+.toplist{counter-reset:t;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 28px}
+.toplist li{counter-increment:t;position:relative;padding:10px 0 10px 54px;border-bottom:1px dashed var(--rule)}
+.toplist li::before{content:counter(t);position:absolute;left:0;top:6px;font:800 40px/1 var(--disp);color:var(--ox)}
+.toplist b{font:800 24px/1 var(--disp);text-transform:uppercase;letter-spacing:.02em}
+.toplist a{text-decoration:none;color:var(--ink)}
+.toplist .c{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-left:6px}
+.toplist p{margin:4px 0 0;font-size:15.5px}
+/* filters */
+.filters{background:var(--tag2);border:1px solid var(--rule);padding:12px 16px;margin:0 0 22px;position:relative}
+.frow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 6px;padding:6px 0;border-bottom:1px dotted var(--rule)}
+.frow:last-child{border-bottom:0}
+.fl{font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);min-width:96px}
+.filters button{font:600 15px/1 var(--serif);min-height:40px;padding:8px 12px;background:var(--tag);color:var(--ink);border:1.5px solid var(--rule);border-radius:2px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--tag);border-color:var(--ink)}
+.filters button:focus-visible,.filters input:focus-visible,.filters select:focus-visible{outline:3px solid var(--ox);outline-offset:2px}
+.filters input,.filters select{font:400 16px var(--serif);min-height:42px;padding:6px 10px;background:var(--tag);color:var(--ink);border:1.5px solid var(--rule);border-radius:2px;flex:1;min-width:0;max-width:380px}
+.filters select{flex:0 1 auto}
+#count{font:700 13px var(--mono);color:var(--muted);margin-left:auto;text-transform:uppercase;letter-spacing:.06em}
+/* tags */
+.tags{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.tag{position:relative;background:var(--tag);border:1px solid var(--rule);padding:18px 20px 16px 20px;
+ clip-path:polygon(0 26px,26px 0,100% 0,100% 100%,0 100%);box-shadow:0 1px 0 var(--rule)}
+.tag::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,var(--rule) 0 25.5px,transparent 26px)}
+.tag-head{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"eye no punch" "eye h punch" "eye where where";column-gap:14px;align-items:end;padding-bottom:12px;border-bottom:2px dashed var(--rule)}
+.eyelet{grid-area:eye;width:28px;height:28px;border-radius:50%;border:5px solid var(--ox);background:var(--hole);align-self:center}
+.tno{grid-area:no;font:700 12px var(--mono);letter-spacing:.12em;color:var(--muted)}
+.tag h3{grid-area:h;font-size:clamp(28px,3.4vw,36px);text-transform:uppercase}
+.where{grid-area:where;margin:4px 0 0;font:700 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.tag-head .punch{grid-area:punch;align-self:start}
+.chain{list-style:none;margin:14px 0 6px;padding:0;display:flex;flex-wrap:wrap;align-items:stretch;gap:0}
+.node{position:relative;font-size:14.5px;line-height:1.35;padding:6px 10px 8px;background:var(--tag2);border:1.5px solid var(--rule);border-top:4px solid currentColor;margin:0 22px 10px 0;max-width:200px;color:var(--ink)}
+.node .m{display:block;border:0;padding:0 0 3px;font-size:11px}
+.node::after{content:"";position:absolute;right:-24px;top:50%;width:22px;border-top:3px solid var(--twine)}
+.node:last-child::after{display:none}
+.n-rail{border-top-color:var(--rail)}.n-bus{border-top-color:var(--bus)}.n-ferry{border-top-color:var(--ferry)}.n-cable{border-top-color:var(--cable)}.n-walk{border-top-color:var(--walk)}
+.n-dest{border-top-color:var(--ox);background:var(--tag)}
+.n-dest .m{color:var(--ox)}
+.node.alt{border-style:dashed;border-top-style:dashed}
+.node b{font-weight:600}
+.facts{margin:6px 0 0}
+.facts>div{display:grid;grid-template-columns:118px 1fr;gap:10px;padding:7px 0;border-top:1px dotted var(--rule)}
+.facts dt{font:700 11.5px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding-top:3px}
+.facts dd{margin:0;font-size:15.5px;line-height:1.55}
+.facts .catch dd{font-style:italic}
+.facts .catch dt{color:var(--ox)}
+.tag-foot{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:10px;padding-top:12px;border-top:2px dashed var(--rule)}
+.wnote{font-size:15px;color:var(--muted);flex:1;min-width:12em}
+sup{line-height:0}
+.cite{font:700 11px var(--mono);text-decoration:none;padding:2px 2px;color:var(--ox)}
+.cite:hover{text-decoration:underline}
+.empty{font-style:italic;color:var(--muted)}
+.method{max-width:44em}
+.method p{margin:0 0 1em}
+.sources ol{columns:2;column-gap:36px;font-size:14.5px;line-height:1.45;padding-left:2.2em;margin:0}
+.sources li{break-inside:avoid;margin:0 0 8px;overflow-wrap:anywhere}
+.sources li:target{background:var(--tag2);outline:2px solid var(--ox)}
+.pub{color:var(--muted)}
+.foot{max-width:1180px;margin:30px auto 0;padding:20px 20px 36px;border-top:3px solid var(--ink);font:400 14px/1.6 var(--mono)}
+.foot p{margin:0 0 6px}
+.foot a{display:inline-block;min-height:40px;line-height:40px}
+@media (max-width:900px){
+ .hero{grid-template-columns:1fr}.hero-tag{justify-self:start;max-width:380px}
+ .legend-grid{grid-template-columns:1fr}.tags{grid-template-columns:1fr}.toplist{grid-template-columns:1fr}
+ .sources ol{columns:1}
+}
+@media (max-width:560px){
+ body{font-size:17px}
+ .hero{padding-top:26px}
+ .dek{font-size:18px}
+ .bars li{grid-template-columns:104px 1fr 62px;gap:6px}
+ .axis{margin-left:110px;margin-right:68px}
+ .bars a{font-size:14px}.rng{font-size:11px}
+ .tag{padding:16px 14px 14px}
+ .chain{flex-direction:column}
+ .node{max-width:none;margin:0 0 14px 0}
+ .node::after{right:auto;left:22px;top:auto;bottom:-16px;width:0;height:14px;border-top:0;border-left:3px solid var(--twine)}
+ .facts>div{grid-template-columns:1fr;gap:2px}
+ .fl{min-width:100%}
+ .filters input,.filters select{max-width:none}
+}
+</style>
+</head>
+<body>
+<nav class="strip" aria-label="Daily"><a href="/daily/">← Daily</a><span>No. 022 · Monday 9 November 2026</span></nav>
+<header class="hero">
+ <div class="hero-text">
+  <p class="kicker">Filterable directory · 25 destinations</p>
+  <h1>The Last-Mile Atlas</h1>
+  <p class="dek">Twenty-five European places that look easy to reach by train, and what the final connection from the station really involves: every leg, how often it runs, when it stops, and where it catches people out.</p>
+ </div>
+ <svg class="hero-tag" viewBox="0 0 420 300" role="img" aria-label="A luggage label tied to a string, addressed from Station to Destination, with a punched last-mile strip">
+ <path class="twine" d="M-10 40 C 60 10, 110 70, 150 92" fill="none" stroke-width="3"/>
+ <path class="twine" d="M150 92 C 170 104, 150 120, 128 112" fill="none" stroke-width="3"/>
+ <g transform="rotate(-6 250 160)">
+  <path class="tagbody" d="M150 70 L200 40 H400 V260 H200 L150 230 Z"/>
+  <circle class="ring" cx="176" cy="150" r="13"/><circle class="hole" cx="176" cy="150" r="6"/>
+  <text class="tl" x="216" y="78">FROM</text><text class="tv" x="216" y="104">THE STATION</text>
+  <line class="rule" x1="216" y1="114" x2="384" y2="114"/>
+  <text class="tl" x="216" y="140">TO</text><text class="tv" x="216" y="166">THE PLACE ITSELF</text>
+  <line class="rule" x1="216" y1="176" x2="384" y2="176"/>
+  <text class="tl" x="216" y="202">LAST MILE · 5–30 KM</text>
+  <g class="strip"><rect x="216" y="212" width="168" height="30" rx="2"/>
+   <circle cx="236" cy="227" r="6"/><circle cx="264" cy="227" r="6"/><circle cx="292" cy="227" r="6"/>
+   <circle class="open" cx="320" cy="227" r="6"/><circle class="open" cx="348" cy="227" r="6"/></g>
+ </g>
+</svg>
+</header>
+<main>
+<section class="intro">
+<p class="lede">On a rail map, Hallstatt has its own station. So does Rocamadour, and so, more or less, does Nazaré. What the map leaves out is what happens when you step off the train: a boat across a lake, a taxi up from a plateau, a bus that runs only when the tide allows.</p>
+<p>This atlas is about that final stretch, usually somewhere between five and thirty kilometres and occasionally much more, from the nearest useful railway station to the place you came to see. For each of 25 destinations it sets out the station, every leg of the onward chain, the typical transfer time, how often the connection runs in high and low season, and the one thing most likely to catch you out.</p>
+<p>Some turn out easier than they look. Bellagio has no railway at all, yet a train from Milan and a fifteen-minute boat put you on its waterfront in around two hours. Others are harder than they seem. Holy Island’s bus is timetabled around the tides and, outside the school holidays, runs on two days a week at most. Rocamadour’s station sits on a plateau kilometres from the village, with a bus only in summer.</p>
+<p>Timetables change every season. Each frequency here is tied to a dated timetable or source, checked in November 2026. Read them as the shape of a service, and check with the operator before you travel.</p>
+</section>
+
+<section class="legend" aria-labelledby="howto">
+ <h2 id="howto">How to read a tag</h2>
+ <div class="legend-grid">
+  <div><h3>The chain</h3><p>Each tag starts at the station and follows the string to the destination. Every leg is coloured by mode; a dashed leg is an alternative or an optional extension.</p>
+   <ul class="modekey"><li><span class="m m-rail">Train</span></li><li><span class="m m-bus">Bus</span></li><li><span class="m m-ferry">Ferry</span></li><li><span class="m m-cable">Cable & rack</span></li><li><span class="m m-walk">Walk / taxi</span></li></ul></div>
+  <div><h3>The punches</h3><p>One to five holes: the desk’s judgement of how hard the last mile is, weighing frequency, year-round running, journey time and how easily one missed link strands you.</p>
+   <ul class="diffkey"><li><span class="punch" role="img" aria-label="Difficulty 1 of 5: Easy"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span> <span>Easy</span></li><li><span class="punch" role="img" aria-label="Difficulty 2 of 5: Manageable"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span> <span>Manageable</span></li><li><span class="punch" role="img" aria-label="Difficulty 3 of 5: Takes planning"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span> <span>Takes planning</span></li><li><span class="punch" role="img" aria-label="Difficulty 4 of 5: Awkward"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span> <span>Awkward</span></li><li><span class="punch" role="img" aria-label="Difficulty 5 of 5: Hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span> <span>Hard</span></li></ul></div>
+  <div><h3>The stamp</h3><p>Whether a two-night weekend by rail is practical from the nearest big city, or the place rewards a longer stay.</p>
+   <ul class="stampkey"><li><span class="stamp st-works">Weekend works</span></li><li><span class="stamp st-care">Weekend, with planning</span></li><li><span class="stamp st-long">Better as a longer stay</span></li></ul></div>
+ </div>
+</section>
+
+
+<section class="chart" aria-labelledby="chartt">
+ <h2 id="chartt">From platform to destination</h2>
+ <p class="note">Typical time from leaving the station to arriving in the centre of the destination, as a range. It includes structural waits, such as walking to a pier, but not the wait for a sparse bus, which can add hours. Bars are shaded by the punch rating.</p>
+ <div class="axis" aria-hidden="true"><span style="left:0">0</span><span style="left:21.4%">1h</span><span style="left:42.9%">2h</span><span style="left:64.3%">3h</span><span style="left:85.7%">4h</span></div>
+ <ol class="bars"><li class="d4"><a href="#t-rocamadour">Rocamadour</a><span class="track"><span class="bar" style="left:3.6%;width:17.9%"></span></span><span class="rng">10–60 min</span></li><li class="d1"><a href="#t-hallstatt">Hallstatt</a><span class="track"><span class="bar" style="left:5.4%;width:3.6%"></span></span><span class="rng">15–25 min</span></li><li class="d1"><a href="#t-giethoorn">Giethoorn</a><span class="track"><span class="bar" style="left:5.4%;width:3.6%"></span></span><span class="rng">15–25 min</span></li><li class="d1"><a href="#t-bled">Bled</a><span class="track"><span class="bar" style="left:5.4%;width:5.4%"></span></span><span class="rng">15–30 min</span></li><li class="d1"><a href="#t-konigssee">Königssee</a><span class="track"><span class="bar" style="left:7.1%;width:3.6%"></span></span><span class="rng">20–30 min</span></li><li class="d2"><a href="#t-murren">Mürren</a><span class="track"><span class="bar" style="left:7.1%;width:3.6%"></span></span><span class="rng">20–30 min</span></li><li class="d1"><a href="#t-bellagio">Bellagio</a><span class="track"><span class="bar" style="left:10.7%;width:10.7%"></span></span><span class="rng">30–60 min</span></li><li class="d5"><a href="#t-lindisfarne">Holy Island (Lindisfarne)</a><span class="track"><span class="bar" style="left:12.5%;width:1.8%"></span></span><span class="rng">35–40 min</span></li><li class="d1"><a href="#t-saasfee">Saas-Fee</a><span class="track"><span class="bar" style="left:16.1%;width:3.6%"></span></span><span class="rng">45–55 min</span></li><li class="d3"><a href="#t-montsaintmichel">Mont-Saint-Michel</a><span class="track"><span class="bar" style="left:16.1%;width:21.4%"></span></span><span class="rng">45–105 min</span></li><li class="d3"><a href="#t-positano">Positano</a><span class="track"><span class="bar" style="left:21.4%;width:10.7%"></span></span><span class="rng">60–90 min</span></li><li class="d2"><a href="#t-dingle">Dingle</a><span class="track"><span class="bar" style="left:23.2%;width:19.6%"></span></span><span class="rng">65–120 min</span></li><li class="d2"><a href="#t-etretat">Étretat</a><span class="track"><span class="bar" style="left:25.0%;width:21.4%"></span></span><span class="rng">70–130 min</span></li><li class="d3"><a href="#t-hvar">Hvar</a><span class="track"><span class="bar" style="left:26.8%;width:5.4%"></span></span><span class="rng">75–90 min</span></li><li class="d4"><a href="#t-gordes">Gordes</a><span class="track"><span class="bar" style="left:26.8%;width:16.1%"></span></span><span class="rng">75–120 min</span></li><li class="d4"><a href="#t-cadaques">Cadaqués</a><span class="track"><span class="bar" style="left:26.8%;width:58.9%"></span></span><span class="rng">75–240 min</span></li><li class="d2"><a href="#t-aeroskobing">Ærøskøbing</a><span class="track"><span class="bar" style="left:32.1%;width:5.4%"></span></span><span class="rng">90–105 min</span></li><li class="d4"><a href="#t-civita">Civita di Bagnoregio</a><span class="track"><span class="bar" style="left:32.1%;width:5.4%"></span></span><span class="rng">90–105 min</span></li><li class="d2"><a href="#t-hydra">Hydra</a><span class="track"><span class="bar" style="left:32.1%;width:21.4%"></span></span><span class="rng">90–150 min</span></li><li class="d4"><a href="#t-nazare">Nazaré</a><span class="track"><span class="bar" style="left:35.7%;width:39.3%"></span></span><span class="rng">100–210 min</span></li><li class="d3"><a href="#t-belleile">Belle-Île-en-Mer</a><span class="track"><span class="bar" style="left:42.9%;width:10.7%"></span></span><span class="rng">120–150 min</span></li><li class="d5"><a href="#t-scilly">Isles of Scilly</a><span class="track"><span class="bar" style="left:53.6%;width:16.1%"></span></span><span class="rng">150–195 min</span></li><li class="d5"><a href="#t-iona">Iona</a><span class="track"><span class="bar" style="left:64.3%;width:7.1%"></span></span><span class="rng">180–200 min</span></li><li class="d5"><a href="#t-geiranger">Geiranger</a><span class="track"><span class="bar" style="left:75.0%;width:1.2%"></span></span><span class="rng">210 min</span></li><li class="d5"><a href="#t-reine">Reine, Lofoten</a><span class="track"><span class="bar" style="left:85.7%;width:10.7%"></span></span><span class="rng">240–270 min</span></li></ol>
+</section>
+
+
+<section class="top" aria-labelledby="topt">
+ <h2 id="topt">Ten unusually manageable last miles</h2>
+ <p class="note">The desk’s ranking, favouring connections that run all year, run often, and take least time from the platform. All ten work as a weekend by rail.</p>
+ <ol class="toplist"><li><a href="#t-bellagio"><b>Bellagio</b></a> <span class="c">Italy</span><p>A 15-minute boat, about 18 crossings a day even in winter, from a station an hour out of Milan.</p></li><li><a href="#t-hallstatt"><b>Hallstatt</b></a> <span class="c">Austria</span><p>The boat is timed to the trains. Just arrive before the evening.</p></li><li><a href="#t-giethoorn"><b>Giethoorn</b></a> <span class="c">Netherlands</span><p>An intercity station, then a bus of a quarter of an hour.</p></li><li><a href="#t-konigssee"><b>Königssee</b></a> <span class="c">Germany</span><p>A short bus ride and a five-minute walk. The boats are the bottleneck, not the bus.</p></li><li><a href="#t-bled"><b>Bled</b></a> <span class="c">Slovenia</span><p>Frequent buses cover 4 km from a main-line station.</p></li><li><a href="#t-saasfee"><b>Saas-Fee</b></a> <span class="c">Switzerland</span><p>A bus every half hour, from before five in the morning to half past eleven at night.</p></li><li><a href="#t-murren"><b>Mürren</b></a> <span class="c">Switzerland</span><p>Eighteen minutes by cable and rail. Check the maintenance calendar.</p></li><li><a href="#t-aeroskobing"><b>Ærøskøbing</b></a> <span class="c">Denmark</span><p>A ten-minute walk to a boat that runs all year.</p></li><li><a href="#t-hydra"><b>Hydra</b></a> <span class="c">Greece</span><p>Metro to the port, then a fast boat most of the day in season.</p></li><li><a href="#t-etretat"><b>Étretat</b></a> <span class="c">France</span><p>Slow, but hourly and year-round from the station forecourt.</p></li></ol>
+</section>
+
+<section class="dir" aria-labelledby="dirt">
+ <h2 id="dirt">The directory</h2>
+ 
+<div class="filters" id="filters" hidden>
+ <div class="frow"><label for="q" class="fl">Search</label><input id="q" type="search" placeholder="Place, country or station" autocomplete="off"></div>
+ <div class="frow" role="group" aria-label="Destination type"><span class="fl">Type</span><button type="button" data-f="type" data-v="all" aria-pressed="true">All</button><button type="button" data-f="type" data-v="coast" aria-pressed="false">Coast</button><button type="button" data-f="type" data-v="island" aria-pressed="false">Island & tidal</button><button type="button" data-f="type" data-v="alpine" aria-pressed="false">Lakes & mountains</button><button type="button" data-f="type" data-v="village" aria-pressed="false">Inland village</button></div>
+ <div class="frow" role="group" aria-label="Onward transport"><span class="fl">Onward by</span><button type="button" data-f="mode" data-v="all" aria-pressed="true">All</button><button type="button" data-f="mode" data-v="bus" aria-pressed="false">Bus</button><button type="button" data-f="mode" data-v="ferry" aria-pressed="false">Ferry</button><button type="button" data-f="mode" data-v="cable" aria-pressed="false">Cable & rack</button><button type="button" data-f="mode" data-v="walk" aria-pressed="false">Walk / taxi</button></div>
+ <div class="frow" role="group" aria-label="Transfer complexity"><span class="fl">Connections</span><button type="button" data-f="cx" data-v="all" aria-pressed="true">All</button><button type="button" data-f="cx" data-v="1" aria-pressed="false">One</button><button type="button" data-f="cx" data-v="2" aria-pressed="false">Two</button><button type="button" data-f="cx" data-v="3" aria-pressed="false">Three</button></div>
+ <div class="frow" role="group" aria-label="Weekend rating"><span class="fl">Weekend</span><button type="button" data-f="wk" data-v="all" aria-pressed="true">All</button><button type="button" data-f="wk" data-v="works" aria-pressed="false">Works</button><button type="button" data-f="wk" data-v="care" aria-pressed="false">With planning</button><button type="button" data-f="wk" data-v="long" aria-pressed="false">Longer stay</button></div>
+ <div class="frow"><label for="sort" class="fl">Sort</label><select id="sort"><option value="easy">Easiest first</option><option value="hard">Hardest first</option><option value="time">Shortest transfer</option><option value="az">A to Z</option></select><output id="count" aria-live="polite"></output></div>
+</div>
+
+ <div class="tags" id="tags">
+<article class="tag" id="t-bellagio" data-type="alpine" data-modes="ferry walk" data-cx="1" data-wk="works" data-diff="1" data-t="30" data-name="Bellagio" data-q="bellagio italy varenna-esino">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 01</span>
+  <h3>Bellagio</h3>
+  <p class="where">Italy · Lakes & mountains</p>
+  <span class="punch" role="img" aria-label="Difficulty 1 of 5: Easy"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Varenna-Esino</b></li><li class="node n-walk"><span class="m">Walk / taxi</span>Walk downhill to the Varenna pier</li><li class="node n-ferry"><span class="m">Ferry</span>Navigazione Laghi ferry, 15 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Bellagio</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Varenna-Esino</b>: Trenord line from Milano Centrale towards Lecco and Tirano, about 64 minutes, roughly hourly<sup><a class="cite" href="#s1" aria-label="Source 1">1</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>30–60 min, depending on the wait for a boat</dd></div>
+  <div><dt>How often</dt><dd>Winter weekday timetable (2 November 2026 – 14 March 2027): about 18 crossings a day each way; there are more in the summer timetable<sup><a class="cite" href="#s2" aria-label="Source 2">2</a></sup><sup><a class="cite" href="#s3" aria-label="Source 3">3</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>Runs all year, with a reduced service on 25 December and 1 January. Boats have limited capacity, and a ticket bought on board costs €1 more when the ticket office is open<sup><a class="cite" href="#s2" aria-label="Source 2">2</a></sup>. The alternative is ASF bus C130 from Como, about 70 minutes on the lakeside road<sup><a class="cite" href="#s4" aria-label="Source 4">4</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>Very little. The only weak point is the walk between station and pier: travellers on forums warn that a seven-minute connection with luggage is too tight, especially uphill to the train<sup><a class="cite" href="#s5" aria-label="Source 5">5</a></sup>.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Bellagio sits on the point where Lake Como divides into its two southern arms, with the gardens of Villa Melzi, Villa Serbelloni on the promontory and the Romanesque church of San Giacomo<sup><a class="cite" href="#s6" aria-label="Source 6">6</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">An hour from Milan by train and a quarter of an hour by boat.</span></footer>
+</article>
+<article class="tag" id="t-hallstatt" data-type="alpine" data-modes="ferry walk" data-cx="1" data-wk="works" data-diff="1" data-t="15" data-name="Hallstatt" data-q="hallstatt austria hallstatt station">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 02</span>
+  <h3>Hallstatt</h3>
+  <p class="where">Austria · Lakes & mountains</p>
+  <span class="punch" role="img" aria-label="Difficulty 1 of 5: Easy"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Hallstatt station</b></li><li class="node n-walk"><span class="m">Walk / taxi</span>Walk down to the landing</li><li class="node n-ferry"><span class="m">Ferry</span>Ferry Stefanie across the lake</li><li class="node n-dest"><span class="m">Arrive</span><b>Hallstatt</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Hallstatt station</b>: Salzkammergut line between Attnang-Puchheim and Stainach-Irdning; about 2h15–2h40 from Salzburg with a change<sup><a class="cite" href="#s7" aria-label="Source 7">7</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>15–25 min</dd></div>
+  <div><dt>How often</dt><dd>The boat is timed to meet the trains<sup><a class="cite" href="#s8" aria-label="Source 8">8</a></sup>. The departure list published by the regional tourist board shows 18 crossings from Hallstatt Markt on school-term weekdays and 15 in the holidays, between 07:07 and 18:50; that list carries 2024–25 dates, so check the current year<sup><a class="cite" href="#s9" aria-label="Source 9">9</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>Runs all year: the tourist board says it is the only Austrian lake boat that keeps going through winter. Fares are €4 single and €8 return, cash only<sup><a class="cite" href="#s10" aria-label="Source 10">10</a></sup>. Without the boat, the route is OÖVV bus 541 from Bad Ischl with a change to the 543 at Gosaumühle, 40–50 minutes; the last bus from Bad Ischl leaves at 18:16<sup><a class="cite" href="#s11" aria-label="Source 11">11</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>The station is on the wrong side of the lake. Arrival depends on a cash-only boat that stops in the early evening, so a late train leaves you on the far shore.</dd></div>
+  <div><dt>Worth the effort</dt><dd>The village is the core of the Hallstatt-Dachstein / Salzkammergut Cultural Landscape, a UNESCO World Heritage Site since 1997, where salt has been mined since prehistory<sup><a class="cite" href="#s12" aria-label="Source 12">12</a></sup>. About 750 residents receive up to 10,000 visitors on peak days<sup><a class="cite" href="#s13" aria-label="Source 13">13</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">Staying overnight is the way to see the village outside the day-trip peak.</span></footer>
+</article>
+<article class="tag" id="t-giethoorn" data-type="village" data-modes="bus walk" data-cx="1" data-wk="works" data-diff="1" data-t="15" data-name="Giethoorn" data-q="giethoorn netherlands steenwijk">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 03</span>
+  <h3>Giethoorn</h3>
+  <p class="where">Netherlands · Inland village</p>
+  <span class="punch" role="img" aria-label="Difficulty 1 of 5: Easy"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Steenwijk</b></li><li class="node n-bus"><span class="m">Bus</span>RRReis bus 70, 9–16 min</li><li class="node n-walk"><span class="m">Walk / taxi</span>Short walk into the village</li><li class="node n-dest"><span class="m">Arrive</span><b>Giethoorn</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Steenwijk</b>: Arnhem–Zwolle–Leeuwarden line, with hourly intercity trains from Den Haag and Schiphol<sup><a class="cite" href="#s14" aria-label="Source 14">14</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>15–25 min</dd></div>
+  <div><dt>How often</dt><dd>Line 70 is hourly<sup><a class="cite" href="#s15" aria-label="Source 15">15</a></sup>. From late April to October the seasonal Giethoorn Express adds a bus every 30 minutes between 10:00 and 18:00<sup><a class="cite" href="#s16" aria-label="Source 16">16</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>Line 70 has no evening service<sup><a class="cite" href="#s14" aria-label="Source 14">14</a></sup>, so a late train means a taxi.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>Surprisingly easy: an intercity station a quarter of an hour away. The real constraints are summer crowds and the lack of buses after the early evening.</dd></div>
+  <div><dt>Worth the effort</dt><dd>The old village is built on peat islands linked by footbridges, with no roads through it, beside De Weerribben-Wieden National Park<sup><a class="cite" href="#s17" aria-label="Source 17">17</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">About two hours from Amsterdam by train and bus<sup><a class="cite" href="#s17" aria-label="Source 17">17</a></sup>.</span></footer>
+</article>
+<article class="tag" id="t-konigssee" data-type="alpine" data-modes="bus walk ferry" data-cx="1" data-wk="works" data-diff="1" data-t="20" data-name="Königssee" data-q="königssee germany berchtesgaden hbf">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 04</span>
+  <h3>Königssee</h3>
+  <p class="where">Germany · Lakes & mountains</p>
+  <span class="punch" role="img" aria-label="Difficulty 1 of 5: Easy"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Berchtesgaden Hbf</b></li><li class="node n-bus"><span class="m">Bus</span>RVO bus 841 (also 840, 843), 10–15 min</li><li class="node n-walk"><span class="m">Walk / taxi</span>5 min walk to the pier</li><li class="node n-ferry alt"><span class="m">Ferry</span>Electric boat to St Bartholomä, about 35 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Königssee</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Berchtesgaden Hbf</b>: end of the branch from Freilassing via Bad Reichenhall<sup><a class="cite" href="#s18" aria-label="Source 18">18</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>20–30 min to the pier; about an hour to St Bartholomä</dd></div>
+  <div><dt>How often</dt><dd>Buses run through the day, taking 10–15 minutes<sup><a class="cite" href="#s19" aria-label="Source 19">19</a></sup>; check the current 841 timetable<sup><a class="cite" href="#s20" aria-label="Source 20">20</a></sup>. Boats run about every 30 minutes all year<sup><a class="cite" href="#s21" aria-label="Source 21">21</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>In the winter timetable (12 October 2026 – 23 April 2027) the last boat to St Bartholomä leaves at 15:30. There are no boats on 24 December or when the lake freezes, and fog or storms can stop them<sup><a class="cite" href="#s22" aria-label="Source 22">22</a></sup>. On fine holiday days queues form even with 19 boats running; the operator suggests arriving before 10:30<sup><a class="cite" href="#s23" aria-label="Source 23">23</a></sup>. Salet, for the Obersee, is served only in summer<sup><a class="cite" href="#s21" aria-label="Source 21">21</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>The bus is easy. The constraint is the boat: a short daytime window in winter and queues in summer.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Every passenger boat on the Königssee has been electric since 1909<sup><a class="cite" href="#s24" aria-label="Source 24">24</a></sup>. The pilgrimage church of St Bartholomä can be reached only by boat or on a long mountain walk<sup><a class="cite" href="#s21" aria-label="Source 21">21</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">An overnight stay lets you take the first boat before the queues build.</span></footer>
+</article>
+<article class="tag" id="t-bled" data-type="alpine" data-modes="bus walk" data-cx="1" data-wk="works" data-diff="1" data-t="15" data-name="Bled" data-q="bled slovenia lesce-bled">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 05</span>
+  <h3>Bled</h3>
+  <p class="where">Slovenia · Lakes & mountains</p>
+  <span class="punch" role="img" aria-label="Difficulty 1 of 5: Easy"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Lesce-Bled</b></li><li class="node n-bus"><span class="m">Bus</span>Bus from the stop opposite the station</li><li class="node n-walk alt"><span class="m">Walk / taxi</span>Or walk 4 km on a foot and cycle path</li><li class="node n-dest"><span class="m">Arrive</span><b>Bled</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Lesce-Bled</b>: main line Ljubljana–Jesenice, with almost 20 trains a day to Ljubljana taking 40 minutes to an hour<sup><a class="cite" href="#s25" aria-label="Source 25">25</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>15–30 min</dd></div>
+  <div><dt>How often</dt><dd>Buses between Ljubljana and Bled run at least hourly from 05:00 to 21:00 all year and every half hour in summer<sup><a class="cite" href="#s25" aria-label="Source 25">25</a></sup>; a route planner lists buses from Lesce to Bled about every 20 minutes<sup><a class="cite" href="#s26" aria-label="Source 26">26</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>No seasonal gaps on this route. Summer-only shuttles call at the other station, Bled Jezero<sup><a class="cite" href="#s27" aria-label="Source 27">27</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>The station named after the lake is the less useful one. Bled Jezero is closer, but its Bohinj-line trains are sparse and from Ljubljana need a change at Jesenice, which can stretch the trip to almost three hours<sup><a class="cite" href="#s28" aria-label="Source 28">28</a></sup>. The main-line station 4 km away plus a short bus works better<sup><a class="cite" href="#s27" aria-label="Source 27">27</a></sup>.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Bled Castle stands on a cliff above the lake; it is first recorded in a deed of 1011<sup><a class="cite" href="#s29" aria-label="Source 29">29</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">Under an hour from Ljubljana.</span></footer>
+</article>
+<article class="tag" id="t-saasfee" data-type="alpine" data-modes="bus walk" data-cx="1" data-wk="works" data-diff="1" data-t="45" data-name="Saas-Fee" data-q="saas-fee switzerland visp">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 06</span>
+  <h3>Saas-Fee</h3>
+  <p class="where">Switzerland · Lakes & mountains</p>
+  <span class="punch" role="img" aria-label="Difficulty 1 of 5: Easy"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Visp</b></li><li class="node n-bus"><span class="m">Bus</span>PostBus 511 to the village entrance, about 45 min</li><li class="node n-walk"><span class="m">Walk / taxi</span>Walk or electric taxi into the car-free village</li><li class="node n-dest"><span class="m">Arrive</span><b>Saas-Fee</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Visp</b>: Simplon main line in the Rhône valley, where trains from Bern through the Lötschberg base tunnel stop<sup><a class="cite" href="#s30" aria-label="Source 30">30</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>45–55 min</dd></div>
+  <div><dt>How often</dt><dd>About every 30 minutes, every day; the first bus leaves Visp at 04:41 on weekdays and the last leaves Saas-Fee at 23:30<sup><a class="cite" href="#s31" aria-label="Source 31">31</a></sup>. Journey time from a route planner<sup><a class="cite" href="#s32" aria-label="Source 32">32</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>Groups of ten or more must book the bus 24–48 hours ahead. Weather or works occasionally close or restrict the access road<sup><a class="cite" href="#s30" aria-label="Source 30">30</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>Surprisingly easy: one frequent bus from a main-line station to the edge of the village. The only friction is luggage at the car-free terminal.</dd></div>
+  <div><dt>Worth the effort</dt><dd>A car-free village since 1951, at about 1,800 m<sup><a class="cite" href="#s33" aria-label="Source 33">33</a></sup>. Guests staying overnight get the SaastalCard, which covers the PostBus and the cable cars, except the Metro Alpin<sup><a class="cite" href="#s31" aria-label="Source 31">31</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">About three hours by public transport from Zurich, Geneva, Basel airport or Milan Malpensa<sup><a class="cite" href="#s30" aria-label="Source 30">30</a></sup>.</span></footer>
+</article>
+<article class="tag" id="t-murren" data-type="alpine" data-modes="cable" data-cx="2" data-wk="works" data-diff="2" data-t="20" data-name="Mürren" data-q="mürren switzerland lauterbrunnen">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 07</span>
+  <h3>Mürren</h3>
+  <p class="where">Switzerland · Lakes & mountains</p>
+  <span class="punch" role="img" aria-label="Difficulty 2 of 5: Manageable"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Lauterbrunnen</b></li><li class="node n-cable"><span class="m">Cable & rack</span>Cableway to Grütschalp, about 4 min</li><li class="node n-cable"><span class="m">Cable & rack</span>Mountain railway to Mürren, 12 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Mürren</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Lauterbrunnen</b>: Bernese Oberland Railway branch from Interlaken Ost<sup><a class="cite" href="#s34" aria-label="Source 34">34</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>20–30 min</dd></div>
+  <div><dt>How often</dt><dd>The combined cableway-and-railway journey takes about 18 minutes and runs every 30 minutes early in the morning, then every 15 minutes from about 09:00 (2025 timetable)<sup><a class="cite" href="#s35" aria-label="Source 35">35</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>The 2025 timetable has gaps in late April and late October to early November<sup><a class="cite" href="#s35" aria-label="Source 35">35</a></sup>. The Lauterbrunnen–Grütschalp cableway closed for renovation from 13 April to 10 July 2026, with traffic sent via Stechelberg<sup><a class="cite" href="#s36" aria-label="Source 36">36</a></sup>, and reopened on 11 July with a larger cabin<sup><a class="cite" href="#s37" aria-label="Source 37">37</a></sup>. The alternative route is PostBus to Stechelberg and the Schilthornbahn cableway, which opened in December 2024 as the world’s steepest<sup><a class="cite" href="#s38" aria-label="Source 38">38</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>There are two ways up, and each has maintenance closures at different times. In spring and autumn check which one is running.</dd></div>
+  <div><dt>Worth the effort</dt><dd>A car-free village at about 1,650 m<sup><a class="cite" href="#s33" aria-label="Source 33">33</a></sup>, and the start of the cableway to the Schilthorn<sup><a class="cite" href="#s38" aria-label="Source 38">38</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">Avoid the spring and autumn maintenance windows.</span></footer>
+</article>
+<article class="tag" id="t-aeroskobing" data-type="island" data-modes="walk ferry" data-cx="1" data-wk="works" data-diff="2" data-t="90" data-name="Ærøskøbing" data-q="ærøskøbing denmark svendborg">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 08</span>
+  <h3>Ærøskøbing</h3>
+  <p class="where">Denmark · Island & tidal</p>
+  <span class="punch" role="img" aria-label="Difficulty 2 of 5: Manageable"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Svendborg</b></li><li class="node n-walk"><span class="m">Walk / taxi</span>Walk about 500 m to the ferry berth</li><li class="node n-ferry"><span class="m">Ferry</span>Ærøfærgerne ferry, 75 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Ærøskøbing</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Svendborg</b>: end of the Svendborg line from Odense, with two trains an hour in the daytime<sup><a class="cite" href="#s39" aria-label="Source 39">39</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>1h30–1h45</dd></div>
+  <div><dt>How often</dt><dd>In the timetable valid 19 October 2026 – 4 January 2027, about 10 to 11 sailings each way on weekdays, between 07:00 and 22:00 from Svendborg<sup><a class="cite" href="#s40" aria-label="Source 40">40</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>Some sailings are dropped around Christmas and New Year and on annual inspection days<sup><a class="cite" href="#s40" aria-label="Source 40">40</a></sup>. Sources disagree on booking: the island’s tourist board says all tickets must be bought in advance<sup><a class="cite" href="#s41" aria-label="Source 41">41</a></sup>, while the operator recommends booking for cars<sup><a class="cite" href="#s40" aria-label="Source 40">40</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>Surprisingly easy. The walk from the station is about ten minutes<sup><a class="cite" href="#s42" aria-label="Source 42">42</a></sup> and the boats run all year. The real commitment is the 75-minute crossing.</dd></div>
+  <div><dt>Worth the effort</dt><dd>The tourist board calls Ærøskøbing the best-preserved 18th-century town in Denmark; many of its houses are protected and it won a Europa Nostra award in 2002<sup><a class="cite" href="#s43" aria-label="Source 43">43</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">A small island that suits two nights.</span></footer>
+</article>
+<article class="tag" id="t-hydra" data-type="island" data-modes="walk ferry" data-cx="1" data-wk="works" data-diff="2" data-t="90" data-name="Hydra" data-q="hydra greece piraeus">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 09</span>
+  <h3>Hydra</h3>
+  <p class="where">Greece · Island & tidal</p>
+  <span class="punch" role="img" aria-label="Difficulty 2 of 5: Manageable"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Piraeus</b></li><li class="node n-walk"><span class="m">Walk / taxi</span>Walk 15–20 min to the Saronic gate</li><li class="node n-ferry"><span class="m">Ferry</span>Fast boat, 1h05 direct or up to 2h with stops</li><li class="node n-dest"><span class="m">Arrive</span><b>Hydra</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Piraeus</b>: southern end of Athens Metro line 1; suburban rail also reaches the port<sup><a class="cite" href="#s44" aria-label="Source 44">44</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>1h30–2h30</dd></div>
+  <div><dt>How often</dt><dd>Six to eight boats a day from May to September<sup><a class="cite" href="#s45" aria-label="Source 45">45</a></sup>. The route runs all year<sup><a class="cite" href="#s46" aria-label="Source 46">46</a></sup>; winter frequency is lower, and we could not confirm a figure.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>The fast boats carry no vehicles<sup><a class="cite" href="#s46" aria-label="Source 46">46</a></sup>, so book ahead for summer weekends.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>The metro reaches the port but not the boat: Saronic boats use gate E8, a 15–20 minute walk away<sup><a class="cite" href="#s44" aria-label="Source 44">44</a></sup><sup><a class="cite" href="#s47" aria-label="Source 47">47</a></sup>. After that the island is easy on foot, because the harbour is the town.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Cars and motorbikes are banned on the island<sup><a class="cite" href="#s48" aria-label="Source 48">48</a></sup>; in 2025 the government moved to enforce the rules more strictly, with a register of permitted vehicles<sup><a class="cite" href="#s49" aria-label="Source 49">49</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">Easy from Athens; Friday and Sunday boats fill first.</span></footer>
+</article>
+<article class="tag" id="t-etretat" data-type="coast" data-modes="bus" data-cx="1" data-wk="works" data-diff="2" data-t="70" data-name="Étretat" data-q="étretat france le havre">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 10</span>
+  <h3>Étretat</h3>
+  <p class="where">France · Coast</p>
+  <span class="punch" role="img" aria-label="Difficulty 2 of 5: Manageable"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Le Havre</b></li><li class="node n-bus"><span class="m">Bus</span>LiA bus 21 from the station, about 66 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Étretat</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Le Havre</b>: end of the line from Paris Saint-Lazare via Rouen<sup><a class="cite" href="#s50" aria-label="Source 50">50</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>About 1h10, plus up to an hour’s wait</dd></div>
+  <div><dt>How often</dt><dd>Hourly, every day, from about 05:00 to 21:00<sup><a class="cite" href="#s51" aria-label="Source 51">51</a></sup><sup><a class="cite" href="#s52" aria-label="Source 52">52</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>In season a faster option exists: Nomad coach 504 from Bréauté-Beuzeville station, on the same line from Paris, takes about 35 minutes and is timed to Paris trains<sup><a class="cite" href="#s53" aria-label="Source 53">53</a></sup><sup><a class="cite" href="#s54" aria-label="Source 54">54</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>Older guides send you to bus 13, which since the 2024 network change starts from the tram terminus, not the station<sup><a class="cite" href="#s51" aria-label="Source 51">51</a></sup>. The bus from the station is the 21. It is slow, over an hour, but it runs hourly all year.</dd></div>
+  <div><dt>Worth the effort</dt><dd>The chalk cliffs and arches of the Porte d’Aval, the Manneporte and the 51 m Aiguille needle<sup><a class="cite" href="#s55" aria-label="Source 55">55</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">A weekend from Paris is easy; in summer even a day trip works via coach 504.</span></footer>
+</article>
+<article class="tag" id="t-dingle" data-type="coast" data-modes="bus" data-cx="1" data-wk="care" data-diff="2" data-t="65" data-name="Dingle" data-q="dingle ireland tralee casement">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 11</span>
+  <h3>Dingle</h3>
+  <p class="where">Ireland · Coast</p>
+  <span class="punch" role="img" aria-label="Difficulty 2 of 5: Manageable"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Tralee Casement</b></li><li class="node n-bus"><span class="m">Bus</span>Bus Éireann 275 from Tralee bus station, about an hour</li><li class="node n-dest"><span class="m">Arrive</span><b>Dingle</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Tralee Casement</b>: end of the line from Dublin Heuston, with connections from Cork<sup><a class="cite" href="#s56" aria-label="Source 56">56</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>About 1h05, plus a wait</dd></div>
+  <div><dt>How often</dt><dd>About ten buses a day each way, seven days a week<sup><a class="cite" href="#s57" aria-label="Source 57">57</a></sup><sup><a class="cite" href="#s58" aria-label="Source 58">58</a></sup>. No separate summer timetable was found.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>No seasonal cuts on the 275. Onward Local Link buses across the west of the peninsula are timed to connect, and some are door-to-door services that may need booking<sup><a class="cite" href="#s58" aria-label="Source 58">58</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>The last mile is easy: one bus, all year. The real cost is the train to Tralee, about four hours from Dublin<sup><a class="cite" href="#s59" aria-label="Source 59">59</a></sup>.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Dingle is the gateway to the western end of the peninsula: Ventry, Ballyferriter and Dún Chaoin, all reachable by Local Link<sup><a class="cite" href="#s58" aria-label="Source 58">58</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-care">Weekend, with planning</span><span class="wnote">Comfortable from Cork; from Dublin it is about five hours each way door to door.</span></footer>
+</article>
+<article class="tag" id="t-montsaintmichel" data-type="island" data-modes="bus" data-cx="2" data-wk="works" data-diff="3" data-t="45" data-name="Mont-Saint-Michel" data-q="mont-saint-michel france pontorson (or rennes)">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 12</span>
+  <h3>Mont-Saint-Michel</h3>
+  <p class="where">France · Island & tidal</p>
+  <span class="punch" role="img" aria-label="Difficulty 3 of 5: Takes planning"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Pontorson (or Rennes)</b></li><li class="node n-bus"><span class="m">Bus</span>Bus to the mainland terminus: 27 min from Pontorson, about 1h15 from Rennes</li><li class="node n-bus"><span class="m">Bus</span>Free Le Passeur shuttle, about 12 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Mont-Saint-Michel</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Pontorson (or Rennes)</b>: Pontorson is on the Caen–Rennes line, 9 km away<sup><a class="cite" href="#s60" aria-label="Source 60">60</a></sup>; Rennes has TGVs from Paris.</dd></div>
+  <div><dt>Transfer</dt><dd>45–50 min from Pontorson; 1h35–1h45 from Rennes</dd></div>
+  <div><dt>How often</dt><dd>The 30 March – 11 October 2026 timetable shows several Pontorson departures a day each way<sup><a class="cite" href="#s61" aria-label="Source 61">61</a></sup>; a separate autumn timetable runs from 12 October<sup><a class="cite" href="#s60" aria-label="Source 60">60</a></sup>. Rennes coaches run two or three times a day<sup><a class="cite" href="#s62" aria-label="Source 62">62</a></sup>; the winter 2025–26 brochure lists two<sup><a class="cite" href="#s63" aria-label="Source 63">63</a></sup>. Le Passeur runs at least 07:30–23:00, and on request by phone outside those hours<sup><a class="cite" href="#s60" aria-label="Source 60">60</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>At very high tides some stops are not served<sup><a class="cite" href="#s61" aria-label="Source 61">61</a></sup>. Rennes coaches are a separate ticket from the train, though timed to Paris TGVs<sup><a class="cite" href="#s62" aria-label="Source 62">62</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>No bus reaches the Mont. Everyone ends at a mainland terminus and takes the shuttle or walks about 3.8 km over the bridge<sup><a class="cite" href="#s62" aria-label="Source 62">62</a></sup>. Off-season, Rennes has only a couple of coaches a day.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Mont-Saint-Michel and its Bay has been on the UNESCO World Heritage List since 1979<sup><a class="cite" href="#s64" aria-label="Source 64">64</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">A night on or near the Mont gets you there before and after the day-trip peak.</span></footer>
+</article>
+<article class="tag" id="t-belleile" data-type="island" data-modes="bus ferry rail" data-cx="2" data-wk="works" data-diff="3" data-t="120" data-name="Belle-Île-en-Mer" data-q="belle-île-en-mer france auray">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 13</span>
+  <h3>Belle-Île-en-Mer</h3>
+  <p class="where">France · Island & tidal</p>
+  <span class="punch" role="img" aria-label="Difficulty 3 of 5: Takes planning"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Auray</b></li><li class="node n-bus"><span class="m">Bus</span>Coach to Quiberon ferry port, 1h03 (or summer Tire-Bouchon train)</li><li class="node n-ferry"><span class="m">Ferry</span>Océane ferry to Le Palais, about 50 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Belle-Île-en-Mer</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Auray</b>: Rennes/Nantes–Quimper line, with TGVs from Paris.</dd></div>
+  <div><dt>Transfer</dt><dd>2h–2h30</dd></div>
+  <div><dt>How often</dt><dd>The ferry runs from five round trips a day in midwinter to 20 in July and August<sup><a class="cite" href="#s65" aria-label="Source 65">65</a></sup>. The Tire-Bouchon train ran in 2026 at weekends from mid-June, daily from 29 June to 31 August and at weekends to mid-September, with four to ten round trips a day<sup><a class="cite" href="#s66" aria-label="Source 66">66</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>Out of season the link to Quiberon is by coach<sup><a class="cite" href="#s66" aria-label="Source 66">66</a></sup><sup><a class="cite" href="#s67" aria-label="Source 67">67</a></sup>. In summer the road down the Quiberon peninsula jams<sup><a class="cite" href="#s68" aria-label="Source 68">68</a></sup>. Car space on the ferry is scarce and should be booked<sup><a class="cite" href="#s65" aria-label="Source 65">65</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>The ferry is the easy part. The run down the narrow peninsula to Quiberon is the slow link, and the scenic train only runs in high summer.</dd></div>
+  <div><dt>Worth the effort</dt><dd>The largest Breton island, with Vauban’s citadel at Le Palais and the rock needles of Port-Coton that Monet painted<sup><a class="cite" href="#s69" aria-label="Source 69">69</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">From Paris by TGV to Auray; the island rewards a longer stay with a bike.</span></footer>
+</article>
+<article class="tag" id="t-positano" data-type="coast" data-modes="walk bus ferry" data-cx="1" data-wk="works" data-diff="3" data-t="60" data-name="Positano" data-q="positano italy sorrento">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 14</span>
+  <h3>Positano</h3>
+  <p class="where">Italy · Coast</p>
+  <span class="punch" role="img" aria-label="Difficulty 3 of 5: Takes planning"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Sorrento</b></li><li class="node n-walk"><span class="m">Walk / taxi</span>2 min to the bus stop</li><li class="node n-bus"><span class="m">Bus</span>SITA bus on the cliff road, 40–60 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Positano</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Sorrento</b>: end of the Circumvesuviana from Naples, about 75 minutes on the stopping service<sup><a class="cite" href="#s70" aria-label="Source 70">70</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>1h–1h30, more in summer</dd></div>
+  <div><dt>How often</dt><dd>The 2026 timetable shows 16 departures from Sorrento Monday to Saturday and 11 on Sundays and holidays<sup><a class="cite" href="#s71" aria-label="Source 71">71</a></sup><sup><a class="cite" href="#s72" aria-label="Source 72">72</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>From May to October buses are often standing room only, with long queues<sup><a class="cite" href="#s71" aria-label="Source 71">71</a></sup>. Sources disagree on the ferry from Salerno: Positano.com says boats run only from April to October<sup><a class="cite" href="#s73" aria-label="Source 73">73</a></sup>, but Travelmar’s own timetable lists four sailings a day in early November and says the service runs all year<sup><a class="cite" href="#s74" aria-label="Source 74">74</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>Cheap and frequent on paper, but in summer the bus is full and slow on a single cliff road. Local guides warn against relying on it to catch a train or flight<sup><a class="cite" href="#s72" aria-label="Source 72">72</a></sup>.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Positano is part of the Costiera Amalfitana, a UNESCO World Heritage Site since 1997<sup><a class="cite" href="#s75" aria-label="Source 75">75</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-works">Weekend works</span><span class="wnote">Fine from Naples, but leave slack in summer.</span></footer>
+</article>
+<article class="tag" id="t-hvar" data-type="island" data-modes="walk ferry" data-cx="1" data-wk="long" data-diff="3" data-t="75" data-name="Hvar" data-q="hvar croatia split">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 15</span>
+  <h3>Hvar</h3>
+  <p class="where">Croatia · Island & tidal</p>
+  <span class="punch" role="img" aria-label="Difficulty 3 of 5: Takes planning"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Split</b></li><li class="node n-walk"><span class="m">Walk / taxi</span>Short walk along the quay</li><li class="node n-ferry"><span class="m">Ferry</span>Catamaran to Hvar town, 55–65 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Hvar</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Split</b>: end of the line from Zagreb; the station sits beside the ferry port<sup><a class="cite" href="#s76" aria-label="Source 76">76</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>1h15–1h30</dd></div>
+  <div><dt>How often</dt><dd>Up to 17 boats a day in summer across all operators<sup><a class="cite" href="#s77" aria-label="Source 77">77</a></sup>. In winter expect about two a day: TP Line’s 9604 runs daily all year<sup><a class="cite" href="#s78" aria-label="Source 78">78</a></sup> and its 9608 also runs off-season<sup><a class="cite" href="#s79" aria-label="Source 79">79</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>Kapetan Luka’s Split–Hvar service runs only from mid-March to mid-November<sup><a class="cite" href="#s80" aria-label="Source 80">80</a></sup>. Jadrolinija’s line 641 costs €25<sup><a class="cite" href="#s81" aria-label="Source 81">81</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>Rail to sea could hardly be closer. The traps are elsewhere: the cheap car ferry goes to Stari Grad, not Hvar town<sup><a class="cite" href="#s80" aria-label="Source 80">80</a></sup>, and the year-round daytime train from Zagreb arrives at 21:47<sup><a class="cite" href="#s82" aria-label="Source 82">82</a></sup>, after the last boat in the 2026 tables we saw.</dd></div>
+  <div><dt>Worth the effort</dt><dd>The Arsenal in Hvar town houses a theatre completed in 1612<sup><a class="cite" href="#s83" aria-label="Source 83">83</a></sup>, often described as one of the earliest public theatres in Europe<sup><a class="cite" href="#s84" aria-label="Source 84">84</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-long">Better as a longer stay</span><span class="wnote">Best as a stop on a longer Dalmatian trip; a weekend from Zagreb needs the summer morning train or the sleeper<sup><a class="cite" href="#s82" aria-label="Source 82">82</a></sup>.</span></footer>
+</article>
+<article class="tag" id="t-cadaques" data-type="coast" data-modes="bus" data-cx="1" data-wk="care" data-diff="4" data-t="75" data-name="Cadaqués" data-q="cadaqués spain figueres">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 16</span>
+  <h3>Cadaqués</h3>
+  <p class="where">Spain · Coast</p>
+  <span class="punch" role="img" aria-label="Difficulty 4 of 5: Awkward"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Figueres</b></li><li class="node n-bus"><span class="m">Bus</span>Moventis line 12 via Roses, about 70 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Cadaqués</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Figueres</b>: conventional station on the Barcelona–Girona–Portbou line; the bus station is next door<sup><a class="cite" href="#s85" aria-label="Source 85">85</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>About 1h15, but waits can run to hours</dd></div>
+  <div><dt>How often</dt><dd>Off-season (September–December 2026) about four buses a day from Figueres, fewer back<sup><a class="cite" href="#s85" aria-label="Source 85">85</a></sup>. The summer 2025 timetable had seven<sup><a class="cite" href="#s86" aria-label="Source 86">86</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>High-speed trains stop at Figueres-Vilafant, a local bus ride (L54) from the bus station<sup><a class="cite" href="#s87" aria-label="Source 87">87</a></sup>. The Dalí house at Portlligat must be booked in advance and closes for part of the winter<sup><a class="cite" href="#s88" aria-label="Source 88">88</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>The road is only about 35 km, but off-season there are about four buses a day from Figueres, fewer back, and the fast trains stop at the wrong station.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Salvador Dalí’s house at Portlligat, a short walk from the village<sup><a class="cite" href="#s88" aria-label="Source 88">88</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-care">Weekend, with planning</span><span class="wnote">Plan the weekend around the bus times; it suits a longer off-season stay.</span></footer>
+</article>
+<article class="tag" id="t-nazare" data-type="coast" data-modes="walk bus" data-cx="1" data-wk="care" data-diff="4" data-t="100" data-name="Nazaré" data-q="nazaré portugal valado (but take the coach)">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 17</span>
+  <h3>Nazaré</h3>
+  <p class="where">Portugal · Coast</p>
+  <span class="punch" role="img" aria-label="Difficulty 4 of 5: Awkward"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Valado (but take the coach)</b></li><li class="node n-walk"><span class="m">Walk / taxi</span>Taxi from Valado, about 6 km</li><li class="node n-bus alt"><span class="m">Bus</span>Or skip the train: coach from Lisbon, 1h40–1h50</li><li class="node n-dest"><span class="m">Arrive</span><b>Nazaré</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Valado (but take the coach)</b>: Linha do Oeste; Valado station is about 6 km from Nazaré<sup><a class="cite" href="#s89" aria-label="Source 89">89</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>About 2h by coach from Lisbon; over 3h by train with a change</dd></div>
+  <div><dt>How often</dt><dd>Valado has five southbound trains a day in the timetable from 22 March 2026, with no direct train to Lisbon<sup><a class="cite" href="#s90" aria-label="Source 90">90</a></sup>. Coach counts from Lisbon vary between booking sites<sup><a class="cite" href="#s91" aria-label="Source 91">91</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>Part of the line is still a replacement bus. CP says trains resume between Torres Vedras and Caldas da Rainha on 15 November 2026, with the bus continuing south of Torres Vedras<sup><a class="cite" href="#s92" aria-label="Source 92">92</a></sup>. The government targets full operation of the modernised line in 2027<sup><a class="cite" href="#s93" aria-label="Source 93">93</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>The nearest station is the worse option: 6 km out, on a slow, partly bus-replaced line, with no connecting bus we could confirm. The coach from Lisbon wins.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Praia do Norte, north of the town, is known worldwide for the giant waves surfed there in winter<sup><a class="cite" href="#s94" aria-label="Source 94">94</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-care">Weekend, with planning</span><span class="wnote">Easy by coach; by rail, wait for the modernised line.</span></footer>
+</article>
+<article class="tag" id="t-civita" data-type="village" data-modes="bus walk" data-cx="1" data-wk="care" data-diff="4" data-t="90" data-name="Civita di Bagnoregio" data-q="civita di bagnoregio italy orvieto">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 18</span>
+  <h3>Civita di Bagnoregio</h3>
+  <p class="where">Italy · Inland village</p>
+  <span class="punch" role="img" aria-label="Difficulty 4 of 5: Awkward"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Orvieto</b></li><li class="node n-bus"><span class="m">Bus</span>Cotral bus to Bagnoregio</li><li class="node n-walk"><span class="m">Walk / taxi</span>Walk or shuttle to the bridge</li><li class="node n-walk"><span class="m">Walk / taxi</span>Ticketed footbridge, about 300 m</li><li class="node n-dest"><span class="m">Arrive</span><b>Civita di Bagnoregio</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Orvieto</b>: Florence–Rome line; the bus leaves from Piazza Matteotti by the station<sup><a class="cite" href="#s95" aria-label="Source 95">95</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>1h30–1h45</dd></div>
+  <div><dt>How often</dt><dd>Monday to Saturday only<sup><a class="cite" href="#s95" aria-label="Source 95">95</a></sup>. A timetable posted in January 2024 showed ten buses Monday to Friday and eight on Saturday, following the school run, with a gap from about 08:30 to 13:05<sup><a class="cite" href="#s96" aria-label="Source 96">96</a></sup>. We could not obtain a current timetable from Cotral.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>No buses on Sundays. Entry is by paid ticket<sup><a class="cite" href="#s97" aria-label="Source 97">97</a></sup>; it was €5 in 2025<sup><a class="cite" href="#s98" aria-label="Source 98">98</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>It is effectively a school bus: nothing on Sundays and a long midday gap. The bus stops in the newer town, so a walk or shuttle and then the toll bridge follow.</dd></div>
+  <div><dt>Worth the effort</dt><dd>The village sits on an eroding outcrop above clay badlands; the bridge is the only way in<sup><a class="cite" href="#s97" aria-label="Source 97">97</a></sup>. Its cultural landscape has been on Italy’s UNESCO Tentative List since 2017<sup><a class="cite" href="#s99" aria-label="Source 99">99</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-care">Weekend, with planning</span><span class="wnote">Base yourself in Orvieto and go on a weekday or Saturday.</span></footer>
+</article>
+<article class="tag" id="t-rocamadour" data-type="village" data-modes="bus walk" data-cx="1" data-wk="care" data-diff="4" data-t="10" data-name="Rocamadour" data-q="rocamadour france rocamadour-padirac">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 19</span>
+  <h3>Rocamadour</h3>
+  <p class="where">France · Inland village</p>
+  <span class="punch" role="img" aria-label="Difficulty 4 of 5: Awkward"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Rocamadour-Padirac</b></li><li class="node n-bus"><span class="m">Bus</span>Summer liO bus 876 or 877, about 5–13 min</li><li class="node n-walk alt"><span class="m">Walk / taxi</span>Otherwise a pre-booked taxi or a 4 km walk</li><li class="node n-dest"><span class="m">Arrive</span><b>Rocamadour</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Rocamadour-Padirac</b>: Brive–Figeac line, with seven trains a day from Brive taking about 45 minutes<sup><a class="cite" href="#s100" aria-label="Source 100">100</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>10–15 min by summer bus or taxi; about an hour on foot</dd></div>
+  <div><dt>How often</dt><dd>In 2026 lines 876 and 877 ran from 1 June to 30 September: daily in July and August, weekends only in June and September, with four and three runs each way, for €2<sup><a class="cite" href="#s101" aria-label="Source 101">101</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>From October to May there is no bus. Taxis must be booked before you arrive<sup><a class="cite" href="#s102" aria-label="Source 102">102</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>The station is on the plateau, kilometres from the cliff village: about 4 km to L’Hospitalet according to Lot Tourisme<sup><a class="cite" href="#s102" aria-label="Source 102">102</a></sup>, about 6 km to the town according to Visit Occitanie<sup><a class="cite" href="#s103" aria-label="Source 103">103</a></sup>. For eight months of the year the last mile is a taxi or a walk.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Rocamadour is part of the UNESCO World Heritage listing for the Routes of Santiago de Compostela in France<sup><a class="cite" href="#s104" aria-label="Source 104">104</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-care">Weekend, with planning</span><span class="wnote">Best in July and August, when the bus also reaches the Gouffre de Padirac.</span></footer>
+</article>
+<article class="tag" id="t-gordes" data-type="village" data-modes="bus" data-cx="2" data-wk="care" data-diff="4" data-t="75" data-name="Gordes" data-q="gordes france avignon (centre or tgv)">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 20</span>
+  <h3>Gordes</h3>
+  <p class="where">France · Inland village</p>
+  <span class="punch" role="img" aria-label="Difficulty 4 of 5: Awkward"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Avignon (Centre or TGV)</b></li><li class="node n-bus"><span class="m">Bus</span>Zou! 915 to Coustellet, 40–45 min</li><li class="node n-bus"><span class="m">Bus</span>Zou! 917 to Gordes, 12–14 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Gordes</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Avignon (Centre or TGV)</b>: then two buses, changing at Coustellet<sup><a class="cite" href="#s105" aria-label="Source 105">105</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>1h15–2h, depending on the wait at Coustellet</dd></div>
+  <div><dt>How often</dt><dd>Line 917 runs four times each way, Monday to Saturday<sup><a class="cite" href="#s106" aria-label="Source 106">106</a></sup>. Line 907 via Cavaillon station is the other way to reach Coustellet, about 1h07 from Avignon<sup><a class="cite" href="#s107" aria-label="Source 107">107</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>No 917 on Sundays or public holidays<sup><a class="cite" href="#s106" aria-label="Source 106">106</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>Since 1 September 2025 the Gordes bus no longer runs to Cavaillon station<sup><a class="cite" href="#s106" aria-label="Source 106">106</a></sup>; the 2022–23 version did<sup><a class="cite" href="#s108" aria-label="Source 108">108</a></sup>. Guides that say “Cavaillon to Gordes by bus” are out of date, and four buses a day leaves little room for error.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Gordes is one of the Plus Beaux Villages de France, close to the Cistercian Abbaye de Sénanque and the dry-stone huts of the Village des Bories<sup><a class="cite" href="#s109" aria-label="Source 109">109</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-care">Weekend, with planning</span><span class="wnote">Friday and Saturday only; better as part of a longer Luberon stay.</span></footer>
+</article>
+<article class="tag" id="t-scilly" data-type="island" data-modes="walk ferry" data-cx="1" data-wk="long" data-diff="5" data-t="150" data-name="Isles of Scilly" data-q="isles of scilly united kingdom penzance">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 21</span>
+  <h3>Isles of Scilly</h3>
+  <p class="where">United Kingdom · Island & tidal</p>
+  <span class="punch" role="img" aria-label="Difficulty 5 of 5: Hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Penzance</b></li><li class="node n-walk"><span class="m">Walk / taxi</span>Short walk to the pier, check in from 08:15</li><li class="node n-ferry"><span class="m">Ferry</span>Scillonian III to St Mary’s, about 2h45</li><li class="node n-dest"><span class="m">Arrive</span><b>Isles of Scilly</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Penzance</b>: end of the line from London Paddington, including the Night Riviera sleeper<sup><a class="cite" href="#s110" aria-label="Source 110">110</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>About 3h15 by sea; 1h30–2h via Land’s End airport</dd></div>
+  <div><dt>How often</dt><dd>One round trip a day when running, leaving Penzance at 09:15 and returning at 16:30<sup><a class="cite" href="#s111" aria-label="Source 111">111</a></sup><sup><a class="cite" href="#s112" aria-label="Source 112">112</a></sup>. The tourist board says six days a week, or seven in high season<sup><a class="cite" href="#s112" aria-label="Source 112">112</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>The ferry runs from March to November only<sup><a class="cite" href="#s113" aria-label="Source 113">113</a></sup>. Year-round, a bus from Penzance station meets Skybus flights from Land’s End<sup><a class="cite" href="#s114" aria-label="Source 114">114</a></sup><sup><a class="cite" href="#s110" aria-label="Source 110">110</a></sup>; Newquay flights are suspended from 1 September 2026 to 16 March 2027<sup><a class="cite" href="#s115" aria-label="Source 115">115</a></sup>. 2026 is Scillonian III’s last season; Scillonian IV is due in March 2027<sup><a class="cite" href="#s116" aria-label="Source 116">116</a></sup><sup><a class="cite" href="#s117" aria-label="Source 117">117</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>From November to March there is no ferry, and the only scheduled link is a small plane from a weather-prone airfield.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Small boats from the Hugh Town quay reach the off-islands, including Tresco and its subtropical Abbey Garden<sup><a class="cite" href="#s118" aria-label="Source 118">118</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-long">Better as a longer stay</span><span class="wnote">One sailing each way a day leaves a weekend with about a day and a half on the islands.</span></footer>
+</article>
+<article class="tag" id="t-lindisfarne" data-type="island" data-modes="bus" data-cx="1" data-wk="care" data-diff="5" data-t="35" data-name="Holy Island (Lindisfarne)" data-q="holy island (lindisfarne) united kingdom berwick-upon-tweed">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 22</span>
+  <h3>Holy Island (Lindisfarne)</h3>
+  <p class="where">United Kingdom · Island & tidal</p>
+  <span class="punch" role="img" aria-label="Difficulty 5 of 5: Hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Berwick-upon-Tweed</b></li><li class="node n-bus"><span class="m">Bus</span>Bus 477 over the tidal causeway, 33–36 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Holy Island (Lindisfarne)</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Berwick-upon-Tweed</b>: East Coast Main Line between Newcastle and Edinburgh.</dd></div>
+  <div><dt>Transfer</dt><dd>35–40 min, when the bus runs</dd></div>
+  <div><dt>How often</dt><dd>In term time, Wednesdays and Saturdays only; in school holidays, Monday to Saturday; never on Sundays<sup><a class="cite" href="#s119" aria-label="Source 119">119</a></sup>. In November 2026 there are two return trips on each running day, and not every Wednesday or Saturday has one<sup><a class="cite" href="#s120" aria-label="Source 120">120</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>The causeway floods twice a day<sup><a class="cite" href="#s121" aria-label="Source 121">121</a></sup>. Journeys are coded to the dates they run, chosen around safe crossing times<sup><a class="cite" href="#s122" aria-label="Source 122">122</a></sup>. Glen Valley Tours took over the route from Borders Buses in September 2025<sup><a class="cite" href="#s119" aria-label="Source 119">119</a></sup>. A pre-booked taxi from Berwick costs about £35<sup><a class="cite" href="#s123" aria-label="Source 123">123</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>The tide sets the timetable. Outside school holidays the bus runs two days a week at most, and missing the return can mean waiting out the tide on the island. Check the council’s crossing times first<sup><a class="cite" href="#s124" aria-label="Source 124">124</a></sup>.</dd></div>
+  <div><dt>Worth the effort</dt><dd>Aidan founded a monastery here in 635; the Lindisfarne Gospels were made here, and the Viking raid of 793 was the first significant one in western Europe<sup><a class="cite" href="#s125" aria-label="Source 125">125</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-care">Weekend, with planning</span><span class="wnote">Stay on the island to see it after the tide cuts off the day visitors.</span></footer>
+</article>
+<article class="tag" id="t-iona" data-type="island" data-modes="ferry bus" data-cx="3" data-wk="long" data-diff="5" data-t="180" data-name="Iona" data-q="iona united kingdom oban">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 23</span>
+  <h3>Iona</h3>
+  <p class="where">United Kingdom · Island & tidal</p>
+  <span class="punch" role="img" aria-label="Difficulty 5 of 5: Hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Oban</b></li><li class="node n-ferry"><span class="m">Ferry</span>CalMac to Craignure, Mull, about 50 min</li><li class="node n-bus"><span class="m">Bus</span>West Coast Motors 496 to Fionnphort, about 1h20</li><li class="node n-ferry"><span class="m">Ferry</span>CalMac passenger ferry to Iona, about 10 min</li><li class="node n-dest"><span class="m">Arrive</span><b>Iona</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Oban</b>: end of the West Highland line branch from Glasgow; the ferry leaves from the pier beside the station<sup><a class="cite" href="#s126" aria-label="Source 126">126</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>3h–3h15</dd></div>
+  <div><dt>How often</dt><dd>Oban–Craignure has five to nine sailings a day in the winter timetable (19 October 2026 – 12 March 2027)<sup><a class="cite" href="#s127" aria-label="Source 127">127</a></sup>. The 496 bus runs three times a day each way, Monday to Saturday, with nothing on Sundays; only the 10:50 and 16:50 from Craignure meet Oban sailings<sup><a class="cite" href="#s128" aria-label="Source 128">128</a></sup>. Some Iona sailings will wait for the Craignure bus if requested<sup><a class="cite" href="#s129" aria-label="Source 129">129</a></sup>.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>On winter Sundays the Iona ferry runs only if requested by 16:00 on the previous working day<sup><a class="cite" href="#s129" aria-label="Source 129">129</a></sup>. CalMac advises booking even as a foot passenger<sup><a class="cite" href="#s130" aria-label="Source 130">130</a></sup>. Cars need special permission on Iona<sup><a class="cite" href="#s126" aria-label="Source 126">126</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>Three timed connections across two islands hinge on one bus, with only two useful connections a day from Oban in winter. A late ferry or a Sunday breaks the chain.</dd></div>
+  <div><dt>Worth the effort</dt><dd>St Columba founded a monastery here in 563; the site has the medieval abbey and nunnery, early high crosses and the Reilig Odhráin burial ground<sup><a class="cite" href="#s131" aria-label="Source 131">131</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-long">Better as a longer stay</span><span class="wnote">Better as two or three nights, or with a night on Mull. Avoid winter Sundays.</span></footer>
+</article>
+<article class="tag" id="t-reine" data-type="island" data-modes="walk ferry bus" data-cx="2" data-wk="long" data-diff="5" data-t="240" data-name="Reine, Lofoten" data-q="reine, lofoten norway bodø">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 24</span>
+  <h3>Reine, Lofoten</h3>
+  <p class="where">Norway · Island & tidal</p>
+  <span class="punch" role="img" aria-label="Difficulty 5 of 5: Hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Bodø</b></li><li class="node n-walk"><span class="m">Walk / taxi</span>Walk a few minutes to the ferry quay</li><li class="node n-ferry"><span class="m">Ferry</span>Torghatten ferry to Moskenes, 3–3.5h direct</li><li class="node n-bus"><span class="m">Bus</span>Local bus or walk on to Reine</li><li class="node n-dest"><span class="m">Arrive</span><b>Reine, Lofoten</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Bodø</b>: end of the Nordland line from Trondheim, about ten hours with two trains a day<sup><a class="cite" href="#s132" aria-label="Source 132">132</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>4h–4h30 on a direct sailing with a bus</dd></div>
+  <div><dt>How often</dt><dd>In summer 2025, up to eight direct sailings a day plus some via Værøy and Røst<sup><a class="cite" href="#s133" aria-label="Source 133">133</a></sup>. A separate winter timetable runs from 7 September 2026<sup><a class="cite" href="#s134" aria-label="Source 134">134</a></sup>; we could not confirm its frequency.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>This open-sea crossing is prone to weather cancellations, mostly in autumn and winter<sup><a class="cite" href="#s133" aria-label="Source 133">133</a></sup>. Foot passengers who do not reserve travel free<sup><a class="cite" href="#s134" aria-label="Source 134">134</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>The final stretch from Moskenes is short, and bus 300 runs through Reine<sup><a class="cite" href="#s135" aria-label="Source 135">135</a></sup>. But late sailings leave you there without one: the 21:00 from Bodø arrives at 00:15<sup><a class="cite" href="#s136" aria-label="Source 136">136</a></sup>, and there is no local taxi service, so a taxi must be booked in advance<sup><a class="cite" href="#s133" aria-label="Source 133">133</a></sup>.</dd></div>
+  <div><dt>Worth the effort</dt><dd>A fishing village of about 300 people between the Reinefjord and the Vestfjord, below the Sherpa-built steps up Reinebringen<sup><a class="cite" href="#s135" aria-label="Source 135">135</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-long">Better as a longer stay</span><span class="wnote">Trondheim to Bodø alone takes about ten hours; plan four nights or more.</span></footer>
+</article>
+<article class="tag" id="t-geiranger" data-type="alpine" data-modes="bus" data-cx="1" data-wk="long" data-diff="5" data-t="210" data-name="Geiranger" data-q="geiranger norway åndalsnes">
+ <header class="tag-head">
+  <span class="eyelet" aria-hidden="true"></span>
+  <span class="tno">No. 25</span>
+  <h3>Geiranger</h3>
+  <p class="where">Norway · Lakes & mountains</p>
+  <span class="punch" role="img" aria-label="Difficulty 5 of 5: Hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>
+ </header>
+ <ol class="chain" aria-label="Connection chain"><li class="node n-rail"><span class="m">Train</span><b>Åndalsnes</b></li><li class="node n-bus"><span class="m">Bus</span>Vy Buss VY25 over Trollstigen, about 3h30</li><li class="node n-dest"><span class="m">Arrive</span><b>Geiranger</b></li></ol>
+ <dl class="facts">
+  <div><dt>Station</dt><dd><b>Åndalsnes</b>: end of the Rauma line from Dombås, on the Oslo–Trondheim route<sup><a class="cite" href="#s137" aria-label="Source 137">137</a></sup>.</dd></div>
+  <div><dt>Transfer</dt><dd>About 3h30, on the one bus</dd></div>
+  <div><dt>How often</dt><dd>One bus a day, 1 June to 30 September 2026. Tickets must be bought in advance<sup><a class="cite" href="#s138" aria-label="Source 138">138</a></sup><sup><a class="cite" href="#s139" aria-label="Source 139">139</a></sup>. Outside that season there is no bus over Trollstigen.</dd></div>
+  <div><dt>Seasons &amp; limits</dt><dd>The Trollstigen road closes every winter<sup><a class="cite" href="#s140" aria-label="Source 140">140</a></sup>. It was shut by rockfall risk from June 2024 until July 2025<sup><a class="cite" href="#s141" aria-label="Source 141">141</a></sup>, and from 28 September 2026 it was closed on weekdays (07:00–18:00) for up to four weeks<sup><a class="cite" href="#s142" aria-label="Source 142">142</a></sup>.</dd></div>
+  <div class="catch"><dt>The catch</dt><dd>One bus a day for four months, over a mountain road with a recent rockfall history. Miss it, or come out of season, and this route has no public transport.</dd></div>
+  <div><dt>Worth the effort</dt><dd>The Geirangerfjord is part of the West Norwegian Fjords World Heritage Site<sup><a class="cite" href="#s143" aria-label="Source 143">143</a></sup>.</dd></div>
+ </dl>
+ <footer class="tag-foot"><span class="stamp st-long">Better as a longer stay</span><span class="wnote">Best as a one-way loop: Oslo, Åndalsnes, Geiranger, Ålesund.</span></footer>
+</article></div>
+ <p class="empty" id="empty" hidden>No destination matches those filters.</p>
+</section>
+
+<section class="method" aria-labelledby="mt">
+ <h2 id="mt">How this was put together</h2>
+ <p>Each destination was researched in November 2026 from operators’ timetables and route pages wherever they could be read, then from tourist boards and established travel references. Where a figure comes from a route planner or a travellers’ forum, the tag says so in its source. Where sources disagree, both are given. Fares appear only where an operator or tourist board publishes them.</p>
+ <p>“Nearest useful station” means the one travellers actually use for the onward link, which is not always the closest: Bled and Nazaré both have a nearer station that works less well. Transfer times are typical door-of-station to centre-of-destination times. The punch ratings, the weekend stamps, the count of connections and the top-ten ranking are the desk’s judgements from the published timetables, not official classifications.</p>
+</section>
+
+<section class="sources" aria-labelledby="srct">
+ <h2 id="srct">Sources</h2>
+ <ol><li id="s1"><a href="https://trenord.it/en/routes-and-timetables/most-searched-lines/milano-central-station-varenna-esino">Milano Centrale – Varenna Esino</a>. <span class="pub">Trenord</span></li><li id="s2"><a href="https://www.navigazionelaghi.it/wp-content/uploads/2026/11/Orari_WebVerticali-I26-27-TR_fer.pdf">Orari servizio traghetto, invernale 2026/27 feriale</a>. <span class="pub">Navigazione Laghi</span></li><li id="s3"><a href="https://www.navigazionelaghi.it/wp-content/uploads/2026/06/Orari_WebVerticali-E26_TR_fer.pdf">Orari servizio traghetto, estate 2026 feriale</a>. <span class="pub">Navigazione Laghi</span></li><li id="s4"><a href="https://www.asfautolinee.it/wp-content/uploads/schema/C130.pdf">C130 Como – Nesso – Bellagio</a>. <span class="pub">ASF Autolinee</span></li><li id="s5"><a href="https://community.ricksteves.com/travel-forum/italy/walk-from-varenna-ferry-dock-to-varenna-train-station">Walk from Varenna ferry dock to Varenna train station</a>. <span class="pub">Rick Steves Travel Forum</span></li><li id="s6"><a href="https://www.italia.it/en/lombardy/como/bellagio">Bellagio</a>. <span class="pub">Italia.it (ENIT)</span></li><li id="s7"><a href="https://www.seat61.com/international-trains/other-cities/trains-from-Hallstatt.htm">Trains from Hallstatt</a>. <span class="pub">The Man in Seat 61</span></li><li id="s8"><a href="https://www.im-salzkammergut.at/veranstaltungshighlights-en-US/summer/daily-cruises-on-lake-hallstatt/ferry-hallstatt-timetable/">Ferry connection between Hallstatt centre and Hallstatt train station</a>. <span class="pub">Ferienregion Dachstein Salzkammergut</span></li><li id="s9"><a href="https://www.im-salzkammergut.at/veranstaltungshighlights-en-US/summer/daily-cruises-on-lake-hallstatt/ferry-departure-times-hallstatt-markt-centre-train-station-direction-of-train-attnang-puchheim-salzburg-vienna/">Ferry departure times, Hallstatt Markt → train station</a>. <span class="pub">Ferienregion Dachstein Salzkammergut</span></li><li id="s10"><a href="https://www.salzkammergut.at/en/oesterreich-poi/detail/400387/0.html">Hallstättersee Schifffahrt GmbH</a>. <span class="pub">Salzkammergut tourist board</span></li><li id="s11"><a href="https://hallstatt.net/service-eng/anreise-en-US/austria-by-bus/">Austria by bus</a>. <span class="pub">Tourismusverband Hallstatt</span></li><li id="s12"><a href="https://whc.unesco.org/en/list/806/">Hallstatt-Dachstein / Salzkammergut Cultural Landscape</a>. <span class="pub">UNESCO World Heritage Centre</span></li><li id="s13"><a href="https://www.thelocal.at/20250723/hallstatt-overtourism-why-locals-want-a-ticket-system-to-control-crowds">Hallstatt overtourism: why locals want a ticket system</a>. <span class="pub">The Local Austria</span></li><li id="s14"><a href="https://en.wikipedia.org/wiki/Steenwijk_railway_station">Steenwijk railway station</a>. <span class="pub">Wikipedia</span></li><li id="s15"><a href="https://transitapp.com/en/region/netherlands/rrreis/bus-70">RRReis bus 70</a>. <span class="pub">Transit</span></li><li id="s16"><a href="https://en.visitweerribbenwieden.com/plan-your-visit/">Plan your visit</a>. <span class="pub">Visit Weerribben-Wieden</span></li><li id="s17"><a href="https://www.nationalgeographic.com/travel/article/visit-giethoorn-quaint-village-without-cars">Visit Giethoorn, the quaint village without cars</a>. <span class="pub">National Geographic</span></li><li id="s18"><a href="https://www.seenschifffahrt.de/en/koenigssee/visitor-information/getting-here">Getting here by public transport</a>. <span class="pub">Bayerische Seenschifffahrt</span></li><li id="s19"><a href="https://freewalkingtoursalzburg.com/konigssee-day-trip/">Königssee day trip</a>. <span class="pub">Free Walking Tour Salzburg</span></li><li id="s20"><a href="https://www.berchtesgaden.de/fileadmin/Berchtesgaden/PDFs/Busfahrpl%C3%A4ne/Fahrplan-Sommer_2026__002_.pdf">Busfahrplan Sommer 2026</a>. <span class="pub">Berchtesgadener Land Tourismus / RVO</span></li><li id="s21"><a href="https://seenschifffahrt.de/en/koenigssee/timetable/arrival">Arrival</a>. <span class="pub">Bayerische Seenschifffahrt</span></li><li id="s22"><a href="https://www.seenschifffahrt.de/fileadmin/user_upload/Fahrplaene/KS_Fahrplan_Winter.pdf">Fahrplan Winter 2026/27</a>. <span class="pub">Bayerische Seenschifffahrt</span></li><li id="s23"><a href="https://www.seenschifffahrt.de/fileadmin/user_upload/Fahrplaene/KS/KS_Timetable_summer.pdf">Königssee timetable, summer</a>. <span class="pub">Bayerische Seenschifffahrt</span></li><li id="s24"><a href="https://www.seenschifffahrt.de/en/unternehmen/history/">History</a>. <span class="pub">Bayerische Seenschifffahrt</span></li><li id="s25"><a href="https://www.inyourpocket.com/slovenia/bled/articles/getting-from-bled-to-ljubljana-train-bus-taxi-and">Getting from Bled to Ljubljana</a>. <span class="pub">In Your Pocket</span></li><li id="s26"><a href="https://www.rome2rio.com/s/Lesce-Bled/Bled">Lesce-Bled to Bled</a>. <span class="pub">Rome2Rio</span></li><li id="s27"><a href="https://www.bled.si/en/information/how-to-get-to-bled/20190920131930/by-train/">By train</a>. <span class="pub">Bled Tourist Board</span></li><li id="s28"><a href="https://www.inyourpocket.com/slovenia/bled/venues/arriving-by-train">Arriving by train</a>. <span class="pub">In Your Pocket</span></li><li id="s29"><a href="https://www.blejski-grad.si/en/discover-bled-castle/history/">History</a>. <span class="pub">Bled Castle</span></li><li id="s30"><a href="https://saas-fee.ch/en/arrival/arrival-in-the-saas-valley">Arrival in the Saas valley</a>. <span class="pub">Saas-Fee/Saastal Tourismus</span></li><li id="s31"><a href="https://sport.postauto.ch/en/saas-fee-saastal">Go Saas-Fee</a>. <span class="pub">PostAuto / PostBus</span></li><li id="s32"><a href="https://www.rome2rio.com/s/Visp/Saas-Fee">Visp to Saas-Fee</a>. <span class="pub">Rome2Rio</span></li><li id="s33"><a href="https://www.travellingweasels.com/2026/08/swiss-car-free-villages-zermatt-wengen-murren-saas-fee.html">Switzerland’s car-free ski villages</a>. <span class="pub">Travelling Weasels</span></li><li id="s34"><a href="https://www.berneseoberlandpass.ch/public-transport/gruetschalp/">Grütschalp</a>. <span class="pub">Berner Oberland Regional Pass</span></li><li id="s35"><a href="https://tp-info.ch/sites/default/files/fap/2025/pdf/313.pdf">Timetable 313 Lauterbrunnen–Grütschalp–Mürren, 2025</a>. <span class="pub">Swiss official timetable (tp-info.ch)</span></li><li id="s36"><a href="https://snowstash.com/news/2026/06/lauterbrunnen-grutschalp-cable-car-renovation-2026">Lauterbrunnen–Grütschalp cable car renovation 2026</a>. <span class="pub">SnowStash</span></li><li id="s37"><a href="https://www.jungfrau.ch/en-gb/corporate/news/modernised-lauterbrunnen-gruetschalp-aerial-cableway-back-in-operation/">Modernised Lauterbrunnen–Grütschalp aerial cableway back in operation</a>. <span class="pub">Jungfrau Railways</span></li><li id="s38"><a href="https://www.mynewsdesk.com/schilthorn/pressreleases/worlds-steepest-cableway-is-open-3360599">World’s steepest cableway is open</a>. <span class="pub">Schilthornbahn AG</span></li><li id="s39"><a href="https://en.wikipedia.org/wiki/Svendborg_Line">Svendborg Line</a>. <span class="pub">Wikipedia</span></li><li id="s40"><a href="https://www.aeroe-ferry.dk/en/timetables">Timetables</a>. <span class="pub">Ærøfærgerne</span></li><li id="s41"><a href="https://visitaeroe.com/aero/explore/aerofaergerne-gdk612093">Ærøfærgerne</a>. <span class="pub">VisitÆrø</span></li><li id="s42"><a href="https://community.ricksteves.com/travel-forum/denmark/options-for-getting-to-aero-island-from-copenhagen-86b2fb57-747d-4d47-a464-799420d7d3b4">Options for getting to Ærø from Copenhagen</a>. <span class="pub">Rick Steves Travel Forum</span></li><li id="s43"><a href="https://www.visitaeroe.com/aeroskobing-gdk773350">Ærøskøbing</a>. <span class="pub">VisitÆrø</span></li><li id="s44"><a href="https://www.aktoploika.gr/en/piraeus.htm">Piraeus port</a>. <span class="pub">Aktoploika.gr</span></li><li id="s45"><a href="https://www.greeka.com/saronic/hydra/ferries/">Ferry to Hydra</a>. <span class="pub">Greeka</span></li><li id="s46"><a href="https://www.ferryhopper.com/en/ferries/greece/hydra">Ferries to Hydra 2026</a>. <span class="pub">Ferryhopper</span></li><li id="s47"><a href="https://www.directferries.com/blog/travelling-from-piraeus-to-hydra-complete-ferry-and-travel-guide">Travelling from Piraeus to Hydra</a>. <span class="pub">Direct Ferries</span></li><li id="s48"><a href="https://en.wikipedia.org/wiki/Hydra_(island)">Hydra (island)</a>. <span class="pub">Wikipedia</span></li><li id="s49"><a href="https://www.tovima.com/tourism/hydra-spetses-greek-gov-clamps-down-on-vehicles-to-protect-character-of-islands/amp/">Hydra-Spetses: Greek government clamps down on vehicles</a>. <span class="pub">To Vima</span></li><li id="s50"><a href="https://www.european-traveler.com/france/normandy/transportation-etretat-normandy/">Transportation to Étretat</a>. <span class="pub">European Traveler</span></li><li id="s51"><a href="https://lehavreseinemetropole.fr/sites/default/files/media/downloads/a4_-_book_nouveau_reseau_lia_2024_-_version_presse_web.pdf">Le nouveau réseau LiA 2024 (press book)</a>. <span class="pub">Le Havre Seine Métropole</span></li><li id="s52"><a href="https://transitapp.com/en/region/le-havre/lia/bus-21">LiA bus 21</a>. <span class="pub">Transit</span></li><li id="s53"><a href="https://nomad.normandie.fr/sites/default/files/2026-05/504%20Pr%C3%A9-%C3%89t%C3%A9%202026.pdf">Ligne 504, pré-été 2026</a>. <span class="pub">Nomad / Région Normandie</span></li><li id="s54"><a href="https://etretat.fr/wp-content/uploads/2025/08/acces-transports-en-commun-etretat-grand-site-2025.pdf">Accès transports en commun, Étretat Grand Site 2025</a>. <span class="pub">Ville d’Étretat</span></li><li id="s55"><a href="https://lehavre-etretat-tourisme.com/en/discover/the-essentials/discover-etretat/the-cliffs-of-etretat">The cliffs of Étretat</a>. <span class="pub">Le Havre Étretat Tourisme</span></li><li id="s56"><a href="https://irishrail.ie/en-ie/Station/tralee-casement">Tralee (Casement)</a>. <span class="pub">Iarnród Éireann</span></li><li id="s57"><a href="https://bustimes.org/services/275-dingle-tralee-bus-station">275 Tralee – Dingle</a>. <span class="pub">bustimes.org (NTA data)</span></li><li id="s58"><a href="https://locallinkkerry.ie/?p=5608">Visit the Dingle Peninsula without the car</a>. <span class="pub">TFI Local Link Kerry</span></li><li id="s59"><a href="https://www.dingle-peninsula.ie/home/travel-information/public-transport.html">Information about rail and bus services</a>. <span class="pub">Dingle Peninsula Tourism</span></li><li id="s60"><a href="https://www.ot-montsaintmichel.com/en/discover/visit-the-mont-saint-michel/access-the-mont-saint-michel/by-bus-and-coach/">By bus and coach</a>. <span class="pub">Office de Tourisme du Mont-Saint-Michel</span></li><li id="s61"><a href="https://montsaintmichel.gouv.fr/medias/kmsm-mkt-guidehoraires-300326au111026-810.pdf">Guide horaires, 30/03–11/10/2026</a>. <span class="pub">Le Mont-Saint-Michel (Établissement public)</span></li><li id="s62"><a href="https://www.seat61.com/places-of-interest/paris-to-mont-st-michel.htm">A day trip to Mont St Michel</a>. <span class="pub">The Man in Seat 61</span></li><li id="s63"><a href="https://www.saint-malo-tourisme.com/app/uploads/saint-malo-tourisme/2025/11/Brochure-DMSM-9-NOV-25-MARS-26-page.pdf">Brochure Mont-Saint-Michel coaches, 9 Nov 2025 – March 2026</a>. <span class="pub">Saint-Malo Tourisme</span></li><li id="s64"><a href="https://whc.unesco.org/en/list/80/">Mont-Saint-Michel and its Bay</a>. <span class="pub">UNESCO World Heritage Centre</span></li><li id="s65"><a href="https://www.belleileenmer.co.uk/organize/coming-by-boat-one-island-several-ports-of-departure/from-quiberon/the-oceane-company/">The Océane company</a>. <span class="pub">Belle-Île-en-Mer tourist office</span></li><li id="s66"><a href="https://www.voyagerentrain.fr/tire-bouchon/">Le Tire-Bouchon</a>. <span class="pub">Voyager en train</span></li><li id="s67"><a href="https://www.baiedequiberon.bzh/sites/default/files/2025-06/FH-siteweb-2025.pdf">Le Tire-Bouchon 2025 (timetable)</a>. <span class="pub">Baie de Quiberon Tourisme</span></li><li id="s68"><a href="https://www.ouigo.com/blog/excursion-quiberon">Une journée à Quiberon</a>. <span class="pub">OUIGO</span></li><li id="s69"><a href="https://www.fr.francethisway.com/brittany-belle-ile-en-mer.php">Belle-Île-en-Mer</a>. <span class="pub">France This Way</span></li><li id="s70"><a href="https://www.positano.com/it/circumvesuviana-napoli-sorrento">Circumvesuviana Napoli–Sorrento</a>. <span class="pub">Positano.com</span></li><li id="s71"><a href="https://www.positano.com/en/bus-schedule">Bus schedule (SITA Sorrento–Positano–Amalfi)</a>. <span class="pub">Positano.com</span></li><li id="s72"><a href="https://www.sorrentoinsider.com/en/sorrento-to-positano-bus-schedule">Sorrento to Positano bus schedule</a>. <span class="pub">Sorrento Insider</span></li><li id="s73"><a href="https://www.positano.com/en/t/salerno/positano?all=1">Salerno–Positano ferries</a>. <span class="pub">Positano.com</span></li><li id="s74"><a href="https://italo.travelmar.it/_download/orari-travelmar-dal-3-novembre-16-novembre.pdf">Orari Travelmar, 3–16 novembre</a>. <span class="pub">Travelmar</span></li><li id="s75"><a href="https://whc.unesco.org/en/list/830/">Costiera Amalfitana</a>. <span class="pub">UNESCO World Heritage Centre</span></li><li id="s76"><a href="https://www.absolute-croatia.com/split/ferries/split-ferry-port">Split ferry port</a>. <span class="pub">Absolute Croatia</span></li><li id="s77"><a href="https://www.ferryhopper.com/en/blog/ferry-news/croatia-ferry-schedules-2026">Croatia ferry schedules for 2026</a>. <span class="pub">Ferryhopper</span></li><li id="s78"><a href="https://www.tp-line.hr/files/cjenici/BB-9604-Lastovo-Vela-Luka-Hvar-Split-26-ENG.pdf">Line 9604 Lastovo–Vela Luka–Hvar–Split 2026</a>. <span class="pub">TP Line</span></li><li id="s79"><a href="https://tp-line.hr/files/cjenici/BB-9608-Korcula-Prigradica-Hvar-Split-26-ENG.pdf">Line 9608 Korčula–Prigradica–Hvar–Split 2026</a>. <span class="pub">TP Line</span></li><li id="s80"><a href="https://www.visit-croatia.co.uk/?p=1578">Getting to Hvar</a>. <span class="pub">Visit-Croatia.co.uk</span></li><li id="s81"><a href="https://www.jadrolinija.hr/download/029037a00a1ba4c9a445de9ef0d9f8d1">Split–Hvar sailing schedule and price list 2026</a>. <span class="pub">Jadrolinija</span></li><li id="s82"><a href="https://www.seat61.com/trains-and-routes/zagreb-to-split-and-dubrovnik-by-train.htm">Zagreb to Split and Dubrovnik by train</a>. <span class="pub">The Man in Seat 61</span></li><li id="s83"><a href="https://min-kulture.gov.hr/?id=16897">The Arsenal and theatre in Hvar</a>. <span class="pub">Croatian Ministry of Culture</span></li><li id="s84"><a href="https://www.turistickeprice.hr/en/meet-the-story-of-the-first-public-theater-in-europe-for-theater/">Meet the story of the first public theater in Europe</a>. <span class="pub">Turističke priče</span></li><li id="s85"><a href="https://barcelonaurbana.com/ca/blog/cadaques-i-portlligat-en-bus-des-de-barcelona-horaris-i-preus-de-la-casa-dali">Cadaqués i Portlligat en bus des de Barcelona</a>. <span class="pub">Barcelona Urbana</span></li><li id="s86"><a href="https://www.moventis.es/sites/moventis/files/line/files/12-e3_figueres-costa_brava_nord_estiu_2025.pdf">Línia 12, horari estiu 2025</a>. <span class="pub">Moventis</span></li><li id="s87"><a href="https://incadaques.com/plan-your-visit">Plan your visit</a>. <span class="pub">inCadaqués</span></li><li id="s88"><a href="https://salvador-dali.org/museus/casa-salvador-dali-portlligat/info-practica/en_com-arribar">Casa Salvador Dalí, Portlligat: how to get there</a>. <span class="pub">Fundació Gala-Salvador Dalí</span></li><li id="s89"><a href="https://wetravelportugal.com/lisbon-to-nazare/">Lisbon to Nazaré</a>. <span class="pub">We Travel Portugal</span></li><li id="s90"><a href="https://www.cp.pt/info/documents/d/cp/oeste-22-marco">Linha do Oeste timetable from 22 March 2026</a>. <span class="pub">CP – Comboios de Portugal</span></li><li id="s91"><a href="https://www.omio.co.uk/coaches/lisbon/nazare-dlku3">Lisbon to Nazaré by coach</a>. <span class="pub">Omio</span></li><li id="s92"><a href="https://cp.pt/info/w/linha-oeste">Linha do Oeste</a>. <span class="pub">CP – Comboios de Portugal</span></li><li id="s93"><a href="https://eco.sapo.pt/2025/09/22/governo-promete-entrada-em-funcionamento-da-linha-do-oeste-em-2027/">Governo promete entrada em funcionamento da Linha do Oeste em 2027</a>. <span class="pub">ECO</span></li><li id="s94"><a href="https://www.surfertoday.com/surfing/when-to-see-nazare-big-waves">When to see Nazaré’s big waves</a>. <span class="pub">Surfertoday</span></li><li id="s95"><a href="https://orvietoviva.com/en/?p=11849">Orvieto – Civita di Bagnoregio</a>. <span class="pub">OrvietoViva</span></li><li id="s96"><a href="https://community.ricksteves.com/travel-forum/italy/orvieto-to-civita-di-bagnoregio">Orvieto to Civita di Bagnoregio</a>. <span class="pub">Rick Steves Travel Forum</span></li><li id="s97"><a href="https://www.italia.it/en/lazio/bagnoregio/bridge-of-civita-di-bagnoregio">Bridge of Civita di Bagnoregio</a>. <span class="pub">Italia.it (ENIT)</span></li><li id="s98"><a href="https://moveo.telepass.com/come-arrivare-civita-di-bagnoregio/">Come arrivare a Civita di Bagnoregio</a>. <span class="pub">Telepass Moveo</span></li><li id="s99"><a href="https://whc.unesco.org/en/tentativelists/6182/">The Cultural Landscape of Civita di Bagnoregio (Tentative List)</a>. <span class="pub">UNESCO World Heritage Centre</span></li><li id="s100"><a href="https://www.sncf-connect.com/train/trajet/brive-la-gaillarde/rocamadour">Train Brive-la-Gaillarde – Rocamadour</a>. <span class="pub">SNCF Connect</span></li><li id="s101"><a href="https://www.vallee-dordogne.com/app/uploads/ot-dordogne/2026/06/260603_OCC_liO_LIGNEs-876-877_ROCAMADOUR_Flyer-A5_planches_HD.pdf">liO lignes 876–877 Rocamadour (2026 flyer)</a>. <span class="pub">Région Occitanie / liO</span></li><li id="s102"><a href="https://www.tourisme-lot.com/app/uploads/lot-tourisme/2024/07/240711-Figeac-Roca.pdf">Le Lot sans voiture: Figeac / Rocamadour</a>. <span class="pub">Lot Tourisme</span></li><li id="s103"><a href="https://www.visit-occitanie.com/en/rail-tour/car/877-lio-bus-service/">877 liO bus service</a>. <span class="pub">Visit Occitanie</span></li><li id="s104"><a href="https://en.wikipedia.org/wiki/Routes_of_Santiago_de_Compostela_in_France">Routes of Santiago de Compostela in France</a>. <span class="pub">Wikipedia</span></li><li id="s105"><a href="https://zou.maregionsud.fr/public/media/file/2026-06/ligne915_avignon_apt_forcalquier_la-brillanne_11-02-2026-bis.pdf">Ligne 915 Avignon – Apt – Forcalquier, from 11 February 2026</a>. <span class="pub">Zou! / Région Sud</span></li><li id="s106"><a href="https://luberon.fr:443/fichier/710.pdf">Ligne 917 Apt – Gordes – Maubec, from 1 September 2025</a>. <span class="pub">Luberon Cœur de Provence / Zou!</span></li><li id="s107"><a href="https://zou.maregionsud.fr/public/media/file/2026-08/fh_ligne_907_web_0.pdf">Ligne 907 Coustellet – Cavaillon – Avignon, from 1 September 2026</a>. <span class="pub">Zou! / Région Sud</span></li><li id="s108"><a href="https://roussillon-en-provence.fr/wp-content/uploads/2023/01/ZOU84_ligne17-917_APT_GORDES_CAVAILLON-1.pdf">Ligne 17/917 Apt – Gordes – Cavaillon, 2022/23</a>. <span class="pub">Zou! via Roussillon commune</span></li><li id="s109"><a href="https://luberon.fr/page/5-monuments-incontournables-a-gordes+184355.html">5 monuments incontournables à Gordes</a>. <span class="pub">Luberon Cœur de Provence</span></li><li id="s110"><a href="https://www.gwr.com/stations-and-destinations/destinations/trains-to-the-isles-of-scilly">Trains to the Isles of Scilly</a>. <span class="pub">Great Western Railway</span></li><li id="s111"><a href="https://www.islesofscilly-travel.co.uk/discover/blog/isles-of-scilly-in-a-day/">Isles of Scilly in a day</a>. <span class="pub">Isles of Scilly Travel</span></li><li id="s112"><a href="https://visitislesofscilly.com/travel/sea">Travel by sea</a>. <span class="pub">Visit Isles of Scilly</span></li><li id="s113"><a href="https://www.islesofscilly-travel.co.uk/ferry/route/">Scillonian III: route</a>. <span class="pub">Isles of Scilly Travel</span></li><li id="s114"><a href="https://www.islesofscilly-travel.co.uk/flights/connections/">Flights: connections</a>. <span class="pub">Isles of Scilly Travel</span></li><li id="s115"><a href="https://www.islesofscilly-travel.co.uk/service-status/">Service status</a>. <span class="pub">Isles of Scilly Travel</span></li><li id="s116"><a href="https://www.islesofscilly-travel.co.uk/wp-content/uploads/2026/03/media-pack-2026.pdf">Media pack 2026</a>. <span class="pub">Isles of Scilly Travel</span></li><li id="s117"><a href="https://www.cruiseandferry.net/articles/scillonian-iii-commences-its-final-first-voyage-of-2026">Scillonian III commences its final first voyage of 2026</a>. <span class="pub">Cruise &amp; Ferry</span></li><li id="s118"><a href="https://www.islesofscilly-travel.co.uk/discover/experiences/st-marys-boatmans-association/">St Mary’s Boatmen’s Association</a>. <span class="pub">Isles of Scilly Travel</span></li><li id="s119"><a href="https://bustimes.org/registrations/PB1057218/25">Registration PB1057218/25 (Glen Valley Tours)</a>. <span class="pub">bustimes.org</span></li><li id="s120"><a href="https://bustimes.org/services/477-berwick-upon-tweed-railway-station-forecourt-h">477 Berwick-upon-Tweed – Holy Island</a>. <span class="pub">bustimes.org (TNDS data)</span></li><li id="s121"><a href="https://www.visitnorthumberland.com/coast/holy-island/crossing-times">Holy Island crossing times</a>. <span class="pub">Visit Northumberland</span></li><li id="s122"><a href="https://busandtrainuser.com/2025/03/15/britains-top-10-quirky-bus-routes-9-borders-buses-route-477/">Britain’s top 10 quirky bus routes #9: route 477</a>. <span class="pub">Bus &amp; Train User</span></li><li id="s123"><a href="https://visitlindisfarne.com/?p=1114">Travelling to Holy Island</a>. <span class="pub">Visit Lindisfarne</span></li><li id="s124"><a href="https://holyislandcrossingtimes.northumberland.gov.uk">Holy Island crossing times</a>. <span class="pub">Northumberland County Council</span></li><li id="s125"><a href="https://english-heritage.org.uk/visit/places/lindisfarne-priory/History">History of Lindisfarne Priory</a>. <span class="pub">English Heritage</span></li><li id="s126"><a href="https://iona.org.uk/visit-and-stay/travel-advice/">Travel advice</a>. <span class="pub">Iona Community</span></li><li id="s127"><a href="https://assets.calmac.co.uk/media/on3hazqc/wtt-11-oban-craignure-two-vessel-timetable.pdf">Oban – Craignure winter timetable (two vessel)</a>. <span class="pub">CalMac</span></li><li id="s128"><a href="https://bustimes.org/services/496-craignure-fionnphort">496 Craignure – Fionnphort</a>. <span class="pub">bustimes.org (West Coast Motors data)</span></li><li id="s129"><a href="https://www.calmac.co.uk/media/kecgf2wq/20-oct-9-dec.pdf">Fionnphort – Iona timetable, 20 Oct – 9 Dec</a>. <span class="pub">CalMac</span></li><li id="s130"><a href="https://calmac.co.uk/route-information/oban-craignure">Oban – Craignure route information</a>. <span class="pub">CalMac</span></li><li id="s131"><a href="https://www.historicenvironment.scot/visit-a-place/places/iona-abbey-and-nunnery/history/">Iona Abbey and Nunnery: history</a>. <span class="pub">Historic Environment Scotland</span></li><li id="s132"><a href="https://sj.no/en/strekning/nordlandsbanen-2">Nordlandsbanen</a>. <span class="pub">SJ Norge</span></li><li id="s133"><a href="https://guidetolofoten.com/ferry-bodo-moskenes/">Bodø–Lofoten ferry</a>. <span class="pub">Guide to Lofoten</span></li><li id="s134"><a href="https://www.torghatten.no/en/our-routes/18-782">Bodø–Værøy–Røst–Moskenes (18-782)</a>. <span class="pub">Torghatten</span></li><li id="s135"><a href="https://visitlofoten.com/en/destination/reine/">Reine</a>. <span class="pub">Visit Lofoten</span></li><li id="s136"><a href="https://www.fergeruter.info/timetable/bodo-moskenes">Ferry schedule Bodø–Moskenes</a>. <span class="pub">fergeruter.info</span></li><li id="s137"><a href="https://en.wikipedia.org/wiki/Rauma_Line">Rauma Line</a>. <span class="pub">Wikipedia</span></li><li id="s138"><a href="https://www.vybuss.com/destinations/geiranger/">Travel to Geiranger by bus</a>. <span class="pub">Vy Buss</span></li><li id="s139"><a href="https://www.fjordtours.com/en/norway/things-to-do/sightseeing/bus-tours/geiranger-andalsnes-bus">Bus between Geiranger and Åndalsnes</a>. <span class="pub">Fjord Tours</span></li><li id="s140"><a href="https://www.visitnorway.com/plan-your-trip/travel-tips-a-z/norwegian-scenic-routes/when-is-trollstigen-open/">When is Trollstigen open?</a>. <span class="pub">Visit Norway</span></li><li id="s141"><a href="https://en.wikipedia.org/wiki/Trollstigen">Trollstigen</a>. <span class="pub">Wikipedia</span></li><li id="s142"><a href="https://www.fjordnorway.com/en/inspiration/information-about-the-closure-of-trollstigen-road">Information about the closure of Trollstigen road</a>. <span class="pub">Fjord Norway</span></li><li id="s143"><a href="https://whc.unesco.org/en/list/1195/">West Norwegian Fjords – Geirangerfjord and Nærøyfjord</a>. <span class="pub">UNESCO World Heritage Centre</span></li></ol>
+</section>
+</main>
+<footer class="foot">
+ <p>Published 9 November 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+ <p><a href="/daily/">← Back to Daily</a> · <a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20The%20Last-Mile%20Atlas&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-09-the-last-mile-atlas%2F">Spot an error? Suggest a correction</a></p>
+</footer>
+<script>(function(){
+ var box=document.getElementById('filters'),wrap=document.getElementById('tags');
+ if(!box||!wrap)return;
+ box.hidden=false;
+ var tags=[].slice.call(wrap.querySelectorAll('.tag'));
+ tags.forEach(function(t,i){t.dataset.i=i});
+ var st={type:'all',mode:'all',cx:'all',wk:'all',q:''};
+ var q=document.getElementById('q'),sort=document.getElementById('sort'),count=document.getElementById('count'),empty=document.getElementById('empty');
+ function apply(){
+  var n=0;
+  tags.forEach(function(t){
+   var ok=(st.type==='all'||t.dataset.type===st.type)&&(st.mode==='all'||t.dataset.modes.split(' ').indexOf(st.mode)>-1)&&
+    (st.cx==='all'||t.dataset.cx===st.cx)&&(st.wk==='all'||t.dataset.wk===st.wk)&&(!st.q||t.dataset.q.indexOf(st.q)>-1);
+   t.hidden=!ok;if(ok)n++;
+  });
+  count.textContent='Showing '+n+' of '+tags.length;
+  empty.hidden=n>0;
+ }
+ function order(){
+  var v=sort.value,s=tags.slice();
+  s.sort(function(a,b){
+   if(v==='az')return a.dataset.name.localeCompare(b.dataset.name,'en');
+   if(v==='time')return (+a.dataset.t)-(+b.dataset.t)||(+a.dataset.i)-(+b.dataset.i);
+   if(v==='hard')return (+b.dataset.diff)-(+a.dataset.diff)||(+b.dataset.i)-(+a.dataset.i);
+   return (+a.dataset.diff)-(+b.dataset.diff)||(+a.dataset.i)-(+b.dataset.i);
+  });
+  s.forEach(function(t){wrap.appendChild(t)});
+ }
+ box.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-f]');if(!b)return;
+  var f=b.dataset.f;st[f]=b.dataset.v;
+  [].forEach.call(box.querySelectorAll('button[data-f="'+f+'"]'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+  apply();
+ });
+ q.addEventListener('input',function(){st.q=q.value.trim().toLowerCase();apply()});
+ sort.addEventListener('change',order);
+ apply();
+})();
+</script>
+</body>
+</html>

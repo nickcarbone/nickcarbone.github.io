@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 22,
+      "slug": "2026-11-09-the-last-mile-atlas",
+      "date": "2026-11-09",
+      "title": "The Last-Mile Atlas",
+      "dek": "Twenty-five European places that look easy to reach by train, and what the final connection from the station really involves: every leg, how often it runs, when it stops, and where it catches people out.",
+      "kind": "Filterable directory",
+      "readingMinutes": 32,
+      "design": "Sofia Sans Extra Condensed, Lora, Cousine; manila luggage-tag cards on kraft, oxblood eyelets and punch-hole ratings, twine-linked connection chains, platform-to-destination range bars.",
+      "source": "queue",
+      "brief": "The Last-Mile Atlas\nResearch question: Which interesting European destinations look easy to reach on a map but become surprisingly difficult once you account for the final connection from the railway station?\nBuild a directory of places where the last 5–30 km can determine whether a trip is practical: coastal towns, island gateways, mountain communities, and overlooked resort areas.\nProposed contents\n- 25 destinations across Europe.\n- Nearest useful railway station and onward transport mode.\n- Typical transfer time, frequency, and seasonal limitations.\n- Whether the final connection requires a bus, ferry, local train, or taxi.\n- A practical rating for weekend visits versus longer stays.\n- A short note on what makes each destination worth the extra effort.\nInteractive element: A searchable directory with filters for onward transport, transfer complexity, and destination type. A custom CSS indicator shows each destination's connection chain: rail → local transfer → destination.\nSources to start from: Omit source recommendations in the generated guide; populate individual entries using verified transport data during research.\nFinish line: 25 destinations, four filters, and a ranked list of 10 places with unusually manageable last-mile connections.",
+      "factcheck": {
+        "claims": 259,
+        "fixed": 33
+      },
+      "corrections": []
+    },
+    {
       "no": 21,
       "slug": "2026-11-08-wake-up-somewhere-else",
       "date": "2026-11-08",
