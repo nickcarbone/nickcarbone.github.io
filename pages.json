@@ -1,22 +1,22 @@
 {
-  "generated": "2026-11-08T21:53:15.734Z",
+  "generated": "2026-11-09T05:42:29.277Z",
   "count": 84,
   "pages": [
-    {
-      "slug": "evening-edition",
-      "url": "https://nickcarbone.github.io/evening-edition/",
-      "title": "Evening Edition",
-      "description": "",
-      "updated": "2026-11-08T21:23:02Z",
-      "created": "2026-10-20T14:56:45Z"
-    },
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-11-08T17:26:16Z",
+      "updated": "2026-11-09T03:47:22Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "evening-edition",
+      "url": "https://nickcarbone.github.io/evening-edition/",
+      "title": "Evening Edition",
+      "description": "",
+      "updated": "2026-11-09T01:13:27Z",
+      "created": "2026-10-20T14:56:45Z"
     },
     {
       "slug": "new-networks",
@@ -478,7 +478,7 @@
       "slug": "world-cup",
       "url": "https://nickcarbone.github.io/world-cup/",
       "title": "World Cup",
-      "description": "Published via Publisher �� nickcarbone.github.io/world-cup/",
+      "description": "nickcarbone.github.io/world-cup/",
       "updated": "2026-06-06T21:20:46Z",
       "created": "2026-06-06T01:27:06Z"
     },
