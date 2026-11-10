@@ -24,6 +24,12 @@ Look: something like a licensing ledger
 
 # Ideas
 
+Twelve Dishes With a Paper Trail (Register of Certificates)
+Create an investigative culinary atlas tracing twelve famous dishes to the restaurants, hotels, bars, and individuals that claim to have invented them. Include Caesar salad, Buffalo wings, eggs Benedict, tiramisu, nachos, Cobb salad, and other contested culinary origin stories. For each dish, examine the competing claims, earliest verifiable printed recipes or newspaper mentions, historical evidence, and the people behind its creation. Investigate what occupies the original establishment's address today, whether it still operates, and where to find an exceptional modern version. Include a chronological timeline, an interactive world map of claimed birthplaces, and a verdict distinguishing documented history from restaurant folklore.
+
+The World's Great Drinking Institutions
+Build a global cultural guide to the institutions that made drinking a central part of everyday social life: British pubs, German beer halls, Belgian cafés, Czech hospodas, Japanese beer gardens, American neighborhood taverns, Irish pubs, Spanish bodegas, and other distinctive traditions. Explore their origins, architecture, rituals, social hierarchies, economics, and role in local communities. Examine how these establishments functioned as informal civic infrastructure, from political organizing and labor movements to neighborhood gossip, business deals, and community identity. Compare the traditional experience with its modern evolution, identifying which institutions have survived, disappeared, or been reinvented. Include an interactive map of landmark establishments, a historical timeline, and a field guide explaining what makes each drinking culture distinctive.
+
 The European Brewery & Taproom Railway Atlas
 Research Question: Where can a traveler plan an itinerary centered on world-class, historic, or independent microbreweries located within a 15-minute walk of regional railway stations?
 Proposed Contents: 20 classic and craft breweries across Belgium, Germany, the UK, the Netherlands, and Scandinavia located directly adjacent to passenger rail stops. Details include foot transit time from platform, taproom hours, flagship beer styles, food availability, and rail line hub connections.
@@ -45,9 +51,6 @@ Every sleeper route still running in Europe and beyond: cabin classes, dining ca
 The Typeface Register (annotated register)
 Fifteen typefaces that ended up running the world, from Helvetica on the New York subway to Transport on British road signs and the font on passports. Cover who designed each one, the brief they were given, and how a committee’s choice shaped what billions of people read every day.
 
-Twelve Dishes With a Paper Trail (register of certificates)
-Twelve dishes claimed by one specific restaurant, such as Caesar salad, Buffalo wings, eggs Benedict and tiramisu. Test each claim against the earliest printed record, say what stands at the address now and where to eat the best version today. This is the food version of your Cocktail Birthplace Atlas.
-
 The Private Members’ Club Atlas (field guide directory)
 Twenty historic clubs, from London’s St James’s to Tokyo, plus the bars, libraries and reading rooms that let non-members in. Cover the founding rules, the dress codes and the famous blackballings, and sort the entries by the kind of evening each one offers.
 
@@ -65,9 +68,6 @@ Research Question: How are independent craft breweries repurposing industrial he
 Proposed Contents: 18 independent breweries operating out of converted industrial spaces. Architectural provenance, outdoor seating, dog-friendliness, local neighborhood integration, transit access, and flagship draft offerings.
 Interactive Element: A searchable directory tagged by architectural type (rail arch, dockyard, warehouse, historic maltings), seating setup, and transit walkability.
 Finish Line: 18 taproom profiles celebrating industrial preservation and craft beer culture.
-
-The World's Great Drinking Institutions
-The history of British pubs, German beer halls, Belgian cafés, Czech hospodas, Japanese beer gardens, and American neighborhood taverns. Explore how these venues became social infrastructure rather than simply places to drink.
 
 Legal Yesterday
 Create an interactive HTML guide to forgotten laws that reveal surprising, disturbing, or consequential aspects of everyday life in the past.
