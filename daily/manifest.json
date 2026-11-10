@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 24,
+      "slug": "2026-11-10-twelve-objects-national-symbols",
+      "date": "2026-11-10",
+      "title": "Twelve Objects That Became National Symbols",
+      "dek": "The documented histories of twelve objects that stand for a country, set against the stories told about them.",
+      "kind": "Essay series",
+      "readingMinutes": 24,
+      "design": "Bricolage Grotesque, Source Serif 4; deep-green and paper, mustard-tag/stamp-red accents; inherited-to-invented spectrum rail, label-vs-record comparison cards.",
+      "source": "direct request",
+      "brief": "Twelve Objects That Became National Symbols\nTrace the unexpected histories of objects that became synonymous with particular countries or cultures. Investigate their actual origins, manufacturing histories, commercial evolution, and the distinction between authentic cultural significance and exported national branding. Objects chosen by Nick across two rounds: Swiss Army knife, Japanese bento box, French beret, Scottish tartan, Mexican molcajete, Finnish sauna bucket, Panama hat, moka pot, Russian matryoshka, Bavarian lederhosen/dirndl, Viking horned helmet, Chinese-American fortune cookie.",
+      "factcheck": {
+        "claims": 0,
+        "fixed": 0
+      },
+      "corrections": []
+    },
+    {
       "no": 23,
       "slug": "2026-11-10-how-the-world-drinks-beer",
       "date": "2026-11-10",

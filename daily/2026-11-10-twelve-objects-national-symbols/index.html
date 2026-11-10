@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twelve Objects That Became National Symbols · Daily</title>
+<meta name="description" content="The documented histories of twelve objects that stand for a country, set against the stories told about them.">
+<meta property="og:title" content="Twelve Objects That Became National Symbols">
+<meta property="og:description" content="The documented histories of twelve objects that stand for a country, set against the stories told about them.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-10-twelve-objects-national-symbols/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-10-twelve-objects-national-symbols/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDF1EA;
+  --ink:#17211D;
+  --green:#1F4A40;
+  --green-deep:#143029;
+  --tag:#E8B931;
+  --stamp:#B4402C;
+  --muted:#55655D;
+  --line:#C3CEC5;
+  --display:"Bricolage Grotesque","Arial Narrow",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.65}
+a{color:var(--green);text-underline-offset:.15em}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--stamp);outline-offset:3px}
+.wrap{max-width:72rem;margin:0 auto;padding:0 1.5rem}
+
+/* Hero */
+.hero{background:var(--green-deep);color:var(--paper);padding:4.5rem 0 3.5rem}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,7.5vw,6.25rem);line-height:.95;letter-spacing:-.03em;margin:0 0 2rem;max-width:12ch}
+.hero p{max-width:38rem;margin:0 0 1rem;font-size:1.25rem;line-height:1.55;color:#DDE6DE}
+.hero .small{font-size:1rem;color:#A9BBB0}
+
+/* Spectrum */
+.spectrum{background:var(--green);color:var(--paper);padding:2.5rem 0 3rem}
+.spectrum h2{font-family:var(--display);font-weight:600;font-size:1.5rem;margin:0 0 .5rem}
+.spectrum p{max-width:44rem;margin:0 0 2rem;font-size:1rem;color:#D3DED6}
+.ends{display:flex;justify-content:space-between;font-family:var(--display);font-weight:600;font-size:.95rem;margin-bottom:.6rem}
+.rail{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(12,1fr);position:relative}
+.rail::before{content:"";position:absolute;left:0;right:0;top:.55rem;height:2px;background:linear-gradient(90deg,var(--paper),var(--tag))}
+.rail li{position:relative;padding-top:1.9rem;text-align:left}
+.rail a{color:var(--paper);text-decoration:none;font-family:var(--display);font-size:.82rem;line-height:1.2;display:block;padding-right:.4rem}
+.rail a::before{content:"";position:absolute;top:0;left:0;width:1.1rem;height:1.1rem;border-radius:50%;background:var(--green);border:2px solid var(--paper)}
+.rail li:nth-child(n+7) a::before{border-color:var(--tag)}
+.rail a:hover,.rail a:focus-visible{text-decoration:underline}
+.rail a:hover::before{background:var(--tag)}
+@media (max-width:56rem){
+  .rail{grid-template-columns:1fr 1fr;gap:.2rem 1.5rem}
+  .rail::before{display:none}
+  .rail li{padding:.35rem 0 .35rem 1.7rem}
+  .rail a{font-size:1rem}
+  .rail a::before{top:.45rem}
+  .ends{display:none}
+}
+
+/* Entries */
+.entry{border-top:2px solid var(--ink);padding:3.5rem 0 3rem}
+.entry-grid{display:grid;grid-template-columns:17rem 1fr;gap:3.5rem}
+@media (max-width:56rem){.entry-grid{grid-template-columns:1fr;gap:1.5rem}}
+.entry h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,4.2vw,3.1rem);line-height:1;letter-spacing:-.02em;margin:0 0 .5rem}
+.claimed{font-family:var(--display);color:var(--muted);font-size:1rem;margin:0 0 1.5rem}
+.pos{margin:0 0 1.75rem}
+.pos-rail{position:relative;height:2px;background:var(--line);margin:.9rem .45rem .7rem}
+.pos-rail span{position:absolute;top:-.4rem;width:.9rem;height:.9rem;border-radius:50%;background:var(--stamp);transform:translateX(-50%)}
+.pos-ends{display:flex;justify-content:space-between;font-family:var(--display);font-size:.8rem;color:var(--muted)}
+.dates{margin:0;padding:0;font-size:.95rem;line-height:1.4}
+.dates div{display:grid;grid-template-columns:4.6rem 1fr;gap:.5rem;padding:.45rem 0;border-top:1px solid var(--line)}
+.dates dt{font-family:var(--display);font-weight:600}
+.dates dd{margin:0}
+
+/* The pair of tags */
+.tags{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0 0 2rem}
+@media (max-width:40rem){.tags{grid-template-columns:1fr}}
+.tagcard{padding:1.1rem 1.25rem 1.2rem}
+.tagcard h3{font-family:var(--display);font-weight:600;font-size:.9rem;margin:0 0 .35rem}
+.tagcard p{margin:0;font-family:var(--display);font-size:1.15rem;line-height:1.3;font-weight:600}
+.label-says{background:var(--tag);color:var(--ink)}
+.record-says{background:var(--ink);color:var(--paper)}
+.record-says h3{color:var(--tag)}
+
+.prose{max-width:41rem}
+.prose p{margin:0 0 1.15rem}
+.doubt{border-left:4px solid var(--stamp);padding:.1rem 0 .1rem 1rem;font-size:1rem;color:#3A4741}
+.doubt strong{font-family:var(--display)}
+details{margin-top:1.5rem;font-size:.95rem;max-width:41rem}
+summary{cursor:pointer;font-family:var(--display);font-weight:600;color:var(--green)}
+details ul{margin:.6rem 0 0;padding-left:1.1rem}
+details li{margin-bottom:.35rem;line-height:1.4}
+
+/* Closing */
+.closing{background:var(--green-deep);color:var(--paper);padding:3.5rem 0 4rem;margin-top:1rem}
+.closing h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.05;margin:0 0 1.25rem;max-width:22ch}
+.closing p{max-width:41rem;margin:0 0 1.1rem;color:#DDE6DE}
+.closing .method{font-size:.95rem;color:#A9BBB0;margin-top:2rem;border-top:1px solid #3B5A51;padding-top:1.25rem}
+.closing a{color:var(--tag)}
+
+.strip{background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding:.85rem 1.5rem;font-family:var(--display);font-size:.85rem}
+.strip a{color:var(--paper);text-decoration:none;display:inline-flex;align-items:center;min-height:40px}
+.strip a:hover,.strip a:focus-visible{text-decoration:underline}
+.foot{padding:2.5rem 1.5rem 3.5rem;font-size:.95rem;color:var(--muted)}
+.foot p{margin:0 0 .5rem}
+.foot a{color:var(--green)}
+</style>
+</head>
+<body>
+
+<nav class="strip" aria-label="Daily"><a href="/daily/">← Daily</a><span>No. 024 · Tuesday 10 November 2026</span></nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Twelve objects that became national symbols</h1>
+    <p>A knife, a hat, a doll, a lunchbox. Each one stands for a country in the world's imagination, and each carries a story about where it came from. This page sets that story beside the paper trail.</p>
+    <p>Some of the twelve turn out to be exactly as old and as local as advertised. Several were made somewhere else, named by foreigners, or designed in a workshop within living memory of the tourists who first bought them. One never existed at all.</p>
+    <p class="small">Compiled November 2026. Every entry lists its sources, and flags the points where the evidence is thin or disputed.</p>
+  </div>
+</header>
+
+<nav class="spectrum" aria-label="The twelve objects, ordered from inherited to invented">
+  <div class="wrap">
+    <h2>From inherited to invented</h2>
+    <p>The twelve are arranged by how far the documented history sits from the popular one. The ordering is an editorial judgement, made after the research below, and reasonable people could shuffle the middle of it.</p>
+    <div class="ends"><span>Inherited</span><span>Invented</span></div>
+    <ol class="rail">
+      <li><a href="#molcajete">Molcajete</a></li>
+      <li><a href="#sauna-bucket">Sauna bucket</a></li>
+      <li><a href="#bento">Bento box</a></li>
+      <li><a href="#beret">Beret</a></li>
+      <li><a href="#panama-hat">Panama hat</a></li>
+      <li><a href="#tartan">Tartan</a></li>
+      <li><a href="#tracht">Lederhosen and dirndl</a></li>
+      <li><a href="#swiss-army-knife">Swiss Army knife</a></li>
+      <li><a href="#moka-pot">Moka pot</a></li>
+      <li><a href="#matryoshka">Matryoshka</a></li>
+      <li><a href="#fortune-cookie">Fortune cookie</a></li>
+      <li><a href="#horned-helmet">Horned helmet</a></li>
+    </ol>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- 1 -->
+<article class="entry" id="molcajete">
+  <div class="entry-grid">
+    <aside>
+      <h2>Molcajete</h2>
+      <p class="claimed">Mexico</p>
+      <div class="pos" aria-label="Position on the spectrum: fully inherited">
+        <div class="pos-rail"><span style="left:0%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>Pre-1500s</dt><dd>In use across Mesoamerica, Aztec and Maya kitchens included</dd></div>
+        <div><dt>Today</dt><dd>Still carved by hand in Jalisco, Guanajuato, Michoacán, Puebla and the State of Mexico</dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>An ancient stone mortar, unchanged since before the Spanish arrived.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>Correct. The threat to it is cement.</p></div>
+      </div>
+      <div class="prose">
+        <p>The molcajete is the control case for this whole exercise. Its name comes from Nahuatl, <em>molcaxitl</em>, a bowl for sauce, and its pestle, the tejolote, has a Nahuatl name too. Archaeologists find grinding stones of this kind throughout the territory of ancient Mesoamerica, and researchers who study them describe the mortar-and-pestle pairing as several thousand years old. Oversized lidded examples have been recovered from high-status burials.</p>
+        <p>What makes the object unusual among national symbols is that the manufacturing never moved. A molcajete is still cut from a single block of vesicular basalt by a stoneworker with hand tools. The trade clusters in a few towns that sit near the right rock: San Lucas Evangelista in Jalisco, Comonfort in Guanajuato, and San Nicolás Obispo outside Morelia, where more than sixty families live from it. An experienced carver finishes one in five or six hours.</p>
+        <p>The commercial story is one of substitution. Blenders took over the daily work in many kitchens, and artisans in Comonfort say appreciation for the real thing is fading. Meanwhile the shape has become shorthand for Mexican food abroad, where it serves as a sizzling restaurant dish as often as a tool. That demand is met partly by imitations pressed from concrete mixed with volcanic grit, which pass for the real thing on a shop shelf.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://en.wikipedia.org/wiki/Molcajete">Wikipedia, "Molcajete"</a>, for etymology, burial finds and concrete imitations</li>
+          <li><a href="https://diposit.ub.edu/dspace/handle/2445/47363">José Ruperto Rodríguez-Yc, doctoral thesis on Mesoamerican grinding stones, Universitat de Barcelona (2013)</a></li>
+          <li><a href="https://www.vamonostomexico.com/mexican-gastronomy/molcajete-dish/">Vámonos to Mexico, on the carving towns and working times, citing INAH for the etymology</a></li>
+          <li><a href="https://www.unotv.com/turismo/molcajetes-3-pueblos-donde-se-hacen/">Uno TV, on San Nicolás Obispo, Comonfort and San Lucas Evangelista</a></li>
+          <li><a href="https://www.novica.com/p/handcrafted-ceremonial-style-molcajete-mortar/435489/">Novica, artisan statement from the Comonfort Group</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- 2 -->
+<article class="entry" id="sauna-bucket">
+  <div class="entry-grid">
+    <aside>
+      <h2>Sauna bucket</h2>
+      <p class="claimed">Finland</p>
+      <div class="pos" aria-label="Position on the spectrum: mostly inherited">
+        <div class="pos-rail"><span style="left:9%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>Undated</dt><dd>The stave-built <em>kiulu</em> serves as a general household pail</dd></div>
+        <div><dt>2020</dt><dd>UNESCO inscribes sauna culture in Finland, the country's first entry on its intangible heritage list</dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>The timeless wooden vessel of the Finnish sauna ritual.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>An ordinary pail with a borrowed Swedish name, promoted when its other jobs disappeared.</p></div>
+      </div>
+      <div class="prose">
+        <p>Nobody invented the sauna bucket, and nobody patented it. The <em>kiulu</em> is a small coopered pail with one stave left long to form a handle, and Finnish dictionaries define it as a container for liquids in general, with sauna water given as an example. Even the word arrived from next door: etymologists trace it through dialectal Swedish to an Old Norse word for a pail.</p>
+        <p>Its symbolic weight comes from what it carries. Water thrown from the bucket onto hot stones makes <em>löyly</em>, the steam that Finns treat as the point of the whole exercise and for which the language reserves its own word. When UNESCO inscribed Finnish sauna culture in December 2020, the government counted about 3.2 million saunas for a population of roughly 5.5 million.</p>
+        <p>The bucket's national branding is recent and mostly aimed outward. UNESCO's own description lists electric, wood-fired, smoke and infra-red saunas and declines to rank them, and the buckets on sale today follow suit: copper, steel and plastic sit alongside wood, and many wooden ones hide a plastic liner. Exporters describe all of them as authentically Nordic. In 2019 the design house Artek gave the name Kiulu to a birch bench marking a century of Finnish–Japanese relations, which is about as far as a milk pail can travel.</p>
+        <p class="doubt"><strong>Thin evidence.</strong> This is the least documented object of the twelve. No dated first appearance, maker or design history for the bucket itself turned up in research, so the account above leans on dictionaries, UNESCO and retailers. Treat the "general household pail" history as well supported by the word's definition and unsupported by any archive.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://ich.unesco.org/en/RL/sauna-tradition-in-finland-01596">UNESCO, "Sauna culture in Finland" (2020)</a></li>
+          <li><a href="https://valtioneuvosto.fi/en/-/1410845/finland-s-sauna-culture-inscribed-on-unesco-intangible-cultural-heritage-list">Finnish Government press release, 17 December 2020</a></li>
+          <li><a href="https://en.wiktionary.org/wiki/kiulu">Wiktionary, "kiulu", definition and etymology</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Finnish_sauna">Wikipedia, "Finnish sauna", on löyly</a></li>
+          <li><a href="https://finnmarksauna.com/en-us/collections/sauna-buckets-pails">Finnmark Sauna, bucket range and marketing language</a></li>
+          <li><a href="https://reallywellmade.co.uk/products/kiulu-bench">Really Well Made, Artek Kiulu Bench product notes</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- 3 -->
+<article class="entry" id="bento">
+  <div class="entry-grid">
+    <aside>
+      <h2>Bento box</h2>
+      <p class="claimed">Japan</p>
+      <div class="pos" aria-label="Position on the spectrum: largely inherited">
+        <div class="pos-rail"><span style="left:18%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>c. 1300</dt><dd>Workers carry dried cooked rice, <em>hoshi-ii</em></dd></div>
+        <div><dt>Late 1500s</dt><dd>Lacquered boxes made specifically for food</dd></div>
+        <div><dt>1885</dt><dd>First station bento, by the usual account, at Utsunomiya</dd></div>
+        <div><dt>1920s</dt><dd>Schools ban bento as a status display</dd></div>
+        <div><dt>1980s</dt><dd>Convenience stores and microwaves revive it</dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>A centuries-old Japanese art of the compartmented lunch.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>The habit is old. The box most people picture is a product of railways, aluminium and the convenience store.</p></div>
+      </div>
+      <div class="prose">
+        <p>Packed meals in Japan go back to the late Kamakura period, when labourers carried cooked, dried rice in a bag. Purpose-made lacquered boxes appear in the late sixteenth century, and a Japanese–Portuguese dictionary printed in 1603–04 already defines the word. The word itself is usually traced to a Chinese term meaning convenient.</p>
+        <p>Through the Edo period the bento split along class lines that still show. Travellers tied a few rice balls at the waist. Theatre-goers bought the <em>makunouchi</em>, a "between acts" assortment that is the direct ancestor of the modern arranged box. The railways added a third branch: the station bento, or ekiben, is generally dated to July 1885 at Utsunomiya, though other stations claim the first sale.</p>
+        <p>Industrial materials changed its meaning. Aluminium boxes arrived in the twentieth century and were expensive enough that a child's lunch became a statement of family income, to the point where schools banned bento in the 1920s. The form's present ubiquity dates only from the 1980s, when convenience-store chains, microwave ovens and disposable plastic trays made it cheap.</p>
+        <p>The exported version is narrower than the domestic one. Abroad the word travels mostly as a lunchbox with dividers and as a photogenic hobby, with millions of posts under a single Instagram tag. In Japan it still covers everything from a plain rice ball in a wrapper to a lacquered tier at a cherry-blossom picnic.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://www.britannica.com/topic/bento">Encyclopaedia Britannica, "Bento"</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Bento">Wikipedia, "Bento", on the word's origin and competing ekiben claims</a></li>
+          <li><a href="https://www.japanhousela.com/articles/thinking-inside-the-box-japanese-bento-cuisine-ekiben-kyaraben-school-lunch-daily-life/">Japan House Los Angeles, "Thinking Inside the Box"</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- 4 -->
+<article class="entry" id="beret">
+  <div class="entry-grid">
+    <aside>
+      <h2>Beret</h2>
+      <p class="claimed">France</p>
+      <div class="pos" aria-label="Position on the spectrum: inherited, with a wrong label">
+        <div class="pos-rail"><span style="left:27%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>1200s</dt><dd>Carved figures at Bellocq, Béarn, wear flat caps</dd></div>
+        <div><dt>1840</dt><dd>Laulhère founded at Oloron-Sainte-Marie</dd></div>
+        <div><dt>1889</dt><dd>Chasseurs Alpins adopt it as uniform</dd></div>
+        <div><dt>1929</dt><dd>Peak year for Breton onion sellers in Britain</dd></div>
+        <div><dt>2014</dt><dd>Laulhère absorbs its oldest rival</dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>The Basque beret, everyday hat of the Frenchman.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>A shepherd's cap from Béarn, mislabelled Basque, made French in British eyes by Breton onion sellers.</p></div>
+      </div>
+      <div class="prose">
+        <p>The beret comes from the Pyrenees, from Béarn specifically, where shepherds knitted and felted their own caps for centuries; thirteenth-century sculptures on a church portal at Bellocq show the shape. Production industrialised in the nineteenth century around Oloron-Sainte-Marie, a market town where herding routes crossed.</p>
+        <p>The "Basque" tag belongs to the neighbours. One tradition blames Napoleon III, who is said to have misnamed the cap on a visit to the region and gone uncorrected. Another points to Basque shopkeepers who bought stock across the provincial line and sewed in their own labels. Either way the manufacturers went along with it for generations, selling Béarn-made hats under names like "Vrai Basque".</p>
+        <p>Two institutions carried it beyond the mountains. The French army's Alpine troops adopted a wide beret in 1889, and Britain's new tank regiment copied them after the First World War. Meanwhile the "Onion Johnnies" of Brittany had been crossing the Channel since 1828 to sell onions door to door, and by their peak in 1929 there were 1,400 of them. For much of Britain they were the only Frenchmen anyone met, and their caps became the national cartoon.</p>
+        <p>By 1928 more than twenty French factories were turning out millions of berets a year, and about thirty were still operating in 1945. Today Laulhère, which bought the oldest producer in 2014, is the last historic maker carrying the process from yarn to finished hat. Its customers include the French army and couture houses.</p>
+        <p class="doubt"><strong>Disputed.</strong> The Napoleon III story is repeated by the French heritage foundation and by hatters, without a cited primary source. Treat it as tradition.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://artsandculture.google.com/story/8AXxa8cZEfF2KQ">Fondation du patrimoine via Google Arts &amp; Culture, "The Basque Beret is Actually Béarnais"</a></li>
+          <li><a href="https://www.completefrance.com/travel/activities/a-french-icon-the-beret-6282000/">Complete France, "A French icon: the beret"</a></li>
+          <li><a href="https://www.thelocal.fr/20160411/so-why-do-we-think-the-french-all-wear-berets">The Local France, on the Onion Johnnies</a></li>
+          <li><a href="https://lifeonlalune.com/2018/11/25/beret-nice/">Life on La Lune, report from the Musée du Béret, Nay</a></li>
+          <li><a href="https://thecritic.co.uk/issues/march-2023/beret-much-so">The Critic, on factory numbers in 1928</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Beret">Wikipedia, "Beret", on military adoption</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- 5 -->
+<article class="entry" id="panama-hat">
+  <div class="entry-grid">
+    <aside>
+      <h2>Panama hat</h2>
+      <p class="claimed">Panama, in name. Ecuador, in fact.</p>
+      <div class="pos" aria-label="Position on the spectrum: inherited craft, wrong country on the label">
+        <div class="pos-rail"><span style="left:36%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>1600s on</dt><dd>Hat weaving spreads along Ecuador's coast</dd></div>
+        <div><dt>1835</dt><dd>Manuel Alfaro sets up in Montecristi and ships through Panama</dd></div>
+        <div><dt>1848</dt><dd>Gold Rush traffic across the isthmus</dd></div>
+        <div><dt>1855</dt><dd>Shown in Paris; Napoleon III takes one</dd></div>
+        <div><dt>1906</dt><dd>Roosevelt photographed in one at the canal works</dd></div>
+        <div><dt>2012</dt><dd>UNESCO lists the Ecuadorian weaving tradition</dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>Panama.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>Woven in Ecuador from Ecuadorian straw. Named for the port where foreigners bought it.</p></div>
+      </div>
+      <div class="prose">
+        <p>The hat is plaited by hand from the split fronds of the toquilla palm, which grows on Ecuador's coast. Weaving was established in Manabí province, around Montecristi and Jipijapa, by the seventeenth century. The name records a trade route. Ecuadorian merchants found that the isthmus of Panama was the best place to reach foreign buyers, and English speakers were already calling the product a Panama hat by the 1830s.</p>
+        <p>Three events fixed the error. Tens of thousands of gold prospectors crossed Panama from 1848 on their way to California and bought sun hats in transit. At the Paris exposition of 1855 a Frenchman resident in Panama presented a fine example to Napoleon III. And in November 1906 Theodore Roosevelt posed in one on a steam shovel at the canal excavation, in photographs that ran across the American press.</p>
+        <p>There is a second, internal misattribution. In 1836 the highland city of Cuenca set up hat workshops to capture export income and brought in weavers from the coast. Cuenca now produces the bulk of the country's output, while the finest work still comes from villages near Montecristi. A 2011 survey found only 461 weavers left in all of Manabí, and dealers put the number able to make the top "superfino" grade at fewer than a dozen. One long-standing American buyer alleges that cheaper Cuenca hats are routinely sold abroad as Montecristis.</p>
+        <p>Ecuador has pressed its claim through UNESCO, which inscribed the weaving of the "Ecuadorian toquilla straw hat" in 2012. The trade name has not budged.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://en.wikipedia.org/wiki/Panama_hat">Wikipedia, "Panama hat"</a></li>
+          <li><a href="https://www.brentblack.com/pages/history.html">Brent Black, "A Short History of the Panama Hat" (a dealer's account; the Cuenca allegation is his)</a></li>
+          <li><a href="https://wgbh.org/news/2015-08-08/hes-just-woven-the-worlds-finest-panama-hat-but-who-will-buy-it">GBH News, on the Gold Rush, Paris 1855 and the shortage of master weavers</a></li>
+          <li><a href="https://www.ripleys.com/stories/panama-hats">Ripley's, on the Roosevelt photograph of 16 November 1906</a></li>
+          <li><a href="https://www.wanderlustmagazine.com/inspiration/the-panama-hat-is-actually-from-ecuador/">Wanderlust, on the UNESCO listing</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- 6 -->
+<article class="entry" id="tartan">
+  <div class="entry-grid">
+    <aside>
+      <h2>Tartan</h2>
+      <p class="claimed">Scotland</p>
+      <div class="pos" aria-label="Position on the spectrum: midway">
+        <div class="pos-rail"><span style="left:45%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>c. 1500–1600</dt><dd>Glen Affric cloth, the oldest true tartan found in Scotland</dd></div>
+        <div><dt>1746–82</dt><dd>Highland dress proscribed for men</dd></div>
+        <div><dt>1815</dt><dd>Highland Society of London asks chiefs to name their tartans</dd></div>
+        <div><dt>1819</dt><dd>Wilsons of Bannockburn pattern book</dd></div>
+        <div><dt>1822</dt><dd>George IV in Edinburgh, in a kilt</dd></div>
+        <div><dt>1842</dt><dd><em>Vestiarium Scoticum</em></dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>Every clan has worn its own pattern since time out of mind.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>The cloth is old. The one-clan-one-pattern system was assembled between 1815 and 1842, largely by a weaving firm.</p></div>
+      </div>
+      <div class="prose">
+        <p>Checked wool has been woven in Scotland for a very long time. A fragment recovered from a peat bog in Glen Affric was radiocarbon dated in 2023 to roughly 1500–1600, and it has the multiple colours and uneven stripes of a true tartan. The researchers who dated it were careful to add that nobody can say which family owned it.</p>
+        <p>That caution is the point. The link between a surname and a fixed pattern is a nineteenth-century arrangement. After the ban on Highland dress was lifted in 1782, the firm of William Wilson &amp; Sons at Bannockburn became the dominant supplier, and began giving its patterns names: towns first, then notable families. In 1815 the Highland Society of London wrote to clan chiefs asking for samples of "their" tartans, which presumed that each had one.</p>
+        <p>Then came the royal visit. Walter Scott stage-managed George IV's fortnight in Edinburgh in August 1822 and urged the gentry to turn out in Highland dress. Wilsons supplied most of the cloth, added looms to cope, and saw a number of its invented fancy patterns adopted as clan property. Twenty years later two brothers styling themselves the Sobieski Stuarts published <em>Vestiarium Scoticum</em>, supposedly an old manuscript of clan patterns. Its authenticity was doubted by people who knew them, and many of its tartans are worn today.</p>
+        <p class="doubt"><strong>Disputed.</strong> The historian Hugh Trevor-Roper pushed this argument furthest, claiming the kilt itself was devised around the 1720s by an English ironmaster, Thomas Rawlinson. Scottish historians including Hugh Cheape regard his account as overdrawn, and a 2020 study reports no trace of the story in Rawlinson's own papers. The Scottish Tartans Authority also notes that the 1746 Act targeted Highland dress and did not ban the cloth as such.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://www.vam.ac.uk/dundee/info/scotland-s-oldest-tartan-discovered-by-scottish-tartans-authority">V&amp;A Dundee, on the Glen Affric tartan (2023)</a></li>
+          <li><a href="https://www.scottishtartansauthority.com/the-history-of-tartan">Scottish Tartans Authority, "The History of Tartan"</a></li>
+          <li><a href="https://www.scottishtartans.co.uk/history.htm">Peter Eslea MacDonald, "A Short History of Tartan"</a></li>
+          <li><a href="https://ernie.uva.nl/viewer.p/21/56/object/122-160804">Encyclopedia of Romantic Nationalism in Europe, on Wilsons, the 1822 visit and the Sobieski Stuarts</a></li>
+          <li><a href="https://www.cambridge.org/core/product/identifier/CBO9781107295636A008/type/BOOK_PART">Hugh Trevor-Roper, "The Highland Tradition of Scotland", in <em>The Invention of Tradition</em> (1983)</a></li>
+          <li><a href="https://www.countrylife.co.uk/country-life/history-tartan-60043">Country Life, Mary Miers on the counter-argument</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/History_of_the_kilt">Wikipedia, "History of the kilt", on the Rawlinson dispute</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- 7 -->
+<article class="entry" id="tracht">
+  <div class="entry-grid">
+    <aside>
+      <h2>Lederhosen and dirndl</h2>
+      <p class="claimed">Bavaria and Austria</p>
+      <div class="pos" aria-label="Position on the spectrum: just past midway">
+        <div class="pos-rail"><span style="left:55%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>1883</dt><dd>First costume-preservation club, Bayrischzell</dd></div>
+        <div><dt>1900</dt><dd>Wallach brothers open their Munich folk-art house</dd></div>
+        <div><dt>1938</dt><dd>Wallach business "Aryanised"; Jews barred from wearing Tracht</dd></div>
+        <div><dt>1972</dt><dd>Olympic hostesses in pale blue dirndls</dd></div>
+        <div><dt>c. 2000</dt><dd>Oktoberfest crowds start dressing up</dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>What Bavarians have always worn to the beer tent.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>Farm clothing rescued by a teacher's drinking club, turned into fashion by two Jewish retailers, restyled under the Nazis, and rare at Oktoberfest before 2000.</p></div>
+      </div>
+      <div class="prose">
+        <p>Short leather breeches were working dress in the Alps and were dying out by the late nineteenth century. On 25 August 1883 a schoolteacher in Bayrischzell, Joseph Vogl, and five companions from his regular table resolved to have pairs made, then founded a society to preserve the costume. They wore them to Mass, the Church objected, and King Ludwig II wrote in support. Their club became the model for the Trachtenverein movement.</p>
+        <p>The dirndl has a more urban pedigree. The ethnologist Simone Egger describes it as a creation of the Alpine holiday regions, a summer frock through which city visitors played at country life. Julius and Moritz Wallach, brothers from Bielefeld who settled in Munich, built a business on that taste. Their folk-art house opened in 1900, dressed the stage hit <em>Im Weißen Rößl</em>, and made the dirndl a fixture of the Bavarian capital.</p>
+        <p>In 1938 the Wallachs were forced to sell and fled to America; relatives died in the camps. That year the regime barred Jews from wearing folk costume at all, while a state office under Gertrud Pesendorfer issued "renewed" designs intended as the dress of the German countrywoman. How much of today's cut is hers is contested. The ethnologist Elsbeth Wallnöfer credits her with the modern silhouette, and others point to photographs showing most of its features decades earlier.</p>
+        <p>The final surprise is the beer tent itself. Egger's fieldwork found that almost nobody wore either garment to Oktoberfest until about the turn of the millennium. The uniform of the world's most famous folk festival is roughly as old as the camera phone.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://www.oktoberfest.de/en/dirndl-tracht/lederhosen-vom-skandal-beim-gottesdienst-zum-must-have">oktoberfest.de (City of Munich), on Vogl and the church dispute</a></li>
+          <li><a href="https://costume.mini.icom.museum/wp-content/uploads/sites/10/2018/12/Egger_ed_JP.pdf">Simone Egger, "About Modern Bavarian Clothing", ICOM Costume Committee</a></li>
+          <li><a href="https://sciencedaily.com/releases/2008/09/080922100154.htm">LMU Munich via ScienceDaily, on Egger's Oktoberfest study</a></li>
+          <li><a href="https://www.juedische-allgemeine.de/kultur/erfundene-tradition">Jüdische Allgemeine, "Erfundene Tradition", on the Wallachs and Pesendorfer</a></li>
+          <li><a href="https://www.tabletmag.com/sections/community/articles/a-new-spin-on-traditional-german-clothes">Tablet, on the forced sale and the 1938 ban</a></li>
+          <li><a href="https://www.derstandard.at/story/2000122260262/wie-die-tracht-erfunden-wurde">Der Standard, on Elsbeth Wallnöfer's argument</a></li>
+          <li><a href="https://opus.lib.uts.edu.au/handle/10453/170579">Jonathan C. Kaplan, "Lederhosen, Dirndl, and a Sense of Belonging", <em>Textile</em> (2022)</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- 8 -->
+<article class="entry" id="swiss-army-knife">
+  <div class="entry-grid">
+    <aside>
+      <h2>Swiss Army knife</h2>
+      <p class="claimed">Switzerland</p>
+      <div class="pos" aria-label="Position on the spectrum: leaning invented">
+        <div class="pos-rail"><span style="left:64%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>1891</dt><dd>First 15,000 soldier's knives delivered, from Solingen</dd></div>
+        <div><dt>1897</dt><dd>Elsener registers the Officer's and Sports Knife</dd></div>
+        <div><dt>1908</dt><dd>Army contract split between Ibach and Delémont</dd></div>
+        <div><dt>1945</dt><dd>American troops give it its English name</dd></div>
+        <div><dt>2005</dt><dd>Victorinox buys Wenger</dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>The knife of the Swiss Army.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>First made in Germany. The famous model was never army issue, and Americans named it.</p></div>
+      </div>
+      <div class="prose">
+        <p>When the Swiss army decided in the late 1880s to issue a folding knife, no Swiss firm could make enough of them. The first order of 15,000, the Modell 1890, went to Wester &amp; Co. of Solingen, Germany's cutlery capital, and was delivered in October 1891.</p>
+        <p>Karl Elsener, who had opened a cutler's workshop at Ibach in 1884, organised his fellow Swiss craftsmen into an association to win the work back. He took over production at the end of 1891 and lost money on every knife, because Solingen could make them cheaper. A second Swiss maker in Delémont, later called Wenger, joined in 1893.</p>
+        <p>The knife the world recognises is a different product. In 1897 Elsener registered a lighter design with extra tools and a corkscrew, the Officer's and Sports Knife. The army never contracted for it. Officers bought it out of their own pockets, and it became the firm's civilian bestseller. The German contract lasted until 1908, when the government split the order evenly between Ibach and Delémont, an arrangement that held for almost a century.</p>
+        <p>The English name is a post-war import. American servicemen found the knives in their base stores after 1945, could not manage <em>Offiziersmesser</em>, and called them Swiss Army knives. Both makers adopted the phrase. Elsener's company, renamed Victorinox in 1921 after his mother Victoria and the French shorthand for stainless steel, bought Wenger in 2005 and folded its knives into a single brand in 2013. It reported making 25 million knives a year at that point, and exports about nine in ten.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://en.wikipedia.org/wiki/Swiss_Army_knife">Wikipedia, "Swiss Army knife"</a></li>
+          <li><a href="https://www.todayifoundout.com/?p=59539">Today I Found Out, "Does the Swiss Army Actually Use Swiss Army Knives?"</a></li>
+          <li><a href="https://www.thelocal.ch/20130131/victorinox-cuts-wenger-swiss-army-knife-brand">The Local Switzerland, on the 2013 brand merger and output figures</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Victorinox">Wikipedia, "Victorinox", on the name and export share</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- 9 -->
+<article class="entry" id="moka-pot">
+  <div class="entry-grid">
+    <aside>
+      <h2>Moka pot</h2>
+      <p class="claimed">Italy</p>
+      <div class="pos" aria-label="Position on the spectrum: mostly invented">
+        <div class="pos-rail"><span style="left:73%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>1933</dt><dd>Moka Express goes into production at Crusinallo</dd></div>
+        <div><dt>1934–40</dt><dd>About 70,000 sold, at local markets</dd></div>
+        <div><dt>1946</dt><dd>Renato Bialetti takes over</dd></div>
+        <div><dt>1953</dt><dd>The moustachioed mascot appears</dd></div>
+        <div><dt>2025</dt><dd>Company sold to a Hong Kong-backed fund</dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>How Italian grandmothers have always made coffee.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>A 1933 aluminium product that sold poorly for a decade, then became a tradition through television advertising.</p></div>
+      </div>
+      <div class="prose">
+        <p>Alfonso Bialetti learned aluminium casting during a decade in French foundries and opened a workshop at Crusinallo, in Piedmont, in 1919. His octagonal stovetop coffee maker went on sale in 1933. Its name borrows from Mokha, the Yemeni coffee port. The company story holds that he took the idea from a laundry boiler that forced soapy water up a central pipe.</p>
+        <p>The choice of metal was of its moment. The historian Jeffrey Schnapp has shown how Mussolini's government promoted aluminium as Italy's national metal, a homegrown material for an economy trying to do without imports. The pot was a small domestic emblem of that policy. It was also a commercial disappointment. Bialetti sold it himself at weekly markets and shifted roughly 70,000 in six years before war cut off both coffee and aluminium.</p>
+        <p>The tradition was built by his son. Renato Bialetti took charge in 1946, dropped the firm's other lines and spent heavily on publicity. He commissioned the cartoonist Paul Campani to draw a little man with a moustache and a raised finger, modelled on Renato himself, and put him on every pot and on <em>Carosello</em>, the nightly advertising slot that most of Italy watched. Well over 200 million had been made by 2001. When Renato died in 2016 his ashes were interred in an oversized moka.</p>
+        <p>The pot is said to sit in nine out of ten Italian homes. The company behind it struggled with debt for years, and in 2025 Nuo Capital, a Luxembourg fund controlled by the Hong Kong businessman Stephen Cheng, bought about 79 per cent for some €53 million and took it off the Milan stock exchange.</p>
+        <p class="doubt"><strong>Disputed.</strong> Several accounts credit the engineering to Luigi De Ponti, with Bialetti as the manufacturer who acquired it. MoMA and the company name Bialetti. Sources also give the mascot's debut as either 1953 or 1958.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://en.wikipedia.org/wiki/Alfonso_Bialetti">Wikipedia, "Alfonso Bialetti", drawing on Jeffrey T. Schnapp, "The Romance of Caffeine and Aluminum", <em>Critical Inquiry</em> 28:1 (2001)</a></li>
+          <li><a href="https://ineedcoffee.com/the-story-of-the-bialetti-moka-express/">INeedCoffee, summary of Schnapp's argument on aluminium and Fascism</a></li>
+          <li><a href="https://www.ilpost.it/2013/08/21/moka-bialetti-caffe/">Il Post, "Gli 80 anni della moka"</a></li>
+          <li><a href="https://www.core77.com/posts/47321/Italian-Industrialist-Passes-Away-Has-His-Ashes-Interred-in-His-Companys-Most-Famous-Design">Core77, on Renato Bialetti and the credit dispute</a></li>
+          <li><a href="https://www.ansa.it/english/news/2025/04/16/chinese-owned-group-to-acquire-bialetti_bb44456f-7bf4-4374-b673-81d71b9a6f2d.html">ANSA, "Chinese-owned group to acquire Bialetti" (16 April 2025)</a></li>
+          <li><a href="https://www.deloitte.com/cz-sk/en/mnaport/articles/articles-transactions/2025-q2/Bialetti-ma-nove-vlastniky">Deloitte M&amp;A report, on price and household penetration</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- 10 -->
+<article class="entry" id="matryoshka">
+  <div class="entry-grid">
+    <aside>
+      <h2>Matryoshka</h2>
+      <p class="claimed">Russia</p>
+      <div class="pos" aria-label="Position on the spectrum: invented">
+        <div class="pos-rail"><span style="left:82%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>1890s</dt><dd>First set made in a Moscow toy workshop</dd></div>
+        <div><dt>1900</dt><dd>Bronze medal at the Paris world's fair</dd></div>
+        <div><dt>1904</dt><dd>Workshop closes; production moves to Sergiev Posad</dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>An age-old Russian peasant toy.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>Designed in the 1890s by a professional artist for an educational toy shop, possibly after a Japanese model.</p></div>
+      </div>
+      <div class="prose">
+        <p>The first nesting doll has named authors. Vasily Zvyozdochkin turned it on a lathe and Sergey Malyutin painted it, for the Children's Education workshop run by the Mamontov family, Moscow industrialists who bankrolled a revival of Russian crafts. The set held eight figures, starting with a girl carrying a black rooster and ending with a swaddled baby. It survives in the toy museum at Sergiev Posad.</p>
+        <p>That museum also holds a Japanese nesting figure of the bald sage Fukuruma, which reached the workshop in the 1890s. The usual account has a Mamontov bringing it home from Japan and asking for a Russian equivalent. The evidence is circumstantial. Zvyozdochkin is reported to have said the idea came from a turned toy he saw in a magazine, and Guinness World Records lists both versions without choosing. Japanese tradition adds a twist of its own, holding that the first nested doll on Honshu was made by a visiting Russian monk.</p>
+        <p>Whatever the spark, the product was designed as folk art by people who were not peasants, at a moment when educated Russians were looking for a national style. It won a bronze medal in Paris in 1900 and foreign orders followed faster than the Moscow workshop could fill them. After it closed in 1904, the work passed to Sergiev Posad, an old toy-making town, and later to factories elsewhere. Within a generation the doll was the standard souvenir of a country it had not existed in thirty years before.</p>
+        <p class="doubt"><strong>Dates vary.</strong> Many sources give 1890 for the first set, the museum piece is often dated 1892, and some specialists place it in the mid or late 1890s. No source seen here resolves it.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://en.wikipedia.org/wiki/Matryoshka_doll">Wikipedia, "Matryoshka doll"</a></li>
+          <li><a href="https://www.guinnessworldrecords.com/world-records/675965-first-matryoshka-nesting-doll">Guinness World Records, "First matryoshka nesting doll"</a></li>
+          <li><a href="https://listserv.linguistlist.org/pipermail/seelang/2001-November/013535.html">Mitsuyoshi Numano on the SEELANGS list, on the Japanese doll at Sergiev Posad (2001)</a></li>
+          <li><a href="https://www.encyclopedia.com/history/modern-europe/russian-soviet-and-cis-history/matryoshka-doll">Encyclopedia.com, "Matryoshka Doll", including the Russian-monk story</a></li>
+          <li><a href="https://allrus.me/russian-matryoshka/">AllRus, on Zvyozdochkin's own account</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- 11 -->
+<article class="entry" id="fortune-cookie">
+  <div class="entry-grid">
+    <aside>
+      <h2>Fortune cookie</h2>
+      <p class="claimed">China</p>
+      <div class="pos" aria-label="Position on the spectrum: almost wholly invented">
+        <div class="pos-rail"><span style="left:91%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>1878</dt><dd>Japanese print shows a baker making fortune crackers</dd></div>
+        <div><dt>c. 1910</dt><dd>Served at the Japanese Tea Garden, San Francisco</dd></div>
+        <div><dt>1942</dt><dd>Japanese-American bakers interned</dd></div>
+        <div><dt>1983</dt><dd>Mock trial awards the invention to San Francisco</dd></div>
+        <div><dt>1992</dt><dd>Launch in China abandoned</dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>A Chinese custom at the end of a Chinese meal.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>A Kyoto shrine snack, reworked in California, handed to Chinese restaurants by wartime internment.</p></div>
+      </div>
+      <div class="prose">
+        <p>Bakeries around Kyoto have long sold <em>tsujiura senbei</em>, a folded cracker with a paper fortune tucked into the crease. It is larger and darker than the American cookie and flavoured with miso and sesame. The researcher Yasuko Nakamachi found an illustrated book from 1878 showing an apprentice making them, three decades before anyone in America claimed the idea.</p>
+        <p>Japanese immigrants brought the cracker to California. Makoto Hagiwara, who ran the Japanese Tea Garden in Golden Gate Park, was serving a version in the early 1900s, baked for him by the San Francisco confectioner Benkyodo and sweetened for local taste. In those years many Japanese families in California also ran chop suey houses, and the cookies crossed over to Chinese-American menus.</p>
+        <p>The handover was completed by force. When Japanese Americans were sent to internment camps in 1942, their bakeries closed and Chinese-American manufacturers took up production. Servicemen passing through California on their way home from the Pacific met the cookies in Chinese restaurants and asked for them at home. After the war the association was fixed.</p>
+        <p>China has never accepted the gift. In 1989 the cookies were sold in Hong Kong as "genuine American fortune cookies". Wonton Food of Brooklyn, the largest maker at more than four million a day, tried mainland China in 1992 and gave up when buyers found the product too American. About three billion are baked each year, most of them eaten in the United States.</p>
+        <p class="doubt"><strong>Disputed.</strong> A Los Angeles noodle-maker, David Jung, claimed to have invented the cookie in 1918. San Francisco's Court of Historical Review, a civic mock tribunal, ruled for Hagiwara in 1983, and Los Angeles rejected the verdict. Descendants of the Benkyodo family have said neither side can prove its case.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://en.wikipedia.org/wiki/Fortune_cookie">Wikipedia, "Fortune cookie"</a></li>
+          <li><a href="https://www.nationalgeographic.com/travel/article/the_fortune_cookies_fortune">National Geographic, on Nakamachi's 1878 find</a></li>
+          <li><a href="https://m.huffpost.com/us/entry/6430962">Jennifer 8. Lee, author of <em>The Fortune Cookie Chronicles</em>, on the Japanese origin</a></li>
+          <li><a href="https://americanheritage.com/who-invented-fortune-cookie">American Heritage, "Who Invented the Fortune Cookie?"</a></li>
+          <li><a href="https://5dn.org/ja/journal/2007/10/31/">Discover Nikkei, Gary Ono of the Benkyodo family on the competing claims</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- 12 -->
+<article class="entry" id="horned-helmet">
+  <div class="entry-grid">
+    <aside>
+      <h2>Viking horned helmet</h2>
+      <p class="claimed">Scandinavia</p>
+      <div class="pos" aria-label="Position on the spectrum: entirely invented">
+        <div class="pos-rail"><span style="left:100%"></span></div>
+        <div class="pos-ends"><span>Inherited</span><span>Invented</span></div>
+      </div>
+      <dl class="dates">
+        <div><dt>c. 900 BC</dt><dd>Bronze Age horned helmets, Veksø, Denmark</dd></div>
+        <div><dt>10th century</dt><dd>The Gjermundbu helmet: iron, rounded, no horns</dd></div>
+        <div><dt>1876</dt><dd>Wagner's <em>Ring</em> opens at Bayreuth in horned costumes</dd></div>
+        <div><dt>1943</dt><dd>Gjermundbu helmet unearthed</dd></div>
+      </dl>
+    </aside>
+    <div>
+      <div class="tags">
+        <div class="tagcard label-says"><h3>The label says</h3><p>What Vikings wore into battle.</p></div>
+        <div class="tagcard record-says"><h3>The record says</h3><p>No such helmet has ever been found. The horns come from an opera costume.</p></div>
+      </div>
+      <div class="prose">
+        <p>The last object on the list is one that cannot be put in a museum case, because there is no original. Only one near-complete helmet survives from the Viking Age. A farmer turned it up at Gjermundbu in Norway in 1943: a rounded iron cap with a guard around the eyes and nose. Elsewhere only fragments survive.</p>
+        <p>Horned helmets did exist in Scandinavia, the better part of two thousand years too early. A pair found in a Danish bog at Veksø in 1942 date from the Bronze Age and were probably ceremonial. Similar finds were coming out of the ground in the nineteenth century, and artists may have taken them for Viking.</p>
+        <p>Painters took it from there. Romantic artists first gave their Norsemen wings, in imitation of classical art. Swedish illustrators, Malmström most often named among them, experimented with horns earlier in the century. The image set hard in August 1876, when Carl Emil Doepler dressed the cast of Wagner's <em>Ring</em> cycle at the first Bayreuth festival. The medievalist Roberta Frank, who traced the sequence, found that within about twenty-five years horns meant "Viking" in advertising and popular illustration.</p>
+        <p>The politics matter. Wagner's project belonged to a newly unified Germany that wanted an ancestral mythology to set beside Greece and Rome, and borrowed the Norse one. The emblem of the Scandinavian raider is, in origin, a piece of German stagecraft. Scandinavia's tourist shops and sports teams have long since adopted it.</p>
+        <p class="doubt"><strong>One caveat.</strong> A tapestry from the ninth-century Oseberg ship burial shows a figure in horned headgear, generally read as a ritual or mythological scene. It is the nearest thing to contemporary evidence, and it does not show a warrior.</p>
+        <details><summary>Sources</summary><ul>
+          <li><a href="https://www.scribd.com/doc/51267328/Frank-Invention-of-Horned-Helmet">Roberta Frank, "The Invention of the Viking Horned Helmet" (2000)</a></li>
+          <li><a href="https://www.worldtreeproject.org/exhibits/show/miscon/hornvikes">World-Tree Project, "The horned helmet"</a></li>
+          <li><a href="https://history.com/news/did-vikings-really-wear-horned-helmets">History.com, on Gjermundbu, Malmström and Doepler</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Horned_helmet">Wikipedia, "Horned helmet", on the Veksø find</a></li>
+          <li><a href="https://hurstwic.com/history/articles/manufacturing/text/horned_helmets.htm">Hurstwic, on the Oseberg tapestry</a></li>
+          <li><a href="https://www.straightdope.com/21343327/did-vikings-really-wear-horns-on-their-helmets">The Straight Dope, on wings before horns</a></li>
+        </ul></details>
+      </div>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>What the twelve have in common</h2>
+    <p>Set side by side, the cases share a mechanism. An object becomes a national symbol when someone outside the place needs a quick way to picture it. Gold prospectors named the Panama hat. American soldiers named the Swiss Army knife. British housewives decided what a Frenchman wore, and American diners decided what ends a Chinese meal.</p>
+    <p>The dates cluster too. Most of the twelve took their symbolic form in the long century between 1815 and 1914, the age of railways, world's fairs and new nation states. Paris alone, in 1855 and 1900, launched two of them.</p>
+    <p>None of this makes the later attachment false. Scots do wear clan tartan, Italians do reach for the moka every morning, and Munich does fill with dirndls each September. A tradition with a known start date is still a tradition. The honest version of the label would simply carry two lines: where the thing is loved, and where it was made.</p>
+    <p class="method">How this was compiled: each entry draws on museum, academic, government and news sources, listed beneath it, read in November 2026. Where only secondary or commercial sources were available the entry says so. Several links go to Wikipedia as a starting point; the underlying references are named where they carry the argument.</p>
+  </div>
+</section>
+
+<footer class="foot wrap">
+  <p>Published 10 November 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+  <p><a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&title=Correction%3A%20Twelve%20Objects%20That%20Became%20National%20Symbols&page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-10-twelve-objects-national-symbols%2F">Spot an error? Suggest a correction</a></p>
+</footer>
+
+</body>
+</html>
