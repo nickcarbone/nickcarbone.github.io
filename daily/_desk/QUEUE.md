@@ -24,13 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-How the World Drinks Beer Differently
-Create an interactive HTML guide comparing beer cultures across countries, exploring what people drink, where they drink it, how it is served, and what they eat alongside it.
-Investigate how climate, agriculture, religion, labor patterns, immigration, taxation, and social customs shaped distinctive drinking traditions.
-Compare countries and regions through signature styles, drinking venues, serving rituals, food pairings, and everyday habits.
-Explain the historical reasons behind surprising differences, challenging stereotypes and distinguishing regional traditions from modern trends.
-Build an interactive world atlas with country comparisons, cultural profiles, and a “same beer, different culture” exploration.
-
 The European Brewery & Taproom Railway Atlas
 Research Question: Where can a traveler plan an itinerary centered on world-class, historic, or independent microbreweries located within a 15-minute walk of regional railway stations?
 Proposed Contents: 20 classic and craft breweries across Belgium, Germany, the UK, the Netherlands, and Scandinavia located directly adjacent to passenger rail stops. Details include foot transit time from platform, taproom hours, flagship beer styles, food availability, and rail line hub connections.

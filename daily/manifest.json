@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 23,
+      "slug": "2026-11-10-how-the-world-drinks-beer",
+      "date": "2026-11-10",
+      "title": "How the World Drinks Beer",
+      "dek": "A comparative atlas of nineteen beer cultures: what goes in the glass, who pours it, what comes with it, and the laws, taxes, empires and weather that made each one different.",
+      "kind": "Comparative atlas",
+      "readingMinutes": 18,
+      "design": "Ultra, Libre Caslon Text, Barlow Semi Condensed; stout-brown hero, chilled-glass grey-blue, lager gold, foam; to-scale glass shelf, city rail, compare table, verdict stamps.",
+      "source": "queue",
+      "brief": "How the World Drinks Beer Differently\nCreate an interactive HTML guide comparing beer cultures across countries, exploring what people drink, where they drink it, how it is served, and what they eat alongside it.\nInvestigate how climate, agriculture, religion, labor patterns, immigration, taxation, and social customs shaped distinctive drinking traditions.\nCompare countries and regions through signature styles, drinking venues, serving rituals, food pairings, and everyday habits.\nExplain the historical reasons behind surprising differences, challenging stereotypes and distinguishing regional traditions from modern trends.\nBuild an interactive world atlas with country comparisons, cultural profiles, and a “same beer, different culture” exploration.",
+      "factcheck": {
+        "claims": 160,
+        "fixed": 21
+      },
+      "corrections": []
+    },
+    {
       "no": 22,
       "slug": "2026-11-09-the-last-mile-atlas",
       "date": "2026-11-09",
