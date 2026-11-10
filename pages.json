@@ -1,7 +1,23 @@
 {
-  "generated": "2026-11-10T16:45:28.971Z",
-  "count": 84,
+  "generated": "2026-11-10T18:36:53.520Z",
+  "count": 85,
   "pages": [
+    {
+      "slug": "elsewhere-tv",
+      "url": "https://nickcarbone.github.io/elsewhere-tv/",
+      "title": "Elsewhere Tv",
+      "description": "",
+      "updated": "2026-11-10T18:34:29Z",
+      "created": "2026-11-10T18:34:00Z"
+    },
+    {
+      "slug": "evening-edition",
+      "url": "https://nickcarbone.github.io/evening-edition/",
+      "title": "Evening Edition",
+      "description": "",
+      "updated": "2026-11-10T18:15:51Z",
+      "created": "2026-10-20T14:56:45Z"
+    },
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
@@ -9,14 +25,6 @@
       "description": "",
       "updated": "2026-11-10T15:59:17Z",
       "created": "2026-07-10T01:19:16Z"
-    },
-    {
-      "slug": "evening-edition",
-      "url": "https://nickcarbone.github.io/evening-edition/",
-      "title": "Evening Edition",
-      "description": "",
-      "updated": "2026-11-10T10:24:53Z",
-      "created": "2026-10-20T14:56:45Z"
     },
     {
       "slug": "new-networks",
