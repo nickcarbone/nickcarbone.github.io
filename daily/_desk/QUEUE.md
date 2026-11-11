@@ -33,8 +33,12 @@ Proposed Contents: 20 classic and craft breweries across Belgium, Germany, the U
 Interactive Element: A line-by-line transit map UI displaying brewery stops sequentially along major rail corridors (e.g., Brussels–Gent–Brugge or Munich–Salzburg).
 Finish Line: 20 platform-to-taproom profiles with step-by-step walking guides and rail schedule notes.
 
-The Stadium Atlas (filterable atlas)
-Twenty-five stadiums and arenas, from Lambeau to La Bombonera, and what each site was before. Cover the land deals, transit links and public money behind each one. Show how the building shapes the way crowds arrive, eat, drink and leave, with a scorecard for getting there without a car.
+The World's Great Local Sporting Spectacles
+Create an interactive HTML atlas exploring distinctive, highly attended sporting events that are deeply embedded in local culture, identity, and community life. Cover events such as Mexican lucha libre, Irish hurling, Basque pelota, Senegalese wrestling, Japanese sumo, Florentine Calcio Storico, and other regional sporting spectacles that regularly fill stadiums, arenas, or traditional venues. 
+For each, explain its origins, rules, local rivalries, legendary competitors, iconic venues, and the cultural significance that makes spectators so passionate.
+Explore the atmosphere of attending in person: crowd rituals, chants, traditions, food, rivalries, and what makes the experience unlike mainstream international sports.
+Identify the most important annual tournaments and recurring events, their locations, schedules, and how visitors can attend.
+Include an interactive world map of venues, individual event profiles, and a calendar of major competitions, prioritizing living traditions with substantial local followings over tourist-oriented performances.
 
 The Album Rooms (field guide)
 Twenty recording studios where landmark records were made, from Muscle Shoals to Hansa by the Wall. Cover what the room itself added to the sound, what stands there now, and which ones you can still visit or book. Link each entry to a playlist of the records cut there.
@@ -50,6 +54,9 @@ Fifteen typefaces that ended up running the world, from Helvetica on the New Yor
 
 The Private Members’ Club Atlas (field guide directory)
 Twenty historic clubs, from London’s St James’s to Tokyo, plus the bars, libraries and reading rooms that let non-members in. Cover the founding rules, the dress codes and the famous blackballings, and sort the entries by the kind of evening each one offers.
+
+The Stadium Atlas (filterable atlas)
+Twenty-five stadiums and arenas, from Lambeau to La Bombonera, and what each site was before. Cover the land deals, transit links and public money behind each one. Show how the building shapes the way crowds arrive, eat, drink and leave, with a scorecard for getting there without a car.
 
 When the Official Story Fell Apart
 Create an interactive HTML guide to consequential historical claims, public myths, and official narratives that changed when new evidence emerged.
