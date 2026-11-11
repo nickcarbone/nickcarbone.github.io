@@ -1,7 +1,39 @@
 {
-  "generated": "2026-11-11T01:25:14.533Z",
-  "count": 85,
+  "generated": "2026-11-11T05:39:53.157Z",
+  "count": 88,
   "pages": [
+    {
+      "slug": "scoop-tracker",
+      "url": "https://nickcarbone.github.io/scoop-tracker/",
+      "title": "Scoop Tracker",
+      "description": "",
+      "updated": "2026-11-11T03:53:03Z",
+      "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "disappeared-places-casebook",
+      "url": "https://nickcarbone.github.io/disappeared-places-casebook/",
+      "title": "Disappeared Places Casebook",
+      "description": "nickcarbone.github.io/disappeared-places-casebook/",
+      "updated": "2026-11-11T03:45:04Z",
+      "created": "2026-11-11T03:44:57Z"
+    },
+    {
+      "slug": "europes-living-heritage",
+      "url": "https://nickcarbone.github.io/europes-living-heritage/",
+      "title": "Europes Living Heritage",
+      "description": "nickcarbone.github.io/europes-living-heritage/",
+      "updated": "2026-11-11T03:43:15Z",
+      "created": "2026-11-11T03:43:03Z"
+    },
+    {
+      "slug": "michelin-atlas",
+      "url": "https://nickcarbone.github.io/michelin-atlas/",
+      "title": "Michelin Atlas",
+      "description": "nickcarbone.github.io/michelin-atlas/",
+      "updated": "2026-11-11T02:53:58Z",
+      "created": "2026-11-11T02:53:47Z"
+    },
     {
       "slug": "evening-edition",
       "url": "https://nickcarbone.github.io/evening-edition/",
@@ -9,14 +41,6 @@
       "description": "",
       "updated": "2026-11-10T23:43:44Z",
       "created": "2026-10-20T14:56:45Z"
-    },
-    {
-      "slug": "scoop-tracker",
-      "url": "https://nickcarbone.github.io/scoop-tracker/",
-      "title": "Scoop Tracker",
-      "description": "",
-      "updated": "2026-11-10T21:39:09Z",
-      "created": "2026-07-10T01:19:16Z"
     },
     {
       "slug": "elsewhere-tv",
