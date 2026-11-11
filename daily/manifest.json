@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 25,
+      "slug": "2026-11-11-twelve-dishes-with-a-paper-trail",
+      "date": "2026-11-11",
+      "title": "Twelve Dishes With a Paper Trail",
+      "dek": "Twelve famous dishes, the people and places that claim to have invented them, and what the earliest menus, newspapers and archives actually show.",
+      "kind": "Certificate register",
+      "readingMinutes": 20,
+      "design": "Gloock, Spectral, Courier Prime; safety-paper pink, intaglio sepia-black, carmine serials, teal stamps; guilloche rosette hero, typed certificate entries, story-to-paper gap chart, three inset maps.",
+      "source": "queue",
+      "brief": "Twelve Dishes With a Paper Trail (Register of Certificates)\nCreate an investigative culinary atlas tracing twelve famous dishes to the restaurants, hotels, bars, and individuals that claim to have invented them. Include Caesar salad, Buffalo wings, eggs Benedict, tiramisu, nachos, Cobb salad, and other contested culinary origin stories. For each dish, examine the competing claims, earliest verifiable printed recipes or newspaper mentions, historical evidence, and the people behind its creation. Investigate what occupies the original establishment's address today, whether it still operates, and where to find an exceptional modern version. Include a chronological timeline, an interactive world map of claimed birthplaces, and a verdict distinguishing documented history from restaurant folklore.",
+      "factcheck": {
+        "claims": 115,
+        "fixed": 36
+      },
+      "corrections": []
+    },
+    {
       "no": 24,
       "slug": "2026-11-10-twelve-objects-national-symbols",
       "date": "2026-11-10",

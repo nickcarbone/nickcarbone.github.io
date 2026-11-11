@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-Twelve Dishes With a Paper Trail (Register of Certificates)
-Create an investigative culinary atlas tracing twelve famous dishes to the restaurants, hotels, bars, and individuals that claim to have invented them. Include Caesar salad, Buffalo wings, eggs Benedict, tiramisu, nachos, Cobb salad, and other contested culinary origin stories. For each dish, examine the competing claims, earliest verifiable printed recipes or newspaper mentions, historical evidence, and the people behind its creation. Investigate what occupies the original establishment's address today, whether it still operates, and where to find an exceptional modern version. Include a chronological timeline, an interactive world map of claimed birthplaces, and a verdict distinguishing documented history from restaurant folklore.
-
 The World's Great Drinking Institutions
 Build a global cultural guide to the institutions that made drinking a central part of everyday social life: British pubs, German beer halls, Belgian cafés, Czech hospodas, Japanese beer gardens, American neighborhood taverns, Irish pubs, Spanish bodegas, and other distinctive traditions. Explore their origins, architecture, rituals, social hierarchies, economics, and role in local communities. Examine how these establishments functioned as informal civic infrastructure, from political organizing and labor movements to neighborhood gossip, business deals, and community identity. Compare the traditional experience with its modern evolution, identifying which institutions have survived, disappeared, or been reinvented. Include an interactive map of landmark establishments, a historical timeline, and a field guide explaining what makes each drinking culture distinctive.
 
