@@ -1,7 +1,15 @@
 {
-  "generated": "2026-11-10T23:03:24.676Z",
+  "generated": "2026-11-11T01:25:14.533Z",
   "count": 85,
   "pages": [
+    {
+      "slug": "evening-edition",
+      "url": "https://nickcarbone.github.io/evening-edition/",
+      "title": "Evening Edition",
+      "description": "",
+      "updated": "2026-11-10T23:43:44Z",
+      "created": "2026-10-20T14:56:45Z"
+    },
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
@@ -17,14 +25,6 @@
       "description": "",
       "updated": "2026-11-10T19:09:49Z",
       "created": "2026-11-10T18:34:00Z"
-    },
-    {
-      "slug": "evening-edition",
-      "url": "https://nickcarbone.github.io/evening-edition/",
-      "title": "Evening Edition",
-      "description": "",
-      "updated": "2026-11-10T18:15:51Z",
-      "created": "2026-10-20T14:56:45Z"
     },
     {
       "slug": "new-networks",
