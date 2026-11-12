@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 26,
+      "slug": "2026-11-12-sixteen-rooms-the-world-drinks-in",
+      "date": "2026-11-12",
+      "title": "Sixteen Rooms the World Drinks In",
+      "dek": "A field guide to sixteen drinking institutions, from the English pub to the South African shebeen: where each came from, how its room works, what it did for the people who used it, and what is left of it now.",
+      "kind": "Field guide",
+      "readingMinutes": 26,
+      "design": "Abril Fatface, Alegreya, Alegreya Sans; claret and gold-leaf etched pub glass on frosted grey-green; gilt arched-window hero, door-plate entries with schematic room plans, two maps, timeline.",
+      "source": "queue",
+      "brief": "The World's Great Drinking Institutions\nBuild a global cultural guide to the institutions that made drinking a central part of everyday social life: British pubs, German beer halls, Belgian cafés, Czech hospodas, Japanese beer gardens, American neighborhood taverns, Irish pubs, Spanish bodegas, and other distinctive traditions. Explore their origins, architecture, rituals, social hierarchies, economics, and role in local communities. Examine how these establishments functioned as informal civic infrastructure, from political organizing and labor movements to neighborhood gossip, business deals, and community identity. Compare the traditional experience with its modern evolution, identifying which institutions have survived, disappeared, or been reinvented. Include an interactive map of landmark establishments, a historical timeline, and a field guide explaining what makes each drinking culture distinctive.",
+      "factcheck": {
+        "claims": 150,
+        "fixed": 25
+      },
+      "corrections": []
+    },
+    {
       "no": 25,
       "slug": "2026-11-11-twelve-dishes-with-a-paper-trail",
       "date": "2026-11-11",

@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The World's Great Drinking Institutions
-Build a global cultural guide to the institutions that made drinking a central part of everyday social life: British pubs, German beer halls, Belgian cafés, Czech hospodas, Japanese beer gardens, American neighborhood taverns, Irish pubs, Spanish bodegas, and other distinctive traditions. Explore their origins, architecture, rituals, social hierarchies, economics, and role in local communities. Examine how these establishments functioned as informal civic infrastructure, from political organizing and labor movements to neighborhood gossip, business deals, and community identity. Compare the traditional experience with its modern evolution, identifying which institutions have survived, disappeared, or been reinvented. Include an interactive map of landmark establishments, a historical timeline, and a field guide explaining what makes each drinking culture distinctive.
-
 The European Brewery & Taproom Railway Atlas
 Research Question: Where can a traveler plan an itinerary centered on world-class, historic, or independent microbreweries located within a 15-minute walk of regional railway stations?
 Proposed Contents: 20 classic and craft breweries across Belgium, Germany, the UK, the Netherlands, and Scandinavia located directly adjacent to passenger rail stops. Details include foot transit time from platform, taproom hours, flagship beer styles, food availability, and rail line hub connections.
