@@ -97,6 +97,18 @@ Twenty places defined by a scent: Grasse’s jasmine fields, the creosote smell 
 How Economies Remember (explainer with dossiers)
 Why some regions stay rich or poor for centuries. Cover the evidence on medieval trade routes, colonial institutions, old railway lines and even which crops were planted, and what that research can and can’t prove. Add six case-study regions where history is still readable in today’s incomes. It’s a sequel in spirit to The Ghosts of Empires.
 
+The World's Most Outrageous Airlines
+Investigate airlines that have built their identities around irreverence, eccentricity, flamboyant advertising, unusual liveries, or deliberately provocative business models. Think Ryanair, Spirit, Wizz Air, AirAsia, Cebu Pacific and some of the more unusual regional carriers. Explore their slogans, advertising campaigns, distinctive uniforms, onboard experiences, rivalries, and the personalities behind their brands.
+
+Telecom's Most Unusual Experiments
+Explore mobile operators that have done something genuinely unconventional: free mobile data, radically different pricing, unusual customer ownership models, mobile-money ecosystems, unlimited plans, or deliberately disruptive network launches. Investigate the business logic, advertising, customer reception, and what happened afterward.
+
+The World's Most Eccentric Supermarkets
+Investigate grocery retailers that have developed almost cult-like identities: Trader Joe's, Wegmans, Eataly, Mercadona, Aldi, H Mart, Erewhon, and unusual regional chains. Examine private-label empires, cult products, pricing strategies, store design, employee culture, and the strange things that make people fiercely loyal to particular supermarkets.
+
+Brands That Deliberately Broke the Rules
+An investigation into companies that built their identities by doing the opposite of conventional marketing. Explore Diesel, Liquid Death, Oatly, Ben & Jerry's, BrewDog, Supreme, Ryanair, and other irreverent brands. Examine their most provocative campaigns, unconventional slogans, corporate philosophies, controversies, and whether their rebellious identities translated into commercial success.
+
 The Hidden Machinery of Civilization
 Create an interactive HTML field guide to the obscure international standards, protocols, and administrative systems that make modern civilization function.
 Explore country identifiers, shipping containers, financial messaging, timekeeping, aviation procedures, telecommunications, postal systems, and measurement standards.
@@ -121,6 +133,9 @@ Study the systems people actually use to pay for daily life, not financial produ
 Include: Card networks, instant payment rails, QR payments, mobile wallets, cash usage, merchant acceptance, settlement, and the role of regulation. Compare a dozen countries with genuinely different payment ecosystems.
 Interactive element: A country comparison tool with filters for person-to-person transfers, small merchants, transit payments, international visitors, and cash dependence.
 Finish line: 12 country profiles and a comparison matrix that explains the underlying systems, not just which apps are popular.
+
+Extraordinary Seasonal Experiences Around the World.
+Create an interactive HTML field guide to discover 20–25 unusual, highly localized traditions and experiences that exist only during specific weeks or months each year, using the Osmize of the Carso in Italy as a benchmark. Look beyond conventional festivals: temporary taverns, harvest gatherings, seasonal markets, mountain refuges, village rituals, sporting spectacles and unique local customs. For each, explain its history, cultural significance, location, exact seasonal window, duration and what visitors can actually experience. Prioritize authentic, lesser-known traditions that are difficult or impossible to experience outside their designated season. Cover all continents and spread discoveries throughout the calendar year. Include an interactive world map, month-by-month calendar and individual profiles, clearly distinguishing confirmed dates from approximate seasonal windows.
 
 The Decision-Making Under Uncertainty Lab
 New territory: cognitive science, statistics, behavioral economics
@@ -213,6 +228,9 @@ Why can a restaurant, bar, shop, or hotel feel unmistakably authentic even when 
 Interactive element: An atmosphere diagnostic where users adjust environmental variables and see how those changes affect a fictional venue's intended character.
 Finish line: 15 venue case studies, a vocabulary for describing atmosphere precisely, and a reusable framework for analyzing why a place feels believable.
 
+The World's Temporary Places
+Find 20 remarkable places that physically or socially exist only for limited periods: seasonal villages, temporary islands, pop-up markets, summer beach settlements, winter mountain communities and migratory trading hubs. Investigate why they appear, how they function and what happens when the season ends.
+
 The World's Informal Economies
 Beyond official shops, corporate chains, and registered businesses, how do people buy, sell, repair, transport, and distribute things through informal or semi-formal systems? Explore street vendors, repair stalls, cash-based markets, secondhand trading, neighborhood delivery networks, informal transit, and community-based services across different countries. Explain how these systems interact with formal regulation, employment, taxation, trust, and household survival without treating informal commerce as synonymous with criminal activity.
 Interactive element: A comparative matrix showing how selected informal economic systems acquire goods, find customers, establish trust, and manage risk.
@@ -255,6 +273,9 @@ Use real cases to show how early assumptions shaped later decisions, including i
 Build a branching investigation simulator where readers choose which lead to pursue and see how each choice affects the evidence available.
 Make clear that the simulation is illustrative, not a model of any single department’s procedures.
 
+Living Traditions of the Working World
+Explore 20 fascinating places where traditional occupations, trades and industries remain central to local identity. Consider fishing communities, salt harvesting, shepherding, traditional boatbuilding, agricultural cooperatives and unusual manufacturing practices. Show how visitors can witness these traditions in action.
+
 The Internet’s Invisible Geography
 Create an interactive HTML guide exploring the geography hidden inside the internet.
 Investigate how domains, language, hosting, routing, platform availability, local regulations, and digital services shape what people can access.
@@ -268,6 +289,12 @@ Use examples from shipping, aviation, corporate ownership, international events,
 Explain entity resolution, relationship types, time-sensitive connections, and the danger of treating association as proof of coordination.
 Build an interactive network explorer where readers can inspect the evidence behind each connection and distinguish direct links from inference.
 Show how small public traces can reveal larger systems.
+
+Companies With Almost Unbelievable Business Models
+Investigate businesses whose commercial logic initially sounds absurd but has proven successful, or spectacularly unsuccessful. Explore IKEA's flat-pack logistics, Ryanair's ancillary revenue, Nespresso's capsule ecosystem, Red Bull's media empire, Costco's membership economics, and unusual regional business models. Explain the economics, operational mechanics, competitive advantages, and vulnerabilities behind each.
+
+The World's Most Unusual Brand Names
+Investigate companies whose names are provocative, bizarre, irreverent, culturally specific, or seemingly inexplicable. Explore their naming origins, linguistic meanings, translation problems, trademark disputes, visual identities, and advertising strategies. Include examples from telecoms, airlines, retail, food, technology, and emerging markets. Explain how the names became recognizable and whether they helped or hindered their success.
 
 The World’s Operational Clocks
 Create an interactive HTML guide exploring the schedules and timing systems that reveal how the world operates.
