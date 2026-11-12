@@ -1,22 +1,30 @@
 {
-  "generated": "2026-11-11T14:33:29.931Z",
-  "count": 88,
+  "generated": "2026-11-12T00:21:55.644Z",
+  "count": 89,
   "pages": [
-    {
-      "slug": "scoop-tracker",
-      "url": "https://nickcarbone.github.io/scoop-tracker/",
-      "title": "Scoop Tracker",
-      "description": "",
-      "updated": "2026-11-11T11:37:35Z",
-      "created": "2026-07-10T01:19:16Z"
-    },
     {
       "slug": "evening-edition",
       "url": "https://nickcarbone.github.io/evening-edition/",
       "title": "Evening Edition",
       "description": "",
-      "updated": "2026-11-11T07:07:30Z",
+      "updated": "2026-11-11T22:16:37Z",
       "created": "2026-10-20T14:56:45Z"
+    },
+    {
+      "slug": "scoop-tracker",
+      "url": "https://nickcarbone.github.io/scoop-tracker/",
+      "title": "Scoop Tracker",
+      "description": "",
+      "updated": "2026-11-11T19:03:20Z",
+      "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "irreverent-mobile-carriers",
+      "url": "https://nickcarbone.github.io/irreverent-mobile-carriers/",
+      "title": "Irreverent Mobile Carriers",
+      "description": "nickcarbone.github.io/irreverent-mobile-carriers/",
+      "updated": "2026-11-11T18:30:29Z",
+      "created": "2026-11-11T18:30:21Z"
     },
     {
       "slug": "disappeared-places-casebook",
