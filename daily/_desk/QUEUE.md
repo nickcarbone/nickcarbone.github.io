@@ -24,12 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The European Brewery & Taproom Railway Atlas
-Research Question: Where can a traveler plan an itinerary centered on world-class, historic, or independent microbreweries located within a 15-minute walk of regional railway stations?
-Proposed Contents: 20 classic and craft breweries across Belgium, Germany, the UK, the Netherlands, and Scandinavia located directly adjacent to passenger rail stops. Details include foot transit time from platform, taproom hours, flagship beer styles, food availability, and rail line hub connections.
-Interactive Element: A line-by-line transit map UI displaying brewery stops sequentially along major rail corridors (e.g., Brussels–Gent–Brugge or Munich–Salzburg).
-Finish Line: 20 platform-to-taproom profiles with step-by-step walking guides and rail schedule notes.
-
 The World's Great Local Sporting Spectacles
 Create an interactive HTML atlas exploring distinctive, highly attended sporting events that are deeply embedded in local culture, identity, and community life. Cover events such as Mexican lucha libre, Irish hurling, Basque pelota, Senegalese wrestling, Japanese sumo, Florentine Calcio Storico, and other regional sporting spectacles that regularly fill stadiums, arenas, or traditional venues. 
 For each, explain its origins, rules, local rivalries, legendary competitors, iconic venues, and the cultural significance that makes spectators so passionate.

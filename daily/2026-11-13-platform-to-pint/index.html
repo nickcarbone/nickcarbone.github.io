@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Platform to Pint · Daily</title>
+<meta name="description" content="Twenty European breweries, from a Brussels lambic house to a Lincolnshire windmill, that you can walk to from a railway station in a quarter of an hour or less, with routed walking distances and what to drink when you arrive.">
+<meta property="og:title" content="Platform to Pint">
+<meta property="og:description" content="Twenty European breweries, from a Brussels lambic house to a Lincolnshire windmill, that you can walk to from a railway station in a quarter of an hour or less, with routed walking distances and what to drink when you arrive.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-13-platform-to-pint/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-13-platform-to-pint/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Martian+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2f3ef; --paper2:#e1e4dd; --ink:#161513; --ink2:#4a463f; --rule:#c9c2ae;
+  --poster:#f5d10a; --posterink:#111;
+  --l1:#b0391f; --l2:#1d6a4b; --l3:#22427e; --l4:#a3500a;
+  --disp:"Anybody", "Arial Narrow", sans-serif; --body:"Crimson Pro", Georgia, serif; --mono:"Martian Mono", ui-monospace, monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.18rem/1.55 var(--body)}
+a{color:inherit}
+img,svg{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.strip{background:var(--ink);color:#f3efe2;font:400 .74rem/1 var(--mono);letter-spacing:.02em}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;flex-wrap:wrap}
+.strip a{color:var(--poster);text-decoration:none;display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+.strip a:hover,.strip a:focus-visible{text-decoration:underline}
+/* hero poster */
+.poster{background:var(--poster);color:var(--posterink);border-bottom:6px solid var(--ink)}
+.poster .wrap{padding-top:28px;padding-bottom:30px}
+.kicker{font:600 .78rem/1.3 var(--mono);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.kicker b{background:var(--ink);color:var(--poster);padding:4px 8px}
+h1{font-family:var(--disp);font-weight:900;font-stretch:72%;font-size:clamp(3.2rem,11vw,7.6rem);line-height:.86;letter-spacing:-.01em;margin:.18em 0 .16em;text-transform:uppercase}
+.dek{font:400 1.3rem/1.4 var(--body);max-width:44rem;margin:0 0 22px}
+.board{border:3px solid var(--ink);background:var(--poster)}
+.boardhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-bottom:3px solid var(--ink);padding:8px 12px;flex-wrap:wrap}
+.boardhead h2{font-family:var(--disp);font-weight:900;font-stretch:80%;font-size:clamp(1.6rem,5vw,2.4rem);margin:0;line-height:1;text-transform:uppercase}
+.boardhead p{font:400 .74rem/1.3 var(--mono);margin:0}
+.boardscroll{max-height:none}
+table.dep{width:100%;border-collapse:collapse;font-family:var(--disp)}
+table.dep th{font:600 .72rem/1 var(--mono);text-align:left;padding:8px 12px;border-bottom:2px solid var(--ink)}
+table.dep td{padding:7px 12px;border-bottom:1px solid rgba(0,0,0,.35);vertical-align:baseline}
+table.dep tr:last-child td{border-bottom:0}
+td.t{font-weight:900;font-stretch:90%;font-size:1.7rem;white-space:nowrap;width:5.2rem;font-variant-numeric:tabular-nums}
+td.t span{font:600 .62rem var(--mono);margin-left:3px;text-transform:uppercase}
+td.d a{font-weight:800;font-stretch:85%;font-size:1.22rem;text-decoration:none;display:inline-flex;align-items:center;min-height:40px;padding:2px 0;line-height:1.15}
+td.d a:hover,td.d a:focus-visible{text-decoration:underline}
+td.d .via{display:block;font:400 .78rem/1.2 var(--mono)}
+td.p{font:400 .8rem/1.3 var(--mono)}
+@media (max-width:620px){
+  table.dep th.p,td.p{display:none}
+  td.t{width:4.2rem;font-size:1.45rem}
+  td.d .via:after{content:""}
+}
+/* text */
+main section.prose{max-width:42rem;margin:40px auto 0}
+.lede{font-size:1.4rem;line-height:1.45}
+.lede:first-letter{font-family:var(--disp);font-weight:900;float:left;font-size:4.2rem;line-height:.82;padding:6px 8px 0 0}
+.method{max-width:42rem;margin:28px auto 0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);padding:10px 0 4px;font-size:1.06rem}
+h2.sec{font-family:var(--disp);font-weight:900;font-stretch:75%;text-transform:uppercase;font-size:clamp(2rem,6vw,3.2rem);line-height:.95;margin:64px 0 6px}
+p.secdek{font:400 .8rem/1.5 var(--mono);color:var(--ink2);margin:0 0 22px;max-width:44rem}
+sup{line-height:0}
+a.r{font:600 .62rem var(--mono);text-decoration:none;color:var(--ink2);padding:0 1px;margin-left:1px;border-bottom:1px solid var(--rule)}
+a.r:hover,a.r:focus-visible{color:var(--ink);border-color:var(--ink)}
+/* line map */
+.lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px 24px}
+.line h3{font:800 1.1rem/1.1 var(--disp);font-stretch:85%;text-transform:uppercase;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+.bullet{width:22px;height:22px;border-radius:50%;background:var(--c);display:inline-block;flex:none}
+.line ol{list-style:none;margin:0;padding:0 0 0 0;position:relative}
+.line ol:before{content:"";position:absolute;left:9px;top:12px;bottom:12px;width:6px;background:var(--c);border-radius:3px}
+.line li{position:relative;padding-left:34px}
+.line li:before{content:"";position:absolute;left:3px;top:12px;width:12px;height:12px;border:3px solid var(--c);background:#fff;border-radius:50%}
+.line li.same:before{display:none}
+.line li a{display:block;text-decoration:none;padding:5px 0 7px;min-height:44px}
+.line .stn{display:block;font:600 .72rem/1.3 var(--mono);text-transform:uppercase;letter-spacing:.03em}
+.line em{font:400 .66rem var(--mono);font-style:normal;background:var(--paper2);padding:1px 5px;margin-left:0;display:inline-block}
+.line .bw{display:block;line-height:1.25}
+.line .bw b{font-weight:600}
+.line .bw i{font:400 .7rem var(--mono);font-style:normal;color:var(--ink2);white-space:nowrap}
+.line li a:hover .bw b,.line li a:focus-visible .bw b{text-decoration:underline}
+/* bar chart */
+.bars{list-style:none;margin:0;padding:0;columns:2 340px;column-gap:32px}
+.bars li{break-inside:avoid}
+.bars a{display:grid;grid-template-columns:minmax(0,11rem) 1fr;gap:10px;align-items:center;text-decoration:none;min-height:40px;border-bottom:1px solid var(--rule)}
+.bn{font-size:.98rem;line-height:1.15}
+.bb{position:relative;height:18px;display:block}
+.bb i{position:absolute;left:0;top:3px;height:12px;background:var(--c)}
+.bb em{position:absolute;right:0;top:0;font:400 .7rem/18px var(--mono);font-style:normal;color:var(--ink2);background:var(--paper);padding-left:6px}
+.scale{font:400 .7rem var(--mono);color:var(--ink2);margin-top:8px}
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.filters button{font:600 .78rem/1 var(--mono);background:transparent;border:2px solid var(--ink);color:var(--ink);padding:0 14px;min-height:44px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--poster)}
+.filters button:focus-visible{outline:3px solid var(--l3);outline-offset:2px}
+/* entries */
+.entries{display:grid;grid-template-columns:1fr;gap:0}
+.entry{border-top:6px solid var(--c);padding:22px 0 30px;scroll-margin-top:12px}
+.entry[hidden]{display:none}
+.eh{display:flex;gap:14px;align-items:flex-start}
+.no{font:700 .8rem/1 var(--mono);color:#fff;background:var(--c);padding:7px 6px;min-width:2.6rem;text-align:center;margin-top:4px}
+.eh h3{font:900 clamp(1.7rem,4.6vw,2.5rem)/1 var(--disp);font-stretch:78%;text-transform:uppercase;margin:0}
+.place{font:400 .78rem/1.4 var(--mono);margin:6px 0 0;color:var(--ink2)}
+.edek{font-style:italic;font-size:1.25rem;margin:12px 0 14px}
+.walk{background:#fff;border:2px solid var(--ink);padding:12px 14px 10px;margin:0 0 16px}
+.wl{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sq{font:600 .78rem/1.3 var(--mono);text-transform:uppercase;display:inline-flex;align-items:center;gap:8px}
+.sq:before{content:"";width:12px;height:12px;border:3px solid var(--c);border-radius:50%;flex:none}
+.wt{font:400 .8rem var(--mono)}
+.wt b{font:900 1.5rem var(--disp);font-stretch:85%}
+.track{position:relative;height:16px;margin:8px 0 8px;background:repeating-linear-gradient(90deg,var(--paper2) 0 9px,transparent 9px 12px)}
+.track i{position:absolute;left:0;top:5px;height:6px;background:var(--c)}
+.track i:after{content:"";position:absolute;right:-6px;top:-5px;width:16px;height:16px;background:var(--c);border-radius:2px}
+.via{font:400 .76rem/1.5 var(--mono);margin:0}
+.via span{text-transform:uppercase;font-weight:600}
+.sline{font-size:1rem;margin:6px 0 0;color:var(--ink2)}
+.eb{max-width:42rem}
+.eb p{margin:0 0 .8em}
+.note{font:italic 400 1.05rem/1.5 var(--body);border-left:4px solid var(--l4);padding-left:10px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:20px;border-top:1px solid var(--ink);padding-top:12px;margin-top:6px}
+.facts h4{font:800 1.05rem var(--disp);font-stretch:85%;margin:0 0 6px}
+.facts p{margin:0;font-size:1.05rem}
+.beers{list-style:none;margin:0;padding:0}
+.beers li{border-bottom:1px dotted var(--rule);padding:3px 0;font-size:1.05rem}
+.beers li span{color:var(--ink2);font-style:italic}
+@media (min-width:900px){.entries{grid-template-columns:1fr 1fr;column-gap:44px}}
+@media (max-width:620px){.facts{grid-template-columns:1fr}}
+/* sources & footer */
+.sources ol{font-size:1rem;padding-left:2.2em;columns:2 360px;column-gap:36px}
+.sources li{margin:0 0 4px;min-height:40px;break-inside:avoid;scroll-margin-top:12px}
+.sources li span{color:var(--ink2)}
+.sources a{word-break:break-word;display:inline-block;padding:9px 0}
+.sources li:target{background:var(--poster)}
+footer{margin-top:60px;background:var(--ink);color:#f3efe2;font:400 .8rem/1.6 var(--mono)}
+footer .wrap{padding-top:26px;padding-bottom:34px;display:flex;flex-direction:column;gap:6px}
+footer a{color:var(--poster);display:inline-flex;align-items:center;min-height:44px}
+@media (max-width:420px){body{font-size:1.1rem}.wrap{padding:0 16px}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media print{.strip,.filters,footer a{display:none}}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 027 · Friday 13 November 2026</span></div></div>
+<header class="poster">
+ <div class="wrap">
+  <p class="kicker"><b>Railway atlas</b><span>Twenty breweries in seven countries, none more than 15 minutes from a station</span></p>
+  <h1>Platform to Pint</h1>
+  <p class="dek">Twenty European breweries, from a Brussels lambic house to a Lincolnshire windmill, that you can walk to from a railway station in a quarter of an hour or less, with routed walking distances and what to drink when you arrive.</p>
+  <div class="board" role="region" aria-label="All twenty breweries by walking time">
+   <div class="boardhead"><h2>Departures for the taproom</h2><p>Sorted by walking time from the station</p></div>
+   <table class="dep">
+    <thead><tr><th>Walk</th><th>Brewery</th><th class="p">From station</th></tr></thead>
+    <tbody>
+<tr><td class="t">2<span>min</span></td><td class="d"><a href="#lemke">Das Lemke</a><span class="via">Berlin</span></td><td class="p">Berlin Hackescher Markt</td></tr>
+<tr><td class="t">3<span>min</span></td><td class="d"><a href="#gose">Gosebrauerei Bayerischer Bahnhof</a><span class="via">Leipzig</span></td><td class="p">Leipzig Bayerischer Bahnhof</td></tr>
+<tr><td class="t">4<span>min</span></td><td class="d"><a href="#batemans">Batemans Brewery</a><span class="via">Wainfleet</span></td><td class="p">Wainfleet</td></tr>
+<tr><td class="t">6<span>min</span></td><td class="d"><a href="#augustiner">Augustiner Bräustuben</a><span class="via">Munich</span></td><td class="p">München Hackerbrücke</td></tr>
+<tr><td class="t">6<span>min</span></td><td class="d"><a href="#ratsherrn">Ratsherrn Brauerei</a><span class="via">Hamburg</span></td><td class="p">Hamburg Sternschanze</td></tr>
+<tr><td class="t">6<span>min</span></td><td class="d"><a href="#mulln">Augustiner Bräu Kloster Mülln</a><span class="via">Salzburg</span></td><td class="p">Salzburg Mülln-Altstadt</td></tr>
+<tr><td class="t">7<span>min</span></td><td class="d"><a href="#poesiat">Poesiat &amp; Kater</a><span class="via">Amsterdam</span></td><td class="p">Amsterdam Muiderpoort</td></tr>
+<tr><td class="t">7<span>min</span></td><td class="d"><a href="#carlsberg">Home of Carlsberg</a><span class="via">Copenhagen</span></td><td class="p">Carlsberg</td></tr>
+<tr><td class="t">8<span>min</span></td><td class="d"><a href="#staustell">St Austell Brewery</a><span class="via">St Austell</span></td><td class="p">St Austell</td></tr>
+<tr><td class="t">8<span>min</span></td><td class="d"><a href="#warpigs">WarPigs Brewpub</a><span class="via">Copenhagen</span></td><td class="p">Dybbølsbro</td></tr>
+<tr><td class="t">8<span>min</span></td><td class="d"><a href="#shepherd">Shepherd Neame</a><span class="via">Faversham</span></td><td class="p">Faversham</td></tr>
+<tr><td class="t">8<span>min</span></td><td class="d"><a href="#urquell">Pilsner Urquell Brewery</a><span class="via">Plzeň</span></td><td class="p">Plzeň hlavní nádraží</td></tr>
+<tr><td class="t">10<span>min</span></td><td class="d"><a href="#spezial">Brauerei Spezial</a><span class="via">Bamberg</span></td><td class="p">Bamberg</td></tr>
+<tr><td class="t">10<span>min</span></td><td class="d"><a href="#cantillon">Brasserie Cantillon</a><span class="via">Brussels</span></td><td class="p">Bruxelles-Midi / Brussel-Zuid</td></tr>
+<tr><td class="t">10<span>min</span></td><td class="d"><a href="#faessla">Brauerei Fässla</a><span class="via">Bamberg</span></td><td class="p">Bamberg</td></tr>
+<tr><td class="t">11<span>min</span></td><td class="d"><a href="#schumacher">Brauerei Schumacher</a><span class="via">Düsseldorf</span></td><td class="p">Düsseldorf Hauptbahnhof</td></tr>
+<tr><td class="t">11<span>min</span></td><td class="d"><a href="#harveys">Harvey&#x27;s Brewery</a><span class="via">Lewes</span></td><td class="p">Lewes</td></tr>
+<tr><td class="t">13<span>min</span></td><td class="d"><a href="#gruut">Gentse Stadsbrouwerij Gruut</a><span class="via">Ghent</span></td><td class="p">Gent-Dampoort</td></tr>
+<tr><td class="t">13<span>min</span></td><td class="d"><a href="#tij">Brouwerij &#x27;t IJ</a><span class="via">Amsterdam</span></td><td class="p">Amsterdam Muiderpoort</td></tr>
+<tr><td class="t">14<span>min</span></td><td class="d"><a href="#halvemaan">Brouwerij De Halve Maan</a><span class="via">Bruges</span></td><td class="p">Brugge</td></tr>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</header>
+<main class="wrap">
+ <section class="prose"><p class="lede">Most brewery visits involve a car, which defeats the point. This guide is for the other kind: twenty breweries in seven countries where you can step off a train, walk for a quarter of an hour at most, and be drinking beer brewed on the premises.</p>
+<p>They range from a Brussels lambic brewery that brewed its first beer in 1938 to a Copenhagen brewpub that opened in 2015. Two are in railway buildings: one in the portico of a Leipzig terminus from 1842, the other in an arch of the Berlin viaduct. One Bamberg street has two breweries facing each other. Batemans, the furthest from a city, is four minutes from a halt on a Lincolnshire branch line.</p></section>
+ <div class="method"><p><strong>How the walks were measured.</strong> Brewery and station positions come from OpenStreetMap.<sup><a class="r" href="#s1" aria-label="Source 1">1</a></sup> Each walk was routed on foot from the station building or platform entrance to the brewery door with the OSRM walking profile, which assumes a steady pace of about 4.5 km/h.<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup> Where a brewery publishes its own walking time, it is quoted alongside. The streets listed under each entry are the named streets on that route, in order; unnamed paths and station forecourts are left out.</p>
+<p><strong>What qualifies.</strong> Beer has to be brewed at the address you walk to, even if most of the brewery’s output is now made elsewhere, as at Carlsberg and ’t IJ. That rule kept out some famous names. De Koninck in Antwerp, for instance, moved production of its Bolleke to Duvel Moortgat’s Breendonk brewery in 2025, though the Antwerp brewery’s café and tours carry on. Opening hours, prices and train times change too often for an evergreen guide and are left out; check them before you go.</p></div>
+
+ <h2 class="sec" id="map">The route map</h2>
+ <p class="secdek">Schematic, not a timetable. Stops run roughly north to south or along the main line; tap a brewery to jump to its entry. Branches are drawn where a stop sits off the main spine.</p>
+ <div class="lines">
+<section class="line" style="--c:var(--l1)"><h3><span class="bullet"></span>Low Countries</h3><ol><li class="stop"><a href="#poesiat"><span class="stn">Amsterdam Muiderpoort</span><span class="bw"><b>Poesiat &amp; Kater</b> <i>7 min · 524 m</i></span></a></li><li class="stop same"><a href="#tij"><span class="stn">&nbsp;</span><span class="bw"><b>Brouwerij &#x27;t IJ</b> <i>13 min · 980 m</i></span></a></li><li class="stop"><a href="#cantillon"><span class="stn">Bruxelles-Midi / Brussel-Zuid</span><span class="bw"><b>Brasserie Cantillon</b> <i>10 min · 776 m</i></span></a></li><li class="stop"><a href="#gruut"><span class="stn">Gent-Dampoort</span><span class="bw"><b>Gentse Stadsbrouwerij Gruut</b> <i>13 min · 936 m</i></span></a></li><li class="stop"><a href="#halvemaan"><span class="stn">Brugge</span><span class="bw"><b>Brouwerij De Halve Maan</b> <i>14 min · 1007 m</i></span></a></li></ol></section>
+<section class="line" style="--c:var(--l2)"><h3><span class="bullet"></span>Germany, Austria and Plzeň</h3><ol><li class="stop"><a href="#ratsherrn"><span class="stn">Hamburg Sternschanze</span><span class="bw"><b>Ratsherrn Brauerei</b> <i>6 min · 473 m</i></span></a></li><li class="stop"><a href="#lemke"><span class="stn">Berlin Hackescher Markt</span><span class="bw"><b>Das Lemke</b> <i>2 min · 188 m</i></span></a></li><li class="stop"><a href="#gose"><span class="stn">Leipzig Bayerischer Bahnhof</span><span class="bw"><b>Gosebrauerei Bayerischer Bahnhof</b> <i>3 min · 216 m</i></span></a></li><li class="stop"><a href="#spezial"><span class="stn">Bamberg</span><span class="bw"><b>Brauerei Spezial</b> <i>10 min · 750 m</i></span></a></li><li class="stop same"><a href="#faessla"><span class="stn">&nbsp;</span><span class="bw"><b>Brauerei Fässla</b> <i>10 min · 761 m</i></span></a></li><li class="stop"><a href="#augustiner"><span class="stn">München Hackerbrücke</span><span class="bw"><b>Augustiner Bräustuben</b> <i>6 min · 445 m</i></span></a></li><li class="stop"><a href="#mulln"><span class="stn">Salzburg Mülln-Altstadt</span><span class="bw"><b>Augustiner Bräu Kloster Mülln</b> <i>6 min · 478 m</i></span></a></li><li class="stop"><a href="#schumacher"><span class="stn">Düsseldorf Hauptbahnhof</span><em>branch west</em><span class="bw"><b>Brauerei Schumacher</b> <i>11 min · 797 m</i></span></a></li><li class="stop"><a href="#urquell"><span class="stn">Plzeň hlavní nádraží</span><em>branch east</em><span class="bw"><b>Pilsner Urquell Brewery</b> <i>8 min · 639 m</i></span></a></li></ol></section>
+<section class="line" style="--c:var(--l3)"><h3><span class="bullet"></span>England</h3><ol><li class="stop"><a href="#harveys"><span class="stn">Lewes</span><span class="bw"><b>Harvey&#x27;s Brewery</b> <i>11 min · 835 m</i></span></a></li><li class="stop"><a href="#shepherd"><span class="stn">Faversham</span><span class="bw"><b>Shepherd Neame</b> <i>8 min · 630 m</i></span></a></li><li class="stop"><a href="#staustell"><span class="stn">St Austell</span><span class="bw"><b>St Austell Brewery</b> <i>8 min · 590 m</i></span></a></li><li class="stop"><a href="#batemans"><span class="stn">Wainfleet</span><span class="bw"><b>Batemans Brewery</b> <i>4 min · 295 m</i></span></a></li></ol></section>
+<section class="line" style="--c:var(--l4)"><h3><span class="bullet"></span>Copenhagen S-tog</h3><ol><li class="stop"><a href="#warpigs"><span class="stn">Dybbølsbro</span><span class="bw"><b>WarPigs Brewpub</b> <i>8 min · 601 m</i></span></a></li><li class="stop"><a href="#carlsberg"><span class="stn">Carlsberg</span><span class="bw"><b>Home of Carlsberg</b> <i>7 min · 555 m</i></span></a></li></ol></section>
+ </div>
+
+ <h2 class="sec" id="distances">How far is the walk?</h2>
+ <p class="secdek">Routed walking distance from station to brewery door, shortest first. The scale runs to 1.1 km.</p>
+ <ol class="bars">
+<li style="--c:var(--l2)"><a href="#lemke"><span class="bn">Das Lemke</span><span class="bb"><i style="width:17.1%"></i><em>188 m</em></span></a></li>
+<li style="--c:var(--l2)"><a href="#gose"><span class="bn">Gosebrauerei Bayerischer Bahnhof</span><span class="bb"><i style="width:19.6%"></i><em>216 m</em></span></a></li>
+<li style="--c:var(--l3)"><a href="#batemans"><span class="bn">Batemans Brewery</span><span class="bb"><i style="width:26.8%"></i><em>295 m</em></span></a></li>
+<li style="--c:var(--l2)"><a href="#augustiner"><span class="bn">Augustiner Bräustuben</span><span class="bb"><i style="width:40.5%"></i><em>445 m</em></span></a></li>
+<li style="--c:var(--l2)"><a href="#ratsherrn"><span class="bn">Ratsherrn Brauerei</span><span class="bb"><i style="width:43.0%"></i><em>473 m</em></span></a></li>
+<li style="--c:var(--l2)"><a href="#mulln"><span class="bn">Augustiner Bräu Kloster Mülln</span><span class="bb"><i style="width:43.5%"></i><em>478 m</em></span></a></li>
+<li style="--c:var(--l1)"><a href="#poesiat"><span class="bn">Poesiat &amp; Kater</span><span class="bb"><i style="width:47.6%"></i><em>524 m</em></span></a></li>
+<li style="--c:var(--l4)"><a href="#carlsberg"><span class="bn">Home of Carlsberg</span><span class="bb"><i style="width:50.5%"></i><em>555 m</em></span></a></li>
+<li style="--c:var(--l3)"><a href="#staustell"><span class="bn">St Austell Brewery</span><span class="bb"><i style="width:53.6%"></i><em>590 m</em></span></a></li>
+<li style="--c:var(--l4)"><a href="#warpigs"><span class="bn">WarPigs Brewpub</span><span class="bb"><i style="width:54.6%"></i><em>601 m</em></span></a></li>
+<li style="--c:var(--l3)"><a href="#shepherd"><span class="bn">Shepherd Neame</span><span class="bb"><i style="width:57.3%"></i><em>630 m</em></span></a></li>
+<li style="--c:var(--l2)"><a href="#urquell"><span class="bn">Pilsner Urquell Brewery</span><span class="bb"><i style="width:58.1%"></i><em>639 m</em></span></a></li>
+<li style="--c:var(--l2)"><a href="#spezial"><span class="bn">Brauerei Spezial</span><span class="bb"><i style="width:68.2%"></i><em>750 m</em></span></a></li>
+<li style="--c:var(--l2)"><a href="#faessla"><span class="bn">Brauerei Fässla</span><span class="bb"><i style="width:69.2%"></i><em>761 m</em></span></a></li>
+<li style="--c:var(--l1)"><a href="#cantillon"><span class="bn">Brasserie Cantillon</span><span class="bb"><i style="width:70.5%"></i><em>776 m</em></span></a></li>
+<li style="--c:var(--l2)"><a href="#schumacher"><span class="bn">Brauerei Schumacher</span><span class="bb"><i style="width:72.5%"></i><em>797 m</em></span></a></li>
+<li style="--c:var(--l3)"><a href="#harveys"><span class="bn">Harvey&#x27;s Brewery</span><span class="bb"><i style="width:75.9%"></i><em>835 m</em></span></a></li>
+<li style="--c:var(--l1)"><a href="#gruut"><span class="bn">Gentse Stadsbrouwerij Gruut</span><span class="bb"><i style="width:85.1%"></i><em>936 m</em></span></a></li>
+<li style="--c:var(--l1)"><a href="#tij"><span class="bn">Brouwerij &#x27;t IJ</span><span class="bb"><i style="width:89.1%"></i><em>980 m</em></span></a></li>
+<li style="--c:var(--l1)"><a href="#halvemaan"><span class="bn">Brouwerij De Halve Maan</span><span class="bb"><i style="width:91.5%"></i><em>1007 m</em></span></a></li>
+ </ol>
+
+ <h2 class="sec" id="breweries">The twenty</h2>
+ <p class="secdek">Filter by country. Every entry gives the routed walk, the streets it takes, the railway line, a short history and what to drink.</p>
+ <div class="filters" role="group" aria-label="Filter by country" hidden>
+  <button type="button" data-f="all" aria-pressed="true">All</button>
+  <button type="button" data-f="BE" aria-pressed="false">Belgium</button>
+  <button type="button" data-f="NL" aria-pressed="false">Netherlands</button>
+  <button type="button" data-f="DE" aria-pressed="false">Germany</button>
+  <button type="button" data-f="AT" aria-pressed="false">Austria</button>
+  <button type="button" data-f="CZ" aria-pressed="false">Czech Republic</button>
+  <button type="button" data-f="GB" aria-pressed="false">England</button>
+  <button type="button" data-f="DK" aria-pressed="false">Denmark</button>
+ </div>
+ <div class="entries">
+<article class="entry" id="cantillon" data-cc="BE" style="--c:var(--l1)">
+<header class="eh"><span class="no" title="Belgium">BE</span><div><h3>Brasserie Cantillon</h3><p class="place">Brussels, Belgium · Rue Gheude 56, Anderlecht</p></div></header>
+<p class="edek">The one survivor of the hundred-plus breweries Brussels had in 1900.</p>
+<div class="walk" role="img" aria-label="776 metres, about 10 minutes on foot from Bruxelles-Midi / Brussel-Zuid">
+ <div class="wl"><span class="sq">Bruxelles-Midi / Brussel-Zuid</span><span class="wt"><b>10</b> min · 776 m</span></div>
+ <div class="track"><i style="width:71%"></i></div>
+ <p class="via"><span>Via</span> Place Bara → Rue Gheude<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">A junction of several main lines, including line 50A to Ghent, Bruges and Ostend.<sup><a class="r" href="#s6" aria-label="Source 6">6</a></sup></p>
+</div>
+<div class="eb"><p>When Paul Cantillon and Marie Troch set up in Cureghem in 1900, they were gueuze blenders, buying young lambic from other brewers and blending it. They did not brew a drop of their own until 1938, after buying the equipment of a brewery in Ouffet in 1937 and moving it to Rue Gheude.<sup><a class="r" href="#s3" aria-label="Source 3">3</a></sup> Brussels then had more than a hundred breweries; Cantillon was the only one still working into the 2000s.<sup><a class="r" href="#s4" aria-label="Source 4">4</a></sup></p><p>Everything here is spontaneously fermented: the wort cools in open coolships and wild yeasts from the air start the fermentation. The brewery went organic in 1999 and makes only lambic and its blends.<sup><a class="r" href="#s4" aria-label="Source 4">4</a></sup> Jean-Pierre Van Roy, who took over in 1969, opened the working brewery to visitors as the Brussels Gueuze Museum in 1978.<sup><a class="r" href="#s3" aria-label="Source 3">3</a><a class="r" href="#s5" aria-label="Source 5">5</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s3" aria-label="Source 3">3</a><a class="r" href="#s4" aria-label="Source 4">4</a></sup></h4><ul class="beers"><li><b>Gueuze</b> <span>blended lambic</span></li><li><b>Kriek</b> <span>cherry lambic</span></li><li><b>Grand Cru Bruocsella</b> <span>lambic</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Self-guided visits with printed guides in French, Dutch and English; guided group tours by reservation.<sup><a class="r" href="#s5" aria-label="Source 5">5</a></sup> There is a shop on site.<sup><a class="r" href="#s3" aria-label="Source 3">3</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="halvemaan" data-cc="BE" style="--c:var(--l1)">
+<header class="eh"><span class="no" title="Belgium">BE</span><div><h3>Brouwerij De Halve Maan</h3><p class="place">Bruges, Belgium · Walplein 26</p></div></header>
+<p class="edek">A family brewery in the old town that pipes its beer out under the streets.</p>
+<div class="walk" role="img" aria-label="1007 metres, about 14 minutes on foot from Brugge">
+ <div class="wl"><span class="sq">Brugge</span><span class="wt"><b>14</b> min · 1007 m</span></div>
+ <div class="track"><i style="width:92%"></i></div>
+ <p class="via"><span>Via</span> Stationsplein → Walplein<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">On the Brussels–Ghent–Bruges–Ostend main line (50A), with branches to Blankenberge and Kortrijk.<sup><a class="r" href="#s9" aria-label="Source 9">9</a></sup></p>
+</div>
+<div class="eb"><p>The brewery says there has been brewing on this site for about five centuries; its own family story starts in 1856, when Leon Maes took over.<sup><a class="r" href="#s7" aria-label="Source 7">7</a><a class="r" href="#s8" aria-label="Source 8">8</a></sup> Six generations on, the beer is still brewed here, in the middle of a city of narrow cobbled lanes, which created an unusual problem: getting it to the bottling plant on the edge of town without a procession of tankers.</p><p>The answer, completed in 2016, was a pipeline. It runs for about 3.3 km (Wikipedia gives 3,276 m) from the brewhouse to the bottling hall, reaching 34 m below ground at its deepest, and was partly paid for by crowdfunding, with backers rewarded in beer.<sup><a class="r" href="#s7" aria-label="Source 7">7</a><a class="r" href="#s8" aria-label="Source 8">8</a></sup> Brugse Zot, the house blond launched in 2005, is the flagship; Straffe Hendrik dates from 1981.<sup><a class="r" href="#s7" aria-label="Source 7">7</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s7" aria-label="Source 7">7</a></sup></h4><ul class="beers"><li><b>Brugse Zot</b> <span>top-fermented blond</span></li><li><b>Straffe Hendrik</b> <span>strong ales, as Tripel and Quadrupel</span></li><li><b>Sportzot</b> <span>non-alcoholic, launched 2018</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Restaurant and bar on site; guided tours run daily and end with a glass of Brugse Zot.<sup><a class="r" href="#s10" aria-label="Source 10">10</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="gruut" data-cc="BE" style="--c:var(--l1)">
+<header class="eh"><span class="no" title="Belgium">BE</span><div><h3>Gentse Stadsbrouwerij Gruut</h3><p class="place">Ghent, Belgium · Rembert Dodoensdreef 31a</p></div></header>
+<p class="edek">A city brewery that flavours its beer the way Flanders did before hops.</p>
+<div class="walk" role="img" aria-label="936 metres, about 13 minutes on foot from Gent-Dampoort">
+ <div class="wl"><span class="sq">Gent-Dampoort</span><span class="wt"><b>13</b> min · 936 m</span></div>
+ <div class="track"><i style="width:85%"></i></div>
+ <p class="via"><span>Via</span> Schoolkaai → Napoleon de Pauwbrug → Hagelandkaai → Sint-Jorisbrug → Steendam → Rembert Dodoensdreef<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">On line 58 towards Eeklo and line 59 towards Antwerp via Sint-Niklaas. Most intercity trains call at Gent-Sint-Pieters instead, which is 3.5 km from Gruut.<sup><a class="r" href="#s13" aria-label="Source 13">13</a><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+</div>
+<div class="eb"><p>Before hops took over, Low Countries brewers seasoned beer with gruut, a blend of herbs. Gruut, which opened in 2009, makes beer on that principle, using a herb mixture in place of hops; the concept was Annick De Splenter’s, whose family had brewed for generations.<sup><a class="r" href="#s11" aria-label="Source 11">11</a></sup></p><p>The brewing vats are on view, and the brewery runs tastings, including a “beer alchemist” session in which you adjust a Gruut Blond to your own taste.<sup><a class="r" href="#s12" aria-label="Source 12">12</a></sup></p><p class="note">The brewery’s most recent material found for this guide dates from 2023; check it is open before travelling.</p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s11" aria-label="Source 11">11</a></sup></h4><ul class="beers"><li><b>Gruut Blond</b> <span>unfiltered blond, 5.5%</span></li><li><b>Gruut Wit</b> <span>herbal wheat beer, 5%</span></li><li><b>Gruut Amber</b> <span>5.9%</span></li><li><b>Gruut Inferno</b> <span>strong golden ale, 8%</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Bar with tastings and group sessions.<sup><a class="r" href="#s12" aria-label="Source 12">12</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="tij" data-cc="NL" style="--c:var(--l1)">
+<header class="eh"><span class="no" title="Netherlands">NL</span><div><h3>Brouwerij &#x27;t IJ</h3><p class="place">Amsterdam, Netherlands · Funenkade 7</p></div></header>
+<p class="edek">Amsterdam’s best-known small brewery, in a former bathhouse under a windmill.</p>
+<div class="walk" role="img" aria-label="980 metres, about 13 minutes on foot from Amsterdam Muiderpoort">
+ <div class="wl"><span class="sq">Amsterdam Muiderpoort</span><span class="wt"><b>13</b> min · 980 m</span></div>
+ <div class="track"><i style="width:89%"></i></div>
+ <p class="via"><span>Via</span> Dapperstraat → Zeeburgerpad<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">East of Amsterdam Centraal, where the lines to Utrecht and Amersfoort part.<sup><a class="r" href="#s16" aria-label="Source 16">16</a></sup></p>
+</div>
+<div class="eb"><p>Kaspar Peterson, a musician, started brewing in October 1985 in a disused municipal bathhouse beside De Gooyer windmill. The building’s water supply, drains, tiles and steam plant suited a brewery.<sup><a class="r" href="#s14" aria-label="Source 14">14</a><a class="r" href="#s15" aria-label="Source 15">15</a></sup></p><p>Demand outgrew the bathhouse, and in 2013 a second brewery opened about 700 m away on Zeeburgerpad; since 2015 the company has worked with Belgium’s Duvel Moortgat, now its parent.<sup><a class="r" href="#s14" aria-label="Source 14">14</a><a class="r" href="#s15" aria-label="Source 15">15</a></sup> The original site still brews for the tasting room, and the label still carries the ostrich and egg.<sup><a class="r" href="#s14" aria-label="Source 14">14</a><a class="r" href="#s15" aria-label="Source 15">15</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s15" aria-label="Source 15">15</a></sup></h4><ul class="beers"><li><b>Natte</b></li><li><b>Zatte</b></li><li><b>Columbus</b></li><li><b>Struis</b></li></ul></div>
+ <div><h4>At the brewery</h4><p>Proeflokaal de Molen serves snacks rather than meals: peanuts, boiled eggs, sausage and cheese. Brewery tours are listed on its site.<sup><a class="r" href="#s17" aria-label="Source 17">17</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="poesiat" data-cc="NL" style="--c:var(--l1)">
+<header class="eh"><span class="no" title="Netherlands">NL</span><div><h3>Poesiat &amp; Kater</h3><p class="place">Amsterdam, Netherlands · Polderweg 648</p></div></header>
+<p class="edek">A revival of what was once the largest brewery in the Netherlands.</p>
+<div class="walk" role="img" aria-label="524 metres, about 7 minutes on foot from Amsterdam Muiderpoort">
+ <div class="wl"><span class="sq">Amsterdam Muiderpoort</span><span class="wt"><b>7</b> min · 524 m</span></div>
+ <div class="track"><i style="width:48%"></i></div>
+ <p class="via"><span>Via</span> Polderweg → Oranje-Vrijstaatkade<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">The same station as ’t IJ, so two breweries share one stop.<sup><a class="r" href="#s16" aria-label="Source 16">16</a></sup></p>
+</div>
+<div class="eb"><p>In 1733 Jan van den Bosch opened a brewery and vinegar works called De Gekroonde Valk on the Hoogte Kadijk. Renamed after Jan Messchert van Vollenhoven, who took it over in 1791, it was the largest brewery in the Netherlands around 1900, best known for Van Vollenhoven’s Extra Stout.<sup><a class="r" href="#s18" aria-label="Source 18">18</a></sup> Heineken bought it and closed the brewery in the 1940s, though it kept making the stout for decades before dropping it.<sup><a class="r" href="#s19" aria-label="Source 19">19</a></sup></p><p>A foundation holding the original recipe brought the stout back in 2006, and in 2014 Jesse van Vollenhoven asked it to start a brewery again.<sup><a class="r" href="#s18" aria-label="Source 18">18</a></sup> Named after two 19th-century Gekroonde Valk brewery workers, Poesiat & Kater opened in March 2017 in an 1887 building on the old Oostergasfabriek site.<sup><a class="r" href="#s18" aria-label="Source 18">18</a><a class="r" href="#s19" aria-label="Source 19">19</a></sup> You can watch the brewing from the bar, and the beer goes straight into the bar’s serving tanks.<sup><a class="r" href="#s18" aria-label="Source 18">18</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s18" aria-label="Source 18">18</a></sup></h4><ul class="beers"><li><b>Van Vollenhoven’s Extra Stout</b> <span>the revived 19th-century stout</span></li><li><b>House beers</b> <span>six to nine on tap, rotating</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Meals inside and on the terrace, lunch and evening.<sup><a class="r" href="#s18" aria-label="Source 18">18</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="ratsherrn" data-cc="DE" style="--c:var(--l2)">
+<header class="eh"><span class="no" title="Germany">DE</span><div><h3>Ratsherrn Brauerei</h3><p class="place">Hamburg, Germany · Lagerstraße 28b–30a, Schanzenhöfe</p></div></header>
+<p class="edek">A craft brewery in restored industrial halls beside the S-Bahn.</p>
+<div class="walk" role="img" aria-label="473 metres, about 6 minutes on foot from Hamburg Sternschanze">
+ <div class="wl"><span class="sq">Hamburg Sternschanze</span><span class="wt"><b>6</b> min · 473 m</span></div>
+ <div class="track"><i style="width:43%"></i></div>
+ <p class="via"><span>Via</span> station forecourt and footpaths<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">An S-Bahn station; the Schanzenhöfe sit right next to it.<sup><a class="r" href="#s21" aria-label="Source 21">21</a></sup></p>
+</div>
+<div class="eb"><p>Ratsherrn has brewed in the heritage-listed Schanzenhöfe since 2012, and in 2020 became the first north German member of the Slow Brewing association.<sup><a class="r" href="#s20" aria-label="Source 20">20</a></sup> The restored buildings now hold restaurants, cafés and studios as well as the brewery.<sup><a class="r" href="#s21" aria-label="Source 21">21</a></sup></p><p>The brewery’s restaurant, Altes Mädchen, serves organic food and more than 60 beers, and the brewery shop stocks about 300 from around the world.<sup><a class="r" href="#s21" aria-label="Source 21">21</a></sup> Tours take in about a thousand years of Hamburg brewing history before the tasting.<sup><a class="r" href="#s22" aria-label="Source 22">22</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s22" aria-label="Source 22">22</a></sup></h4><ul class="beers"><li><b>Ratsherrn house range</b> <span>several beers poured on tours and at Altes Mädchen</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Restaurant (Altes Mädchen), shop, regular tastings and booked brewery tours.<sup><a class="r" href="#s21" aria-label="Source 21">21</a><a class="r" href="#s22" aria-label="Source 22">22</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="schumacher" data-cc="DE" style="--c:var(--l2)">
+<header class="eh"><span class="no" title="Germany">DE</span><div><h3>Brauerei Schumacher</h3><p class="place">Düsseldorf, Germany · Oststraße 123</p></div></header>
+<p class="edek">The oldest of Düsseldorf’s Altbier house breweries, still brewing behind its own bar.</p>
+<div class="walk" role="img" aria-label="797 metres, about 11 minutes on foot from Düsseldorf Hauptbahnhof">
+ <div class="wl"><span class="sq">Düsseldorf Hauptbahnhof</span><span class="wt"><b>11</b> min · 797 m</span></div>
+ <div class="track"><i style="width:72%"></i></div>
+ <p class="via"><span>Via</span> Konrad-Adenauer-Platz → Bismarckstraße → Oststraße<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">The city’s main station; the walk is a straight run up Bismarckstraße.<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+</div>
+<div class="eb"><p>In 1838 Johann Matthias Schumacher bought a brewery called Im Sonnenaufgang in the old town; Düsseldorf’s tourist board calls the business the city’s oldest house brewery.<sup><a class="r" href="#s23" aria-label="Source 23">23</a><a class="r" href="#s24" aria-label="Source 24">24</a></sup> It has long since moved to Oststraße, and every litre of Schumacher Alt is brewed, fermented, stored and filtered there.<sup><a class="r" href="#s24" aria-label="Source 24">24</a></sup></p><p>Schumacher Alt is top-fermented with the brewery’s own yeast.<sup><a class="r" href="#s23" aria-label="Source 23">23</a></sup> Matthias Schumacher is also credited with Latzenbier, a stronger, hoppier Alt that goes on sale only three times a year. Its name comes from “op de Latt”, the top cellar shelf where he kept the first barrel.<sup><a class="r" href="#s23" aria-label="Source 23">23</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s23" aria-label="Source 23">23</a></sup></h4><ul class="beers"><li><b>Schumacher Alt</b> <span>amber Altbier, 4.6%</span></li><li><b>Latzen</b> <span>stronger Alt, 5.5%, three times a year</span></li><li><b>1838er</b> <span>anniversary beer first brewed in 2013</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Classic brewery food and Rhineland dishes, made in-house.<sup><a class="r" href="#s25" aria-label="Source 25">25</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="lemke" data-cc="DE" style="--c:var(--l2)">
+<header class="eh"><span class="no" title="Germany">DE</span><div><h3>Das Lemke</h3><p class="place">Berlin, Germany · Dircksenstraße, S-Bahnbogen 143</p></div></header>
+<p class="edek">A brewery built inside the arches of the railway viaduct itself.</p>
+<div class="walk" role="img" aria-label="188 metres, about 2 minutes on foot from Berlin Hackescher Markt">
+ <div class="wl"><span class="sq">Berlin Hackescher Markt</span><span class="wt"><b>2</b> min · 188 m</span></div>
+ <div class="track"><i style="width:17%"></i></div>
+ <p class="via"><span>Via</span> Am Zwirngraben<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">On the elevated Stadtbahn, served by S3, S5, S7 and S9.<sup><a class="r" href="#s28" aria-label="Source 28">28</a></sup></p>
+</div>
+<div class="eb"><p>In 1999 Oliver Lemke and friends converted a run-down arch of the railway viaduct at Hackescher Markt into a brewery, which opened on 21 November 1999.<sup><a class="r" href="#s26" aria-label="Source 26">26</a></sup> Its first beer, a dark lager called the Original, was brewed here.<sup><a class="r" href="#s27" aria-label="Source 27">27</a></sup></p><p>The company’s main brewhouse, installed in 2018, sits further along the same viaduct towards Alexanderplatz. The original arch became Lemke’s pilot brewery, so small batches are still brewed on site.<sup><a class="r" href="#s26" aria-label="Source 26">26</a></sup> The bar and restaurant in the arch are now called Das Lemke.<sup><a class="r" href="#s27" aria-label="Source 27">27</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s27" aria-label="Source 27">27</a></sup></h4><ul class="beers"><li><b>Lemke Original</b> <span>dark lager, the first beer brewed here</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Berlin and German dishes made by hand, and a courtyard beer garden.<sup><a class="r" href="#s27" aria-label="Source 27">27</a><a class="r" href="#s29" aria-label="Source 29">29</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="gose" data-cc="DE" style="--c:var(--l2)">
+<header class="eh"><span class="no" title="Germany">DE</span><div><h3>Gosebrauerei Bayerischer Bahnhof</h3><p class="place">Leipzig, Germany · Bayrischer Platz 1</p></div></header>
+<p class="edek">A brewery in the portico of a railway terminus opened in 1842.</p>
+<div class="walk" role="img" aria-label="216 metres, about 3 minutes on foot from Leipzig Bayerischer Bahnhof">
+ <div class="wl"><span class="sq">Leipzig Bayerischer Bahnhof</span><span class="wt"><b>3</b> min · 216 m</span></div>
+ <div class="track"><i style="width:20%"></i></div>
+ <p class="via"><span>Via</span> station forecourt and footpaths<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">A City-Tunnel S-Bahn station, opened in December 2013 beneath the old terminus.<sup><a class="r" href="#s30" aria-label="Source 30">30</a></sup></p>
+</div>
+<div class="eb"><p>The Bavarian Station opened in 1842 as the Leipzig terminus of the line to Hof and Bavaria; Wikipedia calls it Germany’s oldest preserved railway station, and the brewery goes further and bills it as the oldest preserved terminus in the world.<sup><a class="r" href="#s30" aria-label="Source 30">30</a><a class="r" href="#s31" aria-label="Source 31">31</a></sup> Long-distance trains stopped using it in 1912, when the new main station opened, and it was badly damaged in the Second World War.<sup><a class="r" href="#s32" aria-label="Source 32">32</a></sup></p><p>Rebuilding began in 1999 and the brewery-restaurant served its first guests on 19 July 2000.<sup><a class="r" href="#s32" aria-label="Source 32">32</a></sup> Since December 2013 S-Bahn trains have stopped directly beneath it.<sup><a class="r" href="#s30" aria-label="Source 30">30</a></sup> The speciality is Gose, a top-fermented, salty and sour wheat beer. The house says it has been brewed in Leipzig since 1738, and the railway theme runs into the beer names: Schaffner (conductor) and Heizer (stoker).<sup><a class="r" href="#s31" aria-label="Source 31">31</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s31" aria-label="Source 31">31</a><a class="r" href="#s33" aria-label="Source 33">33</a></sup></h4><ul class="beers"><li><b>Original Leipziger Gose</b> <span>top-fermented, salty-sour wheat beer</span></li><li><b>Schaffner</b> <span>cloudy Pils</span></li><li><b>Kuppler</b> <span>wheat beer</span></li><li><b>Heizer</b> <span>strong dark beer, Schwarzbier</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Seasonal regional cooking and bread baked in-house.<sup><a class="r" href="#s31" aria-label="Source 31">31</a><a class="r" href="#s33" aria-label="Source 33">33</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="spezial" data-cc="DE" style="--c:var(--l2)">
+<header class="eh"><span class="no" title="Germany">DE</span><div><h3>Brauerei Spezial</h3><p class="place">Bamberg, Germany · Obere Königstraße 10</p></div></header>
+<p class="edek">Smoked beer from a brewery that still kilns its own malt over beech.</p>
+<div class="walk" role="img" aria-label="750 metres, about 10 minutes on foot from Bamberg">
+ <div class="wl"><span class="sq">Bamberg</span><span class="wt"><b>10</b> min · 750 m</span></div>
+ <div class="track"><i style="width:68%"></i></div>
+ <p class="via"><span>Via</span> Ludwigstraße → Luitpoldstraße → Obere Königstraße<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">Regional hub on the lines to Nuremberg, Würzburg and Hof, and the northern end of Nuremberg S-Bahn line S1.<sup><a class="r" href="#s38" aria-label="Source 38">38</a></sup></p>
+</div>
+<div class="eb"><p>Spezial was first recorded in 1536 and has belonged to the Merz family since 1898.<sup><a class="r" href="#s34" aria-label="Source 34">34</a><a class="r" href="#s35" aria-label="Source 35">35</a></sup> Bamberg’s tourist office counts it as one of only two breweries in the city keeping the traditional smoked-beer craft going. Spezial still makes its own smoked malt, soaking, germinating and then kilning the barley over an open beechwood fire on the premises.<sup><a class="r" href="#s36" aria-label="Source 36">36</a><a class="r" href="#s35" aria-label="Source 35">35</a></sup></p><p>The smoke is gentler than at Schlenkerla, the city’s other famous smoked-beer brewery.<sup><a class="r" href="#s37" aria-label="Source 37">37</a></sup> The association of brewery inns lists Spezial as about five minutes on foot from the station; the routed walk is closer to ten.<sup><a class="r" href="#s35" aria-label="Source 35">35</a><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s34" aria-label="Source 34">34</a><a class="r" href="#s35" aria-label="Source 35">35</a></sup></h4><ul class="beers"><li><b>Rauchbier Lager</b> <span>smoked amber lager</span></li><li><b>Märzen</b> <span>smoked, darker and maltier</span></li><li><b>Ungespundet</b> <span>unsmoked, unfiltered, at the inn only</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Franconian home cooking, including vegetarian dishes, and guest rooms upstairs.<sup><a class="r" href="#s35" aria-label="Source 35">35</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="faessla" data-cc="DE" style="--c:var(--l2)">
+<header class="eh"><span class="no" title="Germany">DE</span><div><h3>Brauerei Fässla</h3><p class="place">Bamberg, Germany · Obere Königstraße 19–21</p></div></header>
+<p class="edek">The other half of Bamberg’s best two-brewery street.</p>
+<div class="walk" role="img" aria-label="761 metres, about 10 minutes on foot from Bamberg">
+ <div class="wl"><span class="sq">Bamberg</span><span class="wt"><b>10</b> min · 761 m</span></div>
+ <div class="track"><i style="width:69%"></i></div>
+ <p class="via"><span>Via</span> Ludwigstraße → Luitpoldstraße → Obere Königstraße → Letzengasse<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">Directly across the street from Spezial, so the same walk serves both.<sup><a class="r" href="#s37" aria-label="Source 37">37</a></sup></p>
+</div>
+<div class="eb"><p>Fässla dates from 1649, the year after the Thirty Years’ War ended.<sup><a class="r" href="#s36" aria-label="Source 36">36</a><a class="r" href="#s39" aria-label="Source 39">39</a></sup> Its range runs from a golden Lagerbier to the dark Zwergla, with a strong seasonal beer called Bambergator in the autumn.<sup><a class="r" href="#s40" aria-label="Source 40">40</a></sup></p><p>Locals still buy beer to take home from a hatch, bringing their own containers.<sup><a class="r" href="#s40" aria-label="Source 40">40</a></sup> With Spezial opposite, this short stretch of Obere Königstraße has two breweries ten minutes from the trains.<sup><a class="r" href="#s37" aria-label="Source 37">37</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s40" aria-label="Source 40">40</a></sup></h4><ul class="beers"><li><b>Lagerbier</b> <span>golden lager</span></li><li><b>Pils</b> <span>pilsner</span></li><li><b>Zwergla</b> <span>dark lager</span></li><li><b>Bambergator</b> <span>strong seasonal Bock</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Franconian food indoors and in the beer garden; 26 guest rooms.<sup><a class="r" href="#s40" aria-label="Source 40">40</a><a class="r" href="#s39" aria-label="Source 39">39</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="augustiner" data-cc="DE" style="--c:var(--l2)">
+<header class="eh"><span class="no" title="Germany">DE</span><div><h3>Augustiner Bräustuben</h3><p class="place">Munich, Germany · Landsberger Straße 19</p></div></header>
+<p class="edek">Munich’s oldest brewery, with its tavern in the old stables next to the brewhouse.</p>
+<div class="walk" role="img" aria-label="445 metres, about 6 minutes on foot from München Hackerbrücke">
+ <div class="wl"><span class="sq">München Hackerbrücke</span><span class="wt"><b>6</b> min · 445 m</span></div>
+ <div class="track"><i style="width:40%"></i></div>
+ <p class="via"><span>Via</span> Landsberger Straße<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">On the S-Bahn trunk line through the city centre, served by every S-Bahn line.<sup><a class="r" href="#s45" aria-label="Source 45">45</a></sup></p>
+</div>
+<div class="eb"><p>Augustiner was first mentioned in 1328, which makes it Munich’s oldest surviving brewery. It moved out of the old town to Landsberger Straße in the 1880s and brewed there for the first time in 1884.<sup><a class="r" href="#s41" aria-label="Source 41">41</a><a class="r" href="#s42" aria-label="Source 42">42</a></sup> Since 1996 just over half of it has belonged to a charitable foundation set up by Edith Haberland-Wagner of the owning family.<sup><a class="r" href="#s43" aria-label="Source 43">43</a></sup></p><p>The Bräustuben opened in 1994 in the brewery’s former stables, where the horses that pull the Oktoberfest beer wagons were kept.<sup><a class="r" href="#s44" aria-label="Source 44">44</a></sup> Since 1987 Augustiner has been the only Munich brewery at the Oktoberfest to serve exclusively from wooden barrels.<sup><a class="r" href="#s41" aria-label="Source 41">41</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s43" aria-label="Source 43">43</a></sup></h4><ul class="beers"><li><b>Lagerbier Hell</b> <span>pale lager</span></li><li><b>Edelstoff</b> <span>stronger pale lager</span></li><li><b>Dunkel</b> <span>dark lager</span></li><li><b>Weißbier</b> <span>wheat beer</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Bavarian food: roast pork, knuckle, cold platters and vegetarian dishes.<sup><a class="r" href="#s44" aria-label="Source 44">44</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="mulln" data-cc="AT" style="--c:var(--l2)">
+<header class="eh"><span class="no" title="Austria">AT</span><div><h3>Augustiner Bräu Kloster Mülln</h3><p class="place">Salzburg, Austria · Lindhofstraße 7</p></div></header>
+<p class="edek">A monastery brewery from 1621 that still pours from wooden casks into stone mugs.</p>
+<div class="walk" role="img" aria-label="478 metres, about 6 minutes on foot from Salzburg Mülln-Altstadt">
+ <div class="wl"><span class="sq">Salzburg Mülln-Altstadt</span><span class="wt"><b>6</b> min · 478 m</span></div>
+ <div class="track"><i style="width:43%"></i></div>
+ <p class="via"><span>Via</span> Müllner Hauptstraße<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">An S-Bahn halt opened in December 2009; the brewery’s own directions point to it.<sup><a class="r" href="#s48" aria-label="Source 48">48</a><a class="r" href="#s49" aria-label="Source 49">49</a></sup></p>
+</div>
+<div class="eb"><p>Augustinian monks founded the brewery in 1621. It calls itself Austria’s biggest beer tavern, with about 2,400 seats across its halls and a chestnut-shaded garden.<sup><a class="r" href="#s46" aria-label="Source 46">46</a><a class="r" href="#s47" aria-label="Source 47">47</a></sup> Benedictines from Michaelbeuern Abbey took it over in 1835, and the brewhouse they built in 1912 still stands in its original form.<sup><a class="r" href="#s47" aria-label="Source 47">47</a></sup></p><p>Beer is still poured from wooden casks into stoneware mugs.<sup><a class="r" href="#s46" aria-label="Source 46">46</a><a class="r" href="#s47" aria-label="Source 47">47</a></sup> One of the halls, the Abt-Nicolaus-Saal added in 2017, is the former marble hall of Salzburg’s main railway station.<sup><a class="r" href="#s47" aria-label="Source 47">47</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s47" aria-label="Source 47">47</a></sup></h4><ul class="beers"><li><b>Märzen</b> <span>the year-round house beer</span></li><li><b>Fastenbier</b> <span>Lent</span></li><li><b>Bockbier</b> <span>late autumn and Advent</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Bring your own food, or buy it from the stalls in the hall’s corridor of food stands. Drinks must be bought from the house. Guided brewery tours for booked groups.<sup><a class="r" href="#s47" aria-label="Source 47">47</a><a class="r" href="#s50" aria-label="Source 50">50</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="urquell" data-cc="CZ" style="--c:var(--l2)">
+<header class="eh"><span class="no" title="Czech Republic">CZ</span><div><h3>Pilsner Urquell Brewery</h3><p class="place">Plzeň, Czech Republic · U Prazdroje 7</p></div></header>
+<p class="edek">The birthplace of pale lager, across a footbridge from the station.</p>
+<div class="walk" role="img" aria-label="639 metres, about 8 minutes on foot from Plzeň hlavní nádraží">
+ <div class="wl"><span class="sq">Plzeň hlavní nádraží</span><span class="wt"><b>8</b> min · 639 m</span></div>
+ <div class="track"><i style="width:58%"></i></div>
+ <p class="via"><span>Via</span> station forecourt and footpaths<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">Hub for line 170 (Prague–Cheb) and line 180 to Furth im Wald on the German border, among others.<sup><a class="r" href="#s54" aria-label="Source 54">54</a></sup></p>
+</div>
+<div class="eb"><p>The citizens of Plzeň founded their Burghers’ Brewery in 1839 and hired a Bavarian brewer, Josef Groll, who brewed the first batch of the golden lager on 5 October 1842.<sup><a class="r" href="#s51" aria-label="Source 51">51</a><a class="r" href="#s52" aria-label="Source 52">52</a></sup> The name Pilsner Urquell (“from the original source”) was trademarked in 1898.<sup><a class="r" href="#s51" aria-label="Source 51">51</a></sup></p><p>The brewery is now owned by Asahi.<sup><a class="r" href="#s51" aria-label="Source 51">51</a></sup> Tours end in the historic cellars with unfiltered, unpasteurised lager drawn from oak barrels.<sup><a class="r" href="#s52" aria-label="Source 52">52</a></sup> The brewery’s directions say the walk takes about five minutes: head for Nádražní street and take the footbridge into the brewery grounds.<sup><a class="r" href="#s53" aria-label="Source 53">53</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s51" aria-label="Source 51">51</a><a class="r" href="#s52" aria-label="Source 52">52</a></sup></h4><ul class="beers"><li><b>Pilsner Urquell</b> <span>pale lager, 4.4%</span></li><li><b>Unfiltered cellar beer</b> <span>from oak, on the tour</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Na Spilce restaurant on site; tours start from the visitor centre.<sup><a class="r" href="#s53" aria-label="Source 53">53</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="harveys" data-cc="GB" style="--c:var(--l3)">
+<header class="eh"><span class="no" title="England">GB</span><div><h3>Harvey&#x27;s Brewery</h3><p class="place">Lewes, England · Bridge Wharf, 6 Cliffe High Street</p></div></header>
+<p class="edek">A Victorian tower brewery on the river Ouse, run by one family since 1790.</p>
+<div class="walk" role="img" aria-label="835 metres, about 11 minutes on foot from Lewes">
+ <div class="wl"><span class="sq">Lewes</span><span class="wt"><b>11</b> min · 835 m</span></div>
+ <div class="track"><i style="width:76%"></i></div>
+ <p class="via"><span>Via</span> Pinwell Road → Friars Walk → High Street → English&#x27;s Passage<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">On the East Coastway line, with services to Brighton, Eastbourne, Seaford and London.<sup><a class="r" href="#s57" aria-label="Source 57">57</a></sup></p>
+</div>
+<div class="eb"><p>Harvey’s has been in the hands of John Harvey’s descendants since 1790; John Harvey’s brewing itself began as a sideline in the early 19th century.<sup><a class="r" href="#s55" aria-label="Source 55">55</a></sup> Its neo-Gothic tower brewhouse was rebuilt in 1881 to a design by William Bradford (Wikipedia gives 1880) and is a listed building.<sup><a class="r" href="#s55" aria-label="Source 55">55</a><a class="r" href="#s56" aria-label="Source 56">56</a></sup></p><p>The Ouse flooded the brewery in 2000. A batch of Best Bitter abandoned mid-brew was finished and bottled as a 6.5% strong ale called Ouse Booze.<sup><a class="r" href="#s55" aria-label="Source 55">55</a></sup> Sussex Best Bitter remains the beer most people come for.<sup><a class="r" href="#s56" aria-label="Source 56">56</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s56" aria-label="Source 56">56</a></sup></h4><ul class="beers"><li><b>Sussex Best Bitter</b> <span>best bitter, the flagship</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Brewery shop with bottles, cans and draught to take away.<sup><a class="r" href="#s58" aria-label="Source 58">58</a></sup> Ninety-minute guided tours with a tasting, over-18s only, run April to September.<sup><a class="r" href="#s59" aria-label="Source 59">59</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="shepherd" data-cc="GB" style="--c:var(--l3)">
+<header class="eh"><span class="no" title="England">GB</span><div><h3>Shepherd Neame</h3><p class="place">Faversham, England · 17 Court Street (visitor centre at 11 Court Street)</p></div></header>
+<p class="edek">The brewery that describes itself as Britain’s oldest brewer.</p>
+<div class="walk" role="img" aria-label="630 metres, about 8 minutes on foot from Faversham">
+ <div class="wl"><span class="sq">Faversham</span><span class="wt"><b>8</b> min · 630 m</span></div>
+ <div class="track"><i style="width:57%"></i></div>
+ <p class="via"><span>Via</span> Station Road → Preston Street → Market Street → Court Street<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">On the Chatham Main Line between London and the Kent coast.<sup><a class="r" href="#s63" aria-label="Source 63">63</a></sup></p>
+</div>
+<div class="eb"><p>Shepherd Neame describes itself as Britain’s oldest brewer, giving 1698 as its founding year, with brewing on the site recorded from at least 1573.<sup><a class="r" href="#s60" aria-label="Source 60">60</a></sup> Percy Neame joined as a partner in 1864, and his family has run it since.<sup><a class="r" href="#s61" aria-label="Source 61">61</a></sup> In 1789 Julius Shepherd reportedly installed one of the first steam engines used by a brewery outside London.<sup><a class="r" href="#s61" aria-label="Source 61">61</a></sup></p><p>The brewery’s directions put the walk from the station at 10 to 15 minutes: over the zebra crossing into Preston Street, through the pedestrian area to Market Street, then up Market Place to Court Street.<sup><a class="r" href="#s62" aria-label="Source 62">62</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s64" aria-label="Source 64">64</a><a class="r" href="#s61" aria-label="Source 61">61</a></sup></h4><ul class="beers"><li><b>Spitfire</b> <span>Kentish amber ale</span></li><li><b>Bishops Finger</b> <span>Kentish strong ale</span></li><li><b>Master Brew</b> <span>traditional ale</span></li><li><b>Whitstable Bay</b> <span>pale ale</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Visitor centre and shop; guided tours with tutored tastings, including evening tours.<sup><a class="r" href="#s65" aria-label="Source 65">65</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="staustell" data-cc="GB" style="--c:var(--l3)">
+<header class="eh"><span class="no" title="England">GB</span><div><h3>St Austell Brewery</h3><p class="place">St Austell, England · 63 Trevarthian Road</p></div></header>
+<p class="edek">The Cornish brewer that turned an eclipse beer into its flagship.</p>
+<div class="walk" role="img" aria-label="590 metres, about 8 minutes on foot from St Austell">
+ <div class="wl"><span class="sq">St Austell</span><span class="wt"><b>8</b> min · 590 m</span></div>
+ <div class="track"><i style="width:54%"></i></div>
+ <p class="via"><span>Via</span> Trevarthian Road<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">On the Cornish Main Line between Plymouth and Penzance.<sup><a class="r" href="#s68" aria-label="Source 68">68</a></sup></p>
+</div>
+<div class="eb"><p>Walter Hicks founded the brewery in 1851 and first brewed at the Seven Stars Inn. The Trevarthian Road brewhouse went up in 1893, and the beer is still made there in a system fed by gravity rather than pumps.<sup><a class="r" href="#s66" aria-label="Source 66">66</a></sup> After Hicks died in 1916 his daughter, Hester Parnall, took charge and helped keep the company independent.<sup><a class="r" href="#s67" aria-label="Source 67">67</a></sup></p><p>Tribute, now its best-known beer, began as a one-off called Daylight Robbery for the solar eclipse of 1999.<sup><a class="r" href="#s66" aria-label="Source 66">66</a></sup> The brewery marked 175 years in 2026 with a history by its archivist, Paul Holden.<sup><a class="r" href="#s67" aria-label="Source 67">67</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s67" aria-label="Source 67">67</a><a class="r" href="#s69" aria-label="Source 69">69</a></sup></h4><ul class="beers"><li><b>Tribute</b> <span>Cornish pale ale</span></li><li><b>Proper Job</b> <span>IPA</span></li><li><b>Korev</b> <span>lager</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Hicks Bar serves food and is open without a tour; there is a brewery shop and guided tours ending in a tasting.<sup><a class="r" href="#s69" aria-label="Source 69">69</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="batemans" data-cc="GB" style="--c:var(--l3)">
+<header class="eh"><span class="no" title="England">GB</span><div><h3>Batemans Brewery</h3><p class="place">Wainfleet, England · Salem Bridge Brewery, Mill Lane</p></div></header>
+<p class="edek">A family brewery whose windmill is its logo, four minutes from a country halt.</p>
+<div class="walk" role="img" aria-label="295 metres, about 4 minutes on foot from Wainfleet">
+ <div class="wl"><span class="sq">Wainfleet</span><span class="wt"><b>4</b> min · 295 m</span></div>
+ <div class="track"><i style="width:27%"></i></div>
+ <p class="via"><span>Via</span> Station Road → Mill Lane<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">On the Poacher Line between Grantham and Skegness.<sup><a class="r" href="#s72" aria-label="Source 72">72</a></sup></p>
+</div>
+<div class="eb"><p>George Bateman left farming in 1874 to rent a brewery in Wainfleet, buying its equipment for £505 10s.<sup><a class="r" href="#s70" aria-label="Source 70">70</a><a class="r" href="#s71" aria-label="Source 71">71</a></sup> The derelict windmill at the Salem Bridge site, taken in during an expansion to give laid-off workers jobs, became the company’s trademark.<sup><a class="r" href="#s71" aria-label="Source 71">71</a></sup></p><p>In the 1980s half the family wanted to sell. George Bateman, his wife Pat and their children Stuart and Jaclyn raised the money to buy out the others and kept it brewing.<sup><a class="r" href="#s71" aria-label="Source 71">71</a></sup> XXXB, first brewed in 1978, and XB are the beers it is best known for.<sup><a class="r" href="#s71" aria-label="Source 71">71</a></sup> At 295 m by the routed path, this is the shortest walk in the guide outside the two station buildings in Leipzig and Berlin.<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s71" aria-label="Source 71">71</a></sup></h4><ul class="beers"><li><b>XB</b> <span>bitter</span></li><li><b>XXXB</b> <span>strong bitter, first brewed 1978</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Visitor centre in the 18th-century windmill, with brewery tours.<sup><a class="r" href="#s72" aria-label="Source 72">72</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="warpigs" data-cc="DK" style="--c:var(--l4)">
+<header class="eh"><span class="no" title="Denmark">DK</span><div><h3>WarPigs Brewpub</h3><p class="place">Copenhagen, Denmark · Flæsketorvet 25–37, Kødbyen</p></div></header>
+<p class="edek">A Danish–American brewpub in Copenhagen’s meatpacking district.</p>
+<div class="walk" role="img" aria-label="601 metres, about 8 minutes on foot from Dybbølsbro">
+ <div class="wl"><span class="sq">Dybbølsbro</span><span class="wt"><b>8</b> min · 601 m</span></div>
+ <div class="track"><i style="width:55%"></i></div>
+ <p class="via"><span>Via</span> Flæsketorvet<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">An S-tog station opened in 1934, when S-trains were extended from København H to Valby.<sup><a class="r" href="#s76" aria-label="Source 76">76</a></sup></p>
+</div>
+<div class="eb"><p>WarPigs is a joint venture between Copenhagen’s Mikkeller and Three Floyds of Indiana. It opened in April 2015 in Kødbyen, the old meat-market quarter.<sup><a class="r" href="#s73" aria-label="Source 73">73</a><a class="r" href="#s74" aria-label="Source 74">74</a></sup> All its beer is brewed on site, in a brewery built for the building.<sup><a class="r" href="#s74" aria-label="Source 74">74</a></sup></p><p>The bar opened with 22 taps, the house beers alongside experiments.<sup><a class="r" href="#s74" aria-label="Source 74">74</a><a class="r" href="#s75" aria-label="Source 75">75</a></sup> The kitchen serves Texas-style barbecue.<sup><a class="r" href="#s73" aria-label="Source 73">73</a><a class="r" href="#s75" aria-label="Source 75">75</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s73" aria-label="Source 73">73</a></sup></h4><ul class="beers"><li><b>House IPAs</b> <span>hoppy, rotating</span></li><li><b>Dark and barrel-aged beers</b> <span>aged in bourbon or rum barrels</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Barbecue kitchen.<sup><a class="r" href="#s73" aria-label="Source 73">73</a><a class="r" href="#s75" aria-label="Source 75">75</a></sup></p></div>
+</div>
+</article>
+<article class="entry" id="carlsberg" data-cc="DK" style="--c:var(--l4)">
+<header class="eh"><span class="no" title="Denmark">DK</span><div><h3>Home of Carlsberg</h3><p class="place">Copenhagen, Denmark · Gamle Carlsberg Vej 11</p></div></header>
+<p class="edek">The founding site of Carlsberg, where a small house brewery still works.</p>
+<div class="walk" role="img" aria-label="555 metres, about 7 minutes on foot from Carlsberg">
+ <div class="wl"><span class="sq">Carlsberg</span><span class="wt"><b>7</b> min · 555 m</span></div>
+ <div class="track"><i style="width:50%"></i></div>
+ <p class="via"><span>Via</span> Tapperitorvet<sup><a class="r" href="#s2" aria-label="Source 2">2</a></sup></p>
+ <p class="sline">On the S-tog line to Høje Taastrup; opened in 2016 to replace Enghave station, 200 m to the east.<sup><a class="r" href="#s81" aria-label="Source 81">81</a></sup></p>
+</div>
+<div class="eb"><p>J.C. Jacobsen built his first brewery on Valby Bakke in 1847. Most production moved to Fredericia in 2008, but beer is still brewed at the top of the hill by Husbryggeriet Jacobsen, the site’s house brewery.<sup><a class="r" href="#s77" aria-label="Source 77">77</a></sup> The house beers are served straight from its cellar tanks and are available only here.<sup><a class="r" href="#s78" aria-label="Source 78">78</a></sup></p><p>Two discoveries made at the Carlsberg Laboratory reached far beyond beer. In 1883 Emil Christian Hansen worked out how to cultivate pure yeast, and in 1909 Søren Sørensen devised the pH scale.<sup><a class="r" href="#s79" aria-label="Source 79">79</a></sup> After a renovation the visitor centre reopened as Home of Carlsberg on 1 December 2023, with its collection of more than 22,000 unopened bottles and the brewery’s draught horses back in the stables.<sup><a class="r" href="#s80" aria-label="Source 80">80</a></sup></p></div>
+<div class="facts">
+ <div><h4>On tap<sup><a class="r" href="#s78" aria-label="Source 78">78</a></sup></h4><ul class="beers"><li><b>Jacobsen house lagers</b> <span>pale and dark, brewed on site</span></li></ul></div>
+ <div><h4>At the brewery</h4><p>Restaurant and bar; a drink is included with the exhibition ticket, and guided tours can be booked.<sup><a class="r" href="#s78" aria-label="Source 78">78</a><a class="r" href="#s80" aria-label="Source 80">80</a></sup></p></div>
+</div>
+</article>
+ </div>
+
+ <section class="sources" id="sources">
+  <h2 class="sec">Sources</h2>
+  <p class="secdek">81 sources, numbered in the order they are first cited. Walking routes were computed on 13 November 2026.</p>
+  <ol>
+<li id="s1"><a href="https://www.openstreetmap.org/">OpenStreetMap map data (brewery and station locations)</a>. <span>OpenStreetMap contributors, via Nominatim</span></li>
+<li id="s2"><a href="https://routing.openstreetmap.de/">Walking routes, OSRM foot profile</a>. <span>FOSSGIS e.V. routing service on OpenStreetMap data</span></li>
+<li id="s3"><a href="https://lambic.info/Cantillon">Cantillon</a>. <span>lambic.info</span></li>
+<li id="s4"><a href="https://en.wikipedia.org/wiki/Cantillon_Brewery">Cantillon Brewery</a>. <span>Wikipedia</span></li>
+<li id="s5"><a href="https://lambic.info/Brussels_Gueuze_Museum">Brussels Gueuze Museum</a>. <span>lambic.info</span></li>
+<li id="s6"><a href="https://en.wikipedia.org/wiki/Brussels-South_railway_station">Brussels-South railway station</a>. <span>Wikipedia</span></li>
+<li id="s7"><a href="https://halvemaan.be/en/brewery/history">Our history</a>. <span>Brouwerij De Halve Maan</span></li>
+<li id="s8"><a href="https://en.wikipedia.org/wiki/De_Halve_Maan">De Halve Maan</a>. <span>Wikipedia</span></li>
+<li id="s9"><a href="https://en.wikipedia.org/wiki/Brugge_railway_station">Brugge railway station</a>. <span>Wikipedia</span></li>
+<li id="s10"><a href="https://bezoekers.brugge.be/en/brouwerij-de-halve-maan-brewery-de-halve-maan">Brouwerij De Halve Maan</a>. <span>Visit Bruges (City of Bruges)</span></li>
+<li id="s11"><a href="https://gruut.be/wp-content/uploads/2023/11/folder-brouwerij-Duits.pdf">Brouwerij Gruut brochure (PDF)</a>. <span>Gentse Stadsbrouwerij Gruut</span></li>
+<li id="s12"><a href="https://visit.gent.be/nl/eten-drinken/gruut">Stadsbrouwerij Gruut</a>. <span>Visit Gent</span></li>
+<li id="s13"><a href="https://en.wikipedia.org/wiki/Gent-Dampoort_railway_station">Gent-Dampoort railway station</a>. <span>Wikipedia</span></li>
+<li id="s14"><a href="https://brouwerijhetij.nl/history/?lang=en">History</a>. <span>Brouwerij &#x27;t IJ</span></li>
+<li id="s15"><a href="https://en.wikipedia.org/wiki/Brouwerij_%27t_IJ">Brouwerij &#x27;t IJ</a>. <span>Wikipedia</span></li>
+<li id="s16"><a href="https://en.wikipedia.org/wiki/Amsterdam_Muiderpoort_railway_station">Amsterdam Muiderpoort railway station</a>. <span>Wikipedia</span></li>
+<li id="s17"><a href="https://brouwerijhetij.nl/en/tasting-rooms/proeflokaal-de-molen">Proeflokaal de Molen</a>. <span>Brouwerij &#x27;t IJ</span></li>
+<li id="s18"><a href="https://www.iamsterdam.com/uit/agenda/eten-en-drinken/cafes-en-bars/poesiat-and-kater">Poesiat &amp; Kater</a>. <span>I amsterdam</span></li>
+<li id="s19"><a href="https://barclayperkins.blogspot.com/2017/03/poesiat-kater.html">Poesiat &amp; Kater</a>. <span>Shut up about Barclay Perkins (Ron Pattinson)</span></li>
+<li id="s20"><a href="https://ratsherrn.de/en/BREWERY.html">Brewery</a>. <span>Ratsherrn Brauerei</span></li>
+<li id="s21"><a href="https://www.hamburg.com/visitors/sights/alternative/schanzenhoefe-20506">Schanzenhöfe</a>. <span>Hamburg Tourismus (hamburg.com)</span></li>
+<li id="s22"><a href="https://hamburg-travel.com/discover-hamburg/hamburg-ahoi/original-hamburg-craft-beer-breweries">Original Hamburg craft beer breweries</a>. <span>Hamburg Tourismus</span></li>
+<li id="s23"><a href="https://schumacher-alt.de/en/our-altbier/">Our Altbier</a>. <span>Brauerei Schumacher</span></li>
+<li id="s24"><a href="https://www.duesseldorf-tourismus.de/storys/en/2021/03/03/i-have-confetti-in-my-blood/">&quot;I have confetti in my blood&quot;</a>. <span>Düsseldorf Tourismus</span></li>
+<li id="s25"><a href="https://schumacher-alt.de/en/restaurants/">Restaurants</a>. <span>Brauerei Schumacher</span></li>
+<li id="s26"><a href="https://lemke.berlin/en/about-us/">About us</a>. <span>Brauerei Lemke Berlin</span></li>
+<li id="s27"><a href="https://hm.lemke.berlin/en/">Das Lemke am Hackeschen Markt</a>. <span>Brauerei Lemke Berlin</span></li>
+<li id="s28"><a href="https://en.wikipedia.org/wiki/Berlin_Hackescher_Markt_station">Berlin Hackescher Markt station</a>. <span>Wikipedia</span></li>
+<li id="s29"><a href="https://www.berlin.de/en/tourism/insider-tips/beer-gardens/9240789-9086094-lemke.en.html">Lemke (beer gardens)</a>. <span>berlin.de</span></li>
+<li id="s30"><a href="https://en.wikipedia.org/wiki/Leipzig_Bayerischer_Bahnhof">Leipzig Bayerischer Bahnhof</a>. <span>Wikipedia</span></li>
+<li id="s31"><a href="https://www.bayerischer-bahnhof.de/wp-content/uploads/2024/08/Hausprospekt-image-brochure-2024-english.pdf">House brochure 2024 (PDF)</a>. <span>Gasthaus &amp; Gosebrauerei Bayerischer Bahnhof</span></li>
+<li id="s32"><a href="https://www.bayerischer-bahnhof.de/en/history.html">History</a>. <span>Gasthaus &amp; Gosebrauerei Bayerischer Bahnhof</span></li>
+<li id="s33"><a href="https://www.leipzig.travel/en/gastro/gasthaus-gosebrauerei-bayerischer-bahnhof-and-wilhelm-horn-brand-spirits">Gasthaus &amp; Gosebrauerei Bayerischer Bahnhof</a>. <span>Leipzig Tourismus (leipzig.travel)</span></li>
+<li id="s34"><a href="https://en.bamberg.info/poi/brauerei_spezial-5202/">Brauerei Spezial</a>. <span>Bamberg Tourismus &amp; Kongress Service</span></li>
+<li id="s35"><a href="https://braugasthoefe.de/en/inn/brewery-inn-special-2/">Brewery inn Spezial</a>. <span>Brauereigasthöfe (Private Brauereigasthöfe association)</span></li>
+<li id="s36"><a href="https://www.bamberg.info/media-download/pdf/downloads/flyer_broschueren/bamberger-bierwelten.pdf">Bamberger Bierwelten (PDF)</a>. <span>Bamberg Tourismus &amp; Kongress Service</span></li>
+<li id="s37"><a href="https://allaboutbeer.com/article/smoke-shadow/">Smoke &amp; Shadow</a>. <span>All About Beer</span></li>
+<li id="s38"><a href="https://en.wikipedia.org/wiki/Bamberg_station">Bamberg station</a>. <span>Wikipedia</span></li>
+<li id="s39"><a href="https://www.infranken.de/unternehmen/brauerei-faessla-bamberg-gmbh-31897">Brauerei Fässla Bamberg GmbH</a>. <span>inFranken.de</span></li>
+<li id="s40"><a href="https://en.bamberg.info/gastronomie/brauerei_faessla-1465">Brauerei Fässla</a>. <span>Bamberg Tourismus &amp; Kongress Service</span></li>
+<li id="s41"><a href="https://www.augustiner-braeu.de/en/brewery/history">History</a>. <span>Augustiner-Bräu München</span></li>
+<li id="s42"><a href="https://www.muenchen.de/en/sights/augustiner-brewery-munichs-oldest-still-existing-brewery">Augustiner brewery: Munich&#x27;s oldest still-existing brewery</a>. <span>muenchen.de (City of Munich portal)</span></li>
+<li id="s43"><a href="https://en.wikipedia.org/wiki/Augustiner-Br%C3%A4u">Augustiner-Bräu</a>. <span>Wikipedia</span></li>
+<li id="s44"><a href="https://www.munich.travel/en/topics/eat-drink/breweries-restaurants">Breweries and brewery restaurants</a>. <span>München Tourismus (munich.travel)</span></li>
+<li id="s45"><a href="https://en.wikipedia.org/wiki/Munich_Hackerbr%C3%BCcke_station">Munich Hackerbrücke station</a>. <span>Wikipedia</span></li>
+<li id="s46"><a href="https://www.augustinerbier.at/history-tradition.html">History and tradition</a>. <span>Augustiner Bräu Kloster Mülln</span></li>
+<li id="s47"><a href="https://www.salzburg.info/en/magazin/scenes/the-augustiner-braustubl-mulln-enjoy-salzburg-s-history-with-every-sip_a_10192701">The Augustiner Bräustübl Mülln: enjoy Salzburg&#x27;s history with every sip</a>. <span>Tourismus Salzburg (salzburg.info)</span></li>
+<li id="s48"><a href="https://en.wikipedia.org/wiki/Salzburg_S-Bahn">Salzburg S-Bahn</a>. <span>Wikipedia</span></li>
+<li id="s49"><a href="https://www.augustinerbier.at/directions.html">Directions</a>. <span>Augustiner Bräu Kloster Mülln</span></li>
+<li id="s50"><a href="https://www.salzburg.info/de/reiseinfos/salzburg-a-z/betriebsbesichtigung-augustiner-braeu_az_13783">Betriebsbesichtigung Augustiner Bräu</a>. <span>Tourismus Salzburg (salzburg.info)</span></li>
+<li id="s51"><a href="https://en.wikipedia.org/wiki/Pilsner_Urquell_Brewery">Pilsner Urquell Brewery</a>. <span>Wikipedia</span></li>
+<li id="s52"><a href="https://www.prazdroj.cz/en/our-story/history">History</a>. <span>Plzeňský Prazdroj</span></li>
+<li id="s53"><a href="https://www.prazdrojvisit.cz/en/contact/">Contact and directions</a>. <span>Pilsner Urquell Brewery visitor centre (prazdrojvisit.cz)</span></li>
+<li id="s54"><a href="https://en.wikipedia.org/wiki/Plze%C5%88_hlavn%C3%AD_n%C3%A1dra%C5%BE%C3%AD">Plzeň hlavní nádraží</a>. <span>Wikipedia</span></li>
+<li id="s55"><a href="https://harveys.org.uk/harveys-story">Harvey&#x27;s story</a>. <span>Harvey &amp; Son (Lewes)</span></li>
+<li id="s56"><a href="https://en.wikipedia.org/wiki/Harvey%27s_Brewery">Harvey&#x27;s Brewery</a>. <span>Wikipedia</span></li>
+<li id="s57"><a href="https://en.wikipedia.org/wiki/Lewes_railway_station">Lewes railway station</a>. <span>Wikipedia</span></li>
+<li id="s58"><a href="https://www.harveys.org.uk/pub/harveys-brewery-shop">Brewery shop</a>. <span>Harvey &amp; Son (Lewes)</span></li>
+<li id="s59"><a href="https://harveys.org.uk/brewery-tours">Brewery tours</a>. <span>Harvey &amp; Son (Lewes)</span></li>
+<li id="s60"><a href="https://www.shepherdneame.co.uk/brewery/history">History</a>. <span>Shepherd Neame</span></li>
+<li id="s61"><a href="https://en.wikipedia.org/wiki/Shepherd_Neame_Brewery">Shepherd Neame Brewery</a>. <span>Wikipedia</span></li>
+<li id="s62"><a href="https://www.shepherdneame.co.uk/brewery/how-to-find-us">How to find us</a>. <span>Shepherd Neame</span></li>
+<li id="s63"><a href="https://en.wikipedia.org/wiki/Faversham_railway_station">Faversham railway station</a>. <span>Wikipedia</span></li>
+<li id="s64"><a href="https://www.shepherdneame.co.uk/beer">Our beers</a>. <span>Shepherd Neame</span></li>
+<li id="s65"><a href="https://www.shepherdneame.co.uk/brewery/our-faversham-brewery">Our Faversham brewery</a>. <span>Shepherd Neame</span></li>
+<li id="s66"><a href="https://www.staustellbrewery.co.uk/our-blog/hidden-gems-of-st-austell-brewerys-history-revealed-in-175th-anniversary-book">Hidden gems of St Austell Brewery&#x27;s history revealed in 175th anniversary book</a>. <span>St Austell Brewery</span></li>
+<li id="s67"><a href="https://www.voicenewspapers.co.uk/news/st-austell-brewery-marks-175-years-with-celebrations-and-new-book-912241">St Austell Brewery marks 175 years with celebrations and new book</a>. <span>Voice Newspapers</span></li>
+<li id="s68"><a href="https://en.wikipedia.org/wiki/St_Austell_railway_station">St Austell railway station</a>. <span>Wikipedia</span></li>
+<li id="s69"><a href="https://staustellbrewery.co.uk/beers-brewery/book-a-tour">Book a tour / Hicks Bar &amp; Brewery Shop</a>. <span>St Austell Brewery</span></li>
+<li id="s70"><a href="https://www.lincolnshireworld.com/news/people/good-honest-tales-of-brewery-based-in-wainfleet-celebrating-150th-anniversary-4540320">Good honest tales of brewery based in Wainfleet celebrating 150th anniversary</a>. <span>LincolnshireWorld</span></li>
+<li id="s71"><a href="https://en.wikipedia.org/wiki/Batemans_Brewery">Batemans Brewery</a>. <span>Wikipedia</span></li>
+<li id="s72"><a href="https://poacherline.org.uk/?p=922">Batemans Brewery &amp; Visitor Centre, Wainfleet</a>. <span>Poacher Line Community Rail Partnership</span></li>
+<li id="s73"><a href="https://mikkeller.com/locations/warpigs">WarPigs</a>. <span>Mikkeller</span></li>
+<li id="s74"><a href="https://www.brewbound.com/news/3-floyds-mikkeller-open-warpigs-april">3 Floyds and Mikkeller to open WarPigs in April</a>. <span>Brewbound</span></li>
+<li id="s75"><a href="https://www.visitcopenhagen.com/copenhagen/warpigs-gdk1004612">WarPigs</a>. <span>VisitCopenhagen</span></li>
+<li id="s76"><a href="https://en.wikipedia.org/wiki/Dybb%C3%B8lsbro_station">Dybbølsbro station</a>. <span>Wikipedia</span></li>
+<li id="s77"><a href="https://homeofcarlsberg.com/faq">FAQ</a>. <span>Home of Carlsberg</span></li>
+<li id="s78"><a href="https://homeofcarlsberg.com/press/press-release-jacobsen">Press release: Jacobsen house beers</a>. <span>Home of Carlsberg</span></li>
+<li id="s79"><a href="https://www.homeofcarlsberg.com/stories/the-hunt-for-danish-history-the-story-of-carlsberg">The hunt for Danish history: the story of Carlsberg</a>. <span>Home of Carlsberg</span></li>
+<li id="s80"><a href="https://esmmagazine.com/drinks/carlsbergs-draught-horses-return-home-as-copenhagen-visitor-centre-reopens-255861">Carlsberg&#x27;s draught horses return home as Copenhagen visitor centre reopens</a>. <span>ESM Magazine</span></li>
+<li id="s81"><a href="https://en.wikipedia.org/wiki/Carlsberg_station">Carlsberg station</a>. <span>Wikipedia</span></li>
+  </ol>
+ </section>
+</main>
+<footer>
+ <div class="wrap">
+  <span>Published 13 November 2026 in Daily by Nick Carbone · Researched and designed with Claude</span>
+  <a href="/daily/">← Back to Daily</a>
+  <a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20Platform%20to%20Pint&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-13-platform-to-pint%2F">Spot an error? Suggest a correction</a>
+ </div>
+</footer>
+<script>
+(function(){
+  var f=document.querySelector('.filters'); if(!f) return; f.hidden=false;
+  var btns=f.querySelectorAll('button'), items=document.querySelectorAll('.entry');
+  f.addEventListener('click',function(ev){
+    var b=ev.target.closest('button'); if(!b) return; var v=b.getAttribute('data-f');
+    btns.forEach(function(x){x.setAttribute('aria-pressed', x===b?'true':'false');});
+    items.forEach(function(it){it.hidden = !(v==='all'||it.getAttribute('data-cc')===v);});
+  });
+  // jumping to an entry from the map or board clears any filter
+  document.addEventListener('click',function(ev){
+    var a=ev.target.closest('a[href^="#"]'); if(!a) return; var t=document.getElementById(a.getAttribute('href').slice(1));
+    if(t && t.classList.contains('entry') && t.hidden){ btns[0].click(); }
+  });
+})();
+</script>
+</body>
+</html>

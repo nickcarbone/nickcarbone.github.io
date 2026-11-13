@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 27,
+      "slug": "2026-11-13-platform-to-pint",
+      "date": "2026-11-13",
+      "title": "Platform to Pint",
+      "dek": "Twenty European breweries, from a Brussels lambic house to a Lincolnshire windmill, that you can walk to from a railway station in a quarter of an hour or less, with routed walking distances and what to drink when you arrive.",
+      "kind": "Railway atlas",
+      "readingMinutes": 24,
+      "design": "Anybody, Crimson Pro, Martian Mono; station-poster yellow departures board, ink on paper; colour-coded strip route maps, walk-track bars per entry.",
+      "source": "queue",
+      "brief": "The European Brewery & Taproom Railway Atlas\nResearch Question: Where can a traveler plan an itinerary centered on world-class, historic, or independent microbreweries located within a 15-minute walk of regional railway stations?\nProposed Contents: 20 classic and craft breweries across Belgium, Germany, the UK, the Netherlands, and Scandinavia located directly adjacent to passenger rail stops. Details include foot transit time from platform, taproom hours, flagship beer styles, food availability, and rail line hub connections.\nInteractive Element: A line-by-line transit map UI displaying brewery stops sequentially along major rail corridors (e.g., Brussels–Gent–Brugge or Munich–Salzburg).\nFinish Line: 20 platform-to-taproom profiles with step-by-step walking guides and rail schedule notes.",
+      "factcheck": {
+        "claims": 72,
+        "fixed": 11
+      },
+      "corrections": []
+    },
+    {
       "no": 26,
       "slug": "2026-11-12-sixteen-rooms-the-world-drinks-in",
       "date": "2026-11-12",
