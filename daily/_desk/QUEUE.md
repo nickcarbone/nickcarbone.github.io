@@ -24,13 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The World's Great Local Sporting Spectacles
-Create an interactive HTML atlas exploring distinctive, highly attended sporting events that are deeply embedded in local culture, identity, and community life. Cover events such as Mexican lucha libre, Irish hurling, Basque pelota, Senegalese wrestling, Japanese sumo, Florentine Calcio Storico, and other regional sporting spectacles that regularly fill stadiums, arenas, or traditional venues. 
-For each, explain its origins, rules, local rivalries, legendary competitors, iconic venues, and the cultural significance that makes spectators so passionate.
-Explore the atmosphere of attending in person: crowd rituals, chants, traditions, food, rivalries, and what makes the experience unlike mainstream international sports.
-Identify the most important annual tournaments and recurring events, their locations, schedules, and how visitors can attend.
-Include an interactive world map of venues, individual event profiles, and a calendar of major competitions, prioritizing living traditions with substantial local followings over tourist-oriented performances.
-
 The Album Rooms (field guide)
 Twenty recording studios where landmark records were made, from Muscle Shoals to Hansa by the Wall. Cover what the room itself added to the sound, what stands there now, and which ones you can still visit or book. Link each entry to a playlist of the records cut there.
 
