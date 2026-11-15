@@ -1,22 +1,22 @@
 {
-  "generated": "2026-11-14T22:11:03.598Z",
+  "generated": "2026-11-15T05:51:28.195Z",
   "count": 89,
   "pages": [
-    {
-      "slug": "evening-edition",
-      "url": "https://nickcarbone.github.io/evening-edition/",
-      "title": "Evening Edition",
-      "description": "",
-      "updated": "2026-11-14T21:41:33Z",
-      "created": "2026-10-20T14:56:45Z"
-    },
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-11-14T17:30:53Z",
+      "updated": "2026-11-15T03:56:46Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "evening-edition",
+      "url": "https://nickcarbone.github.io/evening-edition/",
+      "title": "Evening Edition",
+      "description": "",
+      "updated": "2026-11-15T01:20:52Z",
+      "created": "2026-10-20T14:56:45Z"
     },
     {
       "slug": "elsewhere-tv",
@@ -566,7 +566,7 @@
       "slug": "open-loops",
       "url": "https://nickcarbone.github.io/open-loops/",
       "title": "Open Loops",
-      "description": "nickcarbone.github.io/open-loops/",
+      "description": "Published via Publisher �� nickcarbone.github.io/open-loops/",
       "updated": "2026-06-05T04:22:10Z",
       "created": "2026-06-05T04:21:58Z"
     },
