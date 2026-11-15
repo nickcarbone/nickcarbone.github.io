@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 29,
+      "slug": "2026-11-15-the-album-rooms",
+      "date": "2026-11-15",
+      "title": "The Album Rooms",
+      "dek": "Twenty recording studios where landmark records were made, from a Memphis storefront to a Berlin ballroom by the Wall: what each room added to the sound, what stands there now, and whether you can still visit or book it.",
+      "kind": "Field guide",
+      "readingMinutes": 26,
+      "design": "Bowlby One, Petrona, Azeret Mono; track-sheet grid paper, tape-oxide brown, grease-pencil red, Dymo status labels; reel hero, opening-years tape strip, tape-box entries with tracklists.",
+      "source": "queue",
+      "brief": "The Album Rooms (field guide)\nTwenty recording studios where landmark records were made, from Muscle Shoals to Hansa by the Wall. Cover what the room itself added to the sound, what stands there now, and which ones you can still visit or book. Link each entry to a playlist of the records cut there.",
+      "factcheck": {
+        "claims": 135,
+        "fixed": 26
+      },
+      "corrections": []
+    },
+    {
       "no": 28,
       "slug": "2026-11-14-the-home-crowd",
       "date": "2026-11-14",

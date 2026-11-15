@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Album Rooms (field guide)
-Twenty recording studios where landmark records were made, from Muscle Shoals to Hansa by the Wall. Cover what the room itself added to the sound, what stands there now, and which ones you can still visit or book. Link each entry to a playlist of the records cut there.
-
 Novels That Got the City Right (literary atlas)
 Fifteen cities, each paired with the novel locals say captures it best. Walk through the real streets, bars and buildings in the book, mark what survives, and add a one-day walking route for each.
 
