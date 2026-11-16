@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-Novels That Got the City Right (literary atlas)
-Fifteen cities, each paired with the novel locals say captures it best. Walk through the real streets, bars and buildings in the book, mark what survives, and add a one-day walking route for each.
-
 The Last Great Night Trains (field guide)
 Every sleeper route still running in Europe and beyond: cabin classes, dining cars, border crossings and what a berth really costs. Add five worked trips comparing the night train with flying door to door, judged by time, cost and sleep.
 

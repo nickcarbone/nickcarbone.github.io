@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 30,
+      "slug": "2026-11-16-novels-that-got-the-city-right",
+      "date": "2026-11-16",
+      "title": "Novels That Got the City Right",
+      "dek": "Fifteen cities, each paired with the novel most often named as its truest portrait: who makes that claim, the real streets and buildings in the book, what survives of them, and a one-day walk through each.",
+      "kind": "Literary atlas",
+      "readingMinutes": 28,
+      "design": "Fraunces, EB Garamond, Karla; laid-paper cream, per-city bookcloth colours; bookshelf-spine hero, clothbound cover and open-spread entries, endpaper route maps, survival stacked bars.",
+      "source": "queue",
+      "brief": "Novels That Got the City Right (literary atlas)\nFifteen cities, each paired with the novel locals say captures it best. Walk through the real streets, bars and buildings in the book, mark what survives, and add a one-day walking route for each.",
+      "factcheck": {
+        "claims": 150,
+        "fixed": 12
+      },
+      "corrections": []
+    },
+    {
       "no": 29,
       "slug": "2026-11-15-the-album-rooms",
       "date": "2026-11-15",
