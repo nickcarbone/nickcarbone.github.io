@@ -1,7 +1,23 @@
 {
-  "generated": "2026-11-16T05:51:29.730Z",
+  "generated": "2026-11-16T12:07:12.758Z",
   "count": 89,
   "pages": [
+    {
+      "slug": "new-networks",
+      "url": "https://nickcarbone.github.io/new-networks/",
+      "title": "New Networks",
+      "description": "",
+      "updated": "2026-11-16T10:58:32Z",
+      "created": "2026-10-20T14:53:19Z"
+    },
+    {
+      "slug": "evening-edition",
+      "url": "https://nickcarbone.github.io/evening-edition/",
+      "title": "Evening Edition",
+      "description": "",
+      "updated": "2026-11-16T08:36:11Z",
+      "created": "2026-10-20T14:56:45Z"
+    },
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
@@ -9,14 +25,6 @@
       "description": "",
       "updated": "2026-11-16T03:56:35Z",
       "created": "2026-07-10T01:19:16Z"
-    },
-    {
-      "slug": "evening-edition",
-      "url": "https://nickcarbone.github.io/evening-edition/",
-      "title": "Evening Edition",
-      "description": "",
-      "updated": "2026-11-16T01:23:38Z",
-      "created": "2026-10-20T14:56:45Z"
     },
     {
       "slug": "elsewhere-tv",
@@ -57,14 +65,6 @@
       "description": "nickcarbone.github.io/michelin-atlas/",
       "updated": "2026-11-11T02:53:58Z",
       "created": "2026-11-11T02:53:47Z"
-    },
-    {
-      "slug": "new-networks",
-      "url": "https://nickcarbone.github.io/new-networks/",
-      "title": "New Networks",
-      "description": "",
-      "updated": "2026-11-02T11:12:46Z",
-      "created": "2026-10-20T14:53:19Z"
     },
     {
       "slug": "first-light",
