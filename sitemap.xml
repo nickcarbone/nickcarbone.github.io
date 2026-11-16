@@ -161,12 +161,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/new-networks/</loc>
-    <lastmod>2026-11-16</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/evening-edition/</loc>
+    <loc>https://nickcarbone.github.io/elsewhere-tv/</loc>
     <lastmod>2026-11-16</lastmod>
     <priority>0.8</priority>
   </url>
@@ -176,8 +171,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/elsewhere-tv/</loc>
-    <lastmod>2026-11-15</lastmod>
+    <loc>https://nickcarbone.github.io/new-networks/</loc>
+    <lastmod>2026-11-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nickcarbone.github.io/evening-edition/</loc>
+    <lastmod>2026-11-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
