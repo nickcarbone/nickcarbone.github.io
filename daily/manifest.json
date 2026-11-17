@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 31,
+      "slug": "2026-11-17-the-typeface-register",
+      "date": "2026-11-17",
+      "title": "The Typeface Register",
+      "dek": "Fifteen typefaces that a railway, a ministry, a bank committee or a software company chose for everyone else: who drew each one, what the brief demanded, and where you still read it.",
+      "kind": "Annotated register",
+      "readingMinutes": 18,
+      "design": "Instrument Serif, Public Sans, Spline Sans Mono; white proof sheet, CMYK process colours by use; crop-mark hero, two-sided timeline, register sheets with live device-font specimens.",
+      "source": "queue",
+      "brief": "The Typeface Register (annotated register)\nFifteen typefaces that ended up running the world, from Helvetica on the New York subway to Transport on British road signs and the font on passports. Cover who designed each one, the brief they were given, and how a committee’s choice shaped what billions of people read every day.",
+      "factcheck": {
+        "claims": 71,
+        "fixed": 19
+      },
+      "corrections": []
+    },
+    {
       "no": 30,
       "slug": "2026-11-16-novels-that-got-the-city-right",
       "date": "2026-11-16",

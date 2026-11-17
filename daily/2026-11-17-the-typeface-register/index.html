@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Typeface Register · Daily</title>
+<meta name="description" content="Fifteen typefaces that a railway, a ministry, a bank committee or a software company chose for everyone else: who drew each one, what the brief demanded, and where you still read it.">
+<meta property="og:title" content="The Typeface Register">
+<meta property="og:description" content="Fifteen typefaces that a railway, a ministry, a bank committee or a software company chose for everyone else: who drew each one, what the brief demanded, and where you still read it.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-17-the-typeface-register/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-17-the-typeface-register/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Spline+Sans+Mono:wght@400;500;600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: a printer's proof of a standards register. Crop marks and process-colour
+   registration targets frame the hero; each typeface is a register sheet with a numbered
+   title block, field table and specimen strip; process colours code where each face is read. */
+:root{
+  --paper:#f5f6f4; --sheet:#ffffff; --ink:#16181b; --muted:#4d535a; --rule:#c9cdd1; --faint:#e6e8ea;
+  --way:#0a6a8f;   /* process cyan, darkened for text contrast */
+  --doc:#a3155f;   /* process magenta */
+  --mac:#7a5a00;   /* process yellow, as printed ochre */
+  --scr:#3b3f9a;   /* violet */
+  --key:#16181b;
+  --display:'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --body:'Public Sans', 'Helvetica Neue', Arial, sans-serif;
+  --mono:'Spline Sans Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#121417; --sheet:#1a1d21; --ink:#eceee9; --muted:#aeb4ba; --rule:#3a3f45; --faint:#24282d;
+  --way:#5cc0e6; --doc:#f07ab4; --mac:#e2bf55; --scr:#9ea2f2; --key:#eceee9; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --paper:#121417; --sheet:#1a1d21; --ink:#eceee9; --muted:#aeb4ba; --rule:#3a3f45; --faint:#24282d;
+  --way:#5cc0e6; --doc:#f07ab4; --mac:#e2bf55; --scr:#9ea2f2; --key:#eceee9; color-scheme:dark; }
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none!important;animation:none!important} }
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible{outline:2px solid var(--doc);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.measure{max-width:40rem}
+.c-way{--c:var(--way)} .c-doc{--c:var(--doc)} .c-mac{--c:var(--mac)} .c-scr{--c:var(--scr)}
+
+/* top strip */
+.strip{border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:13px;letter-spacing:.04em;background:var(--sheet)}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;min-height:44px}
+.strip a{text-decoration:none;font-weight:600;display:inline-flex;align-items:center;min-height:40px}
+.strip a:hover{color:var(--doc)}
+
+/* hero proof */
+.hero{padding-block:40px 28px}
+.proof{position:relative;background:var(--sheet);border:1px solid var(--rule);padding:44px 28px 30px}
+.crop{position:absolute;width:22px;height:22px;border-color:var(--ink);border-style:solid;border-width:0}
+.crop.k-tl{top:-12px;left:-12px;border-right-width:1px;border-bottom-width:1px}
+.crop.k-tr{top:-12px;right:-12px;border-left-width:1px;border-bottom-width:1px}
+.crop.k-bl{bottom:-12px;left:-12px;border-right-width:1px;border-top-width:1px}
+.crop.k-br{bottom:-12px;right:-12px;border-left-width:1px;border-top-width:1px}
+.regmark{position:absolute;top:12px;right:14px;width:30px;height:30px}
+.bar{display:flex;gap:0;margin:0 0 22px;height:12px;max-width:260px}
+.bar span{flex:1}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(3rem, 11vw, 7.4rem);line-height:.92;letter-spacing:-.01em;margin:0 0 18px;text-wrap:balance}
+h1 em{font-style:italic;color:var(--doc)}
+.dek{font-size:1.2rem;line-height:1.45;max-width:38rem;margin:0 0 22px;color:var(--ink)}
+.metrics{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--ink);margin-top:18px;font-family:var(--mono);font-size:13px}
+.metrics div{padding:8px 18px 0 0;margin-right:18px;color:var(--muted)}
+.metrics b{display:block;font-family:var(--body);font-size:1.4rem;color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+
+/* intro */
+.intro{padding-block:16px 8px}
+.intro p{margin:0 0 1em}
+.intro p:first-child::first-line{font-weight:700}
+h2.sec{font-family:var(--display);font-weight:400;font-size:clamp(2rem,5vw,2.8rem);line-height:1;margin:0 0 6px}
+.sec-note{font-family:var(--mono);font-size:13px;color:var(--muted);margin:0 0 18px;letter-spacing:.02em}
+section.block{padding-block:34px}
+section.block + section.block{border-top:1px solid var(--rule)}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 18px}
+.lg{display:flex;align-items:baseline;gap:7px;font-weight:700;font-size:15px}
+.lg em{font-style:normal;font-weight:400;color:var(--muted);font-size:14px}
+.dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--c);flex:none;transform:translateY(1px)}
+
+/* timeline */
+.tl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--rule);background:var(--sheet)}
+.tl{position:relative;min-width:1050px;height:220px;margin:0 90px 0 30px}
+.axis{position:absolute;left:0;right:0;top:98px;border-top:1.5px solid var(--ink)}
+.dec{position:absolute;transform:translateX(-50%);font-family:var(--mono);font-size:12px;color:var(--muted)}
+.dec::before{content:"";position:absolute;left:50%;top:-8px;height:6px;border-left:1px solid var(--ink)}
+.tk{position:absolute;transform:translateX(-1px);text-decoration:none;display:flex;flex-direction:column;align-items:flex-start;padding:0 0 0 6px;border-left:2px solid var(--c);min-height:40px}
+.tk.s-d{flex-direction:column-reverse;justify-content:flex-start}
+.tk-y{font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.2}
+.tk-n{font-weight:700;font-size:14px;line-height:1.15;color:var(--c);white-space:nowrap}
+.tk:hover .tk-n,.tk:focus-visible .tk-n{text-decoration:underline}
+
+/* who chose */
+.ch{border-top:1.5px solid var(--ink)}
+.ch-row{display:grid;grid-template-columns:minmax(0,17rem) minmax(0,1fr);gap:10px 20px;padding:12px 0;border-bottom:1px solid var(--rule);align-items:center}
+.ch-k{font-weight:700;display:flex;justify-content:space-between;gap:10px}
+.ch-c{font-family:var(--mono);font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
+.ch-v{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border:1.5px solid var(--c);color:var(--c);text-decoration:none;font-weight:600;font-size:15px;background:var(--sheet)}
+.chip:hover{background:var(--c);color:var(--sheet)}
+@media (max-width:640px){ .ch-row{grid-template-columns:minmax(0,1fr)} }
+
+/* index */
+.idx{list-style:none;margin:0;padding:0;columns:2 280px;column-gap:28px;border-top:1.5px solid var(--ink)}
+.idx li{break-inside:avoid;border-bottom:1px solid var(--rule)}
+.idx a{display:grid;grid-template-columns:4.2rem minmax(0,1fr) auto;gap:10px;align-items:baseline;min-height:44px;padding:10px 0;text-decoration:none}
+.idx a:hover .ix-t{text-decoration:underline}
+.ix-n,.ix-y{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.ix-t{font-weight:600}
+
+/* entries */
+.entries{display:grid;gap:34px;padding-block:10px 20px}
+.entry{background:var(--sheet);border:1px solid var(--rule);border-top:6px solid var(--c);scroll-margin-top:16px;min-width:0}
+.sheet-head{display:grid;grid-template-columns:auto minmax(0,1fr);border-bottom:1.5px solid var(--ink)}
+.reg{border-right:1.5px solid var(--ink);padding:14px 16px;display:flex;flex-direction:column;justify-content:center;font-family:var(--mono);min-width:6.4rem}
+.reg-k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.reg-n{font-size:20px;font-weight:600;color:var(--c);font-variant-numeric:tabular-nums}
+.sheet-title{padding:14px 20px 16px;min-width:0}
+.kicker{margin:0;font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+.entry h3{font-family:var(--display);font-weight:400;font-size:clamp(2.2rem,6vw,3.4rem);line-height:1;margin:6px 0 4px}
+.where{margin:0;color:var(--muted);font-size:15.5px}
+.fields{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-bottom:1px solid var(--rule)}
+.f{padding:12px 20px;border-bottom:1px solid var(--faint);min-width:0}
+.f:nth-child(odd){border-right:1px solid var(--faint)}
+.f:nth-last-child(-n+2){border-bottom:0}
+.f dt{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--c);font-weight:600;margin-bottom:2px}
+.f dd{margin:0;font-size:16px;line-height:1.5}
+@media (max-width:640px){
+  .fields{grid-template-columns:minmax(0,1fr)}
+  .f:nth-child(odd){border-right:0}
+  .f:nth-last-child(2){border-bottom:1px solid var(--faint)}
+}
+.specimen{border-bottom:1px solid var(--rule);padding:16px 20px 12px;background:
+  repeating-linear-gradient(to bottom, transparent 0 31px, var(--faint) 31px 32px)}
+.spec-line{margin:0;font-size:clamp(1.25rem,3.6vw,1.9rem);line-height:1.3;overflow-wrap:anywhere}
+.spec-note{margin:6px 0 0;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.prose{padding:18px 20px 6px;max-width:44rem}
+.prose p{margin:0 0 1em}
+.myth{margin:0 20px 20px;padding:12px 16px;border:1.5px dashed var(--c);max-width:42rem}
+.myth h4{margin:0 0 4px;font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.myth p{margin:0;font-size:16px}
+sup.ref{font-size:.68em;line-height:0;font-family:var(--mono);margin-left:1px}
+sup.ref a{text-decoration:none;color:var(--c, var(--doc));padding:0 1px}
+sup.ref a:hover{text-decoration:underline}
+
+/* method, sources, footer */
+.method p{margin:0 0 1em}
+.srcs{margin:0;padding-left:2.6em;columns:2 340px;column-gap:36px;font-size:14.5px;line-height:1.45}
+.srcs li{break-inside:avoid;margin:0 0 .55em;padding-left:2px}
+.srcs li::marker{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.srcs a{overflow-wrap:anywhere}
+.srcs .pub{color:var(--muted)}
+.srcs li:target{background:var(--faint)}
+.foot{border-top:1.5px solid var(--ink);background:var(--sheet);padding-block:22px 30px;font-size:15px}
+.foot p{margin:0 0 6px}
+.foot a{display:inline-flex;align-items:center;min-height:40px;min-width:44px;justify-content:center}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 031 · Tuesday 17 November 2026</span></div></div>
+<main>
+<header class="hero"><div class="wrap">
+  <div class="proof">
+    <span class="crop k-tl"></span><span class="crop k-tr"></span><span class="crop k-bl"></span><span class="crop k-br"></span>
+    <svg class="regmark" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="9" fill="none" stroke="var(--key)" stroke-width="1.2"/><circle cx="15" cy="15" r="4" fill="var(--key)"/><line x1="0" y1="15" x2="30" y2="15" stroke="var(--key)" stroke-width="1.2"/><line x1="15" y1="0" x2="15" y2="30" stroke="var(--key)" stroke-width="1.2"/></svg>
+    <div class="bar" aria-hidden="true"><span style="background:var(--way)"></span><span style="background:var(--doc)"></span><span style="background:var(--mac)"></span><span style="background:var(--key)"></span><span style="background:var(--scr)"></span></div>
+    <p class="eyebrow">Annotated register · 15 entries · 1916–2011</p>
+    <h1>The Typeface <em>Register</em></h1>
+    <p class="dek">Fifteen typefaces that a railway, a ministry, a bank committee or a software company chose for everyone else: who drew each one, what the brief demanded, and where you still read it.</p>
+    <div class="metrics">
+      <div><b>15</b>typefaces</div>
+      <div><b>5</b>chosen by a committee or standards body</div>
+      <div><b>77</b>sources</div>
+    </div>
+  </div>
+</div></header>
+
+<section class="intro"><div class="wrap"><div class="measure">
+<p>Most people never choose the type they read most. A railway manager chose it in 1913, a bankers' committee in 1958, a German highway research institute at the end of the 1970s, a software company in 2007. The letters on a motorway sign, the numbers along the bottom of a cheque and the two lines of chevrons under a passport photo were each fixed by a brief, a test and a decision, often recorded in a regulation or a standards document that almost nobody reads.</p>
+<p>This register takes fifteen of those decisions, in order of the year the face was drawn or adopted. Each sheet gives who drew the letters, who chose them, when, what the brief asked for, and where the face is still read. Some of the familiar stories do not survive the paperwork: the New York subway did not start out in Helvetica, the Times face it replaced was never called Times Old Roman, and Britain's road-sign alphabet was drawn against the committee's advice.</p>
+<p>Where your device has one of these typefaces installed, the sheet shows a line set in it. Johnston, DIN 1451, Highway Gothic, E-13B, Transport and FE-Schrift are not normally installed on phones or computers, so those sheets are text only.</p>
+</div></div></section>
+
+<section class="block"><div class="wrap">
+  <h2 class="sec">A century of choices</h2>
+  <p class="sec-note">Year drawn or adopted · tap a name to jump to its sheet · scrolls sideways on small screens</p>
+  <div class="legend"><span class="lg c-way"><span class="dot"></span>Wayfinding<em>Signs read on the move</em></span><span class="lg c-doc"><span class="dot"></span>Page and document<em>Newspapers, typewriters, office software</em></span><span class="lg c-mac"><span class="dot"></span>Machine-read<em>Characters built for scanners and readers</em></span><span class="lg c-scr"><span class="dot"></span>Screen<em>Operating systems and phones</em></span></div>
+  <div class="tl-scroll" role="region" aria-label="Timeline of the fifteen typefaces" tabindex="0"><div class="tl">
+    <div class="axis"></div><span class="dec" style="left:0.00%;top:102px">1910</span><span class="dec" style="left:9.09%;top:102px">1920</span><span class="dec" style="left:18.18%;top:102px">1930</span><span class="dec" style="left:27.27%;top:102px">1940</span><span class="dec" style="left:36.36%;top:102px">1950</span><span class="dec" style="left:45.45%;top:102px">1960</span><span class="dec" style="left:54.55%;top:102px">1970</span><span class="dec" style="left:63.64%;top:102px">1980</span><span class="dec" style="left:72.73%;top:102px">1990</span><span class="dec" style="left:81.82%;top:102px">2000</span><span class="dec" style="left:90.91%;top:102px">2010</span><span class="dec" style="left:100.00%;top:102px">2020</span><a class="tk c-way s-u" href="#johnston" style="left:5.45%;top:52px;height:46px"><span class="tk-y">1916</span><span class="tk-n">Johnston</span></a><a class="tk c-doc s-u" href="#gill-sans" style="left:16.36%;top:12px;height:86px"><span class="tk-y">1928</span><span class="tk-n">Gill Sans</span></a><a class="tk c-doc s-d" href="#times" style="left:20.00%;top:122px;height:46px"><span class="tk-y">1932</span><span class="tk-n">Times New Roman</span></a><a class="tk c-way s-u" href="#din-1451" style="left:23.64%;top:52px;height:46px"><span class="tk-y">1936</span><span class="tk-n">DIN 1451</span></a><a class="tk c-way s-d" href="#highway-gothic" style="left:34.55%;top:122px;height:86px"><span class="tk-y">1948</span><span class="tk-n">Highway Gothic</span></a><a class="tk c-doc s-d" href="#courier" style="left:40.91%;top:122px;height:46px"><span class="tk-y">1955</span><span class="tk-n">Courier</span></a><a class="tk c-way s-u" href="#helvetica" style="left:42.73%;top:12px;height:86px"><span class="tk-y">1957</span><span class="tk-n">Helvetica</span></a><a class="tk c-mac s-u" href="#e13b" style="left:43.64%;top:52px;height:46px"><span class="tk-y">1958</span><span class="tk-n">E-13B</span></a><a class="tk c-way s-d" href="#transport" style="left:50.00%;top:122px;height:46px"><span class="tk-y">1965</span><span class="tk-n">Transport</span></a><a class="tk c-mac s-u" href="#ocr-b" style="left:52.73%;top:52px;height:46px"><span class="tk-y">1968</span><span class="tk-n">OCR-B</span></a><a class="tk c-way s-u" href="#frutiger" style="left:59.09%;top:12px;height:86px"><span class="tk-y">1975</span><span class="tk-n">Frutiger</span></a><a class="tk c-mac s-d" href="#fe-schrift" style="left:63.64%;top:122px;height:46px"><span class="tk-y">1980</span><span class="tk-n">FE-Schrift</span></a><a class="tk c-scr s-u" href="#arial" style="left:65.45%;top:52px;height:46px"><span class="tk-y">1982</span><span class="tk-n">Arial</span></a><a class="tk c-doc s-d" href="#calibri" style="left:88.18%;top:122px;height:46px"><span class="tk-y">2007</span><span class="tk-n">Calibri</span></a><a class="tk c-scr s-u" href="#roboto" style="left:91.82%;top:52px;height:46px"><span class="tk-y">2011</span><span class="tk-n">Roboto</span></a>
+  </div></div>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <h2 class="sec">Who chose</h2>
+  <p class="sec-note">The body that made each face the standard, as the sheets record it</p>
+  <div class="ch"><div class="ch-row"><div class="ch-k">Standards body or committee<span class="ch-c">5</span></div><div class="ch-v"><a class="chip c-way" href="#din-1451">DIN 1451</a><a class="chip c-mac" href="#e13b">E-13B</a><a class="chip c-way" href="#transport">Transport</a><a class="chip c-mac" href="#ocr-b">OCR-B</a><a class="chip c-mac" href="#fe-schrift">FE-Schrift</a></div></div><div class="ch-row"><div class="ch-k">Public authority or transport operator<span class="ch-c">4</span></div><div class="ch-v"><a class="chip c-way" href="#johnston">Johnston</a><a class="chip c-way" href="#highway-gothic">Highway Gothic</a><a class="chip c-way" href="#helvetica">Helvetica</a><a class="chip c-way" href="#frutiger">Frutiger</a></div></div><div class="ch-row"><div class="ch-k">Newspaper or type foundry<span class="ch-c">2</span></div><div class="ch-v"><a class="chip c-doc" href="#gill-sans">Gill Sans</a><a class="chip c-doc" href="#times">Times New Roman</a></div></div><div class="ch-row"><div class="ch-k">Technology company<span class="ch-c">4</span></div><div class="ch-v"><a class="chip c-doc" href="#courier">Courier</a><a class="chip c-scr" href="#arial">Arial</a><a class="chip c-doc" href="#calibri">Calibri</a><a class="chip c-scr" href="#roboto">Roboto</a></div></div></div>
+</div></section>
+
+<section class="block"><div class="wrap">
+  <h2 class="sec">Index of sheets</h2>
+  <p class="sec-note">Register number · typeface · year</p>
+  <ol class="idx"><li><a href="#johnston"><span class="ix-n">TR-01</span><span class="ix-t">Johnston</span><span class="ix-y">1916</span></a></li><li><a href="#gill-sans"><span class="ix-n">TR-02</span><span class="ix-t">Gill Sans</span><span class="ix-y">1928</span></a></li><li><a href="#times"><span class="ix-n">TR-03</span><span class="ix-t">Times New Roman</span><span class="ix-y">1932</span></a></li><li><a href="#din-1451"><span class="ix-n">TR-04</span><span class="ix-t">DIN 1451</span><span class="ix-y">1936</span></a></li><li><a href="#highway-gothic"><span class="ix-n">TR-05</span><span class="ix-t">Highway Gothic</span><span class="ix-y">Late 1940s</span></a></li><li><a href="#courier"><span class="ix-n">TR-06</span><span class="ix-t">Courier</span><span class="ix-y">1955</span></a></li><li><a href="#helvetica"><span class="ix-n">TR-07</span><span class="ix-t">Helvetica</span><span class="ix-y">1957</span></a></li><li><a href="#e13b"><span class="ix-n">TR-08</span><span class="ix-t">E-13B</span><span class="ix-y">1958</span></a></li><li><a href="#transport"><span class="ix-n">TR-09</span><span class="ix-t">Transport</span><span class="ix-y">1965</span></a></li><li><a href="#ocr-b"><span class="ix-n">TR-10</span><span class="ix-t">OCR-B</span><span class="ix-y">1968</span></a></li><li><a href="#frutiger"><span class="ix-n">TR-11</span><span class="ix-t">Frutiger</span><span class="ix-y">1975</span></a></li><li><a href="#fe-schrift"><span class="ix-n">TR-12</span><span class="ix-t">FE-Schrift</span><span class="ix-y">1980</span></a></li><li><a href="#arial"><span class="ix-n">TR-13</span><span class="ix-t">Arial</span><span class="ix-y">1982</span></a></li><li><a href="#calibri"><span class="ix-n">TR-14</span><span class="ix-t">Calibri</span><span class="ix-y">2007</span></a></li><li><a href="#roboto"><span class="ix-n">TR-15</span><span class="ix-t">Roboto</span><span class="ix-y">2011</span></a></li></ol>
+</div></section>
+
+<section class="block" aria-label="The register"><div class="wrap">
+  <div class="entries">
+<article class="entry c-way" id="johnston">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-01</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Wayfinding · 1916</p>
+      <h3>Johnston</h3>
+      <p class="where">Every sign, map and poster on Transport for London's network</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Edward Johnston, calligrapher, helped by his former pupil Eric Gill <sup class="ref"><a href="#s2" aria-label="Source 2">2</a>,<a href="#s4" aria-label="Source 4">4</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>Frank Pick, for the London Underground <sup class="ref"><a href="#s1" aria-label="Source 1">1</a>,<a href="#s2" aria-label="Source 2">2</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>Commissioned 1913; capitals finished June 1916 <sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>Lettering for posters and notices that busy passengers could read across a crowded platform <sup class="ref"><a href="#s3" aria-label="Source 3">3</a></sup></dd></div></dl>
+  
+  <div class="prose"><p>Johnston was not a type-cutter. TfL's own archive describes him as a calligrapher who drew the whole alphabet by hand, delivering the capitals in June 1916 and the lower case and numerals the following month; a complete set was not run off by an Underground printer until June 1917, when the letters began appearing on posters and notices <sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup>. Eric Gill, his friend, neighbour and former pupil, assisted, and was paid ten per cent of the fee <sup class="ref"><a href="#s4" aria-label="Source 4">4</a></sup>.</p><p>Sources disagree on when the work began. TfL and its archive date the commission to 1913 <sup class="ref"><a href="#s1" aria-label="Source 1">1</a>,<a href="#s2" aria-label="Source 2">2</a></sup>; the Design Museum gives 1916 <sup class="ref"><a href="#s3" aria-label="Source 3">3</a></sup>. What is not in doubt is that the face outlived the company that ordered it. After a review by typographic consultants in 1979, Eiichi Kono redrew it between 1979 and 1983 as New Johnston <sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup>.</p><p>For the centenary in 2016 Monotype drew Johnston100 for TfL, adding the <b>#</b> and <b>@</b> that a 1916 alphabet never needed and new hairline and thin weights for screens <sup class="ref"><a href="#s1" aria-label="Source 1">1</a>,<a href="#s5" aria-label="Source 5">5</a></sup>. TfL says the face now spells out words across its entire network <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup>. The Tube alone carried an estimated 1,216 million journeys in 2024/25, a provisional figure <sup class="ref"><a href="#s6" aria-label="Source 6">6</a></sup>.</p></div>
+  
+</article>
+<article class="entry c-doc" id="gill-sans">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-02</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Page and document · 1928</p>
+      <h3>Gill Sans</h3>
+      <p class="where">LNER timetables and posters, British Railways stations, Penguin covers</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Eric Gill, for the Monotype Corporation <sup class="ref"><a href="#s7" aria-label="Source 7">7</a>,<a href="#s8" aria-label="Source 8">8</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>Stanley Morison, Monotype's typographic adviser; then the London and North Eastern Railway <sup class="ref"><a href="#s7" aria-label="Source 7">7</a>,<a href="#s9" aria-label="Source 9">9</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>Released by Monotype 1928; LNER standard by the early 1930s <sup class="ref"><a href="#s8" aria-label="Source 8">8</a>,<a href="#s9" aria-label="Source 9">9</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>A commercial sans serif built on the capitals Gill had painted on a Bristol bookshop <sup class="ref"><a href="#s7" aria-label="Source 7">7</a></sup></dd></div></dl>
+  <div class="specimen" data-fonts='[&quot;Gill Sans&quot;, &quot;Gill Sans MT&quot;]' data-label="Gill Sans" hidden><p class="spec-line">LONDON AND NORTH EASTERN RAILWAY · Flying Scotsman</p><p class="spec-note"></p></div>
+  <div class="prose"><p>The face began as a shop sign. Gill painted sans-serif capitals on the fascia of Douglas Cleverdon's bookshop in Bristol, and Morison, who saw them, ordered a typeface based on those letters <sup class="ref"><a href="#s7" aria-label="Source 7">7</a></sup>. Monotype issued it in 1928, and for its first decades recommended it for advertising and display rather than running text <sup class="ref"><a href="#s7" aria-label="Source 7">7</a></sup>.</p><p>Its biggest early customer was a railway. The London and North Eastern Railway made Gill Sans the type of its posters, timetables and publicity; the Science Museum Group holds a 1934 booklet, <i>An Account of the LNER Type Standardization</i>, printed in it <sup class="ref"><a href="#s9" aria-label="Source 9">9</a></sup>, and a replica of the Flying Scotsman headboard, credited to Gill and dated to the train on 21 November 1932 <sup class="ref"><a href="#s10" aria-label="Source 10">10</a></sup>. Penguin used it on its covers from 1935 <sup class="ref"><a href="#s11" aria-label="Source 11">11</a></sup>.</p></div>
+  
+</article>
+<article class="entry c-doc" id="times">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-03</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Page and document · 1932</p>
+      <h3>Times New Roman</h3>
+      <p class="where">The Times from 1932; Windows; Microsoft Word's default until 2007; US diplomatic paper</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Victor Lardent of The Times's advertising department, under Stanley Morison, with Monotype's drawing office <sup class="ref"><a href="#s12" aria-label="Source 12">12</a>,<a href="#s13" aria-label="Source 13">13</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>The Times, on a memorandum from Morison considered by a committee of the paper <sup class="ref"><a href="#s13" aria-label="Source 13">13</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>First issue set in it 3 October 1932 <sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>A sturdier, more economical text face to replace the paper's spindly 19th-century type <sup class="ref"><a href="#s12" aria-label="Source 12">12</a>,<a href="#s15" aria-label="Source 15">15</a></sup></dd></div></dl>
+  <div class="specimen" data-fonts='[&quot;Times New Roman&quot;]' data-label="Times New Roman" hidden><p class="spec-line">The Times, Monday 3 October 1932</p><p class="spec-note"></p></div>
+  <div class="prose"><p>It started with an insult. In 1929 The Times asked Monotype to buy advertising space, and Morison replied that he would rather pay the paper £1,000 to keep its hands off a Monotype advertisement, because its printing was so poor and its type so dated. The paper hired him as typographic adviser, and in October 1930 he proposed an entirely new typeface <sup class="ref"><a href="#s13" aria-label="Source 13">13</a></sup>.</p><p>Lardent's drawings are lost, and the credit is more shared than the usual two names suggest. Dan Rhatigan, a former Monotype type director, argues that much of the work belongs to the company's drawing office <sup class="ref"><a href="#s13" aria-label="Source 13">13</a></sup>. The German National Library's summary of the brief is the one Morison set: clear, legible and economical with space <sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>. The paper appeared in it on 3 October 1932, and the paper kept the face to itself for a year <sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>.</p><p>The Times itself moved on to Times Europa in 1972 <sup class="ref"><a href="#s15" aria-label="Source 15">15</a></sup>, but by then the face belonged to everyone. It shipped with Windows from version 3.1 <sup class="ref"><a href="#s64" aria-label="Source 64">64</a></sup> and was the default in Word until Calibri replaced it in 2007 <sup class="ref"><a href="#s69" aria-label="Source 69">69</a></sup>. In December 2025 the US secretary of state, Marco Rubio, ordered 14-point Times New Roman back onto all department paper, reversing a 2023 switch to Calibri <sup class="ref"><a href="#s29" aria-label="Source 29">29</a>,<a href="#s32" aria-label="Source 32">32</a></sup>.</p></div>
+  <aside class="myth"><h4>On the record</h4><p>There was no face called Times Old Roman. The type The Times used before 1932 was a Monotype modern, and the phrase came later, from a 1932 <i>Monotype Recorder</i> cover <sup class="ref"><a href="#s14" aria-label="Source 14">14</a></sup>.</p></aside>
+</article>
+<article class="entry c-way" id="din-1451">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-04</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Wayfinding · 1936</p>
+      <h3>DIN 1451</h3>
+      <p class="where">German road signs, house numbers, postmarks and, until 2000, number plates</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>No single designer: a committee chaired by Ludwig Goller, a Siemens engineer <sup class="ref"><a href="#s16" aria-label="Source 16">16</a>,<a href="#s17" aria-label="Source 17">17</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>The German standards committee, today the Deutsches Institut für Normung <sup class="ref"><a href="#s16" aria-label="Source 16">16</a>,<a href="#s18" aria-label="Source 18">18</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>Issued as a standard in 1936; a preliminary version dates from 1931 <sup class="ref"><a href="#s16" aria-label="Source 16">16</a>,<a href="#s19" aria-label="Source 19">19</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>&ldquo;A common, easily and clearly legible type&rdquo; for technology and transport <sup class="ref"><a href="#s16" aria-label="Source 16">16</a></sup></dd></div></dl>
+  
+  <div class="prose"><p>DIN 1451 is a typeface written as a technical standard. Its letters derive from lettering used by the Prussian state railways early in the century, and the committee that turned it into a norm was chaired by Ludwig Goller, who led the standards body's work on technical drawing and signage from 1925 <sup class="ref"><a href="#s16" aria-label="Source 16">16</a>,<a href="#s17" aria-label="Source 17">17</a>,<a href="#s18" aria-label="Source 18">18</a></sup>. The German National Library gives the brief as a type whose letters could be told apart at a distance <sup class="ref"><a href="#s16" aria-label="Source 16">16</a></sup>. Goller's employer, Siemens, put it in its own logo in 1936 <sup class="ref"><a href="#s17" aria-label="Source 17">17</a></sup>.</p><p>Fonts in Use dates the first definition to 1931 and the confirmed standard to 1936 <sup class="ref"><a href="#s19" aria-label="Source 19">19</a></sup>; the library and the foundry Fontwerk give 1936 <sup class="ref"><a href="#s16" aria-label="Source 16">16</a>,<a href="#s18" aria-label="Source 18">18</a></sup>. Adolf Gropp revised the road-sign version for the Federal Highway Research Institute; Fontwerk dates the revision to 1981, Fonts in Use to 1980 <sup class="ref"><a href="#s18" aria-label="Source 18">18</a>,<a href="#s19" aria-label="Source 19">19</a></sup>. It stayed on German number plates until FE-Schrift (TR-12) completely replaced it in 2000 <sup class="ref"><a href="#s65" aria-label="Source 65">65</a></sup>.</p><p>Because it was a public standard rather than a product, foundries could draw their own versions. FontShop's FF DIN came out in 1995 and carried the engineering alphabet into corporate branding <sup class="ref"><a href="#s19" aria-label="Source 19">19</a></sup>.</p></div>
+  
+</article>
+<article class="entry c-way" id="highway-gothic">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-05</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Wayfinding · Late 1940s</p>
+      <h3>Highway Gothic</h3>
+      <p class="where">US interstate and highway signs; also airfield signs and school buses</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Usually credited to the engineer Theodore W. (Ted) Forbes <sup class="ref"><a href="#s25" aria-label="Source 25">25</a>,<a href="#s26" aria-label="Source 26">26</a></sup>; FHWA's own reports name no designer</dd></div><div class="f"><dt>Chosen by</dt><dd>The federal roads agency, now the Federal Highway Administration (FHWA) <sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>Published as the Standard Alphabets in the late 1940s; sources give 1948 <sup class="ref"><a href="#s26" aria-label="Source 26">26</a></sup> and 1949 <sup class="ref"><a href="#s25" aria-label="Source 25">25</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>One national set of letters that sign shops could reproduce by hand <sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup></dd></div></dl>
+  
+  <div class="prose"><p>Its real name is the Standard Alphabets for Highway Signs; &ldquo;Highway Gothic&rdquo; is a nickname <sup class="ref"><a href="#s26" aria-label="Source 26">26</a></sup>. The alphabets come in a range of widths, series B to F plus the wider E(Modified), and FHWA notes that the narrowest, series A, was dropped as unworkable in manual fabrication <sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup>. The federal sign manual requires E(Modified) on freeway and expressway guide signs, and the alphabets also turn up in specifications for airfield signs and vehicles such as school buses <sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup>.</p><p>The face's one serious challenger came from a design firm. Clearview, by Donald Meeker, Chris O'Hara and James Montalbano, was tested in Pennsylvania in the 1990s <sup class="ref"><a href="#s23" aria-label="Source 23">23</a>,<a href="#s24" aria-label="Source 24">24</a></sup>, and FHWA granted it interim approval on 2 September 2004 <sup class="ref"><a href="#s20" aria-label="Source 20">20</a>,<a href="#s22" aria-label="Source 22">22</a></sup>. In January 2016 FHWA withdrew that approval, citing &ldquo;significant confusion and inconsistency&rdquo; in sign design and fabrication and the font's &ldquo;poorer performance in certain applications&rdquo; <sup class="ref"><a href="#s21" aria-label="Source 21">21</a></sup>. Congress then forced a partial climbdown: in March 2018 FHWA reinstated Clearview only for agencies already approved, and said it made no recommendation or endorsement <sup class="ref"><a href="#s22" aria-label="Source 22">22</a></sup>. FHWA counts 26 states that had received approval <sup class="ref"><a href="#s21" aria-label="Source 21">21</a></sup>.</p><p>The plain government alphabet has had a second life in design. Tobias Frere-Jones's Interstate, drawn for Font Bureau in the mid-1990s and now in MoMA's collection, is built on it <sup class="ref"><a href="#s25" aria-label="Source 25">25</a></sup>.</p></div>
+  
+</article>
+<article class="entry c-doc" id="courier">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-06</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Page and document · 1955</p>
+      <h3>Courier</h3>
+      <p class="where">Typewriters, screenplays, and US diplomatic paper until 2004</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Howard &ldquo;Bud&rdquo; Kettler, IBM type designer in Poughkeepsie <sup class="ref"><a href="#s27" aria-label="Source 27">27</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>IBM, for its typewriters <sup class="ref"><a href="#s27" aria-label="Source 27">27</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>1955 <sup class="ref"><a href="#s27" aria-label="Source 27">27</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>A monospaced typewriter face, later adapted to the Selectric type ball <sup class="ref"><a href="#s27" aria-label="Source 27">27</a></sup></dd></div></dl>
+  <div class="specimen" data-fonts='[&quot;Courier New&quot;, &quot;Courier&quot;]' data-label="Courier" hidden><p class="spec-line">INT. WRITERS' ROOM - NIGHT. Page one, minute one.</p><p class="spec-note"></p></div>
+  <div class="prose"><p>Kettler designed Courier in 1955 for IBM's type-bar typewriters, and it was later adapted to the golf-ball Selectric <sup class="ref"><a href="#s27" aria-label="Source 27">27</a></sup>. According to the screenwriter John August, IBM never sought exclusive rights in the design, which is why it could spread across the industry and remains royalty-free <sup class="ref"><a href="#s28" aria-label="Source 28">28</a></sup>.</p><p>Film is where Courier became law in practice. Screenplays are expected in 12-point Courier because a fixed face at a fixed size makes a page roughly a minute of screen time, so producers can compare drafts by page count <sup class="ref"><a href="#s28" aria-label="Source 28">28</a></sup>. When August commissioned a better-looking replacement, Courier Prime, released in January 2013, it kept Courier's metrics exactly so that page counts would not change <sup class="ref"><a href="#s28" aria-label="Source 28">28</a></sup>.</p><p>Courier New was the US State Department's type until 2004, according to Axios and The Washington Times, when the department moved to Times New Roman <sup class="ref"><a href="#s29" aria-label="Source 29">29</a>,<a href="#s33" aria-label="Source 33">33</a></sup>.</p></div>
+  
+</article>
+<article class="entry c-way" id="helvetica">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-07</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Wayfinding · 1957</p>
+      <h3>Helvetica</h3>
+      <p class="where">New York City subway signs, officially since 1989</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Max Miedinger, commissioned by Eduard Hoffmann of the Haas foundry, Münchenstein, as Neue Haas Grotesk <sup class="ref"><a href="#s34" aria-label="Source 34">34</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>For the subway: the New York City Transit Authority, after Unimark's 1970 standards; made official by the MTA's 1989 sign manual <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>Face finished 1957 <sup class="ref"><a href="#s34" aria-label="Source 34">34</a></sup>; official subway face December 1989 <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>For Haas: a sans serif to compete with a popular rival <sup class="ref"><a href="#s34" aria-label="Source 34">34</a></sup>. For the subway: legibility from any angle <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup></dd></div></dl>
+  <div class="specimen" data-fonts='[&quot;Helvetica&quot;]' data-label="Helvetica" hidden><p class="spec-line">Uptown &amp; The Bronx · 59 St–Columbus Circle</p><p class="spec-note"></p></div>
+  <div class="prose"><p>Hoffmann commissioned Miedinger in autumn 1956, and the design was finished in summer 1957 as Neue Haas Grotesk <sup class="ref"><a href="#s34" aria-label="Source 34">34</a></sup>. Stempel, Haas's parent company in Frankfurt, felt it could not sell a face under another foundry's name. Paul Shaw records that a Stempel manager, Heinz Eul, suggested &ldquo;Helvetia&rdquo;, the Latin name for Switzerland, and Hoffmann changed it to Helvetica <sup class="ref"><a href="#s35" aria-label="Source 35">35</a></sup>.</p><p>The subway story is where most retellings go wrong. The Transit Authority hired Unimark International in 1966 on MoMA's recommendation, with Bob Noorda leading the sign study, but Unimark's 1970 <i>Graphics Standards Manual</i> specified Standard Medium, the American name for Akzidenz-Grotesk, as offering &ldquo;the easiest legibility from any angle&rdquo; <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup>. Helvetica first appears officially in a 1980 revision, signs in it went up at the 63rd Street stations in October 1989, and a sign manual by Michael Hertz Associates made Helvetica Medium the official face that December <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup>.</p><p>Shaw notes that to most people the two faces look indistinguishable, which is how the myth took hold <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup>. He has since expanded the research into a book for MIT Press <sup class="ref"><a href="#s37" aria-label="Source 37">37</a></sup>.</p></div>
+  <aside class="myth"><h4>On the record</h4><p>Massimo Vignelli later said the black signs were chosen because of graffiti. Shaw found that legibility tests began in 1972&ndash;73 and that Vignelli was not involved in that decision <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup>.</p></aside>
+</article>
+<article class="entry c-mac" id="e13b">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-08</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Machine-read · 1958</p>
+      <h3>E-13B</h3>
+      <p class="where">The account line along the bottom of cheques in North America and much of the world</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Developed for magnetic reading in the Bank of America programme that produced ERMA, with Stanford Research Institute and General Electric <sup class="ref"><a href="#s39" aria-label="Source 39">39</a></sup>; no individual designer is credited</dd></div><div class="f"><dt>Chosen by</dt><dd>The American Bankers Association, on the unanimous recommendation of its equipment manufacturers' committee <sup class="ref"><a href="#s38" aria-label="Source 38">38</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>December 1958; ABA Publication 147 issued April 1959 <sup class="ref"><a href="#s38" aria-label="Source 38">38</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>Ten digits and four symbols that a machine could read magnetically, at speed, through stamps and smudges <sup class="ref"><a href="#s38" aria-label="Source 38">38</a>,<a href="#s40" aria-label="Source 40">40</a></sup></dd></div></dl>
+  
+  <div class="prose"><p>The American Bankers Association began work on machine-readable cheques in 1954. In November 1958 the committee of office-equipment makers it had convened unanimously recommended E-13B, and the ABA adopted it the next month, publishing the specification in April 1959 <sup class="ref"><a href="#s38" aria-label="Source 38">38</a></sup>. The machines that would read it came out of Bank of America's ERMA project, built first by Stanford Research Institute and then re-engineered by General Electric. When ERMA was shown off in September 1959, GE's spokesman was Ronald Reagan, and the system read ten cheques a second <sup class="ref"><a href="#s39" aria-label="Source 39">39</a></sup>.</p><p>The characters are odd-looking for a reason: they are read by the magnetic signal of the ink, not by their outline, which is why the set is only ten numerals and four symbols <sup class="ref"><a href="#s38" aria-label="Source 38">38</a>,<a href="#s40" aria-label="Source 40">40</a></sup>. ISO still maintains the print specification <sup class="ref"><a href="#s40" aria-label="Source 40">40</a></sup>. France went a different way with CMC-7, a set built from vertical strokes, standardised by AFNOR in 1964 <sup class="ref"><a href="#s41" aria-label="Source 41">41</a></sup>.</p><p>Cheques are declining but nowhere near gone. The Federal Reserve counted 9.2 billion cheque payments in the US in 2024, down from 17.0 billion in 2015 <sup class="ref"><a href="#s42" aria-label="Source 42">42</a></sup>.</p></div>
+  
+</article>
+<article class="entry c-way" id="transport">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-09</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Wayfinding · 1965</p>
+      <h3>Transport</h3>
+      <p class="where">Road signs across the United Kingdom; a variant on GOV.UK</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Jock Kinneir and Margaret Calvert <sup class="ref"><a href="#s43" aria-label="Source 43">43</a>,<a href="#s44" aria-label="Source 44">44</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>The Anderson Committee on motorway signs, then the Worboys Committee on all other roads, for the Ministry of Transport <sup class="ref"><a href="#s43" aria-label="Source 43">43</a>,<a href="#s46" aria-label="Source 46">46</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>In law from 1 January 1965 <sup class="ref"><a href="#s47" aria-label="Source 47">47</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>Signs a driver can read at speed; the committee asked for no new letterform at all <sup class="ref"><a href="#s44" aria-label="Source 44">44</a></sup></dd></div></dl>
+  
+  <div class="prose"><p>The Anderson Committee, set up in 1957 under Sir Colin Anderson, chairman of P&amp;O, needed signs for Britain's first motorway, and Kinneir's trial signs went up on the Preston bypass, opened in 1958 <sup class="ref"><a href="#s43" aria-label="Source 43">43</a>,<a href="#s46" aria-label="Source 46">46</a></sup>. Calvert has said the committee told Kinneir not to create a new alphabet, arguing that the German autobahn lettering would do; the pair ignored it <sup class="ref"><a href="#s44" aria-label="Source 44">44</a></sup>. The result borrowed from Akzidenz-Grotesk and took the curled tail of its lower-case l from Johnston <sup class="ref"><a href="#s44" aria-label="Source 44">44</a>,<a href="#s45" aria-label="Source 45">45</a></sup>. The Worboys Committee then extended the system to every other road, and the Traffic Signs Regulations made it law from 1 January 1965 <sup class="ref"><a href="#s43" aria-label="Source 43">43</a>,<a href="#s47" aria-label="Source 47">47</a></sup>.</p><p>It did not go unopposed. The letter-cutter David Kindersley argued in The Times and on the BBC for an all-capitals serif face. The Road Research Laboratory found his letters had a 3% legibility advantage, but only with very tight spacing, and the advantage vanished on Anderson-style layouts <sup class="ref"><a href="#s46" aria-label="Source 46">46</a></sup>.</p><p>Calvert also drew the pictograms. The girl leading a boy on the school-crossing sign was based on photographs of herself as a child, and the cow on the farm-animal warning was based on Patience, from a relative's farm <sup class="ref"><a href="#s45" aria-label="Source 45">45</a>,<a href="#s48" aria-label="Source 48">48</a>,<a href="#s49" aria-label="Source 49">49</a></sup>. &ldquo;Style never came into it,&rdquo; she told Design Week <sup class="ref"><a href="#s45" aria-label="Source 45">45</a></sup>. A redrawn New Transport is the typeface of GOV.UK <sup class="ref"><a href="#s48" aria-label="Source 48">48</a></sup>.</p></div>
+  
+</article>
+<article class="entry c-mac" id="ocr-b">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-10</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Machine-read · 1968</p>
+      <h3>OCR-B</h3>
+      <p class="where">The two machine-readable lines at the foot of every passport photo page</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Adrian Frutiger <sup class="ref"><a href="#s50" aria-label="Source 50">50</a>,<a href="#s51" aria-label="Source 51">51</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>The European Computer Manufacturers Association; later ISO and the International Civil Aviation Organization <sup class="ref"><a href="#s50" aria-label="Source 50">50</a>,<a href="#s52" aria-label="Source 52">52</a>,<a href="#s53" aria-label="Source 53">53</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>Designed 1968 <sup class="ref"><a href="#s51" aria-label="Source 51">51</a></sup>; ISO recommendation 1969, standard 1976 <sup class="ref"><a href="#s52" aria-label="Source 52">52</a></sup>; ICAO passports from 1980 <sup class="ref"><a href="#s54" aria-label="Source 54">54</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>Characters a scanner can read that people can also read comfortably <sup class="ref"><a href="#s50" aria-label="Source 50">50</a>,<a href="#s51" aria-label="Source 51">51</a></sup></dd></div></dl>
+  <div class="specimen" data-fonts='[&quot;OCR-B&quot;, &quot;OCR B&quot;, &quot;OCR-B 10 BT&quot;]' data-label="OCR-B" hidden><p class="spec-line">P&lt;GBRSPECIMEN&lt;&lt;TYPE&lt;REGISTER&lt;&lt;&lt;&lt;&lt;</p><p class="spec-note"></p></div>
+  <div class="prose"><p>OCR-A, the American optical-recognition alphabet of 1966, worked for machines and was hard on people. The European Computer Manufacturers Association commissioned Frutiger to rework it, and his OCR-B of 1968 was made to be scanned by machines and read by people <sup class="ref"><a href="#s50" aria-label="Source 50">50</a>,<a href="#s51" aria-label="Source 51">51</a></sup>. ISO first recommended it in 1969 and fixed it as ISO 1073-2 in 1976 <sup class="ref"><a href="#s52" aria-label="Source 52">52</a></sup>.</p><p>The passport is where most people meet it. ICAO's work on machine-readable travel documents began in 1968, and the first edition of Doc 9303 in 1980 was the basis for the first machine-readable passports, from Australia, Canada and the United States <sup class="ref"><a href="#s54" aria-label="Source 54">54</a></sup>. The current standard is blunt: &ldquo;Machine readable data shall be printed in OCR-B type font, size 1, constant stroke width characters&rdquo; <sup class="ref"><a href="#s53" aria-label="Source 53">53</a></sup>.</p><p>ICAO's key directory says more than a billion electronic passports are in circulation <sup class="ref"><a href="#s55" aria-label="Source 55">55</a></sup>. That counts only chipped passports; every passport made to the standard carries the OCR-B zone.</p></div>
+  
+</article>
+<article class="entry c-way" id="frutiger">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-11</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Wayfinding · 1975</p>
+      <h3>Frutiger</h3>
+      <p class="where">Charles de Gaulle Airport; the NHS; Swiss road signs in a variant</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Adrian Frutiger <sup class="ref"><a href="#s56" aria-label="Source 56">56</a>,<a href="#s58" aria-label="Source 58">58</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>Commissioned for the signs at the new Paris airport at Roissy <sup class="ref"><a href="#s58" aria-label="Source 58">58</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>Commission 1968; signs installed 1975 <sup class="ref"><a href="#s58" aria-label="Source 58">58</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>Univers's clarity, softened with organic, almost calligraphic nuances, legible at a distance <sup class="ref"><a href="#s56" aria-label="Source 56">56</a>,<a href="#s58" aria-label="Source 58">58</a></sup></dd></div></dl>
+  <div class="specimen" data-fonts='[&quot;Frutiger&quot;, &quot;Frutiger LT Std&quot;, &quot;Frutiger Next&quot;]' data-label="Frutiger" hidden><p class="spec-line">Terminal 1 · Arrivées · Correspondances</p><p class="spec-note"></p></div>
+  <div class="prose"><p>Frutiger was asked in 1968 for the signs of the airport being built at Roissy, which opened in March 1974; the signs were completed in 1975 <sup class="ref"><a href="#s58" aria-label="Source 58">58</a>,<a href="#s59" aria-label="Source 59">59</a></sup>. His Guardian obituary describes him starting by cutting test letters from paper with scissors and pasting them onto yellow foil <sup class="ref"><a href="#s57" aria-label="Source 57">57</a></sup>.</p><p>It became a typeface for everyone only after it had worked on signs. Sources differ on the release: the Guardian says Linotype issued it the following year, 1976 <sup class="ref"><a href="#s57" aria-label="Source 57">57</a></sup>; Monotype's own history says converting it to phototypesetting took two more years <sup class="ref"><a href="#s58" aria-label="Source 58">58</a></sup>.</p><p>It now carries health care in England, where the NHS identity says its fonts are Frutiger and Arial and that only these can be used <sup class="ref"><a href="#s60" aria-label="Source 60">60</a></sup>. Swiss road signs have used a version, ASTRA-Frutiger, since 2003 <sup class="ref"><a href="#s56" aria-label="Source 56">56</a>,<a href="#s61" aria-label="Source 61">61</a></sup>.</p></div>
+  
+</article>
+<article class="entry c-mac" id="fe-schrift">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-12</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Machine-read · 1980</p>
+      <h3>FE-Schrift</h3>
+      <p class="where">German number plates, and plates in a number of other countries</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Karlgeorg Hoefer <sup class="ref"><a href="#s65" aria-label="Source 65">65</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>The Federal Highway Research Institute (BASt) <sup class="ref"><a href="#s65" aria-label="Source 65">65</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>Designed 1978&ndash;80; on plates from 1994, sole plate face from 2000 <sup class="ref"><a href="#s65" aria-label="Source 65">65</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>Letters that are hard to alter and easy for machines to read <sup class="ref"><a href="#s65" aria-label="Source 65">65</a></sup></dd></div></dl>
+  
+  <div class="prose"><p>The name is the brief: <i>fälschungserschwerende Schrift</i>, the typeface that makes forgery harder. DIN 1451's geometry had a weakness that Erik Spiekermann describes plainly: with tape or paint an E became an F and a 3 became an 8 <sup class="ref"><a href="#s66" aria-label="Source 66">66</a></sup>. Hoefer's answer, according to the German National Library, was an alphabet in which every letter has its own form instead of being built from the parts of others, so that none can be turned into another <sup class="ref"><a href="#s65" aria-label="Source 65">65</a></sup>.</p><p>It went onto plates in 1994 and replaced DIN 1451 completely in 2000 after a transition <sup class="ref"><a href="#s65" aria-label="Source 65">65</a></sup>. It is one of the few typefaces read as much by cameras as by people.</p><p>Designers have never loved it. PRINT quoted Spiekermann's verdict that while nobody could turn one letter into another, now they all look forged in the first place <sup class="ref"><a href="#s67" aria-label="Source 67">67</a></sup>.</p></div>
+  
+</article>
+<article class="entry c-scr" id="arial">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-13</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Screen · 1982</p>
+      <h3>Arial</h3>
+      <p class="where">Windows since 3.1; the second NHS font; countless forms and office documents</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Robin Nicholas and Patricia Saunders, Monotype <sup class="ref"><a href="#s62" aria-label="Source 62">62</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>Monotype, on a contract for IBM laser printers; then Microsoft, for Windows <sup class="ref"><a href="#s62" aria-label="Source 62">62</a>,<a href="#s63" aria-label="Source 63">63</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>Drawn 1982 <sup class="ref"><a href="#s62" aria-label="Source 62">62</a></sup>; bundled with Windows 3.1, April 1992 <sup class="ref"><a href="#s64" aria-label="Source 64">64</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>A sans serif with exactly Helvetica's character widths, so documents could swap between them without reflowing <sup class="ref"><a href="#s63" aria-label="Source 63">63</a></sup></dd></div></dl>
+  <div class="specimen" data-fonts='[&quot;Arial&quot;]' data-label="Arial" hidden><p class="spec-line">Arial matches Helvetica's widths, letter for letter.</p><p class="spec-note"></p></div>
+  <div class="prose"><p>Monotype won the contract to supply fonts for IBM's first big laser printers, and Arial was drawn on the company's own Monotype Grotesque, adjusted to match Helvetica's proportions <sup class="ref"><a href="#s62" aria-label="Source 62">62</a>,<a href="#s63" aria-label="Source 63">63</a></sup>. Because the widths matched, software could substitute one for the other automatically <sup class="ref"><a href="#s63" aria-label="Source 63">63</a></sup>.</p><p>The decision that made it ubiquitous was Microsoft's. When Windows 3.1 made TrueType its font format, Microsoft went with Arial rather than license Helvetica; Apple, Mark Simonson notes, chose Helvetica and paid Linotype <sup class="ref"><a href="#s63" aria-label="Source 63">63</a></sup>. Windows 3.1 shipped on 6 April 1992 with Arial among its fonts <sup class="ref"><a href="#s64" aria-label="Source 64">64</a></sup>.</p><p>Simonson's 2001 essay &ldquo;The Scourge of Arial&rdquo; called it &ldquo;little more than a shameless impostor&rdquo;, while conceding that on a screen it might as well be Helvetica <sup class="ref"><a href="#s63" aria-label="Source 63">63</a></sup>.</p></div>
+  <aside class="myth"><h4>On the record</h4><p>Arial is often called a copy of Helvetica. It copies Helvetica's widths, but its letterforms come from Monotype Grotesque <sup class="ref"><a href="#s62" aria-label="Source 62">62</a>,<a href="#s63" aria-label="Source 63">63</a></sup>.</p></aside>
+</article>
+<article class="entry c-doc" id="calibri">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-14</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Page and document · 2007</p>
+      <h3>Calibri</h3>
+      <p class="where">Microsoft Office's default from 2007 to 2023; US State Department 2023&ndash;25</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Lucas de Groot, for Microsoft's ClearType Font Collection <sup class="ref"><a href="#s68" aria-label="Source 68">68</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>Microsoft <sup class="ref"><a href="#s68" aria-label="Source 68">68</a>,<a href="#s69" aria-label="Source 69">69</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>Design began 2002; default from 2007 <sup class="ref"><a href="#s68" aria-label="Source 68">68</a>,<a href="#s69" aria-label="Source 69">69</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>A sans serif that would take advantage of ClearType rendering on screens <sup class="ref"><a href="#s68" aria-label="Source 68">68</a></sup></dd></div></dl>
+  <div class="specimen" data-fonts='[&quot;Calibri&quot;]' data-label="Calibri" hidden><p class="spec-line">Calibri was Office's default from 2007 until Aptos.</p><p class="spec-note"></p></div>
+  <div class="prose"><p>Calibri came out of a set of system fonts Microsoft began commissioning in 2002 to exploit ClearType rendering <sup class="ref"><a href="#s68" aria-label="Source 68">68</a></sup>. De Groot's own account is that he submitted a version with rounded stroke ends while warning Microsoft that they looked ugly in ClearType and not to choose it; Microsoft chose it, and an improved rasteriser later rendered the rounded tops smoothly <sup class="ref"><a href="#s68" aria-label="Source 68">68</a></sup>. Microsoft says it has been the default &ldquo;for all things Microsoft&rdquo; since 2007, replacing Times New Roman <sup class="ref"><a href="#s69" aria-label="Source 69">69</a></sup>.</p><p>In April 2021 Microsoft unveiled five commissioned candidates to succeed it: Tenorite, Bierstadt, Skeena, Seaford and Grandview <sup class="ref"><a href="#s69" aria-label="Source 69">69</a></sup>. Bierstadt, by Steve Matteson, won and was renamed Aptos, after Matteson's favourite unincorporated town in Santa Cruz, California; Microsoft says it reaches hundreds of millions of users <sup class="ref"><a href="#s70" aria-label="Source 70">70</a></sup>. The US State Department adopted Calibri in January 2023, citing accessibility <sup class="ref"><a href="#s30" aria-label="Source 30">30</a></sup>, and dropped it in December 2025 <sup class="ref"><a href="#s29" aria-label="Source 29">29</a>,<a href="#s31" aria-label="Source 31">31</a></sup>.</p><p>Calibri also had a part in Pakistani politics. In 2017 a joint investigation team concluded that a trust declaration dated February 2006 linked to Maryam Nawaz was fabricated, relying on a forensic finding that Calibri was not commercially available before 31 January 2007 <sup class="ref"><a href="#s71" aria-label="Source 71">71</a></sup>. De Groot told AFP that beta versions existed from 2004 but were hard to get <sup class="ref"><a href="#s72" aria-label="Source 72">72</a></sup>. In July 2018 an accountability court convicted her in the Avenfield case, a verdict the Islamabad High Court set aside on 29 September 2022 <sup class="ref"><a href="#s73" aria-label="Source 73">73</a></sup>.</p></div>
+  
+</article>
+<article class="entry c-scr" id="roboto">
+  <header class="sheet-head">
+    <div class="reg"><span class="reg-k">Reg.</span><span class="reg-n">TR-15</span></div>
+    <div class="sheet-title">
+      <p class="kicker"><span class="dot"></span>Screen · 2011</p>
+      <h3>Roboto</h3>
+      <p class="where">Android's system typeface; Google's Material Design</p>
+    </div>
+  </header>
+  <dl class="fields"><div class="f"><dt>Drawn by</dt><dd>Christian Robertson, Google <sup class="ref"><a href="#s74" aria-label="Source 74">74</a>,<a href="#s75" aria-label="Source 75">75</a></sup></dd></div><div class="f"><dt>Chosen by</dt><dd>Google <sup class="ref"><a href="#s74" aria-label="Source 74">74</a></sup></dd></div><div class="f"><dt>Adopted</dt><dd>Android 4.0 Ice Cream Sandwich, 2011; redrawn 2014 <sup class="ref"><a href="#s74" aria-label="Source 74">74</a>,<a href="#s75" aria-label="Source 75">75</a></sup></dd></div><div class="f"><dt>Brief</dt><dd>One family for every screen, &ldquo;from watches to desktops, televisions to cars&rdquo; <sup class="ref"><a href="#s75" aria-label="Source 75">75</a></sup></dd></div></dl>
+  <div class="specimen" data-fonts='[&quot;Roboto&quot;]' data-label="Roboto" hidden><p class="spec-line">Android 4.0 · Ice Cream Sandwich · 2011</p><p class="spec-note"></p></div>
+  <div class="prose"><p>Roboto shipped in 2011 with Android 4.0, under an open-source licence <sup class="ref"><a href="#s74" aria-label="Source 74">74</a></sup>. Its reception among type critics was poor; Typographica's review, as quoted by John Gruber, asked whether it was &ldquo;a four-headed Frankenstein&rdquo; <sup class="ref"><a href="#s76" aria-label="Source 76">76</a></sup>.</p><p>Google redrew it for Material Design. Robertson's 2014 post says almost every glyph was tweaked: R and K redrawn, dots and punctuation rounded, O and C rounded out on their sides so the face feels less condensed, and spacing reworked <sup class="ref"><a href="#s75" aria-label="Source 75">75</a></sup>. In May 2015 Google turned it into a full open-source project, and the glyph count rose from about 13,000 to more than 40,000 <sup class="ref"><a href="#s74" aria-label="Source 74">74</a></sup>.</p><p>Apple took the opposite route on its own phones, with San Francisco: drawn first for the small screen of the Apple Watch and moved onto the iPhone and Mac with iOS 9 and OS X El Capitan <sup class="ref"><a href="#s77" aria-label="Source 77">77</a></sup>.</p></div>
+  
+</article></div>
+</div></section>
+
+<section class="block method"><div class="wrap"><div class="measure">
+  <h2 class="sec">How this register was made</h2>
+  <p>Each sheet draws on the commissioning body's own record where one is public (TfL's archive, FHWA reports, ICAO's Doc 9303, the ANSI cheque standard, UK statutory instruments, Microsoft's and Google's announcements), checked against museum collections, the German National Library's type histories and design historians, chiefly Paul Shaw on the New York subway and Dan Rhatigan on Times New Roman. Where sources give different dates, the sheet says so. Usage figures carry the year they describe.</p>
+  <p>The specimen lines use only fonts already on your device or, for Roboto, Google's own release of it. They are there to show the letters, not as a substitute for the originals, several of which are owned by transport authorities and are not sold.</p>
+</div></div></section>
+
+<section class="block"><div class="wrap">
+  <h2 class="sec" id="sources">Sources</h2>
+  <p class="sec-note">Numbered as cited in the sheets</p>
+  <ol class="srcs"><li id="s1"><a href="https://tfl.gov.uk/info-for/media/press-releases/2016/june/iconic-transport-typeface-updated-for-the-digital-a">Iconic transport typeface updated for the digital age</a>, <span class="pub">Transport for London, press release, June 2016</span></li><li id="s2"><a href="https://artsandculture.google.com/story/the-johnston-typeface-tfl-archives/uwWBjPm-RDgkdw">The Johnston Typeface</a>, <span class="pub">TfL Corporate Archives, via Google Arts &amp; Culture</span></li><li id="s3"><a href="https://designmuseum.org/london-transport">London Transport</a>, <span class="pub">Design Museum</span></li><li id="s4"><a href="https://eyemagazine.com/feature/article/london-letters">London letters, John L. Walters</a>, <span class="pub">Eye magazine, no. 91, 2016</span></li><li id="s5"><a href="https://www.designweek.co.uk/issues/13-19-june-2016/monotype-gives-tfl-modern-update-johnston100-typeface/">Monotype transforms TfL&#x27;s London Underground Johnston typeface</a>, <span class="pub">Design Week, June 2016</span></li><li id="s6"><a href="https://content.tfl.gov.uk/travel-in-london-2025-annual-overview-acc.pdf">Travel in London 2025: Annual overview</a>, <span class="pub">Transport for London</span></li><li id="s7"><a href="https://www.myfonts.com/pt/pages/newsletters-cc-20090401">Creative Characters interview: Eric Gill</a>, <span class="pub">MyFonts, 2009</span></li><li id="s8"><a href="https://api.vam.ac.uk/v2/object/O1419737">Monotype Gill Sans leaflet</a>, <span class="pub">Victoria and Albert Museum, collections</span></li><li id="s9"><a href="https://collection.sciencemuseumgroup.org.uk/objects/co226394/an-account-of-the-lner-type-standardization-booklet">An Account of the LNER Type Standardization (booklet, 1934)</a>, <span class="pub">Science Museum Group collection</span></li><li id="s10"><a href="https://collection.sciencemuseumgroup.org.uk/objects/co207447/replica-headboard-flying-scotsman">Replica headboard, Flying Scotsman</a>, <span class="pub">Science Museum Group collection</span></li><li id="s11"><a href="https://www.lundhumphries.com/blogs/features/johnston-gill-very-british-types">Johnston &amp; Gill: Very British Types</a>, <span class="pub">Lund Humphries</span></li><li id="s12"><a href="https://mediengeschichte.dnb.de/DBSMZBN/Content/EN/FontDesign/05-times-en.html">Times</a>, <span class="pub">Deutsche Nationalbibliothek, Mediengeschichte</span></li><li id="s13"><a href="https://ultrasparky.org/blog/2011/09/09/time_and_times_/">Time and Times again, Dan Rhatigan</a>, <span class="pub">ultrasparky.org, 2011</span></li><li id="s14"><a href="https://ultrasparky.org/blog/?p=2680">It was never called Times Old Roman, Dan Rhatigan</a>, <span class="pub">ultrasparky.org, 2011</span></li><li id="s15"><a href="https://en.wikipedia.org/wiki/Times_New_Roman">Times New Roman</a>, <span class="pub">Wikipedia</span></li><li id="s16"><a href="https://mediengeschichte.dnb.de/DBSMZBN/Content/EN/FontDesign/05-din-1415-en.html">DIN 1451</a>, <span class="pub">Deutsche Nationalbibliothek, Mediengeschichte</span></li><li id="s17"><a href="https://mediengeschichte.dnb.de/DBSMZBN/Content/EN/FontDesign/05-goller-ludwig-en.html">Ludwig Goller</a>, <span class="pub">Deutsche Nationalbibliothek, Mediengeschichte</span></li><li id="s18"><a href="https://fontwerk.com/en/text/neue-din">Neue DIN: history</a>, <span class="pub">Fontwerk</span></li><li id="s19"><a href="https://www.fontsinuse.com/typefaces/1149/din-1451">DIN 1451</a>, <span class="pub">Fonts in Use</span></li><li id="s20"><a href="https://mutcd.fhwa.dot.gov/resources/interim_approval/ia5rptcongress/ch2.htm">Report on Highway Guide Sign Fonts, chapter 2</a>, <span class="pub">Federal Highway Administration (MUTCD)</span></li><li id="s21"><a href="https://mutcd.fhwa.dot.gov/resources/interim_approval/ia5rptcongress/exec_summary.htm">Report on Highway Guide Sign Fonts, executive summary</a>, <span class="pub">Federal Highway Administration (MUTCD)</span></li><li id="s22"><a href="https://mutcd-dr.fhwa.dot.gov/resources/interim_approval/ia5/ia5_reinstatement.htm">MUTCD Interim Approval for Clearview (IA-5) Reinstatement, 28 March 2018</a>, <span class="pub">Federal Highway Administration</span></li><li id="s23"><a href="https://www-3.collection.cooperhewitt.org/objects/18788213">Sign, Metropolis, in ClearviewHwy typeface</a>, <span class="pub">Cooper Hewitt, Smithsonian Design Museum</span></li><li id="s24"><a href="https://www.govexec.com/management/2016/01/federal-highway-administrations-sudden-u-turn-highway-fonts/125480/">The Federal Highway Administration&#x27;s sudden U-turn on highway fonts, Kriston Capps</a>, <span class="pub">Government Executive (from CityLab), January 2016</span></li><li id="s25"><a href="https://www.moma.org/collection/works/139305">Tobias Frere-Jones, Interstate, 1993–1995</a>, <span class="pub">Museum of Modern Art</span></li><li id="s26"><a href="https://fontsinuse.com/typefaces/20992/highway-gothic">Highway Gothic</a>, <span class="pub">Fonts in Use</span></li><li id="s27"><a href="https://typenetwork.com/font-designers/howard-kettler">Howard Kettler</a>, <span class="pub">Type Network</span></li><li id="s28"><a href="https://johnaugust.com/?p=10306">Courier Prime, John August</a>, <span class="pub">johnaugust.com</span></li><li id="s29"><a href="https://www.axios.com/2025/12/10/times-new-roman-calibri-trump-rubio">Why the Trump administration is targeting the Calibri font</a>, <span class="pub">Axios, 10 December 2025</span></li><li id="s30"><a href="https://www.itsnicethat.com/news/monotype-us-state-department-times-new-roman-calibri-graphic-design-240123">US State Department switches from Times New Roman to Calibri, Liz Gorny</a>, <span class="pub">It&#x27;s Nice That, January 2023</span></li><li id="s31"><a href="https://www.goodmorningamerica.com/amp/news/story/rubio-orders-state-department-change-official-memo-font-128282010">Rubio orders State Department to change official memo font</a>, <span class="pub">ABC News, 10 December 2025</span></li><li id="s32"><a href="https://www.kpbs.org/news/politics/2025/12/11/the-state-department-reinstates-an-old-font-in-a-typeface-about-face">The State Department reinstates an old font in a typeface about-face, Rachel Treisman</a>, <span class="pub">NPR, via KPBS, 11 December 2025</span></li><li id="s33"><a href="https://www.washingtontimes.com/news/2025/dec/10/state-department-ditches-calibri-font-goes-back-times-new-roman-dei/">State Department ditches Calibri font, goes back to Times New Roman</a>, <span class="pub">The Washington Times, 10 December 2025</span></li><li id="s34"><a href="https://www.myfonts.com/pages/fontscom-2011-06-06-helvetica-the-prequel">Helvetica: the prequel, Allan Haley</a>, <span class="pub">Fonts.com (MyFonts), 2011</span></li><li id="s35"><a href="https://www.printmag.com/design-culture/univers-of-helvetica-history">The Univers of Helvetica: a tale of two typefaces, Paul Shaw</a>, <span class="pub">PRINT, 2019</span></li><li id="s36"><a href="https://gwern.net/doc/www/www.aiga.org/ee9fbb05bc37c056a78b174381125586cae4b7c7.html">The (Mostly) True Story of Helvetica and the New York City Subway, Paul Shaw</a>, <span class="pub">AIGA, 18 November 2008 (archived copy)</span></li><li id="s37"><a href="https://mitpressbookstore.mit.edu/book/9780262015486">Helvetica and the New York City Subway System, Paul Shaw</a>, <span class="pub">MIT Press</span></li><li id="s38"><a href="https://nvlpubs.nist.gov/nistpubs/Legacy/FIPS/fipspub32-1.pdf">ANSI X3.2-1970, Print Specifications for Magnetic Ink Character Recognition (FIPS PUB 32-1)</a>, <span class="pub">National Institute of Standards and Technology</span></li><li id="s39"><a href="https://computerhistory.org/blog/erma-can-do-it/">ERMA Can Do It!</a>, <span class="pub">Computer History Museum</span></li><li id="s40"><a href="https://www.iso.org/standard/55881.html">ISO 1004-1:2013, Print specifications for E13B</a>, <span class="pub">International Organization for Standardization</span></li><li id="s41"><a href="https://www.boutique.afnor.org/en-gb/standard/nf-z63001/information-processing-cmc-7-printed-magnetic-characters-specifications-dig/fa009725/14873">NF Z63-001, CMC-7 printed magnetic characters</a>, <span class="pub">AFNOR</span></li><li id="s42"><a href="https://www.federalreserve.gov/paymentsystems/frps_cy2015_24_topline.htm">National Payment Volumes, top-line data (CY 2015–24)</a>, <span class="pub">Federal Reserve</span></li><li id="s43"><a href="https://eyemagazine.com/feature/article/a-design-to-sign-roads-by">A design (to sign roads by), Phil Baines</a>, <span class="pub">Eye magazine, no. 34, 1999</span></li><li id="s44"><a href="https://thamesandhudson.com/blogs/all-news-features/designing-the-transport-typeface-margaret-calvert-on-the-making-of-britain-s-road-signs">Designing the Transport typeface: Margaret Calvert on the making of Britain&#x27;s road signs</a>, <span class="pub">Thames &amp; Hudson</span></li><li id="s45"><a href="https://www.designweek.co.uk/50-years-of-calvert-kinneirs-road-signs/">50 years of Calvert &amp; Kinneir&#x27;s road signs</a>, <span class="pub">Design Week, 2015</span></li><li id="s46"><a href="https://www.roads.org.uk/articles/war-worboys/anderson-and-kindersley">From War to Worboys: Anderson and Kindersley</a>, <span class="pub">SABRE (roads.org.uk)</span></li><li id="s47"><a href="https://www.legislation.gov.uk/uksi/1964/1857/pdfs/uksi_19641857_en.pdf">The Traffic Signs Regulations and General Directions 1964 (S.I. 1964/1857)</a>, <span class="pub">legislation.gov.uk</span></li><li id="s48"><a href="https://www.orr.gov.uk/search-news/international-womens-day-margaret-calvert-and-her-impact">International Women&#x27;s Day: Margaret Calvert and her impact</a>, <span class="pub">Office of Rail and Road, 2021</span></li><li id="s49"><a href="https://www.inkl.com/news/way-to-go-the-woman-who-invented-britain-s-road-signs">Way to go: the woman who invented Britain&#x27;s road signs, Homa Khaleeli</a>, <span class="pub">The Guardian (via inkl)</span></li><li id="s50"><a href="https://eyemagazine.com/feature/article/electrifying-the-alphabet">Electrifying the alphabet</a>, <span class="pub">Eye magazine, 2006</span></li><li id="s51"><a href="https://www.myfonts.com/fonts/linotype/ocr-b-2">OCR B 2</a>, <span class="pub">Linotype, on MyFonts</span></li><li id="s52"><a href="https://cdn.standards.iteh.ai/samples/5568/fbf607862c2446ae81508d46a0441f87/ISO-1073-2-1976.pdf">ISO 1073-2:1976, Alphanumeric character sets for optical recognition, Part 2: OCR-B (sample)</a>, <span class="pub">ISO, via iTeh Standards</span></li><li id="s53"><a href="https://icao.int/publications/Documents/9303_p3_cons_en.pdf">Doc 9303, Machine Readable Travel Documents, Part 3</a>, <span class="pub">International Civil Aviation Organization, 8th edition, 2021</span></li><li id="s54"><a href="https://www.icao.int/publications/Documents/9303_p1_cons_en.pdf">Doc 9303, Machine Readable Travel Documents, Part 1</a>, <span class="pub">International Civil Aviation Organization</span></li><li id="s55"><a href="https://www.icao.int/icao-pkd/epassport-basics">ePassport basics</a>, <span class="pub">ICAO Public Key Directory</span></li><li id="s56"><a href="https://www.swissinfo.ch/eng/society/master-of-the-univers_swiss-font-legend-adrian-frutiger-dies/41659284">Swiss font legend Adrian Frutiger dies</a>, <span class="pub">swissinfo.ch, 2015</span></li><li id="s57"><a href="https://www.inkl.com/news/adrian-frutiger-obituary">Adrian Frutiger obituary, Charles Foster</a>, <span class="pub">The Guardian (via inkl), 2015</span></li><li id="s58"><a href="https://www.myfonts.com/pages/fontscom-2009-08-10-triumphing-over-technology">Triumphing over technology</a>, <span class="pub">Fonts.com (MyFonts), 2009</span></li><li id="s59"><a href="https://corporate.airfrance.com/en/news/air-france-main-operator-paris-charles-de-gaulle-airport-past-50-years">Air France main operator at Paris-Charles de Gaulle for the past 50 years</a>, <span class="pub">Air France</span></li><li id="s60"><a href="https://www.england.nhs.uk/nhsidentity/faq-guidelines/fonts/">NHS identity: fonts</a>, <span class="pub">NHS England</span></li><li id="s61"><a href="https://typography.guru/journal/traffic-sign-typefaces-switzerland-r27/">Traffic sign typefaces: Switzerland</a>, <span class="pub">Typography.Guru</span></li><li id="s62"><a href="https://myfonts.com/pages/fontscom-learning-fyti-typefaces-arial-vs-helvetica">Arial vs. Helvetica, Ilene Strizver</a>, <span class="pub">Fonts.com (MyFonts)</span></li><li id="s63"><a href="https://www.marksimonson.com/notebook/view/the-scourge-of-arial">The Scourge of Arial, Mark Simonson</a>, <span class="pub">marksimonson.com, 2001</span></li><li id="s64"><a href="https://www.pcworld.com/article/469692/windows-3-1-twenty-years-later.html">Windows 3.1 twenty years later, Benj Edwards</a>, <span class="pub">PCWorld</span></li><li id="s65"><a href="https://mediengeschichte.dnb.de/DBSMZBN/Content/EN/FontDesign/05-fe-schrift-en.html">FE typeface</a>, <span class="pub">Deutsche Nationalbibliothek, Mediengeschichte</span></li><li id="s66"><a href="https://spiekermann.com/en/complete-forgery">Complete forgery, Erik Spiekermann</a>, <span class="pub">spiekermann.com, 2007</span></li><li id="s67"><a href="https://www.printmag.com/design-resources/hot_type_feschrift/">Hot Type: FE-Schrift</a>, <span class="pub">PRINT, 2008</span></li><li id="s68"><a href="https://www.LucasFonts.com/custom/calibri-overview">Calibri overview</a>, <span class="pub">LucasFonts</span></li><li id="s69"><a href="https://www.microsoft.com/microsoft-365/blog/2021/04/28/beyond-calibri-finding-microsofts-next-default-font/">Beyond Calibri: finding Microsoft&#x27;s next default font</a>, <span class="pub">Microsoft 365 Blog, 28 April 2021</span></li><li id="s70"><a href="https://medium.com/microsoft-design/a-change-of-typeface-microsofts-new-default-font-has-arrived-f200eb16718d">A change of typeface: Microsoft&#x27;s new default font has arrived, Si Daniels</a>, <span class="pub">Microsoft Design</span></li><li id="s71"><a href="https://www.npr.org/sections/thetwo-way/2017/07/18/537897815/font-could-be-the-key-to-corruption-probe-of-pakistans-prime-minister">Font could be the key to corruption probe of Pakistan&#x27;s prime minister</a>, <span class="pub">NPR, July 2017</span></li><li id="s72"><a href="https://www.aljazeera.com/news/2017/7/13/fontgate-maryam-nawaz-accused-of-document-forgery">#Fontgate: Maryam Nawaz accused of document forgery</a>, <span class="pub">Al Jazeera, 13 July 2017</span></li><li id="s73"><a href="https://www.dawn.com/news/1712573">IHC sets aside Maryam and Capt Safdar&#x27;s 2018 conviction in Avenfield case</a>, <span class="pub">Dawn, 29 September 2022</span></li><li id="s74"><a href="https://opensource.googleblog.com/2015/05/roboto-googles-signature-font-is-now.html">Roboto: Google&#x27;s signature font is now open source, Roozbeh Pournader</a>, <span class="pub">Google Open Source Blog, 26 May 2015</span></li><li id="s75"><a href="https://developers.googleblog.com/en/the-new-roboto/">The New Roboto, Christian Robertson</a>, <span class="pub">Google Developers Blog, 16 July 2014</span></li><li id="s76"><a href="https://daringfireball.net/linked/2011/10/19/roboto-typographica">Roboto, Typographica, John Gruber</a>, <span class="pub">Daring Fireball, 19 October 2011</span></li><li id="s77"><a href="https://www.macrumors.com/2015/05/20/apple-san-francisco-font-ios-9-osx-1011">Apple to use &#x27;San Francisco&#x27; Apple Watch font in iOS 9 and OS X 10.11, Juli Clover</a>, <span class="pub">MacRumors, 20 May 2015</span></li></ol>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap">
+<p>Published 17 November 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+<p><a href="/daily/">← Back to Daily</a> · <a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20The%20Typeface%20Register&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-17-the-typeface-register%2F">Spot an error? Suggest a correction</a></p>
+</div></footer>
+<script>
+(function(){
+  try{
+    var c=document.createElement('canvas').getContext('2d');
+    var probe='mmmmmmmmmmlli1WQ@#&8BRg';
+    function w(f){c.font='72px '+f;return c.measureText(probe).width;}
+    var bases=['monospace','serif','sans-serif'], bw=bases.map(w);
+    function has(name){
+      return bases.some(function(b,i){return w('"'+name+'",'+b)!==bw[i];});
+    }
+    function run(){
+      document.querySelectorAll('.specimen').forEach(function(el){
+        var fams=JSON.parse(el.getAttribute('data-fonts')||'[]');
+        for(var i=0;i<fams.length;i++){
+          if(has(fams[i])){
+            el.querySelector('.spec-line').style.fontFamily='"'+fams[i]+'"';
+            el.querySelector('.spec-note').textContent = fams[i]==='Roboto' ?
+              'Set in Roboto, loaded from Google Fonts' :
+              'Set in '+fams[i]+' as your device supplies it; some systems quietly substitute a look-alike';
+            el.hidden=false; break;
+          }
+        }
+      });
+    }
+    if(document.fonts && document.fonts.load){
+      document.fonts.load('400 72px "Roboto"').then(run,run);
+    } else run();
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

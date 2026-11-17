@@ -24,12 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Last Great Night Trains (field guide)
-Every sleeper route still running in Europe and beyond: cabin classes, dining cars, border crossings and what a berth really costs. Add five worked trips comparing the night train with flying door to door, judged by time, cost and sleep.
-
-The Typeface Register (annotated register)
-Fifteen typefaces that ended up running the world, from Helvetica on the New York subway to Transport on British road signs and the font on passports. Cover who designed each one, the brief they were given, and how a committee’s choice shaped what billions of people read every day.
-
 The Private Members’ Club Atlas (field guide directory)
 Twenty historic clubs, from London’s St James’s to Tokyo, plus the bars, libraries and reading rooms that let non-members in. Cover the founding rules, the dress codes and the famous blackballings, and sort the entries by the kind of evening each one offers.
 
@@ -287,6 +281,10 @@ Treat schedules as evidence of intended activity, not proof that an event actual
 ---
 
 # Parked
+The Last Great Night Trains (field guide)
+Every sleeper route still running in Europe and beyond: cabin classes, dining cars, border crossings and what a berth really costs. Add five worked trips comparing the night train with flying door to door, judged by time, cost and sleep.
+Parked 17 Nov 2026: largely duplicates No. 21 Wake Up Somewhere Else (overnight trains) and the Europe Dining Cars page; berth prices are not evergreen.
+
 The Secondary Airport-to-City Transit Scorecard
 Research Question: Which secondary European airports offer seamless high-speed rail connections into city centers, and which trap travelers in costly, slow bus transfers?
 Proposed Contents: 20 airports serving major regional hubs. Dedicated express train lines vs. regional buses, transit costs, journey times, ticket integration, and door-to-door efficiency compared to main central station hubs.
