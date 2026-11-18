@@ -75,6 +75,24 @@ Brands That Deliberately Broke the Rules
 An investigation into companies that built their identities by doing the opposite of conventional marketing. Explore Diesel, Liquid Death, Oatly, Ben & Jerry's, BrewDog, Supreme, and other irreverent brands. Examine their most provocative campaigns, unconventional slogans, corporate philosophies, controversies, and whether their rebellious identities translated into commercial success.
 Avoid: airlines, which get their own piece (The World's Most Outrageous Airlines).
 
+How Far Can You Get in 24 Hours?
+Choose a starting city and investigate the farthest destinations reachable within 24 hours using publicly available transport. Explore combinations of trains, buses, ferries, and flights, including unusual connections and overnight journeys. Build an interactive reachability map with realistic departure times, transfer windows, and indicative costs.
+
+The Geography of the World's Most Remote Airports
+Investigate airports that occupy extraordinary geographical positions: island runways, mountain airstrips, border airports, airports with unusual approach procedures, and terminals serving tiny or isolated communities. Explain their operational challenges, airline connections, passenger volumes, and how they connect otherwise inaccessible places.
+
+The World's Most Unusual Border Journeys
+Investigate journeys that cross multiple borders in surprisingly short distances, involve unusual immigration arrangements, or require unexpected transport connections. Explore divided cities, international railway stations, enclaves, ferry crossings, and border towns. Explain the practical experience of crossing each border.
+
+The World's Most Interesting Day Trips by Public Transport
+Find destinations that can be reached from major cities in approximately one to three hours but feel like entirely different worlds. Include coastal villages, industrial towns, mountain communities, border settlements, islands, and regional food destinations. Show the actual transport connections, departure points, return options, and what makes each destination worth the journey.
+
+The World's Most Complicated Travel Connections
+Investigate unusual journeys requiring multiple modes of transport, obscure transfers, awkward border crossings, or complicated ticketing arrangements. Explain why the connections exist, how locals navigate them, what can go wrong, and how to complete the journey reliably. Think of places where reaching a seemingly nearby destination requires an unexpectedly elaborate itinerary.
+
+The World's Great Urban Transport Experiments
+Explore cities that have experimented with unusual ways of moving people: autonomous buses, elevated railways, underground pedestrian networks, gondolas, extensive tram systems, water taxis, and innovative integrated ticketing. Investigate what was promised, what actually happened, how much it cost, and whether residents adopted it.
+
 The World's Hidden Standards
 New territory: standards engineering, industrial history, interoperability
 The question: How do invisible technical standards, protocols and administrative systems determine what connects, fits, charges, communicates, or works across borders?
