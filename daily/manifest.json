@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 32,
+      "slug": "2026-11-18-the-clubland-atlas",
+      "date": "2026-11-18",
+      "title": "The Clubland Atlas",
+      "dek": "Twenty historic private members' clubs, from St James's to Tokyo: how each began, what it makes you wear, whom it turned away, and ten libraries and bars where anyone can walk in.",
+      "kind": "Field guide directory",
+      "readingMinutes": 30,
+      "design": "Bodoni Moda, Newsreader, Overpass Mono; Wedgwood jasper blue and cream with white-relief cameo ballot box; ballot-board timeline, candidates'-book pages, white/black ball marks.",
+      "source": "queue",
+      "brief": "The Private Members’ Club Atlas (field guide directory)\nTwenty historic clubs, from London’s St James’s to Tokyo, plus the bars, libraries and reading rooms that let non-members in. Cover the founding rules, the dress codes and the famous blackballings, and sort the entries by the kind of evening each one offers.",
+      "factcheck": {
+        "claims": 330,
+        "fixed": 13
+      },
+      "corrections": []
+    },
+    {
       "no": 31,
       "slug": "2026-11-17-the-typeface-register",
       "date": "2026-11-17",

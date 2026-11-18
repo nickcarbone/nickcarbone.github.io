@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Private Members’ Club Atlas (field guide directory)
-Twenty historic clubs, from London’s St James’s to Tokyo, plus the bars, libraries and reading rooms that let non-members in. Cover the founding rules, the dress codes and the famous blackballings, and sort the entries by the kind of evening each one offers.
-
 The Stadium Atlas (filterable atlas)
 Twenty-five stadiums and arenas, from Lambeau to La Bombonera, and what each site was before. Cover the land deals, transit links and public money behind each one. Show how the building shapes the way crowds arrive, eat, drink and leave, with a scorecard for getting there without a car.
 

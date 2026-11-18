@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Clubland Atlas · Daily</title>
+<meta name="description" content="Twenty historic private members&#x27; clubs, from St James&#x27;s to Tokyo: how each began, what it makes you wear, whom it turned away, and ten libraries and bars where anyone can walk in.">
+<meta property="og:title" content="The Clubland Atlas">
+<meta property="og:description" content="Twenty historic private members&#x27; clubs, from St James&#x27;s to Tokyo: how each began, what it makes you wear, whom it turned away, and ten libraries and bars where anyone can walk in.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-18-the-clubland-atlas/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-18-the-clubland-atlas/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Overpass+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: Wedgwood jasperware and the candidates' book. A jasper-blue cameo hero with a
+   white-relief ballot box; a ballot board of founding year to women's admission; each club a ruled
+   page of the candidates' book; white and black balls as the only status marks. */
+:root{
+  --paper:#f4f0e6; --leaf:#fbf8f1; --ink:#22201c; --muted:#59544b; --rule:#d6cfbf; --faint:#ebe5d7;
+  --jasper:#46648c; --jasper-d:#2f4a6e; --relief:#f7f4ec; --link:#2f4a6e;
+  --black:#141414; --white:#ffffff; --dash:#141414; --bring:#000;
+  --t-table:#7d5124; --t-library:#2f4a6e; --t-cards:#6a3460; --t-stage:#9a3b24; --t-turf:#3f6233; --t-garden:#6c5d12;
+  --display:'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+  --body:'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --mono:'Overpass Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#16181c; --leaf:#1e2126; --ink:#ece7dc; --muted:#b3ac9f; --rule:#3b3f46; --faint:#272a30;
+  --jasper:#3a5578; --jasper-d:#a9c0de; --relief:#f2eee5; --link:#a9c4e6;
+  --black:#050505; --white:#f4f1ea; --dash:#a29c90; --bring:#a29c90;
+  --t-table:#e0a86e; --t-library:#9fbde3; --t-cards:#d79ccb; --t-stage:#f0937a; --t-turf:#9fcc8c; --t-garden:#dcc96a;
+}}
+:root[data-theme="dark"]{
+  --paper:#16181c; --leaf:#1e2126; --ink:#ece7dc; --muted:#b3ac9f; --rule:#3b3f46; --faint:#272a30;
+  --jasper:#3a5578; --jasper-d:#a9c0de; --relief:#f2eee5; --link:#a9c4e6;
+  --black:#050505; --white:#f4f1ea; --dash:#a29c90; --bring:#a29c90;
+  --t-table:#e0a86e; --t-library:#9fbde3; --t-cards:#d79ccb; --t-stage:#f0937a; --t-turf:#9fcc8c; --t-garden:#dcc96a;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6;font-optical-sizing:auto}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.strip{background:#2a3f5e;color:#f3efe6;font-family:var(--mono);font-size:14px}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;flex-wrap:wrap}
+.strip a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+.strip span{opacity:.92}
+
+/* hero */
+.hero{background:var(--jasper);color:var(--relief);position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding-top:48px;padding-bottom:52px}
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.06em;margin:0 0 14px;opacity:.95}
+.hero h1{font-family:var(--display);font-weight:600;font-size:clamp(46px,8vw,96px);line-height:.98;margin:0 0 18px;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;font-weight:400}
+.hero .dek{font-size:clamp(19px,2.2vw,23px);line-height:1.45;max-width:36ch;margin:0 0 18px}
+.hero .meta{font-family:var(--mono);font-size:14px;opacity:.92;margin:0}
+.hero svg{width:100%;height:auto;max-width:420px;justify-self:center}
+.hero .border{position:absolute;left:0;right:0;height:12px;background:repeating-linear-gradient(90deg,transparent 0 10px,rgba(247,244,236,.55) 10px 12px);}
+.hero .border.t{top:10px}.hero .border.b{bottom:10px}
+
+main section.wrap{padding-top:46px;padding-bottom:46px}
+.intro p{max-width:720px}
+.intro p{margin:0 0 1.05em}
+.lede::first-letter{font-family:var(--display);font-size:4.1em;float:left;line-height:.82;padding:6px 10px 0 0;color:var(--jasper-d)}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1.05;margin:0 0 10px}
+h2 + .sub{font-style:italic;color:var(--muted);margin:0 0 26px;max-width:62ch}
+sup.ref{font-family:var(--mono);font-size:.62em;line-height:0;margin-left:1px;white-space:nowrap}
+sup.ref a{text-decoration:none;padding:0 1px}
+
+/* ballot board */
+.board{background:var(--leaf);border:1px solid var(--rule);padding:22px 20px 18px;border-radius:2px}
+.board ol{list-style:none;margin:0;padding:0}
+.board li{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr) minmax(0,190px);gap:14px;align-items:center;padding:5px 0;border-bottom:1px dotted var(--rule)}
+.bb-name{font-size:16px;line-height:1.25}
+.bb-name a{color:var(--ink);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;min-height:40px}
+.bb-name a:hover{text-decoration:underline}
+.bb-city{display:block;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.bb-track{position:relative;height:22px}
+.bb-track::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--faint)}
+.bb-line{position:absolute;top:50%;height:2px;margin-top:-1px;background:var(--jasper-d)}
+.bb-line.men{background:repeating-linear-gradient(90deg,var(--dash) 0 6px,transparent 6px 10px)}
+.bb-line.unk{background:repeating-linear-gradient(90deg,var(--muted) 0 2px,transparent 2px 6px)}
+.ball{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%}
+.ball.found{width:10px;height:10px;margin:-5px 0 0 -5px;background:var(--jasper-d);border-radius:1px;transform:rotate(45deg)}
+.ball.white,.mini.white{background:radial-gradient(circle at 35% 30%,#fff 0 30%,#e4dfd3 70%,#c9c2b2 100%);box-shadow:0 0 0 1px #8b8577}
+.ball.black,.mini.black{background:radial-gradient(circle at 35% 30%,#6a6a6a 0 8%,#1b1b1b 45%,#000 100%);box-shadow:0 0 0 1px var(--bring)}
+.ball.grey,.mini.grey{background:repeating-linear-gradient(45deg,#bdb6a6 0 3px,#e7e2d6 3px 6px);box-shadow:0 0 0 1px #8b8577}
+.bb-text{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.ticks{position:relative;height:20px;margin:6px 0 0 calc(220px + 14px);margin-right:calc(190px + 14px)}
+.tick{position:absolute;transform:translateX(-50%);font-family:var(--mono);font-size:12px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;font-family:var(--mono);font-size:13px;color:var(--muted);margin:14px 0 0;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:8px}
+.mini{display:inline-block;width:13px;height:13px;border-radius:50%;flex:none;vertical-align:-1px}
+.mini.found{background:var(--jasper-d);border-radius:1px;transform:rotate(45deg);width:9px;height:9px}
+
+/* ballot explainer */
+.box{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.box div{border-top:3px double var(--jasper-d);padding-top:10px}
+.box h3{font-family:var(--display);font-size:22px;margin:0 0 6px;font-weight:600}
+.box p{margin:0;font-size:17px}
+
+/* filters */
+.filters{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(4px);border-bottom:1px solid var(--rule);padding:10px 0;margin-bottom:26px}
+.frow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.frow + .frow{margin-top:8px}
+.flabel{font-family:var(--mono);font-size:13px;color:var(--muted);margin-right:4px}
+.fbtn,.dbtn{font:inherit;font-size:15px;min-height:40px;padding:6px 14px;border:1px solid var(--rule);background:var(--leaf);color:var(--ink);border-radius:20px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.fbtn.on,.dbtn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.dot.t-table{background:var(--t-table)}.dot.t-library{background:var(--t-library)}.dot.t-cards{background:var(--t-cards)}.dot.t-stage{background:var(--t-stage)}.dot.t-turf{background:var(--t-turf)}.dot.t-garden{background:var(--t-garden)}
+.count{font-family:var(--mono);font-size:13px;color:var(--muted);margin-left:auto}
+.fbtn:focus-visible,.dbtn:focus-visible,a:focus-visible{outline:2px solid var(--jasper-d);outline-offset:2px}
+
+/* candidate pages */
+.pages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px}
+.page{background:var(--leaf);border:1px solid var(--rule);padding:22px 24px 20px;position:relative;
+  background-image:linear-gradient(var(--faint) 1px,transparent 1px);background-size:100% 30px;background-position:0 128px}
+.page::before{content:"";position:absolute;top:0;bottom:0;left:14px;border-left:1px solid color-mix(in srgb,var(--t-stage) 45%,transparent)}
+.page[hidden]{display:none}
+.page-head{padding-left:8px}
+.folio{font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+.page h3{font-family:var(--display);font-weight:600;font-size:clamp(26px,3vw,32px);line-height:1.08;margin:4px 0 6px}
+.where{font-family:var(--mono);font-size:13.5px;color:var(--muted);margin:0 0 10px;line-height:1.5}
+.est{color:var(--ink);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.tag{font-family:var(--mono);font-size:12.5px;padding:3px 9px;border:1px solid currentColor;border-radius:12px;display:inline-flex;align-items:center;gap:6px;line-height:1.3}
+.t-table{color:var(--t-table)}.t-library{color:var(--t-library)}.t-cards{color:var(--t-cards)}.t-stage{color:var(--t-stage)}.t-turf{color:var(--t-turf)}.t-garden{color:var(--t-garden)}
+.tag.door,.tag.wball{color:var(--muted)}
+.book{margin:0;padding-left:8px}
+.book div{display:grid;grid-template-columns:104px minmax(0,1fr);gap:12px;padding:8px 0;border-top:1px solid var(--rule)}
+.book dt{font-family:var(--mono);font-size:12.5px;color:var(--muted);padding-top:4px;line-height:1.35}
+.book dd{margin:0;font-size:17px;line-height:1.55}
+.book .bb dd{font-style:italic}
+.book .in{background:color-mix(in srgb,var(--jasper) 9%,transparent);margin:0 -10px;padding:8px 10px}
+
+/* doors */
+.doors{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.door-card{border:1px solid var(--rule);border-top:6px solid var(--jasper);background:var(--leaf);padding:16px 18px}
+.door-card h3{font-family:var(--display);font-size:24px;margin:0 0 4px;font-weight:600;line-height:1.1}
+.door-card p{margin:0 0 10px;font-size:17px}
+.door-card .walk{margin:0;padding-top:8px;border-top:1px dotted var(--rule)}
+
+.method{max-width:720px;font-size:17px}
+.sources ol{padding-left:2.2em;font-size:15.5px;line-height:1.5;columns:2;column-gap:36px}
+.sources li{margin:0 0 8px;break-inside:avoid;overflow-wrap:anywhere}
+.sources li a{padding:12px 0;font-size:16px}
+.sources li:target{background:color-mix(in srgb,var(--jasper) 18%,transparent)}
+.wp{color:var(--muted);font-style:italic}
+footer{border-top:3px double var(--rule);padding:28px 0 46px;font-family:var(--mono);font-size:14px;color:var(--muted)}
+footer p{margin:0 0 8px}
+footer a{display:inline-flex;align-items:center;min-height:40px}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;padding-top:34px}
+  .hero svg{max-width:300px;order:-1}
+  .pages{grid-template-columns:1fr}
+  .box{grid-template-columns:1fr}
+  .sources ol{columns:1}
+  .board li{grid-template-columns:1fr;row-gap:0}
+  .bb-text{font-size:12.5px}
+  .filters{position:static;backdrop-filter:none}
+  .ticks{margin-left:0;margin-right:0}
+}
+@media (max-width:480px){
+  body{font-size:17px}
+  .wrap{padding:0 16px}
+  .page{padding:18px 16px 16px}
+  .page::before{left:8px}
+  .book div{grid-template-columns:1fr;gap:2px}
+  .book dd{font-size:16.5px}
+  .count{width:100%;margin-left:0}
+  .tick:nth-child(even){display:none}
+}
+@media (prefers-reduced-motion: no-preference){
+  .drop{animation:drop 2.4s cubic-bezier(.5,0,.6,1) .6s both}
+  @keyframes drop{0%{transform:translateY(-70px);opacity:0}35%{opacity:1}70%{transform:translateY(0)}100%{transform:translateY(0)}}
+}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 032 · Wednesday 18 November 2026</span></div></div>
+
+<header class="hero">
+ <span class="border t" aria-hidden="true"></span><span class="border b" aria-hidden="true"></span>
+ <div class="wrap">
+  <div>
+   <p class="kicker">Field guide · Twenty clubs, one black ball</p>
+   <h1>The <em>Clubland</em> Atlas</h1>
+   <p class="dek">Twenty historic private members&#x27; clubs, from St James&#x27;s to Tokyo: how each began, what it makes you wear, whom it turned away, and ten libraries and bars where anyone can walk in.</p>
+   <p class="meta">Published 18 November 2026 · 104 sources</p>
+  </div>
+  <svg viewBox="0 0 400 380" role="img" aria-labelledby="hero-t">
+   <title id="hero-t">A ballot box drawn as a white cameo on jasper blue: white balls in the drawer, one black ball falling through the sleeve.</title>
+   <g fill="none" stroke="#f7f4ec" stroke-width="2.4" stroke-linejoin="round">
+    <ellipse cx="200" cy="190" rx="186" ry="172" stroke-width="1.6" opacity=".75"/>
+    <ellipse cx="200" cy="190" rx="176" ry="162" stroke-width="1" opacity=".55"/>
+    <!-- sleeve -->
+    <path d="M168 86 q32 -26 64 0 v44 h-64 z"/>
+    <path d="M178 90 q22 -16 44 0" opacity=".7"/>
+    <!-- box -->
+    <path d="M92 130 h216 l14 18 v128 h-244 v-128 z"/>
+    <path d="M78 148 h244"/>
+    <path d="M100 160 h200 v58 h-200 z" opacity=".8"/>
+    <!-- drawer -->
+    <path d="M100 232 h200 v32 h-200 z"/>
+    <circle cx="200" cy="248" r="5" fill="#f7f4ec"/>
+    <!-- feet -->
+    <path d="M86 276 v14 h22 v-14 M292 276 v14 h22 v-14"/>
+    <!-- labels on drawers: Yes / No -->
+   </g>
+   <g font-family="Bodoni Moda, Georgia, serif" font-size="20" fill="#f7f4ec" text-anchor="middle" font-style="italic">
+    <text x="150" y="196">Yes</text><text x="250" y="196">No</text>
+   </g>
+   <path d="M200 166 v46" stroke="#f7f4ec" stroke-width="1.6" opacity=".7"/>
+   <!-- white balls spilled in front -->
+   <g>
+    <circle cx="140" cy="322" r="13" fill="#f7f4ec"/>
+    <circle cx="170" cy="328" r="13" fill="#f7f4ec"/>
+    <circle cx="200" cy="322" r="13" fill="#f7f4ec"/>
+    <circle cx="230" cy="328" r="13" fill="#f7f4ec"/>
+    <circle cx="260" cy="322" r="13" fill="#f7f4ec"/>
+    <circle cx="136" cy="318" r="4" fill="#fff" opacity=".9"/>
+   </g>
+   <g class="drop"><circle cx="200" cy="58" r="14" fill="#141414" stroke="#f7f4ec" stroke-width="1.5"/><circle cx="195" cy="53" r="3.5" fill="#777"/></g>
+  </svg>
+ </div>
+</header>
+
+<main>
+<section class="wrap intro" aria-label="Introduction">
+
+<p class="lede">A private members' club runs on two pieces of furniture: a book and a box. A candidate's name goes into the book, where a proposer and a seconder sign for him and other members add their names in support. Then comes the box. Members vote anonymously, traditionally with white and black balls, and how many black balls it takes to sink a candidate varies from club to club <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup>. At the Jockey Club in Paris one black ball cancels five white <sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup>. At its namesake in Buenos Aires two black balls from the 21-member board are enough <sup class="ref"><a href="#s3" aria-label="Source 3">3</a></sup>.</p>
+<p>The twenty clubs here were founded between 1693 and 1891, from St James's Street to Roppongi. Most of them were built to keep people out, and their histories are mostly histories of whom. White's and Brooks's grew out of gaming; the Athenaeum, the Reform and the Union League out of science, politics and civil war. In Kolkata, Mumbai and Hong Kong the line was drawn by race, and stayed drawn until 1959 at the Bengal Club and the late 1970s at the Hong Kong Club <sup class="ref"><a href="#s4" aria-label="Source 4">4</a>,<a href="#s5" aria-label="Source 5">5</a></sup>.</p>
+<p>The ballot board below shows the other line. Most of the New York clubs here opened to women in the late 1980s, after a 1984 city law covering large clubs that do business on their premises, which the US Supreme Court upheld in 1988 <sup class="ref"><a href="#s6" aria-label="Source 6">6</a></sup>. London moved more slowly, from the Reform in 1981 to the Garrick in 2024 <sup class="ref"><a href="#s1" aria-label="Source 1">1</a>,<a href="#s7" aria-label="Source 7">7</a></sup>. Seven of the twenty still admit only men.</p>
+<p>Each entry is laid out like a page in a candidates' book: how the club was proposed, its house rules, what it makes you wear, the famous refusals, the kind of evening it is known for, and how, if at all, a non-member gets through the door. Dress codes and access rules change, so each carries the date it was checked. After the twenty come ten libraries, reading rooms and one long bar that let anyone in.</p>
+
+</section>
+
+<section class="wrap" aria-labelledby="board-h">
+ <h2 id="board-h">The ballot board</h2>
+ <p class="sub">When each club was founded, and when, if ever, it let women become members.</p>
+ <div class="board">
+  <ol><li><span class="bb-name"><a href="#whites">White's</a> <span class="bb-city">London</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line men" style="left:3.71%;width:96.29%"></span><span class="ball black" style="left:100%" title="Men only"></span><span class="ball found" style="left:3.71%"></span></span><span class="bb-text">1693 · Men only</span></li><li><span class="bb-name"><a href="#brooks">Brooks's</a> <span class="bb-city">London</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line men" style="left:24.00%;width:76.00%"></span><span class="ball black" style="left:100%" title="Men only"></span><span class="ball found" style="left:24.00%"></span></span><span class="bb-text">1764 · Men only</span></li><li><span class="bb-name"><a href="#newclub">The New Club</a> <span class="bb-city">Edinburgh</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line" style="left:30.57%;width:63.71%"></span><span class="ball white" style="left:94.29%" title="Women admitted 2010"></span><span class="ball found" style="left:30.57%"></span></span><span class="bb-text">1787 · Women 2010</span></li><li><span class="bb-name"><a href="#travellers">The Travellers Club</a> <span class="bb-city">London</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line men" style="left:39.71%;width:60.29%"></span><span class="ball black" style="left:100%" title="Men only"></span><span class="ball found" style="left:39.71%"></span></span><span class="bb-text">1819 · Men only</span></li><li><span class="bb-name"><a href="#athenaeum">The Athenaeum</a> <span class="bb-city">London</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line" style="left:41.14%;width:50.57%"></span><span class="ball white" style="left:91.71%" title="Women admitted 2001"></span><span class="ball found" style="left:41.14%"></span></span><span class="bb-text">1824 · Women 2001</span></li><li><span class="bb-name"><a href="#bengal">The Bengal Club</a> <span class="bb-city">Kolkata</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line" style="left:42.00%;width:46.57%"></span><span class="ball white" style="left:88.57%" title="Women admitted 1990"></span><span class="ball found" style="left:42.00%"></span></span><span class="bb-text">1827 · Women 1990</span></li><li><span class="bb-name"><a href="#garrick">The Garrick Club</a> <span class="bb-city">London</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line" style="left:43.14%;width:55.14%"></span><span class="ball white" style="left:98.29%" title="Women admitted 2024"></span><span class="ball found" style="left:43.14%"></span></span><span class="bb-text">1831 · Women 2024</span></li><li><span class="bb-name"><a href="#jcp">Jockey Club de Paris</a> <span class="bb-city">Paris</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line men" style="left:44.00%;width:56.00%"></span><span class="ball black" style="left:100%" title="Men only"></span><span class="ball found" style="left:44.00%"></span></span><span class="bb-text">1834 · Men only</span></li><li><span class="bb-name"><a href="#reform">The Reform Club</a> <span class="bb-city">London</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line" style="left:44.57%;width:41.43%"></span><span class="ball white" style="left:86.00%" title="Women admitted 1981"></span><span class="ball found" style="left:44.57%"></span></span><span class="bb-text">1836 · Women 1981</span></li><li><span class="bb-name"><a href="#union">Union Club of the City of New York</a> <span class="bb-city">New York</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line unk" style="left:44.57%;width:55.43%"></span><span class="ball grey" style="left:100%" title="Not published"></span><span class="ball found" style="left:44.57%"></span></span><span class="bb-text">1836 · Women: not published</span></li><li><span class="bb-name"><a href="#melbourne">The Melbourne Club</a> <span class="bb-city">Melbourne</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line men" style="left:45.14%;width:54.86%"></span><span class="ball black" style="left:100%" title="Men only"></span><span class="ball found" style="left:45.14%"></span></span><span class="bb-text">1838 · Men only</span></li><li><span class="bb-name"><a href="#rbyc">Royal Bombay Yacht Club</a> <span class="bb-city">Mumbai</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line unk" style="left:47.43%;width:52.57%"></span><span class="ball grey" style="left:100%" title="Not published"></span><span class="ball found" style="left:47.43%"></span></span><span class="bb-text">1846 · Women: not published</span></li><li><span class="bb-name"><a href="#hkc">The Hong Kong Club</a> <span class="bb-city">Hong Kong</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line" style="left:47.43%;width:42.86%"></span><span class="ball white" style="left:90.29%" title="Women admitted after 1996"></span><span class="ball found" style="left:47.43%"></span></span><span class="bb-text">1846 · Women after 1996</span></li><li><span class="bb-name"><a href="#century">The Century Association</a> <span class="bb-city">New York</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line" style="left:47.71%;width:40.29%"></span><span class="ball white" style="left:88.00%" title="Women admitted 1988"></span><span class="ball found" style="left:47.71%"></span></span><span class="bb-text">1847 · Women 1988</span></li><li><span class="bb-name"><a href="#pratts">Pratt's</a> <span class="bb-city">London</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line" style="left:50.57%;width:47.43%"></span><span class="ball white" style="left:98.00%" title="Women admitted 2023"></span><span class="ball found" style="left:50.57%"></span></span><span class="bb-text">1857 · Women 2023</span></li><li><span class="bb-name"><a href="#ulc">The Union League Club</a> <span class="bb-city">New York</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line unk" style="left:52.29%;width:47.71%"></span><span class="ball grey" style="left:100%" title="Admits women"></span><span class="ball found" style="left:52.29%"></span></span><span class="bb-text">1863 · Women members, year unconfirmed</span></li><li><span class="bb-name"><a href="#jcba">Jockey Club (Buenos Aires)</a> <span class="bb-city">Buenos Aires</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line men" style="left:57.71%;width:42.29%"></span><span class="ball black" style="left:100%" title="Men only"></span><span class="ball found" style="left:57.71%"></span></span><span class="bb-text">1882 · Men only</span></li><li><span class="bb-name"><a href="#tokyo">The Tokyo Club</a> <span class="bb-city">Tokyo</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line men" style="left:58.29%;width:41.71%"></span><span class="ball black" style="left:100%" title="Men only"></span><span class="ball found" style="left:58.29%"></span></span><span class="bb-text">1884 · Men only</span></li><li><span class="bb-name"><a href="#players">The Players</a> <span class="bb-city">New York</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line" style="left:59.43%;width:28.86%"></span><span class="ball white" style="left:88.29%" title="Women admitted 1989"></span><span class="ball found" style="left:59.43%"></span></span><span class="bb-text">1888 · Women 1989</span></li><li><span class="bb-name"><a href="#metro">The Metropolitan Club</a> <span class="bb-city">New York</span></span><span class="bb-track" aria-hidden="true"><span class="bb-line" style="left:60.29%;width:23.71%"></span><span class="ball white" style="left:84.00%" title="Women admitted 1974 or after 1984"></span><span class="ball found" style="left:60.29%"></span></span><span class="bb-text">1891 · Women 1974 or after 1984</span></li></ol>
+  <div class="ticks" aria-hidden="true"><span class="tick" style="left:5.71%">1700</span><span class="tick" style="left:20.00%">1750</span><span class="tick" style="left:34.29%">1800</span><span class="tick" style="left:48.57%">1850</span><span class="tick" style="left:62.86%">1900</span><span class="tick" style="left:77.14%">1950</span><span class="tick" style="left:91.43%">2000</span></div>
+  <ul class="legend">
+   <li><span class="mini found" aria-hidden="true"></span>Founded</li>
+   <li><span class="mini white" aria-hidden="true"></span>Women admitted as members</li>
+   <li><span class="mini black" aria-hidden="true"></span>Men only as of the latest report</li>
+   <li><span class="mini grey" aria-hidden="true"></span>Date not published or unconfirmed</li>
+  </ul>
+ </div>
+ <div class="box">
+  <div><h3>The book</h3><p>Candidates are proposed and seconded by members, and their names are entered in a book where others can add support. At the Athenaeum nobody applies: they are nominated.</p></div>
+  <div><h3>The box</h3><p>Members vote in secret, with white and black balls. The number of black balls that sinks a candidate is each club's own rule.</p></div>
+  <div><h3>The guest</h3><p>Almost every door here opens to a non-member only on a member's arm or a reciprocal club's letter of introduction. The exceptions are flagged.</p></div>
+ </div>
+</section>
+
+<section class="wrap" aria-labelledby="clubs-h">
+ <h2 id="clubs-h">The twenty</h2>
+ <p class="sub">Sort by the kind of evening each club is known for, or show only those with tours or open days.</p>
+ <div class="filters" role="group" aria-label="Filter clubs">
+  <div class="wrap" style="padding:0">
+   <div class="frow"><span class="flabel">Evening</span><button type="button" class="fbtn on" data-f="all" aria-pressed="true">All evenings</button><button type="button" class="fbtn" data-f="table" aria-pressed="false"><span class="dot t-table" aria-hidden="true"></span>The long table</button><button type="button" class="fbtn" data-f="library" aria-pressed="false"><span class="dot t-library" aria-hidden="true"></span>Library and talk</button><button type="button" class="fbtn" data-f="cards" aria-pressed="false"><span class="dot t-cards" aria-hidden="true"></span>Cards, bets and games</button><button type="button" class="fbtn" data-f="stage" aria-pressed="false"><span class="dot t-stage" aria-hidden="true"></span>Stage people</button><button type="button" class="fbtn" data-f="turf" aria-pressed="false"><span class="dot t-turf" aria-hidden="true"></span>Turf and water</button><button type="button" class="fbtn" data-f="garden" aria-pressed="false"><span class="dot t-garden" aria-hidden="true"></span>Garden and lawn</button></div>
+   <div class="frow"><span class="flabel">Door</span><button type="button" class="dbtn on" data-d="all" aria-pressed="true">Any door</button><button type="button" class="dbtn" data-d="open" aria-pressed="false">Tours or open days</button><span class="count" id="count" aria-live="polite">Showing 20 of 20</span></div>
+  </div>
+ </div>
+ <div class="pages" id="pages">
+
+<article class="page" id="whites" data-tags="cards" data-door="guest" data-region="London">
+ <header class="page-head">
+  <span class="folio">Candidate 01</span>
+  <h3>White's</h3>
+  <p class="where">London · St James's Street · <span class="est">Est. 1693</span></p>
+  <p class="chips"><span class="tag t-cards">Cards, bets and games</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini black" aria-hidden="true"></span>Men only</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Opened in 1693 by Francesco Bianco, an Italian immigrant, as Mrs White's Chocolate House in Mayfair, it had turned into a club and a gaming house by the early 18th century <sup class="ref"><a href="#s8" aria-label="Source 8">8</a>,<a href="#s9" aria-label="Source 9">9</a></sup>. Its clubhouse is at 37–38 St James's Street <sup class="ref"><a href="#s8" aria-label="Source 8">8</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>Its betting book recorded members' wagers on politics, sport and each other. The best-known entry, repeated in every history and impossible to verify, has Lord Alvanley staking £3,000 on which of two raindrops would reach the bottom of a window pane first <sup class="ref"><a href="#s8" aria-label="Source 8">8</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>No dress code is published.</dd></div>
+  <div><dt>Women</dt><dd>Still men only. It was on the Evening Standard's list of London's remaining men-only clubs in May 2024 <sup class="ref"><a href="#s10" aria-label="Source 10">10</a>,<a href="#s1" aria-label="Source 1">1</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>White's turned away two men, Boothby and James, whose own society, formed in 1762, became the forerunner of Brooks's and Boodle's, according to Wikipedia's history of Brooks's <sup class="ref"><a href="#s11" aria-label="Source 11">11</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Historically, gambling: Jonathan Swift called it the "bane of half the English nobility" <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Only as a member's guest. No tours, open days or hire found (as of November 2026).</dd></div>
+ </dl>
+</article>
+<article class="page" id="brooks" data-tags="cards" data-door="guest" data-region="London">
+ <header class="page-head">
+  <span class="folio">Candidate 02</span>
+  <h3>Brooks's</h3>
+  <p class="where">London · St James's Street · <span class="est">Est. 1764</span></p>
+  <p class="chips"><span class="tag t-cards">Cards, bets and games</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini black" aria-hidden="true"></span>Men only</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded in March 1764 by 27 Whig nobles, among them the Dukes of Portland and Roxburghe. It first met at 49 Pall Mall, a tavern run by William Almack, and was known simply as Almack's <sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>In 1777 William Brooks commissioned the present clubhouse from Henry Holland; it was finished in October 1778 <sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>. The club kept a betting book too: a 1785 entry records Lord Cholmondeley staking two guineas against Lord Derby's 500 on a bawdy wager involving a balloon <sup class="ref"><a href="#s13" aria-label="Source 13">13</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>No dress code is published.</dd></div>
+  <div><dt>Women</dt><dd>Men only, as of the Evening Standard's May 2024 survey <sup class="ref"><a href="#s10" aria-label="Source 10">10</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>Its origins lie in a rejection: the society that grew into Brooks's was started by two men blackballed at White's (see above) <sup class="ref"><a href="#s11" aria-label="Source 11">11</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Built for high-stakes gaming in the 18th century <sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>; today the club says little in public about its evenings.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Only as a member's guest (as of November 2026).</dd></div>
+ </dl>
+</article>
+<article class="page" id="travellers" data-tags="library" data-door="guest" data-region="London">
+ <header class="page-head">
+  <span class="folio">Candidate 03</span>
+  <h3>The Travellers Club</h3>
+  <p class="where">London · 106 Pall Mall · <span class="est">Est. 1819</span></p>
+  <p class="chips"><span class="tag t-library">Library and talk</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini black" aria-hidden="true"></span>Men only</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded in May 1819, the brainchild of Viscount Castlereagh, with the 2nd Lord Auckland as first chairman <sup class="ref"><a href="#s14" aria-label="Source 14">14</a></sup>. Charles Barry won the competition for its Pall Mall clubhouse, completed in 1832 next door to the Athenaeum <sup class="ref"><a href="#s14" aria-label="Source 14">14</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>The founding qualification: members had to have travelled 500 miles in a straight line outside England. The club also set out to welcome "foreigners of distinction" and diplomats <sup class="ref"><a href="#s14" aria-label="Source 14">14</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>Gentlemen wear jacket, collar and tie in all public rooms, the tie excepted at weekends; no denim or casual wear; "ladies should dress with comparable formality" (fact sheet, January 2024) <sup class="ref"><a href="#s15" aria-label="Source 15">15</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>Women cannot be members. They are "welcome as guests and reciprocal members", and the cocktail bar is listed as gentlemen only (January 2024) <sup class="ref"><a href="#s15" aria-label="Source 15">15</a></sup>. In 2014 the Archbishop of Canterbury, Justin Welby, said he would leave over the policy, as reported in Wikipedia's account <sup class="ref"><a href="#s16" aria-label="Source 16">16</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>None documented; the Welby resignation is the club's best-known membership row.</dd></div>
+  <div><dt>The evening</dt><dd>The library, which Country Life calls the finest collection of travel books in private hands <sup class="ref"><a href="#s14" aria-label="Source 14">14</a></sup>, and dinner in the Coffee Room, Monday to Friday <sup class="ref"><a href="#s15" aria-label="Source 15">15</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>As a member's guest (a member may bring up to seven to the restaurant), or as a member of a reciprocal club with card and letter of introduction (January 2024) <sup class="ref"><a href="#s15" aria-label="Source 15">15</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="athenaeum" data-tags="library" data-door="guest" data-region="London">
+ <header class="page-head">
+  <span class="folio">Candidate 04</span>
+  <h3>The Athenaeum</h3>
+  <p class="where">London · 107 Pall Mall · <span class="est">Est. 1824</span></p>
+  <p class="chips"><span class="tag t-library">Library and talk</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini white" aria-hidden="true"></span>Women admitted: 2001</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded in 1824 at the urging of John Wilson Croker, Secretary to the Admiralty, as a club for "literary and scientific men and followers of the fine arts". Michael Faraday was its first secretary and Sir Humphry Davy its first chairman <sup class="ref"><a href="#s17" aria-label="Source 17">17</a></sup>. Decimus Burton's clubhouse, with a gilded Athena over the door, opened in February 1830 <sup class="ref"><a href="#s17" aria-label="Source 17">17</a>,<a href="#s18" aria-label="Source 18">18</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>Candidates are nominated; they do not apply. Under Rule II the committee may elect nine people of distinction a year ahead of the waiting list. The rules on "strangers" were strict enough that in 1924 Ramsay MacDonald, then Prime Minister, had to cut short a visit after unknowingly breaking them <sup class="ref"><a href="#s17" aria-label="Source 17">17</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>Men: collared shirt and jacket, ties optional until 7pm. Women: equivalent formality. No denim jeans or sports shoes for anyone (club website, read November 2026) <sup class="ref"><a href="#s18" aria-label="Source 18">18</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>The club's timeline dates the admission of women to March 2001, after three debates over 17 years <sup class="ref"><a href="#s17" aria-label="Source 17">17</a></sup>; The Week gives 2002 <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>No famous blackballing found; the MacDonald episode is the story the club tells on itself <sup class="ref"><a href="#s17" aria-label="Source 17">17</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Library, talks, concerts, quizzes and films for about 2,000 members <sup class="ref"><a href="#s19" aria-label="Source 19">19</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Only as a member's guest (as of November 2026).</dd></div>
+ </dl>
+</article>
+<article class="page" id="reform" data-tags="library" data-door="open" data-region="London">
+ <header class="page-head">
+  <span class="folio">Candidate 05</span>
+  <h3>The Reform Club</h3>
+  <p class="where">London · 104 Pall Mall · <span class="est">Est. 1836</span></p>
+  <p class="chips"><span class="tag t-library">Library and talk</span><span class="tag door d-open">Tours or open days</span><span class="tag wball"><span class="mini white" aria-hidden="true"></span>Women admitted: 1981</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Radicals and Whigs founded it in the ferment around the Great Reform Act of 1832; it opened to members at 104 Pall Mall on 24 May 1836 <sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup>. Charles Barry's clubhouse, finished in 1841, borrows its façade from the Palazzo Farnese in Rome <sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>Jules Verne sent Phileas Fogg out from here, on a wager made in the club, in Around the World in Eighty Days (1872) <sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>Visitors must follow a dress code that the club publishes separately <sup class="ref"><a href="#s21" aria-label="Source 21">21</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>Admitted women on equal terms in 1981, the first of the old London clubs to do so, according to The Week <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>In February 1913 the club blackballed Baron de Forest, a prominent Liberal supporter. A London cable printed in New Zealand's Dominion reported that Lloyd George and Churchill "have already resigned" in protest <sup class="ref"><a href="#s22" aria-label="Source 22">22</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Dining, the library and the Smoking Room <sup class="ref"><a href="#s23" aria-label="Source 23">23</a></sup>. Open weekdays only, closed at weekends and on bank holidays <sup class="ref"><a href="#s21" aria-label="Source 21">21</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>The most open of the Pall Mall clubs here. It takes part in Open House London every September (listed for 12–20 September 2026 as a 45-minute visit) <sup class="ref"><a href="#s20" aria-label="Source 20">20</a>,<a href="#s23" aria-label="Source 23">23</a></sup>, and groups of ten or more can book weekday-morning visits for a £15-a-head donation to its conservation trust (as of November 2026) <sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="garrick" data-tags="stage table" data-door="open" data-region="London">
+ <header class="page-head">
+  <span class="folio">Candidate 06</span>
+  <h3>The Garrick Club</h3>
+  <p class="where">London · Garrick Street, Covent Garden · <span class="est">Est. 1831</span></p>
+  <p class="chips"><span class="tag t-stage">Stage people</span><span class="tag t-table">The long table</span><span class="tag door d-open">Tours or open days</span><span class="tag wball"><span class="mini white" aria-hidden="true"></span>Women admitted: 2024</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded in 1831 by a group of writers under the patronage of the Duke of Sussex, as a place where "actors and men of refinement and education might meet on equal terms" <sup class="ref"><a href="#s24" aria-label="Source 24">24</a>,<a href="#s25" aria-label="Source 25">25</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>A candidate's name goes into the candidates' book, where members second it <sup class="ref"><a href="#s26" aria-label="Source 26">26</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>No denim, trainers or gym shoes; women "may wear trousers but not jeans" (club website, read November 2026) <sup class="ref"><a href="#s27" aria-label="Source 27">27</a>,<a href="#s25" aria-label="Source 25">25</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>A 2015 vote found 50.5 per cent in favour, short of the two-thirds needed <sup class="ref"><a href="#s25" aria-label="Source 25">25</a></sup>. After the Guardian published members' names in March 2024, a vote in May 2024 passed with 59.98 per cent <sup class="ref"><a href="#s7" aria-label="Source 7">7</a>,<a href="#s26" aria-label="Source 26">26</a></sup>. Judi Dench and Siân Phillips became the first women members that July <sup class="ref"><a href="#s28" aria-label="Source 28">28</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>In 2011 Hugh Bonneville nominated Joanna Lumley. The club took legal advice and she was not admitted <sup class="ref"><a href="#s25" aria-label="Source 25">25</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Dinner in theatrical company <sup class="ref"><a href="#s24" aria-label="Source 24">24</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>As a member's guest. The club arranges guided group tours for 20 to 30 people through its office (as of November 2026) <sup class="ref"><a href="#s24" aria-label="Source 24">24</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="pratts" data-tags="table" data-door="guest" data-region="London">
+ <header class="page-head">
+  <span class="folio">Candidate 07</span>
+  <h3>Pratt's</h3>
+  <p class="where">London · 14 Park Place · <span class="est">Est. 1857</span></p>
+  <p class="chips"><span class="tag t-table">The long table</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini white" aria-hidden="true"></span>Women admitted: 2023</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Named after William Nathaniel Pratt, steward to the Duke of Beaufort, who lived on the premises from 1841; the Duke and his friends kept coming back, and the club dates from 1857 <sup class="ref"><a href="#s29" aria-label="Source 29">29</a>,<a href="#s30" aria-label="Source 30">30</a></sup>. It is a basement club off St James's Street, now owned by the Earl of Burlington of the Devonshire family <sup class="ref"><a href="#s29" aria-label="Source 29">29</a>,<a href="#s30" aria-label="Source 30">30</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>Every steward is called George, whatever his name. The first woman steward, Margaret Ouroux, was called Georgina <sup class="ref"><a href="#s30" aria-label="Source 30">30</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>No dress code is published.</dd></div>
+  <div><dt>Women</dt><dd>Women were admitted as full members in May 2023, the first time in 166 years; until then they could come only as lunch guests. Some members objected that there had been no ballot <sup class="ref"><a href="#s30" aria-label="Source 30">30</a>,<a href="#s31" aria-label="Source 31">31</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>None documented. The 2023 row was about how the decision to admit women was made <sup class="ref"><a href="#s30" aria-label="Source 30">30</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Dinner at one table seating 14 in a basement dining room. The Telegraph says the club partly inspired Blades, James Bond's club <sup class="ref"><a href="#s30" aria-label="Source 30">30</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Only as a member's guest (as of November 2026).</dd></div>
+ </dl>
+</article>
+<article class="page" id="newclub" data-tags="table" data-door="guest" data-region="Europe">
+ <header class="page-head">
+  <span class="folio">Candidate 08</span>
+  <h3>The New Club</h3>
+  <p class="where">Edinburgh · 86 Princes Street · <span class="est">Est. 1787</span></p>
+  <p class="chips"><span class="tag t-table">The long table</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini white" aria-hidden="true"></span>Women admitted: 2010</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Conceived at a Caledonian Hunt ball and founded on 1 February 1787, it calls itself Scotland's oldest club. It moved from Bayle's Tavern to St Andrew Square in 1809 and to Princes Street in 1837 <sup class="ref"><a href="#s32" aria-label="Source 32">32</a></sup>. The present building, by Alan Reiach, Eric Hall and Partners, replaced the old one in the 1960s <sup class="ref"><a href="#s32" aria-label="Source 32">32</a>,<a href="#s33" aria-label="Source 33">33</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>Wives became associate members in 1970, but women were kept off the main staircase until 1998 <sup class="ref"><a href="#s32" aria-label="Source 32">32</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>On weekdays "gentlemen are expected to wear a jacket and tie"; smart casual at weekends (club website, read November 2026) <sup class="ref"><a href="#s34" aria-label="Source 34">34</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>Full membership opened to women in October 2010 <sup class="ref"><a href="#s32" aria-label="Source 32">32</a>,<a href="#s33" aria-label="Source 33">33</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>None documented.</dd></div>
+  <div><dt>The evening</dt><dd>Dining and banqueting above Princes Street Gardens <sup class="ref"><a href="#s35" aria-label="Source 35">35</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>As a member's guest. Private events can be booked only by or on behalf of a member or a member of a reciprocal club (as of November 2026) <sup class="ref"><a href="#s35" aria-label="Source 35">35</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="jcp" data-tags="turf" data-door="guest" data-region="Europe">
+ <header class="page-head">
+  <span class="folio">Candidate 09</span>
+  <h3>Jockey Club de Paris</h3>
+  <p class="where">Paris · 2 rue Rabelais, 8e · <span class="est">Est. 1834</span></p>
+  <p class="chips"><span class="tag t-turf">Turf and water</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini black" aria-hidden="true"></span>Men only</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>The Société d'Encouragement was set up in 1833 to promote thoroughbred racing; in 1834 it opened the social club that became known as the Jockey Club <sup class="ref"><a href="#s36" aria-label="Source 36">36</a>,<a href="#s37" aria-label="Source 37">37</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>Candidates need two sponsors. In the ballot, "une seule boule noire annule cinq blanches": one black ball cancels five white. La Libre Belgique counted at least four candidates blackballed since 2014, among about 1,200 members, two-thirds of them titled (August 2023) <sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>No dress code is published; La Libre describes white-gloved service <sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>"Les dames ne sont pas admises": women are not admitted (August 2023) <sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>Its loudest night was in the opera house: at the 1861 Paris Tannhäuser, members who arrived for the second act expecting their customary ballet nearly hissed the production off the stage, and Wagner never allowed another Paris production of the opera <sup class="ref"><a href="#s38" aria-label="Source 38">38</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Racing society: the club grew out of the turf, and the Société's great race at Chantilly is still called the Prix du Jockey Club <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>No access for non-members found (as of November 2026).</dd></div>
+ </dl>
+</article>
+<article class="page" id="union" data-tags="cards" data-door="guest" data-region="Americas">
+ <header class="page-head">
+  <span class="folio">Candidate 10</span>
+  <h3>Union Club of the City of New York</h3>
+  <p class="where">New York · 101 East 69th Street · <span class="est">Est. 1836</span></p>
+  <p class="chips"><span class="tag t-cards">Cards, bets and games</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini grey" aria-hidden="true"></span>Women: not published</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded in 1836 at a meeting at 1 Bond Street <sup class="ref"><a href="#s39" aria-label="Source 39">39</a></sup>. The New York Times called it the "mother of clubs" in 1936 <sup class="ref"><a href="#s40" aria-label="Source 40">40</a></sup>: the Union League and the Knickerbocker were started by members who left it, and the Metropolitan by J.P. Morgan after it refused his nominee <sup class="ref"><a href="#s39" aria-label="Source 39">39</a>,<a href="#s41" aria-label="Source 41">41</a></sup>. Its Delano &amp; Aldrich clubhouse on Park Avenue opened in 1933 <sup class="ref"><a href="#s39" aria-label="Source 39">39</a>,<a href="#s42" aria-label="Source 42">42</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>Using or even showing a phone is "strictly forbidden in all common areas" <sup class="ref"><a href="#s43" aria-label="Source 43">43</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>Men wear jacket and tie at all times except on floors 5, 5M and 6; women "similar standards"; no denim, shorts or sneakers; squash in whites (guest page, read November 2026) <sup class="ref"><a href="#s43" aria-label="Source 43">43</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>The club does not say publicly whether women are full members, and we could not confirm it from a reliable source.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>In 1890 younger governors blackballed John King, J.P. Morgan's nominee, and Dr W. Seward Webb, the Vanderbilts' nominee. Morgan's answer was the Metropolitan Club <sup class="ref"><a href="#s44" aria-label="Source 44">44</a>,<a href="#s45" aria-label="Source 45">45</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Card and backgammon rooms, squash courts and bottle pool, a pocket-billiards game the club still favours <sup class="ref"><a href="#s39" aria-label="Source 39">39</a>,<a href="#s42" aria-label="Source 42">42</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Only as a member's guest or a visiting member of a reciprocal club (as of November 2026) <sup class="ref"><a href="#s43" aria-label="Source 43">43</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="metro" data-tags="table" data-door="guest" data-region="Americas">
+ <header class="page-head">
+  <span class="folio">Candidate 11</span>
+  <h3>The Metropolitan Club</h3>
+  <p class="where">New York · 1 East 60th Street · <span class="est">Est. 1891</span></p>
+  <p class="chips"><span class="tag t-table">The long table</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini white" aria-hidden="true"></span>Women admitted: 1974 or after 1984</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded in 1891 by men who had lost faith in the Union Club's ballot: its founders met on 20 February 1891 and announced J.P. Morgan as first president that March <sup class="ref"><a href="#s44" aria-label="Source 44">44</a></sup>. American Heritage puts it more bluntly: Morgan "could not get a friend of his into the Union" and "built his own club" <sup class="ref"><a href="#s41" aria-label="Source 41">41</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>The press nicknamed it the Millionaires' Club <sup class="ref"><a href="#s44" aria-label="Source 44">44</a></sup>. Stanford White's clubhouse on Fifth Avenue opened in 1894 and became a city landmark in 1979 <sup class="ref"><a href="#s44" aria-label="Source 44">44</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>No dress code is published.</dd></div>
+  <div><dt>Women</dt><dd>Sources differ. Wikipedia says widows were admitted from 1935 and any woman could join from 1974 <sup class="ref"><a href="#s45" aria-label="Source 45">45</a></sup>. The club's president told the Daily News in the 1980s that women had belonged without a vote and gained voting rights and equal dues only after the city's 1984 law on large clubs, "with all the rights of male members, including the gymnasium" <sup class="ref"><a href="#s46" aria-label="Source 46">46</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>Born of one: see the Union Club <sup class="ref"><a href="#s44" aria-label="Source 44">44</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Luncheons, dinners, debutante balls and business meetings <sup class="ref"><a href="#s45" aria-label="Source 45">45</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Only as a member's guest (as of November 2026).</dd></div>
+ </dl>
+</article>
+<article class="page" id="ulc" data-tags="library" data-door="guest" data-region="Americas">
+ <header class="page-head">
+  <span class="folio">Candidate 12</span>
+  <h3>The Union League Club</h3>
+  <p class="where">New York · 38 East 37th Street · <span class="est">Est. 1863</span></p>
+  <p class="chips"><span class="tag t-library">Library and talk</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini grey" aria-hidden="true"></span>Women members</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded in February 1863 by pro-Union New Yorkers, among them Frederick Law Olmsted, the minister Henry Whitney Bellows and the diarist George Templeton Strong, some of them leaving the Union Club, which would not expel Confederate sympathisers <sup class="ref"><a href="#s47" aria-label="Source 47">47</a>,<a href="#s39" aria-label="Source 39">39</a></sup>. The club says it was founded "to help preserve the Union" <sup class="ref"><a href="#s48" aria-label="Source 48">48</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>It raised and sponsored the 20th US Colored Infantry during the Civil War <sup class="ref"><a href="#s47" aria-label="Source 47">47</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>Jackets for men before 4pm on Friday, and ties only at dinner in the Mary Murray Room and Lounge; after that, collared shirts, and jeans "in good condition" (house rules, read November 2026) <sup class="ref"><a href="#s49" aria-label="Source 49">49</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>Women are members today; Wikipedia records the first, Faith Whittlesey, in 1986 <sup class="ref"><a href="#s47" aria-label="Source 47">47</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>In 1893 the club refused Theodore Seligman, son of its vice-president Jesse Seligman; the father resigned. The Jewish Encyclopedia says the refusal was "for racial reasons" <sup class="ref"><a href="#s50" aria-label="Source 50">50</a></sup>, and the New York Times headline read "Mr. Seligman Blackballed" <sup class="ref"><a href="#s51" aria-label="Source 51">51</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Political talk, and a picture collection that grew partly from artist members paying their dues in paintings <sup class="ref"><a href="#s47" aria-label="Source 47">47</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>As a member's guest or a registered reciprocal visitor. Local residents who belong to a reciprocal club as non-resident members get no privileges (as of November 2026) <sup class="ref"><a href="#s49" aria-label="Source 49">49</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="century" data-tags="library" data-door="guest" data-region="Americas">
+ <header class="page-head">
+  <span class="folio">Candidate 13</span>
+  <h3>The Century Association</h3>
+  <p class="where">New York · 7 West 43rd Street · <span class="est">Est. 1847</span></p>
+  <p class="chips"><span class="tag t-library">Library and talk</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini white" aria-hidden="true"></span>Women admitted: 1988</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded in January 1847 out of the Sketch Club <sup class="ref"><a href="#s52" aria-label="Source 52">52</a></sup> for "authors, artists, and amateurs of letters and fine arts" <sup class="ref"><a href="#s53" aria-label="Source 53">53</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>"Its main activity is conversation" <sup class="ref"><a href="#s53" aria-label="Source 53">53</a></sup>. Photography is banned except at private events, and phone calls are made from booths by the entrance <sup class="ref"><a href="#s54" aria-label="Source 54">54</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>"No formal dress code"; guests should dress in a way "respectful of the traditions of the Century" (read November 2026) <sup class="ref"><a href="#s54" aria-label="Source 54">54</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>Members voted to admit women in 1987 <sup class="ref"><a href="#s55" aria-label="Source 55">55</a></sup>, and the first joined in 1988 <sup class="ref"><a href="#s52" aria-label="Source 52">52</a></sup>. Susan Morrison became its first woman president in 2016 <sup class="ref"><a href="#s56" aria-label="Source 56">56</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>In 2011 members argued over, and voted to end, reciprocity with the men-only Garrick Club in London <sup class="ref"><a href="#s57" aria-label="Source 57">57</a>,<a href="#s52" aria-label="Source 52">52</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Conversation, with musical and dramatic performances, exhibitions and lectures <sup class="ref"><a href="#s53" aria-label="Source 53">53</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Only as a member's guest or a visiting member of a reciprocal club (as of November 2026) <sup class="ref"><a href="#s54" aria-label="Source 54">54</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="players" data-tags="stage" data-door="open" data-region="Americas">
+ <header class="page-head">
+  <span class="folio">Candidate 14</span>
+  <h3>The Players</h3>
+  <p class="where">New York · 16 Gramercy Park South · <span class="est">Est. 1888</span></p>
+  <p class="chips"><span class="tag t-stage">Stage people</span><span class="tag door d-open">Tours or open days</span><span class="tag wball"><span class="mini white" aria-hidden="true"></span>Women admitted: 1989</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>The actor Edwin Booth bought the Gramercy Park house in 1888 for $75,000 and deeded it, with his collection and library, to the new club on 31 December 1888. Mark Twain and General William T. Sherman were among the 16 incorporators <sup class="ref"><a href="#s58" aria-label="Source 58">58</a></sup>. Booth wanted actors to meet people from outside the profession: "We should measure ourselves through personal contact with outsiders" <sup class="ref"><a href="#s58" aria-label="Source 58">58</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>Booth's rooms on the third floor have been kept as he left them at his death in 1893. Pipe Nights, named after churchwarden pipes, began in 1905 <sup class="ref"><a href="#s58" aria-label="Source 58">58</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>"Neat, smart casual"; well-kept denim is fine, shorts, hoodies and baseball caps are not (read November 2026) <sup class="ref"><a href="#s59" aria-label="Source 59">59</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>Members voted to admit women in September 1987 <sup class="ref"><a href="#s60" aria-label="Source 60">60</a></sup>; thirty were inducted in April 1989, led by Helen Hayes <sup class="ref"><a href="#s58" aria-label="Source 58">58</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>None documented.</dd></div>
+  <div><dt>The evening</dt><dd>Theatre people at the bar and the Pipe Night testimonial dinners <sup class="ref"><a href="#s58" aria-label="Source 58">58</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Docent-led 60-minute tours on request, mostly on weekdays (as of November 2026) <sup class="ref"><a href="#s61" aria-label="Source 61">61</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="jcba" data-tags="turf cards" data-door="guest" data-region="Americas">
+ <header class="page-head">
+  <span class="folio">Candidate 15</span>
+  <h3>Jockey Club (Buenos Aires)</h3>
+  <p class="where">Buenos Aires · Avenida Alvear 1345 · <span class="est">Est. 1882</span></p>
+  <p class="chips"><span class="tag t-turf">Turf and water</span><span class="tag t-cards">Cards, bets and games</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini black" aria-hidden="true"></span>Men only</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded on 15 April 1882 by Carlos Pellegrini, its first president, to run the national turf and "pursue the improvement of horse breeds" <sup class="ref"><a href="#s62" aria-label="Source 62">62</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>On 15 April 1953, during political unrest, its Calle Florida palace was burned with almost all its art; the club was dissolved and regained legal status in 1958, then moved to Avenida Alvear <sup class="ref"><a href="#s62" aria-label="Source 62">62</a></sup>. A candidate needs references from five members of more than five years' standing, and two black balls on the 21-member board reject him <sup class="ref"><a href="#s3" aria-label="Source 3">3</a></sup>; a rejected candidate waits two years <sup class="ref"><a href="#s63" aria-label="Source 63">63</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>Suits at Alvear, and a tie in some rooms (La Nación, 2016) <sup class="ref"><a href="#s3" aria-label="Source 3">3</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>Women cannot be members; they come as a member's wife, daughter or widow, without a vote (May 2025) <sup class="ref"><a href="#s63" aria-label="Source 63">63</a>,<a href="#s3" aria-label="Source 3">3</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>The admission of the trade unionist Jorge Triaca in the 1990s set off a long argument among members <sup class="ref"><a href="#s3" aria-label="Source 3">3</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Bridge and card tables, snooker, a small cinema and English-style bars <sup class="ref"><a href="#s3" aria-label="Source 3">3</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>The Alvear clubhouse is closed to non-members. The club owns the San Isidro racecourse <sup class="ref"><a href="#s62" aria-label="Source 62">62</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="bengal" data-tags="garden" data-door="guest" data-region="Asia">
+ <header class="page-head">
+  <span class="folio">Candidate 16</span>
+  <h3>The Bengal Club</h3>
+  <p class="where">Kolkata · Chowringhee and Russell Street · <span class="est">Est. 1827</span></p>
+  <p class="chips"><span class="tag t-garden">Garden and lawn</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini white" aria-hidden="true"></span>Women admitted: 1990</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Proposed at a meeting in Calcutta Town Hall in November 1826 as the Calcutta United Services Club, with Lt-Col Finch as first president; the club gives 1 February 1827 as its founding date, Wikipedia 8 February <sup class="ref"><a href="#s4" aria-label="Source 4">4</a>,<a href="#s64" aria-label="Source 64">64</a></sup>. David Gilmour writes that it filled a gap: nothing like a respectable hotel or coffee house existed in the city <sup class="ref"><a href="#s65" aria-label="Source 65">65</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>In 1845 it moved into the Chowringhee house Macaulay had called the best in Calcutta <sup class="ref"><a href="#s4" aria-label="Source 4">4</a></sup>. Indians were admitted only in 1959 <sup class="ref"><a href="#s4" aria-label="Source 4">4</a>,<a href="#s65" aria-label="Source 65">65</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>In 2014 Business Standard reported a dress regime like the Calcutta Club's in the main rooms and a looser one in the Sports Bar <sup class="ref"><a href="#s66" aria-label="Source 66">66</a></sup>. No current code is published.</dd></div>
+  <div><dt>Women</dt><dd>The club says women became members in their own right in 1990 <sup class="ref"><a href="#s4" aria-label="Source 4">4</a></sup>; Wikipedia, citing a 2001 history, says 1988 <sup class="ref"><a href="#s64" aria-label="Source 64">64</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>In 1896 an Englishman, Mr Ellerthorpe, invited Gandhi to the Bengal Club, where he was staying, not realising that an Indian could not be taken into the drawing room. He took Gandhi to his own room instead and apologised for "this prejudice of the local Englishmen", as Gandhi recalled in his autobiography <sup class="ref"><a href="#s67" aria-label="Source 67">67</a>,<a href="#s4" aria-label="Source 4">4</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Its Christmas Eve party on the tennis court, with a live band and a toast at midnight <sup class="ref"><a href="#s68" aria-label="Source 68">68</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Only through members or reciprocal arrangements (as of November 2026) <sup class="ref"><a href="#s4" aria-label="Source 4">4</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="rbyc" data-tags="turf" data-door="guest" data-region="Asia">
+ <header class="page-head">
+  <span class="folio">Candidate 17</span>
+  <h3>Royal Bombay Yacht Club</h3>
+  <p class="where">Mumbai · Apollo Bunder · <span class="est">Est. 1846</span></p>
+  <p class="chips"><span class="tag t-turf">Turf and water</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini grey" aria-hidden="true"></span>Women: not published</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded in 1846 as the Bombay Yacht Club, with Henry Morland as commodore; the "Royal" came under Queen Victoria's patronage in 1876 <sup class="ref"><a href="#s69" aria-label="Source 69">69</a>,<a href="#s70" aria-label="Source 70">70</a></sup>. Its seafront clubhouse at Apollo Bunder dates from 1881 <sup class="ref"><a href="#s69" aria-label="Source 69">69</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>It admitted Europeans only until the 1950s; Wikipedia records Kerse Naoroji as the first Indian member, in 1959 <sup class="ref"><a href="#s70" aria-label="Source 70">70</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>No dress code is published.</dd></div>
+  <div><dt>Women</dt><dd>The club does not publish when women became members.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>When Lord Willingdon, as Governor of Bombay, brought Indian friends to the Yacht Club, they were refused, and he went off to found the Willingdon Sports Club, opened in 1917. Tellings differ in the detail: Gilmour says Willingdon was told he could not make the Byculla Club or the Yacht Club change their rules <sup class="ref"><a href="#s71" aria-label="Source 71">71</a>,<a href="#s65" aria-label="Source 65">65</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Sailing, and residential chambers that won a UNESCO Asia-Pacific heritage award in 2013 <sup class="ref"><a href="#s69" aria-label="Source 69">69</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Members of reciprocal clubs may stay up to ten days and make four day visits a month <sup class="ref"><a href="#s72" aria-label="Source 72">72</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="hkc" data-tags="table" data-door="guest" data-region="Asia">
+ <header class="page-head">
+  <span class="folio">Candidate 18</span>
+  <h3>The Hong Kong Club</h3>
+  <p class="where">Hong Kong · 1 Jackson Road, Central · <span class="est">Est. 1846</span></p>
+  <p class="chips"><span class="tag t-table">The long table</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini white" aria-hidden="true"></span>Women admitted: after 1996</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Opened on 26 May 1846 on Queen's Road by British merchants and officials <sup class="ref"><a href="#s5" aria-label="Source 5">5</a></sup>; the South China Morning Post says eight taipans set it up <sup class="ref"><a href="#s73" aria-label="Source 73">73</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>For more than a century it was understood that Chinese candidates would not be proposed; membership stayed essentially European until the late 1970s <sup class="ref"><a href="#s5" aria-label="Source 5">5</a></sup>. Its Victorian clubhouse was redeveloped in the early 1980s; Harry Seidler's 23-storey replacement was finished in 1984 <sup class="ref"><a href="#s5" aria-label="Source 5">5</a>,<a href="#s74" aria-label="Source 74">74</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>Jacket and tie for men in the Red Room and Red Room Bar; no denim, polo shirts or white-soled shoes; summer rules from May to September; national dress accepted everywhere (read November 2026) <sup class="ref"><a href="#s75" aria-label="Source 75">75</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>Women were admitted as members after the Sex Discrimination Ordinance of 1996 <sup class="ref"><a href="#s5" aria-label="Source 5">5</a>,<a href="#s73" aria-label="Source 73">73</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>No named blackballing found. Admission is "by invitation and ballot" <sup class="ref"><a href="#s76" aria-label="Source 76">76</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>Formal dining in the Red Room <sup class="ref"><a href="#s75" aria-label="Source 75">75</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Members of reciprocal clubs, or visitors proposed by a member, for up to 30 days a year (as of November 2026) <sup class="ref"><a href="#s76" aria-label="Source 76">76</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="tokyo" data-tags="cards" data-door="guest" data-region="Asia">
+ <header class="page-head">
+  <span class="folio">Candidate 19</span>
+  <h3>The Tokyo Club</h3>
+  <p class="where">Tokyo · Roppongi 1-chome · <span class="est">Est. 1884</span></p>
+  <p class="chips"><span class="tag t-cards">Cards, bets and games</span><span class="tag door d-guest">Members and guests</span><span class="tag wball"><span class="mini black" aria-hidden="true"></span>Men only</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded on 14 May 1884 by Foreign Minister Inoue Kaoru as a British-style club where Japanese statesmen and financiers could mix with foreign diplomats, "to promote international goodwill" <sup class="ref"><a href="#s77" aria-label="Source 77">77</a>,<a href="#s78" aria-label="Source 78">78</a></sup>. It began in the Rokumeikan, the government's Western-style guesthouse, and used it until 1897 <sup class="ref"><a href="#s77" aria-label="Source 77">77</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>A member of the imperial family is usually patron; it is currently Prince Hitachi. Since 2005 the club has had a purpose-built house in Roppongi <sup class="ref"><a href="#s77" aria-label="Source 77">77</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>Jacket and tie for men. From June to September ties are optional, but jackets stay on in the bar, dining room and private rooms (February 2025) <sup class="ref"><a href="#s78" aria-label="Source 78">78</a></sup>.</dd></div>
+  <div><dt>Women</dt><dd>Membership is "gentlemen only"; women come as guests or as members of reciprocal clubs (February 2025) <sup class="ref"><a href="#s78" aria-label="Source 78">78</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>None documented.</dd></div>
+  <div><dt>The evening</dt><dd>French dining, the bar, snooker, and the boards for go and shogi. Closed on Sundays <sup class="ref"><a href="#s78" aria-label="Source 78">78</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Members of reciprocal clubs with a letter of introduction, for up to 12 days a year; members living in Japan are excluded (February 2025) <sup class="ref"><a href="#s78" aria-label="Source 78">78</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="page" id="melbourne" data-tags="garden" data-door="open" data-region="Asia">
+ <header class="page-head">
+  <span class="folio">Candidate 20</span>
+  <h3>The Melbourne Club</h3>
+  <p class="where">Melbourne · 36 Collins Street · <span class="est">Est. 1838</span></p>
+  <p class="chips"><span class="tag t-garden">Garden and lawn</span><span class="tag door d-open">Tours or open days</span><span class="tag wball"><span class="mini black" aria-hidden="true"></span>Men only</span></p>
+ </header>
+ <dl class="book">
+  <div><dt>Proposed</dt><dd>Founded in 1838 at a gathering of 23 men at John Pascoe Fawkner's hotel <sup class="ref"><a href="#s79" aria-label="Source 79">79</a></sup>: squatters, civil servants, judges, professional men and merchants <sup class="ref"><a href="#s80" aria-label="Source 80">80</a></sup>. It has been in Leonard Terry's clubhouse on Collins Street since 1859 <sup class="ref"><a href="#s80" aria-label="Source 80">80</a>,<a href="#s81" aria-label="Source 81">81</a></sup>.</dd></div>
+  <div><dt>House rules</dt><dd>The walled garden dates from 1858 and holds the largest London plane known in Victoria <sup class="ref"><a href="#s81" aria-label="Source 81">81</a></sup>. In 2025 members voted to spend A$5.5 million on half the lease of the car park next door to keep out a Sydney hospitality group <sup class="ref"><a href="#s82" aria-label="Source 82">82</a></sup>.</dd></div>
+  <div><dt>Dress</dt><dd>No dress code is published.</dd></div>
+  <div><dt>Women</dt><dd>Does not admit women as members <sup class="ref"><a href="#s79" aria-label="Source 79">79</a></sup>. In 2015 Victoria's Chief Justice, Marilyn Warren, and Justice Chris Maxwell turned down invitations to speak at men-only clubs including this one <sup class="ref"><a href="#s83" aria-label="Source 83">83</a></sup>.</dd></div>
+  <div class="bb"><dt><span class="mini black" aria-hidden="true"></span> Black balls</dt><dd>Robert Menzies was not invited to join in the mid-1930s, apparently because he had not enlisted in the First World War; offered nomination in 1939, he hesitated <sup class="ref"><a href="#s84" aria-label="Source 84">84</a></sup>.</dd></div>
+  <div><dt>The evening</dt><dd>The garden, where, the story goes, resident members planted the plane trees after an 1895 ball to keep marquees off the lawn <sup class="ref"><a href="#s85" aria-label="Source 85">85</a></sup>.</dd></div>
+  <div class="in"><dt>Getting in</dt><dd>Only on rare garden open days, such as Open Gardens Victoria's in February 2016 <sup class="ref"><a href="#s85" aria-label="Source 85">85</a></sup>. No regular public access.</dd></div>
+ </dl>
+</article>
+ </div>
+</section>
+
+<section class="wrap" aria-labelledby="doors-h">
+ <h2 id="doors-h">Doors that open</h2>
+ <p class="sub">Ten libraries, reading rooms and one long bar from the same world that anyone can walk into.</p>
+ <div class="doors">
+
+<article class="door-card">
+ <h3>The Long Bar</h3>
+ <p class="where">Waldorf Astoria, The Bund, Shanghai · <span class="est">Est. 1911</span></p>
+ <p>The Shanghai Club, founded in 1861, opened its Bund clubhouse in 1911 around an L-shaped mahogany bar measured at 110.7 feet, long billed as the longest in the world, a claim the sources repeat as legend <sup class="ref"><a href="#s86" aria-label="Source 86">86</a>,<a href="#s87" aria-label="Source 87">87</a></sup>. By legend, the end nearest the river was reserved for the most powerful bankers and taipans <sup class="ref"><a href="#s87" aria-label="Source 87">87</a>,<a href="#s86" aria-label="Source 86">86</a></sup>. The bar was lost during the Japanese occupation; the one Hilton reopened with the hotel in 2010–11 was rebuilt from photographs <sup class="ref"><a href="#s88" aria-label="Source 88">88</a>,<a href="#s86" aria-label="Source 86">86</a></sup>.</p>
+ <p class="walk"><span class="mini white" aria-hidden="true"></span> <strong>Walk in:</strong> Open to the public every evening from 5.30pm (as of November 2026) <sup class="ref"><a href="#s89" aria-label="Source 89">89</a></sup>.</p>
+</article>
+<article class="door-card">
+ <h3>Hôtel de la Païva</h3>
+ <p class="where">25 avenue des Champs-Élysées, Paris · <span class="est">Est. 1903</span></p>
+ <p>The mansion built in the 1850s and 1860s for the courtesan known as La Païva has been the Travellers Club of Paris since the early 1900s; sources give 1903 and 1904. It is a listed historic monument, and the club, about 750 men, owns it <sup class="ref"><a href="#s90" aria-label="Source 90">90</a>,<a href="#s2" aria-label="Source 2">2</a></sup>.</p>
+ <p class="walk"><span class="mini white" aria-hidden="true"></span> <strong>Walk in:</strong> Occasional guided tours, about €25 and quickly booked, plus European Heritage Days (as of January 2025) <sup class="ref"><a href="#s90" aria-label="Source 90">90</a>,<a href="#s91" aria-label="Source 91">91</a></sup>.</p>
+</article>
+<article class="door-card">
+ <h3>The London Library</h3>
+ <p class="where">14 St James's Square, London · <span class="est">Est. 1841</span></p>
+ <p>Thomas Carlyle's subscription library has been in St James's Square, a few minutes' walk from the Pall Mall clubs, since 1845. Anyone who pays the subscription can join <sup class="ref"><a href="#s92" aria-label="Source 92">92</a></sup>.</p>
+ <p class="walk"><span class="mini white" aria-hidden="true"></span> <strong>Walk in:</strong> Occasional public tours for adults, booked ahead (one ran on 16 June 2025) <sup class="ref"><a href="#s93" aria-label="Source 93">93</a></sup>.</p>
+</article>
+<article class="door-card">
+ <h3>The Leeds Library</h3>
+ <p class="where">18 Commercial Street, Leeds · <span class="est">Est. 1768</span></p>
+ <p>Founded in 1768, with Joseph Priestley among its founders, and in its Commercial Street rooms since 1808; the Yorkshire Post calls it the county's oldest surviving subscription library <sup class="ref"><a href="#s94" aria-label="Source 94">94</a></sup>.</p>
+ <p class="walk"><span class="mini white" aria-hidden="true"></span> <strong>Walk in:</strong> Non-members can ring the buzzer and look round at set times on weekdays, and book free volunteer-led tours (as of November 2026) <sup class="ref"><a href="#s95" aria-label="Source 95">95</a></sup>.</p>
+</article>
+<article class="door-card">
+ <h3>The Portico Library</h3>
+ <p class="where">57 Mosley Street, Manchester · <span class="est">Est. 1806</span></p>
+ <p>A Greek Revival subscription library opened in 1806, with a café under its dome <sup class="ref"><a href="#s96" aria-label="Source 96">96</a></sup>.</p>
+ <p class="walk"><span class="mini white" aria-hidden="true"></span> <strong>Walk in:</strong> Open to the public and free to enter, Monday to Saturday; group tours on Wednesdays for £6 a head (as of November 2026) <sup class="ref"><a href="#s96" aria-label="Source 96">96</a></sup>.</p>
+</article>
+<article class="door-card">
+ <h3>The Linen Hall Library</h3>
+ <p class="where">17 Donegall Square North, Belfast · <span class="est">Est. 1788</span></p>
+ <p>Belfast's oldest library, founded in 1788, with a licensed coffee house <sup class="ref"><a href="#s97" aria-label="Source 97">97</a></sup>.</p>
+ <p class="walk"><span class="mini white" aria-hidden="true"></span> <strong>Walk in:</strong> Free entry on weekdays, with a suggested £3 donation, and guided tours (as of November 2026) <sup class="ref"><a href="#s97" aria-label="Source 97">97</a></sup>.</p>
+</article>
+<article class="door-card">
+ <h3>The Boston Athenæum</h3>
+ <p class="where">10½ Beacon Street, Boston · <span class="est">Est. 1807</span></p>
+ <p>A members' library founded in 1807 out of the Anthology Society, a Boston literary club <sup class="ref"><a href="#s98" aria-label="Source 98">98</a></sup>.</p>
+ <p class="walk"><span class="mini white" aria-hidden="true"></span> <strong>Walk in:</strong> First-floor admission $11; a $40 day membership opens every floor; ticketed art and architecture tours (as of November 2026) <sup class="ref"><a href="#s99" aria-label="Source 99">99</a></sup>.</p>
+</article>
+<article class="door-card">
+ <h3>New York Society Library</h3>
+ <p class="where">53 East 79th Street, New York · <span class="est">Est. 1754</span></p>
+ <p>The city's oldest library, founded in 1754 <sup class="ref"><a href="#s100" aria-label="Source 100">100</a></sup>.</p>
+ <p class="walk"><span class="mini white" aria-hidden="true"></span> <strong>Walk in:</strong> The first-floor reference room is open to the public; a $20 day pass covers the stacks and reading rooms (as of November 2026) <sup class="ref"><a href="#s101" aria-label="Source 101">101</a>,<a href="#s100" aria-label="Source 100">100</a></sup>.</p>
+</article>
+<article class="door-card">
+ <h3>The Athenaeum of Philadelphia</h3>
+ <p class="where">219 South 6th Street, Philadelphia · <span class="est">Est. 1814</span></p>
+ <p>A members' library founded in 1814, in its Washington Square building since the 1840s <sup class="ref"><a href="#s102" aria-label="Source 102">102</a>,<a href="#s103" aria-label="Source 103">103</a></sup>.</p>
+ <p class="walk"><span class="mini white" aria-hidden="true"></span> <strong>Walk in:</strong> The first-floor exhibition gallery is free and needs no appointment; reading-room tours by appointment (as of November 2026) <sup class="ref"><a href="#s103" aria-label="Source 103">103</a></sup>.</p>
+</article>
+<article class="door-card">
+ <h3>The Explorers Club</h3>
+ <p class="where">46 East 70th Street, New York </p>
+ <p>The explorers' society on the Upper East Side opens its lecture programme to the public.</p>
+ <p class="walk"><span class="mini white" aria-hidden="true"></span> <strong>Walk in:</strong> Ticketed public lectures, also streamed; $35 for non-members at a June 2026 talk <sup class="ref"><a href="#s104" aria-label="Source 104">104</a></sup>.</p>
+</article>
+ </div>
+</section>
+
+<section class="wrap method" aria-labelledby="method-h">
+ <h2 id="method-h">How this was put together</h2>
+ <p>Facts were checked against the clubs' own websites, fact sheets that clubs give to reciprocal partners, heritage and landmark records, and newspaper reports, with two sources where they could be found. Where sources disagree (the Bengal Club's founding day and the year it admitted women, the years the Athenaeum and the Metropolitan admitted women, the date the Travellers Club of Paris moved into the Hôtel de la Païva), both are given. Wikipedia is used, and marked in the sources, only as secondary support. Blackballings are described as reported at the time or by the clubs and historians cited; anecdotes the sources themselves treat as legend are labelled. Dress codes, hours, prices and access rules were read in November 2026 unless another date is given, and all of them change: check with the club before you go.</p>
+</section>
+
+<section class="wrap sources" aria-labelledby="sources-h">
+ <h2 id="sources-h">Sources</h2>
+ <ol>
+<li id="s1"><a href="https://theweek.com/history/history-gentlemens-clubs-london">A history of the gentleman's clubs of London (26 May 2024)</a> · The Week</li>
+<li id="s2"><a href="https://www.lalibre.be/international/europe/2023/08/16/zoom-sur-trois-clubs-prives-parisiens-historiques-CLRX6VD6UVD7BJMTIA6NR6UCUY/">Zoom sur trois clubs privés parisiens historiques (16 Aug 2023)</a> · La Libre Belgique</li>
+<li id="s3"><a href="https://www.lanacion.com.ar/lifestyle/el-jockey-club-el-ultimo-reducto-aristocratico-nid1901530/">El Jockey Club: el último reducto aristocrático (2016, updated 2020)</a> · La Nación</li>
+<li id="s4"><a href="https://www.thebengalclub.com/history-of-the-bengal-club/">History of the Bengal Club</a> · The Bengal Club</li>
+<li id="s5"><a href="https://en.wikipedia.org/wiki/Hong_Kong_Club">Hong Kong Club</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s6"><a href="https://firstamendment.mtsu.edu/?p=3982">New York State Club Association v. City of New York (1988)</a> · Free Speech Center, Middle Tennessee State University</li>
+<li id="s7"><a href="https://www.itv.com/news/2024-05-07/garrick-club-votes-to-accept-female-members">Garrick Club votes to accept female members (7 May 2024)</a> · ITV News</li>
+<li id="s8"><a href="https://en.wikipedia.org/wiki/White%27s">White's</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s9"><a href="https://atlasobscura.com/articles/history-of-gentlemens-clubs">The history of gentlemen's clubs</a> · Atlas Obscura</li>
+<li id="s10"><a href="https://sg.news.yahoo.com/men-only-clubs-left-london-101627639.html">Are there any men-only clubs left in London? (9 May 2024)</a> · Evening Standard, via Yahoo News</li>
+<li id="s11"><a href="https://en.wikipedia.org/wiki/Brooks%27s">Brooks's</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s12"><a href="https://brooksclub.org/about-brooks">About Brooks's</a> · Brooks's</li>
+<li id="s13"><a href="https://londonist.com/london/history/palaces-of-power">Randy politicians and breathtakingly stupid bets (Stephen Hoare)</a> · Londonist</li>
+<li id="s14"><a href="https://www.countrylife.co.uk/architecture/travellers-club-home-londons-globe-trotters-past-200-years-192719">The story of the Travellers Club (John Martin Robinson, 24 Feb 2019)</a> · Country Life</li>
+<li id="s15"><a href="https://www.norskeselskab.no/files/dns/Documents/THE%20TRAVELLERS%20CLUB%20FACT%20SHEET%20JAN%202024.pdf">The Travellers Club fact sheet, January 2024</a> · The Travellers Club, hosted by Det Norske Selskab</li>
+<li id="s16"><a href="https://en.wikipedia.org/wiki/Travellers_Club">Travellers Club</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s17"><a href="https://theathenaeum.co.uk/the-club/our-history/">Our history: club timeline</a> · The Athenaeum</li>
+<li id="s18"><a href="https://theathenaeum.co.uk/contact-us">Contact us (dress code)</a> · The Athenaeum</li>
+<li id="s19"><a href="https://theathenaeum.co.uk">The Athenaeum (home page)</a> · The Athenaeum</li>
+<li id="s20"><a href="https://reformclub.com/The_Club/History_Architecture">History and architecture</a> · Reform Club</li>
+<li id="s21"><a href="https://reformclub.com/Contact_Access">Contact and access</a> · Reform Club</li>
+<li id="s22"><a href="https://dynamic-rsnz.natlib.govt.nz/newspapers/DOM19130206.2.49">Blackballed (Dominion, 6 February 1913, p. 7)</a> · Papers Past, National Library of New Zealand</li>
+<li id="s23"><a href="https://programme.openhouse.org.uk/listings/1457">Reform Club, Open House Festival 2026 listing</a> · Open House London</li>
+<li id="s24"><a href="https://garrickclub.co.uk/about">About the Garrick</a> · Garrick Club</li>
+<li id="s25"><a href="https://www.aljazeera.com/news/2024/3/27/no-women-allowed-the-curious-case-of-the-uks-men-only-garrick-club">'No women allowed': the powerful membership of UK's men-only Garrick Club (27 Mar 2024)</a> · Al Jazeera</li>
+<li id="s26"><a href="https://www.timeout.com/london/news/the-garrick-club-has-voted-to-allow-female-members-for-the-first-time-050824">The Garrick Club has voted to allow female members for the first time (8 May 2024)</a> · Time Out</li>
+<li id="s27"><a href="https://garrickclub.co.uk/club_info_dining">Dining</a> · Garrick Club</li>
+<li id="s28"><a href="https://www.broadwayworld.com/westend/article/Judi-Dench-and-Sin-Phillips-Named-First-Female-Members-of-the-Garrick-Club-20240702">Judi Dench and Siân Phillips named first female members of the Garrick Club (2 Jul 2024)</a> · BroadwayWorld</li>
+<li id="s29"><a href="https://en.wikipedia.org/wiki/Pratt%27s">Pratt's</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s30"><a href="https://uk.news.yahoo.com/gentlemans-club-shakes-stirs-membership-160000413.html">Gentleman's club shakes and stirs up membership as women allowed to join (Ewan Somerville, 25 May 2023)</a> · The Telegraph, via Yahoo News</li>
+<li id="s31"><a href="https://gulftoday.ae/news/2023/05/26/british-gentlemens-club-that-inspired-james-bond-creator-ian-fleming-opens-its-doors-to-wome">British gentlemen's club that inspired James Bond creator opens its doors to women (26 May 2023)</a> · Gulf Today</li>
+<li id="s32"><a href="https://en.wikipedia.org/wiki/New_Club,_Edinburgh">New Club, Edinburgh</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s33"><a href="https://clubland.substack.com/p/the-clubs-of-edinburgh">The clubs of Edinburgh (Seth Thévoz, 27 Jan 2025)</a> · Clubland (Substack)</li>
+<li id="s34"><a href="https://newclub.co.uk/membership/dress">Dress</a> · New Club</li>
+<li id="s35"><a href="https://newclub.co.uk/dining/banqueting-private-dining/">Banqueting and private dining</a> · New Club</li>
+<li id="s36"><a href="https://www.france-galop.com/en/content/jockey-club-history-other-derby">Jockey Club: history of the other Derby (25 May 2023)</a> · France Galop</li>
+<li id="s37"><a href="https://www.britannica.com/topic/Jockey-Club-de-Paris">Jockey Club de Paris</a> · Encyclopaedia Britannica</li>
+<li id="s38"><a href="https://en.wikipedia.org/wiki/Jockey-Club_de_Paris">Jockey-Club de Paris</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s39"><a href="https://en.wikipedia.org/wiki/Union_Club_of_the_City_of_New_York">Union Club of the City of New York</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s40"><a href="https://www.nytimes.com/1936/08/16/archives/the-union-club-mother-of-clubs-the-history-of-the-union-club-of-the.html">The Union Club, mother of clubs (16 Aug 1936)</a> · The New York Times</li>
+<li id="s41"><a href="https://www.americanheritage.com/great-club-revolution?page=6">The great club revolution</a> · American Heritage</li>
+<li id="s42"><a href="https://6tocelebrate.org/site/colony-club-union-club-of-the-city-of-new-york/">Colony Club, Union Club of the City of New York</a> · Historic Districts Council (Six to Celebrate)</li>
+<li id="s43"><a href="https://theunionclub.com/guests">Guests</a> · Union Club of the City of New York</li>
+<li id="s44"><a href="https://s-media.nyc.gov/agencies/lpc/lp/1020.pdf">Metropolitan Club designation report (1979)</a> · New York City Landmarks Preservation Commission</li>
+<li id="s45"><a href="https://en.wikipedia.org/wiki/Metropolitan_Club_(New_York_City)">Metropolitan Club (New York City)</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s46"><a href="https://www.newspapers.com/newspage/491281651/">Daily News (New York), c. 1986–87, p. 373</a> · Newspapers.com</li>
+<li id="s47"><a href="https://en.wikipedia.org/wiki/Union_League_Club">Union League Club</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s48"><a href="https://www.unionleagueclub.org/about">About</a> · Union League Club</li>
+<li id="s49"><a href="https://www.unionleagueclub.org/etiquette">House rules and dress code</a> · Union League Club</li>
+<li id="s50"><a href="https://www.jewishencyclopedia.com/articles/13403">Seligman (Jesse)</a> · Jewish Encyclopedia (1906)</li>
+<li id="s51"><a href="https://www.newspapers.com/article/the-new-york-times-theodore-seligman-s/106816/">'Mr. Seligman blackballed' (New York Times, 15 Apr 1893), clipping</a> · Newspapers.com</li>
+<li id="s52"><a href="https://en.wikipedia.org/wiki/Century_Association">Century Association</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s53"><a href="https://thecentury.org">The Century Association (home page)</a> · The Century Association</li>
+<li id="s54"><a href="https://www.thecentury.org/club/scripts/section/section.asp?NS=GUEST">Guest information</a> · The Century Association</li>
+<li id="s55"><a href="https://www.nytimes.com/1987/09/01/nyregion/century-club-backs-admitting-women.html">Century Club backs admitting women (1 Sep 1987)</a> · The New York Times</li>
+<li id="s56"><a href="https://clubandresortbusiness.com/century-association-elects-first-woman-president/">Century Association elects first woman president (Feb 2016)</a> · Club + Resort Business</li>
+<li id="s57"><a href="https://www.nytimes.com/2011/02/10/nyregion/10century-club.html">At elite club, debate over more exclusive one (10 Feb 2011)</a> · The New York Times</li>
+<li id="s58"><a href="https://theplayersnyc.org/history">History</a> · The Players</li>
+<li id="s59"><a href="https://theplayersnyc.org/contact-us">Visit and contact</a> · The Players</li>
+<li id="s60"><a href="https://www.nytimes.com/1987/09/29/us/players-club-votes-for-admission-of-women.html">Players Club votes for admission of women (29 Sep 1987)</a> · The New York Times</li>
+<li id="s61"><a href="https://theplayersnyc.org/web/pages/docent-tours">Docent tours</a> · The Players</li>
+<li id="s62"><a href="https://jockeyclub.org.ar/en/history/index.htm">History</a> · Jockey Club (Buenos Aires)</li>
+<li id="s63"><a href="https://eleconomista.com.ar/actualidad/el-club-mas-exclusivo-argentina-define-su-futuro-tradicion-o-cambio-casi-total-n84451">El club más exclusivo de Argentina define su futuro (6 May 2025)</a> · El Economista</li>
+<li id="s64"><a href="https://en.wikipedia.org/wiki/The_Bengal_Club">The Bengal Club</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s65"><a href="https://openthemagazine.com/essay/class-race-and-the-colonial-clubs-of-india">Class, race and the colonial clubs of India (David Gilmour, 2018)</a> · Open Magazine</li>
+<li id="s66"><a href="https://www.business-standard.com/article/beyond-business/dress-dictators-114071801352_1.html">Dress dictators (19 Jul 2014)</a> · Business Standard</li>
+<li id="s67"><a href="https://franpritchett.com/00litlinks/gandhi/part2/229chapter.html">An Autobiography, or The Story of My Experiments with Truth, Part II, ch. 29, 'Return soon'</a> · M. K. Gandhi, text at Columbia University (Frances Pritchett)</li>
+<li id="s68"><a href="https://obeta.ttef.in/my-kolkata/events/glimpses-from-the-bengal-club-christmas-eve-partnered-by-the-telegraph/cid/1989800">Glimpses from the Bengal Club Christmas Eve</a> · The Telegraph (Kolkata)</li>
+<li id="s69"><a href="https://rbyc.co.in/?p=20217">History</a> · Royal Bombay Yacht Club</li>
+<li id="s70"><a href="https://en.wikipedia.org/wiki/Royal_Bombay_Yacht_Club">Royal Bombay Yacht Club</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s71"><a href="https://www.tribuneindia.com/news/food/when-indians-stepped-into-bombays-elite-clubs">When Indians stepped into Bombay's elite clubs (Pronoti Datta, 29 Nov 2025)</a> · The Tribune</li>
+<li id="s72"><a href="https://www.tanglinclub.org/reciprocal-clubs/reciprocal-clubs/125-india/mumbai/826-royal-bombay-yacht-club.html">Royal Bombay Yacht Club, reciprocal club listing</a> · Tanglin Club</li>
+<li id="s73"><a href="https://amp.scmp.com/magazines/style/article/2170616/how-easy-it-join-5-hong-kong-private-clubs-recall-citys-colonial">How easy is it to join five Hong Kong private clubs that recall the city's colonial past?</a> · South China Morning Post</li>
+<li id="s74"><a href="https://www.skyscrapercenter.com/building/the-hong-kong-club-building/13061">The Hong Kong Club Building</a> · CTBUH Skyscraper Center</li>
+<li id="s75"><a href="https://www.thehongkongclub.hk/public/dress-code-policies.html">Dress code policies</a> · The Hong Kong Club</li>
+<li id="s76"><a href="https://www.thehongkongclub.hk">The Hong Kong Club (home page)</a> · The Hong Kong Club</li>
+<li id="s77"><a href="https://www.tokyoclub.or.jp/en/history.html">History</a> · The Tokyo Club</li>
+<li id="s78"><a href="https://www.klubi.fi/site/assets/files/1304/thetokyoclubinfo25.pdf">The Tokyo Club reciprocal information sheet (28 Feb 2025)</a> · The Tokyo Club, hosted by Helsingin Klubi</li>
+<li id="s79"><a href="https://en.wikipedia.org/wiki/Melbourne_Club">Melbourne Club</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s80"><a href="https://www.emelbourne.net.au/biogs/EM00931b.htm">Melbourne Club (Paul de Serville)</a> · eMelbourne, University of Melbourne</li>
+<li id="s81"><a href="https://vhd.heritagecouncil.vic.gov.au/places/715">The Melbourne Club</a> · Victorian Heritage Database</li>
+<li id="s82"><a href="https://thenightly.com.au/business/melbourne-club-iconic-establishment-tries-to-fight-off-sydney-dining-king-merivale-group-owner-justin-hemmes-c-18508258">Melbourne Club tries to fight off Merivale (Aaron Patrick, 28 Apr 2025)</a> · The Nightly</li>
+<li id="s83"><a href="https://www.lawyersweekly.com.au/sme-law/16902-judges-take-a-stand-against-male-only-clubs">Judges take a stand against male-only clubs (30 Jul 2015)</a> · Lawyers Weekly</li>
+<li id="s84"><a href="https://insidestory.org.au/menzies-in-clubland">Menzies in clubland (Sybil Nolan, 21 Apr 2017)</a> · Inside Story</li>
+<li id="s85"><a href="https://opengardensvictoria.org.au/The-Melbourne-Club">The Melbourne Club (open day, 21 Feb 2016)</a> · Open Gardens Victoria</li>
+<li id="s86"><a href="https://en.wikipedia.org/wiki/Shanghai_Club_Building">Shanghai Club Building</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s87"><a href="https://www.thatsmags.com/shanghai/post/10549/history-of-the-hai-the-worlds-longest-bar-in-1910">This day in history: the world's longest bar (Erik Crouch, 6 Jul 2015)</a> · That's Shanghai</li>
+<li id="s88"><a href="https://www.journaldespalaces.com/en/pressrelease-30643-asia-s-first-waldorf-astoria-opens-hba-restores-this-iconic-landmark-on-the-bund-to-its-former-glory.html">Asia's first Waldorf Astoria opens: HBA restores iconic landmark on the Bund (8 Sep 2010)</a> · Journal des Palaces</li>
+<li id="s89"><a href="https://www.hilton.com/en/hotels/shawawa-waldorf-astoria-shanghai-on-the-bund/dining/">Dining, Waldorf Astoria Shanghai on the Bund</a> · Hilton</li>
+<li id="s90"><a href="https://www.sortiraparis.com/en/what-to-visit-in-paris/history-heritage/articles/288597-guided-tour-of-the-hotel-de-la-paiva-a-mysterious-residence-with-erotic-decorations">Guided tour of the Hôtel de la Païva (updated 14 Jan 2025)</a> · Sortir à Paris</li>
+<li id="s91"><a href="https://www.pariszigzag.fr/insolite/lieux-insolites/hotel-de-la-paiva/">Hôtel de la Païva (updated 26 Nov 2023)</a> · Paris ZigZag</li>
+<li id="s92"><a href="https://en.wikipedia.org/wiki/London_Library">London Library</a> · Wikipedia <span class="wp">(secondary)</span></li>
+<li id="s93"><a href="https://www.londonlibrary.co.uk/306-public-tour-4">Public tour (16 Jun 2025)</a> · The London Library</li>
+<li id="s94"><a href="https://www.yorkshirepost.co.uk/heritage-and-retro/heritage/leeds-library-history-behind-yorkshires-oldest-surviving-subscription-library-and-the-oldest-cultural-hub-in-leeds-4523650">Leeds Library: history behind Yorkshire's oldest surviving subscription library</a> · Yorkshire Post</li>
+<li id="s95"><a href="https://www.theleedslibrary.org.uk/visit-us/library-tours/">Visiting the Leeds Library</a> · The Leeds Library</li>
+<li id="s96"><a href="https://theportico.org.uk/visit">Visit</a> · The Portico Library</li>
+<li id="s97"><a href="https://discovernorthernireland.com/Linen-Hall-Library-Belfast-P3057">Linen Hall Library</a> · Discover Northern Ireland (Tourism NI)</li>
+<li id="s98"><a href="https://daily.jstor.org/the-boston-athenaeum">The Boston Athenaeum (2023)</a> · JSTOR Daily</li>
+<li id="s99"><a href="https://www.bostonathenaeum.org/visit">Visit</a> · Boston Athenæum</li>
+<li id="s100"><a href="https://nysoclib.org/node/12">Frequently asked questions</a> · New York Society Library</li>
+<li id="s101"><a href="https://live.nysoclib.org/visit">Visit</a> · New York Society Library</li>
+<li id="s102"><a href="https://whyy.org/articles/inside-the-society-hill-library-where-hidden-philadelphia-lives-in-19th-century-grandeur">Inside the Society Hill library where hidden Philadelphia lives (5 Apr 2018)</a> · WHYY</li>
+<li id="s103"><a href="https://www.visitphilly.com/things-to-do/attractions/the-athenaeum-of-philadelphia/">The Athenaeum of Philadelphia</a> · Visit Philadelphia</li>
+<li id="s104"><a href="https://www.explorers.org/calendar-of-events/this-vast-enterprise-a-new-history-of-lewis-and-clark/">This vast enterprise: a new history of Lewis and Clark (lecture, 15 Jun 2026)</a> · The Explorers Club</li>
+
+ </ol>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <p>Published 18 November 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+  <p><a href="/daily/">← Back to Daily</a> · <a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20The%20Clubland%20Atlas&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-18-the-clubland-atlas%2F">Spot an error? Suggest a correction</a></p>
+ </div>
+</footer>
+
+<script>
+(function(){
+  var pages=[].slice.call(document.querySelectorAll('.page'));
+  var f='all', d='all', count=document.getElementById('count');
+  function apply(){
+    var n=0;
+    pages.forEach(function(p){
+      var ok=(f==='all'||p.dataset.tags.split(' ').indexOf(f)>-1)&&(d==='all'||p.dataset.door===d);
+      p.hidden=!ok; if(ok)n++;
+    });
+    count.textContent='Showing '+n+' of '+pages.length;
+  }
+  function wire(sel,attr,set){
+    var bs=[].slice.call(document.querySelectorAll(sel));
+    bs.forEach(function(b){b.addEventListener('click',function(){
+      bs.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-pressed','false')});
+      b.classList.add('on');b.setAttribute('aria-pressed','true');set(b.getAttribute(attr));apply();
+    })});
+  }
+  wire('.fbtn','data-f',function(v){f=v});
+  wire('.dbtn','data-d',function(v){d=v});
+})();
+</script>
+</body>
+</html>
