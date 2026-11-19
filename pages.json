@@ -1,21 +1,29 @@
 {
-  "generated": "2026-11-18T19:00:31.026Z",
-  "count": 89,
+  "generated": "2026-11-19T00:06:58.649Z",
+  "count": 90,
   "pages": [
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-11-18T12:31:20Z",
+      "updated": "2026-11-18T22:48:53Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "three-countries-three-hours",
+      "url": "https://nickcarbone.github.io/three-countries-three-hours/",
+      "title": "Three Countries Three Hours",
+      "description": "nickcarbone.github.io/three-countries-three-hours/",
+      "updated": "2026-11-18T20:09:26Z",
+      "created": "2026-11-18T20:09:14Z"
     },
     {
       "slug": "evening-edition",
       "url": "https://nickcarbone.github.io/evening-edition/",
       "title": "Evening Edition",
       "description": "",
-      "updated": "2026-11-18T10:43:35Z",
+      "updated": "2026-11-18T19:35:52Z",
       "created": "2026-10-20T14:56:45Z"
     },
     {
