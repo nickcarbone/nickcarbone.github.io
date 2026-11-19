@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 33,
+      "slug": "2026-11-19-the-stadium-atlas",
+      "date": "2026-11-19",
+      "title": "The Stadium Atlas",
+      "dek": "Twenty-two stadiums and arenas, from Lambeau to La Bombonera: what stood on each site before, who paid for the land and the building, and how easily you can get there and home without a car.",
+      "kind": "Filterable atlas",
+      "readingMinutes": 32,
+      "design": "Saira Extra Condensed, Piazzolla, JetBrains Mono; poured-concrete grey, steward hi-vis lime, survey-brown dashed parcels; terrace seating blocks, turnstile score counters.",
+      "source": "queue",
+      "brief": "The Stadium Atlas (filterable atlas)\nTwenty-five stadiums and arenas, from Lambeau to La Bombonera, and what each site was before. Cover the land deals, transit links and public money behind each one. Show how the building shapes the way crowds arrive, eat, drink and leave, with a scorecard for getting there without a car.",
+      "factcheck": {
+        "claims": 170,
+        "fixed": 34
+      },
+      "corrections": []
+    },
+    {
       "no": 32,
       "slug": "2026-11-18-the-clubland-atlas",
       "date": "2026-11-18",
@@ -41,7 +58,7 @@
       "title": "Novels That Got the City Right",
       "dek": "Fifteen cities, each paired with the novel most often named as its truest portrait: who makes that claim, the real streets and buildings in the book, what survives of them, and a one-day walk through each.",
       "kind": "Literary atlas",
-      "readingMinutes": 28,
+      "readingMinutes": 32,
       "design": "Fraunces, EB Garamond, Karla; laid-paper cream, per-city bookcloth colours; bookshelf-spine hero, clothbound cover and open-spread entries, endpaper route maps, survival stacked bars.",
       "source": "queue",
       "brief": "Novels That Got the City Right (literary atlas)\nFifteen cities, each paired with the novel locals say captures it best. Walk through the real streets, bars and buildings in the book, mark what survives, and add a one-day walking route for each.",
@@ -194,7 +211,7 @@
       "title": "Wake Up Somewhere Else",
       "dek": "Twenty overnight trains, ferries and coaches on five continents, timed from evening departure to morning arrival, with how much of the next day each one really gives you.",
       "kind": "Filterable directory",
-      "readingMinutes": 28,
+      "readingMinutes": 32,
       "design": "Red Hat Display, Literata, Red Hat Mono; night-to-dawn gradient hero, linen paper, teal/rose-madder/ochre by mode; 24-hour arc dial, night-bar chart, connection-chain route cards.",
       "source": "queue",
       "brief": "The Overnight Geography Directory\nResearch question: Where can you travel overnight, wake up somewhere genuinely different, and still have a useful amount of time to explore before returning?\nRather than listing sleeper trains alone, this guide investigates the geography of overnight travel: night trains, late ferries, overnight coaches, and useful early-morning arrivals.\nProposed contents\n- 20 origin–destination connections.\n- Departure and arrival times, journey duration, and arrival-day usefulness.\n- Available accommodation types or seating arrangements.\n- Connections to local transit upon arrival.\n- Seasonal operation and booking constraints.\n- A distinction between journeys that save hotel costs and those that primarily save daytime travel.\nInteractive element: A route planner that filters by mode, overnight duration, arrival time, and whether the destination offers a full usable day. Use original HTML route cards rather than embedded map imagery.\nSources to start from: Verify current schedules, seasonal services, and booking conditions when researching each route.\nFinish line: 20 verified routes, five useful route comparisons, and a filterable directory that identifies the strongest options for maximizing time at the destination.",
@@ -245,7 +262,7 @@
       "title": "Reaching the Water",
       "dek": "Twenty harbour, river, lake and sea cities: what stands between each one and its water, how it got there, what was removed, and a scorecard comparing public access and how well each waterfront is woven into the city.",
       "kind": "Filterable atlas and scorecard",
-      "readingMinutes": 28,
+      "readingMinutes": 32,
       "design": "Vollkorn with Commissioner; nautical-chart buff land, depth-tint blues, chart magenta; chart hero with cartouche, city-to-water cross-section strips, pip scores, depth-tinted scorecard.",
       "source": "queue",
       "brief": "The Urban Waterfront Access Atlas\nResearch question: Which cities make their waterfronts part of ordinary urban life, and which effectively separate the city from the water?\nThis is a way to explore your interest in coastal cities, waterfront architecture, overlooked luxury districts, and places where geography shapes everyday life.\nProposed contents\n- 20 waterfront cities, including riverfront, harbor, lakefront, and seafront examples.\n- Public access to the water and continuity of walking routes.\n- Ferries, promenades, beaches, waterfront markets, and public transport.\n- The relationship between residential neighborhoods, commercial districts, and the waterfront.\n- Barriers such as highways, port facilities, steep terrain, or private developments.\n- A short profile of what makes each waterfront distinctive.\nInteractive element: A filterable atlas organized by waterfront type, public accessibility, and urban integration. Include original CSS-based access diagrams showing how the built environment connects—or fails to connect—to the water.\nSources to start from: Use verified municipal planning information and public-access information during research.\nFinish line: 20 cities classified into four waterfront types, plus a comparative scorecard for public access and urban integration.",
@@ -262,7 +279,7 @@
       "title": "The Decisions That Accidentally Built Our World",
       "dek": "Seventeen treaties, standards and committee choices, from Tordesillas to the 160-character text, with who made each one, what they were trying to do, and what followed that nobody planned.",
       "kind": "Annotated casebook",
-      "readingMinutes": 28,
+      "readingMinutes": 32,
       "design": "Bodoni Moda, Newsreader, Archivo Narrow; conference-baize green, cool minute-paper, sealing-wax red, brass; top-down table hero, agenda items with Resolved blocks, consequence chains, myth/record boxes.",
       "source": "queue",
       "brief": "The Decisions That Accidentally Built Our World\nCreate an interactive HTML guide to obscure decisions, treaties, technical standards, and bureaucratic choices that unexpectedly shaped the modern world.\nInvestigate how small groups or individual officials made decisions with lasting consequences for borders, commerce, infrastructure, communication, or identity.\nFor each case, explain the original problem, decision-makers, alternatives, motivations, and long-term effects.\nDistinguish unintended consequences from deliberate outcomes and later historical myths.\nInclude interactive timelines, consequence chains, and clearly labeled counterfactual scenarios.\nFocus on overlooked turning points that help explain why today's world works the way it does.\nUse original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.",

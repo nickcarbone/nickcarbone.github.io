@@ -1,0 +1,943 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Stadium Atlas · Daily</title>
+<meta name="description" content="Twenty-two stadiums and arenas, from Lambeau to La Bombonera: what stood on each site before, who paid for the land and the building, and how easily you can get there and home without a car.">
+<meta property="og:title" content="The Stadium Atlas">
+<meta property="og:description" content="Twenty-two stadiums and arenas, from Lambeau to La Bombonera: what stood on each site before, who paid for the land and the building, and how easily you can get there and home without a car.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-19-the-stadium-atlas/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-19-the-stadium-atlas/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@500;700;800&family=Piazzolla:ital,opsz,wght@0,8..30,400;0,8..30,600;1,8..30,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Layout concept: the terrace on a matchday. Poured-concrete paper, painted block numbers in
+   steward's hi-vis, each stadium a seating block; the land that came before drawn as a dashed survey
+   parcel; the car-free score as four turnstile counters. */
+:root{
+  --paper:#e6e3dc; --slab:#d8d4cb; --card:#f1efea; --ink:#1d1f1c; --muted:#4f524c; --rule:#b9b4a9;
+  --vis:#cfe84a; --vis-ink:#1d1f1c; --link:#3d4f00; --survey:#6b5a3a;
+  --display:'Saira Extra Condensed','Arial Narrow',Impact,sans-serif;
+  --body:'Piazzolla','Iowan Old Style',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#1b1c1a; --slab:#252723; --card:#22241f; --ink:#ebe9e2; --muted:#b3b1a8; --rule:#45473f;
+  --vis:#cfe84a; --vis-ink:#1b1c1a; --link:#d4ec62; --survey:#c9b48a;
+}}
+:root[data-theme="dark"]{
+  --paper:#1b1c1a; --slab:#252723; --card:#22241f; --ink:#ebe9e2; --muted:#b3b1a8; --rule:#45473f;
+  --vis:#cfe84a; --vis-ink:#1b1c1a; --link:#d4ec62; --survey:#c9b48a;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6;
+  background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1.2px);background-size:7px 7px}
+a{color:var(--link);text-underline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+.strip{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:14px}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;flex-wrap:wrap}
+.strip a{color:var(--paper);text-decoration:none;display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+.strip a:hover{text-decoration:underline}
+
+/* Hero */
+.hero{border-bottom:6px solid var(--ink);padding:36px 0 30px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+.kicker{font-family:var(--mono);font-size:14px;letter-spacing:.02em;margin:0 0 10px;color:var(--muted)}
+.kicker b{background:var(--vis);color:var(--vis-ink);padding:2px 6px;font-weight:600}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(60px,11vw,132px);line-height:.86;margin:0 0 16px;letter-spacing:-.01em}
+h1 span{display:block;color:var(--paper);-webkit-text-stroke:2px var(--ink);paint-order:stroke}
+.dek{font-size:21px;line-height:1.45;margin:0;max-width:34em}
+.hero svg{width:100%;height:auto;max-width:440px;justify-self:center}
+.hero .ring{fill:none;stroke:var(--ink)}
+.hero .parcel{fill:none;stroke:var(--survey);stroke-width:2.2;stroke-dasharray:7 6}
+.hero .pitch{fill:var(--vis);stroke:var(--ink);stroke-width:2}
+.hero .lbl{font-family:var(--mono);font-size:11px;fill:var(--survey)}
+
+main{padding-bottom:40px}
+.lede{max-width:700px;margin:36px auto 0}
+.lede p{margin:0 0 1em}
+.lede p:first-child::first-line{font-weight:600}
+h2{font-family:var(--display);font-weight:800;font-size:44px;line-height:1;margin:0 0 14px}
+.sec{max-width:1000px;margin:52px auto 0}
+.sec > p{max-width:700px}
+.note{font-size:16px;color:var(--muted)}
+
+/* Score key */
+.key{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 0;padding:0;list-style:none}
+.key li{background:var(--card);border-top:6px solid var(--ink);padding:12px 14px;font-size:16px;line-height:1.45}
+.key b{display:block;font-family:var(--display);font-size:24px;font-weight:700;line-height:1.1;margin-bottom:4px}
+
+/* Before grid */
+.before-grid{margin:18px 0 0;padding:0;list-style:none;border-top:2px solid var(--ink)}
+.before-grid li{display:grid;grid-template-columns:200px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--rule);align-items:start}
+.before-grid .cat{font-family:var(--display);font-weight:700;font-size:24px;line-height:1.1}
+.before-grid .cat small{display:block;font-family:var(--mono);font-size:13px;font-weight:400;color:var(--muted)}
+.seats{display:flex;flex-wrap:wrap;gap:6px}
+.seats a{display:inline-flex;align-items:center;min-height:40px;padding:0 10px;font-family:var(--mono);font-size:14px;text-decoration:none;color:var(--ink);background:var(--card);border:1.5px dashed var(--survey);border-radius:0}
+.seats a:hover{background:var(--vis);color:var(--vis-ink);border-style:solid}
+
+/* Share chart */
+.share{margin:18px 0 0;padding:0;list-style:none}
+.share li{display:grid;grid-template-columns:230px 1fr 64px;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--rule);font-size:16px}
+.share .bar{position:relative;height:26px;background:var(--slab);background-image:linear-gradient(90deg,transparent calc(25% - 1px),var(--rule) 25%,transparent calc(25% + 1px),transparent calc(50% - 1px),var(--rule) 50%,transparent calc(50% + 1px),transparent calc(75% - 1px),var(--rule) 75%,transparent calc(75% + 1px))}
+.share .fill{position:absolute;top:0;bottom:0;left:0;background:var(--ink)}
+.share .range{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(135deg,var(--ink) 0 3px,transparent 3px 6px)}
+.share .v{font-family:var(--mono);font-weight:600;text-align:right;white-space:nowrap}
+.share .who b{display:block;font-weight:600}
+.share .who span{color:var(--muted);font-size:14px;line-height:1.35;display:block}
+
+/* Table */
+.tbl-wrap{overflow-x:auto;margin-top:16px;border-top:2px solid var(--ink);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:15px;line-height:1.4}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:13px;font-weight:600;white-space:nowrap}
+th button{font:inherit;background:none;border:0;color:inherit;cursor:pointer;min-height:40px;padding:0;display:inline-flex;align-items:center;gap:4px}
+th button::after{content:'↕';color:var(--muted)}
+th button[aria-sort="ascending"]::after{content:'↑';color:var(--ink)}
+th button[aria-sort="descending"]::after{content:'↓';color:var(--ink)}
+td.n{font-family:var(--mono);white-space:nowrap}
+td a{font-weight:600;display:inline-block;padding:10px 0}
+td .sc{display:inline-block;min-width:44px;text-align:center;font-family:var(--mono);font-weight:600;padding:2px 6px;background:var(--slab)}
+td .sc.hi{background:var(--vis);color:var(--vis-ink)}
+
+/* Filters */
+.filters{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:2px solid var(--ink);padding:10px 0;margin-top:56px}
+.filters .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.fgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fgroup > span{font-family:var(--mono);font-size:13px;color:var(--muted);margin-right:2px}
+.fbtn{font-family:var(--mono);font-size:14px;min-height:40px;padding:0 12px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.fbtn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.fbtn:focus-visible,th button:focus-visible,.seats a:focus-visible{outline:3px solid var(--vis);outline-offset:2px}
+#count{font-family:var(--mono);font-size:13px;color:var(--muted)}
+
+/* Regions and blocks */
+.region{margin-top:40px}
+.region-h{display:flex;align-items:baseline;gap:14px;border-bottom:6px solid var(--ink);padding-bottom:6px;margin:0 0 22px}
+.stand{font-family:var(--mono);font-size:14px;font-weight:600;background:var(--ink);color:var(--paper);padding:3px 8px;letter-spacing:.04em}
+.block{display:grid;grid-template-columns:1fr 250px;grid-template-areas:"bh bh" "was card" "body card";gap:0 28px;background:var(--card);margin:0 0 26px;padding:0 22px 22px;border-left:10px solid var(--ink);scroll-margin-top:80px}
+.block[hidden]{display:none}
+.bh{grid-area:bh;display:grid;grid-template-columns:auto 1fr;gap:0 16px;align-items:end;margin:0 -22px 16px -32px;padding:0}
+.bno{grid-row:1 / span 2;background:var(--vis);color:var(--vis-ink);font-family:var(--display);font-weight:800;font-size:22px;line-height:1;padding:14px 12px 12px;writing-mode:horizontal-tb;align-self:stretch;display:flex;align-items:flex-end;min-width:96px}
+.bh h3{font-family:var(--display);font-weight:800;font-size:40px;line-height:1;margin:16px 0 4px}
+.loc{font-family:var(--mono);font-size:15px;color:var(--muted);margin:0;padding-bottom:2px}
+.was{grid-area:was;border:2px dashed var(--survey);padding:12px 14px 4px;margin-bottom:12px;position:relative}
+.was-tag{position:absolute;top:-11px;left:10px;background:var(--card);padding:0 6px;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--survey)}
+.was p{margin:0 0 .6em;font-style:italic}
+.body{grid-area:body}
+.body h4{font-family:var(--display);font-weight:700;font-size:24px;line-height:1.1;margin:16px 0 4px}
+.body p{margin:0}
+.card{grid-area:card;align-self:start;position:sticky;top:76px;background:#171816;color:#f1efea;border:1px solid var(--rule);padding:14px 14px 12px;margin-top:2px}
+.card-h{font-family:var(--mono);font-size:14px;margin:0 0 10px;display:flex;justify-content:space-between;align-items:baseline}
+.card-h b{font-family:var(--display);font-size:40px;font-weight:800;line-height:1;color:var(--vis)}
+.pips{list-style:none;margin:0;padding:0}
+.pips li{display:flex;align-items:center;gap:10px;padding:5px 0;border-top:1px solid rgba(255,255,255,.18);font-family:var(--mono);font-size:13px}
+.pips li::before{content:'';width:44px;height:16px;flex:none;--u:rgba(255,255,255,.2);
+  background:linear-gradient(90deg,var(--pa,var(--u)) 0 19px,transparent 19px 25px,var(--pb,var(--u)) 25px 44px)}
+.pips li[data-v="1"]{--pa:var(--vis)}
+.pips li[data-v="2"]{--pa:var(--vis);--pb:var(--vis)}
+.pips li[data-v="x"]::before{background:repeating-linear-gradient(135deg,rgba(255,255,255,.4) 0 2px,transparent 2px 6px)}
+.pips li::after{content:attr(data-v);margin-left:auto;font-weight:600}
+.pips li[data-v="x"]::after{content:'n/a'}
+.card-n{font-size:16px;line-height:1.4;margin:10px 0 0;font-style:italic;color:#d8d6cf}
+sup.r{font-family:var(--mono);font-size:11px;line-height:0;margin-left:1px}
+sup.r a{text-decoration:none;padding:0 1px}
+sup.r a:hover{text-decoration:underline}
+
+/* Sources and footer */
+.sources{max-width:1000px;margin:56px auto 0;border-top:6px solid var(--ink);padding-top:14px}
+.sources ol{font-size:15px;line-height:1.45;padding-left:2.6em;columns:2;column-gap:36px}
+.sources li a{display:inline-flex;align-items:center;min-height:40px}
+.sources li{margin:0 0 .3em;break-inside:avoid;overflow-wrap:anywhere}
+.sources li:target{background:var(--vis);color:var(--vis-ink)}
+.sources li:target a{color:var(--vis-ink)}
+footer{border-top:2px solid var(--ink);margin-top:40px;padding:22px 0 40px;font-size:16px}
+footer p{margin:0 0 .5em}
+footer a{display:inline-flex;align-items:center;min-height:40px}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero svg{max-width:320px;order:-1}
+  .key{grid-template-columns:1fr 1fr}
+  .block{grid-template-columns:1fr;grid-template-areas:"bh" "was" "card" "body";padding:0 16px 18px}
+  .bh{margin:0 -16px 16px -26px}
+  .card{position:static;margin:4px 0 4px}
+  .sources ol{columns:1}
+}
+@media (max-width:560px){
+  body{font-size:17px}
+  .dek{font-size:19px}
+  h2{font-size:38px}
+  .key{grid-template-columns:1fr}
+  .before-grid li{grid-template-columns:1fr;gap:6px}
+  .share li{grid-template-columns:1fr 72px;grid-template-areas:"who who" "bar v"}
+  .share .who{grid-area:who}.share .bar{grid-area:bar}.share .v{grid-area:v}
+  .bh h3{font-size:34px}
+  .loc{font-size:16px}
+  .bno{min-width:74px;font-size:19px}
+  .filters{position:static}
+}
+@media (prefers-reduced-motion:no-preference){
+  .seats a,.fbtn{transition:background-color .15s,color .15s}
+}
+@media print{.filters{display:none}.card{position:static}}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 033 · Thursday 19 November 2026</span></div></div>
+
+<header class="hero">
+ <div class="wrap">
+  <div>
+   <p class="kicker"><b>Filterable atlas</b> · 22 grounds · before, money, getting in</p>
+   <h1>The Stadium <span>Atlas</span></h1>
+   <p class="dek">Twenty-two stadiums and arenas, from Lambeau to La Bombonera: what stood on each site before, who paid for the land and the building, and how easily you can get there and home without a car.</p>
+  </div>
+  <svg viewBox="0 0 400 330" role="img" aria-labelledby="hero-t">
+   <title id="hero-t">A stadium drawn in plan: oval seating rings around a pitch, with a dashed survey outline of an older, irregular land parcel running underneath it.</title>
+   <path class="parcel" d="M38 74 L148 30 L292 44 L372 118 L352 262 L230 306 L96 292 L22 196 Z"/>
+   <path class="parcel" d="M60 250 C120 220 170 236 220 214 S330 190 372 160" style="stroke-dasharray:2 6"/>
+   <text class="lbl" x="40" y="66">PARCEL BEFORE</text>
+   <text class="lbl" x="262" y="300">FORMER USE ?</text>
+   <ellipse class="ring" cx="200" cy="168" rx="168" ry="122" stroke-width="3"/>
+   <ellipse class="ring" cx="200" cy="168" rx="148" ry="104" stroke-width="1.2"/>
+   <ellipse class="ring" cx="200" cy="168" rx="130" ry="88" stroke-width="1.2"/>
+   <ellipse class="ring" cx="200" cy="168" rx="112" ry="73" stroke-width="2"/>
+   <g stroke="var(--ink)" stroke-width="1.2">
+    <line x1="200" y1="46" x2="200" y2="95"/><line x1="200" y1="241" x2="200" y2="290"/>
+    <line x1="32" y1="168" x2="88" y2="168"/><line x1="312" y1="168" x2="368" y2="168"/>
+    <line x1="81" y1="82" x2="121" y2="113"/><line x1="319" y1="82" x2="279" y2="113"/>
+    <line x1="81" y1="254" x2="121" y2="223"/><line x1="319" y1="254" x2="279" y2="223"/>
+   </g>
+   <rect class="pitch" x="132" y="128" width="136" height="80"/>
+   <g fill="none" stroke="var(--ink)" stroke-width="1.5"><line x1="200" y1="128" x2="200" y2="208"/><circle cx="200" cy="168" r="13"/><rect x="132" y="148" width="18" height="40"/><rect x="250" y="148" width="18" height="40"/></g>
+   <g font-family="'JetBrains Mono',monospace" font-size="12" font-weight="600" fill="var(--ink)"><text x="194" y="62">A</text><text x="194" y="282">C</text><text x="44" y="164">D</text><text x="346" y="164">B</text></g>
+  </svg>
+ </div>
+</header>
+
+<main>
+<div class="wrap">
+ <div class="lede">
+<p>Dodger Stadium stands where sheriff's deputies removed the last families from Chavez Ravine in 1959. Madison Square Garden sits on the stump of Pennsylvania Station. Perth's stadium is on an old rubbish tip, Koshien on a river bed that a railway company bought, and the Emirates on a council waste depot cleared by a compulsory purchase order that the planning inspector had advised against.</p>
+<p>This atlas asks the same questions of 22 grounds: what the land was, how it changed hands, who paid, and how the crowd gets in, eats, drinks and gets home. The money is the hardest part to pin down. Clubs and cities rarely publish complete accounts, figures here are in the money of their day and not adjusted for inflation, and where sources disagree the entry says so.</p>
+<p>The last question is the practical one, so each block carries a car-free score out of eight. Three grounds take full marks: Wrigley Field, the Emirates and Perth's Optus Stadium. Lambeau Field and Dodger Stadium, both built around their car parks, score two.</p>
+ </div>
+
+ <section class="sec" id="score" aria-labelledby="h-score">
+  <h2 id="h-score">How the car-free score works</h2>
+  <p>Each ground gets up to two points on four counts, judged by the Daily desk from the operators', transport authorities' and cities' own published information, as of November 2026. It measures how easy it is to arrive and leave without a car, not how good the day out is.</p>
+  <ul class="key">
+   <li><b>Rail</b>2: a train, metro or tram station within about ten minutes' walk. 1: rail further away or only via a shuttle. 0: no useful rail.</li>
+   <li><b>Matchday service</b>2: documented extra trains, dedicated shuttles or event running. 1: good regular service only. 0: nothing documented.</li>
+   <li><b>Walk &amp; cycle</b>2: a dense, walkable district with cycle provision. 1: walkable with caveats. 0: an island of roads and car parks.</li>
+   <li><b>Parking scarcity</b>2: little or no public parking. 1: some, restricted or pre-booked. 0: car parks for thousands.</li>
+  </ul>
+  <p class="note">Two grounds have a criterion we could not score for lack of a source; their totals are shown out of six.</p>
+ </section>
+
+ <section class="sec" id="before" aria-labelledby="h-before">
+  <h2 id="h-before">What stood there first</h2>
+  <p>Sorted by the land's main previous use. Tap a ground to jump to its block.</p>
+  <ul class="before-grid">
+   <li><span class="cat">Homes cleared<small>2 grounds</small></span><span class="seats"><a href="#dodger">Dodger Stadium</a><a href="#birdsnest">Bird&#x27;s Nest</a></span></li>
+   <li><span class="cat">Railway land<small>2 grounds</small></span><span class="seats"><a href="#msg">Madison Square Garden</a><a href="#bombonera">La Bombonera</a></span></li>
+   <li><span class="cat">Industry and waste<small>3 grounds</small></span><span class="seats"><a href="#emirates">Emirates Stadium</a><a href="#sdf">Stade de France</a><a href="#perth">Optus Stadium</a></span></li>
+   <li><span class="cat">Marsh and river<small>2 grounds</small></span><span class="seats"><a href="#fenway">Fenway Park</a><a href="#koshien">Koshien</a></span></li>
+   <li><span class="cat">Racecourses and older grounds<small>5 grounds</small></span><span class="seats"><a href="#sofi">SoFi Stadium</a><a href="#maracana">Maracanã</a><a href="#wembley">Wembley Stadium</a><a href="#tokyodome">Tokyo Dome</a><a href="#fnb">FNB Stadium</a></span></li>
+   <li><span class="cat">Farmland and open land<small>3 grounds</small></span><span class="seats"><a href="#lambeau">Lambeau Field</a><a href="#azteca">Estadio Azteca</a><a href="#bernabeu">Bernabéu</a></span></li>
+   <li><span class="cat">Gardens and institutions<small>2 grounds</small></span><span class="seats"><a href="#wrigley">Wrigley Field</a><a href="#eden">Eden Gardens</a></span></li>
+   <li><span class="cat">Not documented<small>3 grounds</small></span><span class="seats"><a href="#campnou">Camp Nou</a><a href="#sansiro">San Siro</a><a href="#allianz">Allianz Arena</a></span></li>
+
+  </ul>
+ </section>
+
+ <section class="sec" id="share" aria-labelledby="h-share">
+  <h2 id="h-share">Who actually leaves the car at home</h2>
+  <p>Few grounds publish how their crowds arrive. These are the only figures we found, and they were measured in different ways, so read them side by side rather than as a league table.</p>
+  <ul class="share">
+   <li><span class="who"><b>Wembley Stadium</b><span>Public transport, 2018 surveys of major events<sup class="r"><a href="#s1">1</a></sup></span></span><span class="bar" role="img" aria-label="78–88%"><span class="fill" style="width:78%"></span><span class="range" style="left:78%;width:10%"></span></span><span class="v">78–88%</span></li>
+   <li><span class="who"><b>Optus Stadium, Perth</b><span>Bus or train in the first year; 54% came by train<sup class="r"><a href="#s2">2</a></sup></span></span><span class="bar" role="img" aria-label="76%"><span class="fill" style="width:76%"></span></span><span class="v">76%</span></li>
+   <li><span class="who"><b>Stade de France</b><span>Rail and metro at the 2022 Champions League final, a strike day. Daily desk calculation from Senate figures, which are not fully consistent<sup class="r"><a href="#s3">3</a></sup></span></span><span class="bar" role="img" aria-label="c.70%"><span class="fill" style="width:70%"></span></span><span class="v">c.70%</span></li>
+   <li><span class="who"><b>Madison Square Garden</b><span>Mass transit, applicant surveys cited by the City Planning Commission in 2023<sup class="r"><a href="#s4">4</a></sup></span></span><span class="bar" role="img" aria-label="50–61%"><span class="fill" style="width:50%"></span><span class="range" style="left:50%;width:11%"></span></span><span class="v">50–61%</span></li>
+
+  </ul>
+ </section>
+
+ <section class="sec" id="table" aria-labelledby="h-table">
+  <h2 id="h-table">All 22 at a glance</h2>
+  <p class="note">Sort by name, year opened or score. The table scrolls sideways on narrow screens.</p>
+  <div class="tbl-wrap" role="region" aria-labelledby="h-table" tabindex="0">
+  <table id="tbl">
+   <thead><tr><th scope="col"><button type="button" data-k="name">Ground</button></th><th scope="col">City</th><th scope="col"><button type="button" data-k="year">Opened</button></th><th scope="col">Before</th><th scope="col">Public money, in short</th><th scope="col"><button type="button" data-k="score">Car-free</button></th></tr></thead>
+   <tbody>
+    <tr data-name="Lambeau Field" data-year="1957" data-score="2.00"><td><a href="#lambeau">Lambeau Field</a></td><td>Green Bay</td><td class="n">1957</td><td>Farmland</td><td>$160m in district bonds for the 2001–03 rebuild, repaid by a county sales tax</td><td class="n"><span class="sc">2/8</span></td></tr>
+    <tr data-name="Wrigley Field" data-year="1914" data-score="8.00"><td><a href="#wrigley">Wrigley Field</a></td><td>Chicago</td><td class="n">1914</td><td>Seminary grounds</td><td>None documented</td><td class="n"><span class="sc hi">8/8</span></td></tr>
+    <tr data-name="Fenway Park" data-year="1912" data-score="7.00"><td><a href="#fenway">Fenway Park</a></td><td>Boston</td><td class="n">1912</td><td>Filled marsh</td><td>Built privately; the city sold street and air rights in 2013</td><td class="n"><span class="sc hi">7/8</span></td></tr>
+    <tr data-name="Dodger Stadium" data-year="1962" data-score="2.00"><td><a href="#dodger">Dodger Stadium</a></td><td>Los Angeles</td><td class="n">1962</td><td>Chavez Ravine homes</td><td>City land, plus $4.74m of grading and roads by the family archive's count</td><td class="n"><span class="sc">2/8</span></td></tr>
+    <tr data-name="Madison Square Garden" data-year="1968" data-score="7.00"><td><a href="#msg">Madison Square Garden</a></td><td>New York</td><td class="n">1968</td><td>Penn Station</td><td>Property-tax exemption, $43.0m in fiscal 2025</td><td class="n"><span class="sc hi">7/8</span></td></tr>
+    <tr data-name="SoFi Stadium" data-year="2020" data-score="5.00"><td><a href="#sofi">SoFi Stadium</a></td><td>Inglewood</td><td class="n">2020</td><td>Racetrack</td><td>No upfront tax dollars; deferred reimbursement and reported sales-tax concessions</td><td class="n"><span class="sc">5/8</span></td></tr>
+    <tr data-name="Estadio Azteca (Estadio Banorte)" data-year="1966" data-score="6.00"><td><a href="#azteca">Estadio Azteca (Estadio Banorte)</a></td><td>Mexico City</td><td class="n">1966</td><td>Communal farmland</td><td>Built privately; city works and light-rail renewal for 2026</td><td class="n"><span class="sc">6/8</span></td></tr>
+    <tr data-name="La Bombonera" data-year="1940" data-score="3.00"><td><a href="#bombonera">La Bombonera</a></td><td>Buenos Aires</td><td class="n">1940</td><td>Rail yard</td><td>Not documented</td><td class="n"><span class="sc">3/8</span></td></tr>
+    <tr data-name="Maracanã" data-year="1950" data-score="7.00"><td><a href="#maracana">Maracanã</a></td><td>Rio de Janeiro</td><td class="n">1950</td><td>Racecourse</td><td>Built by the city; 2010–13 rebuild about R$1.2bn, mostly public</td><td class="n"><span class="sc hi">7/8</span></td></tr>
+    <tr data-name="Wembley Stadium" data-year="2007" data-score="6.00"><td><a href="#wembley">Wembley Stadium</a></td><td>London</td><td class="n">2007</td><td>Old Wembley</td><td>£161m</td><td class="n"><span class="sc">6/8</span></td></tr>
+    <tr data-name="Emirates Stadium" data-year="2006" data-score="8.00"><td><a href="#emirates">Emirates Stadium</a></td><td>London</td><td class="n">2006</td><td>Waste and industrial estate</td><td>None in the build; about £50m of transport works</td><td class="n"><span class="sc hi">8/8</span></td></tr>
+    <tr data-name="Stade de France" data-year="1998" data-score="5.00"><td><a href="#sdf">Stade de France</a></td><td>Saint-Denis</td><td class="n">1998</td><td>Gasworks</td><td>1.254bn of 2.7bn francs, plus €114m in no-club payments</td><td class="n"><span class="sc">5/8</span></td></tr>
+    <tr data-name="Spotify Camp Nou" data-year="1957" data-score="7.00"><td><a href="#campnou">Spotify Camp Nou</a></td><td>Barcelona</td><td class="n">1957</td><td>Not documented</td><td>None found; the club pays for public-space works</td><td class="n"><span class="sc hi">7/8</span></td></tr>
+    <tr data-name="Santiago Bernabéu" data-year="1947" data-score="6.00"><td><a href="#bernabeu">Santiago Bernabéu</a></td><td>Madrid</td><td class="n">1947</td><td>Undeveloped land</td><td>Land compensation ruled state aid in 2016, annulled in 2019</td><td class="n"><span class="sc">6/8</span></td></tr>
+    <tr data-name="San Siro (Stadio Giuseppe Meazza)" data-year="1926" data-score="6.00"><td><a href="#sansiro">San Siro (Stadio Giuseppe Meazza)</a></td><td>Milan</td><td class="n">1926</td><td>Not documented</td><td>City-owned 1935–2025, then sold to the clubs for €197m</td><td class="n"><span class="sc">6/8</span></td></tr>
+    <tr data-name="Allianz Arena" data-year="2005" data-score="3.00"><td><a href="#allianz">Allianz Arena</a></td><td>Munich</td><td class="n">2005</td><td>Not documented</td><td>About €300m of roads and rail, per a 2006 parliamentary question</td><td class="n"><span class="sc">3/8</span></td></tr>
+    <tr data-name="Tokyo Dome" data-year="1988" data-score="7.00"><td><a href="#tokyodome">Tokyo Dome</a></td><td>Tokyo</td><td class="n">1988</td><td>Velodrome</td><td>None found</td><td class="n"><span class="sc hi">7/8</span></td></tr>
+    <tr data-name="Hanshin Koshien Stadium" data-year="1924" data-score="6.00"><td><a href="#koshien">Hanshin Koshien Stadium</a></td><td>Nishinomiya</td><td class="n">1924</td><td>River bed</td><td>None documented; the prefecture sold the river bed</td><td class="n"><span class="sc">6/8</span></td></tr>
+    <tr data-name="Beijing National Stadium" data-year="2008" data-score="4.00"><td><a href="#birdsnest">Beijing National Stadium</a></td><td>Beijing</td><td class="n">2008</td><td>Village fields</td><td>City holds a 58% stake</td><td class="n"><span class="sc">3/6</span></td></tr>
+    <tr data-name="Eden Gardens" data-year="1864" data-score="5.00"><td><a href="#eden">Eden Gardens</a></td><td>Kolkata</td><td class="n">1864</td><td>Pleasure garden</td><td>Defence land on lease; 2011 works paid by cricket bodies</td><td class="n"><span class="sc">5/8</span></td></tr>
+    <tr data-name="Optus Stadium (Perth Stadium)" data-year="2018" data-score="8.00"><td><a href="#perth">Optus Stadium (Perth Stadium)</a></td><td>Perth</td><td class="n">2018</td><td>Tip, then golf course</td><td>State-owned; about A$1.6bn with transport (ABC, 2017)</td><td class="n"><span class="sc hi">8/8</span></td></tr>
+    <tr data-name="FNB Stadium (Soccer City)" data-year="1989" data-score="2.67"><td><a href="#fnb">FNB Stadium (Soccer City)</a></td><td>Johannesburg</td><td class="n">1989</td><td>Older stadium</td><td>City-owned; 2010 rebuild about R3.3bn</td><td class="n"><span class="sc">2/6</span></td></tr>
+
+   </tbody>
+  </table>
+  </div>
+ </section>
+</div>
+
+<nav class="filters" aria-label="Filter the grounds">
+ <div class="wrap">
+  <div class="fgroup" role="group" aria-label="Region"><span>Region</span>
+   <button class="fbtn" type="button" data-f="region" data-v="all" aria-pressed="true">All</button>
+   <button class="fbtn" type="button" data-f="region" data-v="na" aria-pressed="false">N America</button>
+   <button class="fbtn" type="button" data-f="region" data-v="sa" aria-pressed="false">S America</button>
+   <button class="fbtn" type="button" data-f="region" data-v="eu" aria-pressed="false">Europe</button>
+   <button class="fbtn" type="button" data-f="region" data-v="as" aria-pressed="false">Asia</button>
+   <button class="fbtn" type="button" data-f="region" data-v="oa" aria-pressed="false">Australia, Africa</button>
+  </div>
+  <div class="fgroup" role="group" aria-label="Car-free score"><span>Score</span>
+   <button class="fbtn" type="button" data-f="score" data-v="all" aria-pressed="true">Any</button>
+   <button class="fbtn" type="button" data-f="score" data-v="hi" aria-pressed="false">7 or 8</button>
+   <button class="fbtn" type="button" data-f="score" data-v="lo" aria-pressed="false">3 or less</button>
+  </div>
+  <span id="count" aria-live="polite"></span>
+ </div>
+</nav>
+
+<div class="wrap" id="blocks">
+<section class="region" id="r-na" aria-labelledby="h-na">
+<h2 class="region-h" id="h-na"><span class="stand">Stand A</span> North America</h2>
+
+<article class="block" id="lambeau" data-region="na" data-before="fields" data-score="2">
+ <header class="bh"><span class="bno">Block 01</span><h3>Lambeau Field</h3><p class="loc">Green Bay, Wisconsin · opened 1957 · Green Bay Packers (NFL)</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>Farmland in the Town of Ashwaubenon. Forty-eight acres were bought from Victor Vannieuwenhoven in August 1956 for $73,305; the family kept their house, and a farm survived in what became the car park until 1963.<sup class="r"><a href="#s5">5</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>Green Bay voters approved a $960,000 bond for the stadium on 3 April 1956, with more than 62 per cent in favour.<sup class="r"><a href="#s6">6</a></sup> The site was annexed into the city that September, which mattered for one reason above others: Ashwaubenon was dry, and the mayor ruled that the annexed land would not fall under the ordinance that would have stopped beer sales.<sup class="r"><a href="#s5">5</a></sup> The big rebuild of 2001–03 had a $295.2 million budget, of which $160 million came from bonds issued by the Green Bay/Brown County Professional Football Stadium District, $126.1 million from the Packers and $9.1 million from the state transport department.<sup class="r"><a href="#s7">7</a></sup> Brown County paid it off with a 0.5 per cent sales tax that ran from January 2001 to 2015.<sup class="r"><a href="#s7">7</a>,<a href="#s8">8</a></sup> Ownership is tangled between the Packers, the city and the stadium district, and published accounts describe it differently.<sup class="r"><a href="#s9">9</a>,<a href="#s10">10</a>,<a href="#s11">11</a></sup></p>
+  <h4>Getting there</h4>
+  <p>No passenger rail serves the stadium. Green Bay Metro runs four free gameday bus routes every 30 minutes, though the Packers' own pages disagree on when they start and stop.<sup class="r"><a href="#s12">12</a>,<a href="#s13">13</a></sup> Stadium lots go to season parking-pass holders, and nearby private yards and free residential streets take the rest.<sup class="r"><a href="#s12">12</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>The tailgate is the arrival: a setup up to 9 by 6 feet behind your vehicle, charcoal or propane but no wood fires or turkey fryers, and all of it over at kick-off.<sup class="r"><a href="#s12">12</a></sup> Inside, most concession stands are worked by volunteers raising money for local nonprofits, beer is limited to two per purchase and sales stop at the end of the third quarter.<sup class="r"><a href="#s13">13</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 2 out of 8"><p class="card-h">Without a car <b>2/8</b></p><ul class="pips"><li data-v="0"><span>Rail</span></li><li data-v="1"><span>Matchday service</span></li><li data-v="1"><span>Walk &amp; cycle</span></li><li data-v="0"><span>Parking scarcity</span></li></ul><p class="card-n">Free shuttle buses, but this is a ground built around the car park.</p></div>
+</article>
+
+<article class="block" id="wrigley" data-region="na" data-before="gardens" data-score="8">
+ <header class="bh"><span class="bno">Block 02</span><h3>Wrigley Field</h3><p class="loc">Lake View, Chicago · opened 1914 · Chicago Cubs (MLB)</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>The grounds of the Chicago Lutheran Theological Seminary: four wooden buildings on a 7.7-acre site, vacant after the seminary moved to Maywood in 1910.<sup class="r"><a href="#s14">14</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>Charles Weeghman, owner of the Federal League's Chi-Feds, leased the land in late 1913 rather than buying it, and built the park for $250,000 according to the building permit.<sup class="r"><a href="#s14">14</a></sup> The Cubs moved in in 1916.<sup class="r"><a href="#s15">15</a></sup> No public money is recorded in the build. The Ricketts family bought the team and the ballpark from Tribune Co. for $845 million in 2009, and the 1060 Project renovation approved in 2013 was presented as privately funded, paid for partly by new signage.<sup class="r"><a href="#s16">16</a>,<a href="#s17">17</a></sup></p>
+  <h4>Getting there</h4>
+  <p>The Red Line's Addison station is about half a block from the park. In 2018 the CTA added weeknight game-day Red Line trains and stopped southbound Purple Line Express trains at Sheridan, three blocks away.<sup class="r"><a href="#s18">18</a></sup> A free remote lot on Clarendon Avenue has shuttles for night and weekend games.<sup class="r"><a href="#s19">19</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>Chicago law shapes the evening. The city's ordinance, as published by the ward office, allows up to 43 night games a season and bars regular-season starts after 4.10pm on Fridays and Saturdays, with limited exceptions.<sup class="r"><a href="#s20">20</a></sup> On night games the surrounding residential permit zone becomes a tow zone from 5pm to 10pm, and Addison and Clark can be closed at police discretion.<sup class="r"><a href="#s21">21</a></sup> The rooftop bleachers across Waveland and Sheffield are their own economy: in 2004 most of them agreed to pay the Cubs 17 per cent of gross revenue, and by 2018 the Ricketts family owned 11 of them.<sup class="r"><a href="#s17">17</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 8 out of 8"><p class="card-h">Without a car <b>8/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="2"><span>Matchday service</span></li><li data-v="2"><span>Walk &amp; cycle</span></li><li data-v="2"><span>Parking scarcity</span></li></ul><p class="card-n">An L station half a block away and almost nowhere to park.</p></div>
+</article>
+
+<article class="block" id="fenway" data-region="na" data-before="water" data-score="7">
+ <header class="bh"><span class="bno">Block 03</span><h3>Fenway Park</h3><p class="loc">Fenway–Kenmore, Boston · opened 1912 · Boston Red Sox (MLB)</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>Filled marsh. The area was 19th-century landfill tied to the Back Bay Fens, finished by 1891 and still largely empty in 1908, held by a few owners as a speculation.<sup class="r"><a href="#s22">22</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>The Taylor family, publishers of the <i>Boston Globe</i> and owners of the club, bought an awkward, asymmetrical parcel in early 1911; its shape is why the field's dimensions are odd. The name came from the district and conveniently promoted the family's Fenway Realty Company.<sup class="r"><a href="#s23">23</a></sup> The park cost about $650,000, privately paid.<sup class="r"><a href="#s24">24</a></sup> In 2000 the state approved, and asked the city to approve, a $312 million public package for a replacement Fenway that was never built.<sup class="r"><a href="#s25">25</a></sup> The public asset the club did get came in 2013, when the Boston Redevelopment Authority agreed to sell game-day rights over Yawkey Way and air rights over Lansdowne Street for about $7.34 million; in 2015 the state Inspector General wrote that the price "appears to be insufficient".<sup class="r"><a href="#s26">26</a>,<a href="#s27">27</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Kenmore, on three Green Line branches, is about five minutes' walk from Gates A and D, and Lansdowne commuter-rail station is about a three-minute walk, though the club warns its last trains can leave before a night game ends.<sup class="r"><a href="#s28">28</a>,<a href="#s29">29</a>,<a href="#s30">30</a></sup> There is free bike valet at Gate D.<sup class="r"><a href="#s28">28</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>Jersey Street is closed and run as part of the ballpark from a little over two hours before games, an arrangement that grew from a 2002 experiment.<sup class="r"><a href="#s26">26</a></sup> Lansdowne Street, behind the Green Monster, has sausage vendors and music venues. The Fenway Frank is made by Kayem of Chelsea, which sells more than a million a year here.<sup class="r"><a href="#s28">28</a></sup> After the game, crowds split between Kenmore, Fenway and Lansdowne, and WBUR suggests walking a stop further to avoid the crush.<sup class="r"><a href="#s28">28</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 7 out of 8"><p class="card-h">Without a car <b>7/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="1"><span>Matchday service</span></li><li data-v="2"><span>Walk &amp; cycle</span></li><li data-v="2"><span>Parking scarcity</span></li></ul><p class="card-n">Regular service rather than game-day extras, and watch the last train.</p></div>
+</article>
+
+<article class="block" id="dodger" data-region="na" data-before="homes" data-score="2">
+ <header class="bh"><span class="bno">Block 04</span><h3>Dodger Stadium</h3><p class="loc">Chavez Ravine, Los Angeles · opened 1962 · Los Angeles Dodgers (MLB)</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>Chavez Ravine, a largely Mexican-American, semi-rural community of three neighbourhoods: La Loma, Palo Verde and Bishop. Estimates of how many families lived there at its peak run from 1,100 to more than 1,800.<sup class="r"><a href="#s31">31</a>,<a href="#s32">32</a>,<a href="#s33">33</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>In 1950 the land was earmarked for Elysian Park Heights, a federally assisted public-housing project designed by Richard Neutra and Robert E. Alexander, and eminent-domain proceedings began. The housing was dropped after the 1953 mayoral election, and the city reacquired the land.<sup class="r"><a href="#s31">31</a>,<a href="#s32">32</a>,<a href="#s33">33</a></sup> Under a 1957 contract the city gave the Dodgers about 300 acres (one account says 352) in exchange for the minor-league Wrigley Field in Los Angeles, plus park and maintenance commitments.<sup class="r"><a href="#s31">31</a>,<a href="#s32">32</a>,<a href="#s34">34</a></sup> Opponents forced a referendum, which the deal survived narrowly in June 1958, and a taxpayer suit that ended when the US Supreme Court declined to hear it in 1959.<sup class="r"><a href="#s31">31</a>,<a href="#s35">35</a></sup> On 9 May 1959 sheriff's deputies removed the last holdouts, including the Arechiga family, and their homes were bulldozed.<sup class="r"><a href="#s31">31</a>,<a href="#s32">32</a></sup> The stadium itself was privately financed; the family archive counts the land, $2 million of city grading and $2.74 million of county roads as the public share.<sup class="r"><a href="#s34">34</a>,<a href="#s36">36</a></sup></p>
+  <h4>Getting there</h4>
+  <p>The nearest rail, Chinatown on the A Line, is 1.2 miles downhill; a FOX 11 reporter walked it but found missing sidewalks, lighting and crossings.<sup class="r"><a href="#s37">37</a></sup> The free Dodger Stadium Express from Union Station uses a bus lane on Sunset Boulevard.<sup class="r"><a href="#s38">38</a>,<a href="#s39">39</a></sup> A city transport study says most attendees drive.<sup class="r"><a href="#s40">40</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>The stadium was built for 16,000 cars and buses on terraced lots, so fans park near the level of their seats, and more than 8 million cubic yards of earth were moved to make it.<sup class="r"><a href="#s34">34</a>,<a href="#s36">36</a></sup> Outside food is allowed in a small clear bag.<sup class="r"><a href="#s41">41</a></sup> A proposed gondola from Union Station had council opposition and further approvals outstanding as of mid-2026.<sup class="r"><a href="#s42">42</a>,<a href="#s43">43</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 2 out of 8"><p class="card-h">Without a car <b>2/8</b></p><ul class="pips"><li data-v="0"><span>Rail</span></li><li data-v="2"><span>Matchday service</span></li><li data-v="0"><span>Walk &amp; cycle</span></li><li data-v="0"><span>Parking scarcity</span></li></ul><p class="card-n">The free express bus is good. Everything else assumes you drove.</p></div>
+</article>
+
+<article class="block" id="msg" data-region="na" data-before="rail" data-score="7">
+ <header class="bh"><span class="bno">Block 05</span><h3>Madison Square Garden</h3><p class="loc">Midtown Manhattan, New York · opened 1968 · Knicks (NBA), Rangers (NHL)</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>The above-ground halls of Pennsylvania Station, designed by McKim, Mead &amp; White and opened in 1910. Demolition began on 28 October 1963; the trains below kept running.<sup class="r"><a href="#s4">4</a>,<a href="#s44">44</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>In November 1960 Irving Mitchell Felt of Graham-Paige accepted the Pennsylvania Railroad's offer of the right to move the Garden above the station, a deal over the railroad's own site.<sup class="r"><a href="#s45">45</a></sup> The loss of the station is widely credited, including by the City Planning Commission, with spurring New York's Landmarks Law of 1965.<sup class="r"><a href="#s4">4</a>,<a href="#s44">44</a></sup> The arena was privately financed.<sup class="r"><a href="#s45">45</a></sup> Its public subsidy is a property-tax exemption granted under 1982 state legislation, worth $43.0 million in fiscal 2025 by the owner's own accounts; the city's Independent Budget Office put forgone tax at about $1 billion over 41 years.<sup class="r"><a href="#s46">46</a>,<a href="#s47">47</a></sup> The arena runs on a city special permit, and in 2023 the City Council granted only five years, explicitly to push a fix for the station below.<sup class="r"><a href="#s4">4</a>,<a href="#s48">48</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Penn Station is underneath: Amtrak, the Long Island Rail Road, NJ Transit and the subway. The LIRR added late trains after Garden events in 2024.<sup class="r"><a href="#s4">4</a>,<a href="#s46">46</a>,<a href="#s49">49</a></sup> There is no public parking on the site.<sup class="r"><a href="#s4">4</a></sup> Applicant surveys cited by the planning commission put mass transit at 50–61 per cent of attendees, and private cars still at 23–38 per cent.<sup class="r"><a href="#s4">4</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>About 70 per cent of visitors enter from Seventh Avenue, and crowds leaving the arena pour into the same concourses as commuters.<sup class="r"><a href="#s4">4</a></sup> In 2023 the MTA, Amtrak and NJ Transit said the Garden imposes "severe constraints" on the station; the owner said that reflected "the opinion of a few".<sup class="r"><a href="#s50">50</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 7 out of 8"><p class="card-h">Without a car <b>7/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="1"><span>Matchday service</span></li><li data-v="2"><span>Walk &amp; cycle</span></li><li data-v="2"><span>Parking scarcity</span></li></ul><p class="card-n">The arena is the roof of a station.</p></div>
+</article>
+
+<article class="block" id="sofi" data-region="na" data-before="sport" data-score="5">
+ <header class="bh"><span class="bno">Block 06</span><h3>SoFi Stadium</h3><p class="loc">Inglewood, Los Angeles County · opened 2020 · Rams and Chargers (NFL)</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>Hollywood Park racetrack, opened on 10 June 1938 by a turf club whose directors included Jack Warner and Al Jolson, and closed on 22 December 2013 after 75 years.<sup class="r"><a href="#s51">51</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>Stan Kroenke bought a neighbouring 60-acre parcel and combined it with the Hollywood Park land in a venture with Stockbridge Capital.<sup class="r"><a href="#s52">52</a></sup> After a petition qualified the plan for the ballot, the Inglewood City Council approved it unanimously on 24 February 2015.<sup class="r"><a href="#s53">53</a></sup> The stadium cost about $5 billion and was privately financed; the city put in no upfront tax dollars and agreed not to reimburse the developer for roads and streetlights until the project had generated $25 million in tax revenue.<sup class="r"><a href="#s54">54</a>,<a href="#s55">55</a>,<a href="#s56">56</a></sup> <i>Reason</i> reported that the city also lets the developer keep sales taxes worth an estimated $180 million.<sup class="r"><a href="#s55">55</a></sup></p>
+  <h4>Getting there</h4>
+  <p>The K Line's Downtown Inglewood station opened in 2022, but the official advice is to ride to LAX/Metro Transit Center and take Metro's game-day shuttle.<sup class="r"><a href="#s57">57</a>,<a href="#s58">58</a>,<a href="#s59">59</a></sup> A $2.4 billion people mover meant to carry fans the last mile was halted in 2024, with opposition from local businesses including the owners of the Rams.<sup class="r"><a href="#s60">60</a></sup> Shared e-scooters and hire bikes are not allowed in the district.<sup class="r"><a href="#s58">58</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>Everyone parking needs a prepaid pass, and nearby streets are residents-only on event days.<sup class="r"><a href="#s58">58</a>,<a href="#s61">61</a></sup> The stadium is cashless; at NFL games alcohol sales stop at the end of the third quarter, and no one may hold more than two drinks at a time.<sup class="r"><a href="#s62">62</a>,<a href="#s63">63</a></sup> LAist advises allowing at least an hour to get out.<sup class="r"><a href="#s62">62</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 5 out of 8"><p class="card-h">Without a car <b>5/8</b></p><ul class="pips"><li data-v="1"><span>Rail</span></li><li data-v="2"><span>Matchday service</span></li><li data-v="1"><span>Walk &amp; cycle</span></li><li data-v="1"><span>Parking scarcity</span></li></ul><p class="card-n">Rail plus a shuttle, because the last-mile link was never built.</p></div>
+</article>
+
+<article class="block" id="azteca" data-region="na" data-before="fields" data-score="6">
+ <header class="bh"><span class="bno">Block 07</span><h3>Estadio Azteca (Estadio Banorte)</h3><p class="loc">Santa Úrsula Coapa, Mexico City · opened 1966 · Club América, Mexico</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>Part of the former ejido, or communal farmland, of Santa Úrsula, on volcanic rock left by the Xitle eruption.<sup class="r"><a href="#s64">64</a>,<a href="#s65">65</a></sup> The <i>Buenos Aires Herald</i> reports that about 180,000 tonnes of basalt were blasted away and that hundreds of farming families were relocated; we found no primary record of the relocation.<sup class="r"><a href="#s66">66</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>How the communal land passed to the stadium's builders is poorly documented: one uncredited 2016 account says President Adolfo López Mateos sold it to Emilio Azcárraga Milmo.<sup class="r"><a href="#s65">65</a></sup> The build is put at about 260 million pesos of the day.<sup class="r"><a href="#s67">67</a></sup> Part of the money came from selling boxes with 99-year rights, which collided in 2026 with FIFA's demand for full control of World Cup venues; the owner, Grupo Ollamani, agreed to pay FIFA US$62.4 million so that box holders could attend.<sup class="r"><a href="#s68">68</a>,<a href="#s69">69</a></sup> The 2024–26 renovation, about US$235 million, was private, largely funded by two Banorte loans, hence the new name.<sup class="r"><a href="#s69">69</a></sup> Mexico City reported spending 200 million pesos on works around the stadium and allocated 1.4 billion to renewing its light rail.<sup class="r"><a href="#s70">70</a></sup></p>
+  <h4>Getting there</h4>
+  <p>The Tren Ligero light rail has its own Estadio Azteca station and runs an express from Taxqueña on match days.<sup class="r"><a href="#s71">71</a></sup> For the 2026 World Cup a 1.6 km "last mile" cordon admitted only ticket holders and residents, with seven walking routes of 12 to 30 minutes.<sup class="r"><a href="#s71">71</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>Stadium parking was closed for the World Cup and for the November 2026 NFL game.<sup class="r"><a href="#s72">72</a>,<a href="#s73">73</a></sup> The box holders' legal claims include bringing their own food and drink.<sup class="r"><a href="#s68">68</a></sup> It is the only stadium to have hosted three World Cup opening matches (1970, 1986, 2026).<sup class="r"><a href="#s64">64</a>,<a href="#s67">67</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 6 out of 8"><p class="card-h">Without a car <b>6/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="2"><span>Matchday service</span></li><li data-v="1"><span>Walk &amp; cycle</span></li><li data-v="1"><span>Parking scarcity</span></li></ul><p class="card-n">Its own light-rail stop. Parking was closed for 2026's big events; scored as if it reopens.</p></div>
+</article>
+</section>
+<section class="region" id="r-sa" aria-labelledby="h-sa">
+<h2 class="region-h" id="h-sa"><span class="stand">Stand B</span> South America</h2>
+
+<article class="block" id="bombonera" data-region="sa" data-before="rail" data-score="3">
+ <header class="bh"><span class="bno">Block 08</span><h3>La Bombonera</h3><p class="loc">La Boca, Buenos Aires · opened 1940 · Boca Juniors</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>Railway land of the Ferrocarril del Sud, used as a shunting yard, and then Boca's own wooden stadium, which opened on the same site in 1924 and was last used in April 1938.<sup class="r"><a href="#s74">74</a>,<a href="#s75">75</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>Boca bought the land in 1931; the city's own history gives the price without a clear unit, and accounts differ on whether the seller was the municipality or the railway.<sup class="r"><a href="#s74">74</a>,<a href="#s75">75</a></sup> Works on the concrete stadium began on 30 August 1938, while the club played at Ferro Carril Oeste. The contract went to the firm of the architect Viktor Sulčič, of Slovene parentage,, who had designed it in 1932 and won the commission even though the plot looked too small for the crowd it was meant to hold.<sup class="r"><a href="#s75">75</a>,<a href="#s76">76</a></sup> That cramped plot is why one side is a flat wall of boxes rather than a curved stand. How the 1938–40 build was paid for is not documented in the sources we found. In March 2026 Boca announced a plan to close the "U" and reach about 80,000 places, without disclosing cost.<sup class="r"><a href="#s77">77</a></sup></p>
+  <h4>Getting there</h4>
+  <p>There is no metro station nearby; the neighbourhood is served by about twenty <i>colectivo</i> bus lines, and it is about half an hour on foot from San Telmo.<sup class="r"><a href="#s78">78</a>,<a href="#s79">79</a></sup> Getting there by car is hard, and the club's lots are for members.<sup class="r"><a href="#s74">74</a>,<a href="#s79">79</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>For the Boca–River match of November 2025 more than 1,000 police set three perimeter rings, gates opened four hours before kick-off and every fan's national ID was checked against banned lists.<sup class="r"><a href="#s80">80</a></sup> Away fans were banned nationwide in 2013 after a fan was shot dead near La Plata; their return since 2025 has been partial and optional.<sup class="r"><a href="#s81">81</a>,<a href="#s82">82</a></sup> Argentine law penalises supplying alcohol within 800 metres of a stadium from four hours before kick-off to two hours after.<sup class="r"><a href="#s83">83</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 3 out of 8"><p class="card-h">Without a car <b>3/8</b></p><ul class="pips"><li data-v="0"><span>Rail</span></li><li data-v="0"><span>Matchday service</span></li><li data-v="1"><span>Walk &amp; cycle</span></li><li data-v="2"><span>Parking scarcity</span></li></ul><p class="card-n">No rail, but buses everywhere: the score undersells how most fans arrive.</p></div>
+</article>
+
+<article class="block" id="maracana" data-region="sa" data-before="sport" data-score="7">
+ <header class="bh"><span class="bno">Block 09</span><h3>Maracanã</h3><p class="loc">Maracanã, Rio de Janeiro · opened 1950 · Flamengo, Fluminense</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>The disused Derby Club horse-racing track, on land owned by the city government of what was then Brazil's capital. The Army occupied part of the area.<sup class="r"><a href="#s84">84</a>,<a href="#s85">85</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>A 1947 agreement between the federal government and the city gave the job of building it to the city, and the city council passed the enabling bill on 27 October 1947, after a fight over where it should go: the journalist and politician Carlos Lacerda wanted it in Jacarepaguá.<sup class="r"><a href="#s85">85</a></sup> It opened on 16 June 1950 for the World Cup, and its reported record crowd, 199,854, came at the Brazil–Uruguay match that July.<sup class="r"><a href="#s86">86</a>,<a href="#s87">87</a></sup> The 2010–13 rebuild for the 2014 World Cup was budgeted at R$600 million and reached about R$1.2 billion, funded by development-bank loans and the state treasury.<sup class="r"><a href="#s88">88</a></sup> The state audit court estimated overbilling, and in 2017 prosecutors demanded more than R$200 million back from three contractors; Play the Game reported no convictions.<sup class="r"><a href="#s88">88</a>,<a href="#s89">89</a></sup> In 2013, ahead of the works, military police removed the Indigenous "Aldeia Maracanã" community from the old Museu do Índio beside the stadium.<sup class="r"><a href="#s90">90</a></sup> The state still owns it; Flamengo and Fluminense won a 20-year concession in 2024.<sup class="r"><a href="#s91">91</a>,<a href="#s92">92</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Two metro stations on Line 2 face the gates: Maracanã for gates A to C and São Cristóvão for D to F, with a SuperVia suburban station beside the first. On match days MetrôRio keeps both open for boarding until an hour after the final whistle.<sup class="r"><a href="#s93">93</a>,<a href="#s94">94</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>There is no official public parking on match days.<sup class="r"><a href="#s93">93</a></sup> A 2015 state law allows beer only, sold from the opening of the gates to the end of the match in plastic or paper.<sup class="r"><a href="#s95">95</a></sup> On the eve of the 1950 opening, the engineers and workers played a kickabout on the pitch.<sup class="r"><a href="#s96">96</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 7 out of 8"><p class="card-h">Without a car <b>7/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="2"><span>Matchday service</span></li><li data-v="1"><span>Walk &amp; cycle</span></li><li data-v="2"><span>Parking scarcity</span></li></ul><p class="card-n">Two metro stations at the gates, each assigned its own stands.</p></div>
+</article>
+</section>
+
+<section class="region" id="r-eu" aria-labelledby="h-eu">
+<h2 class="region-h" id="h-eu"><span class="stand">Stand C</span> Europe</h2>
+
+<article class="block" id="wembley" data-region="eu" data-before="sport" data-score="6">
+ <header class="bh"><span class="bno">Block 10</span><h3>Wembley Stadium</h3><p class="loc">Wembley Park, London · opened 2007 · England, cup finals</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>The 1923 Empire Stadium, itself built on the site of Watkin's Tower, a Victorian attempt to outdo the Eiffel Tower that stalled at 47 metres and was blown up in 1907. The old stadium went up around the craters left by its foundations.<sup class="r"><a href="#s97">97</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>The Football Association's subsidiary, Wembley National Stadium Ltd, paid £103 million for the old stadium and its business in 1999, mainly with a £120 million National Lottery grant from Sport England.<sup class="r"><a href="#s98">98</a></sup> Public money in all came to £161 million, including £20 million from the culture department and £21 million from the London Development Agency.<sup class="r"><a href="#s98">98</a>,<a href="#s99">99</a></sup> The new stadium's cost was reported at £798 million at handover in 2007.<sup class="r"><a href="#s100">100</a></sup> The FA did not buy the land around it, which the developer Quintain went on to build on.<sup class="r"><a href="#s101">101</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Wembley Park (Jubilee and Metropolitan) and Wembley Stadium station (Chiltern Railways) are each about eight minutes' walk.<sup class="r"><a href="#s102">102</a></sup> The Tube station was rebuilt for events in 2006 with a separate events ticket hall.<sup class="r"><a href="#s103">103</a></sup> Surveys in 2018 found 78 to 88 per cent of spectators arriving by public transport and about 6 to 7 per cent by car.<sup class="r"><a href="#s1">1</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>Olympic Way, the pedestrian spine from the station, was built for the 1948 Olympics, partly by German prisoners of war.<sup class="r"><a href="#s97">97</a></sup> At football the stadium bars drinking in the bowl or in view of the pitch, and for UEFA and FIFA competitive matches it limits sales to restaurants and hospitality.<sup class="r"><a href="#s104">104</a></sup> The Casey Review of the Euro 2020 final, as summarised in a Brent council report, described "reckless and life endangering" behaviour outside the ground, much of it by people under the influence of alcohol or drugs.<sup class="r"><a href="#s105">105</a></sup> In September 2024 Brent's planning committee approved raising the cap to 54 major events a year.<sup class="r"><a href="#s1">1</a>,<a href="#s106">106</a>,<a href="#s107">107</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 6 out of 8"><p class="card-h">Without a car <b>6/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="2"><span>Matchday service</span></li><li data-v="1"><span>Walk &amp; cycle</span></li><li data-v="1"><span>Parking scarcity</span></li></ul><p class="card-n">Most people already come by train; booked car parks still exist.</p></div>
+</article>
+
+<article class="block" id="emirates" data-region="eu" data-before="industry" data-score="8">
+ <header class="bh"><span class="bno">Block 11</span><h3>Emirates Stadium</h3><p class="loc">Holloway, London · opened 2006 · Arsenal</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>Ashburton Grove, an industrial and waste-disposal estate about 450 metres from Highbury, including Islington's waste recycling centre.<sup class="r"><a href="#s108">108</a>,<a href="#s109">109</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>Islington made a compulsory purchase order covering 134 plots in 2002. The planning inspector recommended against it; the Secretary of State confirmed it anyway in 2004, and the High Court dismissed a challenge by businesses on Queensland Road in January 2005.<sup class="r"><a href="#s108">108</a></sup> Arsenal paid about £60 million to rebuild the recycling centre at Lough Road.<sup class="r"><a href="#s110">110</a></sup> The stadium was privately financed: £357 million at financial close in 2004, with a £260 million bank loan, £97 million of club equity followed that October by a £100 million Emirates sponsorship deal.<sup class="r"><a href="#s110">110</a></sup> Transport for London described £50 million of transport improvements around it.<sup class="r"><a href="#s111">111</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Arsenal station on the Piccadilly line is about three minutes away, and Finsbury Park and Highbury &amp; Islington about ten.<sup class="r"><a href="#s112">112</a></sup> Holloway Road, the nearest station to the south, is exit-only before matches and closed for up to two hours afterwards; TfL judged in 2006 that even costly work would not raise its capacity enough.<sup class="r"><a href="#s111">111</a>,<a href="#s112">112</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>After the whistle, stewards run managed queues outside three stations and close Hornsey Road to pedestrians.<sup class="r"><a href="#s112">112</a></sup> Islington's matchday parking controls cover most of the surrounding streets.<sup class="r"><a href="#s113">113</a></sup> The ground is cashless.<sup class="r"><a href="#s114">114</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 8 out of 8"><p class="card-h">Without a car <b>8/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="2"><span>Matchday service</span></li><li data-v="2"><span>Walk &amp; cycle</span></li><li data-v="2"><span>Parking scarcity</span></li></ul><p class="card-n">Three stations within ten minutes and almost no parking.</p></div>
+</article>
+
+<article class="block" id="sdf" data-region="eu" data-before="industry" data-score="5">
+ <header class="bh"><span class="bno">Block 12</span><h3>Stade de France</h3><p class="loc">Saint-Denis, north of Paris · opened 1998 · France</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>A Gaz de France gasworks at Le Cornillon. An October 1993 audit found more than 50,000 cubic metres of contaminated soil, and a protective wall and monitoring pipes were installed under the stadium after hydrocarbons and solvents were found in the groundwater.<sup class="r"><a href="#s115">115</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>The state organised the project and bore the clean-up. Of the 2.7 billion francs construction cost, it paid 1.254 billion, according to a 1998 ministerial answer; a Senate report gives about €375 million, with €193 million from the state.<sup class="r"><a href="#s115">115</a>,<a href="#s116">116</a>,<a href="#s117">117</a></sup> Because no club plays there, the state paid the operator an "absence of resident club" indemnity, €114 million in all before a 2013 amendment suspended it.<sup class="r"><a href="#s117">117</a></sup> A new operator, GL events, took over under a 30-year concession in August 2025.<sup class="r"><a href="#s118">118</a></sup></p>
+  <h4>Getting there</h4>
+  <p>The stadium is served by two RER lines, Metro 13 and the T8 tram, each 10 to 15 minutes' walk according to the local tourist board, plus Metro 14. About 1,000 permanent bike spaces sit at the foot of the stadium.<sup class="r"><a href="#s119">119</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>The weakness showed at the 2022 Champions League final. With RER B on strike, more than 37,000 people came through the RER D station, more than three times the usual number, into a screening point only 4 to 5 metres wide. The Senate's inquiry found the state had failed to manage the crowd and criticised the blame placed on Liverpool supporters.<sup class="r"><a href="#s3">3</a>,<a href="#s120">120</a></sup> French law bans alcohol sales at sports venues in principle, with exceptions for hospitality and limited temporary permits.<sup class="r"><a href="#s121">121</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 5 out of 8"><p class="card-h">Without a car <b>5/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="1"><span>Matchday service</span></li><li data-v="1"><span>Walk &amp; cycle</span></li><li data-v="1"><span>Parking scarcity</span></li></ul><p class="card-n">Plenty of lines, but boxed in by motorways and fragile when one fails.</p></div>
+</article>
+
+<article class="block" id="campnou" data-region="eu" data-before="unknown" data-score="7">
+ <header class="bh"><span class="bno">Block 13</span><h3>Spotify Camp Nou</h3><p class="loc">Les Corts, Barcelona · opened 1957 · FC Barcelona</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>Land beside the old Can Planes country house, between the district's maternity hospital and its cemetery, a pairing locals called "the whole of a life". Its earlier use is not described in the club's histories.<sup class="r"><a href="#s122">122</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>Barça's members chose the land by referendum in November 1950, 7,835 votes to 1,132, and the club completed the purchase that December for 10,029,945 pesetas; a supporters' history gives a higher figure.<sup class="r"><a href="#s122">122</a>,<a href="#s123">123</a></sup> The stadium was budgeted at 66.6 million pesetas and cost around 288 million, leaving the club heavily in debt until it sold its old Les Corts ground to a developer for 226 million in 1966.<sup class="r"><a href="#s124">124</a>,<a href="#s125">125</a></sup> The current rebuild is financed with €1.45 billion raised from investors in 2023, which the club says is not secured on the stadium.<sup class="r"><a href="#s126">126</a></sup> Under the 2018 planning change, the club pays for re-urbanising about 111,000 square metres of surrounding land as public space.<sup class="r"><a href="#s127">127</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Three metro lines and the tram ring the site, with a dedicated perimeter bus on match days. There is no general car parking, but the club provides 3,200 motorbike spaces.<sup class="r"><a href="#s128">128</a>,<a href="#s129">129</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>Spanish law bans bringing in, selling or drinking alcohol at sports venues, and the club's entry rules ban cans and caps on bottles.<sup class="r"><a href="#s130">130</a>,<a href="#s131">131</a></sup> Barça returned on 22 November 2025 after 909 days away; as of October 2026 the ground was licensed for 62,652, with the top tier and roof still to come.<sup class="r"><a href="#s132">132</a>,<a href="#s133">133</a>,<a href="#s134">134</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 7 out of 8"><p class="card-h">Without a car <b>7/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="1"><span>Matchday service</span></li><li data-v="2"><span>Walk &amp; cycle</span></li><li data-v="2"><span>Parking scarcity</span></li></ul><p class="card-n">A building site in a dense district with metro on every side.</p></div>
+</article>
+
+<article class="block" id="bernabeu" data-region="eu" data-before="fields" data-score="6">
+ <header class="bh"><span class="bno">Block 14</span><h3>Santiago Bernabéu</h3><p class="loc">Chamartín, Madrid · opened 1947 · Real Madrid</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>Undeveloped rustic land beside the club's old Chamartín ground, in the path of the planned extension of the Paseo de la Castellana.<sup class="r"><a href="#s135">135</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>The land was bought from private families in 1944, and the stadium was financed with bonds issued by the club with the backing of a bank.<sup class="r"><a href="#s135">135</a></sup> The modern land story is a public one. In 2011 Madrid compensated the club with land valued at €22.7 million for a plot it had been promised in 1998 but could not legally hand over; the European Commission ruled that unlawful state aid in 2016 and the club repaid about €20.3 million including interest, then the EU General Court annulled the decision in 2019.<sup class="r"><a href="#s136">136</a>,<a href="#s137">137</a></sup> The 2019–25 rebuild was financed by club loans, beginning with €575 million in 2019, and reported running totals put it at €1.35 billion to €1.4 billion.<sup class="r"><a href="#s138">138</a>,<a href="#s139">139</a>,<a href="#s140">140</a>,<a href="#s141">141</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Metro Line 10 normally stops beside the stadium, but the section was closed from 28 March 2026 to the end of the year while the station is rebuilt; elDiario.es reported the new station is due in early 2027.<sup class="r"><a href="#s142">142</a>,<a href="#s143">143</a></sup> A free replacement bus runs every two to four minutes in the daytime.<sup class="r"><a href="#s143">143</a></sup> The club's planned car parks were provisionally halted by the courts; in February 2026 the Madrid High Court upheld the suspension, finding the scheme served private rather than public interest.<sup class="r"><a href="#s144">144</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>Spanish law bans alcohol in the stands.<sup class="r"><a href="#s131">131</a></sup> The Bernabéu Market food hall opened in November 2025 and closes two hours before kick-off on match days.<sup class="r"><a href="#s145">145</a></sup> A residents' association is challenging whether the stadium's licences allow concerts; in June 2026 the Supreme Court refused to admit the club's appeal against a Madrid High Court ruling, sending the case back to a lower court.<sup class="r"><a href="#s146">146</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 6 out of 8"><p class="card-h">Without a car <b>6/8</b></p><ul class="pips"><li data-v="1"><span>Rail</span></li><li data-v="1"><span>Matchday service</span></li><li data-v="2"><span>Walk &amp; cycle</span></li><li data-v="2"><span>Parking scarcity</span></li></ul><p class="card-n">Scored as of November 2026, with its metro station shut. Expect 7 once it reopens.</p></div>
+</article>
+
+<article class="block" id="sansiro" data-region="eu" data-before="unknown" data-score="6">
+ <header class="bh"><span class="bno">Block 15</span><h3>San Siro (Stadio Giuseppe Meazza)</h3><p class="loc">San Siro, Milan · opened 1926 · AC Milan, Inter</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>Land on the city's western edge next to a racecourse built a few years earlier; the sources we found say nothing more about it.<sup class="r"><a href="#s147">147</a>,<a href="#s148">148</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>AC Milan's president Piero Pirelli built the stadium in 1925–26, for about 5 million lire by one account. The city bought it in 1935.<sup class="r"><a href="#s147">147</a>,<a href="#s148">148</a></sup> Ninety years later the city sold it back: the council approved the sale to Milan and Inter at a valuation of €197 million on the night of 29–30 September 2025, shortly before a heritage protection on the second tier would have taken effect, and the deed was signed on 5 November.<sup class="r"><a href="#s149">149</a>,<a href="#s150">150</a></sup> Milan prosecutors have opened an inquiry into the tender; no wrongdoing has been established.<sup class="r"><a href="#s151">151</a></sup> The clubs plan a new stadium by Foster + Partners and MANICA, with construction now expected to start in 2028, and most of the Meazza is to be demolished.<sup class="r"><a href="#s149">149</a>,<a href="#s152">152</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Metro line M5 ends at San Siro Stadio, and Lotto on M1 is about 15 minutes' walk. ATM runs late M5 trains after matches and closes some stations around full time on police instruction.<sup class="r"><a href="#s153">153</a>,<a href="#s154">154</a></sup> Inter's advice for 2026–27 is to use public transport, because car parking has been reduced and will shrink further.<sup class="r"><a href="#s155">155</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>The <i>paninari</i>, street vendors selling salamella sausage sandwiches and beer outside the stadium, have fed crowds for decades; since August 2026 buyers pay with tokens bought through an app, and the plans for the new stadium do not say where they would go.<sup class="r"><a href="#s156">156</a></sup> For higher-risk matches the prefect bans takeaway alcohol in the surrounding streets.<sup class="r"><a href="#s157">157</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 6 out of 8"><p class="card-h">Without a car <b>6/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="2"><span>Matchday service</span></li><li data-v="1"><span>Walk &amp; cycle</span></li><li data-v="1"><span>Parking scarcity</span></li></ul><p class="card-n">A metro terminus at the ground, with park-and-ride still close by.</p></div>
+</article>
+
+<article class="block" id="allianz" data-region="eu" data-before="unknown" data-score="3">
+ <header class="bh"><span class="bno">Block 16</span><h3>Allianz Arena</h3><p class="loc">Fröttmaning, Munich · opened 2005 · Bayern Munich</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>A plot zoned for commercial use beside the Fröttmaninger Berg, the city's old rubbish tip, which gradually swallowed the village of Fröttmaning. Only its church survives.<sup class="r"><a href="#s158">158</a>,<a href="#s159">159</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>Munich voters approved the project on 21 October 2001 by 65.8 per cent to 34.2.<sup class="r"><a href="#s160">160</a></sup> The land is city-owned and held by the stadium company under a long ground lease.<sup class="r"><a href="#s158">158</a>,<a href="#s161">161</a></sup> The stadium, €340 million by the arena's own figures, was privately financed by Bayern and TSV 1860, and Bayern says it paid the debt off in 2014.<sup class="r"><a href="#s158">158</a>,<a href="#s162">162</a>,<a href="#s163">163</a></sup> A 2006 question in the Bavarian parliament put the public cost of the roads and rail at just under €300 million; the government's answer itemised €104 million of city investment and €29.3 million to rebuild Fröttmaning U-Bahn station.<sup class="r"><a href="#s158">158</a></sup></p>
+  <h4>Getting there</h4>
+  <p>The U6 reaches Fröttmaning in about 16 to 20 minutes from Marienplatz, and the station was rebuilt with four tracks for event crowds. From there it is a signposted 1.1 km walk, about 15 minutes.<sup class="r"><a href="#s164">164</a>,<a href="#s165">165</a>,<a href="#s166">166</a></sup> A Bayern ticket does not include public transport.<sup class="r"><a href="#s167">167</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>The site has 9,800 spaces in four garages, 1,200 in the stadium and 350 coach bays.<sup class="r"><a href="#s162">162</a></sup> Around 11,000 cars can take up to two and a half hours to clear, so the operator invites fans to linger at the fan restaurants, store or museum.<sup class="r"><a href="#s167">167</a></sup> In 2017 the operator said 80 bike stands were enough.<sup class="r"><a href="#s168">168</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 3 out of 8"><p class="card-h">Without a car <b>3/8</b></p><ul class="pips"><li data-v="1"><span>Rail</span></li><li data-v="2"><span>Matchday service</span></li><li data-v="0"><span>Walk &amp; cycle</span></li><li data-v="0"><span>Parking scarcity</span></li></ul><p class="card-n">A strong U-Bahn, a long walk and parking for a small town.</p></div>
+</article>
+</section>
+<section class="region" id="r-as" aria-labelledby="h-as">
+<h2 class="region-h" id="h-as"><span class="stand">Stand D</span> Asia</h2>
+
+<article class="block" id="tokyodome" data-region="as" data-before="sport" data-score="7">
+ <header class="bh"><span class="bno">Block 17</span><h3>Tokyo Dome</h3><p class="loc">Kōraku, Bunkyō, Tokyo · opened 1988 · Yomiuri Giants (NPB)</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>The Korakuen Velodrome, which ran from 1949 to 1972, next to the old Korakuen Stadium. Before that the area was a feudal lord's garden estate and, from 1871, an army weapons factory; in 1944 the army took over the neighbouring ballpark and grew potatoes and corn on its field.<sup class="r"><a href="#s169">169</a>,<a href="#s170">170</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>Korakuen Stadium Co. was founded in December 1936 and bought just over 9,500 tsubo, about 31,400 square metres, of the former arsenal site, sold off by the state.<sup class="r"><a href="#s170">170</a>,<a href="#s171">171</a></sup> The 1988 dome was a private development; we found no reliable construction figure and no public money. Mitsui Fudosan took over the operator in a friendly bid in 2021.<sup class="r"><a href="#s172">172</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Four stations on six lines sit at or beside the complex, including JR Suidobashi and Tokyo Metro Kōrakuen, about 8 to 10 minutes from Tokyo Station.<sup class="r"><a href="#s173">173</a>,<a href="#s174">174</a>,<a href="#s175">175</a></sup> There are about 670 car spaces for a building that holds up to 55,000, and the operator recommends public transport.<sup class="r"><a href="#s176">176</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>The dome is fully cashless, and visitors may bring food but not alcohol.<sup class="r"><a href="#s174">174</a>,<a href="#s177">177</a></sup> Beer comes to the seats on the backs of <i>uriko</i>, sellers carrying kegs of up to 15 kg who sell about 20,000 cups at an average night game, AFP reported in 2023.<sup class="r"><a href="#s178">178</a></sup> The roof is held up by air pressure about 0.3 per cent above that outside, and slopes on the garden side so sunlight still reaches the 17th-century Koishikawa Kōrakuen garden.<sup class="r"><a href="#s173">173</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 7 out of 8"><p class="card-h">Without a car <b>7/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="1"><span>Matchday service</span></li><li data-v="2"><span>Walk &amp; cycle</span></li><li data-v="2"><span>Parking scarcity</span></li></ul><p class="card-n">Tokyo's ordinary service is the event service.</p></div>
+</article>
+
+<article class="block" id="koshien" data-region="as" data-before="water" data-score="6">
+ <header class="bh"><span class="bno">Block 18</span><h3>Hanshin Koshien Stadium</h3><p class="loc">Nishinomiya, Hyōgo · opened 1924 · Hanshin Tigers (NPB), national high-school tournaments</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>The beds of two branch channels of the Muko River, the Edagawa and the Mōshigawa, cut off by river works around 1920–23; sources differ on the year.<sup class="r"><a href="#s179">179</a>,<a href="#s180">180</a>,<a href="#s181">181</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>Hyōgo Prefecture, short of money, sold the dead riverbed to Hanshin Electric Railway for ¥4.1 million including river works.<sup class="r"><a href="#s181">181</a>,<a href="#s182">182</a></sup> The railway built a package on it: housing, whose buyers got a free year's rail pass, a tram line along the old channel and, in 1924, the ballpark, built in under five months.<sup class="r"><a href="#s180">180</a>,<a href="#s181">181</a>,<a href="#s183">183</a></sup> The name comes from <i>kinoe-ne</i>, the year 1924 in the sexagenary cycle.<sup class="r"><a href="#s183">183</a></sup> No public subsidy for the build is documented.</p>
+  <h4>Getting there</h4>
+  <p>Hanshin Koshien station is about two minutes' walk from the stadium, roughly 15 minutes from Umeda in Osaka.<sup class="r"><a href="#s184">184</a>,<a href="#s185">185</a></sup> Stadium Journey's tip is to buy your return ticket on arrival, because the machines are swamped after games.<sup class="r"><a href="#s186">186</a></sup> The stadium has no public car park.<sup class="r"><a href="#s184">184</a>,<a href="#s187">187</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>Tigers fans release balloons in the seventh inning, a custom suspended from 2020 and resumed on 7 April 2026.<sup class="r"><a href="#s186">186</a>,<a href="#s188">188</a></sup> Koshien curry has reportedly been served since 1924.<sup class="r"><a href="#s185">185</a></sup> At the high-school tournaments losing players scoop infield soil into bags to take home; in 1958 the first Okinawan team was not allowed to take theirs, because Okinawa was under US administration.<sup class="r"><a href="#s183">183</a>,<a href="#s189">189</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 6 out of 8"><p class="card-h">Without a car <b>6/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="1"><span>Matchday service</span></li><li data-v="1"><span>Walk &amp; cycle</span></li><li data-v="2"><span>Parking scarcity</span></li></ul><p class="card-n">A railway built it, and the station is at the gate.</p></div>
+</article>
+
+<article class="block" id="birdsnest" data-region="as" data-before="homes" data-score="3" data-partial="1">
+ <header class="bh"><span class="bno">Block 19</span><h3>Beijing National Stadium</h3><p class="loc">Olympic Green, Beijing · opened 2008 · Olympics, concerts</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>The corn and wheat fields of Wali village, home to about 3,000 people and demolished in 2005. NPR reported that each family received about US$120,000 in compensation.<sup class="r"><a href="#s190">190</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>The stadium was built under a 30-year franchise, with the city's state-assets company holding 58 per cent and a CITIC-led consortium 42; ownership reverts to the city at the end.<sup class="r"><a href="#s191">191</a>,<a href="#s192">192</a></sup> Reported costs run from RMB 3.1 billion to RMB 3.5 billion. A 2004 cost review dropped the planned retractable roof and cut seating from 100,000 to 80,000.<sup class="r"><a href="#s191">191</a>,<a href="#s192">192</a></sup> In 2009 management passed quietly to a state-owned institution to stem losses.<sup class="r"><a href="#s193">193</a></sup> Citywide, a housing-rights group claimed in 2007 that the Games would displace 1.5 million people; China's Foreign Ministry called that "groundless" and said 6,037 households had been demolished for nine venues, all compensated.<sup class="r"><a href="#s194">194</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Line 8's Olympic Sports Center station is about 823 metres from the stadium, and Line 8 and Line 15 also serve Olympic Park station.<sup class="r"><a href="#s195">195</a>,<a href="#s196">196</a></sup> We found no figures for parking.</p>
+  <h4>In, fed, out</h4>
+  <p>Its second life is as a concert venue: 39 large concerts and more than 2.16 million attendees in 2024.<sup class="r"><a href="#s197">197</a></sup> From 2025 police introduced colour-coded tickets, stands and gates, with separate departure routes for subway, bus and ride-hailing users.<sup class="r"><a href="#s198">198</a></sup></p>
+ </div>
+ <div class="card partial" aria-label="Car-free score 3 out of 6 scored"><p class="card-h">Without a car <b>3/6</b></p><ul class="pips"><li data-v="1"><span>Rail</span></li><li data-v="1"><span>Matchday service</span></li><li data-v="1"><span>Walk &amp; cycle</span></li><li data-v="x"><span>Parking scarcity</span></li></ul><p class="card-n">Parking not scored: no source on supply.</p></div>
+</article>
+
+<article class="block" id="eden" data-region="as" data-before="gardens" data-score="5">
+ <header class="bh"><span class="bno">Block 20</span><h3>Eden Gardens</h3><p class="loc">Maidan, Kolkata · ground from 1864 · Bengal, Kolkata Knight Riders (IPL), India</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>The extended part of the Eden Gardens pleasure ground, named after Lord Auckland's sisters, on the Maidan, where in 1854–55 grazing rights were let for Rs 500 a year: horses, cows, goats, sheep and donkeys allowed, pigs and buffalo not.<sup class="r"><a href="#s199">199</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>The Army at Fort William had seen the Calcutta Cricket Club as an "encroacher", and in 1871 the government approved a pavilion only on condition that it could be removed without compensation.<sup class="r"><a href="#s199">199</a></sup> The land still belongs to the Ministry of Defence, with the Cricket Association of Bengal as leaseholder, as a Calcutta High Court order of 2025 recorded.<sup class="r"><a href="#s200">200</a></sup> The courts have also held that the ground is not a "public place" for municipal advertisement tax, and the Supreme Court dismissed the city's appeal in November 2025.<sup class="r"><a href="#s200">200</a></sup> The 2011 World Cup renovation cost Rs 70 crore, paid by the association and the national board.<sup class="r"><a href="#s201">201</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Eden Gardens station on the Kolkata Circular Railway is named for the ground. For IPL 2025 the metro ran midnight specials from Esplanade, with a Rs 10 surcharge, plus late suburban trains and 23 special buses.<sup class="r"><a href="#s202">202</a>,<a href="#s203">203</a>,<a href="#s204">204</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>Police run colour-coded, sticker-controlled parking on the Maidan, which the Army objected to in 2025.<sup class="r"><a href="#s205">205</a>,<a href="#s206">206</a></sup> IPL ticket terms ban outside food and say alcohol may be drunk only in designated areas, "if any".<sup class="r"><a href="#s207">207</a></sup> A Burmese pagoda brought from Prome and was set up in the gardens in 1856.<sup class="r"><a href="#s199">199</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 5 out of 8"><p class="card-h">Without a car <b>5/8</b></p><ul class="pips"><li data-v="1"><span>Rail</span></li><li data-v="2"><span>Matchday service</span></li><li data-v="1"><span>Walk &amp; cycle</span></li><li data-v="1"><span>Parking scarcity</span></li></ul><p class="card-n">The midnight metro special is the thing to know.</p></div>
+</article>
+</section>
+
+<section class="region" id="r-oa" aria-labelledby="h-oa">
+<h2 class="region-h" id="h-oa"><span class="stand">Stand E</span> Australia and Africa</h2>
+
+<article class="block" id="perth" data-region="oa" data-before="industry" data-score="8">
+ <header class="bh"><span class="bno">Block 21</span><h3>Optus Stadium (Perth Stadium)</h3><p class="loc">Burswood Peninsula, Perth · opened 2018 · West Coast Eagles, Fremantle (AFL)</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>Mudflat granted to a settler in 1829, later home to sewage filtration beds, a cement works that dredged river shells and rubbish tips, and from 1988 to 2013 a public golf course.<sup class="r"><a href="#s208">208</a>,<a href="#s209">209</a></sup> Accounts differ on when dumping stopped.<sup class="r"><a href="#s208">208</a>,<a href="#s209">209</a>,<a href="#s210">210</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>The land was the state's, and the state kept the stadium. It was built under a design-build-finance-maintain partnership with the Westadium consortium, with the state paying 60 per cent of construction costs during the build and maintenance contracted for 25 years.<sup class="r"><a href="#s211">211</a></sup> ABC News put the cost of stadium plus transport at about A$1.6 billion in late 2017, around A$1,500 per Western Australian household.<sup class="r"><a href="#s212">212</a></sup></p>
+  <h4>Getting there</h4>
+  <p>Perth Stadium station has six platforms, second on the network only to Perth itself, and event trains run on all lines.<sup class="r"><a href="#s213">213</a>,<a href="#s214">214</a></sup> Event tickets include travel.<sup class="r"><a href="#s215">215</a>,<a href="#s216">216</a></sup> The Matagarup footbridge to East Perth opened in July 2018; its name means "a place where the river is only leg deep".<sup class="r"><a href="#s217">217</a>,<a href="#s218">218</a></sup> In its first year, 76 per cent of fans came by bus or train, and 54 per cent of all fans by train, against a target of 83 per cent.<sup class="r"><a href="#s2">2</a>,<a href="#s211">211</a></sup></p>
+  <h4>In, fed, out</h4>
+  <p>Parking is limited and most drivers are sent to the city's car parks.<sup class="r"><a href="#s219">219</a></sup> Full-strength beer reached the general seating areas only in 2026, eight years after opening, alongside reusable cups for every patron.<sup class="r"><a href="#s220">220</a></sup> The outside pub, The Camfield, is named after the 1829 settler.<sup class="r"><a href="#s208">208</a>,<a href="#s210">210</a></sup></p>
+ </div>
+ <div class="card" aria-label="Car-free score 8 out of 8"><p class="card-h">Without a car <b>8/8</b></p><ul class="pips"><li data-v="2"><span>Rail</span></li><li data-v="2"><span>Matchday service</span></li><li data-v="2"><span>Walk &amp; cycle</span></li><li data-v="2"><span>Parking scarcity</span></li></ul><p class="card-n">A station the size of a terminus, and published numbers showing it is used.</p></div>
+</article>
+
+<article class="block" id="fnb" data-region="oa" data-before="sport" data-score="2" data-partial="1">
+ <header class="bh"><span class="bno">Block 22</span><h3>FNB Stadium (Soccer City)</h3><p class="loc">Nasrec, Johannesburg · opened 1989, rebuilt 2010 · Kaizer Chiefs, Bafana Bafana</p></header>
+ <div class="was"><span class="was-tag">Before</span><p>The 1989 stadium, rebuilt in place for the 2010 World Cup, which kept its moat and reused material from the demolished sections. It sits in former industrial land among the mine dumps of the Witwatersrand gold fields.<sup class="r"><a href="#s221">221</a>,<a href="#s222">222</a>,<a href="#s223">223</a></sup></p></div>
+ <div class="body">
+  <h4>The deal</h4>
+  <p>The City of Johannesburg owns it.<sup class="r"><a href="#s224">224</a></sup> The 2007–10 rebuild rose from a budget of R1.9 billion to about R3.3 billion, blamed on materials, scope and import duties; the city's development agency gives R3.8 billion.<sup class="r"><a href="#s221">221</a>,<a href="#s225">225</a></sup> The city spent more than R120 million on the neighbouring expo centre and R82 million on the pedestrian promenade and bridge.<sup class="r"><a href="#s225">225</a></sup> We could not establish how the original land was acquired or how the public funding was split.</p>
+  <h4>Getting there</h4>
+  <p>Nasrec Metrorail station and Rea Vaya bus-rapid-transit stops sit at a transport hub linked to the stadium by a promenade of about 350 metres and a bridge over the road and rail tracks, with combined capacity of about 23,280 passengers an hour.<sup class="r"><a href="#s225">225</a></sup> We could not confirm current match-day services.</p>
+  <h4>In, fed, out</h4>
+  <p>The building is the Calabash, an African pot in fibre-concrete panels with a ring of lights at its base like fire beneath it.<sup class="r"><a href="#s221">221</a>,<a href="#s222">222</a></sup> Nelson Mandela addressed a rally here after his release in 1990, and his memorial service was held here in December 2013.<sup class="r"><a href="#s222">222</a>,<a href="#s224">224</a>,<a href="#s226">226</a></sup></p>
+ </div>
+ <div class="card partial" aria-label="Car-free score 2 out of 6 scored"><p class="card-h">Without a car <b>2/6</b></p><ul class="pips"><li data-v="1"><span>Rail</span></li><li data-v="1"><span>Matchday service</span></li><li data-v="0"><span>Walk &amp; cycle</span></li><li data-v="x"><span>Parking scarcity</span></li></ul><p class="card-n">Parking not scored: no source on supply.</p></div>
+</article>
+</section>
+
+</div>
+
+<div class="wrap">
+ <section class="sources" id="sources" aria-labelledby="h-src">
+  <h2 id="h-src">Sources</h2>
+  <p class="note">Figures and rules were read in November 2026 unless a date is given. Where sources disagree, the entry says so. Wikipedia and similar reference sites are marked as secondary and used only as support.</p>
+  <ol>
+   <li id="s1">Planning committee report, application 24/1329 Wembley National Stadium (September 2024), London Borough of Brent <a href="https://democracy.brent.gov.uk/documents/s144582/04.%2024-1329%20Wembley%20National%20Stadium%20Olympic%20Way%20Wembley%20HA9%200WS.pdf">Link</a></li>
+   <li id="s2">"First year of Optus Stadium an overwhelming success", WA Government media statement, 29 Jan 2019 <a href="https://www.wa.gov.au/government/media-statements/McGowan%20Labor%20Government/First-year-of-Optus-Stadium-an-overwhelming-success-20190129">Link</a></li>
+   <li id="s3">Senate report no. 776 (2021–2022), summary, Buffet &amp; Lafon, 13 July 2022 <a href="https://conferenceconsensuslogement.senat.fr/rap/r21-776/r21-776-syn.pdf">Link</a></li>
+   <li id="s4">NYC City Planning Commission, Report C 230238 ZSM (Madison Square Garden special permit), 12 Jul 2023. <a href="https://www.nyc.gov/assets/planning/download/pdf/about/cpc/230238.pdf">Link</a></li>
+   <li id="s5">Andrea Anderson, "The fascinating story behind the choice of where Lambeau Field was built," Wisconsin Public Radio, 11 Sep 2022. <a href="https://www.wpr.org/history/fascinating-story-behind-choice-where-lambeau-field-was-built">Link</a></li>
+   <li id="s6">Cliff Christl, "Where to build Lambeau Field became quite a battle," Packers.com, 26 Nov 2014. <a href="https://www.packers.com/news/where-to-build-lambeau-field-became-quite-a-battle-14448202">Link</a></li>
+   <li id="s7">Wisconsin Legislative Audit Bureau, letter report on Green Bay/Brown County Professional Football Stadium District, 12 Aug 2004. <a href="https://legis.wisconsin.gov/LAB/media/2076/04-0gbstadiumdistrict.pdf">Link</a></li>
+   <li id="s8">"Sales tax imposed in Brown Co. 15 years ago to pay for Lambeau Field coming to an end," FOX6 News Milwaukee, 30 Sep 2015. <a href="https://fox6now.com/news/sales-tax-imposed-in-brown-co-15-years-ago-to-pay-for-lambeau-field-coming-to-an-end">Link</a></li>
+   <li id="s9">"Lambeau Field," Wikipedia. <em>(secondary)</em> <a href="https://en.wikipedia.org/wiki/Lambeau_Field">Link</a></li>
+   <li id="s10">"Packers call for Stadium District to get involved with Lambeau Field lease negotiations," Packers.com, 16 Oct 2024. <a href="https://www.packers.com/news/packers-call-for-stadium-district-to-get-involved-with-lambeau-field-lease-negotiations">Link</a></li>
+   <li id="s11">"Packers / Lambeau lease: city council and mayor," Front Office Sports, 24 Oct 2024. <a href="https://frontofficesports.com/green-bay-packers-lambeau-city-council-mayor">Link</a></li>
+   <li id="s12">"Parking," Lambeau Field, Packers.com (2026 season page). <a href="https://www.packers.com/lambeau-field/parking">Link</a></li>
+   <li id="s13">"Lambeau Field A to Z Guide," Packers.com (orig. 2018, updated for 2026). <a href="https://www.packers.com/news/lambeau-field-lambeau-field-a-to-z-guide">Link</a></li>
+   <li id="s14">Commission on Chicago Landmarks, "Wrigley Field" Landmark Designation Report (preliminary), Nov 2000, rev. Apr 2003. <a href="https://www.chicago.gov/dam/city/depts/zlup/Historic_Preservation/Publications/Wrigley_Field.pdf">Link</a></li>
+   <li id="s15">Scott Ferkovich, "Wrigley Field (Chicago)," SABR BioProject, 2012. <a href="https://sabr.org/bioproj/park/wrigley-field-chicago">Link</a></li>
+   <li id="s16">"Chicago Cubs sold for $845 million," NPR, Aug 2009. <a href="https://www.npr.org/sections/thetwo-way/2009/08/chicago_cubs_sold_for_845_mill.html">Link</a></li>
+   <li id="s17">"Wrigley Field renovations," Wikipedia. <em>(secondary)</em> <a href="https://en.wikipedia.org/wiki/Wrigley_Field_renovations">Link</a></li>
+   <li id="s18">Chicago Transit Authority, "Play ball! CTA remains the most convenient and affordable way to Cubs home opener," 6 Apr 2018. <a href="https://transitchicago.com/play-ball-cta-remains-the-most-convenient-and-affordable-way-to-cubs-home-opener">Link</a></li>
+   <li id="s19">"Parking," Chicago Cubs / MLB.com (2026). <a href="https://www.mlb.com/cubs/ballpark/transportation/parking">Link</a></li>
+   <li id="s20">Chicago Municipal Code night-game ordinance (clean text), via 44th Ward. <a href="https://www.44thward.org/wp-content/uploads/2018/08/Night_Game_Ordinance_Clean_Text.pdf">Link</a></li>
+   <li id="s21">44th Ward Office, City of Chicago, "Chicago Cubs Night Game Parking" (2026). <a href="https://www.44thward.org/services/parking/chicago-cubs-night-game-parking/">Link</a></li>
+   <li id="s22">"Fenway: Site Through Time," MIT student project (Dept. of Urban Studies), 2015, citing Seasholes (1999), Warner (1999), Bromley atlases. <a href="https://web.mit.edu/thecity/archive/projects_2015/mch7rz/Fenway/time.html">Link</a></li>
+   <li id="s23">"Fenway Park Timeline 1912–1919" and "2000–2009," Boston Red Sox / MLB.com. <a href="https://www.mlb.com/redsox/ballpark/museum/timeline/1912-1919">Link</a></li>
+   <li id="s24">Bill Nowlin, "Fenway Park (Boston)," SABR BioProject, 30 Apr 2013. <a href="https://sabr.org/?p=12878">Link</a></li>
+   <li id="s25">"Fenway financing package signed" (15 Aug 2000), ESPN.com. <a href="https://www.espn.com/mlb/news/2000/0815/686304.html">Link</a></li>
+   <li id="s26">Boston Redevelopment Authority (BPDA), "BRA and Boston Red Sox reach agreement for Yawkey Way…," 20 Sep 2013. <a href="https://www.bostonplans.org/news-calendar/news-updates/2013/09/20/bra-and-boston-red-sox-reach-agreement-for-yawkey">Link</a></li>
+   <li id="s27">Office of the Inspector General, Commonwealth of Massachusetts, review of 2013 BRA–Red Sox property transactions, letter of 26 Oct 2015. <a href="https://www.mass.gov/doc/inspector-generals-review-of-2013-property-transactions-between-the-boston-redevelopment/download">Link</a></li>
+   <li id="s28">Hanna Ali, "Your guide to Fenway Park…," WBUR, 21 Aug 2026. <a href="https://www.wbur.org/news/2026/08/21/fenway-park-guide-food-transportation-parking">Link</a></li>
+   <li id="s29">"Subway," Boston Red Sox / MLB.com (2026). <a href="https://www.MLB.com/redsox/ballpark/transportation/subway">Link</a></li>
+   <li id="s30">"MBTA Commuter Rail," Boston Red Sox / MLB.com (2026). <a href="https://www.mlb.com/redsox/ballpark/transportation/commuter-rail">Link</a></li>
+   <li id="s31">Andy McCue, "The Struggle to Build Dodger Stadium," SABR, in <i>Dodger Stadium: Blue Heaven on Earth</i> (2024). <a href="https://sabr.org/journal/article/the-struggle-to-build-dodger-stadium/">Link</a></li>
+   <li id="s32">Elina Shatkin, "The Battle of Chavez Ravine…," LAist, 17 Oct 2018 (upd. 2026). <a href="https://laist.com/news/dodger-stadium-chavez-ravine-battle">Link</a></li>
+   <li id="s33">"Battle of Chavez Ravine," Wikipedia. <em>(secondary)</em> <a href="https://en.wikipedia.org/wiki/Battle_of_Chavez_Ravine">Link</a></li>
+   <li id="s34">"Dodger Stadium: Comprehensive History" (incl. "Exchange of Land"), WalterOMalley.com (O'Malley family archive). <a href="https://walteromalley.com/dodger-stadium/comprehensive-history">Link</a></li>
+   <li id="s35">Kitty Felde, "Ballot referendum nearly stopped Dodger Stadium," KPCC/LAist, 29 Jul 2008. <a href="https://laist.com/news/kpcc-archive/ballot-referendum-nearly-stopped-dodger-stadium">Link</a></li>
+   <li id="s36">"Construction Facts," WalterOMalley.com. <a href="https://www.walteromalley.com/dodger-stadium/construction-facts">Link</a></li>
+   <li id="s37">"Walking from Dodger Stadium to Chinatown in 25 minutes? LA Metro says it's possible," FOX 11 Los Angeles, 23 Oct 2024. <a href="https://www.foxla.com/news/world-series-2024-walking-from-dodger-stadium-to-chinatown">Link</a></li>
+   <li id="s38">"Dodger Stadium Express," Los Angeles Dodgers / MLB.com (2026). <a href="https://www.mlb.com/dodgers/ballpark/transportation/dodger-stadium-express">Link</a></li>
+   <li id="s39">Steve Hymon, "Go Metro's Dodger Stadium Express beginning this Monday…," The Source (LA Metro), 19 Mar 2026. <a href="https://thesource.metro.net/go-metros-dodger-stadium-express-beginning-this-monday-as-quest-for-a-three-peat-begins/">Link</a></li>
+   <li id="s40">Los Angeles Department of Transportation, "Dodger Stadium Transportation Study" (2026). <a href="https://ladot.lacity.gov/dodger-stadium">Link</a></li>
+   <li id="s41">Sonja Chen, "Dodger Stadium guide: capacity, seating chart, parking and more," MLB.com, 4 Mar 2026. <a href="https://www.mlb.com/news/dodger-stadium-guide-capacity-seating-chart-parking-and-more">Link</a></li>
+   <li id="s42">"LA City Council… Dodger Stadium gondola," NBC Los Angeles, 13 Nov 2025. <a href="https://www.nbclosangeles.com/news/local/dodger-stadium-gondola-la-city-council/3804101/">Link</a></li>
+   <li id="s43">Steve Lopez (LA Times, via Mass Transit), "Dodger Stadium gondola plan about to hit heavy turbulence…," c. late Jul 2026. <a href="https://masstransitmag.com/management/news/55395490/ca-lopez-dodger-stadium-gondola-plan-about-to-hit-heavy-turbulence-as-state-park-defenders-play-hardball">Link</a></li>
+   <li id="s44">"Penn Station and the Rise of Historic Preservation," Museum of the City of New York blog, 8 May 2012. <a href="https://blog.mcny.org/2012/05/08/penn-station-and-the-rise-of-historic-preservation/">Link</a></li>
+   <li id="s45">New York Preservation Archive Project, entry on Irving Mitchell Felt / Penn Station. <a href="https://www.nypap.org/?p=901">Link</a></li>
+   <li id="s46">Madison Square Garden Entertainment Corp., Form 10-K, Fiscal Year 2025. <a href="https://s202.q4cdn.com/493887674/files/doc_financials/2025/ar/MSGE-FY2025-Form-10K.pdf">Link</a></li>
+   <li id="s47">"NYC lost nearly $1B in Madison Square Garden tax revenue, according to IBO report," Gothamist, 11 Jul 2023. <a href="https://api-prod.gothamist.com/news/nyc-lost-nearly-1b-in-madison-square-garden-tax-revenue-according-to-ibo-report">Link</a></li>
+   <li id="s48">"City Council grants Madison Square Garden 5-year permit," The Real Deal, 14 Sep 2023. <a href="https://therealdeal.com/new-york/2023/09/14/city-council-grants-madison-square-garden-5-year-permit">Link</a></li>
+   <li id="s49">MTA press release, "LIRR adds service for fans after Madison Square Garden events," 16 Feb 2024. <a href="https://www.mta.info/press-release/lirr-adds-service-fans-after-madison-square-garden-events">Link</a></li>
+   <li id="s50">"Madison Square Garden &amp; Penn Station are no longer compatible, transit systems say," CBS New York, 4 Jun 2023. <a href="https://www.cbsnews.com/amp/newyork/news/madison-square-garden-penn-station-compatibility-report">Link</a></li>
+   <li id="s51">"Hollywood Park records LSC.2254", Online Archive of California / UCLA Library Special Collections <a href="https://oac.cdlib.org/findaid/ark:/13030/c8th8scm/admin/">Link</a></li>
+   <li id="s52">"SoFi Stadium", Wikipedia via Wikiwand <em>(secondary)</em> <a href="https://www.wikiwand.com/en/articles/Sofi_Stadium">Link</a></li>
+   <li id="s53">"Inglewood, Calif., city council approves plan for NFL stadium", Sports Illustrated, 24 Feb 2015 <a href="https://www.si.com/nfl/2015/02/24/inglewood-los-angeles-stadium-vote">Link</a></li>
+   <li id="s54">Kelsi Maree Borland, "Inglewood's Transformation: How an NFL Stadium Brought the City Back from the Brink of Bankruptcy", Urban Land (ULI), undated <a href="https://urbanland.uli.org/development-business/inglewoods-transformation-how-an-nfl-stadium-brought-the-city-back-from-the-brink-of-bankruptcy">Link</a></li>
+   <li id="s55">Eric Boehm, "The Super Bowl Will Be Played in the Most Expensive Stadium Ever Built. Taxpayers Didn't Pay a Dime.", Reason, 11 Feb 2022 <a href="https://reason.com/2022/02/11/the-super-bowl-will-be-played-in-the-most-expensive-stadium-ever-built-taxpayer-didnt-pay-a-dime/">Link</a></li>
+   <li id="s56">Pansy Schulman, "Stadium Complex: The True Cost of Sports Megadevelopments", Architectural Record, 8 Jul 2024 <a href="https://www.architecturalrecord.com/articles/16986-stadium-complex-the-true-cost-of-sports-megadevelopments">Link</a></li>
+   <li id="s57">"Downtown Inglewood station", Wikipedia via Wikiwand <em>(secondary)</em> <a href="https://www.wikiwand.com/en/articles/Downtown_Inglewood_station">Link</a></li>
+   <li id="s58">"Parking and Transportation", SoFi Stadium (operator) <a href="https://www.sofistadium.com/parking-and-transportation">Link</a></li>
+   <li id="s59">"Go Metro to SoFi Stadium", LA Metro (transit operator) <a href="https://www.metro.net/destinations/sofi-stadium/">Link</a></li>
+   <li id="s60">Joe Bousquin, Inglewood people mover on hold, Construction Dive, 28 Apr 2025 <a href="https://www.constructiondive.com/news/inglewood-people-mover-on-hold/746477/">Link</a></li>
+   <li id="s61">"Citywide Event Transportation Management and Operations Plan", City of Inglewood / Envision Inglewood (2021 season information) <a href="https://envisioninglewood.org/?p=56">Link</a></li>
+   <li id="s62">Fiona Ng, "Got tickets to the World Cup? Here's everything to know about navigating SoFi Stadium", LAist, 10 Jun 2026 <a href="https://laist.com/news/los-angeles-activities/the-world-cup-guide-to-sofi-stadium">Link</a></li>
+   <li id="s63">"A–Z Guide", SoFi Stadium (operator) <a href="https://www.sofistadium.com/plan-your-visit/a-z-guide">Link</a></li>
+   <li id="s64">Xally Miranda, Estadio Banorte 60th anniversary, Chilango, 29 May 2026 <a href="https://www.chilango.com/mundial-2026/estadio-banorte-60-aniversario-historia-futbolera-cdmx/amp/">Link</a></li>
+   <li id="s65">"El fotógrafo que documentó su nacimiento", Chilango (byline "Colaborador"), 23 May 2016 <a href="https://www.chilango.com/general/el-fotografo-que-documento-su-nacimiento/">Link</a></li>
+   <li id="s66">Fernando Romero Nuñez, "How the Estadio Azteca became the World Cup's greatest home", Buenos Aires Herald, 9 Jun 2026 <a href="https://buenosairesherald.com/sports/football/2026-world-cup/how-the-estadio-azteca-became-the-world-cups-greatest-home">Link</a></li>
+   <li id="s67">Axel Fernández, "Estadios y sedes mundialistas: Estadio Azteca", Récord, 26 May 2026 <a href="https://www.record.com.mx/historia/estadios-y-sedes-mundialistas-estadio-azteca-ciudad-de-mexico-2026052604374707972">Link</a></li>
+   <li id="s68">Roberto Trejo, "Conflicto palcos Estadio Azteca Mundial 2026", Expansión, 15 May 2026 <a href="https://expansion.mx/empresas/2026/05/15/conflicto-palcos-estadio-azteca-mundial-2026">Link</a></li>
+   <li id="s69">Omar Flores Aldana et al., "Estadio Banorte, la cuenta sigue creciendo por las remodelaciones", ESPN Deportes, 4 May 2026 <a href="https://espndeportes.espn.com/futbol/mexico/nota/_/id/16656451/estadio-banorte-costo-remodelaciones-credito-banorte-impuestos">Link</a></li>
+   <li id="s70">Shelma Navarrete, "Gobierno de la CDMX inaugura obras de mejora urbana alrededor del Estadio CDMX", Expansión Política, 25 Mar 2026 <a href="https://politica.expansion.mx/cdmx/2026/03/25/gobierno-de-la-cdmx-inaugura-obras-de-mejora-urbana-alrededor-del-estadio-cdmx">Link</a></li>
+   <li id="s71">Shelma Navarrete, "Plan de movilidad Mundial 2026: cómo llegar al Estadio Azteca", Expansión Política, 10 Jun 2026 <a href="https://politica.expansion.mx/cdmx/2026/06/10/plan-de-movilidad-mundial-2026-como-llegar-estadio-azteca">Link</a></li>
+   <li id="s72">Eduardo Espejo, "NFL México: rutas, horarios y cómo llegar al 49ers vs Vikings", Expansión, 17 Nov 2026 <a href="https://expansion.mx/tendencias/2026/11/17/nfl-mexico-rutas-horarios-y-como-llegar-al-49ers-vs-vikings">Link</a></li>
+   <li id="s73">El Imparcial, "CDMX confirma el México vs Portugal sin estacionamiento en el Estadio Azteca", 25 Mar 2026 <a href="https://www.elimparcial.com/deporte/2026/03/25/cdmx-confirma-el-mexico-vs-portugal-sin-estacionamiento-en-el-estadio-azteca/">Link</a></li>
+   <li id="s74">"La Bombonera", Wikipedia via Wikiwand <em>(secondary)</em> <a href="https://www.wikiwand.com/en/articles/La_Bombonera">Link</a></li>
+   <li id="s75">"Historias de mi Comuna: La Bombonera", Gobierno de la Ciudad de Buenos Aires, 15 Mar 2013 <a href="https://buenosaires.gob.ar/noticias/historias-de-mi-comuna-la-bombonera">Link</a></li>
+   <li id="s76">Luis Rodríguez, "Quién fue el arquitecto y poeta italiano que construyó la Bombonera", 442 / Perfil, 25 May 2020 <a href="https://442.perfil.com/noticias/futbol/quien-fue-el-arquitecto-y-poeta-italiano-que-construyo-la-bombonera.phtml">Link</a></li>
+   <li id="s77">Emiliano Cárdenas Ramírez, "Boca Juniors anuncia la ampliación de La Bombonera…", Récord, 11 Mar 2026 <a href="https://www.record.com.mx/historia/boca-juniors-anuncia-la-ampliacion-de-la-bombonera-su-mitico-estadio-de-casi-90-anos-2026031119455157622">Link</a></li>
+   <li id="s78">"Visit La Bombonera, a symbol of passion for football in Argentina", Argentina.travel (national tourism site), 10 Apr 2024 <a href="https://www.argentina.travel/en/news/visit-la-bombonera-a-symbol-of-passion-for-football-in-argentina">Link</a></li>
+   <li id="s79">"La Bombonera", StadiumGuide (undated) <a href="https://stadiumguide.com/?p=507">Link</a></li>
+   <li id="s80">"Superclásico: los detalles del enorme operativo de seguridad…", Diario de Cuyo, 7 Nov 2025 <a href="https://www.diariodecuyo.com.ar/pasiondeportiva/superclasico-los-detalles-del-enorme-operativo-de-seguridad-para-el-domingo-en-la-bombonera-1796340.html">Link</a></li>
+   <li id="s81">"La AFA extendió a todo el país la prohibición para el público visitante", Infobae, 11 Jun 2013 <a href="https://www.infobae.com/2013/06/11/714995-la-afa-extendio-todo-el-pais-la-prohibicion-el-publico-visitante/">Link</a></li>
+   <li id="s82">"Hinchas visitantes regresan a la liga argentina tras 12 años de veda", Récord (undated) <a href="https://www.record.com.mx/futbol/futbol-internacional/hinchas-visitantes-regresan-la-liga-argentina-tras-12-anos-de-veda">Link</a></li>
+   <li id="s83">Ley 24.192 (1993), text on Argentina.gob.ar (official) <a href="https://www.argentina.gob.ar/normativa/nacional/norma-590/texto">Link</a></li>
+   <li id="s84">Agência O Globo, "Maracanã faz 75 anos: relembre a batalha para construir o 'templo do futebol'", InfoMoney, 16 Jun 2025 <a href="https://www.infomoney.com.br/?p=2910695">Link</a></li>
+   <li id="s85">Helcio Herbert Moreira da Silva Neto, <i>O Novo Maracanã: As mudanças do espetáculo a partir das alterações no estádio carioca</i>, undergraduate thesis, ECO/UFRJ, 2014 (academic) <a href="https://core.ac.uk/download/295390862.pdf">Link</a></li>
+   <li id="s86">Felipe Lucena, "A História do Maracanã", Diário do Rio, 26 Aug 2016 <a href="https://diariodorio.com/historia-do-maracana/">Link</a></li>
+   <li id="s87">Lance!, "Qual a capacidade atual do Maracanã?", 31 May 2025 <a href="https://www.lance.com.br/lancepedia/qual-a-capacidade-atual-do-maracana.html">Link</a></li>
+   <li id="s88">Jessica Mota, Ciro Barros, Bruno Fonseca, Giulia Afiune, "Tem dinheiro público sim, senhor", Agência Pública, 10 Jun 2014 <a href="https://apublica.org/2014/06/tem-dinheiro-publico-sim-senhor/">Link</a></li>
+   <li id="s89">Mads A. Wickstrøm, "Renovation of Rio's World Cup and Olympic stadium stained by corruption allegations", Play the Game, 15 Mar 2017 <a href="https://playthegame.org/news/renovation-of-rio-s-world-cup-and-olympic-stadium-stained-by-corruption-allegations">Link</a></li>
+   <li id="s90">"Ativistas protestam contra a desocupação do antigo Museu do Índio", Jornal do Brasil, 22 Mar 2013 <a href="https://www.jb.com.br/rio/noticias/2013/03/22/amp/ativistas-protestam-contra-a-desocupacao-do-antigo-museu-do-indio.html">Link</a></li>
+   <li id="s91">Fernando Olivieri, "Quem é o dono do Maracanã?", Lance!, 30 May 2025 <a href="https://www.lance.com.br/lancepedia/quem-e-dono-do-maracana.html">Link</a></li>
+   <li id="s92">Cristina Indio do Brasil, "Governo do Rio homologa e publica concessão do Complexo Maracanã", Agência Brasil, 4 Jun 2024 <a href="https://agenciabrasil.ebc.com.br/esportes/noticia/2024-06/governo-do-rio-homologa-e-publica-concessao-do-complexo-maracana">Link</a></li>
+   <li id="s93">Lance!, "Maracanã: como chegar e onde é cada portão", 26 Oct 2024 <a href="https://www.lance.com.br/lancepedia/maracana-como-chegar-portao.html">Link</a></li>
+   <li id="s94">"MetrôRio tem mudanças na operação durante jogo entre Flamengo e Vitória", Diário do Transporte, 22 Apr 2026 <a href="https://diariodotransporte.com.br/2026/04/22/metrorio-tem-mudancas-na-operacao-durante-jogo-entre-flamengo-e-vitoria-nesta-quarta-feira-22/">Link</a></li>
+   <li id="s95">Lei Estadual RJ 7.083/2015 (16 Oct 2015), text via Contábeis <a href="https://www.contabeis.com.br/legislacao/505387/lei-7083-2015/">Link</a></li>
+   <li id="s96">Andrey Lucena Santos, "Gigante da engenharia: as curiosidades por trás das obras do Maracanã", Engenharia 360, 2 Feb 2017 (updated 19 Jul 2026) <a href="https://engenharia360.com/gigante-da-engenharia-as-curiosidades-por-tras-das-obras-do-maracana/">Link</a></li>
+   <li id="s97">"The Olympic Way Story", London Borough of Brent <a href="https://www.brent.gov.uk/media/16409364/the-olympic-way-story.pdf">Link</a></li>
+   <li id="s98">"The English national stadium project at Wembley" (report HC 699, 2003), National Audit Office <a href="https://www.nao.org.uk/wp-content/uploads/2003/06/0203699.pdf">Link</a></li>
+   <li id="s99">"Meet Our Stakeholders", Wembley Stadium <a href="https://www.wembleystadium.com/about/stakeholders">Link</a></li>
+   <li id="s100">"Worth the wait, but the money?", The Irish Times, 10 March 2007 <a href="https://www.irishtimes.com/sport/worth-the-wait-but-the-money-1.1199093">Link</a></li>
+   <li id="s101">Nick Ames, "Wembley at 10: iconic venue and national symbol but is it good value?", The Guardian <a href="https://www.inkl.com/news/wembley-at-10-iconic-venue-and-national-symbol-but-is-it-good-value">Link</a></li>
+   <li id="s102">"Getting Here" (help article), Wembley Stadium <a href="https://help.wembleystadium.com/support/solutions/articles/7000054900-getting-here">Link</a></li>
+   <li id="s103">"Mayor and David Seaman open Wembley Park tube station on time and on budget" (press release, March 2006), Transport for London <a href="https://tfl.gov.uk/info-for/media/press-releases/2006/march/mayor-and-david-seaman-open-wembley-park-tube-station-on-time-and-on-budget">Link</a></li>
+   <li id="s104">"Purchasing alcohol at Wembley Stadium", Wembley Stadium help centre <a href="https://help.wembleystadium.com/support/solutions/articles/7000028399-purchasing-alcohol-at-wembley-stadium">Link</a></li>
+   <li id="s105">Appendix 2, "Wembley Events Management report from Resident Services", 19 July 2022, London Borough of Brent <a href="https://democracy.brent.gov.uk/documents/s125307/12.1b%20Appendix%202%20-%20Wembley%20Events%20Management%20report%20from%20Resident%20Services%2019%20July%202022.pdf">Link</a></li>
+   <li id="s106">"Wembley Stadium may host additional events", Stadia World (2024) <a href="https://www.stadiaworld.com/news/85806/wembley-stadium-may-host-additional-events">Link</a></li>
+   <li id="s107">"Wembley Stadium given go-ahead to host additional non-sporting events", London Borough of Brent, September 2024 <a href="https://www.brent.gov.uk/news-in-brent/2024/september/wembley-stadium-given-go-ahead-to-host-additional-non-sporting-events">Link</a></li>
+   <li id="s108"><i>Alliance Spring Co Ltd &amp; Ors v First Secretary of State</i> [2005] EWHC 18 (Admin), The National Archives (Find Case Law) <a href="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2005/18">Link</a></li>
+   <li id="s109">"Emirates Stadium", Wikipedia <em>(secondary)</em> <a href="https://en.wikipedia.org/wiki/Emirates_Stadium">Link</a></li>
+   <li id="s110">"Arsenal stadium" (deal profile, 2004), IJGlobal <a href="https://ijglobal.com/articles/21045/arsenal-stadium">Link</a></li>
+   <li id="s111">"£50m transport boost to support new Arsenal stadium" (press release, July 2006), Transport for London <a href="https://tfl.gov.uk/info-for/media/press-releases/2006/july/andpound50m-transport-boost-to-support-new-arsenal-stadium">Link</a></li>
+   <li id="s112">"How to get to Emirates Stadium", Arsenal FC <a href="https://arsenal.com/news/get-to-emirates-stadium-aErsq4S9pmwx">Link</a></li>
+   <li id="s113">"Emirates Stadium restrictions", Islington Council <a href="https://www.islington.gov.uk/parking/parking-restrictions/emirates-stadium-restrictions">Link</a></li>
+   <li id="s114">"Food &amp; Drink options", Arsenal help centre <a href="https://help.arsenal.com/support/solutions/articles/101000592251-at-the-stadium">Link</a></li>
+   <li id="s115">Renaud, "La reconquête des anciens sites industriels", <i>Annales des Mines – Réalités industrielles</i>, May 2000 <a href="https://www.annales.org/ri/2000/05-2000/renaud013-016.pdf">Link</a></li>
+   <li id="s116">Written question no. 7491 (J. Glavany) and ministerial answer, 8 December 1997 / 16 February 1998, Assemblée nationale <a href="https://questions.assemblee-nationale.fr/dyn/11/questions/QANR5L11QE7491.pdf">Link</a></li>
+   <li id="s117">Senate information report no. 437 (2016–2017), section "C. Un nouveau projet stratégique pour le Stade de France", Sénat <a href="https://www.senat.fr/rap/r16-437/r16-4374.html">Link</a></li>
+   <li id="s118">"Signature du contrat de concession Stade de France", Ministère des Sports, 17 June 2025 <a href="https://www.sports.gouv.fr/signature-du-contrat-de-concession-stade-de-france-9848">Link</a></li>
+   <li id="s119">"How to get to the Stade de France", Seine-Saint-Denis Tourisme <a href="https://uk.tourisme93.com/how-to-go-to-the-stade-de-france-saint-denis-near-paris-.html">Link</a></li>
+   <li id="s120">Senate report no. 776 (2021–2022), foreword <a href="https://www.senat.fr/rap/r21-776/r21-7760.html">Link</a></li>
+   <li id="s121">"Consommation d'alcool dans les stades et les équipements sportifs", AGN Avocats, 2024 <a href="https://www.agn-avocats.fr/blog/droit-public/consommation-dalcool-dans-les-stades-et-les-equipements-sportifs/">Link</a></li>
+   <li id="s122">"75 years since stadium referendum", FC Barcelona <a href="https://www.fcbarcelona.com/en/club/news/4402394/75-years-since-stadium-referendum">Link</a></li>
+   <li id="s123">"Chapter 43 – The Penyes and the inauguration of the Camp Nou", Confederació Mundial de Penyes del FC Barcelona <a href="https://confederaciopenyes.cat/en/chapter-43-the-penyes-and-the-inauguration-of-the-camp-nou/">Link</a></li>
+   <li id="s124">"History" (Spotify Camp Nou), FC Barcelona <a href="https://www.fcbarcelona.com/en/club/facilities/spotify-camp-nou/history">Link</a></li>
+   <li id="s125">"60 years since Les Corts stadium was demolished", FC Barcelona <a href="https://www.fcbarcelona.com/en/news/4440891/60-years-since-les-corts-stadium-was-demolished">Link</a></li>
+   <li id="s126">"FC Barcelona statement" (financing, 27 Jun 2025), FC Barcelona <a href="https://www.fcbarcelona.com/en/news/4297630/fc-barcelona-statement">Link</a></li>
+   <li id="s127">"Green light for the urbanisation of the streets and green areas around the Camp Nou…", FC Barcelona, 2019 <a href="https://www.fcbarcelona.com/en/news/1187666/green-light-for-the-urbanisation-of-the-streets-and-green-areas-around-the-camp-nou-to-make-the-espai-barca-possible">Link</a></li>
+   <li id="s128">"How to get there? (match day)", FC Barcelona <a href="https://www.fcbarcelona.com/en/club/getting-here/spotify-camp-nou/match-day">Link</a></li>
+   <li id="s129">"Mobility recommendations for the return to the Spotify Camp Nou", FC Barcelona, Nov 2025 <a href="https://www.fcbarcelona.com/en/news/4406702/mobility-recommendations-for-the-return-to-the-spotify-camp-nou">Link</a></li>
+   <li id="s130">"Access conditions" (Nov 2025, PDF), FC Barcelona <a href="https://www.fcbarcelona.com/fcbarcelona/document/2025/11/19/95338ca7-1a54-4c35-a528-34c5a5a1e470/202511-Access-conditions_ENG.pdf">Link</a></li>
+   <li id="s131">Ley 19/2007 contra la violencia, el racismo, la xenofobia y la intolerancia en el deporte (text hosted by Spain's Ministry of Equality) <a href="https://igualdadynodiscriminacion.igualdad.gob.es/wp-content/uploads/2024/06/ley19_2007.pdf">Link</a></li>
+   <li id="s132">"First game back at Spotify Camp Nou in figures", FC Barcelona <a href="https://www.fcbarcelona.com/en/news/4407735/first-game-back-at-spotify-camp-nou-in-figures">Link</a></li>
+   <li id="s133">"Why Barcelona can only add 6,000 seats to new Camp Nou this season", Football Ground Guide, 5 Oct 2026 <a href="https://footballgroundguide.com/news/why-barcelona-can-only-add-6000-seats-to-new-camp-nou-this-season-as-major-issue-explained.html">Link</a></li>
+   <li id="s134">"Countdown for the rain to stop being a problem at the Camp Nou", Ara (English), 10 Oct 2026 <a href="https://en.ara.cat/sports/countdown-for-the-rain-to-stop-being-problem-at-the-camp-nou_1_5875254.html">Link</a></li>
+   <li id="s135">"Cómo se mudó el Real Madrid al estadio de la Castellana: 75 años del Santiago Bernabéu", elDiario.es (Somos Madrid) <a href="https://www.eldiario.es/madrid/somos/mudo-real-madrid-estadio-castellana-75-anos-santiago-bernabeu_1_9791266.amp.html">Link</a></li>
+   <li id="s136">"The EU State aid and sport saga: the Real Madrid decision (Part 2)", Asser International Sports Law Blog <a href="https://sub.asser.nl/SportsLaw/Blog/post/the-eu-state-aid-and-sport-saga-the-real-madrid-decision-part-2">Link</a></li>
+   <li id="s137">"Real Madrid to recover 18 million in reverse state aid decision", DWF, 31 May 2019 <a href="https://dwfgroup.com/en/News-and-Insights/Insights/2019/5/Real-Madrid-to-recover-18-million-in-reverse-state-aid-decision">Link</a></li>
+   <li id="s138">"Real Madrid borrows another €225m to complete Santiago Bernabéu renovation", Inside World Football <a href="https://insideworldfootball.com/?p=131543">Link</a></li>
+   <li id="s139">"Bernabeu, aumentano i costi: il Real versa altri 20 milioni per integrare lo stadio al quartiere", Calcio e Finanza, 24 Jul 2025 <a href="https://www.calcioefinanza.it/2025/07/24/costi-santiago-bernabeu-real-madrid/">Link</a></li>
+   <li id="s140">"Real Madrid secures 575m euro loan to remodel stadium", Associated Press via Washington Times, 12 Apr 2019 <a href="https://www.washingtontimes.com/news/2019/apr/12/real-madrid-secures-575m-euro-loan-to-remodel-stad/">Link</a></li>
+   <li id="s141">"Real Madrid eye-watering Santiago Bernabéu final cost", Football España, 18 Jul 2025 <a href="https://www.football-espana.net/2025/07/18/real-madrid-eye-watering-santiago-bernabeu-final-cost">Link</a></li>
+   <li id="s142">"Corte de la Línea 10 de Metro de Madrid del 28 de marzo a finales de año por las obras de Santiago Bernabéu", elDiario.es, Mar 2026 <a href="https://www.eldiario.es/madrid/somos/corte-linea-10-metro-madrid-28-marzo-finales-ano-obras-santiago-bernabeu_1_13046549.html">Link</a></li>
+   <li id="s143">"Alternativas de transporte: suspensión L10 Metro Cuzco – Nuevos Ministerios", Consorcio Regional de Transportes de Madrid (CRTM) <a href="https://www.crtm.es/comunicacion/actualidad-del-servicio/avisos/19032026-alternativas-de-transporte-suspension-l10-metro-cuzco-nuevos-ministerios/?lang=en">Link</a></li>
+   <li id="s144">"Bernabeu, nuovi problemi: i residenti vincono il ricorso contro il Real sui parcheggi", Calcio e Finanza, Feb 2026 <a href="https://www.calcioefinanza.it/?p=221818">Link</a></li>
+   <li id="s145">"Bernabéu Market toma forma gastronómica", El Gol Digital, 2 Nov 2025 <a href="https://www.elgoldigital.com/futbol/real-madrid-cf/bernabeu-market-toma-forma-gastronomica/">Link</a></li>
+   <li id="s146">"El Tribunal Supremo inadmite el recurso del Real Madrid contra la sentencia del TSJ de Madrid…", Consejo General del Poder Judicial, 10 Jun 2026 <a href="https://www.poderjudicial.es/cgpj/es/Poder-Judicial/Noticias-Judiciales/El-Tribunal-Supremo-inadmite-el-recurso-del-Real-Madrid-contra-la-sentencia-del-TSJ-de-Madrid-en-relacion-con-la-celebracion-de-espectaculos-en-el-estadio-Santiago-Bernabeu">Link</a></li>
+   <li id="s147">"Stadio Giuseppe Meazza" (architecture record), Lombardia Beni Culturali, Regione Lombardia <a href="https://lombardiabeniculturali.it/architetture/schede-complete/q2010-00049">Link</a></li>
+   <li id="s148">"San Siro: partite, concerti, storia" (history explainer), Il Post, 3 Oct 2025 <a href="https://www.ilpost.it/2025/10/03/san-siro-partite-concerti-storia-milano/">Link</a></li>
+   <li id="s149">"San Siro è di Milan e Inter: firmato il rogito", Il Post, 5 Nov 2025 <a href="https://www.ilpost.it/2025/11/05/san-siro-milan-inter-rogito/">Link</a></li>
+   <li id="s150">"Il Comune di Milano ha approvato la vendita di San Siro a Milan e Inter", Il Post, 30 Sep 2025 <a href="https://www.ilpost.it/2025/09/30/san-siro-comune-milano-approva-vendita-milan-inter/">Link</a></li>
+   <li id="s151">"San Siro is now owned by Milan and Inter. The sale is under prosecutor investigation", StadiumDB, Nov 2025 <a href="https://stadiumdb.com/news/2025/11/italy_san_siro_is_now_owned_by_milan_and_inter_the_sale_is_under_prosecutor_investigation">Link</a></li>
+   <li id="s152">"AC Milan and FC Internazionale Milano unveil Generali Stadium…", AC Milan, 29 Oct 2026 <a href="https://www.acmilan.com/en/news/articoli/news_club_2/2026-10-29/ac-milan-and-fc-internazionale-milano-unveil-generali-stadium-a-new-home-for-the-fans-a-new-landmark-for-milano">Link</a></li>
+   <li id="s153">"Football match service", ATM Milano <a href="https://www.atm.it/en/ViaggiaConNoi/InfoTraffico/Pages/footballmatchservice.aspx">Link</a></li>
+   <li id="s154">"How to reach San Siro", AC Milan <a href="https://www.acmilan.com/en/club/venues/san-siro/how-to-reach">Link</a></li>
+   <li id="s155">"Ingressi San Siro, come arrivare 26/27", FC Internazionale Milano <a href="https://www.inter.it/it/notizie/ingressi-san-siro-come-arrivare-26-27">Link</a></li>
+   <li id="s156">"Paninari e ambulanti di San Siro e il nuovo stadio", Open, 6 Nov 2026 <a href="https://www.open.online/2026/11/06/paninari-ambulanti-san-siro-nuovo-stadio/">Link</a></li>
+   <li id="s157">Prefettura di Milano decree, AC Milan v Club Brugge, 22 Oct 2024 (.doc) <a href="https://prefettura.interno.gov.it/sites/default/files/5/2024-10/a.c-milan-vs-club-brugge-kv-22-ottobre-2024.doc">Link</a></li>
+   <li id="s158">Bayerischer Landtag, Drucksache 15/6313 (written question and answer, 24 Jul / 15 Sep 2006) <a href="https://www.bayern.landtag.de/www/ElanTextAblage_WP15/Drucksachen/Schriftliche%20Anfragen/15_0006313.pdf">Link</a></li>
+   <li id="s159">"Fröttmaning hill: From garbage mountain to vantage point", muenchen.de <a href="https://www.muenchen.de/en/sights/frottmaning-hil">Link</a></li>
+   <li id="s160">"Construction &amp; great moments" (history), Allianz Arena <a href="https://allianz-arena.com/en/arena/facts/history/the-history-of-the-allianz-arena">Link</a></li>
+   <li id="s161">"Stadien der EM 2024: Erbbaurecht als Key-Faktor", Deutscher Erbbaurechtsverband (via verbandsbuero.de) <a href="https://www.verbandsbuero.de/stadien-der-em-2024-erbbaurecht-als-key-faktor/">Link</a></li>
+   <li id="s162">"Nuts and bolts" (facts and figures), Allianz Arena <a href="https://allianz-arena.com/en/arena/facts/nuts-and-bolts">Link</a></li>
+   <li id="s163">"Munich: Bayern repaid Allianz Arena ahead of plan", StadiumDB, 21 Nov 2014 <a href="https://stadiumdb.com/news/2014/11/munich_bayern_repaid_allianz_arena_ahead_of_plan">Link</a></li>
+   <li id="s164">"Anreise … UEFA EURO 2024" (getting to the stadium), muenchen.de (City of Munich portal) <a href="https://www.muenchen.de/veranstaltungen/uefaeuro2024/anreise-anfahrt-stadion-fan-zone-olympiapark-flughafen">Link</a></li>
+   <li id="s165">"Journey to Allianz Arena", Deutsche Bahn (bahnhof.de) <a href="https://www.bahnhof.de/en/muenchen-hbf/journey-allianz-arena">Link</a></li>
+   <li id="s166">"Fröttmaning station", Wikipedia <em>(secondary)</em> <a href="https://en.wikipedia.org/wiki/Fr%C3%B6ttmaning_station">Link</a></li>
+   <li id="s167">"Matchday – Getting here &amp; entry", Allianz Arena <a href="https://allianz-arena.com/en/arena/getting-here-entry/matchday">Link</a></li>
+   <li id="s168">"80 Plätze reichen! Nicht mehr Radständer vor der Arena", Abendzeitung München, 10 Nov 2017 <a href="https://www.abendzeitung-muenchen.de/muenchen/80-plaetze-reichen-nicht-mehr-radstaender-vor-der-arena-art-421586">Link</a></li>
+   <li id="s169">"このまちアーカイブス 文京区" (Town Archives: Bunkyō, Koishikawa Kōrakuen / arsenal), Sumitomo Mitsui Trust Research Institute <a href="https://smtrc.jp/town-archives/city/bunkyo/p08.html">Link</a></li>
+   <li id="s170">"このまちアーカイブス 文京区" (Korakuen Stadium and Tokyo Dome), Sumitomo Mitsui Trust Research Institute <a href="https://smtrc.jp/town-archives/city/bunkyo/p09.html">Link</a></li>
+   <li id="s171">Tokyo Dome Corporation company history ("社史", chapter 1), via the-shashi.com <a href="https://the-shashi.com/tse/9681/chapter-1/">Link</a></li>
+   <li id="s172">"Mitsui Fudosan … Tokyo Dome", Japan Times, 20 Jan 2021 <a href="https://japantimes.co.jp/news/2021/01/20/business/corporate-business/mitsui-fudosan-tokyo-dome">Link</a></li>
+   <li id="s173">"What is Tokyo Dome?", Tokyo Dome Corporation <a href="https://www.tokyo-dome.co.jp/en/dome/about/">Link</a></li>
+   <li id="s174">"東京ドーム" (Tokyo Dome), GO TOKYO (Tokyo Convention &amp; Visitors Bureau, official Tokyo tourism) <a href="https://www.gotokyo.org/jp/spot/1613/index.html">Link</a></li>
+   <li id="s175">"Access", Tokyo Dome Corporation <a href="https://www.tokyo-dome.co.jp/en/dome/access/">Link</a></li>
+   <li id="s176">"Parking", Tokyo Dome City <a href="https://www.tokyo-dome.co.jp/en/access/parking">Link</a></li>
+   <li id="s177">"Request for Visitors", Tokyo Dome Corporation <a href="https://www.tokyo-dome.co.jp/en/dome/caution/">Link</a></li>
+   <li id="s178">"Speed demons: the 'uriko' beer vendors of Japanese baseball", AFP (AFPBB), 19 Jun 2023 <a href="https://www.afpbb.com/articles/-/3468650">Link</a></li>
+   <li id="s179">Hanshin Electric Railway press release on JSCE heritage designation, 25 Sep 2024 (PDF, Japanese) <a href="https://www.hanshin.co.jp/press/docs/20240925_koshien_dobokuisan.pdf">Link</a></li>
+   <li id="s180">"Kono machi archives: Nishinomiya", Sumitomo Mitsui Trust Realty <a href="https://smtrc.jp/town-archives/city/nishinomiya/p04.html">Link</a></li>
+   <li id="s181">"川を買って路面電車通りに…阪神電鉄の「大きな賭け」" ("Buying a river for a tram street: Hanshin's big bet"), Norimono News / trafficnews.jp <a href="https://trafficnews.jp/post/88623/2">Link</a></li>
+   <li id="s182">President Online article on Hanshin's river purchase <a href="https://president.jp/articles/-/104081">Link</a></li>
+   <li id="s183">"A Century at Kōshien: Japan's Iconic Stadium Still Going Strong", Takiguchi Takashi, Nippon.com, 8 Mar 2024 <a href="https://nippon.com/en/in-depth/d00975">Link</a></li>
+   <li id="s184">"Koshien Stadium", Wikipedia <em>(secondary)</em> <a href="https://en.wikipedia.org/wiki/Koshien_Stadium">Link</a></li>
+   <li id="s185">Koshien access guide, Toretabi (JR Group cooperation), data as of Feb 2026 <a href="https://www.toretabi.jp/travel_info/koushien_access.html">Link</a></li>
+   <li id="s186">"Koshien Stadium – Hanshin Tigers", Sean MacDonald, Stadium Journey (2013, updated 2025) <a href="https://www.stadiumjourney.com/stadiums/koshien-stadium-s1700">Link</a></li>
+   <li id="s187">Koshien History Museum group-visit leaflet 2023 (PDF) <a href="https://koshien-rekishikan.hanshin.co.jp/pdf/group/rekishikan_2023dantai.pdf">Link</a></li>
+   <li id="s188">"Koshien Stadium's jet balloons make a comeback…", Kyodo News via Kumamoto Nichinichi Shimbun (Ground News aggregation), 7 Apr 2026 <a href="https://ground.news/article/koshien-stadiums-jet-balloons-make-a-comeback-the-famous-cheering-tradition-resumes-after-7-years-kyodo-news">Link</a></li>
+   <li id="s189">"Sweat, tears and dirt", Dan Sloan, <i>Number 1 Shimbun</i> (FCCJ), Aug 2024 <a href="https://www.fccj.or.jp/number-1-shimbun-article/sweat-tears-and-dirt">Link</a></li>
+   <li id="s190">"Evicted Beijingers Weigh In On Olympics", NPR, 9 Aug 2008 <a href="https://www.npr.org/2008/08/09/93465248/evicted-beijingers-weigh-in-on-olympics">Link</a></li>
+   <li id="s191">"Olympic showpiece", KHL / Construction Briefing, 25 Apr 2008 <a href="https://www.khl.com/news/olympic-showpiece/1018968.article">Link</a></li>
+   <li id="s192">Beijing Review special report on the Bird's Nest after the Games, Aug 2009 <a href="https://www.bjreview.com/special/2009-08/22/content_226301.htm">Link</a></li>
+   <li id="s193">"Bird's Nest stadium plans to stem losses", AFP via The Himalayan Times, 4 Nov 2009 <a href="https://thehimalayantimes.com/business/birds-nest-stadium-plans-to-stem-losses">Link</a></li>
+   <li id="s194">"Group: Olympics Force Mass Evictions", Associated Press via CBS News, 5 Jun 2007 <a href="https://www.cbsnews.com/news/group-olympics-force-mass-evictions">Link</a></li>
+   <li id="s195">"Beijing National Stadium", Wikipedia <em>(secondary)</em> <a href="https://en.wikipedia.org/wiki/Beijing_National_Stadium">Link</a></li>
+   <li id="s196">National Stadium visitor page, Visit Beijing (Beijing Municipal Culture &amp; Tourism Bureau), 22 Sep 2021 <a href="https://english.visitbeijing.com.cn/article/47OOr5YiLK7">Link</a></li>
+   <li id="s197">"今年将举办50多场演唱会 鸟巢放歌…" ("More than 50 concerts this year…"), Xinhua, 27 May 2025 <a href="https://www.news.cn/ent/20250527/827ff15fd7b941498511cbf0605d9448/c.html">Link</a></li>
+   <li id="s198">New Beijing News (新京报) report on colour-coded entry at a Bird's Nest concert, 30 May 2025 <a href="https://www.bjnews.com.cn/detail/1748594143129601.html">Link</a></li>
+   <li id="s199">"The long road to Eden Gardens retraced", Shiv Sahay Singh, The Hindu (via inkl), citing West Bengal State Archives <a href="https://www.inkl.com/news/the-long-road-to-eden-gardens-retraced">Link</a></li>
+   <li id="s200">"Kolkata's Eden Gardens… is not a public place", The Tribune, 14 Nov 2025 <a href="https://www.tribuneindia.com/news/sports/kolkatas-eden-gardens-indias-second-largest-cricket-stadium-is-not-a-public-place">Link</a></li>
+   <li id="s201">"A new innings at Eden", Debaleena Sengupta, Business Standard, 20 Feb 2011 <a href="https://www.business-standard.com/article/beyond-business/a-new-innings-at-eden-111022000011_1.html">Link</a></li>
+   <li id="s202">"Eden Gardens railway station", Wikipedia <em>(secondary)</em> <a href="https://en.wikipedia.org/wiki/Eden_Gardens_railway_station">Link</a></li>
+   <li id="s203">"Preparations galore: spl transport arrangements for IPL matches", Millennium Post, 22 Mar 2025 <a href="https://www.millenniumpost.in/bengal/preparations-galore-spl-transport-arrangements-for-ipl-matches-603346">Link</a></li>
+   <li id="s204">"Kolkata Metro to run special late-night services for IPL 2025 opening match with ₹10 surcharge", Curly Tales, Mar 2025 <a href="https://curlytales.com/kolkata-metro-to-run-special-late-night-services-for-ipl-2025-opening-match-with-rs-10-surcharge/amp/">Link</a></li>
+   <li id="s205">"IPL match parking issues near Eden Gardens resolved", Millennium Post, 3 Apr 2025 <a href="https://www.millenniumpost.in/bengal/ipl-match-parking-issues-near-eden-gardens-resolved-605121">Link</a></li>
+   <li id="s206">Kolkata Traffic Police, traffic and parking arrangements for the India v West Indies Test, 14–18 Nov 2011 (PDF) <a href="https://kolkatatrafficpolice.gov.in/TR_crickettest.pdf">Link</a></li>
+   <li id="s207">TATA IPL 2026 Ticket Terms and Conditions, BCCI/IPL (PDF) <a href="https://documents.iplt20.com/bcci/documents/1775741338982_TATA-IPL-2026-Ticket-Terms-and-Conditions.pdf">Link</a></li>
+   <li id="s208">"About Burswood Park — History", Burswood Park Board <a href="https://burswoodpark.wa.gov.au/perth-park/history/">Link</a></li>
+   <li id="s209">"Burswood Tip (fmr)", inHerit, WA Department of Planning, Lands and Heritage <a href="https://inherit.dplh.wa.gov.au/public/inventory/printsinglerecord/f6b000b8-01c5-4c09-997a-40dd17d8b74e">Link</a></li>
+   <li id="s210">"Perth Stadium", Wikipedia <em>(secondary)</em> <a href="https://en.wikipedia.org/wiki/Perth_Stadium">Link</a></li>
+   <li id="s211">New Perth Stadium DBFM Project Summary, Government of WA (Feb 2015) <a href="https://www.wa.gov.au/system/files/2020-01/new-perth-stadium-dbfm-project-summary.pdf">Link</a></li>
+   <li id="s212">"The new Perth Stadium: what will WA get for $1.6 billion?", Jacob Kagi, ABC News (via inkl), late 2017 <a href="https://www.inkl.com/news/the-new-perth-stadium-what-will-wa-get-for-1-6-billion">Link</a></li>
+   <li id="s213">"Perth Stadium Station now complete", WA Government media statement, 2 Dec 2017 <a href="https://www.wa.gov.au/government/media-statements/McGowan-Labor-Government/Perth-Stadium-Station-now-complete-20171202">Link</a></li>
+   <li id="s214">"Public Transport", Optus Stadium (getting here) <a href="https://www.optusstadium.com.au/getting-here/public-transport">Link</a></li>
+   <li id="s215">"Transport Solution by Bus" fact sheet, Optus Stadium <a href="https://cms.optusstadium.com.au/the-stadium/fact-sheets/transport-solution-by-bus">Link</a></li>
+   <li id="s216">"Transport Solution by Rail" fact sheet, Optus Stadium <a href="https://cms.optusstadium.com.au/the-stadium/fact-sheets/transport-solution-by-rail">Link</a></li>
+   <li id="s217">"Matagarup Bridge", Wikipedia <em>(secondary)</em> <a href="https://en.wikipedia.org/wiki/Matagarup_Bridge">Link</a></li>
+   <li id="s218">"Matagarup Bridge a permanent tribute to traditional owners", WA Government media statement, 26 Nov 2017 <a href="https://www.wa.gov.au/government/media-statements/McGowan%20Labor%20Government/Matagarup-Bridge-a-permanent-tribute-to-traditional-owners-20171126">Link</a></li>
+   <li id="s219">"Optus Stadium Transport" case study, Healthy Active by Design (Heart Foundation WA) <a href="https://www.healthyactivebydesign.com.au/case-studies/optus-stadium-transport">Link</a></li>
+   <li id="s220">"Changes to enhance patron experience at Optus Stadium", WA Government media statement, 1 Feb 2026 <a href="https://www.wa.gov.au/government/media-statements/Cook%20Labor%20Government/Changes-to-enhance-patron-experience-at-Optus-Stadium-20260201">Link</a></li>
+   <li id="s221">"World Cup legacy: Soccer City" (interview with architect Bob van Bebber), SouthAfrica.info <a href="https://www.southafrica.info/2010/soccercity-vanbebber">Link</a></li>
+   <li id="s222">"The road to Soccer City, the venue", Domus, 8 Jul 2010 <a href="https://domusweb.it/en/architecture/2010/07/08/soccer-city-stadium-johannesburg.amp.html">Link</a></li>
+   <li id="s223">Heritage Portal article on Soccer City (van Bebber) <a href="https://www.theheritageportal.co.za/node/2792">Link</a></li>
+   <li id="s224">"FNB Stadium", Wikipedia <em>(secondary)</em> <a href="https://en.wikipedia.org/wiki/FNB_Stadium">Link</a></li>
+   <li id="s225">"Flagship Projects: Nasrec Precinct", Johannesburg Development Agency <a href="https://www.jda.org.za/nasrec-precinct/">Link</a></li>
+   <li id="s226">"Soccer City / FNB Stadium, Johannesburg", South African History Online (updated 20 Jul 2026) <a href="https://sahistory.org.za/place/soccer-city-fnb-stadium-johannesburg">Link</a></li>
+
+  </ol>
+ </section>
+</div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <p>Published 19 November 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+  <p><a href="/daily/">← Back to Daily</a> · <a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20The%20Stadium%20Atlas&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-19-the-stadium-atlas%2F">Spot an error? Suggest a correction</a></p>
+ </div>
+</footer>
+
+<script>
+(function(){
+  var blocks=[].slice.call(document.querySelectorAll('.block'));
+  var st={region:'all',score:'all'}, count=document.getElementById('count');
+  function apply(){
+    var n=0;
+    blocks.forEach(function(b){
+      var s=+b.dataset.score, ok=(st.region==='all'||b.dataset.region===st.region)&&
+        (st.score==='all'||(st.score==='hi'&&s>=7)||(st.score==='lo'&&s<=3));
+      b.hidden=!ok; if(ok)n++;
+    });
+    [].forEach.call(document.querySelectorAll('.region'),function(r){
+      r.hidden=!r.querySelector('.block:not([hidden])');
+    });
+    count.textContent='Showing '+n+' of '+blocks.length;
+  }
+  [].forEach.call(document.querySelectorAll('.fbtn'),function(b){
+    b.addEventListener('click',function(){
+      var f=b.dataset.f;
+      [].forEach.call(document.querySelectorAll('.fbtn[data-f="'+f+'"]'),function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true'); st[f]=b.dataset.v; apply();
+    });
+  });
+  apply();
+  var tb=document.querySelector('#tbl tbody');
+  [].forEach.call(document.querySelectorAll('#tbl th button'),function(btn){
+    btn.addEventListener('click',function(){
+      var k=btn.dataset.k, dir=btn.getAttribute('aria-sort')==='ascending'?'descending':'ascending';
+      [].forEach.call(document.querySelectorAll('#tbl th button'),function(x){x.removeAttribute('aria-sort')});
+      btn.setAttribute('aria-sort',dir);
+      var rows=[].slice.call(tb.rows);
+      rows.sort(function(a,b){
+        var x=a.dataset[k], y=b.dataset[k];
+        var c=(k==='name')?x.localeCompare(y):(+x - +y);
+        return dir==='ascending'?c:-c;
+      });
+      rows.forEach(function(r){tb.appendChild(r)});
+    });
+  });
+})();
+</script>
+</body>
+</html>

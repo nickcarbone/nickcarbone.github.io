@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Stadium Atlas (filterable atlas)
-Twenty-five stadiums and arenas, from Lambeau to La Bombonera, and what each site was before. Cover the land deals, transit links and public money behind each one. Show how the building shapes the way crowds arrive, eat, drink and leave, with a scorecard for getting there without a car.
-
 The Paper Trail That Exposed the Truth
 Create an interactive HTML guide to official stories, popular myths and accepted histories that changed when ordinary records surfaced: court filings, company registries, property deeds, shipping manifests, procurement records, financial documents, declassified files, forensic findings and forgotten testimony.
 For each case, give the original story and the evidence behind it, then reconstruct the discovery: the original question, the overlooked record, the connection it exposed, and how understanding changed afterwards.
