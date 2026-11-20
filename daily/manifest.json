@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 34,
+      "slug": "2026-11-20-the-paper-trail",
+      "date": "2026-11-20",
+      "title": "The Paper Trail",
+      "dek": "Twelve official stories, myths and accepted histories that gave way when an ordinary record surfaced, and how each chain of evidence was put together.",
+      "kind": "Interactive casebook",
+      "readingMinutes": 29,
+      "design": "Big Shoulders Stencil, IBM Plex Serif/Mono/Sans Condensed; archive-board buff, evidence-tape orange, highlighter yellow; pinned-documents thread hero, exhibit-tag cases, node-link evidence graphs.",
+      "source": "queue",
+      "brief": "The Paper Trail That Exposed the Truth\nCreate an interactive HTML guide to official stories, popular myths and accepted histories that changed when ordinary records surfaced: court filings, company registries, property deeds, shipping manifests, procurement records, financial documents, declassified files, forensic findings and forgotten testimony.\nFor each case, give the original story and the evidence behind it, then reconstruct the discovery: the original question, the overlooked record, the connection it exposed, and how understanding changed afterwards.\nShow how separate pieces of seemingly unremarkable information can combine into a compelling evidentiary chain.\nSeparate what the records prove directly from what investigators inferred and from contested interpretation; do not treat unsupported conspiracy theories as equivalent to documented evidence.\nBuild an interactive evidence graph connecting people, organizations, dates, places, and documents, with an evidence timeline and a \"myth versus evidence\" comparison for each case.\nFocus on revelations that genuinely changed our understanding of history, power, or public memory.\nAvoid: dish and cocktail origin claims (No. 6 and No. 25 cover those), and leaning on the Cold War for cases.\nUse original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.",
+      "factcheck": {
+        "claims": 240,
+        "fixed": 11
+      },
+      "corrections": []
+    },
+    {
       "no": 33,
       "slug": "2026-11-19-the-stadium-atlas",
       "date": "2026-11-19",

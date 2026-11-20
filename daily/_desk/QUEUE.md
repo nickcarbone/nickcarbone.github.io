@@ -24,16 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Paper Trail That Exposed the Truth
-Create an interactive HTML guide to official stories, popular myths and accepted histories that changed when ordinary records surfaced: court filings, company registries, property deeds, shipping manifests, procurement records, financial documents, declassified files, forensic findings and forgotten testimony.
-For each case, give the original story and the evidence behind it, then reconstruct the discovery: the original question, the overlooked record, the connection it exposed, and how understanding changed afterwards.
-Show how separate pieces of seemingly unremarkable information can combine into a compelling evidentiary chain.
-Separate what the records prove directly from what investigators inferred and from contested interpretation; do not treat unsupported conspiracy theories as equivalent to documented evidence.
-Build an interactive evidence graph connecting people, organizations, dates, places, and documents, with an evidence timeline and a "myth versus evidence" comparison for each case.
-Focus on revelations that genuinely changed our understanding of history, power, or public memory.
-Avoid: dish and cocktail origin claims (No. 6 and No. 25 cover those), and leaning on the Cold War for cases.
-Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
-
 Legal Yesterday
 Create an interactive HTML guide to forgotten laws that reveal surprising, disturbing, or consequential aspects of everyday life in the past.
 Investigate historical restrictions on movement, work, property, family life, commerce, personal freedoms, and public behavior.

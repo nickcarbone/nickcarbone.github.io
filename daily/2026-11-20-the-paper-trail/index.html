@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Paper Trail · Daily</title>
+<meta name="description" content="Twelve official stories, myths and accepted histories that gave way when an ordinary record surfaced, and how each chain of evidence was put together.">
+<meta property="og:title" content="The Paper Trail">
+<meta property="og:description" content="Twelve official stories, myths and accepted histories that gave way when an ordinary record surfaced, and how each chain of evidence was put together.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-20-the-paper-trail/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-20-the-paper-trail/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@600;800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --board:#dcd8cc; --paper:#f7f5ef; --card:#fffefa; --ink:#1c1d1f; --graphite:#4b4f54; --rule:#b9b4a6;
+  --tape:#e8650f; --tape-ink:#a63c00; --hl:#f4e46a;
+  --c-p:#2c5a85; --c-o:#6a4a8c; --c-l:#3b7046; --c-r:#a63c00;
+  --stencil:"Big Shoulders Stencil Display", "Arial Narrow", Impact, sans-serif;
+  --serif:"IBM Plex Serif", Georgia, serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --cond:"IBM Plex Sans Condensed", "Arial Narrow", sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--board);color:var(--ink);font:17px/1.6 var(--serif);
+  background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:5px 5px}
+a{color:var(--tape-ink)}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--tape);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.strip{background:var(--ink);color:#f0ede4;font:500 14px/1 var(--mono);letter-spacing:.02em}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;flex-wrap:wrap}
+.strip a{color:#ffb27a;text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.strip a:hover{text-decoration:underline}
+/* hero */
+.hero{position:relative;padding:44px 0 30px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.kicker{font:600 13px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.14em;color:var(--graphite);margin:0 0 10px}
+.kicker b{background:var(--tape);color:#1c1d1f;padding:3px 7px;font-weight:600}
+h1{font:800 clamp(64px,13vw,148px)/.86 var(--stencil);letter-spacing:.005em;margin:0;text-transform:uppercase}
+.dek{font:400 clamp(19px,2.2vw,23px)/1.45 var(--serif);max-width:34ch;margin:18px 0 0}
+.byline{font:13px/1.5 var(--mono);color:var(--graphite);margin-top:16px}
+.hero svg{width:100%;height:auto;display:block}
+@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero svg{max-width:440px;margin:0 auto}}
+/* body text */
+main{padding-bottom:40px}
+.prose{background:var(--paper);padding:30px clamp(18px,4vw,44px);border:1px solid var(--rule);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.prose p{max-width:66ch}
+.prose p:first-child::first-letter{font:800 3.4em/0.8 var(--stencil);float:left;margin:.08em .08em 0 0;color:var(--tape-ink)}
+h2{font:800 clamp(38px,6vw,60px)/.95 var(--stencil);text-transform:uppercase;margin:52px 0 6px;letter-spacing:.01em}
+h2 + .sub{font:15px/1.5 var(--mono);color:var(--graphite);margin:0 0 20px;max-width:70ch}
+sup.ref{font:600 11px/1 var(--mono);margin-left:1px}
+sup.ref a{text-decoration:none;color:var(--tape-ink);padding:0 1px}
+sup.ref a:hover{text-decoration:underline}
+/* patterns */
+.patterns{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px;list-style:none;padding:0;margin:0}
+.patterns li{background:var(--card);border:1px solid var(--rule);padding:16px 18px 14px;position:relative}
+.patterns li::before{content:"";position:absolute;left:-1px;top:-1px;width:58px;height:8px;background:var(--tape)}
+.patterns h3{font:600 18px/1.25 var(--cond);margin:6px 0 6px;text-transform:uppercase;letter-spacing:.03em}
+.patterns p{margin:0;font-size:16px}
+.patterns .see{display:block;font:13px/1.5 var(--mono);color:var(--graphite);margin-top:8px}
+.patterns .see a{color:var(--tape-ink)}
+/* spans */
+.spans{list-style:none;padding:20px clamp(14px,3vw,26px);margin:0;background:var(--card);border:1px solid var(--rule)}
+.spans li{display:grid;grid-template-columns:minmax(150px,230px) 1fr minmax(150px,250px);gap:6px 16px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--rule)}
+.spans li:last-child{border-bottom:0}
+.sp-name{font:600 15px/1.25 var(--cond);color:var(--ink);text-decoration:none;min-height:40px;display:flex;align-items:center}
+.sp-name:hover{color:var(--tape-ink);text-decoration:underline}
+.sp-bar{height:14px;background:#ebe7dc}
+.sp-bar span{display:block;height:100%;background:var(--ink);border-right:6px solid var(--tape)}
+.sp-lab{font:13px/1.35 var(--mono)}
+.sp-lab span{color:var(--graphite);display:block}
+.scale{display:flex;justify-content:space-between;font:12px/1 var(--mono);color:var(--graphite);margin:8px 0 0}
+@media (max-width:700px){.spans li{grid-template-columns:1fr}.sp-name{min-height:40px}}
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;position:sticky;top:0;z-index:5;background:var(--board);padding:10px 0;border-bottom:2px solid var(--ink)}
+.filters .lbl{font:600 12px/40px var(--mono);text-transform:uppercase;letter-spacing:.1em;margin-right:4px}
+.chip{font:600 14px/1 var(--cond);min-height:40px;padding:0 13px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer;text-transform:uppercase;letter-spacing:.03em}
+.chip.on{background:var(--ink);color:#fff}
+.chip:hover{border-color:var(--tape)}
+@media (max-width:600px){.filters{position:static}}
+/* case */
+.case{background:var(--paper);border:1px solid var(--rule);margin:0 0 34px;padding:0 0 22px;box-shadow:0 2px 0 rgba(0,0,0,.05);scroll-margin-top:70px}
+.case[hidden]{display:none}
+.case-head{display:flex;gap:18px;align-items:stretch;border-bottom:2px solid var(--ink);padding:0;background:var(--card)}
+.exhibit{background:var(--tape);color:#1c1d1f;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:92px;padding:12px 8px;
+  background-image:repeating-linear-gradient(-45deg,rgba(0,0,0,.09) 0 8px,transparent 8px 16px)}
+.ex-l{font:600 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.18em}
+.ex-n{font:800 54px/1 var(--stencil)}
+.case-titles{padding:16px 18px 14px 0;min-width:0}
+.case h3{font:800 clamp(30px,4.4vw,44px)/1 var(--stencil);text-transform:uppercase;margin:0;letter-spacing:.01em}
+.where{font:13px/1.4 var(--mono);color:var(--graphite);margin:6px 0 4px}
+.record{margin:0 0 6px;font-style:italic}
+.record span{font:600 11px/1 var(--mono);font-style:normal;text-transform:uppercase;letter-spacing:.12em;background:var(--hl);padding:3px 6px;margin-right:6px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:12px/1 var(--mono);border:1px solid var(--graphite);padding:4px 6px;color:var(--graphite)}
+.mve{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--rule)}
+.side{padding:18px clamp(16px,3vw,28px)}
+.side p{margin:0}
+.side h4,.chainwrap h4,.graphwrap h4{font:600 13px/1 var(--mono);text-transform:uppercase;letter-spacing:.16em;margin:0 0 10px}
+.story{background:repeating-linear-gradient(0deg,transparent 0 27px,rgba(44,90,133,.12) 27px 28px);color:#2b2c2f}
+.story h4{color:var(--graphite)}
+.story h4::after{content:" · as told";font-weight:400}
+.evid{border-left:1px solid var(--rule)}
+.evid h4{color:var(--tape-ink)}
+.evid h4::after{content:" · as found";font-weight:400}
+@media (max-width:760px){.mve{grid-template-columns:1fr}.evid{border-left:0;border-top:1px dashed var(--rule)}.exhibit{min-width:64px}.ex-n{font-size:40px}.case-head{gap:12px}}
+.chainwrap{padding:20px clamp(16px,3vw,28px) 6px}
+.chain{list-style:none;margin:0;padding:0;position:relative}
+.chain::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;border-left:2px dashed var(--tape)}
+.chain li{position:relative;padding:0 0 12px 30px;display:grid;grid-template-columns:132px 1fr;gap:4px 14px}
+.chain li::before{content:"";position:absolute;left:0;top:5px;width:16px;height:16px;background:var(--card);border:2px solid var(--ink);border-radius:50%}
+.cd{font:600 14px/1.5 var(--mono)}
+.ct{font-size:16.5px}
+@media (max-width:560px){.chain li{grid-template-columns:1fr}}
+.graphwrap{margin:10px clamp(16px,3vw,28px) 0;padding:16px;background:var(--card);border:1px solid var(--rule)}
+.ghelp{margin:0 0 8px;font:14px/1.4 var(--mono);color:var(--graphite)}
+.graph svg{display:block;width:100%;height:auto;touch-action:manipulation}
+.graph .edge{stroke:#8f8a7d;stroke-width:1.3}
+.graph .edge.hot{stroke:var(--tape);stroke-width:3}
+.graph .node{cursor:pointer}
+.graph .node .dot{stroke:#fff;stroke-width:2}
+.graph .node.dim{opacity:.28}
+.graph .node.sel .dot{stroke:var(--ink);stroke-width:3}
+.graph .node text{font:500 11.5px var(--cond);fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:4px;stroke-linejoin:round}
+.graph .node .num{fill:#fff;stroke:none;font:600 12px var(--mono)}
+.nodelist{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:6px}
+.nodelist li{font-size:16px}
+.nodelist button{all:unset;box-sizing:border-box;display:flex;gap:8px;align-items:center;width:100%;min-height:40px;padding:6px 8px;border:1px solid var(--rule);background:var(--paper);cursor:pointer;font:500 16px/1.25 var(--cond)}
+.nodelist button[aria-pressed="true"]{border-color:var(--ink);background:var(--hl)}
+.nodelist .k{font:600 12px/1 var(--mono);color:#fff;min-width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%}
+.nt{font:600 10px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:3px 5px;color:#fff;margin-right:4px}
+.nt-p,.k.t-p{background:var(--c-p)}.nt-o,.k.t-o{background:var(--c-o)}.nt-l,.k.t-l{background:var(--c-l)}.nt-r,.k.t-r{background:var(--c-r)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font:12px/1 var(--mono);margin:0 0 8px}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.gdetail{margin-top:10px;font-size:16px}
+.gdetail:empty{display:none}
+.gdetail b{font-family:var(--cond);font-weight:600}
+.gdetail ul{margin:6px 0 0;padding-left:18px}
+.gdetail em{color:var(--tape-ink);font-style:normal;font-family:var(--mono);font-size:14px}
+.ledger{margin:18px clamp(16px,3vw,28px) 0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid var(--ink)}
+.lg{padding:12px 14px}
+.lg + .lg{border-left:1.5px solid var(--ink)}
+.lg dt{font:600 12px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.lg dd{margin:0;font-size:16px}
+.lg-p dt::before{content:"■ ";color:var(--ink)}
+.lg-i dt::before{content:"◩ ";color:var(--graphite)}
+.lg-c dt::before{content:"□ ";color:var(--tape-ink)}
+.lg-p{background:#efece2}
+@media (max-width:760px){.ledger{grid-template-columns:1fr}.lg + .lg{border-left:0;border-top:1.5px solid var(--ink)}}
+/* sources & footer */
+.sources{background:var(--paper);border:1px solid var(--rule);padding:22px clamp(16px,4vw,36px)}
+.sources ol{margin:0;padding-left:2.4em;columns:2 380px;column-gap:36px;font-size:15.5px}
+.sources li{break-inside:avoid;margin:0 0 9px;scroll-margin-top:80px}
+.sources li:target{background:var(--hl)}
+.sources a{word-break:break-word}
+.pub{display:block;font:13px/1.4 var(--mono);color:var(--graphite)}
+.method{font-size:16px;max-width:70ch}
+footer{background:var(--ink);color:#e9e5da;padding:28px 0 36px;font:14px/1.6 var(--mono);margin-top:40px}
+footer a{color:#ffb27a;display:inline-flex;align-items:center;min-height:40px}
+footer p{margin:4px 0}
+@media (prefers-reduced-motion:no-preference){.thread{stroke-dasharray:6 5;animation:crawl 30s linear infinite}@keyframes crawl{to{stroke-dashoffset:-220}}}
+@media (max-width:480px){body{font-size:17px}.wrap{padding:0 16px}.strip .wrap{font-size:12.5px}}
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 034 · Friday 20 November 2026</span></div></div>
+
+<header class="hero">
+ <div class="wrap">
+  <div>
+   <p class="kicker"><b>Casebook</b> &nbsp;Twelve exhibits</p>
+   <h1>The Paper Trail</h1>
+   <p class="dek">Twelve official stories, myths and accepted histories that gave way when an ordinary record surfaced, and how each chain of evidence was put together.</p>
+   <p class="byline">Published 20 November 2026 · 59 sources</p>
+  </div>
+  <svg viewBox="0 0 440 360" role="img" aria-labelledby="heroT">
+   <title id="heroT">Four documents pinned to a board and joined by orange thread: a cheque, a sheet of squared paper, a certificate and a map</title>
+   <defs>
+    <pattern id="sq" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke="#7fa1c4" stroke-width=".8"/></pattern>
+    <pattern id="sq2" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke="#a7a39a" stroke-width=".8"/></pattern>
+   </defs>
+   <!-- squared paper, two shades -->
+   <g transform="rotate(-6 120 110)">
+    <rect x="40" y="30" width="150" height="170" fill="#fffefa" stroke="#b9b4a6"/>
+    <rect x="40" y="30" width="150" height="46" fill="url(#sq)"/>
+    <rect x="40" y="76" width="150" height="124" fill="url(#sq2)"/>
+    <path d="M40 76h150" stroke="#e8650f" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <path d="M56 100h96M56 116h110M56 132h80M56 148h104" stroke="#3a3b3e" stroke-width="2"/>
+    <path d="M120 176c10-8 18 6 28-2s16 4 24-3" fill="none" stroke="#1c1d1f" stroke-width="1.6"/>
+   </g>
+   <!-- cheque -->
+   <g transform="rotate(4 330 70)">
+    <rect x="236" y="34" width="188" height="84" fill="#eef1e4" stroke="#9aa08a"/>
+    <path d="M236 52h188" stroke="#9aa08a"/>
+    <text x="246" y="47" font-family="IBM Plex Mono,monospace" font-size="9" fill="#4b4f54">CASHIER’S CHEQUE</text>
+    <rect x="352" y="62" width="62" height="18" fill="#fffefa" stroke="#9aa08a"/>
+    <text x="356" y="75" font-family="IBM Plex Mono,monospace" font-size="11" font-weight="600" fill="#1c1d1f">$25,000</text>
+    <path d="M246 74h90M246 96h160" stroke="#9aa08a"/>
+    <path d="M250 108l130 0" stroke="#4b4f54" stroke-width="1" stroke-dasharray="1 3"/>
+   </g>
+   <!-- certificate -->
+   <g transform="rotate(-3 120 290)">
+    <rect x="30" y="230" width="170" height="112" fill="#fffefa" stroke="#b9b4a6"/>
+    <rect x="38" y="238" width="154" height="96" fill="none" stroke="#6a4a8c" stroke-width="1"/>
+    <text x="115" y="256" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="8.5" fill="#6a4a8c">CERTIFICATE OF REGISTRY</text>
+    <path d="M52 272h126M52 288h100M52 304h118" stroke="#a7a39a" stroke-width="2"/>
+    <circle cx="170" cy="318" r="11" fill="none" stroke="#a63c00" stroke-width="1.5"/>
+   </g>
+   <!-- map -->
+   <g transform="rotate(5 330 260)">
+    <rect x="240" y="170" width="180" height="150" fill="#e7ecde" stroke="#9aa08a"/>
+    <path d="M240 280c30-12 50 10 80-6s50-20 100-8" fill="none" stroke="#7fa1c4" stroke-width="7"/>
+    <path d="M262 190h44v36h-44zM320 196h58v24h-58zM270 236h30v26h-30z" fill="none" stroke="#3b7046" stroke-width="1.4"/>
+    <path d="M332 240l26 0 0 22-26 0z" fill="#e8650f" opacity=".85"/>
+    <text x="345" y="256" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" font-weight="600" fill="#1c1d1f">X</text>
+   </g>
+   <!-- thread -->
+   <path class="thread" d="M128 66 L300 72 L345 251 L170 316 L128 66" fill="none" stroke="#e8650f" stroke-width="2.4"/>
+   <g fill="#1c1d1f"><circle cx="128" cy="66" r="6"/><circle cx="300" cy="72" r="6"/><circle cx="345" cy="251" r="6"/><circle cx="170" cy="316" r="6"/></g>
+   <g fill="#e8650f"><circle cx="128" cy="66" r="2.4"/><circle cx="300" cy="72" r="2.4"/><circle cx="345" cy="251" r="2.4"/><circle cx="170" cy="316" r="2.4"/></g>
+  </svg>
+ </div>
+</header>
+
+<main class="wrap">
+ <section class="prose" aria-label="Introduction">
+  <p>Every story in this casebook was settled once. The popes held Rome and the West by an emperor’s gift. A Jewish officer sold secrets to Germany. A Sussex gravel pit had yielded an early human ancestor. Football fans caused the deaths at Hillsborough. The Post Office’s computers were sound, so branch shortfalls were the subpostmasters’ to make good. Each version had institutions behind it, and some had courts.</p>
+  <p>What brought them down was usually unglamorous: a sheet of squared paper whose lines changed colour halfway down, a cashier’s cheque in the wrong bank account, a stack of death certificates with no burial records to match, a fault log kept by a contractor. On its own, each record proved little. Placed beside the official account, it showed that the account could not be true.</p>
+  <p>The twelve exhibits below reconstruct how that happened. Each sets the story as it was told against the record as it was found, traces the chain of discovery, maps the people, institutions, places and documents involved, and separates what the records prove from what investigators inferred and what is still argued over. Food-origin myths, covered in earlier Daily pieces, are left aside, and so are the Cold War’s many reopened files.</p>
+ </section>
+
+ <h2 id="patterns">How a record breaks a story</h2>
+ <p class="sub">The same few moves recur across five centuries.</p>
+ <ul class="patterns">
+  <li><h3>It could not exist yet</h3><p>A word, a paper additive or a chemical signature belongs to a later age than the object claims. Valla’s satraps and the fluorescent paper of Stern’s diaries fail the same test.</p><span class="see">See <a href="#donation">01</a>, <a href="#piltdown">03</a>, <a href="#diaries">06</a></span></li>
+  <li><h3>Money leaves tracks</h3><p>Cash disappears, but cheques have dates, account numbers and the names of the people who bought them.</p><span class="see">See <a href="#watergate">04</a></span></li>
+  <li><h3>Old registers, read again</h3><p>Death certificates, insurance maps and ship registries outlast the people who filed them. At Tuam the deaths were registered and the burials were not, and that gap was the evidence.</p><span class="see">See <a href="#richard">09</a>, <a href="#tuam">10</a>, <a href="#clotilda">12</a></span></li>
+  <li><h3>The file was edited</h3><p>A forged letter pieced from two sheets; police statements revised before they reached the inquiry. Comparing versions exposes the hand.</p><span class="see">See <a href="#dreyfus">02</a>, <a href="#hillsborough">08</a></span></li>
+  <li><h3>The institution wrote it down</h3><p>Organisations record their own decisions and faults. Tuskegee’s correspondence and Fujitsu’s Known Error Log were evidence against the bodies that kept them.</p><span class="see">See <a href="#tuskegee">05</a>, <a href="#horizon">11</a></span></li>
+  <li><h3>The witnesses waited</h3><p>Testimony set aside for decades, from Derry residents to the last survivors of the slave trade, was finally weighed against the physical record.</p><span class="see">See <a href="#bloodysunday">07</a>, <a href="#clotilda">12</a></span></li>
+ </ul>
+
+ <h2 id="spans">How long the story held</h2>
+ <p class="sub">Time from the official or accepted version to the record that broke it, on a logarithmic scale: eleven days at the short end, about seven centuries at the long.</p>
+ <ol class="spans"><li><a href="#diaries" class="sp-name">The Hitler Diaries</a><div class="sp-bar"><span style="width:3.9%"></span></div><div class="sp-lab"><b>11 days</b> <span>published 25 Apr 1983 · declared forged 6 May</span></div></li><li><a href="#watergate" class="sp-name">The Watergate money trail</a><div class="sp-bar"><span style="width:17.2%"></span></div><div class="sp-lab"><b>about 6 weeks</b> <span>arrests 17 Jun 1972 · cheque reported 1 Aug</span></div></li><li><a href="#dreyfus" class="sp-name">The Dreyfus affair</a><div class="sp-bar"><span style="width:50.0%"></span></div><div class="sp-lab"><b>4 years</b> <span>convicted 1894 · forgery found 1898</span></div></li><li><a href="#horizon" class="sp-name">The Post Office Horizon scandal</a><div class="sp-bar"><span style="width:65.2%"></span></div><div class="sp-lab"><b>20 years</b> <span>first prosecutions 1999 · judgment 2019</span></div></li><li><a href="#hillsborough" class="sp-name">Hillsborough</a><div class="sp-bar"><span style="width:66.6%"></span></div><div class="sp-lab"><b>23 years</b> <span>disaster 1989 · Panel report 2012</span></div></li><li><a href="#bloodysunday" class="sp-name">Bloody Sunday</a><div class="sp-bar"><span style="width:71.3%"></span></div><div class="sp-lab"><b>38 years</b> <span>Widgery 1972 · Saville 2010</span></div></li><li><a href="#tuskegee" class="sp-name">The Tuskegee syphilis study</a><div class="sp-bar"><span style="width:71.8%"></span></div><div class="sp-lab"><b>40 years</b> <span>began 1932 · exposed 1972</span></div></li><li><a href="#piltdown" class="sp-name">Piltdown Man</a><div class="sp-bar"><span style="width:72.0%"></span></div><div class="sp-lab"><b>41 years</b> <span>announced 1912 · exposed 1953</span></div></li><li><a href="#tuam" class="sp-name">The Tuam children’s burials</a><div class="sp-bar"><span style="width:75.0%"></span></div><div class="sp-lab"><b>56 years</b> <span>home closed 1961 · remains confirmed 2017</span></div></li><li><a href="#clotilda" class="sp-name">The Clotilda</a><div class="sp-bar"><span style="width:84.8%"></span></div><div class="sp-lab"><b>159 years</b> <span>ship burned 1860 · wreck identified 2019</span></div></li><li><a href="#richard" class="sp-name">Richard III under the car park</a><div class="sp-bar"><span style="width:96.1%"></span></div><div class="sp-lab"><b>527 years</b> <span>buried 1485 · found 2012</span></div></li><li><a href="#donation" class="sp-name">The Donation of Constantine</a><div class="sp-bar"><span style="width:98.3%"></span></div><div class="sp-lab"><b>c. 650–700 years</b> <span>written c. 750–800 · exposed 1440</span></div></li></ol>
+
+ <h2 id="cases">The exhibits</h2>
+ <p class="sub">Filter by the kind of record that did the work. Each case links its claims to the numbered sources at the end.</p>
+ <div class="filters" role="group" aria-label="Filter cases by record type"><span class="lbl">Record type</span><button type="button" class="chip on" data-f="all" aria-pressed="true">All twelve</button><button type="button" class="chip" data-f="text-analysis" aria-pressed="false">Text analysis</button><button type="button" class="chip" data-f="paper-and-ink" aria-pressed="false">Paper and ink</button><button type="button" class="chip" data-f="scientific-testing" aria-pressed="false">Scientific testing</button><button type="button" class="chip" data-f="financial-records" aria-pressed="false">Financial records</button><button type="button" class="chip" data-f="internal-files" aria-pressed="false">Internal files</button><button type="button" class="chip" data-f="court-records" aria-pressed="false">Court records</button><button type="button" class="chip" data-f="registers-and-maps" aria-pressed="false">Registers and maps</button><button type="button" class="chip" data-f="testimony" aria-pressed="false">Testimony</button></div>
+ <div id="caselist">
+<article class="case" id="donation" data-tags="text-analysis">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">01</span></div>
+  <div class="case-titles">
+   <h3>The Donation of Constantine</h3>
+   <p class="where">Rome, 8th–15th centuries</p>
+   <p class="record"><span>The record</span> The document’s own Latin</p>
+   <div class="tags"><span class="tag">Text analysis</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>For six centuries, popes and canon lawyers could point to a decree in which the Emperor Constantine, cured of leprosy and baptised by Pope Sylvester I, handed the papacy primacy over the great sees, the Lateran palace, the imperial insignia and authority over Rome, Italy and the western provinces <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup>. One modern editor calls it “almost universally accepted as genuine from the ninth to the fifteenth century” <sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup>.</p></section>
+  <section class="side evid"><h4>The record</h4><p>Lorenzo Valla needed no new archive. He read the decree as a fourth-century text and showed it could not be one. Its Latin was not the Latin of Constantine’s time <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup>. It gave Roman officials the Persian title of satrap, which Valla said no Roman council had ever used <sup class="ref"><a href="#s3" aria-label="Source 3">3</a></sup><sup class="ref"><a href="#s4" aria-label="Source 4">4</a></sup>. And it spoke of Constantinople at a moment when, on the document’s own telling, the city was still Byzantium <sup class="ref"><a href="#s4" aria-label="Source 4">4</a></sup>. Scholars now place its writing in the second half of the eighth century, probably in Rome <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup><sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">c. 750–800</span><span class="ct">An unknown cleric composes the <i>Constitutum Constantini</i>; Paul I’s pontificate (757–767) is one editor’s most probable date <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup><sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup>.</span></li><li><span class="cd">c. 1000</span><span class="ct">Doubts are raised in the circle of the Emperor Otto III <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup>.</span></li><li><span class="cd">1049–54</span><span class="ct">Leo IX becomes the first pope to cite the Donation in an official act; it passes into canon-law collections <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup>.</span></li><li><span class="cd">1440</span><span class="ct">Valla, secretary to Alfonso of Aragon, then in conflict with Pope Eugenius IV, writes his <i>Declamatio</i> exposing the forgery. It circulates in manuscript <sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup><sup class="ref"><a href="#s3" aria-label="Source 3">3</a></sup>.</span></li><li><span class="cd">1517</span><span class="ct">Ulrich von Hutten prints Valla’s treatise for the first time <sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup><sup class="ref"><a href="#s3" aria-label="Source 3">3</a></sup>.</span></li><li><span class="cd">1534</span><span class="ct">An English translation is published for Thomas Cromwell, during the break with Rome <sup class="ref"><a href="#s3" aria-label="Source 3">3</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="donation">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-p">Person</span> Constantine I</li><li><span class="nt nt-p">Person</span> Pope Sylvester I</li><li><span class="nt nt-r">Record</span> Constitutum Constantini</li><li><span class="nt nt-l">Place</span> Lateran, Rome</li><li><span class="nt nt-p">Person</span> Pope Leo IX</li><li><span class="nt nt-p">Person</span> Lorenzo Valla</li><li><span class="nt nt-p">Person</span> Alfonso of Aragon</li><li><span class="nt nt-p">Person</span> Pope Eugenius IV</li><li><span class="nt nt-r">Record</span> Valla’s Declamatio</li><li><span class="nt nt-p">Person</span> Ulrich von Hutten</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>The vocabulary, titles and place-names are impossible in a fourth-century imperial decree <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup><sup class="ref"><a href="#s4" aria-label="Source 4">4</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>Who wrote it, where, and why. Rome and the papal chancery are the usual answers, and the purpose is usually read as strengthening the papacy’s position as it turned away from Byzantium <sup class="ref"><a href="#s2" aria-label="Source 2">2</a></sup>.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>The exact decade of composition: Britannica gives 750–800, and some scholars argue for later dates <sup class="ref"><a href="#s1" aria-label="Source 1">1</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="case" id="dreyfus" data-tags="paper-and-ink internal-files">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">02</span></div>
+  <div class="case-titles">
+   <h3>The Dreyfus affair</h3>
+   <p class="where">Paris, 1894–1906</p>
+   <p class="record"><span>The record</span> A sheet of squared paper</p>
+   <div class="tags"><span class="tag">Paper and ink</span><span class="tag">Internal files</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>Captain Alfred Dreyfus, a Jewish artillery officer on the French General Staff, was said to have written the <i>bordereau</i>, an unsigned list of military documents offered to the German military attaché, Maximilian von Schwartzkoppen. A court-martial convicted him unanimously in December 1894, and he was publicly degraded in January 1895 <sup class="ref"><a href="#s6" aria-label="Source 6">6</a></sup>.</p></section>
+  <section class="side evid"><h4>The record</h4><p>In 1896 Lt Col Georges Picquart, newly in charge of army intelligence, obtained a <i>petit bleu</i>, a letter-card from Schwartzkoppen to Major Ferdinand Walsin-Esterhazy, recovered from the German embassy’s wastepaper <sup class="ref"><a href="#s7" aria-label="Source 7">7</a></sup>. Esterhazy’s handwriting matched the bordereau <sup class="ref"><a href="#s5" aria-label="Source 5">5</a></sup>. The case against Dreyfus had meanwhile been shored up by a letter naming him, produced by Major Hubert-Joseph Henry in October 1896 <sup class="ref"><a href="#s6" aria-label="Source 6">6</a></sup>. In August 1898 Captain Louis Cuignet examined it by lamplight and saw that the ruled squares were not the same colour at the top and bottom: the heading and signature came from a genuine letter of 1894, pieced into one dated 1896 <sup class="ref"><a href="#s5" aria-label="Source 5">5</a></sup>. Henry confessed on 30 August and died by suicide in his cell the next day <sup class="ref"><a href="#s5" aria-label="Source 5">5</a></sup><sup class="ref"><a href="#s7" aria-label="Source 7">7</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">26 Sep 1894</span><span class="ct">French intelligence intercepts the bordereau <sup class="ref"><a href="#s6" aria-label="Source 6">6</a></sup>.</span></li><li><span class="cd">Dec 1894</span><span class="ct">Dreyfus is convicted by court-martial <sup class="ref"><a href="#s6" aria-label="Source 6">6</a></sup>.</span></li><li><span class="cd">1896</span><span class="ct">The petit bleu addressed to Esterhazy is intercepted in March; accounts differ on when Picquart first saw it <sup class="ref"><a href="#s6" aria-label="Source 6">6</a></sup><sup class="ref"><a href="#s7" aria-label="Source 7">7</a></sup>.</span></li><li><span class="cd">1896</span><span class="ct">Comparing samples, Picquart finds Esterhazy’s hand matches the bordereau <sup class="ref"><a href="#s5" aria-label="Source 5">5</a></sup>.</span></li><li><span class="cd">31 Oct 1896</span><span class="ct">Henry produces the forged letter naming Dreyfus, later called the <i>faux Henry</i> <sup class="ref"><a href="#s6" aria-label="Source 6">6</a></sup>.</span></li><li><span class="cd">Jan 1898</span><span class="ct">Esterhazy is acquitted by court-martial; Émile Zola publishes “J’accuse” <sup class="ref"><a href="#s8" aria-label="Source 8">8</a></sup>.</span></li><li><span class="cd">13 Aug 1898</span><span class="ct">Cuignet spots the mismatched lines on the forgery <sup class="ref"><a href="#s6" aria-label="Source 6">6</a></sup>.</span></li><li><span class="cd">30–31 Aug 1898</span><span class="ct">Henry confesses to the war minister, Godefroy Cavaignac, and dies in custody <sup class="ref"><a href="#s5" aria-label="Source 5">5</a></sup><sup class="ref"><a href="#s7" aria-label="Source 7">7</a></sup>.</span></li><li><span class="cd">Sep 1899</span><span class="ct">A second court-martial at Rennes convicts him again, with extenuating circumstances; he is pardoned days later <sup class="ref"><a href="#s6" aria-label="Source 6">6</a></sup>.</span></li><li><span class="cd">12 Jul 1906</span><span class="ct">The Cour de cassation annuls the Rennes verdict and Dreyfus is rehabilitated <sup class="ref"><a href="#s6" aria-label="Source 6">6</a></sup><sup class="ref"><a href="#s8" aria-label="Source 8">8</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="dreyfus">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-p">Person</span> Alfred Dreyfus</li><li><span class="nt nt-p">Person</span> Ferdinand Esterhazy</li><li><span class="nt nt-p">Person</span> Max von Schwartzkoppen</li><li><span class="nt nt-p">Person</span> Georges Picquart</li><li><span class="nt nt-p">Person</span> Hubert-Joseph Henry</li><li><span class="nt nt-p">Person</span> Louis Cuignet</li><li><span class="nt nt-r">Record</span> The bordereau</li><li><span class="nt nt-r">Record</span> The petit bleu</li><li><span class="nt nt-r">Record</span> The faux Henry</li><li><span class="nt nt-l">Place</span> German embassy, Paris</li><li><span class="nt nt-o">Organisation</span> Cour de cassation</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>The faux Henry was physically assembled from two documents, and its maker confessed <sup class="ref"><a href="#s5" aria-label="Source 5">5</a></sup><sup class="ref"><a href="#s7" aria-label="Source 7">7</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>That Esterhazy wrote the bordereau, from the handwriting and the petit bleu. He was acquitted in 1898 and never convicted <sup class="ref"><a href="#s5" aria-label="Source 5">5</a></sup><sup class="ref"><a href="#s8" aria-label="Source 8">8</a></sup>.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>How far the cover-up reached inside the General Staff, and Henry’s motives. Even the discovery has two versions: a contemporary report in <i>The Spectator</i> credits Cavaignac’s orders and does not name Cuignet <sup class="ref"><a href="#s9" aria-label="Source 9">9</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="case" id="piltdown" data-tags="scientific-testing">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">03</span></div>
+  <div class="case-titles">
+   <h3>Piltdown Man</h3>
+   <p class="where">Sussex and London, 1912–2016</p>
+   <p class="record"><span>The record</span> Fluorine levels in bone</p>
+   <div class="tags"><span class="tag">Scientific testing</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>In December 1912 Charles Dawson and Arthur Smith Woodward of the British Museum (Natural History) presented a skull and jaw from gravel at Piltdown, Sussex, to the Geological Society as a new early human, <i>Eoanthropus dawsoni</i> <sup class="ref"><a href="#s10" aria-label="Source 10">10</a></sup><sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>. Leading anatomists backed it, and its standing helped push aside Raymond Dart’s Taung skull from South Africa in 1925 <sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>.</p></section>
+  <section class="side evid"><h4>The record</h4><p>Kenneth Oakley’s fluorine test in 1949 showed the bones were far younger than claimed, around 50,000 years <sup class="ref"><a href="#s10" aria-label="Source 10">10</a></sup><sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>. In 1953 Joseph Weiner grew suspicious of the teeth. Under the microscope the molars and canine proved to have been filed; an improved fluorine test showed that the jaw and skull were of different ages; the staining was artificial; and the jaw was an orangutan’s <sup class="ref"><a href="#s10" aria-label="Source 10">10</a></sup><sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>. Weiner, Oakley and Wilfrid Le Gros Clark called it “a most elaborate and carefully prepared hoax” <sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>. In 2016 a team using DNA and CT scanning found one orangutan and at least two humans, possibly medieval, behind the finds, assembled with the same method throughout, and named Dawson the most likely forger <sup class="ref"><a href="#s11" aria-label="Source 11">11</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">Dec 1912</span><span class="ct">Dawson and Smith Woodward announce the find at the Geological Society <sup class="ref"><a href="#s10" aria-label="Source 10">10</a></sup><sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>.</span></li><li><span class="cd">1925</span><span class="ct">Piltdown’s standing helps sideline Dart’s Taung skull <sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>.</span></li><li><span class="cd">1949</span><span class="ct">Oakley’s fluorine test dates the remains to about 50,000 years <sup class="ref"><a href="#s10" aria-label="Source 10">10</a></sup><sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>.</span></li><li><span class="cd">20 Nov 1953</span><span class="ct">Weiner, Oakley and Le Gros Clark publish “The solution of the Piltdown problem” in the museum’s <i>Bulletin</i> <sup class="ref"><a href="#s10" aria-label="Source 10">10</a></sup><sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>.</span></li><li><span class="cd">1959</span><span class="ct">Radiocarbon dating puts the skullcap at roughly 520–720 years old <sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>.</span></li><li><span class="cd">Aug 2016</span><span class="ct">De Groote, Stringer and colleagues publish DNA and CT evidence pointing to a single forger, most likely Dawson <sup class="ref"><a href="#s11" aria-label="Source 11">11</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="piltdown">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-p">Person</span> Charles Dawson</li><li><span class="nt nt-p">Person</span> Arthur Smith Woodward</li><li><span class="nt nt-l">Place</span> Piltdown gravel pit</li><li><span class="nt nt-r">Record</span> Skull and jaw</li><li><span class="nt nt-o">Organisation</span> Geological Society</li><li><span class="nt nt-p">Person</span> Kenneth Oakley</li><li><span class="nt nt-p">Person</span> Joseph Weiner</li><li><span class="nt nt-p">Person</span> W. Le Gros Clark</li><li><span class="nt nt-r">Record</span> 1953 Bulletin paper</li><li><span class="nt nt-o">Organisation</span> Natural History Museum</li><li><span class="nt nt-r">Record</span> 2016 DNA/CT study</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>The jaw is an orangutan’s, the teeth were filed, the bones were stained and they are recent <sup class="ref"><a href="#s10" aria-label="Source 10">10</a></sup><sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>. The 2016 study showed one consistent method across the finds <sup class="ref"><a href="#s11" aria-label="Source 11">11</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>That Dawson was the forger. The museum calls him the likely fraudster; his motive is unknown <sup class="ref"><a href="#s11" aria-label="Source 11">11</a></sup>.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>Whether anyone helped him. Older accounts list many suspects and no consensus <sup class="ref"><a href="#s12" aria-label="Source 12">12</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="case" id="watergate" data-tags="financial-records">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">04</span></div>
+  <div class="case-titles">
+   <h3>The Watergate money trail</h3>
+   <p class="where">Washington and Miami, 1972–74</p>
+   <p class="record"><span>The record</span> A $25,000 cashier’s cheque</p>
+   <div class="tags"><span class="tag">Financial records</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>Five men were arrested inside the Democratic National Committee’s offices at the Watergate on 17 June 1972 <sup class="ref"><a href="#s16" aria-label="Source 16">16</a></sup>. In the first weeks there was nothing on the public record tying their cash to President Nixon’s re-election campaign.</p></section>
+  <section class="side evid"><h4>The record</h4><p>The money had left a paper trail. On 10 April 1972 Kenneth Dahlberg, a Midwest fundraiser for the campaign, obtained a $25,000 cashier’s cheque and handed it to the finance chairman, Maurice Stans. That cheque, and four cheques from a Mexico City bank totalling $89,000 payable to a lawyer, Manuel Ogarrio, were deposited on 20 April in a trust account of a company run by Bernard Barker, one of the burglars, at Republic National Bank of Miami <sup class="ref"><a href="#s13" aria-label="Source 13">13</a></sup>. On 1 August the <i>Washington Post</i> reported the $25,000 cheque, drawing on an investigator for the Miami prosecutor <sup class="ref"><a href="#s15" aria-label="Source 15">15</a></sup>; Dahlberg confirmed it was his <sup class="ref"><a href="#s17" aria-label="Source 17">17</a></sup>. The government’s auditors later traced the trail in full <sup class="ref"><a href="#s13" aria-label="Source 13">13</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">10–11 Apr 1972</span><span class="ct">Dahlberg’s $25,000 cashier’s cheque goes to Stans <sup class="ref"><a href="#s13" aria-label="Source 13">13</a></sup>.</span></li><li><span class="cd">20 Apr 1972</span><span class="ct">The Dahlberg cheque and $89,000 in Mexican cheques are deposited in Barker’s company account in Miami <sup class="ref"><a href="#s13" aria-label="Source 13">13</a></sup>.</span></li><li><span class="cd">17 Jun 1972</span><span class="ct">Five men are arrested at the DNC offices <sup class="ref"><a href="#s16" aria-label="Source 16">16</a></sup>.</span></li><li><span class="cd">23 Jun 1972</span><span class="ct">On tape, H. R. Haldeman tells Nixon the money is traceable; Nixon approves having the CIA ask the FBI to hold back <sup class="ref"><a href="#s14" aria-label="Source 14">14</a></sup>.</span></li><li><span class="cd">1 Aug 1972</span><span class="ct">Bob Woodward and Carl Bernstein report the cheque in the <i>Washington Post</i> <sup class="ref"><a href="#s15" aria-label="Source 15">15</a></sup>.</span></li><li><span class="cd">26 Aug 1972</span><span class="ct">The General Accounting Office refers apparent violations by the campaign’s finance committee to the Attorney General <sup class="ref"><a href="#s13" aria-label="Source 13">13</a></sup>.</span></li><li><span class="cd">5–8 Aug 1974</span><span class="ct">The 23 June tape is released; Nixon announces his resignation <sup class="ref"><a href="#s16" aria-label="Source 16">16</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="watergate">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-p">Person</span> Kenneth Dahlberg</li><li><span class="nt nt-p">Person</span> Maurice Stans</li><li><span class="nt nt-o">Organisation</span> Nixon campaign finance committee</li><li><span class="nt nt-r">Record</span> $25,000 cashier’s cheque</li><li><span class="nt nt-r">Record</span> $89,000 Mexican cheques</li><li><span class="nt nt-p">Person</span> Bernard Barker</li><li><span class="nt nt-l">Place</span> Republic National Bank, Miami</li><li><span class="nt nt-l">Place</span> DNC offices, Watergate</li><li><span class="nt nt-o">Organisation</span> The Washington Post</li><li><span class="nt nt-r">Record</span> GAO audit</li><li><span class="nt nt-r">Record</span> 23 June 1972 tape</li><li><span class="nt nt-p">Person</span> Richard Nixon</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>Bank records put campaign money into a burglar’s account <sup class="ref"><a href="#s13" aria-label="Source 13">13</a></sup>. The tape shows Nixon approving the use of the CIA to slow the FBI <sup class="ref"><a href="#s14" aria-label="Source 14">14</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>In 1972, that the campaign was paying for the burglary. The cheques linked the money; the tapes later linked the President.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>Exactly how the money moved once the cheques reached the committee’s counsel, G. Gordon Liddy: the auditors found no records of how the cheques or the cash were handled after that point <sup class="ref"><a href="#s13" aria-label="Source 13">13</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="case" id="tuskegee" data-tags="internal-files testimony">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">05</span></div>
+  <div class="case-titles">
+   <h3>The Tuskegee syphilis study</h3>
+   <p class="where">Macon County, Alabama, 1932–72</p>
+   <p class="record"><span>The record</span> The study’s own correspondence</p>
+   <div class="tags"><span class="tag">Internal files</span><span class="tag">Testimony</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>From 1932 the US Public Health Service, working with the Tuskegee Institute, followed 600 Black men in Macon County, Alabama: 399 with syphilis and 201 without. The men were told they were being treated for “bad blood”, and their informed consent was not collected <sup class="ref"><a href="#s18" aria-label="Source 18">18</a></sup>.</p></section>
+  <section class="side evid"><h4>The record</h4><p>The government’s own files showed what the study was. Penicillin had become the treatment of choice by 1943, the CDC says <sup class="ref"><a href="#s18" aria-label="Source 18">18</a></sup>, yet treatment was withheld. Peter Buxtun, a Public Health Service venereal-disease investigator in San Francisco, raised objections from 1966 <sup class="ref"><a href="#s19" aria-label="Source 19">19</a></sup>; in November 1968 he wrote again of “grave moral doubts” <sup class="ref"><a href="#s21" aria-label="Source 21">21</a></sup>. In 1969 a CDC committee decided to continue the study <sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup>. In July 1972 Buxtun gave documents to the Associated Press, where Jean Heller wrote the story that ran on 25 July <sup class="ref"><a href="#s19" aria-label="Source 19">19</a></sup> and on the front page of the <i>New York Times</i> the next day <sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">1932</span><span class="ct">The study begins with 600 men <sup class="ref"><a href="#s18" aria-label="Source 18">18</a></sup>.</span></li><li><span class="cd">1943</span><span class="ct">Penicillin is the treatment of choice, according to the CDC <sup class="ref"><a href="#s18" aria-label="Source 18">18</a></sup>.</span></li><li><span class="cd">1966–68</span><span class="ct">Buxtun raises objections with CDC officials, writing again in November 1968 <sup class="ref"><a href="#s19" aria-label="Source 19">19</a></sup><sup class="ref"><a href="#s21" aria-label="Source 21">21</a></sup>.</span></li><li><span class="cd">1969</span><span class="ct">A CDC committee decides to continue the study <sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup>.</span></li><li><span class="cd">25 Jul 1972</span><span class="ct">AP publishes Jean Heller’s story built on Buxtun’s documents <sup class="ref"><a href="#s19" aria-label="Source 19">19</a></sup>.</span></li><li><span class="cd">Oct 1972</span><span class="ct">A federal advisory panel advises stopping the study; its end is announced a month later <sup class="ref"><a href="#s18" aria-label="Source 18">18</a></sup>.</span></li><li><span class="cd">1974</span><span class="ct">A class action ends in a $10 million settlement <sup class="ref"><a href="#s18" aria-label="Source 18">18</a></sup>.</span></li><li><span class="cd">16 May 1997</span><span class="ct">President Clinton apologises on behalf of the government <sup class="ref"><a href="#s18" aria-label="Source 18">18</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="tuskegee">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-p">Person</span> Peter Buxtun</li><li><span class="nt nt-o">Organisation</span> US Public Health Service</li><li><span class="nt nt-o">Organisation</span> CDC</li><li><span class="nt nt-o">Organisation</span> Tuskegee Institute</li><li><span class="nt nt-l">Place</span> Macon County, Alabama</li><li><span class="nt nt-r">Record</span> Buxtun’s objections, 1966–68</li><li><span class="nt nt-r">Record</span> 1969 decision to continue</li><li><span class="nt nt-p">Person</span> Jean Heller, AP</li><li><span class="nt nt-o">Organisation</span> Ad Hoc Advisory Panel</li><li><span class="nt nt-r">Record</span> 1974 settlement</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>From the study’s own records: treatment was withheld while the study continued, and officials considered and rejected treating the men in 1969 <sup class="ref"><a href="#s18" aria-label="Source 18">18</a></sup><sup class="ref"><a href="#s20" aria-label="Source 20">20</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>The reasoning of each official involved. The files record decisions more fully than motives.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>When penicillin became standard care: the CDC says 1943, while other accounts give 1947 or the 1950s <sup class="ref"><a href="#s18" aria-label="Source 18">18</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="case" id="diaries" data-tags="paper-and-ink scientific-testing">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">06</span></div>
+  <div class="case-titles">
+   <h3>The Hitler Diaries</h3>
+   <p class="where">Hamburg and Koblenz, 1983</p>
+   <p class="record"><span>The record</span> Fluorescent paper under ultraviolet light</p>
+   <div class="tags"><span class="tag">Paper and ink</span><span class="tag">Scientific testing</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>In April 1983 the German magazine <i>Stern</i> announced about 60 handwritten volumes of Adolf Hitler’s diaries, obtained by its reporter Gerd Heidemann, for which it had paid more than nine million marks <sup class="ref"><a href="#s22" aria-label="Source 22">22</a></sup><sup class="ref"><a href="#s24" aria-label="Source 24">24</a></sup>. The historian Hugh Trevor-Roper vouched for them, and the <i>Sunday Times</i> bought serial rights <sup class="ref"><a href="#s24" aria-label="Source 24">24</a></sup>.</p></section>
+  <section class="side evid"><h4>The record</h4><p>The paper gave them away. Tests by the Bundesarchiv, the federal materials-testing institute (BAM) and the federal police found a fluorescent additive in the paper that was not in use before 1954, post-war materials in the threads attached to the seals, and ink that had been applied recently <sup class="ref"><a href="#s23" aria-label="Source 23">23</a></sup>. The Bundesarchiv declared them forgeries on 6 May 1983, less than a fortnight after publication <sup class="ref"><a href="#s22" aria-label="Source 22">22</a></sup><sup class="ref"><a href="#s23" aria-label="Source 23">23</a></sup>. The forger, Konrad Kujau, and Heidemann were convicted in July 1985 <sup class="ref"><a href="#s22" aria-label="Source 22">22</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">25 Apr 1983</span><span class="ct"><i>Stern</i> publishes its first issue on the diaries and holds a press conference <sup class="ref"><a href="#s22" aria-label="Source 22">22</a></sup>.</span></li><li><span class="cd">Early May 1983</span><span class="ct">Laboratory tests find post-war paper additives and threads <sup class="ref"><a href="#s23" aria-label="Source 23">23</a></sup>.</span></li><li><span class="cd">6 May 1983</span><span class="ct">The Bundesarchiv announces the diaries are forged <sup class="ref"><a href="#s22" aria-label="Source 22">22</a></sup><sup class="ref"><a href="#s23" aria-label="Source 23">23</a></sup>.</span></li><li><span class="cd">21 Aug 1984</span><span class="ct">The trial opens in Hamburg <sup class="ref"><a href="#s22" aria-label="Source 22">22</a></sup>.</span></li><li><span class="cd">Jul 1985</span><span class="ct">Kujau is sentenced to four years and six months, Heidemann to four years and eight months <sup class="ref"><a href="#s22" aria-label="Source 22">22</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="diaries">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-p">Person</span> Konrad Kujau</li><li><span class="nt nt-p">Person</span> Gerd Heidemann</li><li><span class="nt nt-o">Organisation</span> Stern</li><li><span class="nt nt-r">Record</span> The diaries</li><li><span class="nt nt-p">Person</span> Hugh Trevor-Roper</li><li><span class="nt nt-o">Organisation</span> Sunday Times</li><li><span class="nt nt-o">Organisation</span> Bundesarchiv</li><li><span class="nt nt-o">Organisation</span> BAM materials institute</li><li><span class="nt nt-r">Record</span> Paper and thread tests</li><li><span class="nt nt-l">Place</span> Hamburg court</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>The materials are post-war <sup class="ref"><a href="#s23" aria-label="Source 23">23</a></sup>; two men were convicted <sup class="ref"><a href="#s22" aria-label="Source 22">22</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>Little: the laboratory results and the convictions settled who made them <sup class="ref"><a href="#s22" aria-label="Source 22">22</a></sup><sup class="ref"><a href="#s23" aria-label="Source 23">23</a></sup>.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>Where all the money went has never been fully established <sup class="ref"><a href="#s23" aria-label="Source 23">23</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="case" id="bloodysunday" data-tags="testimony">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">07</span></div>
+  <div class="case-titles">
+   <h3>Bloody Sunday</h3>
+   <p class="where">Derry, 1972–2010</p>
+   <p class="record"><span>The record</span> Thousands of witness statements</p>
+   <div class="tags"><span class="tag">Testimony</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>On 30 January 1972 British soldiers shot dead 13 people at a civil-rights march in Derry, and another died later <sup class="ref"><a href="#s29" aria-label="Source 29">29</a></sup>. Lord Widgery’s tribunal reported in April 1972 that there was “no reason to suppose that the soldiers would have opened fire if they had not been fired upon first”, and recorded “a strong suspicion” that some others had been firing weapons or handling bombs, while finding none of the dead or wounded proved to have been shot while handling a firearm or bomb <sup class="ref"><a href="#s26" aria-label="Source 26">26</a></sup>.</p></section>
+  <section class="side evid"><h4>The record</h4><p>The Saville Inquiry, set up in 1998, took evidence from 921 witnesses and considered about 1,500 further statements <sup class="ref"><a href="#s27" aria-label="Source 27">27</a></sup>. Its report of 15 June 2010 found that the first shot near the march was, on balance, fired by the army; that none of the casualties posed a threat of death or serious injury; that no warning was given; and that soldiers knowingly put forward false accounts to justify their firing. The prime minister called the killings “unjustified and unjustifiable” <sup class="ref"><a href="#s25" aria-label="Source 25">25</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">30 Jan 1972</span><span class="ct">Soldiers of the Parachute Regiment open fire in the Bogside <sup class="ref"><a href="#s29" aria-label="Source 29">29</a></sup>.</span></li><li><span class="cd">Apr 1972</span><span class="ct">The Widgery report backs the soldiers’ account that they were fired on first <sup class="ref"><a href="#s26" aria-label="Source 26">26</a></sup>.</span></li><li><span class="cd">1998</span><span class="ct">The Saville Inquiry is established <sup class="ref"><a href="#s27" aria-label="Source 27">27</a></sup>.</span></li><li><span class="cd">2000–04</span><span class="ct">Hearings: 921 witnesses give evidence <sup class="ref"><a href="#s27" aria-label="Source 27">27</a></sup>.</span></li><li><span class="cd">15 Jun 2010</span><span class="ct">The Saville report is published; David Cameron apologises <sup class="ref"><a href="#s25" aria-label="Source 25">25</a></sup>.</span></li><li><span class="cd">23 Oct 2025</span><span class="ct">At Belfast Crown Court, the former paratrooper known as Soldier F is acquitted of two murders and five attempted murders <sup class="ref"><a href="#s29" aria-label="Source 29">29</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="bloodysunday">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-o">Organisation</span> Widgery Tribunal</li><li><span class="nt nt-r">Record</span> Widgery report, 1972</li><li><span class="nt nt-o">Organisation</span> Saville Inquiry</li><li><span class="nt nt-r">Record</span> Witness statements</li><li><span class="nt nt-r">Record</span> Saville report, 2010</li><li><span class="nt nt-o">Organisation</span> 1st Bn Parachute Regiment</li><li><span class="nt nt-l">Place</span> Bogside, Derry</li><li><span class="nt nt-p">Person</span> David Cameron</li><li><span class="nt nt-p">Person</span> Soldier F (acquitted)</li><li><span class="nt nt-o">Organisation</span> Belfast Crown Court</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>The inquiry’s findings overturned Widgery on who fired first and on whether the victims were a threat <sup class="ref"><a href="#s25" aria-label="Source 25">25</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>Saville’s findings are judgements on evidence, made on the balance of probabilities, as with the first shot <sup class="ref"><a href="#s25" aria-label="Source 25">25</a></sup>.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>No one has been convicted. The judge who acquitted Soldier F said the prosecution had not met the criminal burden of proof <sup class="ref"><a href="#s29" aria-label="Source 29">29</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="case" id="hillsborough" data-tags="internal-files">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">08</span></div>
+  <div class="case-titles">
+   <h3>Hillsborough</h3>
+   <p class="where">Sheffield, 1989–2016</p>
+   <p class="record"><span>The record</span> Amended police statements</p>
+   <div class="tags"><span class="tag">Internal files</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>Ninety-six Liverpool supporters died after a crush at Hillsborough on 15 April 1989. Four days later the <i>Sun</i>’s front page, headlined “The Truth”, alleged that fans had robbed the dead, urinated on police and attacked officers trying to help, citing unnamed police and others <sup class="ref"><a href="#s33" aria-label="Source 33">33</a></sup>. Lord Justice Taylor’s interim report that August found the main reason was the failure of police control <sup class="ref"><a href="#s32" aria-label="Source 32">32</a></sup>, but the original inquests returned accidental death, with evidence limited by a 3.15pm cut-off <sup class="ref"><a href="#s30" aria-label="Source 30">30</a></sup>.</p></section>
+  <section class="side evid"><h4>The record</h4><p>The Hillsborough Independent Panel read over 450,000 pages of documents. It found that 164 police statements had been significantly amended, 116 of them to remove or alter comments unfavourable to the police; that police had run national computer checks on the dead in an attempt to impugn their reputations; that there was no evidence of exceptional drunkenness, ticketlessness or violence; and that the 3.15pm cut-off was flawed <sup class="ref"><a href="#s30" aria-label="Source 30">30</a></sup>. The <i>Sun</i>’s former editor and its then editor apologised that day <sup class="ref"><a href="#s33" aria-label="Source 33">33</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">19 Apr 1989</span><span class="ct">The <i>Sun</i> publishes “The Truth” <sup class="ref"><a href="#s33" aria-label="Source 33">33</a></sup>.</span></li><li><span class="cd">4 Aug 1989</span><span class="ct">Taylor’s interim report blames failures of police control <sup class="ref"><a href="#s32" aria-label="Source 32">32</a></sup>.</span></li><li><span class="cd">12 Sep 2012</span><span class="ct">The Independent Panel reports; the prime minister apologises in the Commons <sup class="ref"><a href="#s30" aria-label="Source 30">30</a></sup>.</span></li><li><span class="cd">19 Dec 2012</span><span class="ct">The High Court quashes the original inquest verdicts and orders new inquests <sup class="ref"><a href="#s31" aria-label="Source 31">31</a></sup>.</span></li><li><span class="cd">26 Apr 2016</span><span class="ct">The new inquests’ jury concludes the 96 were unlawfully killed and that fans’ behaviour did not contribute <sup class="ref"><a href="#s35" aria-label="Source 35">35</a></sup>.</span></li><li><span class="cd">28 Jul 2021</span><span class="ct">A coroner rules that Andrew Devine, who died the day before, was unlawfully killed: the 97th victim <sup class="ref"><a href="#s34" aria-label="Source 34">34</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="hillsborough">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-o">Organisation</span> South Yorkshire Police</li><li><span class="nt nt-r">Record</span> Police statements</li><li><span class="nt nt-r">Record</span> The Sun, “The Truth”</li><li><span class="nt nt-l">Place</span> Hillsborough stadium</li><li><span class="nt nt-r">Record</span> Taylor interim report</li><li><span class="nt nt-o">Organisation</span> Independent Panel</li><li><span class="nt nt-r">Record</span> Panel report, 2012</li><li><span class="nt nt-o">Organisation</span> High Court</li><li><span class="nt nt-o">Organisation</span> 2016 inquests</li><li><span class="nt nt-p">Person</span> David Cameron</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>Police statements were altered, and checks were run on the dead <sup class="ref"><a href="#s30" aria-label="Source 30">30</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>The panel judged that some victims might have survived beyond 3.15pm; that is a finding about potential, not certainty <sup class="ref"><a href="#s30" aria-label="Source 30">30</a></sup>.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>Criminal accountability. No police officer has been convicted over the disaster or its aftermath <sup class="ref"><a href="#s32" aria-label="Source 32">32</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="case" id="richard" data-tags="registers-and-maps scientific-testing">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">09</span></div>
+  <div class="case-titles">
+   <h3>Richard III under the car park</h3>
+   <p class="where">Leicester, 1485–2015</p>
+   <p class="record"><span>The record</span> Old maps and a maternal bloodline</p>
+   <div class="tags"><span class="tag">Registers and maps</span><span class="tag">Scientific testing</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>For centuries the story went that Richard III’s body was dug up after the dissolution of the friaries in 1538 and thrown into the River Soar <sup class="ref"><a href="#s40" aria-label="Source 40">40</a></sup>. Shakespeare had given him a hunchback.</p></section>
+  <section class="side evid"><h4>The record</h4><p>Maps put the friary back on the ground. John Speed’s 1610 map had labelled the wrong friary; William Stukeley placed Grey Friars correctly in 1724, Thomas Roberts showed the precinct in 1741, and Goad insurance plans traced the land becoming car parks between the 1920s and 1930s <sup class="ref"><a href="#s38" aria-label="Source 38">38</a></sup>. Philippa Langley, who began her search for the grave in 2004 and later led the Looking for Richard project, worked with John Ashdown-Hill, who had traced an unbroken female line from Richard’s sister to a living descendant, Michael Ibsen <sup class="ref"><a href="#s40" aria-label="Source 40">40</a></sup>. Digging began in a council car park on 25 August 2012 <sup class="ref"><a href="#s40" aria-label="Source 40">40</a></sup>. In February 2013 the University of Leicester announced a mitochondrial DNA match with Ibsen and a second maternal-line relative, alongside radiocarbon dates, battle wounds and a curved spine <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">1485</span><span class="ct">Richard is buried in the choir of the Grey Friars church <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup>.</span></li><li><span class="cd">1610–1944</span><span class="ct">Maps by Speed, Stukeley and Roberts, then Goad plans, fix and follow the site <sup class="ref"><a href="#s38" aria-label="Source 38">38</a></sup>.</span></li><li><span class="cd">2004</span><span class="ct">Langley begins the search that becomes the Looking for Richard project <sup class="ref"><a href="#s40" aria-label="Source 40">40</a></sup>.</span></li><li><span class="cd">25 Aug 2012</span><span class="ct">University of Leicester archaeologists dig in the car park; leg bones are found on day one <sup class="ref"><a href="#s40" aria-label="Source 40">40</a></sup>.</span></li><li><span class="cd">4 Feb 2013</span><span class="ct">The university announces the remains are Richard’s <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup>.</span></li><li><span class="cd">May 2014</span><span class="ct"><i>The Lancet</i> describes severe scoliosis, a balanced curve and no limp <sup class="ref"><a href="#s39" aria-label="Source 39">39</a></sup>.</span></li><li><span class="cd">Dec 2014</span><span class="ct"><i>Nature Communications</i> publishes the DNA identification <sup class="ref"><a href="#s37" aria-label="Source 37">37</a></sup><sup class="ref"><a href="#s41" aria-label="Source 41">41</a></sup>.</span></li><li><span class="cd">26 Mar 2015</span><span class="ct">Richard is reburied in Leicester Cathedral <sup class="ref"><a href="#s42" aria-label="Source 42">42</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="richard">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-p">Person</span> Richard III</li><li><span class="nt nt-l">Place</span> Grey Friars church site</li><li><span class="nt nt-l">Place</span> River Soar</li><li><span class="nt nt-r">Record</span> Speed, Stukeley, Roberts and Goad maps</li><li><span class="nt nt-p">Person</span> Philippa Langley</li><li><span class="nt nt-p">Person</span> John Ashdown-Hill</li><li><span class="nt nt-o">Organisation</span> University of Leicester</li><li><span class="nt nt-p">Person</span> Michael Ibsen (descendant)</li><li><span class="nt nt-r">Record</span> mtDNA results</li><li><span class="nt nt-l">Place</span> Leicester Cathedral</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>The mitochondrial DNA match, the dates, the scoliosis and the wounds <sup class="ref"><a href="#s36" aria-label="Source 36">36</a></sup><sup class="ref"><a href="#s37" aria-label="Source 37">37</a></sup><sup class="ref"><a href="#s39" aria-label="Source 39">39</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>The identity itself is a combined probability, put by the genetics team at 99.999% <sup class="ref"><a href="#s37" aria-label="Source 37">37</a></sup>.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>The male-line Y-chromosome did not match living descendants of the Beaufort line, which the team attributes to a break in paternity somewhere in that line <sup class="ref"><a href="#s37" aria-label="Source 37">37</a></sup>. Scoliosis is a sideways curve, and the Lancet researchers said it may have been little noticed under clothing <sup class="ref"><a href="#s39" aria-label="Source 39">39</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="case" id="tuam" data-tags="registers-and-maps">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">10</span></div>
+  <div class="case-titles">
+   <h3>The Tuam children’s burials</h3>
+   <p class="where">Co. Galway, 1925–present</p>
+   <p class="record"><span>The record</span> Death certificates with no burial records</p>
+   <div class="tags"><span class="tag">Registers and maps</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>St Mary’s mother and baby home in Tuam was run by the Bon Secours Sisters on behalf of Galway County Council from 1925 to 1961 <sup class="ref"><a href="#s47" aria-label="Source 47">47</a></sup>. There was no public record of where the children who died there were buried. Locally the site was spoken of as a children’s burial ground; in 1975 two boys lifted a slab there and saw bones <sup class="ref"><a href="#s43" aria-label="Source 43">43</a></sup>.</p></section>
+  <section class="side evid"><h4>The record</h4><p>The local historian Catherine Corless bought the children’s death certificates from the civil register, paying €3,184 in all <sup class="ref"><a href="#s43" aria-label="Source 43">43</a></sup>. They recorded about 796 deaths, with no matching burial records. Old Ordnance Survey maps showed a sewage tank on the site <sup class="ref"><a href="#s43" aria-label="Source 43">43</a></sup>. In March 2017 the state Commission of Investigation said test excavations had found “significant quantities of human remains” in at least 17 of 20 underground chambers, with ages at death from about 35 foetal weeks to two or three years <sup class="ref"><a href="#s44" aria-label="Source 44">44</a></sup>. Its final report in 2021 put the deaths at the home itself at 802 and concluded that many children were likely buried on the site <sup class="ref"><a href="#s45" aria-label="Source 45">45</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">1925–61</span><span class="ct">The home operates <sup class="ref"><a href="#s47" aria-label="Source 47">47</a></sup>.</span></li><li><span class="cd">c. 2011–14</span><span class="ct">Corless obtains death certificates and finds no burial records to match <sup class="ref"><a href="#s43" aria-label="Source 43">43</a></sup>.</span></li><li><span class="cd">Jun 2014</span><span class="ct">Her findings become international news; the Irish government announces an inquiry, later established as a commission of investigation <sup class="ref"><a href="#s43" aria-label="Source 43">43</a></sup>.</span></li><li><span class="cd">3 Mar 2017</span><span class="ct">The commission reports significant quantities of human remains in chambers on the site <sup class="ref"><a href="#s44" aria-label="Source 44">44</a></sup>.</span></li><li><span class="cd">12 Jan 2021</span><span class="ct">The final report records 802 deaths at Tuam and finds burial records for very few <sup class="ref"><a href="#s45" aria-label="Source 45">45</a></sup>.</span></li><li><span class="cd">Jul 2022</span><span class="ct">The Institutional Burials Act passes, allowing excavation <sup class="ref"><a href="#s46" aria-label="Source 46">46</a></sup>.</span></li><li><span class="cd">14 Jul 2025</span><span class="ct">Full excavation begins <sup class="ref"><a href="#s47" aria-label="Source 47">47</a></sup>.</span></li><li><span class="cd">Jul 2026</span><span class="ct">As of July 2026, AP reported 99 sets of remains recovered, seven believed to date from an earlier workhouse, and DNA samples taken from 62 relatives <sup class="ref"><a href="#s48" aria-label="Source 48">48</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="tuam">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-p">Person</span> Catherine Corless</li><li><span class="nt nt-r">Record</span> Death certificates</li><li><span class="nt nt-r">Record</span> Ordnance Survey maps</li><li><span class="nt nt-l">Place</span> St Mary’s, Tuam</li><li><span class="nt nt-o">Organisation</span> Bon Secours Sisters</li><li><span class="nt nt-o">Organisation</span> Galway County Council</li><li><span class="nt nt-o">Organisation</span> Commission of Investigation</li><li><span class="nt nt-r">Record</span> 2021 final report</li><li><span class="nt nt-r">Record</span> Institutional Burials Act 2022</li><li><span class="nt nt-o">Organisation</span> Excavation team</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>The deaths are registered; burial records are almost entirely absent; human remains lie in the chamber structure <sup class="ref"><a href="#s43" aria-label="Source 43">43</a></sup><sup class="ref"><a href="#s44" aria-label="Source 44">44</a></sup><sup class="ref"><a href="#s45" aria-label="Source 45">45</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>That most of the children who died there are buried on the site. The commission said “likely”, and identification depends on DNA work still under way <sup class="ref"><a href="#s45" aria-label="Source 45">45</a></sup><sup class="ref"><a href="#s48" aria-label="Source 48">48</a></sup>.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>Early coverage in 2014 described 800 bodies “dumped” in a septic tank. Corless told the <i>Irish Times</i> she had never used the word “dumped” or claimed that 800 bodies were in a working tank <sup class="ref"><a href="#s43" aria-label="Source 43">43</a></sup>. Counts differ by definition: 796, 802 and others.</dd></div>
+ </dl>
+</article>
+<article class="case" id="horizon" data-tags="internal-files court-records">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">11</span></div>
+  <div class="case-titles">
+   <h3>The Post Office Horizon scandal</h3>
+   <p class="where">England, Wales and Northern Ireland, 1999–2024</p>
+   <p class="record"><span>The record</span> The Known Error Log</p>
+   <div class="tags"><span class="tag">Internal files</span><span class="tag">Court records</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>The Post Office consistently asserted that Horizon, the branch accounting system supplied by Fujitsu, was robust and reliable <sup class="ref"><a href="#s50" aria-label="Source 50">50</a></sup>, and treated unexplained shortfalls as the subpostmasters’ to repay. It has identified 700 convictions in its own prosecutions between 1999 and 2015 in which Horizon evidence may have featured, and a further 283 cases brought by other prosecutors <sup class="ref"><a href="#s52" aria-label="Source 52">52</a></sup>.</p></section>
+  <section class="side evid"><h4>The record</h4><p>In group litigation led by Alan Bates, the High Court read Fujitsu’s own fault records. Its Horizon Issues judgment of December 2019 found that bugs, errors and defects could cause shortfalls in branch accounts and had done so “on numerous occasions”, that the original Horizon was “not remotely robust”, and that Fujitsu could insert, edit or delete transaction data without a subpostmaster’s knowledge. The Post Office had argued the Known Error Log was not a record of bugs; the judge found it and related fault reports “a very good means of getting at the truth” <sup class="ref"><a href="#s49" aria-label="Source 49">49</a></sup>. In 2021 the Court of Appeal quashed 39 convictions, calling the prosecutions “an affront to the conscience of the court” <sup class="ref"><a href="#s50" aria-label="Source 50">50</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">1999–2015</span><span class="ct">Post Office prosecutions in which Horizon evidence may have featured <sup class="ref"><a href="#s52" aria-label="Source 52">52</a></sup>.</span></li><li><span class="cd">12 Dec 2019</span><span class="ct">The Bates claimants settle for £57.75m, with no admission of liability <sup class="ref"><a href="#s53" aria-label="Source 53">53</a></sup>.</span></li><li><span class="cd">16 Dec 2019</span><span class="ct">The Horizon Issues judgment finds bugs, remote access and an unreliable system <sup class="ref"><a href="#s49" aria-label="Source 49">49</a></sup>.</span></li><li><span class="cd">23 Apr 2021</span><span class="ct"><i>Hamilton v Post Office</i>: 39 convictions quashed <sup class="ref"><a href="#s50" aria-label="Source 50">50</a></sup>.</span></li><li><span class="cd">24 May 2024</span><span class="ct">The Post Office (Horizon System) Offences Act quashes qualifying convictions in England, Wales and Northern Ireland <sup class="ref"><a href="#s51" aria-label="Source 51">51</a></sup>.</span></li><li><span class="cd">8 Jul 2025</span><span class="ct">The public inquiry publishes the first volume of its final report <sup class="ref"><a href="#s54" aria-label="Source 54">54</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="horizon">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-o">Organisation</span> Post Office Ltd</li><li><span class="nt nt-o">Organisation</span> Fujitsu</li><li><span class="nt nt-r">Record</span> Horizon system</li><li><span class="nt nt-r">Record</span> Known Error Log</li><li><span class="nt nt-p">Person</span> Alan Bates (lead claimant)</li><li><span class="nt nt-o">Organisation</span> High Court</li><li><span class="nt nt-r">Record</span> Horizon Issues judgment</li><li><span class="nt nt-o">Organisation</span> Court of Appeal</li><li><span class="nt nt-r">Record</span> Hamilton judgment</li><li><span class="nt nt-r">Record</span> 2024 Offences Act</li><li><span class="nt nt-o">Organisation</span> Parliament</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>By the courts: bugs affected branch accounts; data could be altered remotely; the convictions in <i>Hamilton</i> were unsafe <sup class="ref"><a href="#s49" aria-label="Source 49">49</a></sup><sup class="ref"><a href="#s50" aria-label="Source 50">50</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>Which specific shortfall in any one branch was caused by a bug. The 2019 judgment decided what the system could do, not individual cases <sup class="ref"><a href="#s49" aria-label="Source 49">49</a></sup>.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>Individual responsibility inside the Post Office and Fujitsu remains for the inquiry and any criminal process to settle <sup class="ref"><a href="#s54" aria-label="Source 54">54</a></sup>.</dd></div>
+ </dl>
+</article>
+<article class="case" id="clotilda" data-tags="registers-and-maps testimony">
+ <header class="case-head">
+  <div class="exhibit"><span class="ex-l">Exhibit</span><span class="ex-n">12</span></div>
+  <div class="case-titles">
+   <h3>The Clotilda</h3>
+   <p class="where">Mobile, Alabama, 1860–2019</p>
+   <p class="record"><span>The record</span> A ship’s certificate of registry</p>
+   <div class="tags"><span class="tag">Registers and maps</span><span class="tag">Testimony</span></div>
+  </div>
+ </header>
+ <div class="mve">
+  <section class="side story"><h4>The story</h4><p>Importing enslaved people into the United States had been illegal since 1808. The last known slave ship to do it, the schooner <i>Clotilda</i>, was burned and sunk after its voyage in 1860, and was never found <sup class="ref"><a href="#s55" aria-label="Source 55">55</a></sup><sup class="ref"><a href="#s56" aria-label="Source 56">56</a></sup>. Without the ship, National Geographic reported, “deniers contended that the shameful episode never occurred” <sup class="ref"><a href="#s57" aria-label="Source 57">57</a></sup>.</p></section>
+  <section class="side evid"><h4>The record</h4><p>The voyage itself had always had witnesses. The captain, William Foster, wrote his own account in 1890 <sup class="ref"><a href="#s58" aria-label="Source 58">58</a></sup>. Zora Neale Hurston interviewed one of the survivors, Cudjo Lewis (Oluale Kossola), in Africatown in 1927 and 1928; her book <i>Barracoon</i> was published only in 2018 <sup class="ref"><a href="#s59" aria-label="Source 59">59</a></sup>. The ship’s certificate of registry recorded its size: about 86 feet long with a 23-foot beam <sup class="ref"><a href="#s56" aria-label="Source 56">56</a></sup>. In 2019 the Alabama Historical Commission and the maritime archaeology firm SEARCH announced that a burned wreck in the Mobile River matched the documented dimensions and construction of a schooner built before 1870; of the vessels assessed from the records, it was the only one that fitted <sup class="ref"><a href="#s55" aria-label="Source 55">55</a></sup>.</p></section>
+ </div>
+ <div class="chainwrap">
+  <h4>Chain of discovery</h4>
+  <ol class="chain"><li><span class="cd">1855–56</span><span class="ct">The schooner is built in Mobile <sup class="ref"><a href="#s56" aria-label="Source 56">56</a></sup>.</span></li><li><span class="cd">1860</span><span class="ct">Financed by Timothy Meaher and captained by Foster, it carries 110 captives from Ouidah; Foster then burns and scuttles it <sup class="ref"><a href="#s55" aria-label="Source 55">55</a></sup><sup class="ref"><a href="#s56" aria-label="Source 56">56</a></sup>.</span></li><li><span class="cd">1890</span><span class="ct">Foster writes his account of the voyage <sup class="ref"><a href="#s58" aria-label="Source 58">58</a></sup>.</span></li><li><span class="cd">1927–28</span><span class="ct">Hurston interviews Cudjo Lewis in Africatown <sup class="ref"><a href="#s59" aria-label="Source 59">59</a></sup>.</span></li><li><span class="cd">2018</span><span class="ct"><i>Barracoon</i> is published <sup class="ref"><a href="#s59" aria-label="Source 59">59</a></sup>.</span></li><li><span class="cd">May 2019</span><span class="ct">The Alabama Historical Commission announces the wreck is the <i>Clotilda</i> <sup class="ref"><a href="#s55" aria-label="Source 55">55</a></sup>.</span></li></ol>
+ </div>
+ <div class="graphwrap" data-case="clotilda">
+  <h4>Evidence graph</h4>
+  <p class="ghelp">Select a person, organisation, place or record to trace its links.</p>
+  <div class="graph" aria-hidden="true"></div>
+  <ul class="nodelist"><li><span class="nt nt-p">Person</span> Timothy Meaher</li><li><span class="nt nt-p">Person</span> William Foster</li><li><span class="nt nt-r">Record</span> The Clotilda</li><li><span class="nt nt-r">Record</span> Certificate of registry</li><li><span class="nt nt-r">Record</span> Foster’s 1890 account</li><li><span class="nt nt-l">Place</span> Ouidah</li><li><span class="nt nt-l">Place</span> Mobile River</li><li><span class="nt nt-p">Person</span> Cudjo Lewis (Kossola)</li><li><span class="nt nt-p">Person</span> Zora Neale Hurston</li><li><span class="nt nt-r">Record</span> Barracoon</li><li><span class="nt nt-o">Organisation</span> Alabama Historical Commission</li><li><span class="nt nt-l">Place</span> Africatown</li></ul>
+  <div class="gdetail" aria-live="polite"></div>
+ </div>
+ <dl class="ledger">
+  <div class="lg lg-p"><dt>Proved by the records</dt><dd>The voyage and its 110 captives, from the captain’s own account, survivors’ testimony and court and registry records <sup class="ref"><a href="#s55" aria-label="Source 55">55</a></sup><sup class="ref"><a href="#s56" aria-label="Source 56">56</a></sup><sup class="ref"><a href="#s58" aria-label="Source 58">58</a></sup>.</dd></div>
+  <div class="lg lg-i"><dt>Inferred</dt><dd>The wreck’s identity rests on matching the physical remains to the registry and other records, judged beyond reasonable doubt by the archaeologists <sup class="ref"><a href="#s55" aria-label="Source 55">55</a></sup><sup class="ref"><a href="#s57" aria-label="Source 57">57</a></sup>.</dd></div>
+  <div class="lg lg-c"><dt>Still contested or unclear</dt><dd>Sources differ on who built the ship, the year it was built and the date it sailed; they also differ on the outcome of the federal case against Foster <sup class="ref"><a href="#s56" aria-label="Source 56">56</a></sup><sup class="ref"><a href="#s57" aria-label="Source 57">57</a></sup>.</dd></div>
+ </dl>
+</article></div>
+
+ <h2 id="sources">Sources</h2>
+ <section class="sources">
+  <p class="method">Every case was researched from official reports, court judgments, archives, universities, museums and established news organisations, with key facts checked against at least two sources where possible. Where sources disagree, the case says so. The piece was then checked claim by claim by a separate reviewer before publication.</p>
+  <ol><li id="s1"><a href="https://www.britannica.com/print/article/133843">Donation of Constantine</a> <span class="pub">Encyclopaedia Britannica</span></li><li id="s2"><a href="https://history.hanover.edu/texts/vallaintro.html">Introduction to Lorenzo Valla, Discourse on the Forgery of the Alleged Donation of Constantine</a> <span class="pub">Hanover College History Department</span></li><li id="s3"><a href="https://www.historyofinformation.com/detail.php?id=1817">Lorenzo Valla proves the Donation of Constantine a forgery</a> <span class="pub">HistoryofInformation.com</span></li><li id="s4"><a href="https://gutenberg.org/files/70092/70092-h/70092-h.htm">The Treatise of Lorenzo Valla on the Donation of Constantine (trans. C. B. Coleman)</a> <span class="pub">Project Gutenberg</span></li><li id="s5"><a href="https://jewishencyclopedia.com/articles/5322">Dreyfus Case</a> <span class="pub">Jewish Encyclopedia</span></li><li id="s6"><a href="https://jean-max-guieu.facultysite.georgetown.edu/other-interests/dreyfus-today-basic-timeline-of-the-dreyfus-affair/chronology-of-the-dreyfus-case">Chronology of the Dreyfus Case</a> <span class="pub">Jean-Max Guieu, Georgetown University</span></li><li id="s7"><a href="https://famous-trials.com/dreyfus/2616-the-dreyfus-affair-trials-an-account">The Dreyfus Affair Trials: An Account</a> <span class="pub">Famous Trials, Douglas O. Linder, UMKC</span></li><li id="s8"><a href="https://www.britannica.com/event/Dreyfus-affair">Dreyfus affair</a> <span class="pub">Encyclopaedia Britannica</span></li><li id="s9"><a href="https://archive.spectator.co.uk/article/3rd-september-1898/2/the-accounts-of-the-way-in-which-m-cavaignac-disco">The accounts of the way in which M. Cavaignac discovered the forgery (3 September 1898)</a> <span class="pub">The Spectator Archive</span></li><li id="s10"><a href="https://www.nhm.ac.uk/our-science/services/library/collections/piltdown-man">Piltdown Man collection</a> <span class="pub">Natural History Museum, London</span></li><li id="s11"><a href="https://www.nhm.ac.uk/discover/news/2016/august/piltdown-man-charles-dawson-likely-fraudster.html">Piltdown Man: Charles Dawson likely fraudster (August 2016)</a> <span class="pub">Natural History Museum, London</span></li><li id="s12"><a href="https://www.pbs.org/wgbh/aso/databank/entries/do53pi.html">Piltdown Man is revealed as fake, 1953</a> <span class="pub">A Science Odyssey, PBS</span></li><li id="s13"><a href="https://gao.gov/assets/a92894.pdf">Report of the Office of Federal Elections on the Audit of the Finance Committee to Re-Elect the President (26 August 1972)</a> <span class="pub">US General Accounting Office</span></li><li id="s14"><a href="https://millercenter.org/the-presidency/secret-white-house-tapes/smoking-gun">The Smoking Gun tape, 23 June 1972</a> <span class="pub">Miller Center, University of Virginia</span></li><li id="s15"><a href="https://www.columbia.edu/itc/journalism/j6075/edit/readings/watergate.html">Watergate case study</a> <span class="pub">Columbia University Graduate School of Journalism</span></li><li id="s16"><a href="https://exhibits.lib.unc.edu/exhibits/show/watergate/timeline">Watergate timeline</a> <span class="pub">UNC University Libraries</span></li><li id="s17"><a href="https://www.npr.org/sections/thetwo-way/2011/10/05/141076262/kenneth-dahlberg-who-didnt-lie-about-watergate-has-died">Kenneth Dahlberg, who didn&#x27;t lie about Watergate, has died</a> <span class="pub">NPR</span></li><li id="s18"><a href="https://cdc.gov/tuskegee/about/timeline.html">The Untreated Syphilis Study at Tuskegee Timeline</a> <span class="pub">US Centers for Disease Control and Prevention</span></li><li id="s19"><a href="https://www.pbs.org/newshour/nation/tuskegee-syphilis-study-whistleblower-dies-at-age-86">Tuskegee syphilis study whistleblower dies at age 86</a> <span class="pub">PBS NewsHour / Associated Press</span></li><li id="s20"><a href="https://journals.ala.org/index.php/dttp/article/view/7213/9852">Tuskegee Syphilis Study of 1932–1973 and the Rise of Bioethics</a> <span class="pub">DttP, American Library Association</span></li><li id="s21"><a href="https://www.tabletmag.com/sections/history/articles/peter-buxtun-tuskegee-experiment">Peter Buxtun and the Tuskegee experiment</a> <span class="pub">Tablet</span></li><li id="s22"><a href="https://www.bundesarchiv.de/themen-entdecken/online-entdecken/dokumente-zur-zeitgeschichte/auftakt-des-prozesses-um-die-gefaelschten-hitler-tagebuecher/">Auftakt des Prozesses um die gefälschten Hitler-Tagebücher</a> <span class="pub">Bundesarchiv</span></li><li id="s23"><a href="https://encyclopedia.com/science/encyclopedias-almanacs-transcripts-and-maps/hitler-diaries">Hitler Diaries</a> <span class="pub">Encyclopedia.com</span></li><li id="s24"><a href="https://www.timesofisrael.com/fake-hitler-diaries-from-1980s-scam-to-be-displayed-at-german-national-archives/">Fake Hitler diaries from 1980s scam to be displayed at German national archives</a> <span class="pub">The Times of Israel</span></li><li id="s25"><a href="https://www.gov.uk/government/news/pm-statement-on-saville-inquiry">PM statement on Saville Inquiry (15 June 2010)</a> <span class="pub">GOV.UK</span></li><li id="s26"><a href="https://alphahistory.com/northernireland/widgery-report-bloody-sunday-1972/">The Widgery Report on Bloody Sunday (1972)</a> <span class="pub">Alpha History</span></li><li id="s27"><a href="https://museumoffreederry.org/bloody-sunday-justice-campaign/the-second-bloody-sunday-inquiry/">The second Bloody Sunday inquiry</a> <span class="pub">Museum of Free Derry</span></li><li id="s28"><a href="https://www.itv.com/news/utv/2022-01-28/the-main-findings-of-lord-savilles-bloody-sunday-inquiry">The main findings of Lord Saville&#x27;s Bloody Sunday Inquiry</a> <span class="pub">ITV News</span></li><li id="s29"><a href="https://www.aljazeera.com/news/2025/10/23/court-finds-former-british-soldier-not-guilty-in-bloody-sunday-murder-trial">Court finds former British soldier not guilty in Bloody Sunday murder trial (23 October 2025)</a> <span class="pub">Al Jazeera</span></li><li id="s30"><a href="https://www.newstatesman.com/politics/2012/09/david-camerons-statement-hillsborough-disaster-full-text">David Cameron&#x27;s statement on the Hillsborough disaster: full text (12 September 2012)</a> <span class="pub">New Statesman</span></li><li id="s31"><a href="https://caselaw.nationalarchives.gov.uk/ewhc/admin/2012/3783">Attorney General v HM Coroner of South Yorkshire [2012] EWHC 3783 (Admin)</a> <span class="pub">The National Archives, Find Case Law</span></li><li id="s32"><a href="https://www.policeconduct.gov.uk/node/10748">From the Hillsborough disaster to the new investigations</a> <span class="pub">Independent Office for Police Conduct</span></li><li id="s33"><a href="https://pressgazette.co.uk/publishers/nationals/dominic-mohan-and-kelvin-mackenzie-apologise-suns-blackest-day/">Dominic Mohan and Kelvin MacKenzie apologise for Sun&#x27;s blackest day</a> <span class="pub">Press Gazette</span></li><li id="s34"><a href="https://itv.com/news/granada/2021-07-28/liverpool-fan-dies-32-years-after-life-changing-injuries-at-hillsborough">Liverpool fan dies 32 years after life-changing injuries at Hillsborough</a> <span class="pub">ITV News</span></li><li id="s35"><a href="https://www.irishtimes.com/news/world/uk/hillsborough-inquest-the-jury-s-main-findings-1.2625466">Hillsborough inquest: the jury&#x27;s main findings</a> <span class="pub">The Irish Times</span></li><li id="s36"><a href="https://sciencedaily.com/releases/2013/02/130204094610.htm">Richard III: DNA confirms twisted bones belong to king (4 February 2013)</a> <span class="pub">ScienceDaily / University of Leicester</span></li><li id="s37"><a href="https://le.ac.uk/richard-iii/identification/genetics/dna-results">DNA results</a> <span class="pub">University of Leicester</span></li><li id="s38"><a href="https://le.ac.uk/richard-iii/discovery/grey-friars-in-old-maps">Grey Friars in old maps</a> <span class="pub">University of Leicester</span></li><li id="s39"><a href="https://www.eurekalert.org/news-releases/851593">Richard III&#x27;s spine: scoliosis study in The Lancet</a> <span class="pub">EurekAlert! / AAAS</span></li><li id="s40"><a href="https://richardiii.net/finding-reburying-richard/faqs/">Finding and reburying Richard: FAQs</a> <span class="pub">Richard III Society</span></li><li id="s41"><a href="https://ui.adsabs.harvard.edu/abs/2014NatCo...5.5631K">Identification of the remains of King Richard III, Nature Communications 5, 5631 (2014)</a> <span class="pub">NASA ADS abstract record</span></li><li id="s42"><a href="https://www.npr.org/sections/thetwo-way/2015/03/26/395538293/richard-iii-whose-remains-were-found-under-a-parking-lot-reburied">Richard III, whose remains were found under a parking lot, reburied</a> <span class="pub">NPR</span></li><li id="s43"><a href="https://www.irishtimes.com/news/social-affairs/tuam-mother-and-baby-home-the-trouble-with-the-septic-tank-story-1.1823393">Tuam mother and baby home: the trouble with the septic tank story (7 June 2014)</a> <span class="pub">The Irish Times</span></li><li id="s44"><a href="https://www.rte.ie/news/2017/0303/856914-tuam-mother-baby">Significant quantities of human remains found at Tuam site (3 March 2017)</a> <span class="pub">RTÉ News</span></li><li id="s45"><a href="https://galwaybayfm.ie/galway-bay-fm-news-desk/full-summary-findings-of-final-report-on-tuam-mother-and-baby-home">Full summary of findings of final report on Tuam mother and baby home</a> <span class="pub">Galway Bay FM</span></li><li id="s46"><a href="https://www.gov.ie/en/press-release/ae52d-institutional-burials-bill-2022-passed-by-oireachtas">Institutional Burials Bill 2022 passed by the Oireachtas</a> <span class="pub">gov.ie</span></li><li id="s47"><a href="https://www.rte.ie/news/ireland/2025/0714/1523330-tuam-excavation">Excavation begins at Tuam mother and baby home site (14 July 2025)</a> <span class="pub">RTÉ News</span></li><li id="s48"><a href="https://www.cp24.com/news/world/2026/07/22/forensic-exams-begin-of-remains-found-at-ireland-mass-grave-site/">Forensic exams begin of remains found at Ireland mass grave site (22 July 2026)</a> <span class="pub">CP24 / Associated Press</span></li><li id="s49"><a href="https://caselaw.nationalarchives.gov.uk/ewhc/qb/2019/3408">Bates and Others v Post Office Ltd (No 6) [2019] EWHC 3408 (QB)</a> <span class="pub">The National Archives, Find Case Law</span></li><li id="s50"><a href="https://www.judiciary.uk/wp-content/uploads/2022/07/Hamilton-Others-v-Post-Office-summary-230421.pdf">Hamilton and Others v Post Office Ltd: summary of judgment (23 April 2021)</a> <span class="pub">Courts and Tribunals Judiciary</span></li><li id="s51"><a href="https://www.legislation.gov.uk/ukpga/2024/14/data.html">Post Office (Horizon System) Offences Act 2024</a> <span class="pub">legislation.gov.uk</span></li><li id="s52"><a href="https://corporate.postoffice.co.uk/en/horizon-scandal-pages/faqs">Horizon scandal: FAQs</a> <span class="pub">Post Office Ltd</span></li><li id="s53"><a href="https://www.theregister.com/2019/12/12/post_office_horizon_case_settled/">Post Office settles Horizon case for £57.75m (12 December 2019)</a> <span class="pub">The Register</span></li><li id="s54"><a href="https://www.postofficehorizoninquiry.org.uk/publications">Publications</a> <span class="pub">Post Office Horizon IT Inquiry</span></li><li id="s55"><a href="https://ahc.alabama.gov/news_detail.aspx?ID=13388">Alabama Historical Commission announces the discovery of the Clotilda</a> <span class="pub">Alabama Historical Commission</span></li><li id="s56"><a href="https://encyclopediaofalabama.org/article/emclotilda-em/">Clotilda</a> <span class="pub">Encyclopedia of Alabama</span></li><li id="s57"><a href="https://www.nationalgeographic.com/culture/article/clotilda-the-last-american-slave-ship-found-in-alabama">Last American slave ship is discovered in Alabama</a> <span class="pub">National Geographic</span></li><li id="s58"><a href="https://digital.mobilepubliclibrary.org/items/show/1802">Last Slaver from U.S. to Africa. A.D. 1860 (William Foster&#x27;s account)</a> <span class="pub">Mobile Public Library Digital Collections</span></li><li id="s59"><a href="https://www.nps.gov/articles/000/zora-neale-hurston-and-cudjo-s-own-story.htm">Zora Neale Hurston and Cudjo&#x27;s own story</a> <span class="pub">US National Park Service</span></li></ol>
+ </section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <p>Published 20 November 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+  <p><a href="/daily/">← Back to Daily</a> · <a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20The%20Paper%20Trail&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-20-the-paper-trail%2F">Spot an error? Suggest a correction</a></p>
+ </div>
+</footer>
+
+<script>
+(function(){
+ var DATA = {"donation": {"nodes": [{"id": "con", "label": "Constantine I", "type": "p"}, {"id": "syl", "label": "Pope Sylvester I", "type": "p"}, {"id": "doc", "label": "Constitutum Constantini", "type": "r"}, {"id": "lat", "label": "Lateran, Rome", "type": "l"}, {"id": "leo", "label": "Pope Leo IX", "type": "p"}, {"id": "val", "label": "Lorenzo Valla", "type": "p"}, {"id": "alf", "label": "Alfonso of Aragon", "type": "p"}, {"id": "eug", "label": "Pope Eugenius IV", "type": "p"}, {"id": "dec", "label": "Valla’s Declamatio", "type": "r"}, {"id": "hut", "label": "Ulrich von Hutten", "type": "p"}], "edges": [["doc", "con", "claims to be issued by"], ["doc", "syl", "names as recipient"], ["doc", "lat", "grants"], ["leo", "doc", "cites in an official act"], ["val", "dec", "writes, 1440"], ["dec", "doc", "exposes anachronisms in"], ["val", "alf", "secretary to"], ["alf", "eug", "in conflict with"], ["hut", "dec", "first prints, 1517"]]}, "dreyfus": {"nodes": [{"id": "dre", "label": "Alfred Dreyfus", "type": "p"}, {"id": "est", "label": "Ferdinand Esterhazy", "type": "p"}, {"id": "sch", "label": "Max von Schwartzkoppen", "type": "p"}, {"id": "pic", "label": "Georges Picquart", "type": "p"}, {"id": "hen", "label": "Hubert-Joseph Henry", "type": "p"}, {"id": "cui", "label": "Louis Cuignet", "type": "p"}, {"id": "bor", "label": "The bordereau", "type": "r"}, {"id": "pb", "label": "The petit bleu", "type": "r"}, {"id": "fh", "label": "The faux Henry", "type": "r"}, {"id": "emb", "label": "German embassy, Paris", "type": "l"}, {"id": "cas", "label": "Cour de cassation", "type": "o"}], "edges": [["bor", "dre", "attributed to, 1894"], ["bor", "est", "handwriting matches"], ["pb", "sch", "sent by"], ["pb", "est", "addressed to"], ["emb", "pb", "recovered from the wastepaper of"], ["pic", "pb", "receives, 1896"], ["hen", "fh", "produces, 1896"], ["fh", "dre", "names"], ["cui", "fh", "detects mismatched paper, 1898"], ["cas", "dre", "rehabilitates, 1906"]]}, "piltdown": {"nodes": [{"id": "daw", "label": "Charles Dawson", "type": "p"}, {"id": "smi", "label": "Arthur Smith Woodward", "type": "p"}, {"id": "pit", "label": "Piltdown gravel pit", "type": "l"}, {"id": "sk", "label": "Skull and jaw", "type": "r"}, {"id": "geo", "label": "Geological Society", "type": "o"}, {"id": "oak", "label": "Kenneth Oakley", "type": "p"}, {"id": "wei", "label": "Joseph Weiner", "type": "p"}, {"id": "lgc", "label": "W. Le Gros Clark", "type": "p"}, {"id": "bul", "label": "1953 Bulletin paper", "type": "r"}, {"id": "nhm", "label": "Natural History Museum", "type": "o"}, {"id": "rs", "label": "2016 DNA/CT study", "type": "r"}], "edges": [["daw", "sk", "produces"], ["pit", "sk", "said to yield"], ["daw", "smi", "brings the find to"], ["smi", "geo", "presents to, 1912"], ["oak", "sk", "fluorine-tests, 1949"], ["wei", "sk", "finds filed teeth"], ["wei", "bul", "co-author"], ["oak", "bul", "co-author"], ["lgc", "bul", "co-author"], ["nhm", "sk", "holds"], ["rs", "daw", "names as likely forger"]]}, "watergate": {"nodes": [{"id": "dah", "label": "Kenneth Dahlberg", "type": "p"}, {"id": "sta", "label": "Maurice Stans", "type": "p"}, {"id": "crp", "label": "Nixon campaign finance committee", "type": "o"}, {"id": "chq", "label": "$25,000 cashier’s cheque", "type": "r"}, {"id": "mex", "label": "$89,000 Mexican cheques", "type": "r"}, {"id": "bar", "label": "Bernard Barker", "type": "p"}, {"id": "bank", "label": "Republic National Bank, Miami", "type": "l"}, {"id": "wg", "label": "DNC offices, Watergate", "type": "l"}, {"id": "wp", "label": "The Washington Post", "type": "o"}, {"id": "gao", "label": "GAO audit", "type": "r"}, {"id": "tape", "label": "23 June 1972 tape", "type": "r"}, {"id": "nix", "label": "Richard Nixon", "type": "p"}], "edges": [["dah", "chq", "obtains"], ["chq", "sta", "handed to"], ["sta", "crp", "chairs finances of"], ["chq", "bank", "deposited at"], ["mex", "bank", "deposited at"], ["bank", "bar", "account of a company run by"], ["bar", "wg", "arrested at"], ["wp", "chq", "reports, 1 Aug 1972"], ["gao", "crp", "audits"], ["tape", "nix", "records"], ["gao", "chq", "traces"]]}, "tuskegee": {"nodes": [{"id": "bux", "label": "Peter Buxtun", "type": "p"}, {"id": "phs", "label": "US Public Health Service", "type": "o"}, {"id": "cdc", "label": "CDC", "type": "o"}, {"id": "ti", "label": "Tuskegee Institute", "type": "o"}, {"id": "mc", "label": "Macon County, Alabama", "type": "l"}, {"id": "let", "label": "Buxtun’s objections, 1966–68", "type": "r"}, {"id": "dec", "label": "1969 decision to continue", "type": "r"}, {"id": "hel", "label": "Jean Heller, AP", "type": "p"}, {"id": "pan", "label": "Ad Hoc Advisory Panel", "type": "o"}, {"id": "set", "label": "1974 settlement", "type": "r"}], "edges": [["phs", "mc", "runs the study in"], ["ti", "phs", "works with"], ["bux", "phs", "employee of"], ["bux", "let", "writes"], ["let", "cdc", "sent to"], ["cdc", "dec", "takes"], ["bux", "hel", "documents reach"], ["hel", "dec", "exposes"], ["pan", "phs", "condemns study of"], ["set", "phs", "ends class action against"]]}, "diaries": {"nodes": [{"id": "kuj", "label": "Konrad Kujau", "type": "p"}, {"id": "hei", "label": "Gerd Heidemann", "type": "p"}, {"id": "ste", "label": "Stern", "type": "o"}, {"id": "dia", "label": "The diaries", "type": "r"}, {"id": "tr", "label": "Hugh Trevor-Roper", "type": "p"}, {"id": "st", "label": "Sunday Times", "type": "o"}, {"id": "ba", "label": "Bundesarchiv", "type": "o"}, {"id": "bam", "label": "BAM materials institute", "type": "o"}, {"id": "lab", "label": "Paper and thread tests", "type": "r"}, {"id": "ham", "label": "Hamburg court", "type": "l"}], "edges": [["kuj", "dia", "forges"], ["hei", "dia", "acquires"], ["hei", "ste", "reporter for"], ["ste", "dia", "pays for"], ["tr", "dia", "vouches for"], ["st", "dia", "buys serial rights to"], ["ba", "lab", "commissions"], ["bam", "lab", "carries out"], ["lab", "dia", "dates as post-war"], ["ham", "kuj", "convicts, 1985"], ["ham", "hei", "convicts, 1985"]]}, "bloodysunday": {"nodes": [{"id": "wid", "label": "Widgery Tribunal", "type": "o"}, {"id": "wr", "label": "Widgery report, 1972", "type": "r"}, {"id": "sav", "label": "Saville Inquiry", "type": "o"}, {"id": "ws", "label": "Witness statements", "type": "r"}, {"id": "sr", "label": "Saville report, 2010", "type": "r"}, {"id": "para", "label": "1st Bn Parachute Regiment", "type": "o"}, {"id": "bog", "label": "Bogside, Derry", "type": "l"}, {"id": "cam", "label": "David Cameron", "type": "p"}, {"id": "sf", "label": "Soldier F (acquitted)", "type": "p"}, {"id": "bcc", "label": "Belfast Crown Court", "type": "o"}], "edges": [["wid", "wr", "issues"], ["para", "bog", "opens fire in"], ["wr", "para", "accepts the account of"], ["sav", "ws", "gathers"], ["ws", "sr", "underpins"], ["sr", "wr", "overturns"], ["cam", "sr", "apologises on publication of"], ["bcc", "sf", "acquits, 2025"], ["sf", "para", "served in"]]}, "hillsborough": {"nodes": [{"id": "syp", "label": "South Yorkshire Police", "type": "o"}, {"id": "ps", "label": "Police statements", "type": "r"}, {"id": "sun", "label": "The Sun, “The Truth”", "type": "r"}, {"id": "stad", "label": "Hillsborough stadium", "type": "l"}, {"id": "tay", "label": "Taylor interim report", "type": "r"}, {"id": "hip", "label": "Independent Panel", "type": "o"}, {"id": "hr", "label": "Panel report, 2012", "type": "r"}, {"id": "hc", "label": "High Court", "type": "o"}, {"id": "inq", "label": "2016 inquests", "type": "o"}, {"id": "cam", "label": "David Cameron", "type": "p"}], "edges": [["syp", "stad", "polices the match at"], ["syp", "ps", "amends"], ["sun", "syp", "cites unnamed officers of"], ["tay", "syp", "blames police control of"], ["hip", "ps", "examines"], ["hip", "hr", "publishes"], ["cam", "hr", "apologises on publication of"], ["hc", "inq", "orders"], ["inq", "sun", "refutes the claims of"]]}, "richard": {"nodes": [{"id": "r3", "label": "Richard III", "type": "p"}, {"id": "gf", "label": "Grey Friars church site", "type": "l"}, {"id": "soar", "label": "River Soar", "type": "l"}, {"id": "maps", "label": "Speed, Stukeley, Roberts and Goad maps", "type": "r"}, {"id": "lan", "label": "Philippa Langley", "type": "p"}, {"id": "ash", "label": "John Ashdown-Hill", "type": "p"}, {"id": "ul", "label": "University of Leicester", "type": "o"}, {"id": "ibs", "label": "Michael Ibsen (descendant)", "type": "p"}, {"id": "dna", "label": "mtDNA results", "type": "r"}, {"id": "lc", "label": "Leicester Cathedral", "type": "l"}], "edges": [["r3", "gf", "buried at, 1485"], ["r3", "soar", "legend says thrown into"], ["maps", "gf", "locate"], ["lan", "ul", "commissions dig with"], ["ash", "ibs", "traces lineage to"], ["ul", "gf", "excavates, 2012"], ["ibs", "dna", "supplies sample for"], ["dna", "r3", "identifies"], ["lc", "r3", "reburies, 2015"]]}, "tuam": {"nodes": [{"id": "cor", "label": "Catherine Corless", "type": "p"}, {"id": "dc", "label": "Death certificates", "type": "r"}, {"id": "os", "label": "Ordnance Survey maps", "type": "r"}, {"id": "tuam", "label": "St Mary’s, Tuam", "type": "l"}, {"id": "bs", "label": "Bon Secours Sisters", "type": "o"}, {"id": "gcc", "label": "Galway County Council", "type": "o"}, {"id": "com", "label": "Commission of Investigation", "type": "o"}, {"id": "fr", "label": "2021 final report", "type": "r"}, {"id": "act", "label": "Institutional Burials Act 2022", "type": "r"}, {"id": "exc", "label": "Excavation team", "type": "o"}], "edges": [["bs", "tuam", "runs, 1925–61"], ["gcc", "bs", "contracts"], ["cor", "dc", "buys"], ["cor", "os", "consults"], ["dc", "tuam", "record deaths at"], ["os", "tuam", "show a sewage tank at"], ["com", "tuam", "test-excavates"], ["com", "fr", "publishes"], ["act", "exc", "authorises"], ["exc", "tuam", "excavates, 2025–"]]}, "horizon": {"nodes": [{"id": "po", "label": "Post Office Ltd", "type": "o"}, {"id": "fuj", "label": "Fujitsu", "type": "o"}, {"id": "hz", "label": "Horizon system", "type": "r"}, {"id": "kel", "label": "Known Error Log", "type": "r"}, {"id": "bat", "label": "Alan Bates (lead claimant)", "type": "p"}, {"id": "hc", "label": "High Court", "type": "o"}, {"id": "hij", "label": "Horizon Issues judgment", "type": "r"}, {"id": "ca", "label": "Court of Appeal", "type": "o"}, {"id": "ham", "label": "Hamilton judgment", "type": "r"}, {"id": "act", "label": "2024 Offences Act", "type": "r"}, {"id": "parl", "label": "Parliament", "type": "o"}], "edges": [["fuj", "hz", "supplies"], ["po", "hz", "relies on"], ["fuj", "kel", "keeps"], ["bat", "po", "sues"], ["hc", "hij", "hands down"], ["hij", "kel", "relies on"], ["hij", "hz", "finds unreliable"], ["ca", "ham", "hands down"], ["ham", "po", "quashes convictions won by"], ["parl", "act", "passes"]]}, "clotilda": {"nodes": [{"id": "mea", "label": "Timothy Meaher", "type": "p"}, {"id": "fos", "label": "William Foster", "type": "p"}, {"id": "clo", "label": "The Clotilda", "type": "r"}, {"id": "reg", "label": "Certificate of registry", "type": "r"}, {"id": "acc", "label": "Foster’s 1890 account", "type": "r"}, {"id": "oui", "label": "Ouidah", "type": "l"}, {"id": "mob", "label": "Mobile River", "type": "l"}, {"id": "cud", "label": "Cudjo Lewis (Kossola)", "type": "p"}, {"id": "hur", "label": "Zora Neale Hurston", "type": "p"}, {"id": "bar", "label": "Barracoon", "type": "r"}, {"id": "ahc", "label": "Alabama Historical Commission", "type": "o"}, {"id": "afr", "label": "Africatown", "type": "l"}], "edges": [["mea", "clo", "finances the voyage of"], ["fos", "clo", "captains"], ["clo", "oui", "sails to, 1860"], ["fos", "mob", "burns the ship in"], ["fos", "acc", "writes"], ["reg", "clo", "records dimensions of"], ["ahc", "reg", "matches wreck to"], ["ahc", "mob", "surveys"], ["cud", "afr", "helps found"], ["hur", "cud", "interviews"], ["hur", "bar", "writes"]]}};
+ var COL = {p:"#2c5a85",o:"#6a4a8c",l:"#3b7046",r:"#a63c00"};
+ var TYPE = {p:"Person",o:"Organisation",l:"Place",r:"Record"};
+ var NS = "http://www.w3.org/2000/svg";
+ function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+ function wrapLabel(s,max){var w=s.split(" "),lines=[],cur="";w.forEach(function(x){if((cur+" "+x).trim().length>max&&cur){lines.push(cur);cur=x;}else cur=(cur+" "+x).trim();});if(cur)lines.push(cur);return lines.slice(0,3);}
+
+ document.querySelectorAll(".graphwrap").forEach(function(box){
+  var g = DATA[box.dataset.case]; if(!g) return;
+  var holder = box.querySelector(".graph"), detail = box.querySelector(".gdetail"), list = box.querySelector(".nodelist");
+  var byId = {}; g.nodes.forEach(function(n,i){n.i=i;byId[n.id]=n;});
+  var sel = null;
+  // legend
+  var lg=document.createElement("div");lg.className="legend";lg.setAttribute("aria-hidden","true");
+  ["p","o","l","r"].forEach(function(t){lg.innerHTML+='<span><i style="background:'+COL[t]+'"></i>'+TYPE[t]+'</span>';});
+  holder.parentNode.insertBefore(lg,holder);
+  // list as buttons
+  list.innerHTML="";
+  g.nodes.forEach(function(n){var li=document.createElement("li"),b=document.createElement("button");b.type="button";b.setAttribute("aria-pressed","false");
+   b.innerHTML='<span class="k t-'+n.type+'">'+(n.i+1)+'</span><span>'+n.label+' <span class="nt nt-'+n.type+'">'+TYPE[n.type]+'</span></span>';
+   b.addEventListener("click",function(){select(n.id);});n.btn=b;li.appendChild(b);list.appendChild(li);});
+  function layout(){
+   var W = Math.max(300, Math.round(holder.clientWidth||600)), narrow = W < 560, H = narrow ? Math.round(W*1.0) : 440;
+   var rec = g.nodes.filter(function(n){return n.type==="r";}), oth = g.nodes.filter(function(n){return n.type!=="r";});
+   oth.sort(function(a,b){return "plo".indexOf(a.type)-"plo".indexOf(b.type);});
+   var cx=W/2, cy=H/2;
+   var rxO = narrow? W*0.40 : W*0.40, ryO = narrow? H*0.40 : H*0.38, rxI = narrow? W*0.17 : W*0.16, ryI = narrow? H*0.15 : H*0.15;
+   oth.forEach(function(n,k){var a=-Math.PI/2+k*2*Math.PI/oth.length;n.x=cx+rxO*Math.cos(a);n.y=cy+ryO*Math.sin(a);});
+   rec.forEach(function(n,k){var a=-Math.PI/2+Math.PI/rec.length+k*2*Math.PI/rec.length;n.x=cx+rxI*Math.cos(a);n.y=cy+ryI*Math.sin(a);});
+   var svg = el("svg",{viewBox:"0 0 "+W+" "+H,width:W,height:H});
+   g.edges.forEach(function(e){var a=byId[e[0]],b=byId[e[1]];var ln=el("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,"class":"edge"});e.el=ln;svg.appendChild(ln);});
+   g.nodes.forEach(function(n){
+    var gr=el("g",{"class":"node"}); gr.appendChild(el("circle",{cx:n.x,cy:n.y,r:22,fill:"transparent"}));
+    gr.appendChild(el("circle",{cx:n.x,cy:n.y,r:narrow?12:11,fill:COL[n.type],"class":"dot"}));
+    var t=el("text",{x:n.x,y:n.y+4,"text-anchor":"middle","class":"num"});t.textContent=n.i+1;gr.appendChild(t);
+    if(!narrow){var lines=wrapLabel(n.label,16),lx=Math.min(Math.max(n.x,62),W-62);
+     var tx=el("text",{x:lx,y:n.y+26,"text-anchor":"middle"});
+     lines.forEach(function(s,j){var sp=el("tspan",{x:lx,dy:j?13:0});sp.textContent=s;tx.appendChild(sp);});gr.appendChild(tx);}
+    gr.addEventListener("click",function(){select(n.id);});n.el=gr;svg.appendChild(gr);});
+   holder.innerHTML="";holder.appendChild(svg);
+   if(sel) paint();
+  }
+  function paint(){
+   var nb={};nb[sel]=1;
+   g.edges.forEach(function(e){var hot=e[0]===sel||e[1]===sel;e.el.setAttribute("class","edge"+(hot?" hot":""));if(hot){nb[e[0]]=1;nb[e[1]]=1;}});
+   g.nodes.forEach(function(n){n.el.setAttribute("class","node"+(n.id===sel?" sel":(nb[n.id]?"":" dim")));n.btn.setAttribute("aria-pressed",n.id===sel?"true":"false");});
+   var n=byId[sel],items=[];
+   g.edges.forEach(function(e){if(e[0]===sel)items.push("<li><b>"+n.label+"</b> <em>"+e[2]+"</em> <b>"+byId[e[1]].label+"</b></li>");else if(e[1]===sel)items.push("<li><b>"+byId[e[0]].label+"</b> <em>"+e[2]+"</em> <b>"+n.label+"</b></li>");});
+   detail.innerHTML="<b>"+n.label+"</b> · "+TYPE[n.type]+"<ul>"+items.join("")+"</ul>";
+  }
+  function select(id){sel = (sel===id)?null:id; if(!sel){g.edges.forEach(function(e){e.el.setAttribute("class","edge");});g.nodes.forEach(function(n){n.el.setAttribute("class","node");n.btn.setAttribute("aria-pressed","false");});detail.innerHTML="";return;} paint();}
+  layout();
+  var rt; window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(layout,150);});
+ });
+
+ // filters
+ var chips=document.querySelectorAll(".chip"), cases=document.querySelectorAll(".case");
+ chips.forEach(function(c){c.addEventListener("click",function(){
+  var f=c.dataset.f; chips.forEach(function(x){var on=x===c;x.classList.toggle("on",on);x.setAttribute("aria-pressed",on?"true":"false");});
+  cases.forEach(function(k){k.hidden = !(f==="all" || k.dataset.tags.split(" ").indexOf(f)>-1);});
+  window.dispatchEvent(new Event("resize"));
+ });});
+})();
+</script>
+</body>
+</html>
