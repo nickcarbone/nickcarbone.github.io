@@ -1,13 +1,13 @@
 {
-  "generated": "2026-11-20T11:55:03.700Z",
-  "count": 91,
+  "generated": "2026-11-20T15:11:47.048Z",
+  "count": 92,
   "pages": [
     {
       "slug": "evening-edition",
       "url": "https://nickcarbone.github.io/evening-edition/",
       "title": "Evening Edition",
       "description": "",
-      "updated": "2026-11-20T09:11:12Z",
+      "updated": "2026-11-20T12:52:01Z",
       "created": "2026-10-20T14:56:45Z"
     },
     {
@@ -15,8 +15,16 @@
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-11-20T04:21:56Z",
+      "updated": "2026-11-20T12:22:52Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "open-channel",
+      "url": "https://nickcarbone.github.io/open-channel/",
+      "title": "Open Channel",
+      "description": "",
+      "updated": "2026-11-20T12:13:39Z",
+      "created": "2026-11-20T12:11:00Z"
     },
     {
       "slug": "encore",
