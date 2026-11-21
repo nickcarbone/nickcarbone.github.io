@@ -24,15 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-Legal Yesterday
-Create an interactive HTML guide to forgotten laws that reveal surprising, disturbing, or consequential aspects of everyday life in the past.
-Investigate historical restrictions on movement, work, property, family life, commerce, personal freedoms, and public behavior.
-For each law, explain its exact wording, jurisdiction, date, original purpose, enforcement, affected populations, and eventual fate.
-Distinguish enacted laws from proposals, popular legends, repealed provisions, and rules that remain in force.
-Build a searchable historical law index with timelines showing introduction, enforcement, challenges, and repeal.
-Focus on how ordinary administrative rules can institutionalize power and reshape society.
-Use original HTML, CSS, JavaScript, and SVG; no external images or copyrighted visual assets.
-
 The Forgery Casebook (writer’s casebook)
 Ten art forgeries that fooled museums, from Van Meegeren’s fake Vermeers to the Knoedler Gallery’s fake Rothkos. Cover how each one was finally caught, whether by lead isotopes, canvas weave, a pigment that hadn’t been invented yet or a mistake in the provenance. Explain why connoisseurs’ eyes failed where chemistry didn’t.
 

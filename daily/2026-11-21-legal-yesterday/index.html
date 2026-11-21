@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Legal Yesterday · Daily</title>
+<meta name="description" content="Twenty-six old laws, failed bills and legal legends that governed where people could go, whom they could marry, what they could drink and how they could dress, with the exact words, how they were enforced and what became of them.">
+<meta property="og:title" content="Legal Yesterday">
+<meta property="og:description" content="Twenty-six old laws, failed bills and legal legends that governed where people could go, whom they could marry, what they could drink and how they could dress, with the exact words, how they were enforced and what became of them.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-21-legal-yesterday/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-21-legal-yesterday/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Archivo+Narrow:wght@500;600;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+:root{
+ --paper:#f5f1e6; --paper2:#ece6d5; --ink:#1c2333; --muted:#4f5462; --rule:#cbc2ab;
+ --tape:#a8283f; --tape2:#d9687c;
+ --repealed:#a8283f; --struck:#7d5200; --inforce:#1d5a85; --proposal:#5c5850; --legend:#6f4483;
+ --chip:#fffdf7;
+ --serif:"PT Serif",Georgia,serif; --disp:"Old Standard TT","Times New Roman",serif; --lab:"Archivo Narrow","Arial Narrow",sans-serif; --bl:"UnifrakturMaguntia",serif;
+}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]){
+  --paper:#171a22; --paper2:#1f232d; --ink:#ebe5d6; --muted:#b5b0a3; --rule:#3a3f4b;
+  --tape:#e0657a; --tape2:#a8283f;
+  --repealed:#ec7c8e; --struck:#d9a645; --inforce:#78b4e3; --proposal:#b3ada1; --legend:#c49bd8; --chip:#232733;
+ }
+}
+:root[data-theme="dark"]{
+  --paper:#171a22; --paper2:#1f232d; --ink:#ebe5d6; --muted:#b5b0a3; --rule:#3a3f4b;
+  --tape:#e0657a; --tape2:#a8283f;
+  --repealed:#ec7c8e; --struck:#d9a645; --inforce:#78b4e3; --proposal:#b3ada1; --legend:#c49bd8; --chip:#232733;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.62 var(--serif);}
+a{color:var(--tape)}
+a:focus-visible,button:focus-visible,input:focus-visible,.scroller:focus-visible{outline:3px solid var(--inforce);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.strip{border-bottom:1px solid var(--rule);font:600 14px/1 var(--lab);letter-spacing:.06em;text-transform:uppercase}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;flex-wrap:wrap}
+.strip a{color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.strip span{color:var(--muted)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:3px double var(--ink);padding:64px 0 44px;background:
+ repeating-linear-gradient(0deg,transparent 0 31px,color-mix(in srgb,var(--rule) 45%,transparent) 31px 32px),var(--paper)}
+.hero .tape{position:absolute;right:-60px;top:-40px;width:420px;height:420px;pointer-events:none;opacity:.95}
+.hero .tape .band{fill:none;stroke:var(--tape);stroke-width:30}
+.hero .tape .bow path{fill:none;stroke:var(--tape);stroke-width:11;stroke-linejoin:round}
+.hero .tape .bow path.tail{fill:var(--tape);stroke:none}
+.hero .tape .bow rect{fill:var(--tape)}
+.hero .wrap{position:relative}
+.enact{font:italic 18px/1.4 var(--disp);color:var(--muted);margin:0 0 6px;max-width:40em;padding-right:120px}
+.enact .bl{font:400 30px/1 var(--bl);color:var(--ink);font-style:normal;margin-right:.2em}
+h1{font:700 clamp(48px,11vw,112px)/.95 var(--disp);margin:8px 0 22px;letter-spacing:-.01em}
+h1 span{display:inline-block;font-style:italic;font-weight:400;text-decoration:line-through;text-decoration-color:var(--tape);text-decoration-thickness:.07em}
+.dek{font:400 21px/1.45 var(--serif);max-width:36em;margin:0 0 26px}
+.tally{display:flex;flex-wrap:wrap;gap:8px 22px;font:600 14px/1.3 var(--lab);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.tally b{font:700 24px/1 var(--disp);color:var(--ink);margin-right:4px}
+
+h2{font:700 32px/1.15 var(--disp);margin:0 0 14px}
+.intro{padding:44px 20px 12px;max-width:760px}
+.intro p{margin:0 0 1.1em}
+.lede::first-letter{font:700 4.1em/.8 var(--disp);float:left;margin:.06em .08em 0 0;color:var(--tape)}
+
+/* chart */
+.chart{padding-top:30px;padding-bottom:20px}
+.note{color:var(--muted);font-size:16px;max-width:52em;margin:0 0 12px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font:600 14px/1.4 var(--lab);margin-bottom:10px}
+.sw{display:inline-block;width:14px;height:14px;border-radius:2px;margin-right:6px;vertical-align:-2px;background:currentColor}
+.st-repealed{color:var(--repealed)} .st-struck{color:var(--struck)} .st-inforce{color:var(--inforce)} .st-proposal{color:var(--proposal)} .st-legend{color:var(--legend)}
+.scroller{overflow-x:auto;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--paper2);-webkit-overflow-scrolling:touch}
+svg.span{display:block;min-width:820px;width:100%;height:auto;font-family:var(--lab)}
+svg.span .tick{stroke:var(--rule);stroke-width:1}
+svg.span .now{stroke:var(--tape);stroke-width:1.5;stroke-dasharray:3 3}
+svg.span .tickl{font-size:13px;fill:var(--muted);font-weight:600}
+svg.span .now-l{fill:var(--tape)}
+svg.span .axnote{font-size:12px;fill:var(--muted);font-style:italic}
+svg.span .rowl{font-size:13.5px;fill:var(--ink);font-weight:500}
+svg.span a:hover .rowl,svg.span a:focus .rowl{fill:var(--tape);text-decoration:underline}
+svg.span .bar{fill:currentColor}
+svg.span .hat{stroke:currentColor;stroke-width:1}
+svg.span .fade{fill:currentColor;opacity:.3}
+svg.span .dot{fill:var(--paper);stroke:currentColor;stroke-width:3}
+svg.span .flag{fill:var(--tape)}
+
+/* controls */
+.index{padding-top:40px}
+.controls{background:var(--paper);border-bottom:3px double var(--ink);padding:12px 0 10px;margin-bottom:8px}
+.search{display:block;font:600 14px/1.2 var(--lab);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.search span{display:block;margin-bottom:4px}
+.search input{width:100%;min-height:44px;font:17px var(--serif);padding:8px 12px;border:1px solid var(--ink);background:var(--chip);color:var(--ink);border-radius:0}
+.fgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+.fl{font:600 13px/1 var(--lab);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);width:64px}
+.chip{min-height:40px;padding:6px 12px;font:600 15px/1.1 var(--lab);border:1px solid var(--rule);background:var(--chip);color:var(--ink);cursor:pointer;border-radius:0}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip[aria-pressed="true"] .sw{outline:2px solid var(--paper)}
+.count{margin:8px 0 0;font:600 14px/1.2 var(--lab);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+@media (max-width:640px){
+ .fl{width:100%}
+}
+
+/* clauses */
+.clause{display:grid;grid-template-columns:190px 1fr;gap:0 34px;padding:34px 0;border-bottom:1px solid var(--rule);scroll-margin-top:12px}
+.clause[hidden]{display:none}
+.margin{border-right:1px solid var(--rule);padding-right:20px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.cl{font:700 15px/1 var(--lab);color:var(--muted);letter-spacing:.06em}
+.yr{font:700 26px/1.1 var(--disp)}
+.jur{font:italic 16px/1.3 var(--disp);color:var(--muted)}
+.stamp{margin-top:10px;display:inline-block;border:2.5px solid currentColor;padding:5px 8px 4px;font:700 13px/1.15 var(--lab);text-transform:uppercase;letter-spacing:.08em;transform:rotate(-4deg);max-width:170px}
+.tags{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0 0 4px;font:600 13px/1.3 var(--lab);text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.clause h3{font:700 30px/1.15 var(--disp);margin:0 0 14px}
+.words{margin:0 0 18px;padding:14px 18px 12px 20px;background:var(--paper2);border-left:6px solid var(--tape)}
+.words blockquote{margin:0;font:italic 20px/1.45 var(--disp)}
+.words blockquote p{margin:0}
+.words blockquote[lang="zh"],.words blockquote[lang="ja"]{font:400 18px/1.6 "Noto Serif CJK SC","Songti SC","SimSun",serif;font-style:normal}
+.words figcaption{margin-top:8px;font:16px/1.45 var(--serif);color:var(--muted)}
+.nowords{margin:0 0 18px;padding:10px 16px;border:1px dashed var(--rule);font-size:16px;color:var(--muted)}
+.nowords span,.conflict span{font:700 13px/1 var(--lab);text-transform:uppercase;letter-spacing:.08em;color:var(--ink);margin-right:4px}
+dl{margin:0}
+.row{display:grid;grid-template-columns:150px 1fr;gap:4px 18px;padding:10px 0;border-top:1px dotted var(--rule)}
+dt{font:700 14px/1.5 var(--lab);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:2px}
+dd{margin:0}
+.conflict{margin:14px 0 0;padding:10px 14px;background:color-mix(in srgb,var(--struck) 10%,var(--paper));border-left:4px solid var(--struck);font-size:16px}
+a.ref{display:inline;padding:0 1px;margin-left:1px;font:700 12px/1.6 var(--lab);text-decoration:none;vertical-align:super;line-height:1;color:var(--tape)}
+a.ref::before{content:"["} a.ref::after{content:"]"}
+.empty{padding:24px 0;font-size:18px}
+.empty button{min-height:44px;padding:6px 14px;font:600 16px var(--lab);background:var(--ink);color:var(--paper);border:0;cursor:pointer}
+
+@media (max-width:760px){
+ .clause{grid-template-columns:1fr;padding:28px 0}
+ .margin{border-right:0;border-bottom:1px solid var(--rule);padding:0 0 12px;margin-bottom:14px;flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+ .stamp{margin-top:0}
+ .row{grid-template-columns:1fr;gap:2px}
+ .clause h3{font-size:27px}
+ .hero{padding:44px 0 32px}
+ .hero .tape{width:200px;height:200px;right:-64px;top:-60px}
+ .enact{padding-right:70px}
+ .dek{font-size:19px}
+ h2{font-size:28px}
+}
+
+.method,.sources{padding-top:40px}
+.method p{max-width:52em}
+.sources ol{padding-left:2.2em;font-size:16px;line-height:1.5;columns:2 420px;column-gap:40px}
+.sources li{margin:0 0 .7em;break-inside:avoid;scroll-margin-top:16px}
+.sources li:target{background:color-mix(in srgb,var(--tape) 14%,transparent)}
+.sources a{word-break:break-word}
+.pub{color:var(--muted)}
+footer{margin-top:50px;border-top:3px double var(--ink);padding:22px 0 40px;font:600 15px/1.6 var(--lab);letter-spacing:.02em}
+footer a{display:inline-block;min-height:40px;line-height:40px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+html{scroll-behavior:smooth}
+
+</style>
+</head>
+<body>
+<div class="strip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 035 · Saturday 21 November 2026</span></div></div>
+
+<header class="hero">
+ <svg class="tape" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><path class="band" d="M40 -20 L420 360"/><g class="bow" transform="translate(205 145) rotate(45)"><path d="M0 0 C-30 -46 -84 -40 -78 -6 C-72 26 -26 16 0 0Z"/><path d="M0 0 C30 -46 84 -40 78 -6 C72 26 26 16 0 0Z"/><path class="tail" d="M-4 4 L-34 70 L-22 66 L-16 80 L4 8Z"/><path class="tail" d="M4 4 L30 74 L18 70 L12 84 L-2 8Z"/><rect x="-11" y="-11" width="22" height="22" rx="5"/></g></svg>
+ <div class="wrap">
+  <p class="enact"><span class="bl">Be it remembered</span> that the following were once the law, or were said to be</p>
+  <h1>Legal <span>Yesterday</span></h1>
+  <p class="dek">Twenty-six old laws, failed bills and legal legends that governed where people could go, whom they could marry, what they could drink and how they could dress, with the exact words, how they were enforced and what became of them.</p>
+  <div class="tally" aria-label="Entries by status">
+   <span><b>17</b> repealed</span><span><b>3</b> struck down or voided</span><span><b>4</b> still in force</span><span><b>1</b> never enacted</span><span><b>1</b> legend</span>
+  </div>
+ </div>
+</header>
+
+<main>
+<section class="wrap intro">
+<p class="lede">Most of the laws that shaped ordinary lives were never dramatic. They were forms, thresholds and permits: a forty-day window in which a parish could send a newcomer away<a class="ref" href="#src-14" aria-label="Source 14">14</a>, a count of windows on a house<a class="ref" href="#src-18" aria-label="Source 18">18</a>, a book recording each drinker’s monthly ration of spirits<a class="ref" href="#src-79" aria-label="Source 79">79</a>, a certificate a woman needed before she could wear trousers in Paris<a class="ref" href="#src-36" aria-label="Source 36">36</a>. Each was written to solve an administrative problem. Each decided who could move, work, own, marry or relax, and who could not.</p>
+<p>This index gathers twenty-six of them, from the wage freeze England imposed after the Black Death to the dance clause Japan deleted in 2016. Most are dead. Three are still on the books in amended form, one survives only in bits, and two entries are not laws at all: a bill that nearly redefined pi, and a “rule” about wife-beating that no court ever laid down. Each entry gives the wording where an authoritative text exists, translated where needed, and says plainly when it doesn’t. Dates and figures come from statutes, court records, parliamentary papers and historians; where sources disagree, the entry says so.</p>
+<p>Patterns repeat. Laws aimed at a problem of the moment, from plague-era labour shortages to wartime drunkenness, outlasted it by generations. Many were enforced through paperwork rather than police: a settlement certificate, a reference book, a motbok, a hiring certificate. And many fell not to a new law but to a court, a constitution or a minister declaring them dead.</p>
+</section>
+
+<section class="wrap chart" aria-labelledby="chartH">
+ <h2 id="chartH">How long they lasted</h2>
+ <p class="note">Each bar runs from enactment to repeal, abolition or today. Hatching marks what survived after the main rule ended: Norway’s Jesuit ban, the US exception for wives of Asian men, the surviving sections of the 1882 Act, the 1948 Japanese Act after its dance clause went, and the marriage bar abroad after Britain’s home civil service dropped it. The thin top line on the Red Flag Act is the flag itself. Dots are bills and legends that were never law. Tap a row to jump to its entry.</p>
+ <div class="legend" aria-hidden="true"><span><i class="sw st-repealed"></i>Repealed</span><span><i class="sw st-struck"></i>Struck down or voided</span><span><i class="sw st-inforce"></i>Still in force, amended</span><span><i class="sw st-proposal"></i>Never enacted</span><span><i class="sw st-legend"></i>Legend</span></div>
+ <div class="scroller" tabindex="0" role="region" aria-label="Lifespan chart, scrolls sideways"><svg class="span" viewBox="0 0 1000 642" role="img" aria-labelledby="spanT spanD"><title id="spanT">How long each law lasted</title><desc id="spanD">Bars from enactment to repeal or the present for each of the 26 entries, on a time axis compressed before 1800. Hatched sections show periods after the main rule ended when parts survived; dots mark bills and legends that were never law.</desc><defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--paper)"/><line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="2.4"/></pattern></defs><line x1="255.4" y1="32" x2="255.4" y2="618" class="tick"/><text x="255.4" y="26" class="tickl" text-anchor="middle">1350</text><line x1="336.3" y1="32" x2="336.3" y2="618" class="tick"/><text x="336.3" y="26" class="tickl" text-anchor="middle">1500</text><line x1="417.3" y1="32" x2="417.3" y2="618" class="tick"/><text x="417.3" y="26" class="tickl" text-anchor="middle">1650</text><line x1="498.2" y1="32" x2="498.2" y2="618" class="tick"/><text x="498.2" y="26" class="tickl" text-anchor="middle">1800</text><line x1="602.9" y1="32" x2="602.9" y2="618" class="tick"/><text x="602.9" y="26" class="tickl" text-anchor="middle">1850</text><line x1="707.7" y1="32" x2="707.7" y2="618" class="tick"/><text x="707.7" y="26" class="tickl" text-anchor="middle">1900</text><line x1="812.4" y1="32" x2="812.4" y2="618" class="tick"/><text x="812.4" y="26" class="tickl" text-anchor="middle">1950</text><line x1="917.2" y1="32" x2="917.2" y2="618" class="tick"/><text x="917.2" y="26" class="tickl" text-anchor="middle">2000</text><text x="374.1" y="634" class="axnote" text-anchor="middle">before 1800: compressed scale</text><text x="739.1" y="634" class="axnote" text-anchor="middle">1800 onwards</text><line x1="971.6" y1="32" x2="971.6" y2="618" class="now"/><text x="971.6" y="16" class="tickl now-l" text-anchor="end">2026</text><g class="st-repealed"><a href="#labourers"><text x="240" y="55" class="rowl" text-anchor="end">The Ordinance and Statute of Labourers</text><rect x="254.9" y="45" width="375.3" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#sakoku"><text x="240" y="77" class="rowl" text-anchor="end">The closed-country edict</text><rect x="409.2" y="67" width="227.3" height="12" class="bar"/></a></g><g class="st-struck"><a href="#christmas"><text x="240" y="99" class="rowl" text-anchor="end">Parliament&#x27;s abolition of Christmas</text><rect x="415.6" y="89" width="7.0" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#settlement"><text x="240" y="121" class="rowl" text-anchor="end">The Settlement Act</text><rect x="423.7" y="111" width="384.5" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#window"><text x="240" y="143" class="rowl" text-anchor="end">The window tax</text><rect x="442.1" y="133" width="162.9" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#witchcraft"><text x="240" y="165" class="rowl" text-anchor="end">The Witchcraft Act</text><rect x="463.1" y="155" width="351.4" height="12" class="bar"/></a></g><g class="st-inforce"><a href="#coverture"><text x="240" y="187" class="rowl" text-anchor="end">Coverture and the property Acts</text><rect x="449.3" y="177" width="30" height="12" class="fade"/><rect x="479.3" y="177" width="190.7" height="12" class="bar"/><rect x="670.0" y="177" width="301.6" height="12" class="hat" fill="url(#hatch)"/></a></g><g class="st-legend"><a href="#thumb"><text x="240" y="209" class="rowl" text-anchor="end">The ‘rule of thumb’</text><circle cx="488.5" cy="205" r="5.5" class="dot"/></a></g><g class="st-repealed"><a href="#combination"><text x="240" y="231" class="rowl" text-anchor="end">The Combination Acts</text><rect x="497.7" y="221" width="50.8" height="12" class="bar"/></a></g><g class="st-struck"><a href="#paris"><text x="240" y="253" class="rowl" text-anchor="end">Paris&#x27;s ban on women in trousers</text><rect x="498.2" y="243" width="446.2" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#norway"><text x="240" y="275" class="rowl" text-anchor="end">Norway&#x27;s constitutional ban on Jews</text><rect x="527.5" y="265" width="77.5" height="12" class="bar"/><rect x="605.0" y="265" width="220.0" height="12" class="hat" fill="url(#hatch)"/></a></g><g class="st-repealed"><a href="#masterservant"><text x="240" y="297" class="rowl" text-anchor="end">The Master and Servant Act</text><rect x="546.4" y="287" width="108.9" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#redflag"><text x="240" y="319" class="rowl" text-anchor="end">The Red Flag Act</text><rect x="634.4" y="309" width="64.9" height="12" class="bar"/><rect x="634.4" y="305" width="27.2" height="3" class="flag"/></a></g><g class="st-inforce"><a href="#comstock"><text x="240" y="341" class="rowl" text-anchor="end">The Comstock Act</text><rect x="651.1" y="331" width="320.5" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#ugly"><text x="240" y="363" class="rowl" text-anchor="end">Chicago&#x27;s ‘unsightly’ ordinance</text><rect x="667.9" y="353" width="194.8" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#marriagebar"><text x="240" y="385" class="rowl" text-anchor="end">The marriage bar</text><rect x="695.1" y="375" width="108.9" height="12" class="bar"/><rect x="804.0" y="375" width="56.6" height="12" class="hat" fill="url(#hatch)"/></a></g><g class="st-proposal"><a href="#pi"><text x="240" y="407" class="rowl" text-anchor="end">Indiana&#x27;s Pi Bill</text><circle cx="701.4" cy="403" r="5.5" class="dot"/></a></g><g class="st-repealed"><a href="#expatriation"><text x="240" y="429" class="rowl" text-anchor="end">Marrying out of US citizenship</text><rect x="722.3" y="419" width="31.4" height="12" class="bar"/><rect x="753.8" y="419" width="18.9" height="12" class="hat" fill="url(#hatch)"/></a></g><g class="st-struck"><a href="#lordsday"><text x="240" y="451" class="rowl" text-anchor="end">Canada&#x27;s Lord&#x27;s Day Act</text><rect x="722.3" y="441" width="163.4" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#motbok"><text x="240" y="473" class="rowl" text-anchor="end">Sweden&#x27;s ration book for spirits</text><rect x="737.0" y="463" width="85.9" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#pubhours"><text x="240" y="495" class="rowl" text-anchor="end">Britain&#x27;s afternoon closing</text><rect x="737.0" y="485" width="190.6" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#iceland"><text x="240" y="517" class="rowl" text-anchor="end">Iceland&#x27;s beer ban</text><rect x="739.1" y="507" width="155.0" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#ireland"><text x="240" y="539" class="rowl" text-anchor="end">Ireland&#x27;s ban on contraceptives</text><rect x="781.0" y="529" width="92.2" height="12" class="bar"/></a></g><g class="st-repealed"><a href="#passlaws"><text x="240" y="561" class="rowl" text-anchor="end">South Africa&#x27;s pass laws</text><rect x="771.9" y="551" width="30" height="12" class="fade"/><rect x="801.9" y="551" width="85.9" height="12" class="bar"/></a></g><g class="st-inforce"><a href="#fueiho"><text x="240" y="583" class="rowl" text-anchor="end">Japan&#x27;s no-dancing law</text><rect x="808.2" y="573" width="142.4" height="12" class="bar"/><rect x="950.7" y="573" width="20.9" height="12" class="hat" fill="url(#hatch)"/></a></g><g class="st-inforce"><a href="#hukou"><text x="240" y="605" class="rowl" text-anchor="end">China&#x27;s household registration</text><rect x="829.2" y="595" width="142.4" height="12" class="bar"/></a></g></svg></div>
+</section>
+
+<section class="wrap index" aria-labelledby="indexH">
+ <h2 id="indexH">The index</h2>
+ <div class="controls" id="controls" hidden>
+  <label class="search"><span>Search the laws</span><input id="q" type="search" placeholder="Try ‘women’, ‘Sunday’, ‘passport’…" autocomplete="off"></label>
+  <div class="fgroup" role="group" aria-label="Filter by subject"><span class="fl">Subject</span><button type="button" class="chip" data-f="theme" data-v="move" aria-pressed="false">Movement</button><button type="button" class="chip" data-f="theme" data-v="work" aria-pressed="false">Work</button><button type="button" class="chip" data-f="theme" data-v="prop" aria-pressed="false">Property and tax</button><button type="button" class="chip" data-f="theme" data-v="family" aria-pressed="false">Marriage and family</button><button type="button" class="chip" data-f="theme" data-v="belief" aria-pressed="false">Belief and the body</button><button type="button" class="chip" data-f="theme" data-v="trade" aria-pressed="false">Drink and Sundays</button><button type="button" class="chip" data-f="theme" data-v="public" aria-pressed="false">Public life</button></div>
+  <div class="fgroup" role="group" aria-label="Filter by status"><span class="fl">Status</span><button type="button" class="chip" data-f="status" data-v="repealed" aria-pressed="false"><i class="sw st-repealed"></i>Repealed</button><button type="button" class="chip" data-f="status" data-v="struck" aria-pressed="false"><i class="sw st-struck"></i>Struck down or voided</button><button type="button" class="chip" data-f="status" data-v="inforce" aria-pressed="false"><i class="sw st-inforce"></i>Still in force, amended</button><button type="button" class="chip" data-f="status" data-v="proposal" aria-pressed="false"><i class="sw st-proposal"></i>Never enacted</button><button type="button" class="chip" data-f="status" data-v="legend" aria-pressed="false"><i class="sw st-legend"></i>Legend</button></div>
+  <p class="count" id="count" aria-live="polite"></p>
+ </div>
+ <div id="clauses">
+<article class="clause" id="labourers" data-theme="work" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 1</span>
+  <span class="yr">1349 and 1351</span>
+  <span class="jur">England</span>
+  <span class="stamp st-repealed">Repealed 1863</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Work</span><span>Repealed</span><span>Lifespan: 1349–1863</span></p>
+  <h3>The Ordinance and Statute of Labourers</h3>
+  <figure class="words"><blockquote><p>Because a great part of the people, and especially of workmen and servants, late died of the pestilence, many seeing the necessity of masters, and great scarcity of servants, will not serve unless they may receive excessive wages</p></blockquote><figcaption>Ordinance of Labourers, 1349, preamble, in the 1915 White and Notestein translation from the Anglo-Norman<a class="ref" href="#src-1" aria-label="Source 1">1</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>After the Black Death, Edward III’s ordinance bound every able-bodied man and woman under sixty, “free or bond”, without land or a trade to serve anyone who asked, at the wages paid in the twentieth year of his reign (1346–47)<a class="ref" href="#src-1" aria-label="Source 1">1</a>. Parliament’s 1351 statute fixed rates down to the job: “a mower of meadows for the acre five pence”. Refusers went to the stocks for three days or more<a class="ref" href="#src-2" aria-label="Source 2">2</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>The texts say it themselves: survivors were demanding “excessive wages” or choosing “to beg in idleness”<a class="ref" href="#src-1" aria-label="Source 1">1</a>. The law tried to freeze the labour market at its pre-plague price.</dd></div><div class="row"><dt>Enforcement</dt><dd>Patchy but sometimes heavy. Justices raised £84 7s. 7d. in fines at Colchester in 1352, and excessive wages made up 72 per cent of cases in a Cheshire roll of 1356–59; yet seven of eight manors in Mark Bailey’s sample recorded no cases at all<a class="ref" href="#src-3" aria-label="Source 3">3</a>. No national total of prosecutions exists.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Labourers, ploughmen and servants; artisans were tied to set rates; stipendiary chaplains were pressed to serve for the customary salary<a class="ref" href="#src-1" aria-label="Source 1">1</a><a class="ref" href="#src-2" aria-label="Source 2">2</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>Wikipedia, a secondary source, lists the Statute of Artificers (1562 or 1563, depending on the reckoning) among the labour laws that followed, and says the 1351 statute was formally repealed in 1863<a class="ref" href="#src-4" aria-label="Source 4">4</a>.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="sakoku" data-theme="move" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 2</span>
+  <span class="yr">1635</span>
+  <span class="jur">Tokugawa Japan</span>
+  <span class="stamp st-repealed">Lifted 1866</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Movement</span><span>Repealed</span><span>Lifespan: 1635–1866</span></p>
+  <h3>The closed-country edict</h3>
+  <figure class="words"><blockquote><p>Japanese are prohibited from going abroad. If a Japanese goes abroad in secret, he will be put to death.</p></blockquote><figcaption>Edict of 1635, article 2, in the English translation published by the USC US-China Institute from the Japanese text in Tokugawa kinreikō; translator not named<a class="ref" href="#src-5" aria-label="Source 5">5</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>A memorandum from the shogun’s senior councillors to the governors of Nagasaki, issued under Tokugawa Iemitsu, barred Japanese ships from sailing abroad, made secret departure a capital crime and ordered death for any Japanese who came home after living overseas<a class="ref" href="#src-5" aria-label="Source 5">5</a><a class="ref" href="#src-6" aria-label="Source 6">6</a>. Most of its other articles concern hunting down Christians and policing foreign trade at Nagasaki<a class="ref" href="#src-6" aria-label="Source 6">6</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>Historians read it as a measure to shut out foreign, and especially Christian, influence<a class="ref" href="#src-6" aria-label="Source 6">6</a>. The councillors’ own reasons are not stated in the text.</dd></div><div class="row"><dt>Enforcement</dt><dd>It sat inside a wider anti-Christian campaign that used informers’ rewards and the fumi-e, in which suspects were made to tread on a sacred image<a class="ref" href="#src-6" aria-label="Source 6">6</a>. No reliable count exists of people executed for leaving or returning.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Sailors, merchants and the Japanese communities already living in South-east Asia, who were cut off from home.</dd></div><div class="row"><dt>What became of it</dt><dd>There was no formal repeal. After Commodore Perry’s ships forced open Japan’s ports in 1853–54<a class="ref" href="#src-6" aria-label="Source 6">6</a>, the shogunate’s foreign ministers told the American legation in May 1866 that “all Japanese who may wish to travel abroad shall be furnished with such a permit”<a class="ref" href="#src-7" aria-label="Source 7">7</a>. Takahiro Yamamoto argues that the new passports belatedly endorsed undercover border-crossing that was already common<a class="ref" href="#src-8" aria-label="Source 8">8</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> The University of Pittsburgh’s text, using C. R. Boxer’s translation, heads a closely related edict “June 1636”<a class="ref" href="#src-9" aria-label="Source 9">9</a>; most sources date it 1635.</p>
+ </div>
+</article>
+<article class="clause" id="christmas" data-theme="belief" data-status="struck">
+ <aside class="margin">
+  <span class="cl">§ 3</span>
+  <span class="yr">1647</span>
+  <span class="jur">England and Wales</span>
+  <span class="stamp st-struck">Voided 1660</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Belief and the body</span><span>Struck down or voided</span><span>Lifespan: 1647–1660</span></p>
+  <h3>Parliament&#x27;s abolition of Christmas</h3>
+  <figure class="words"><blockquote><p>be no longer observed as Festivals or Holy-dayes within this Kingdome of England and Dominion of Wales</p></blockquote><figcaption>An Ordinance for Abolishing of Festivals, 8 June 1647, in Firth and Rait, Acts and Ordinances of the Interregnum<a class="ref" href="#src-10" aria-label="Source 10">10</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>The Long Parliament abolished Christmas, Easter, Whitsun and other holy days, and gave scholars, apprentices and servants a secular day off on the second Tuesday of each month instead<a class="ref" href="#src-10" aria-label="Source 10">10</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>Puritan conviction that such feasts had “no warrant in the Word of God”, as the 1645 Directory of Public Worship put it<a class="ref" href="#src-11" aria-label="Source 11">11</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Shops were expected to open on 25 December, and there were Christmas riots in several towns<a class="ref" href="#src-12" aria-label="Source 12">12</a><a class="ref" href="#src-13" aria-label="Source 13">13</a>. Measures in the 1650s penalised Christmas services<a class="ref" href="#src-11" aria-label="Source 11">11</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Everyone, but especially the clergy and the apprentices and servants who lost their traditional holidays.</dd></div><div class="row"><dt>The legends</dt><dd>Oliver Cromwell did not personally ban Christmas; the Cromwell Association calls that “a common myth”<a class="ref" href="#src-11" aria-label="Source 11">11</a>. No law aimed at mince pies has been found. The Law Commission’s point is narrower: the only Christmas on which eating them was illegal was 1644, when 25 December fell on Parliament’s monthly fast day and the fast was ordered kept<a class="ref" href="#src-12" aria-label="Source 12">12</a><a class="ref" href="#src-13" aria-label="Source 13">13</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>At the Restoration in 1660 the legislation of 1642–60 was declared null and void<a class="ref" href="#src-11" aria-label="Source 11">11</a>.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="settlement" data-theme="move" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 4</span>
+  <span class="yr">1662</span>
+  <span class="jur">England and Wales</span>
+  <span class="stamp st-repealed">Repealed 1948</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Movement</span><span>Repealed</span><span>Lifespan: 1662–1948</span></p>
+  <h3>The Settlement Act</h3>
+  <figure class="words"><blockquote><p>…where any person or persons that are likely to be chargeable to the Parish shall come to inhabitt… within Forty dayes after any such Person or Persons coming so to settle… in any Tenement under the yearely value of Ten pounds…</p></blockquote><figcaption>Poor Relief Act 1662, para. I, as enacted, original spelling; the ellipses mark gaps in the passage<a class="ref" href="#src-14" aria-label="Source 14">14</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>A newcomer to a parish who rented a home worth under £10 a year could, on complaint within forty days, be removed by two justices to the parish where they were last legally settled, if they were judged “likely to be chargeable” to the poor rate<a class="ref" href="#src-14" aria-label="Source 14">14</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>To decide which parish paid for whose poor relief, and to stop people moving towards parishes with better relief<a class="ref" href="#src-15" aria-label="Source 15">15</a>. The £10 threshold was beyond an ordinary labourer<a class="ref" href="#src-15" aria-label="Source 15">15</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Parishes moved unmarried women who were heavily pregnant across their boundary before the birth, because a child born outside marriage was settled where it was born; employers hired for 364 days so that servants would not gain a settlement by a year’s service<a class="ref" href="#src-15" aria-label="Source 15">15</a>. Removal long outlived the Act: in 1907 more than 12,000 people were still moved from one poor-law union to another in England and Wales<a class="ref" href="#src-16" aria-label="Source 16">16</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>The labouring poor, migrant workers, widows, children and unmarried mothers<a class="ref" href="#src-15" aria-label="Source 15">15</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>From 1795 newcomers could not be removed until they actually needed relief (pregnant unmarried women excepted)<a class="ref" href="#src-15" aria-label="Source 15">15</a>. The Poor Law Act 1927 repealed most of the 1662 Act and the Statute Law Revision Act 1948 the rest<a class="ref" href="#src-17" aria-label="Source 17">17</a>.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="window" data-theme="prop" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 5</span>
+  <span class="yr">1696</span>
+  <span class="jur">England and Wales</span>
+  <span class="stamp st-repealed">Repealed 1851</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Property and tax</span><span>Repealed</span><span>Lifespan: 1696–1851</span></p>
+  <h3>The window tax</h3>
+  <figure class="words"><blockquote><p>for every such Dwelling House inhabited having Ten Windows or more and under the Number of Twenty the Summe of Foure Shilling yearely over and above the said yearely Summe of Two Shillings</p></blockquote><figcaption>Taxation (No. 3) Act 1695 (7 & 8 Will. 3 c. 18), as enacted, original spelling<a class="ref" href="#src-18" aria-label="Source 18">18</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>Every inhabited house except cottages paid two shillings a year, with four shillings more for ten to nineteen windows and eight more for twenty or above, from 25 March 1696<a class="ref" href="#src-18" aria-label="Source 18">18</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>William III’s government needed to make up revenue lost to the clipping of coins<a class="ref" href="#src-19" aria-label="Source 19">19</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Householders bricked up windows rather than pay<a class="ref" href="#src-19" aria-label="Source 19">19</a>. When the threshold dropped to seven windows in 1766, the number of houses with exactly seven fell by nearly two-thirds<a class="ref" href="#src-20" aria-label="Source 20">20</a>. In 1845 Dr D. B. Reid’s report on Sunderland blamed “the blocking up of the numerous windows” for the state of the town’s housing, and doctors linked dark, airless rooms to typhus and cholera<a class="ref" href="#src-20" aria-label="Source 20">20</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Occupiers of houses, and through their rents the tenants of crowded urban tenements, since landlords passed the cost on<a class="ref" href="#src-20" aria-label="Source 20">20</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>A repeal motion lost by three votes in April 1850; the tax went in 1851, replaced by a duty on inhabited houses<a class="ref" href="#src-20" aria-label="Source 20">20</a><a class="ref" href="#src-21" aria-label="Source 21">21</a>. Disraeli called the swap only “a partial commutation”<a class="ref" href="#src-21" aria-label="Source 21">21</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> Parliament’s own key-dates page says “four shillings for between 10 and 20 windows”; the Act charges four shillings on top of the two-shilling base, six in all.</p>
+ </div>
+</article>
+<article class="clause" id="witchcraft" data-theme="belief" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 6</span>
+  <span class="yr">1735</span>
+  <span class="jur">Great Britain</span>
+  <span class="stamp st-repealed">Repealed 1951</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Belief and the body</span><span>Repealed</span><span>Lifespan: 1735–1951</span></p>
+  <h3>The Witchcraft Act</h3>
+  <figure class="words"><blockquote><p>pretend to exercise or use any kind of Witchcraft, Sorcery, Inchantment, or Conjuration</p></blockquote><figcaption>Witchcraft Act 1735 (9 Geo. 2 c. 5), as transcribed on Wikisource<a class="ref" href="#src-22" aria-label="Source 22">22</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>It reversed the old law. The capital witchcraft statutes of 1604 (England) and 1563 (Scotland) were repealed and prosecutions for witchcraft barred; the new offence was pretending to have magical powers, punished by a year in prison without bail and quarterly hours in the pillory<a class="ref" href="#src-22" aria-label="Source 22">22</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>To end witch trials while still punishing fortune-tellers and others who claimed powers for gain<a class="ref" href="#src-22" aria-label="Source 22">22</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Its best-known use came two centuries later. The Scottish medium Helen Duncan was tried at the Old Bailey from 23 March 1944 and convicted on 3 April<a class="ref" href="#src-23" aria-label="Source 23">23</a>; she served nine months, and the Court of Criminal Appeal upheld the conviction in R v Duncan [1944] KB 713<a class="ref" href="#src-24" aria-label="Source 24">24</a>. Prosecutors are reported to have chosen the 1735 Act because they feared an acquittal under the Vagrancy Act; Winston Churchill called the case “obsolete tomfoolery”<a class="ref" href="#src-23" aria-label="Source 23">23</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Spiritualist mediums, fortune-tellers and folk healers claiming supernatural powers.</dd></div><div class="row"><dt>What became of it</dt><dd>Repealed by the Fraudulent Mediums Act 1951, which made it an offence to fake mediumship for reward<a class="ref" href="#src-25" aria-label="Source 25">25</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> Duncan is often called the last person convicted under the Act. National Geographic and the ICLR both describe her as the last person imprisoned under it<a class="ref" href="#src-23" aria-label="Source 23">23</a><a class="ref" href="#src-24" aria-label="Source 24">24</a>, which is the claim we can support.</p>
+ </div>
+</article>
+<article class="clause" id="coverture" data-theme="family" data-status="inforce">
+ <aside class="margin">
+  <span class="cl">§ 7</span>
+  <span class="yr">1870 and 1882</span>
+  <span class="jur">England and Wales</span>
+  <span class="stamp st-inforce">Dismantled 1882</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Marriage and family</span><span>Still in force, amended</span><span>Lifespan: to 1882</span></p>
+  <h3>Coverture and the Married Women’s Property Acts</h3>
+  <figure class="words"><blockquote><p>By marriage, the husband and wife are one person in law: that is, the very being or legal existence of the woman is suspended during the marriage, or at least is incorporated and consolidated into that of the husband</p></blockquote><figcaption>William Blackstone, Commentaries on the Laws of England, Book I, ch. 15 (1765), spelling modernised<a class="ref" href="#src-26" aria-label="Source 26">26</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>Coverture was common law rather than statute: on marriage a woman’s personal property passed to her husband and she could not hold property in her own name<a class="ref" href="#src-27" aria-label="Source 27">27</a><a class="ref" href="#src-28" aria-label="Source 28">28</a>. Wealthy families worked round it with marriage settlements<a class="ref" href="#src-28" aria-label="Source 28">28</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>Blackstone framed it as protection: a wife acted under her husband’s “wing, protection, and cover”<a class="ref" href="#src-26" aria-label="Source 26">26</a>.</dd></div><div class="row"><dt>How it was dismantled</dt><dd>After a campaign that included an 1856 petition of about 26,000 signatures<a class="ref" href="#src-28" aria-label="Source 28">28</a>, the 1870 Act let wives keep their own earnings<a class="ref" href="#src-27" aria-label="Source 27">27</a>. The 1882 Act, in force from 1 January 1883, let a married woman hold and dispose of property “as if she were a feme sole”<a class="ref" href="#src-29" aria-label="Source 29">29</a>. Historians note working-class women gained little at first<a class="ref" href="#src-28" aria-label="Source 28">28</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Married women, and in practice their husbands’ creditors.</dd></div><div class="row"><dt>What became of it</dt><dd>The 1870 Act was repealed by the 1882 Act; most of the 1882 Act has since gone, but two sections, on life insurance for spouses and on property disputes between them, are still in force<a class="ref" href="#src-29" aria-label="Source 29">29</a>.</dd></div></dl>
+  <p class="conflict"><span>Note.</span> Blackstone also wrote that “the husband also (by the old law) might give his wife moderate correction”<a class="ref" href="#src-26" aria-label="Source 26">26</a>. See the rule-of-thumb entry for what that did and did not mean.</p>
+ </div>
+</article>
+<article class="clause" id="thumb" data-theme="family" data-status="legend">
+ <aside class="margin">
+  <span class="cl">§ 8</span>
+  <span class="yr">never</span>
+  <span class="jur">England (as claimed)</span>
+  <span class="stamp st-legend">Never law</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Marriage and family</span><span>Legend</span><span>Lifespan: Never law</span></p>
+  <h3>The ‘rule of thumb’</h3>
+  <figure class="words"><blockquote><p>THE husband also (by the old law) might give his wife moderate correction.</p></blockquote><figcaption>Blackstone, Commentaries, Book I, ch. 15 (1765). Blackstone mentions no thumb<a class="ref" href="#src-26" aria-label="Source 26">26</a></figcaption></figure>
+  <dl><div class="row"><dt>The claim</dt><dd>That English law once let a husband beat his wife with a stick no thicker than his thumb, and that this is where the phrase “rule of thumb” comes from.</dd></div><div class="row"><dt>What the record shows</dt><dd>No such rule of law has been found. The story attaches to the judge Sir Francis Buller, who was “reputedly” said to have ruled it and was mocked for it in James Gillray’s 1782 print Judge Thumb, or, Patent sticks for family correction, warranted lawful<a class="ref" href="#src-30" aria-label="Source 30">30</a>. The legal historian Henry Ansgar Kelly traced the legend in 1994. By a University of Oregon summary of his work, he found that Buller gave some credence to a thumb standard in 1782 (possibly 1781), and that two American cases mentioned one: Bradley v State (Mississippi, 1824) referred to it without relying on it, and in State v Rhodes (North Carolina, 1868) a trial judge used it, reasoning the state Supreme Court rejected<a class="ref" href="#src-31" aria-label="Source 31">31</a>. None of this made it a rule of English law. The phrase itself has long meant a rough practical measure<a class="ref" href="#src-31" aria-label="Source 31">31</a>.</dd></div><div class="row"><dt>What was real</dt><dd>The doctrine of “moderate correction” was real; Blackstone recorded it and wrote that in the reign of Charles II “this power of correction began to be doubted”<a class="ref" href="#src-26" aria-label="Source 26">26</a>. The thumb was the invention.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="combination" data-theme="work" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 9</span>
+  <span class="yr">1799 and 1800</span>
+  <span class="jur">Great Britain</span>
+  <span class="stamp st-repealed">Repealed 1824</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Work</span><span>Repealed</span><span>Lifespan: 1799–1824</span></p>
+  <h3>The Combination Acts</h3>
+  <p class="nowords"><span>No quotation.</span> We have not found an authoritative transcription of the 1800 Act to quote, so the summary below relies on reference works.</p>
+  <dl><div class="row"><dt>What it did</dt><dd>Made it a crime for workers to combine “to gain an increase in wages or a decrease in hours”, in effect outlawing trade unions<a class="ref" href="#src-32" aria-label="Source 32">32</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>Passed under Pitt the Younger, whose government was responding to Jacobin activity and feared wartime strikes<a class="ref" href="#src-33" aria-label="Source 33">33</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>The Acts formally covered employers’ combinations too, but Britannica notes those clauses “were never in any recorded case put into operation”<a class="ref" href="#src-32" aria-label="Source 32">32</a>. When the framework-knitters’ leader Gravener Henson tried to use the Act against masters in 1811, magistrates would not act<a class="ref" href="#src-34" aria-label="Source 34">34</a>. No count of prosecutions survives.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Journeymen and workers in Britain’s growing manufacturing trades.</dd></div><div class="row"><dt>What became of it</dt><dd>Repealed in 1824 after a campaign by the radical tailor Francis Place and the MP Joseph Hume<a class="ref" href="#src-32" aria-label="Source 32">32</a>. A wave of strikes followed, and an 1825 Act allowed unions to exist while creating new offences of intimidation and molestation<a class="ref" href="#src-34" aria-label="Source 34">34</a>.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="paris" data-theme="belief" data-status="struck">
+ <aside class="margin">
+  <span class="cl">§ 10</span>
+  <span class="yr">1800</span>
+  <span class="jur">Paris, France</span>
+  <span class="stamp st-struck">Declared void 2013</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Belief and the body</span><span>Struck down or voided</span><span>Lifespan: 1800–2013</span></p>
+  <h3>Paris&#x27;s ban on women in trousers</h3>
+  <p class="nowords"><span>No quotation.</span> The sentence usually quoted (any woman wishing to dress as a man must obtain authorisation from the Prefecture of Police) is a summary used in a 2011 Senate bill, not the ordinance’s own wording, so we do not present it as such<a class="ref" href="#src-35" aria-label="Source 35">35</a>.</p>
+  <dl><div class="row"><dt>What it did</dt><dd>An ordinance of the Paris police prefect, Louis Nicolas Dubois, dated 16 brumaire an IX (7 November 1800), required women who wanted to dress as men to apply to the Prefecture, with a health officer’s certificate<a class="ref" href="#src-36" aria-label="Source 36">36</a><a class="ref" href="#src-37" aria-label="Source 37">37</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>In the French government’s 2013 reading, it was mainly a way of keeping women out of certain jobs and roles<a class="ref" href="#src-36" aria-label="Source 36">36</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>No count of permits survives in the sources we found. Marie-Rose Astié de Valsayre asked deputies to repeal it in 1887; the athlete Violette Morris defended her right to wear trousers in a 1930 trial<a class="ref" href="#src-36" aria-label="Source 36">36</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Women in Paris.</dd></div><div class="row"><dt>What became of it</dt><dd>It was never formally repealed. On 31 January 2013 the Ministry of Women’s Rights, answering a senator’s written question, declared it incompatible with the equality guarantees of the constitution and the European Convention on Human Rights, “implicitement abrogée” and without legal effect<a class="ref" href="#src-36" aria-label="Source 36">36</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> A Senate bill and an Assemblée question date it 26 brumaire an IX (17 November 1800) and cite circulars of 1892 and 1909 allowing trousers for women holding a bicycle’s handlebars or a horse’s reins<a class="ref" href="#src-35" aria-label="Source 35">35</a><a class="ref" href="#src-37" aria-label="Source 37">37</a>. The historian Christine Bard gives 16 brumaire and calls the bicycle exemption “de la légende urbaine”<a class="ref" href="#src-36" aria-label="Source 36">36</a>.</p>
+ </div>
+</article>
+<article class="clause" id="norway" data-theme="belief" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 11</span>
+  <span class="yr">1814</span>
+  <span class="jur">Norway</span>
+  <span class="stamp st-repealed">Struck out 1851</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Belief and the body</span><span>Repealed</span><span>Lifespan: 1814–1851</span></p>
+  <h3>Norway&#x27;s constitutional ban on Jews</h3>
+  <figure class="words"><blockquote lang="no"><p>Jøder ere fremdeles udelukkede fra Adgang til Riget.</p></blockquote><figcaption>Constitution of 17 May 1814, § 2, from the Storting’s transcription. Our translation: “Jews remain excluded from entry to the Realm.” The same article added: “Jesuitter og Munkeordener maae ikke taales” (Jesuits and monastic orders may not be tolerated)<a class="ref" href="#src-38" aria-label="Source 38">38</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>Written into the new constitution, the article continued an older exclusion (“fremdeles”: still, as before) and banned Jews from entering the kingdom<a class="ref" href="#src-38" aria-label="Source 38">38</a><a class="ref" href="#src-39" aria-label="Source 39">39</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>In the constitution’s first year Jews were expelled or persecuted in Østfold, Christiania and Bergen; the last known case, in 1844, ended in fines, prison and expulsion<a class="ref" href="#src-39" aria-label="Source 39">39</a>. There were quiet exceptions: Sephardic Jews had been allowed to trade since 1750, and Jewish bankers were let into the capital in 1822 to negotiate state loans<a class="ref" href="#src-39" aria-label="Source 39">39</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Jews, and through the second clause Jesuits and Catholic religious orders.</dd></div><div class="row"><dt>What became of it</dt><dd>The poet Henrik Wergeland campaigned for repeal from the late 1830s but died in 1845<a class="ref" href="#src-40" aria-label="Source 40">40</a>. Majorities in 1842, 1845 and 1848 fell short of two-thirds; on 13 June 1851 the Storting voted 93–10 to strike the clause<a class="ref" href="#src-39" aria-label="Source 39">39</a><a class="ref" href="#src-41" aria-label="Source 41">41</a>. The ban on monastic orders went in 1897, and the Jesuit ban only on 1 November 1956, by 111 votes to 31<a class="ref" href="#src-42" aria-label="Source 42">42</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> The 1851 change can be dated 13 June (the vote), 21 July (royal sanction) or 24 September (the law lifting the entry ban)<a class="ref" href="#src-39" aria-label="Source 39">39</a><a class="ref" href="#src-41" aria-label="Source 41">41</a>.</p>
+ </div>
+</article>
+<article class="clause" id="masterservant" data-theme="work" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 12</span>
+  <span class="yr">1823</span>
+  <span class="jur">England and Wales</span>
+  <span class="stamp st-repealed">Repealed 1875</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Work</span><span>Repealed</span><span>Lifespan: 1823–1875</span></p>
+  <h3>The Master and Servant Act</h3>
+  <p class="nowords"><span>No quotation.</span> We have not found an authoritative transcription of the 1823 Act; its replacement’s text is quoted under “What became of it”.</p>
+  <dl><div class="row"><dt>What it did</dt><dd>Under 4 Geo. 4 c. 34 a worker who broke a contract of service, by leaving early or refusing work, committed a criminal offence; an employer’s breach was only a civil matter<a class="ref" href="#src-43" aria-label="Source 43">43</a><a class="ref" href="#src-44" aria-label="Source 44">44</a>. Workers faced up to three months’ hard labour<a class="ref" href="#src-43" aria-label="Source 43">43</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>It codified the use of penal sanctions against workers for breach of contract<a class="ref" href="#src-44" aria-label="Source 44">44</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Heavy and routine. Official judicial statistics record more than 10,000 Master and Servant prosecutions a year between 1858 and 1875, and 14,353 in 1875, more than for petty larceny<a class="ref" href="#src-43" aria-label="Source 43">43</a>. Hard labour could mean the treadmill or the crank<a class="ref" href="#src-43" aria-label="Source 43">43</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Servants, labourers and artisans under contract.</dd></div><div class="row"><dt>What became of it</dt><dd>An 1867 Act made fines the usual penalty. From 1 September 1875 the Conspiracy and Protection of Property Act repealed the 1867 Act and the older master-and-servant enactments scheduled to it<a class="ref" href="#src-45" aria-label="Source 45">45</a>, and the Employers and Workmen Act made breach a civil dispute between equals: “A dispute under this Act between an employer and a workman may be heard and determined by a court of summary jurisdiction”<a class="ref" href="#src-46" aria-label="Source 46">46</a>.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="redflag" data-theme="public" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 13</span>
+  <span class="yr">1865</span>
+  <span class="jur">United Kingdom</span>
+  <span class="stamp st-repealed">Superseded 1896</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Public life</span><span>Repealed</span><span>Lifespan: 1865–1896</span></p>
+  <h3>The Red Flag Act</h3>
+  <figure class="words"><blockquote><p>one of such Persons, while any Locomotive is in Motion, shall precede such Locomotive on Foot by not less than Sixty Yards, and shall carry a Red Flag constantly displayed</p></blockquote><figcaption>Locomotives Act 1865 (28 & 29 Vict. c. 83), s. 3, as enacted<a class="ref" href="#src-47" aria-label="Source 47">47</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>Every road locomotive needed at least three people to work it, one walking sixty yards ahead with a red flag. The limit was four miles an hour in the country and two through any city, town or village; the whistle was not to be sounded “for any Purpose whatever”<a class="ref" href="#src-47" aria-label="Source 47">47</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>To protect horse traffic from steam traction engines<a class="ref" href="#src-48" aria-label="Source 48">48</a>. It was passed as a temporary measure, due to lapse in 1867<a class="ref" href="#src-47" aria-label="Source 47">47</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>We found no documented prosecution figures.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Owners of traction engines and steam carriages, and later the first motorists.</dd></div><div class="row"><dt>What became of it</dt><dd>The flag went first: an 1878 Act replaced it with a walker at least twenty yards ahead, with no mention of a flag<a class="ref" href="#src-49" aria-label="Source 49">49</a><a class="ref" href="#src-50" aria-label="Source 50">50</a>. The Locomotives on Highways Act 1896, in force on 14 November 1896, freed vehicles under three tons unladen and set a 14 mph limit<a class="ref" href="#src-51" aria-label="Source 51">51</a>. Motorists celebrated with an “Emancipation Run” from London to Brighton, at whose start Lord Winchilsea destroyed a red flag; the run is commemorated by an annual veteran car run<a class="ref" href="#src-50" aria-label="Source 50">50</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> The Veteran Car Club says the 14 mph limit was cut to 12 mph before it took effect<a class="ref" href="#src-50" aria-label="Source 50">50</a>; Wikipedia says local authorities could reduce it to 12<a class="ref" href="#src-51" aria-label="Source 51">51</a>.</p>
+ </div>
+</article>
+<article class="clause" id="comstock" data-theme="belief" data-status="inforce">
+ <aside class="margin">
+  <span class="cl">§ 14</span>
+  <span class="yr">1873</span>
+  <span class="jur">United States</span>
+  <span class="stamp st-inforce">In force, amended</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Belief and the body</span><span>Still in force, amended</span><span>Lifespan: 1873–today</span></p>
+  <h3>The Comstock Act</h3>
+  <figure class="words"><blockquote><p>Every article or thing designed, adapted, or intended for producing abortion, or for any indecent or immoral use</p></blockquote><figcaption>18 U.S.C. § 1461, current text (the surviving mailing provision of the 1873 Act)<a class="ref" href="#src-52" aria-label="Source 52">52</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>Signed by President Grant on 3 March 1873, the Act for the Suppression of Trade in, and Circulation of, Obscene Literature and Articles of Immoral Use banned mailing obscene matter and anything for preventing conception or procuring abortion<a class="ref" href="#src-53" aria-label="Source 53">53</a><a class="ref" href="#src-54" aria-label="Source 54">54</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Anthony Comstock was made a special agent of the Post Office days after it passed<a class="ref" href="#src-54" aria-label="Source 54">54</a>. Late in life he claimed 4,000 arrests and 150 tons of books destroyed; those figures are his own<a class="ref" href="#src-53" aria-label="Source 53">53</a>. Margaret Sanger fled abroad in 1914 to avoid prosecution; in 1915 an agent tricked her husband William into handing over her pamphlet Family Limitation, and he was jailed<a class="ref" href="#src-54" aria-label="Source 54">54</a>, for 30 days<a class="ref" href="#src-53" aria-label="Source 53">53</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Publishers, booksellers, artists and sex educators, and above all women seeking contraception and those supplying it.</dd></div><div class="row"><dt>What became of it</dt><dd>In 1971 Congress struck the words “preventing conception or” from the mailing ban, but the abortion and obscenity clauses remain in the US Code as of November 2026<a class="ref" href="#src-52" aria-label="Source 52">52</a>. A 2022 Justice Department legal opinion concluded the law does not stop the mailing of abortion pills where the sender lacks intent that they be used unlawfully<a class="ref" href="#src-55" aria-label="Source 55">55</a>; in August 2026 the department was reported to be reviewing that reading<a class="ref" href="#src-56" aria-label="Source 56">56</a>.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="ugly" data-theme="public" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 15</span>
+  <span class="yr">1881</span>
+  <span class="jur">Chicago, United States</span>
+  <span class="stamp st-repealed">Repealed 1973 or 1974</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Public life</span><span>Repealed</span><span>Lifespan: 1881–1974</span></p>
+  <h3>Chicago&#x27;s ‘unsightly’ ordinance</h3>
+  <figure class="words"><blockquote><p>Any person who is diseased, maimed, mutilated, or in any way deformed, so as to be an unsightly or disgusting object, or an improper person to be allowed in or on the streets… shall not therein or thereon expose himself to public view, under the penalty of a fine of $1 for each offense.</p></blockquote><figcaption>Chicago City Code 1881, as quoted in Susan Schweik, The Ugly Laws (2009)<a class="ref" href="#src-57" aria-label="Source 57">57</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>Fined disabled and disfigured people for appearing in public. Chicago’s was one of several American “ugly laws”<a class="ref" href="#src-57" aria-label="Source 57">57</a><a class="ref" href="#src-58" aria-label="Source 58">58</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>It passed with little debate after years of hostile press coverage of disabled beggars; the historian Adrienne Phelps Coco argues its real target was begging and poverty as much as impairment<a class="ref" href="#src-59" aria-label="Source 59">59</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>No Chicago arrest figures survive in the sources we found. The last documented arrest under any such law, in Omaha in 1974, was of a homeless man with “marks and scars on his body”; the prosecutor declined to charge but said “the law is still active”<a class="ref" href="#src-57" aria-label="Source 57">57</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Disabled and disfigured people, especially those begging<a class="ref" href="#src-59" aria-label="Source 59">59</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>Repealed by the city council in the early 1970s<a class="ref" href="#src-59" aria-label="Source 59">59</a><a class="ref" href="#src-58" aria-label="Source 58">58</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> JSTOR Daily gives the repeal as 1973<a class="ref" href="#src-59" aria-label="Source 59">59</a>; Wikipedia and many popular accounts give 1974<a class="ref" href="#src-58" aria-label="Source 58">58</a>. We have not found the council record.</p>
+ </div>
+</article>
+<article class="clause" id="marriagebar" data-theme="work" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 16</span>
+  <span class="yr">1894 onwards</span>
+  <span class="jur">United Kingdom and Ireland</span>
+  <span class="stamp st-repealed">Lifted 1946 to 1973</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Work</span><span>Repealed</span><span>Lifespan: 1894–1946</span></p>
+  <h3>The marriage bar</h3>
+  <figure class="words"><blockquote><p>A married woman may not be appointed to an established post in the Civil Service unless the Civil Service Commissioners, the Treasury, and the Head of the Department… are satisfied that her employment is advisable</p></blockquote><figcaption>Hugh Dalton, Chancellor of the Exchequer, written answer to the Commons, 12 October 1945<a class="ref" href="#src-60" aria-label="Source 60">60</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>Women civil servants had to resign when they married, and married women were kept out of established posts. In Britain it was an administrative rule, traced by Foreign Office historians to an 1894 Treasury minute on typists and endorsed by the 1934 Schuster Report<a class="ref" href="#src-61" aria-label="Source 61">61</a>. Ireland wrote it into statute, most recently as section 10 of the Civil Service Regulation Act 1956<a class="ref" href="#src-62" aria-label="Source 62">62</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>Treasury papers of 1947 called married women “a perfect nuisance” and doubted “more than 50% attendance out of them”<a class="ref" href="#src-63" aria-label="Source 63">63</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Of 18 women recruited to the Foreign Service between 1946 and 1952, seven had left by 1954, “largely because of the marriage bar”; Margaret Anstee, recruited in 1948, resigned on marriage in 1952<a class="ref" href="#src-61" aria-label="Source 61">61</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Women in the civil service, and similar bars applied in teaching and at the BBC until 1944<a class="ref" href="#src-63" aria-label="Source 63">63</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>Lifted for Britain’s home civil service in 1946 and for the Diplomatic Service in 1972<a class="ref" href="#src-63" aria-label="Source 63">63</a><a class="ref" href="#src-61" aria-label="Source 61">61</a>. Ireland repealed its statutory bar on 31 July 1973<a class="ref" href="#src-64" aria-label="Source 64">64</a><a class="ref" href="#src-62" aria-label="Source 62">62</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> The Diplomatic Service date is often given as 1973; the Foreign Office’s own historians say 1972<a class="ref" href="#src-61" aria-label="Source 61">61</a>.</p>
+ </div>
+</article>
+<article class="clause" id="pi" data-theme="public" data-status="proposal">
+ <aside class="margin">
+  <span class="cl">§ 17</span>
+  <span class="yr">1897</span>
+  <span class="jur">Indiana, United States</span>
+  <span class="stamp st-proposal">Shelved 1897</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Public life</span><span>Never enacted</span><span>Lifespan: 1897, never enacted</span></p>
+  <h3>Indiana&#x27;s Pi Bill</h3>
+  <figure class="words"><blockquote><p>A bill for an act introducing a new mathematical truth</p></blockquote><figcaption>House Bill No. 246, title, as transcribed by Will E. Edington in the Proceedings of the Indiana Academy of Science<a class="ref" href="#src-65" aria-label="Source 65">65</a></figcaption></figure>
+  <dl><div class="row"><dt>What it proposed</dt><dd>A local doctor, Edwin J. Goodwin, believed he had squared the circle; his bill would have given Indiana schools his “discovery” free while other states paid royalties<a class="ref" href="#src-66" aria-label="Source 66">66</a><a class="ref" href="#src-67" aria-label="Source 67">67</a>. Its arithmetic implied a value of pi of 3.2<a class="ref" href="#src-67" aria-label="Source 67">67</a>.</dd></div><div class="row"><dt>How far it got</dt><dd>It was sent first to the Committee on Canals, then to Education, and passed the House 67–0<a class="ref" href="#src-65" aria-label="Source 65">65</a>. In the Senate the Committee on Temperance recommended it; the same day, 12 February 1897, the Senate postponed it indefinitely<a class="ref" href="#src-65" aria-label="Source 65">65</a>. Senator Hubbell was reported as saying the Senate “might as well try to legislate water to run up hill as to establish mathematical truth by law”<a class="ref" href="#src-65" aria-label="Source 65">65</a>.</dd></div><div class="row"><dt>Who stopped it</dt><dd>C. A. Waldo, a Purdue mathematician who happened to be at the State House lobbying for his university’s budget. “That evening the senators were properly coached,” he recalled some twenty years later<a class="ref" href="#src-65" aria-label="Source 65">65</a><a class="ref" href="#src-67" aria-label="Source 67">67</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>Never enacted<a class="ref" href="#src-65" aria-label="Source 65">65</a><a class="ref" href="#src-66" aria-label="Source 66">66</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> The Indiana State Library dates the House vote 6 February 1897<a class="ref" href="#src-66" aria-label="Source 66">66</a>; Edington, working from the journals, gives 5 February<a class="ref" href="#src-65" aria-label="Source 65">65</a>. The Indiana Archives call the author Edward Johnston Goodwin<a class="ref" href="#src-67" aria-label="Source 67">67</a>; Edington and the State Library give Edwin.</p>
+ </div>
+</article>
+<article class="clause" id="expatriation" data-theme="family" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 18</span>
+  <span class="yr">1907</span>
+  <span class="jur">United States</span>
+  <span class="stamp st-repealed">Repealed 1922</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Marriage and family</span><span>Repealed</span><span>Lifespan: 1907–1922</span></p>
+  <h3>Marrying out of US citizenship</h3>
+  <figure class="words"><blockquote><p>That any American woman who marries a foreigner shall take the nationality of her husband.</p></blockquote><figcaption>Expatriation Act, 2 March 1907, s. 3<a class="ref" href="#src-68" aria-label="Source 68">68</a><a class="ref" href="#src-69" aria-label="Source 69">69</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>An American woman who married a foreign national lost her citizenship, whether or not the couple lived in the United States<a class="ref" href="#src-69" aria-label="Source 69">69</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>In Mackenzie v. Hare (decided 6 December 1915), the Supreme Court upheld the law against a US-born Californian who had married a foreign national and still lived in the US, holding, as the syllabus puts it, that such a marriage was “tantamount to voluntary expatriation”<a class="ref" href="#src-70" aria-label="Source 70">70</a>. Women who lost citizenship could lose jobs reserved for citizens and face detention or deportation<a class="ref" href="#src-68" aria-label="Source 68">68</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Women who married non-citizens; after 1922, especially Asian American women<a class="ref" href="#src-68" aria-label="Source 68">68</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>The Cable Act of 22 September 1922 ended the rule for most marriages but kept it for women who married men “ineligible for citizenship”, in practice Asian men<a class="ref" href="#src-69" aria-label="Source 69">69</a><a class="ref" href="#src-68" aria-label="Source 68">68</a>. That exception went in 1931; from 2 July 1940 any woman who had lost citizenship through marriage could regain it by taking an oath<a class="ref" href="#src-68" aria-label="Source 68">68</a><a class="ref" href="#src-69" aria-label="Source 69">69</a>.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="lordsday" data-theme="trade" data-status="struck">
+ <aside class="margin">
+  <span class="cl">§ 19</span>
+  <span class="yr">1906</span>
+  <span class="jur">Canada</span>
+  <span class="stamp st-struck">Struck down 1985</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Drink and Sundays</span><span>Struck down or voided</span><span>Lifespan: 1907–1985</span></p>
+  <h3>Canada&#x27;s Lord&#x27;s Day Act</h3>
+  <figure class="words"><blockquote><p>the Lord's Day Act works a form of coercion inimical to the spirit of the Charter</p></blockquote><figcaption>Chief Justice Brian Dickson, R v Big M Drug Mart Ltd (1985), as quoted by The Canadian Encyclopedia<a class="ref" href="#src-71" aria-label="Source 71">71</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>Passed in July 1906 and in force from March 1907, the federal Act restricted trade, work and paid recreation on Sundays<a class="ref" href="#src-72" aria-label="Source 72">72</a><a class="ref" href="#src-73" aria-label="Source 73">73</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>The Lord’s Day Alliance persuaded Wilfrid Laurier to introduce it; organised labour backed it as a guaranteed weekly day off<a class="ref" href="#src-73" aria-label="Source 73">73</a>. The Supreme Court later found its purpose was compulsory religious observance<a class="ref" href="#src-74" aria-label="Source 74">74</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Each prosecution needed provincial consent, which made the Act hard to use<a class="ref" href="#src-73" aria-label="Source 73">73</a>. In 1937 a Toronto veteran, Captain Archibald Pither, convicted of buying tobacco on a Sunday, chose a day in jail over a $2 fine: “Overseas I had to fight as hard on Sundays as any other day”<a class="ref" href="#src-72" aria-label="Source 72">72</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Shopkeepers, workers and Sunday newspaper sellers, and anyone whose Sabbath was not Sunday<a class="ref" href="#src-74" aria-label="Source 74">74</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>After Calgary police charged Big M Drug Mart over Sunday trading in 1982, the Supreme Court ruled on 24 April 1985<a class="ref" href="#src-75" aria-label="Source 75">75</a> that the Act infringed freedom of conscience and religion under the Charter<a class="ref" href="#src-76" aria-label="Source 76">76</a><a class="ref" href="#src-74" aria-label="Source 74">74</a>. It was never repealed, simply left out of the 1985 consolidation of federal statutes and listed as “unconstitutional”<a class="ref" href="#src-77" aria-label="Source 77">77</a>.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="motbok" data-theme="trade" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 20</span>
+  <span class="yr">1914 to 1919</span>
+  <span class="jur">Sweden</span>
+  <span class="stamp st-repealed">Ended 1955</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Drink and Sundays</span><span>Repealed</span><span>Lifespan: 1914–1955</span></p>
+  <h3>Sweden&#x27;s ration book for spirits</h3>
+  <figure class="words"><blockquote lang="sv"><p>Motbokssystemet föreslås därför avskaffat.</p></blockquote><figcaption>Government bill Prop. 1954:151. Our translation: “The motbok system is therefore proposed to be abolished”<a class="ref" href="#src-78" aria-label="Source 78">78</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>Under the system devised by the physician Ivan Bratt, every purchase of spirits was entered in a personal book, the motbok. It started in Stockholm in 1914 and covered the whole country, under state control, by 1919<a class="ref" href="#src-79" aria-label="Source 79">79</a>. A typical entitlement for an eligible man was three litres of spirits a month<a class="ref" href="#src-79" aria-label="Source 79">79</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>To cut consumption without outright prohibition, which Swedes narrowly rejected in a 1922 referendum<a class="ref" href="#src-80" aria-label="Source 80">80</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Books went to men over 25 with a fixed address and no sign of serious drinking problems; local boards could cut the ration for the unemployed, people with criminal records or those behind on their taxes<a class="ref" href="#src-79" aria-label="Source 79">79</a>. At the end of 1948 the average purchase was 1.82 litres a month<a class="ref" href="#src-80" aria-label="Source 80">80</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Everyone who drank, unequally: married women normally could not hold a book of their own, and unmarried women got reduced rations after individual assessment<a class="ref" href="#src-79" aria-label="Source 79">79</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>In 1954 the government proposed abolition, with new rules from 1 October 1955<a class="ref" href="#src-78" aria-label="Source 78">78</a>; the motbok ended that year<a class="ref" href="#src-79" aria-label="Source 79">79</a>.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="pubhours" data-theme="trade" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 21</span>
+  <span class="yr">1914 and 1921</span>
+  <span class="jur">United Kingdom (England and Wales)</span>
+  <span class="stamp st-repealed">Ended 2005</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Drink and Sundays</span><span>Repealed</span><span>Lifespan: 1914–2005</span></p>
+  <h3>Britain&#x27;s afternoon closing</h3>
+  <figure class="words"><blockquote><p>there shall be a break of at least two hours in the afternoon</p></blockquote><figcaption>The Attorney-General introducing the Licensing Bill, House of Commons, 22 July 1921<a class="ref" href="#src-81" aria-label="Source 81">81</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>The Intoxicating Liquor (Temporary Restriction) Act, given royal assent on 31 August 1914, let licensing justices cut pub hours on police advice<a class="ref" href="#src-82" aria-label="Source 82">82</a><a class="ref" href="#src-83" aria-label="Source 83">83</a>. From 1915 a Central Control Board, set up under the Defence of the Realm legislation, went further in munitions and military areas<a class="ref" href="#src-83" aria-label="Source 83">83</a>. The Licensing Act 1921 made the wartime pattern permanent, with fixed permitted hours, variations between London and the country, and a compulsory afternoon break<a class="ref" href="#src-81" aria-label="Source 81">81</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>“The maintenance of order, or the suppression of drunkenness” among war workers<a class="ref" href="#src-83" aria-label="Source 83">83</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Within four months restrictive orders covered 427 of the 1,000 licensing districts in England and Wales<a class="ref" href="#src-83" aria-label="Source 83">83</a>. A 1915 “No Treating” order made buying a round an offence<a class="ref" href="#src-84" aria-label="Source 84">84</a>. In Carlisle, near the Gretna munitions works, the state took over the pubs and breweries from 1916, and kept many of them until 1971<a class="ref" href="#src-84" aria-label="Source 84">84</a>. London convictions for drunkenness fell from 67,103 in 1914 to 16,567 in 1917<a class="ref" href="#src-84" aria-label="Source 84">84</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Drinkers, licensees and, in wartime, munitions workers.</dd></div><div class="row"><dt>What became of it</dt><dd>Hours were relaxed in stages from the late 1980s; fixed permitted hours ended in England and Wales on 24 November 2005, when the Licensing Act 2003 took full effect<a class="ref" href="#src-85" aria-label="Source 85">85</a><a class="ref" href="#src-84" aria-label="Source 84">84</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> Many accounts credit the Defence of the Realm Act itself with the 1914 limits<a class="ref" href="#src-84" aria-label="Source 84">84</a>; Hansard and Britannica put them in the separate 1914 Act<a class="ref" href="#src-82" aria-label="Source 82">82</a><a class="ref" href="#src-83" aria-label="Source 83">83</a>.</p>
+ </div>
+</article>
+<article class="clause" id="iceland" data-theme="trade" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 22</span>
+  <span class="yr">1915</span>
+  <span class="jur">Iceland</span>
+  <span class="stamp st-repealed">Ended 1989</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Drink and Sundays</span><span>Repealed</span><span>Lifespan: 1915–1989</span></p>
+  <h3>Iceland&#x27;s beer ban</h3>
+  <p class="nowords"><span>No quotation.</span> We have not found the Icelandic statute text in a primary source, so there is no quotation here.</p>
+  <dl><div class="row"><dt>What it did</dt><dd>After a 1908 referendum, Iceland banned alcohol from 1 January 1915<a class="ref" href="#src-86" aria-label="Source 86">86</a>. Spain’s refusal to buy Icelandic fish unless Iceland bought Spanish wine forced the first exception; spirits came back after a 1933 referendum. Beer stronger than 2.25 per cent stayed illegal<a class="ref" href="#src-86" aria-label="Source 86">86</a><a class="ref" href="#src-87" aria-label="Source 87">87</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>Temperance, with a nationalist edge. The historian Stefán Pálsson links beer with the Danish lifestyle Icelanders were then trying to shed<a class="ref" href="#src-88" aria-label="Source 88">88</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Home brewing and smuggling were widespread<a class="ref" href="#src-86" aria-label="Source 86">86</a>. In 1985 a minister banned bars from mixing spirits into legal low-alcohol pilsner to fake the real thing<a class="ref" href="#src-86" aria-label="Source 86">86</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Drinkers and bars.</dd></div><div class="row"><dt>What became of it</dt><dd>The beer ban ended on 1 March 1989; AFP reported that more than 340,000 cans were bought on the first day<a class="ref" href="#src-87" aria-label="Source 87">87</a>. Retail sales remain a state monopoly<a class="ref" href="#src-87" aria-label="Source 87">87</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> Wikipedia dates the Spanish pressure to 1921 and legal wine to 1922<a class="ref" href="#src-86" aria-label="Source 86">86</a>; some accounts give 1921 for both.</p>
+ </div>
+</article>
+<article class="clause" id="ireland" data-theme="family" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 23</span>
+  <span class="yr">1935</span>
+  <span class="jur">Ireland</span>
+  <span class="stamp st-repealed">Repealed 1979</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Marriage and family</span><span>Repealed</span><span>Lifespan: 1935–1979</span></p>
+  <h3>Ireland&#x27;s ban on contraceptives</h3>
+  <figure class="words"><blockquote><p>It shall not be lawful for any person to sell, or expose, offer, advertise, or keep for sale or to import…</p></blockquote><figcaption>Criminal Law Amendment Act 1935, s. 17(1)<a class="ref" href="#src-89" aria-label="Source 89">89</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>Banned the sale and import of contraceptives, defined as “any appliance, instrument, drug, preparation or thing, designed, prepared, or intended to prevent pregnancy”<a class="ref" href="#src-89" aria-label="Source 89">89</a>. Offenders faced a fine of up to £50, six months in prison, or both<a class="ref" href="#src-90" aria-label="Source 90">90</a>. Using contraception was not itself an offence<a class="ref" href="#src-91" aria-label="Source 91">91</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Customs enforced the import ban. They seized spermicidal jelly that Mary McGee, a 27-year-old mother of four for whom another pregnancy was dangerous, had ordered from England<a class="ref" href="#src-91" aria-label="Source 91">91</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Everyone in Ireland seeking contraception, and above all women for whom pregnancy carried medical risk<a class="ref" href="#src-91" aria-label="Source 91">91</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>On 19 December 1973 the Supreme Court ruled 4–1 in McGee v Attorney General that the import ban was unconstitutional<a class="ref" href="#src-91" aria-label="Source 91">91</a>. The Health (Family Planning) Act 1979 repealed section 17 but allowed contraceptives only “bona fide” for family planning<a class="ref" href="#src-92" aria-label="Source 92">92</a>; condoms and spermicides could be sold to over-18s through pharmacies, doctors and family-planning services from 1985 and were dropped from the legal definition of a contraceptive in 1993<a class="ref" href="#src-93" aria-label="Source 93">93</a><a class="ref" href="#src-94" aria-label="Source 94">94</a>.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="passlaws" data-theme="move" data-status="repealed">
+ <aside class="margin">
+  <span class="cl">§ 24</span>
+  <span class="yr">1945 and 1952</span>
+  <span class="jur">South Africa</span>
+  <span class="stamp st-repealed">Repealed 1986</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Movement</span><span>Repealed</span><span>Lifespan: 1945–1986</span></p>
+  <h3>South Africa&#x27;s pass laws</h3>
+  <p class="nowords"><span>No quotation.</span> We have not found authoritative transcriptions of section 10 of the 1945 Act or of the 1952 Act to quote; the repealing Act’s long title is quoted under “What became of it”.</p>
+  <dl><div class="row"><dt>What it did</dt><dd>Pass laws, which Britannica defines as laws requiring non-white South Africans “to carry documents authorizing their presence in restricted areas”<a class="ref" href="#src-95" aria-label="Source 95">95</a>, were older than apartheid. Section 10 of the Natives (Urban Areas) Consolidation Act 1945, as amended in 1952, let a Black person stay in a town for no more than 72 hours unless they qualified by birth and residence there, or by long continuous work or lawful residence<a class="ref" href="#src-96" aria-label="Source 96">96</a>. The misleadingly named Natives (Abolition of Passes and Co-ordination of Documents) Act 1952 replaced local passes with a single reference book recording employment and fingerprints<a class="ref" href="#src-95" aria-label="Source 95">95</a>, under a 1952 Act<a class="ref" href="#src-97" aria-label="Source 97">97</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>“Influx control”: keeping Black South Africans out of urban areas reserved for whites except as needed for labour<a class="ref" href="#src-95" aria-label="Source 95">95</a><a class="ref" href="#src-96" aria-label="Source 96">96</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Vast. The sociologist Michael Savage counted more than 17,745,000 Africans arrested or prosecuted under pass laws between 1916 and 1984<a class="ref" href="#src-96" aria-label="Source 96">96</a>; Britannica says the total passed 17 million<a class="ref" href="#src-95" aria-label="Source 95">95</a>. At Sharpeville on 21 March 1960 police fired on a crowd protesting the passes, killing 69 people<a class="ref" href="#src-96" aria-label="Source 96">96</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Black South Africans, and especially migrant workers<a class="ref" href="#src-95" aria-label="Source 95">95</a>.</dd></div><div class="row"><dt>What became of it</dt><dd>The Abolition of Influx Control Act, “to repeal the laws relating to influx control in respect of Black persons”, came into force on 1 July 1986 and repealed the whole 1945 Act<a class="ref" href="#src-98" aria-label="Source 98">98</a>. The 1952 Act was repealed by the Identification Act, No. 72 of 1986<a class="ref" href="#src-99" aria-label="Source 99">99</a>.</dd></div></dl>
+  <p class="conflict"><span>Sources differ.</span> Wikipedia says the system was repealed “retroactive on April 23, 1986”<a class="ref" href="#src-96" aria-label="Source 96">96</a>; the Government Gazette gives assent on 24 June and commencement on 1 July 1986<a class="ref" href="#src-98" aria-label="Source 98">98</a>. We follow the Gazette.</p>
+ </div>
+</article>
+<article class="clause" id="fueiho" data-theme="public" data-status="inforce">
+ <aside class="margin">
+  <span class="cl">§ 25</span>
+  <span class="yr">1948</span>
+  <span class="jur">Japan</span>
+  <span class="stamp st-inforce">Dance clause cut 2016</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Public life</span><span>Still in force, amended</span><span>Lifespan: 1948–today</span></p>
+  <h3>Japan&#x27;s no-dancing law</h3>
+  <figure class="words"><blockquote lang="ja"><p>「同条第三号中「させ、又は客の相手となつてダンスを」を削り」</p></blockquote><figcaption>Act No. 45 of 2015, deleting the words about having customers dance, or dancing as a customer’s partner, from article 22 of the 1948 Act<a class="ref" href="#src-100" aria-label="Source 100">100</a></figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>The Act on Control and Improvement of Amusement Business (Act No. 122 of 1948), passed during the American occupation, treated venues that let customers dance as regulated amusement businesses, subject to its licensing and business-hours rules<a class="ref" href="#src-101" aria-label="Source 101">101</a><a class="ref" href="#src-102" aria-label="Source 102">102</a><a class="ref" href="#src-103" aria-label="Source 103">103</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>To regulate the hours and locations of amusement businesses, keep minors out and protect public morals<a class="ref" href="#src-101" aria-label="Source 101">101</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Largely ignored for decades, it was revived around 2010 after a brawl at an Osaka club<a class="ref" href="#src-103" aria-label="Source 103">103</a>. Police arrested Masatoshi Kanemitsu, owner of the Osaka club NOON, in April 2012. He was acquitted, the Osaka High Court upheld the acquittal in January 2015, and the Supreme Court dismissed the prosecutors’ final appeal in June 2016<a class="ref" href="#src-104" aria-label="Source 104">104</a><a class="ref" href="#src-105" aria-label="Source 105">105</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Club owners, DJs and dancers.</dd></div><div class="row"><dt>What became of it</dt><dd>The 2015 amendment, in force from 23 June 2016, removed dancing from the regulated categories and created a new licence for late-night venues serving alcohol<a class="ref" href="#src-102" aria-label="Source 102">102</a><a class="ref" href="#src-100" aria-label="Source 100">100</a>. The 1948 Act itself remains in force.</dd></div></dl>
+  
+ </div>
+</article>
+<article class="clause" id="hukou" data-theme="move" data-status="inforce">
+ <aside class="margin">
+  <span class="cl">§ 26</span>
+  <span class="yr">1958</span>
+  <span class="jur">People&#x27;s Republic of China</span>
+  <span class="stamp st-inforce">In force, reformed</span>
+ </aside>
+ <div class="body">
+  <p class="tags"><span>Movement</span><span>Still in force, amended</span><span>Lifespan: 1958–today</span></p>
+  <h3>China&#x27;s household registration</h3>
+  <figure class="words"><blockquote lang="zh"><p>公民由农村迁往城市，必须持有城市劳动部门的录用证明，学校的录取证明，或者城市户口登记机关的准予迁入的证明</p></blockquote><figcaption>Regulations on Household Registration, art. 10, 9 January 1958<a class="ref" href="#src-106" aria-label="Source 106">106</a>. Our summary: a citizen moving from the countryside to a city must hold an urban employer’s hiring certificate, a school admission or an urban registration office’s permission to move in</figcaption></figure>
+  <dl><div class="row"><dt>What it did</dt><dd>Adopted by the Standing Committee of the National People’s Congress on 9 January 1958, the regulations registered every household as rural or urban and made moving to a city conditional on official permission<a class="ref" href="#src-106" aria-label="Source 106">106</a>.</dd></div><div class="row"><dt>Purpose</dt><dd>Article 1 cites social order, citizens’ rights and “socialist construction”<a class="ref" href="#src-106" aria-label="Source 106">106</a>. In practice, until the 1980s rural residents could barely get non-farm work in cities<a class="ref" href="#src-107" aria-label="Source 107">107</a>.</dd></div><div class="row"><dt>Enforcement</dt><dd>Hundreds of millions of workers migrated from the countryside in the three decades to 2014 without urban registration<a class="ref" href="#src-107" aria-label="Source 107">107</a>.</dd></div><div class="row"><dt>Who it fell on</dt><dd>Rural-registered citizens and internal migrants.</dd></div><div class="row"><dt>What became of it</dt><dd>Reformed, not repealed. In July 2014 the State Council announced reforms to relax registration limits, under which, nominally, the rural and urban labels would go<a class="ref" href="#src-108" aria-label="Source 108">108</a><a class="ref" href="#src-107" aria-label="Source 107">107</a>, and a 2024 plan relaxed registration limits “except in certain megacities”<a class="ref" href="#src-109" aria-label="Source 109">109</a>. We have found no repeal of the 1958 regulations as of November 2026.</dd></div></dl>
+  
+ </div>
+</article>
+ </div>
+ <p class="empty" id="empty" hidden>No entries match. <button type="button" id="reset">Clear filters</button></p>
+</section>
+
+<section class="wrap method">
+ <h2>How this was made</h2>
+ <p>Statute wording is quoted only from official or scholarly transcriptions, with the original spelling kept; translations from Danish-Norwegian, Swedish, Chinese and Japanese are ours unless a translator is named. Where we could not find an authoritative text, the entry says so instead of reconstructing one. Status is given as of November 2026. Wikipedia is cited only as secondary support and is labelled as such in the sources.</p>
+</section>
+
+<section class="wrap sources" aria-labelledby="srcH">
+ <h2 id="srcH">Sources</h2>
+ <ol><li id="src-1"><a href="https://sourcebooks.web.fordham.edu/seth/ordinance-labourers.asp" rel="noopener">Ordinance of Laborers, 1349 (White and Notestein translation, 1915)</a>. <span class="pub">Internet History Sourcebooks, Fordham University</span>.</li><li id="src-2"><a href="https://sourcebooks.web.fordham.edu/seth/statute-labourers.asp" rel="noopener">Statute of Laborers, 1351 (White and Notestein translation, 1915)</a>. <span class="pub">Internet History Sourcebooks, Fordham University</span>.</li><li id="src-3"><a href="https://ueaeprints.uea.ac.uk/95111/1/Bailey_2025_TheEconomicHistoryReview.pdf" rel="noopener">Mark Bailey, &#x27;The implementation of national labour legislation in England after the Black Death, 1349–1400&#x27;, Economic History Review 78 (2025)</a>. <span class="pub">University of East Anglia repository</span>.</li><li id="src-4"><a href="https://en.wikipedia.org/wiki/Statute_of_Labourers_1351" rel="noopener">Statute of Labourers 1351 (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-5"><a href="https://china.usc.edu/sites/default/files/closed_country_0.pdf" rel="noopener">Closed Country Edict of 1635 (translated document)</a>. <span class="pub">USC US-China Institute</span>.</li><li id="src-6"><a href="https://en.wikipedia.org/wiki/Sakoku_Edict_of_1635" rel="noopener">Sakoku Edict of 1635 (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-7"><a href="https://history.state.gov/historicaldocuments/frus1866p2/d189" rel="noopener">Papers Relating to Foreign Affairs 1866, Part II, Doc. 189: Portman to Seward, 1 June 1866</a>. <span class="pub">US Department of State, Office of the Historian</span>.</li><li id="src-8"><a href="https://www.cambridge.org/core/journals/historical-journal/article/japans-passport-system-and-the-opening-of-borders-18661878/C5507FD414884DD566AB52AC5F0AAA52" rel="noopener">Takahiro Yamamoto, &#x27;Japan&#x27;s Passport System and the Opening of Borders, 1866–1878&#x27;, The Historical Journal 60(4), 2017</a>. <span class="pub">Cambridge University Press</span>.</li><li id="src-9"><a href="https://sites.pitt.edu/~annj/courses/sakoku.html" rel="noopener">Text of the Sakoku (Closed Country) Edict of June 1636 (C. R. Boxer translation)</a>. <span class="pub">Ann Jannetta, University of Pittsburgh</span>.</li><li id="src-10"><a href="https://prod.british-history.ac.uk/node/47839" rel="noopener">June 1647: An Ordinance for Abolishing of Festivals, in Firth &amp; Rait (eds.), Acts and Ordinances of the Interregnum (1911)</a>. <span class="pub">British History Online</span>.</li><li id="src-11"><a href="https://www.olivercromwell.org/faqs4.htm" rel="noopener">Cromwell and Christmas (FAQ)</a>. <span class="pub">The Cromwell Association</span>.</li><li id="src-12"><a href="https://ials.blogs.sas.ac.uk/2021/12/22/on-this-day-25-december-1647-christmas-was-cancelled/" rel="noopener">On this day 25 December 1647 Christmas was cancelled, 22 December 2021</a>. <span class="pub">Institute of Advanced Legal Studies blog, University of London</span>.</li><li id="src-13"><a href="https://blogs.loc.gov/law/2017/12/christmastime-in-england-prohibitions-and-permissions/" rel="noopener">Clare Feikert-Ahalt, &#x27;Christmastime in England: Prohibitions and Permissions&#x27;, 21 December 2017</a>. <span class="pub">In Custodia Legis, Library of Congress</span>.</li><li id="src-14"><a href="https://www.legislation.gov.uk/aep/Cha2/14/12/paragraph/1/enacted" rel="noopener">Poor Relief Act 1662, paragraph I (as enacted)</a>. <span class="pub">legislation.gov.uk / The National Archives (text from Statutes of the Realm)</span>.</li><li id="src-15"><a href="https://workhouses.org.uk/poorlaws/settlement1.shtml" rel="noopener">Settlement and Removal (Old Poor Law)</a>. <span class="pub">Peter Higginbotham, workhouses.org.uk</span>.</li><li id="src-16"><a href="https://workhouses.org.uk/poorlaws/settlement2.shtml" rel="noopener">Settlement under the New Poor Law</a>. <span class="pub">Peter Higginbotham, workhouses.org.uk</span>.</li><li id="src-17"><a href="https://en.wikipedia.org/wiki/Poor_Relief_Act_1662" rel="noopener">Poor Relief Act 1662 (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-18"><a href="https://www.legislation.gov.uk/aep/Will3/7-8/18/paragraph/1/enacted" rel="noopener">Taxation (No. 3) Act 1695, 7 &amp; 8 Will. 3 c. 18 (as enacted)</a>. <span class="pub">legislation.gov.uk / The National Archives (text from Statutes of the Realm)</span>.</li><li id="src-19"><a href="https://www.nationalarchives.gov.uk/education/resources/georgian-britain-age-modernity/window-tax/" rel="noopener">Window tax</a>. <span class="pub">The National Archives, Education</span>.</li><li id="src-20"><a href="https://www.parliament.uk/about/living-heritage/transformingsociety/towncountry/towns/tyne-and-wear-case-study/about-the-group/housing/window-tax/" rel="noopener">Window Tax (Tyne and Wear case study)</a>. <span class="pub">UK Parliament Living Heritage</span>.</li><li id="src-21"><a href="https://api.parliament.uk/historic-hansard/commons/1851/jun/30/inhabited-house-duty-bill" rel="noopener">HC Deb 30 June 1851: Inhabited House Duty Bill</a>. <span class="pub">Hansard, UK Parliament</span>.</li><li id="src-22"><a href="https://en.wikisource.org/wiki/Witchcraft_Act_1735" rel="noopener">Witchcraft Act 1735 (transcription)</a>. <span class="pub">Wikisource</span>.</li><li id="src-23"><a href="https://www.nationalgeographic.com/premium/article/last-witch-britain-helen-duncan-wwii" rel="noopener">Parissa DJangi, &#x27;She was Britain&#x27;s last witch…&#x27;, 10 October 2023</a>. <span class="pub">National Geographic</span>.</li><li id="src-24"><a href="https://www.iclr.co.uk/blog/commentary/smoke-spirits-and-statute" rel="noopener">James Hickman, &#x27;Smoke, spirits and statute&#x27;</a>. <span class="pub">Incorporated Council of Law Reporting (ICLR) blog</span>.</li><li id="src-25"><a href="https://www.legislation.gov.uk/ukpga/Geo6/14-15/33/enacted" rel="noopener">Fraudulent Mediums Act 1951 (as enacted)</a>. <span class="pub">legislation.gov.uk / The National Archives</span>.</li><li id="src-26"><a href="https://avalon.law.yale.edu/18th_century/blackstone_bk1ch15.asp" rel="noopener">William Blackstone, Commentaries on the Laws of England, Book I, ch. 15, &#x27;Of Husband and Wife&#x27; (1765)</a>. <span class="pub">Avalon Project, Yale Law School</span>.</li><li id="src-27"><a href="https://www.parliament.uk/about/living-heritage/transformingsociety/private-lives/relationships/overview/propertychildren/" rel="noopener">Marriage: property and children</a>. <span class="pub">UK Parliament Living Heritage</span>.</li><li id="src-28"><a href="https://blog.bham.ac.uk/legalherstory/2018/03/21/bessie-rayner-parkes-and-the-married-womens-property-act/" rel="noopener">Bessie Rayner Parkes and The Married Women&#x27;s Property Act, 21 March 2018</a>. <span class="pub">Gender and Legal History in Birmingham and the West Midlands blog, University of Birmingham</span>.</li><li id="src-29"><a href="https://www.legislation.gov.uk/ukpga/Vict/45-46/75/enacted" rel="noopener">Married Women&#x27;s Property Act 1882 (as enacted and revised)</a>. <span class="pub">legislation.gov.uk / The National Archives</span>.</li><li id="src-30"><a href="https://themorgan.org/print/1392966" rel="noopener">James Gillray, Judge Thumb, or, Patent sticks for family correction, warranted lawful (1782)</a>. <span class="pub">Morgan Library &amp; Museum</span>.</li><li id="src-31"><a href="https://pages.uoregon.edu/dynamic/jjf/essays/ruleofthumb.html" rel="noopener">Commentary: Domestic Violence, Folk Etymologies, &amp; &#x27;Rule of Thumb&#x27; (summarising H. A. Kelly, Journal of Legal Education 44(3), 1994)</a>. <span class="pub">Jennifer J. Freyd, University of Oregon</span>.</li><li id="src-32"><a href="https://www.britannica.com/event/Combination-Acts" rel="noopener">Combination Acts</a>. <span class="pub">Encyclopaedia Britannica</span>.</li><li id="src-33"><a href="https://en.wikipedia.org/wiki/Combination_Act_1799" rel="noopener">Combination Act 1799 (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-34"><a href="https://encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/repeal-combination-acts" rel="noopener">William E. Burns, &#x27;Repeal of Combination Acts&#x27;, St James Encyclopedia of Labor History Worldwide</a>. <span class="pub">Encyclopedia.com</span>.</li><li id="src-35"><a href="https://www.senat.fr/leg/ppl10-602.html" rel="noopener">Proposition de loi no. 602 (2010–2011)</a>. <span class="pub">Sénat (France)</span>.</li><li id="src-36"><a href="https://laviedesidees.fr/Le-droit-au-pantalon" rel="noopener">Christine Bard, &#x27;Le droit au pantalon&#x27;, La Vie des idées, 4 March 2013</a>. <span class="pub">La Vie des idées (Collège de France)</span>.</li><li id="src-37"><a href="https://questions.assemblee-nationale.fr/dyn/13/questions/QANR5L13QE61302.pdf" rel="noopener">Question écrite no. 61302 (13th legislature), Pierre Morange</a>. <span class="pub">Assemblée nationale (France)</span>.</li><li id="src-38"><a href="https://stortinget.no/no/Stortinget-og-demokratiet/Kronologi/1814/Transkripsjon/" rel="noopener">Transcription of the 1814 Constitution</a>. <span class="pub">Stortinget (Norwegian Parliament)</span>.</li><li id="src-39"><a href="https://snl.no/J%C3%B8deparagrafen" rel="noopener">Frode Ulvund, &#x27;Jødeparagrafen&#x27;</a>. <span class="pub">Store norske leksikon</span>.</li><li id="src-40"><a href="https://stortinget.no/no/Stortinget-og-demokratiet/Grunnloven/grunnloven-18142014/wergeland-og-stortinget/wergeland-og-jodeparagrafen/" rel="noopener">Wergeland og jødeparagrafen</a>. <span class="pub">Stortinget (Norwegian Parliament)</span>.</li><li id="src-41"><a href="https://www.stortinget.no/no/Stortinget-og-demokratiet/Kronologi/1851/" rel="noopener">Chronology, 1851</a>. <span class="pub">Stortinget (Norwegian Parliament)</span>.</li><li id="src-42"><a href="https://en.wikipedia.org/wiki/Jesuit_clause" rel="noopener">Jesuit clause (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-43"><a href="https://www.nber.org/papers/w17051.pdf" rel="noopener">S. Naidu and N. Yuchtman, &#x27;Coercive Contract Enforcement: Law and the Labor Market in 19th Century Industrial Britain&#x27;, NBER Working Paper 17051 (2011)</a>. <span class="pub">National Bureau of Economic Research</span>.</li><li id="src-44"><a href="https://en.wikipedia.org/wiki/Master_and_Servant_Act_1823" rel="noopener">Master and Servant Act 1823 (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-45"><a href="https://www.legislation.gov.uk/ukpga/Vict/38-39/86/enacted/data.htm" rel="noopener">Conspiracy and Protection of Property Act 1875 (as enacted)</a>. <span class="pub">legislation.gov.uk / The National Archives</span>.</li><li id="src-46"><a href="https://www.irishstatutebook.ie/eli/1875/act/90/enacted/en/print" rel="noopener">Employers and Workmen Act 1875</a>. <span class="pub">Irish Statute Book, Office of the Attorney General</span>.</li><li id="src-47"><a href="https://www.legislation.gov.uk/ukpga/Vict/28-29/83/pdfs/ukpga_18650083_en.pdf" rel="noopener">Locomotives Act 1865, 28 &amp; 29 Vict. c. 83, as enacted (King&#x27;s Printer PDF)</a>. <span class="pub">legislation.gov.uk / The National Archives</span>.</li><li id="src-48"><a href="https://en.wikipedia.org/wiki/Locomotive_Acts" rel="noopener">Locomotive Acts (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-49"><a href="https://legislation.gov.uk/ukpga/1878/77/section/29/enacted" rel="noopener">Highways and Locomotives (Amendment) Act 1878, s. 29 (as enacted)</a>. <span class="pub">legislation.gov.uk / The National Archives</span>.</li><li id="src-50"><a href="https://vccofgb.co.uk/london-to-brighton-veteran-car-run-history/" rel="noopener">London to Brighton Veteran Car Run history</a>. <span class="pub">Veteran Car Club of Great Britain</span>.</li><li id="src-51"><a href="https://en.wikipedia.org/wiki/Locomotives_on_Highways_Act_1896" rel="noopener">Locomotives on Highways Act 1896 (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-52"><a href="https://uscode.house.gov/us/usc/119-118/t18/s1461/" rel="noopener">18 U.S.C. § 1461: Mailing obscene or crime-inciting matter</a>. <span class="pub">Office of the Law Revision Counsel, US House of Representatives</span>.</li><li id="src-53"><a href="https://www.smithsonianmag.com/history/comstock-act-transform-abortion-debate-180982363/" rel="noopener">How the Comstock Act…</a>. <span class="pub">Smithsonian Magazine</span>.</li><li id="src-54"><a href="https://embryo.asu.edu/pages/anthony-comstock-1844-1915" rel="noopener">Malladi Lakshmeeramya, &#x27;Anthony Comstock (1844–1915)&#x27;, 23 May 2017</a>. <span class="pub">Embryo Project Encyclopedia, Arizona State University</span>.</li><li id="src-55"><a href="https://www.justice.gov/olc/opinion/file/1560596/dl" rel="noopener">Application of the Comstock Act to the Mailing of Prescription Drugs That Can Be Used for Abortions, 23 December 2022</a>. <span class="pub">Office of Legal Counsel, US Department of Justice</span>.</li><li id="src-56"><a href="https://www.washingtonexaminer.com/?p=4678389" rel="noopener">Report on the Justice Department&#x27;s review of the Comstock Act opinion, 7 August 2026</a>. <span class="pub">Washington Examiner</span>.</li><li id="src-57"><a href="https://library.oapen.org/bitstream/20.500.12657/89395/1/9780814708873_WEB.pdf" rel="noopener">Susan M. Schweik, The Ugly Laws: Disability in Public (open-access edition)</a>. <span class="pub">New York University Press, 2009</span>.</li><li id="src-58"><a href="https://en.wikipedia.org/wiki/Ugly_law" rel="noopener">Ugly law (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-59"><a href="https://daily.jstor.org/the-ugly-history-of-chicagos-ugly-law" rel="noopener">The Ugly History of Chicago&#x27;s &#x27;Ugly Law&#x27;</a>. <span class="pub">JSTOR Daily</span>.</li><li id="src-60"><a href="https://api.parliament.uk/historic-hansard/written-answers/1945/oct/12/permanent-appointmentsmarriage-bar" rel="noopener">Written answers, 12 October 1945: Permanent Appointments (Marriage Bar)</a>. <span class="pub">Hansard, UK Parliament</span>.</li><li id="src-61"><a href="https://assets.publishing.service.gov.uk/media/5bbf570040f0b6385452227f/Women_in_Diplomacy_History_Note__2nd_Edition_.pdf" rel="noopener">Women and the Foreign Office: A History, History Notes Issue 20 (2018)</a>. <span class="pub">FCO Historians, GOV.UK</span>.</li><li id="src-62"><a href="https://revisedacts.lawreform.ie/eli/1956/act/46/section/10/revised/en/html" rel="noopener">Civil Service Regulation Act 1956, s. 10 (revised)</a>. <span class="pub">Law Reform Commission of Ireland</span>.</li><li id="src-63"><a href="https://history.blog.gov.uk/2015/05/26/a-perfect-nuisance-the-history-of-women-in-the-civil-service/" rel="noopener">Vicky Iglikowski, &#x27;&#x27;A perfect nuisance&#x27;: The history of women in the Civil Service&#x27;, History of Government blog, 26 May 2015</a>. <span class="pub">GOV.UK / The National Archives</span>.</li><li id="src-64"><a href="https://www.irishstatutebook.ie/eli/1973/act/17/enacted/en/print" rel="noopener">Civil Service (Employment of Married Women) Act 1973</a>. <span class="pub">Irish Statute Book, Office of the Attorney General</span>.</li><li id="src-65"><a href="https://journals.indianapolis.iu.edu/index.php/ias/article/download/4753/4589/10591" rel="noopener">Will E. Edington, &#x27;House Bill No. 246, Indiana State Legislature, 1897&#x27;, Proceedings of the Indiana Academy of Science</a>. <span class="pub">Indiana Academy of Science, via IU Indianapolis journals</span>.</li><li id="src-66"><a href="https://secure.in.gov/library/files/Pi_Bill.pdf" rel="noopener">Pi Bill (PDF)</a>. <span class="pub">Indiana State Library</span>.</li><li id="src-67"><a href="https://www.in.gov/iara/from-the-vault-blog/vault-pi-bill/" rel="noopener">From the Vault: Pi Bill</a>. <span class="pub">Indiana Archives and Records Administration</span>.</li><li id="src-68"><a href="https://immigrationhistory.org/item/an-act-in-reference-to-the-expatriation-of-citizens-and-their-protection-abroad/" rel="noopener">An Act in Reference to the Expatriation of Citizens and Their Protection Abroad</a>. <span class="pub">Immigration History (Immigration and Ethnic History Society)</span>.</li><li id="src-69"><a href="https://www.archives.gov/publications/prologue/2014/spring/women-citizenship-repatration" rel="noopener">Women and Citizenship: repatriation, Prologue (Spring 2014)</a>. <span class="pub">US National Archives</span>.</li><li id="src-70"><a href="https://supreme.justia.com/cases/federal/us/239/299" rel="noopener">Mackenzie v. Hare, 239 U.S. 299 (1915)</a>. <span class="pub">Justia (US Reports text)</span>.</li><li id="src-71"><a href="https://thecanadianencyclopedia.ca/en/article/sunday-shopping" rel="noopener">Sunday Shopping</a>. <span class="pub">The Canadian Encyclopedia</span>.</li><li id="src-72"><a href="https://canadashistory.ca/explore/arts-culture-society/never-on-a-sunday" rel="noopener">Never on a Sunday</a>. <span class="pub">Canada&#x27;s History</span>.</li><li id="src-73"><a href="https://thecanadianencyclopedia.ca/en/article/lords-day-alliance-of-canada" rel="noopener">Lord&#x27;s Day Alliance of Canada</a>. <span class="pub">The Canadian Encyclopedia</span>.</li><li id="src-74"><a href="https://thecanadianencyclopedia.ca/en/article/big-m-drug-mart-case" rel="noopener">Big M Drug Mart Case</a>. <span class="pub">The Canadian Encyclopedia</span>.</li><li id="src-75"><a href="https://en.wikipedia.org/wiki/R_v_Big_M_Drug_Mart_Ltd" rel="noopener">R v Big M Drug Mart Ltd (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-76"><a href="https://www.scc-csc.gc.ca/cases-dossiers/search-recherche/18125" rel="noopener">Case information, Docket 18125 (R. v. Big M Drug Mart Ltd.)</a>. <span class="pub">Supreme Court of Canada</span>.</li><li id="src-77"><a href="https://www.courthouselibrary.ca/node/1620" rel="noopener">Lord&#x27;s Day Act</a>. <span class="pub">Courthouse Libraries BC</span>.</li><li id="src-78"><a href="https://lagen.nu/prop/1954:151" rel="noopener">Prop. 1954:151, angående riktlinjerna för den framtida nykterhetspolitiken</a>. <span class="pub">Swedish government bill, via lagen.nu</span>.</li><li id="src-79"><a href="https://lex.dk/motbok" rel="noopener">motbok</a>. <span class="pub">Lex.dk (Den Store Danske)</span>.</li><li id="src-80"><a href="https://en.wikipedia.org/wiki/Bratt_System" rel="noopener">Bratt System (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-81"><a href="https://hansard.parliament.uk/html/Commons/1921-07-22/CommonsChamber" rel="noopener">HC Deb 22 July 1921: Licensing Bill</a>. <span class="pub">Hansard, UK Parliament</span>.</li><li id="src-82"><a href="https://api.parliament.uk/historic-hansard/acts/intoxicating-liquor-temporary-restriction-act-1914" rel="noopener">Intoxicating Liquor (Temporary Restriction) Act 1914</a>. <span class="pub">Hansard, UK Parliament</span>.</li><li id="src-83"><a href="https://studylight.org/encyclopedias/eng/bri/l/liquor-laws-and-liquor-control.html?print=yes" rel="noopener">Liquor Laws and Liquor Control (c. 1922 edition text)</a>. <span class="pub">Encyclopaedia Britannica, via StudyLight</span>.</li><li id="src-84"><a href="https://blog.nationalarchives.gov.uk/pubs-vs-first-world-war/" rel="noopener">The Carlisle Experiment: limiting alcohol in wartime</a>. <span class="pub">The National Archives blog</span>.</li><li id="src-85"><a href="https://www.legislation.gov.uk/uksi/2005/2091/made" rel="noopener">The Licensing Act 2003 (Second appointed day) Order 2005, SI 2005/2091</a>. <span class="pub">legislation.gov.uk / The National Archives</span>.</li><li id="src-86"><a href="https://en.wikipedia.org/wiki/Prohibition_in_Iceland" rel="noopener">Prohibition in Iceland (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-87"><a href="https://www.sbs.com.au/news/article/iceland-marks-30-years-of-lifting-beer-ban/ctpjgfz7q" rel="noopener">Iceland marks 30 years of lifting beer ban, 1 March 2019</a>. <span class="pub">SBS News (AFP)</span>.</li><li id="src-88"><a href="https://icelandmonitor.mbl.is/news/news/2015/03/03/iceland_s_beer_ban" rel="noopener">Iceland&#x27;s beer ban, 3 March 2015</a>. <span class="pub">Iceland Monitor (mbl.is)</span>.</li><li id="src-89"><a href="https://www.irishstatutebook.ie/1935/en/act/pub/0006/sec0017.html" rel="noopener">Criminal Law Amendment Act 1935, s. 17</a>. <span class="pub">Irish Statute Book, Office of the Attorney General</span>.</li><li id="src-90"><a href="https://www.irishstatutebook.ie/eli/1935/act/6/section/print.html" rel="noopener">Criminal Law Amendment Act 1935 (print view)</a>. <span class="pub">Irish Statute Book, Office of the Attorney General</span>.</li><li id="src-91"><a href="https://www.law.utoronto.ca/sites/default/files/documents/reprohealth/ireland_1974_mcgee_v_ag.pdf" rel="noopener">McGee v Attorney General [1974] IR 284 (transcript)</a>. <span class="pub">University of Toronto Faculty of Law, Reproductive Health Law programme</span>.</li><li id="src-92"><a href="https://www.irishstatutebook.ie/eli/1979/act/20/enacted/en/index.html" rel="noopener">Health (Family Planning) Act 1979</a>. <span class="pub">Irish Statute Book, Office of the Attorney General</span>.</li><li id="src-93"><a href="https://www.irishstatutebook.ie/1985/en/act/pub/0004/print.html" rel="noopener">Health (Family Planning) (Amendment) Act 1985</a>. <span class="pub">Irish Statute Book, Office of the Attorney General</span>.</li><li id="src-94"><a href="https://www.irishstatutebook.ie/1993/en/act/pub/0016/print.html" rel="noopener">Health (Family Planning) (Amendment) Act 1993</a>. <span class="pub">Irish Statute Book, Office of the Attorney General</span>.</li><li id="src-95"><a href="https://www.britannica.com/topic/pass-law" rel="noopener">Pass law</a>. <span class="pub">Encyclopaedia Britannica</span>.</li><li id="src-96"><a href="https://en.wikipedia.org/wiki/Pass_law" rel="noopener">Pass law (secondary)</a>. <span class="pub">Wikipedia</span>.</li><li id="src-97"><a href="https://sahistory.org.za/ve/archive/natives-abolition-passes-and-co-ordination-documents-act-act-no-67-1952" rel="noopener">Natives (Abolition of Passes and Co-ordination of Documents) Act, Act No 67 of 1952</a>. <span class="pub">South African History Online</span>.</li><li id="src-98"><a href="https://www.gov.za/sites/default/files/gcis_document/201503/act-68-1986.pdf" rel="noopener">Abolition of Influx Control Act, No. 68 of 1986, Government Gazette No. 10317</a>. <span class="pub">South African Government (gov.za)</span>.</li><li id="src-99"><a href="https://sahistory.org.za/dated-event/identification-act-no-72-commences-it-repealed-1952-blacks-abolition-passes-and-co" rel="noopener">Identification Act No 72 commences; it repealed the 1952 Blacks (Abolition of Passes…) Act</a>. <span class="pub">South African History Online</span>.</li><li id="src-100"><a href="https://www.shugiin.go.jp/internet/itdb_housei.nsf/html/housei/18920150624045.htm" rel="noopener">Act partially amending the Amusement Business Act (Act No. 45 of 2015, 24 June 2015)</a>. <span class="pub">House of Representatives of Japan</span>.</li><li id="src-101"><a href="https://www.japaneselawtranslation.go.jp/en/laws/view/4234/je" rel="noopener">Act on Control and Improvement of Amusement Business (Act No. 122 of 1948)</a>. <span class="pub">Japanese Law Translation, Ministry of Justice, Japan</span>.</li><li id="src-102"><a href="https://www.pref.aichi.jp/police/shinsei/fuei/hoan/kaisei.html" rel="noopener">風営法改正について (On the amendment of the Amusement Business Act)</a>. <span class="pub">Aichi Prefectural Police</span>.</li><li id="src-103"><a href="https://globalvoices.org/2015/07/03/you-can-now-legally-dance-the-night-away-in-japan/" rel="noopener">You can now legally dance the night away in Japan, 3 July 2015</a>. <span class="pub">Global Voices</span>.</li><li id="src-104"><a href="https://japantimes.co.jp/culture/2015/01/23/music/former-owner-of-club-noon-sees-acquittal-upheld" rel="noopener">Former owner of Club Noon sees acquittal upheld, 23 January 2015</a>. <span class="pub">The Japan Times</span>.</li><li id="src-105"><a href="https://japantimes.co.jp/news/2016/06/09/national/crime-legal/former-osaka-nightclub-owner-cleared-no-dancing-violation" rel="noopener">Former Osaka nightclub owner cleared of &#x27;no dancing&#x27; violation, 9 June 2016</a>. <span class="pub">The Japan Times</span>.</li><li id="src-106"><a href="https://cecc.gov/resources/legal-provisions/regulations-on-household-registration-of-the-peoples-republic-of-china" rel="noopener">Regulations on Household Registration of the People&#x27;s Republic of China (Chinese text)</a>. <span class="pub">Congressional-Executive Commission on China</span>.</li><li id="src-107"><a href="https://www.gov.uk/government/publications/hukou-reform-central-government-sets-out-a-vision-august-2014/hukou-reform-central-government-sets-out-a-vision-august-2014" rel="noopener">Hukou reform: central government sets out a vision (August 2014)</a>. <span class="pub">GOV.UK</span>.</li><li id="src-108"><a href="https://en.nhc.gov.cn/2014-07/31/c_46328.htm" rel="noopener">China Daily report on hukou reform, 31 July 2014</a>. <span class="pub">National Health Commission of the PRC (English site)</span>.</li><li id="src-109"><a href="https://english.www.gov.cn/policies/latestreleases/202407/31/content_WS66aa26c8c6d0868f4e8e99f2.html" rel="noopener">China releases five-year action plan for people-centered new urbanization</a>. <span class="pub">State Council of the PRC (english.www.gov.cn)</span>.</li></ol>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <p>Published 21 November 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+  <p><a href="/daily/">← Back to Daily</a> · <a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20Legal%20Yesterday&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-21-legal-yesterday%2F">Spot an error? Suggest a correction</a></p>
+ </div>
+</footer>
+<script>
+(function(){
+  var ctr=document.getElementById('controls'); if(!ctr) return; ctr.hidden=false;
+  var items=[].slice.call(document.querySelectorAll('.clause'));
+  var q=document.getElementById('q'), count=document.getElementById('count'), empty=document.getElementById('empty');
+  var sel={theme:null,status:null};
+  var text=items.map(function(a){return a.textContent.toLowerCase();});
+  function apply(){
+    var t=(q.value||'').trim().toLowerCase(), n=0;
+    items.forEach(function(a,i){
+      var ok=(!sel.theme||a.dataset.theme===sel.theme)&&(!sel.status||a.dataset.status===sel.status)&&(!t||text[i].indexOf(t)>-1);
+      a.hidden=!ok; if(ok) n++;
+    });
+    count.textContent=n===items.length?('Showing all '+n+' entries'):('Showing '+n+' of '+items.length+' entries');
+    empty.hidden=n!==0;
+  }
+  [].forEach.call(document.querySelectorAll('.chip'),function(b){
+    b.addEventListener('click',function(){
+      var f=b.dataset.f, v=b.dataset.v, on=sel[f]===v;
+      sel[f]=on?null:v;
+      [].forEach.call(document.querySelectorAll('.chip[data-f="'+f+'"]'),function(o){o.setAttribute('aria-pressed',String(!on&&o===b));});
+      apply();
+    });
+  });
+  q.addEventListener('input',apply);
+  document.getElementById('reset').addEventListener('click',function(){
+    sel={theme:null,status:null}; q.value='';
+    [].forEach.call(document.querySelectorAll('.chip'),function(o){o.setAttribute('aria-pressed','false');});
+    apply();
+  });
+  // a chart link to a hidden entry clears filters first
+  [].forEach.call(document.querySelectorAll('svg.span a'),function(l){
+    l.addEventListener('click',function(){
+      var id=(l.getAttribute('href')||'').slice(1), el=document.getElementById(id);
+      if(el&&el.hidden){document.getElementById('reset').click();}
+    });
+  });
+  apply();
+})();
+
+</script>
+</body>
+</html>
