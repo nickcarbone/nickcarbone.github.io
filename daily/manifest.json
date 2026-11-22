@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 36,
+      "slug": "2026-11-22-the-forgery-casebook",
+      "date": "2026-11-22",
+      "title": "The Forgery Casebook",
+      "dek": "Ten forgeries that fooled the Louvre, the Met, the Getty, the British Museum and the dealers who supply them: what each was meant to be, who vouched for it, and the eye, the paper, the laboratory or the informant that finally gave it away.",
+      "kind": "Writer’s casebook",
+      "readingMinutes": 24,
+      "design": "Playfair Display, Literata, Red Hat Mono; gallery-wall putty, gilt, lab teal, UV violet; gilt-frame UV-sweep hero, wall-label vs lab-sheet pairs, detection matrix.",
+      "source": "queue",
+      "brief": "The Forgery Casebook (writer’s casebook)\nTen art forgeries that fooled museums, from Van Meegeren’s fake Vermeers to the Knoedler Gallery’s fake Rothkos. Cover how each one was finally caught, whether by lead isotopes, canvas weave, a pigment that hadn’t been invented yet or a mistake in the provenance. Explain why connoisseurs’ eyes failed where chemistry didn’t.",
+      "factcheck": {
+        "claims": 96,
+        "fixed": 24
+      },
+      "corrections": []
+    },
+    {
       "no": 35,
       "slug": "2026-11-21-legal-yesterday",
       "date": "2026-11-21",

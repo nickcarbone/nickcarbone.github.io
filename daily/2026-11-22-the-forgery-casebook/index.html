@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Forgery Casebook · Daily</title>
+<meta name="description" content="Ten forgeries that fooled the Louvre, the Met, the Getty, the British Museum and the dealers who supply them: what each was meant to be, who vouched for it, and the eye, the paper, the laboratory or the informant that finally gave it away.">
+<meta property="og:title" content="The Forgery Casebook">
+<meta property="og:description" content="Ten forgeries that fooled the Louvre, the Met, the Getty, the British Museum and the dealers who supply them: what each was meant to be, who vouched for it, and the eye, the paper, the laboratory or the informant that finally gave it away.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-22-the-forgery-casebook/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-22-the-forgery-casebook/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Red+Hat+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+ --wall:#e7e1d6; --wall2:#dcd4c6; --card:#f7f4ee; --ink:#1f1c19; --muted:#5a534a; --rule:#bdb2a0;
+ --gilt:#8a6a1f; --gilt2:#c9a24a; --uv:#4b3592; --uvsoft:#e6e0f3; --red:#b0301c; --lab:#21443f; --labsoft:#dbe7e3;
+ --eye:#7a4a12; --paper:#4b3592; --chem:#21615a; --tip:#b0301c;
+ --serif:"Literata",Georgia,serif; --disp:"Playfair Display","Didot",Georgia,serif; --mono:"Red Hat Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]){
+  --wall:#1b1a18; --wall2:#24221f; --card:#2a2723; --ink:#ece6da; --muted:#b9b0a2; --rule:#4a443b;
+  --gilt:#d7b15a; --gilt2:#a8842f; --uv:#b7a6ee; --uvsoft:#2d2840; --red:#f0826c; --lab:#8fcfc2; --labsoft:#1f312e;
+  --eye:#e2a861; --paper:#b7a6ee; --chem:#7fd0c3; --tip:#f0826c;
+ }
+}
+:root[data-theme="dark"]{
+  --wall:#1b1a18; --wall2:#24221f; --card:#2a2723; --ink:#ece6da; --muted:#b9b0a2; --rule:#4a443b;
+  --gilt:#d7b15a; --gilt2:#a8842f; --uv:#b7a6ee; --uvsoft:#2d2840; --red:#f0826c; --lab:#8fcfc2; --labsoft:#1f312e;
+  --eye:#e2a861; --paper:#b7a6ee; --chem:#7fd0c3; --tip:#f0826c;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--wall);color:var(--ink);font:17px/1.65 var(--serif);}
+a{color:inherit;text-decoration-color:var(--gilt);text-underline-offset:3px}
+a:hover{color:var(--red)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.prose{max-width:680px}
+.strip{border-bottom:1px solid var(--rule);font:500 13px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px;flex-wrap:wrap}
+.strip a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;font-weight:600}
+.strip span{color:var(--muted)}
+/* hero */
+.hero{padding:40px 0 24px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.kicker{font:600 12px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gilt)}
+h1{font:800 clamp(44px,8vw,86px)/.98 var(--disp);margin:.2em 0 .25em;letter-spacing:-.01em}
+h1 em{font-style:italic;font-weight:500;color:var(--red)}
+.dek{font-size:20px;line-height:1.5;color:var(--muted);max-width:36em;margin:0}
+.frame{position:relative;max-width:420px;margin:0 auto;width:100%}
+.frame svg{display:block;width:100%;height:auto}
+.beam{position:absolute;inset:11% 11%;overflow:hidden;pointer-events:none}
+.beam::before{content:"";position:absolute;top:-20%;bottom:-20%;width:38%;left:-45%;background:linear-gradient(100deg,transparent,rgba(122,92,214,.0) 10%,rgba(122,92,214,.32) 50%,transparent 90%);transform:skewX(-14deg);animation:sweep 7s ease-in-out infinite}
+@keyframes sweep{0%{left:-45%}55%{left:110%}100%{left:110%}}
+.frame figcaption{font:400 12px/1.4 var(--mono);color:var(--muted);text-align:center;margin-top:8px}
+@media (prefers-reduced-motion: reduce){.beam::before{animation:none;left:30%}}
+/* sections */
+section{padding:28px 0}
+h2{font:700 clamp(30px,4.5vw,44px)/1.1 var(--disp);margin:0 0 .5em}
+h3{font:700 22px/1.25 var(--disp);margin:1.4em 0 .4em}
+p{margin:0 0 1em}
+sup.r{font:600 11px/1 var(--mono);margin-left:1px}
+sup.r a{text-decoration:none;color:var(--gilt);padding:2px 1px}
+.lede p:first-child::first-letter{font:800 4.1em/.8 var(--disp);float:left;margin:.06em .08em 0 0;color:var(--red)}
+.note{font-size:15px;color:var(--muted);border-left:3px solid var(--gilt2);padding:4px 0 4px 14px}
+/* routes */
+.routes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+.route{background:var(--card);border-top:4px solid var(--c);padding:16px 16px 14px}
+.route b{display:block;font:600 12px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--c);margin-bottom:6px}
+.route .n{font:800 38px/1 var(--disp);color:var(--c)}
+.route p{font-size:15px;margin:.4em 0 0;line-height:1.5}
+.c-eye{--c:var(--eye)} .c-paper{--c:var(--paper)} .c-chem{--c:var(--chem)} .c-tip{--c:var(--tip)}
+/* timeline */
+.tl{background:var(--card);padding:18px 16px 10px;margin-top:10px}
+.tl-row{display:grid;grid-template-columns:170px 1fr;gap:10px;align-items:center;min-height:30px}
+.tl-row a{font:500 13px/1.25 var(--mono);text-decoration:none}
+.tl-track{position:relative;height:14px;background:repeating-linear-gradient(90deg,transparent 0 calc(100%/14 - 1px),var(--rule) calc(100%/14 - 1px) calc(100%/14))}
+.tl-bar{position:absolute;top:2px;height:10px;background:var(--ink)}
+.tl-bar.open{background:repeating-linear-gradient(135deg,var(--ink) 0 4px,transparent 4px 7px);border:1px solid var(--ink)}
+.tl-bar.approx{background:repeating-linear-gradient(90deg,var(--ink) 0 6px,transparent 6px 9px)}
+.tl-lab{font:400 12px/1.2 var(--mono);color:var(--muted);margin-left:6px;position:absolute;top:-1px;white-space:nowrap}
+.tl-axis{display:grid;grid-template-columns:170px 1fr;gap:10px;font:400 11px/1 var(--mono);color:var(--muted);margin-top:6px}
+.tl-axis div:last-child{display:flex;justify-content:space-between}
+.tl-key{font:400 12px/1.5 var(--mono);color:var(--muted);margin:10px 0 0}
+/* matrix */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--card);margin-top:10px}
+table.mx{border-collapse:collapse;width:100%;min-width:620px;font:400 14px/1.35 var(--mono)}
+.mx th,.mx td{padding:10px 10px;border-bottom:1px solid var(--rule);text-align:center}
+.mx th:first-child,.mx td:first-child{text-align:left}
+.mx thead th{font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.mx td.d{font-weight:600}
+.dot{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:middle;background:var(--c)}
+.ring{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:middle;border:2px solid var(--c)}
+.q{color:var(--muted)}
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 8px}
+.filters button{font:600 13px/1 var(--mono);letter-spacing:.04em;min-height:44px;padding:0 14px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--wall)}
+.filters button:focus-visible{outline:3px solid var(--uv);outline-offset:2px}
+.count{font:400 13px/1.4 var(--mono);color:var(--muted)}
+/* case */
+.case{margin:34px 0;padding-top:24px;border-top:2px solid var(--ink)}
+.case[hidden]{display:none}
+.case-head{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.case-no{font:800 44px/1 var(--disp);color:var(--gilt)}
+.case h3{font:800 clamp(26px,4vw,36px)/1.1 var(--disp);margin:0}
+.case .where{font:500 13px/1.4 var(--mono);color:var(--muted);width:100%}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0 18px}
+.label{background:var(--card);padding:16px 18px;box-shadow:0 1px 0 var(--rule);position:relative}
+.label .t{font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.label .art{font:700 19px/1.25 var(--disp)}
+.label .art i{font-weight:500}
+.label .meta{font-size:14.5px;line-height:1.5;margin-top:6px}
+.label.as{border-left:5px solid var(--gilt2)}
+.label.as::after{content:"AS ACCEPTED";position:absolute;right:12px;top:12px;font:600 10px/1 var(--mono);letter-spacing:.12em;color:var(--gilt)}
+.label.lab{background:var(--labsoft);border-left:5px solid var(--lab);font-family:var(--mono)}
+.label.lab .art{font:600 16px/1.35 var(--mono);color:var(--lab)}
+.label.lab .meta{font-size:13.5px}
+.label.lab::after{content:"AS FOUND";position:absolute;right:12px;top:12px;font:600 10px/1 var(--mono);letter-spacing:.12em;color:var(--lab)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font:600 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:6px 8px;border:1.5px solid var(--c);color:var(--c)}
+.tag.first{background:var(--c);color:var(--card)}
+.case .body{max-width:680px}
+.disc{font-size:15px;background:var(--uvsoft);padding:10px 14px;margin:0 0 1em;border-left:3px solid var(--uv)}
+.disc b{font:600 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--uv);display:block;margin-bottom:4px}
+.status{font:400 14px/1.5 var(--mono);color:var(--muted);border-top:1px dashed var(--rule);padding-top:10px}
+.status b{color:var(--ink)}
+/* essay */
+.essay h3{margin-top:1.2em}
+/* sources */
+.sources ol{font-size:14.5px;line-height:1.5;padding-left:2.2em;max-width:860px}
+.sources li{margin:0 0 .55em;scroll-margin-top:20px}
+.sources li:target{background:var(--uvsoft)}
+.sources .pub{color:var(--muted);font-family:var(--mono);font-size:12.5px}
+footer{border-top:2px solid var(--ink);margin-top:30px;padding:22px 0 40px;font:400 14px/1.6 var(--mono)}
+footer a{display:inline-flex;align-items:center;min-height:44px}
+footer p{margin:0 0 .4em}
+@media (max-width:820px){
+ .hero-grid{grid-template-columns:1fr;gap:20px}
+ .frame{max-width:300px}
+ .routes{grid-template-columns:1fr 1fr}
+ .pair{grid-template-columns:1fr}
+ .tl-row,.tl-axis{grid-template-columns:104px 1fr}
+ .tl-row a{font-size:12px}
+}
+@media (max-width:420px){
+ body{font-size:17px}
+ .routes{grid-template-columns:1fr}
+ .tl-lab{display:none}
+}
+</style>
+</head>
+<body>
+<nav class="strip" aria-label="Daily"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 036 · Sunday 22 November 2026</span></div></nav>
+
+<header class="hero"><div class="wrap hero-grid">
+ <div>
+  <div class="kicker">A writer’s casebook · Ten forgeries</div>
+  <h1>The Forgery <em>Casebook</em></h1>
+  <p class="dek">Ten forgeries that fooled the Louvre, the Met, the Getty, the British Museum and the dealers who supply them: what each was meant to be, who vouched for it, and the eye, the paper, the laboratory or the informant that finally gave it away.</p>
+ </div>
+ <figure class="frame" aria-hidden="false">
+  <svg viewBox="0 0 400 480" role="img" aria-label="A gilt picture frame around a dark canvas, crossed by a sweeping beam of ultraviolet light that shows a hidden date, 1945, under the paint">
+   <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d8b660"/><stop offset=".5" stop-color="#8a6a1f"/><stop offset="1" stop-color="#c9a24a"/></linearGradient>
+    <pattern id="crk" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M0 11 L7 9 L11 0 M7 9 L13 15 L22 13 M13 15 L11 22" stroke="#00000033" fill="none" stroke-width=".8"/></pattern>
+   </defs>
+   <rect x="0" y="0" width="400" height="480" fill="url(#g)"/>
+   <rect x="14" y="14" width="372" height="452" fill="none" stroke="#5f4810" stroke-width="3"/>
+   <rect x="30" y="30" width="340" height="420" fill="none" stroke="#f3dc9a" stroke-width="2" opacity=".7"/>
+   <rect x="44" y="44" width="312" height="392" fill="#3b2f22"/>
+   <rect x="44" y="44" width="312" height="392" fill="url(#crk)"/>
+   <!-- painted figure: an abstracted interior -->
+   <rect x="44" y="300" width="312" height="136" fill="#2a2119"/>
+   <path d="M170 300 C170 230 230 230 230 300 Z" fill="#c9b48a" opacity=".85"/>
+   <circle cx="200" cy="205" r="34" fill="#d9c49b" opacity=".85"/>
+   <path d="M88 300 C88 260 118 250 130 300Z" fill="#6c7d8c" opacity=".7"/>
+   <path d="M270 300 C276 250 312 256 314 300Z" fill="#8c4a33" opacity=".7"/>
+   <rect x="120" y="318" width="160" height="10" fill="#e7dcc3" opacity=".7"/>
+   <circle cx="206" cy="312" r="7" fill="#b9a374"/>
+   <text x="300" y="420" font-family="Georgia,serif" font-style="italic" font-size="15" fill="#d9c49b" opacity=".8">IVMeer</text>
+   <!-- UV reveal -->
+   <text x="200" y="120" text-anchor="middle" font-family="'Red Hat Mono',monospace" font-weight="600" font-size="40" fill="#b9a7ff" opacity=".55">1945</text>
+   <text x="200" y="146" text-anchor="middle" font-family="'Red Hat Mono',monospace" font-size="11" fill="#b9a7ff" opacity=".55" letter-spacing="2">BAKELITE · COBALT · Pb-210</text>
+  </svg>
+  <div class="beam"></div>
+  <figcaption>Drawing by the Daily desk, not a reproduction of any painting.</figcaption>
+ </figure>
+</div></header>
+
+<main>
+<section class="wrap"><div class="prose lede">
+ <p>The usual story about art forgery runs like this: the experts were fooled by their own eyes until a scientist put the picture under a microscope and found a pigment that had not been invented yet. That story is true often enough to survive. It happened to Wolfgang Beltracchi, whose 1914 Campendonk turned out to contain titanium white<sup class="r"><a href="#s39">39</a></sup>, and to the Knoedler gallery, whose “Motherwells” held red pigments that were not in use until the 1960s<sup class="r"><a href="#s50">50</a></sup>.</p>
+ <p>Line up ten of the forgeries that fooled great museums and dealers, though, and the laboratory is the first thing to break the case only twice. Three times it was a curator or art historian who simply looked harder. Four times it was a person who talked: a jeweller writing to a newspaper, a former partner carrying a bag of papers to the police, a forger who confessed to escape a worse charge. Once the paper trail itself unravelled. And one of the most famous cases, the Getty kouros, has never been closed at all, because the science came back ambiguous.</p>
+ <p>What follows is a casebook for writers: each forgery as the museum’s wall label once described it, set against what was found, then how the case broke and where the object is now. Facts that sources disagree on are marked as such.</p>
+ <p class="note">How this was judged: the “first break” in each case is the desk’s reading of the sources, meaning the evidence that turned suspicion into exposure. Most cases used more than one route, and the matrix below shows all of them.</p>
+</div></section>
+
+<section class="wrap" aria-labelledby="routes-h">
+ <h2 id="routes-h">Four ways a fake gets caught</h2>
+ <div class="routes">
+  <div class="route c-eye"><b>The eye</b><span class="n">3</span><p>A specialist notices something wrong in the work itself: the same hand in two “different” artists, a harness that no Assyrian sculptor carved, a building that did not yet exist.</p></div>
+  <div class="route c-paper"><b>The paper</b><span class="n">1</span><p>The provenance, the sale record or the letters fall apart: a postcode that did not exist yet, a buyer who traces back to a forger.</p></div>
+  <div class="route c-chem"><b>The lab</b><span class="n">2</span><p>Materials analysis finds something that could not have been there on the claimed date.</p></div>
+  <div class="route c-tip"><b>The informant</b><span class="n">4</span><p>Somebody talks: an accomplice, a rival dealer, a former partner, or the forger.</p></div>
+ </div>
+ <p class="count" style="margin-top:10px">Counts are first breaks across ten cases, with the Getty kouros included under “paper” because its provenance letters were the strongest evidence against it, although the case is unresolved.</p>
+</section>
+
+<section class="wrap" aria-labelledby="tl-h">
+ <h2 id="tl-h">How long each one held</h2>
+ <p class="prose">From the date each work was accepted or the scheme began, to the date it was exposed. Hatched bars are approximate or still open.</p>
+ <div class="tl" role="list">
+  <div class="tl-row" role="listitem"><a href="#tiara">I · Tiara</a><div class="tl-track"><span class="tl-bar" style="left:4.3%;width:5%"></span><span class="tl-lab" style="left:10%">1896–1903</span></div></div>
+  <div class="tl-row" role="listitem"><a href="#warriors">II · Met warriors</a><div class="tl-track"><span class="tl-bar" style="left:30.7%;width:20%"></span><span class="tl-lab" style="left:51.5%">on view 1933–61</span></div></div>
+  <div class="tl-row" role="listitem"><a href="#emmaus">III · Emmaus</a><div class="tl-track"><span class="tl-bar" style="left:33.6%;width:5.7%"></span><span class="tl-lab" style="left:40%">1937–45</span></div></div>
+  <div class="tl-row" role="listitem"><a href="#hebborn">IV · Hebborn</a><div class="tl-track"><span class="tl-bar" style="left:57.1%;width:15%"></span><span class="tl-lab" style="left:72.8%">BM drawing 1970–91</span></div></div>
+  <div class="tl-row" role="listitem"><a href="#kouros">V · Kouros</a><div class="tl-track"><span class="tl-bar open" style="left:67.9%;width:29.3%"></span></div></div>
+  <div class="tl-row" role="listitem"><a href="#drewe">VI · Drewe–Myatt</a><div class="tl-track"><span class="tl-bar" style="left:69.3%;width:6.4%"></span><span class="tl-lab" style="left:76.4%">1987–96</span></div></div>
+  <div class="tl-row" role="listitem"><a href="#knoedler">VII · Knoedler</a><div class="tl-track"><span class="tl-bar" style="left:74.3%;width:12.1%"></span><span class="tl-lab" style="left:87%">1994–2011</span></div></div>
+  <div class="tl-row" role="listitem"><a href="#bolton">VIII · Bolton</a><div class="tl-track"><span class="tl-bar" style="left:80.7%;width:2.1%"></span><span class="tl-lab" style="left:83.5%">2003–06</span></div></div>
+  <div class="tl-row" role="listitem"><a href="#beltracchi">IX · Campendonk</a><div class="tl-track"><span class="tl-bar" style="left:82.9%;width:2.9%"></span><span class="tl-lab" style="left:86.5%">2006–10</span></div></div>
+  <div class="tl-row" role="listitem"><a href="#terrus">X · Terrus</a><div class="tl-track"><span class="tl-bar approx" style="left:76.4%;width:14.3%"></span></div></div>
+  <div class="tl-axis" aria-hidden="true"><div></div><div><span>1890</span><span>1925</span><span>1960</span><span>1995</span><span>2030</span></div></div>
+  <p class="tl-key">Kouros: on approval 1983, bought 1985, still unresolved. Terrus: bought by the town over about 20 years until the alarm in 2017.</p>
+ </div>
+</section>
+
+<section class="wrap" aria-labelledby="mx-h">
+ <h2 id="mx-h">The detection matrix</h2>
+ <p class="prose">Filled circle: the first break. Ring: evidence that also played a part.</p>
+ <div class="scroll" tabindex="0" role="region" aria-label="Detection matrix, scrolls sideways">
+ <table class="mx">
+  <thead><tr><th scope="col">Case</th><th scope="col" class="c-eye">Eye</th><th scope="col" class="c-paper">Paper</th><th scope="col" class="c-chem">Lab</th><th scope="col" class="c-tip">Informant</th></tr></thead>
+  <tbody>
+   <tr><td>I · Tiara of Saitaphernes</td><td class="c-eye"><span class="ring" title="contributed"></span></td><td></td><td class="c-chem"><span class="ring" title="contributed"></span></td><td class="c-tip"><span class="dot" title="first break"></span></td></tr>
+   <tr><td>II · Met “Etruscan” warriors</td><td class="c-eye"><span class="ring"></span></td><td></td><td class="c-chem"><span class="ring"></span></td><td class="c-tip"><span class="dot"></span></td></tr>
+   <tr><td>III · Van Meegeren’s Vermeers</td><td></td><td class="c-paper"><span class="ring"></span></td><td class="c-chem"><span class="ring"></span></td><td class="c-tip"><span class="dot"></span></td></tr>
+   <tr><td>IV · Eric Hebborn’s drawings</td><td class="c-eye"><span class="dot"></span></td><td></td><td></td><td class="c-tip"><span class="ring"></span></td></tr>
+   <tr><td>V · The Getty kouros</td><td class="c-eye"><span class="ring"></span></td><td class="c-paper"><span class="dot"></span></td><td class="c-chem"><span class="ring"></span></td><td></td></tr>
+   <tr><td>VI · Drewe and Myatt</td><td></td><td class="c-paper"><span class="ring"></span></td><td></td><td class="c-tip"><span class="dot"></span></td></tr>
+   <tr><td>VII · Knoedler and Rosales</td><td class="c-eye"><span class="ring"></span></td><td class="c-paper"><span class="ring"></span></td><td class="c-chem"><span class="dot"></span></td><td></td></tr>
+   <tr><td>VIII · The Bolton “Amarna Princess”</td><td class="c-eye"><span class="dot"></span></td><td></td><td></td><td></td></tr>
+   <tr><td>IX · Beltracchi’s Campendonk</td><td></td><td class="c-paper"><span class="ring"></span></td><td class="c-chem"><span class="dot"></span></td><td></td></tr>
+   <tr><td>X · Musée Terrus</td><td class="c-eye"><span class="dot"></span></td><td></td><td class="c-chem"><span class="ring"></span></td><td></td></tr>
+  </tbody>
+ </table>
+ </div>
+</section>
+
+<section class="wrap" aria-labelledby="cases-h">
+ <h2 id="cases-h">The cases</h2>
+ <div class="filters" role="group" aria-label="Filter cases by how they were first exposed">
+  <button type="button" data-f="all" aria-pressed="true">All ten</button>
+  <button type="button" data-f="eye" aria-pressed="false">Eye</button>
+  <button type="button" data-f="paper" aria-pressed="false">Paper</button>
+  <button type="button" data-f="chem" aria-pressed="false">Lab</button>
+  <button type="button" data-f="tip" aria-pressed="false">Informant</button>
+ </div>
+ <p class="count" id="count" aria-live="polite">Showing all ten cases, roughly in the order they were first accepted.</p>
+
+ <!-- I -->
+ <article class="case" id="tiara" data-first="tip">
+  <div class="case-head"><span class="case-no">I</span><h3>The Tiara of Saitaphernes</h3><span class="where">Musée du Louvre, Paris · bought 1896 · exposed 1903</span></div>
+  <div class="pair">
+   <div class="label as"><div class="t">Wall label</div><div class="art">Tiara of the Scythian king Saitaphernes</div><div class="meta">Greek, 3rd century BC, said to be from Olbia on the Black Sea. Gold, about 7 inches tall. Bought 1 April 1896 for 200,000 francs.<sup class="r"><a href="#s1">1</a></sup></div></div>
+   <div class="label lab"><div class="t">What gave it away</div><div class="art">A goldsmith in Odessa, and a jeweller who had watched him work</div><div class="meta">Traces of modern tools, hidden modern soldering and the style of the inscription.<sup class="r"><a href="#s1">1</a></sup></div>
+    <div class="tags"><span class="tag first c-tip">Informant · first</span><span class="tag c-eye">Eye</span><span class="tag c-chem">Physical exam</span></div></div>
+  </div>
+  <div class="body">
+   <p>The tiara is a band of gold worked with scenes from the <i>Iliad</i> and from Scythian daily life, and an inscription saying the people of Olbia gave it to King Saitaphernes<sup class="r"><a href="#s1">1</a></sup>. It was offered in Vienna in February 1896, where the imperial museum declined it, as did the British Museum. The Louvre bought it that spring<sup class="r"><a href="#s1">1</a></sup><sup class="r"><a href="#s2">2</a></sup>. The sellers’ name appears as Hochmann in one account and as the Gokhman brothers in another<sup class="r"><a href="#s1">1</a></sup><sup class="r"><a href="#s2">2</a></sup>.</p>
+   <p>Doubt came quickly. Within months the German archaeologist Adolf Furtwängler and a Russian professor, Vesselovsky, attacked it in print<sup class="r"><a href="#s1">1</a></sup><sup class="r"><a href="#s4">4</a></sup>. French critics put Furtwängler’s view down to spite<sup class="r"><a href="#s1">1</a></sup><sup class="r"><a href="#s2">2</a></sup>, and in November 1896 the director of fine arts, Henry Roujon, told parliament the tiara was an excellent acquisition<sup class="r"><a href="#s4">4</a></sup>.</p>
+   <p>Seven years later the journalist Henri Rochefort was pressing for an inquiry when a jeweller named Lifschitz wrote to <i>Le Matin</i> to say he had watched his friend Israel Rouchomovsky, an Odessa goldsmith, make the thing<sup class="r"><a href="#s1">1</a></sup><sup class="r"><a href="#s2">2</a></sup>. Rouchomovsky travelled to Paris. He said Hochmann had ordered it “for an archaeologist friend”, named the picture books he had copied the scenes from, and then made a matching section in front of the investigators<sup class="r"><a href="#s1">1</a></sup><sup class="r"><a href="#s2">2</a></sup>. The orientalist Charles Clermont-Ganneau led the inquiry, and its conclusion that the tiara was wholly inauthentic reached the minister on 2 June 1903<sup class="r"><a href="#s3">3</a></sup>. Rouchomovsky, who said he had spent about seven months on it, presented himself as an unwitting accomplice<sup class="r"><a href="#s2">2</a></sup>.</p>
+   <p class="status"><b>Now:</b> still owned by the Louvre, which does not keep it on display. It was shown in a Louvre exhibition of fakes in 1954 and at the Israel Museum in 1997<sup class="r"><a href="#s1">1</a></sup><sup class="r"><a href="#s2">2</a></sup>.</p>
+  </div>
+ </article>
+
+ <!-- II -->
+ <article class="case" id="warriors" data-first="tip">
+  <div class="case-head"><span class="case-no">II</span><h3>The Met’s Etruscan warriors</h3><span class="where">Metropolitan Museum of Art, New York · on view from 1933 · withdrawn 1961</span></div>
+  <div class="pair">
+   <div class="label as"><div class="t">Wall label</div><div class="art">Three Etruscan warriors: the Old Warrior, the Colossal Head and the Big Warrior</div><div class="meta">Terracotta, believed to be about 2,500 years old. Bought through the museum’s agent John Marshall. Published by the curator Gisela Richter in 1937.<sup class="r"><a href="#s5">5</a></sup><sup class="r"><a href="#s6">6</a></sup></div></div>
+   <div class="label lab"><div class="t">What gave it away</div><div class="art">A signed confession, a missing thumb and manganese in the glaze</div><div class="meta">Joseph Noble’s tests found manganese dioxide in the black glaze, which Time described as a modern colouring agent.<sup class="r"><a href="#s6">6</a></sup></div>
+    <div class="tags"><span class="tag first c-tip">Informant · first</span><span class="tag c-chem">Lab</span><span class="tag c-eye">Eye</span></div></div>
+  </div>
+  <div class="body">
+   <p>Marshall was excited. Of the Colossal Head he wrote: “I can find nothing approaching it in importance”<sup class="r"><a href="#s5">5</a></sup>. The museum’s ceramics adviser, Charles Binns, judged the black glaze to be ancient<sup class="r"><a href="#s6">6</a></sup>, and the three figures went on show in 1933<sup class="r"><a href="#s5">5</a></sup>.</p>
+   <p>The warning signs were early and specific. In 1936 a dealer, Pietro Tozzi, wrote to Richter naming “Fioravanti” and the “Riccardi Bros.”; in 1937, according to the Met curator Dietrich von Bothmer, the Italian Etruscologist Massimo Pallottino called the statues forgeries; through the 1940s and 1950s the dealer Harold Parsons and others kept raising doubts<sup class="r"><a href="#s5">5</a></sup>. In 1959 Parsons tracked down Alfredo Fioravanti in Rome, and on 5 January 1961 Fioravanti signed a deposition at the US consulate saying he had made the figures with members of the Riccardi family<sup class="r"><a href="#s5">5</a></sup>.</p>
+   <p>The detail that convinced people was physical. One warrior’s hand had lost its thumb. Von Bothmer made a plaster cast of the hand, and Fioravanti produced a terracotta thumb he had kept for decades. It fitted<sup class="r"><a href="#s5">5</a></sup><sup class="r"><a href="#s6">6</a></sup>. The forgers built the big figures in pieces because they had no kiln large enough to fire them whole<sup class="r"><a href="#s6">6</a></sup>. Fioravanti told Time the forgers had been paid “a few hundred” dollars, and believed the dealer got at least $40,000 for one figure<sup class="r"><a href="#s6">6</a></sup>.</p>
+   <div class="disc"><b>Sources differ</b>The Met’s announcement is dated 14 February 1961 by the Archaeological Institute of America<sup class="r"><a href="#s5">5</a></sup>; other accounts give 15 February. One later obituary of Noble puts his glaze test in 1967, which conflicts with contemporary reporting from 1961<sup class="r"><a href="#s6">6</a></sup>.</div>
+   <p class="status"><b>Now:</b> declared of doubtful authenticity in February 1961<sup class="r"><a href="#s5">5</a></sup>. The museum’s full findings were published that year by von Bothmer and Noble<sup class="r"><a href="#s7">7</a></sup>.</p>
+  </div>
+ </article>
+
+ <!-- III -->
+ <article class="case" id="emmaus" data-first="tip">
+  <div class="case-head"><span class="case-no">III</span><h3>Han van Meegeren’s Vermeers</h3><span class="where">Museum Boijmans, Rotterdam · bought 1937 · exposed 1945</span></div>
+  <div class="pair">
+   <div class="label as"><div class="t">Wall label</div><div class="art">Johannes Vermeer, <i>The Supper at Emmaus</i></div><div class="meta">Oil on canvas, signed “IVMeer”. Bought 1937 for 520,000 guilders, with the Rembrandt Society’s help. Endorsed by Abraham Bredius in the <i>Burlington Magazine</i>, November 1937.<sup class="r"><a href="#s8">8</a></sup><sup class="r"><a href="#s9">9</a></sup><sup class="r"><a href="#s11">11</a></sup></div></div>
+   <div class="label lab"><div class="t">What gave it away</div><div class="art">A sale to Göring, then the forger’s own confession</div><div class="meta">Phenol-formaldehyde resin (a Bakelite-type plastic) in the paint; cobalt blue, a 19th-century pigment.<sup class="r"><a href="#s11">11</a></sup><sup class="r"><a href="#s15">15</a></sup></div>
+    <div class="tags"><span class="tag first c-tip">Confession · first</span><span class="tag c-paper">Paper</span><span class="tag c-chem">Lab</span></div></div>
+  </div>
+  <div class="body">
+   <p>Bredius, the grand old man of Dutch art history, examined the <i>Emmaus</i> in September 1937 and declared it a Vermeer in the <i>Burlington Magazine</i> that November<sup class="r"><a href="#s11">11</a></sup>. The Boijmans bought it the same year<sup class="r"><a href="#s9">9</a></sup><sup class="r"><a href="#s8">8</a></sup>. Six years later, in 1943, Hermann Göring acquired another “Vermeer”, <i>Christ and the Adulteress</i>, for 1.65 million guilders through the dealer Alois Miedl<sup class="r"><a href="#s11">11</a></sup><sup class="r"><a href="#s13">13</a></sup>.</p>
+   <p>That sale undid the forger. Göring’s paintings were recovered in May 1945<sup class="r"><a href="#s11">11</a></sup>, investigators traced the <i>Adulteress</i> back to the painter Han van Meegeren, and he was arrested that month on a charge of collaboration<sup class="r"><a href="#s10">10</a></sup><sup class="r"><a href="#s12">12</a></sup>. His defence was that he had painted it himself, along with the <i>Emmaus</i>. To prove it he painted a new “Vermeer”, <i>Jesus among the Doctors</i>, in 1945<sup class="r"><a href="#s10">10</a></sup><sup class="r"><a href="#s14">14</a></sup>; one account says he worked under police guard in a rented house, while Time reported at the time that he painted it in his cell<sup class="r"><a href="#s10">10</a></sup><sup class="r"><a href="#s14">14</a></sup>.</p>
+   <p>Proof in law came from the Belgian chemist Paul Coremans, whose commission examined the paintings and materials from the studio. It found traces of phenol-formaldehyde resin, a bottle of which was in the studio, and cobalt blue, a pigment Vermeer could not have used<sup class="r"><a href="#s11">11</a></sup><sup class="r"><a href="#s15">15</a></sup>. His report was published in English in 1949<sup class="r"><a href="#s10">10</a></sup>. The trial opened in Amsterdam on 29 October 1947 with the charge changed from collaboration to forgery and fraud; on 12 November he was given the minimum sentence of one year<sup class="r"><a href="#s10">10</a></sup><sup class="r"><a href="#s11">11</a></sup><sup class="r"><a href="#s12">12</a></sup>. He died of a heart attack on 30 December 1947 before serving it<sup class="r"><a href="#s12">12</a></sup><sup class="r"><a href="#s11">11</a></sup>.</p>
+   <p>The case became a set piece in physics as well as art history. In 1967 Bernard Keisch and colleagues in Pittsburgh published a method in <i>Science</i> for dating lead white by its natural radioactivity: in lead white made recently, lead-210 is out of balance with the radium-226 that produces it, while in pigment centuries old the two have long since settled into equilibrium<sup class="r"><a href="#s16">16</a></sup>. The paper itself used hypothetical paintings. In a later booklet for the US Atomic Energy Commission, written as a dialogue, Keisch said the method had been applied to van Meegeren’s paintings and that every one tested “couldn’t possibly have been more than 30 or 40 years old”<sup class="r"><a href="#s17">17</a></sup>. This is the “lead isotope” test often told in connection with the <i>Emmaus</i>, although it came two decades after the trial.</p>
+   <div class="disc"><b>Sources differ</b>The <i>Emmaus</i> price is given as 520,000 guilders and as 520,000–550,000<sup class="r"><a href="#s10">10</a></sup><sup class="r"><a href="#s11">11</a></sup>. The museum’s own record lists the work as a 1939 loan from its foundation<sup class="r"><a href="#s8">8</a></sup>.</div>
+   <p class="status"><b>Now:</b> the <i>Emmaus</i> is in the Boijmans collection, in storage, and the museum published new pigment analysis of it in 2011<sup class="r"><a href="#s8">8</a></sup><sup class="r"><a href="#s9">9</a></sup>. <i>Christ and the Adulteress</i> is at Museum de Fundatie<sup class="r"><a href="#s10">10</a></sup>.</p>
+  </div>
+ </article>
+
+ <!-- IV -->
+ <article class="case" id="hebborn" data-first="eye">
+  <div class="case-head"><span class="case-no">IV</span><h3>Eric Hebborn’s Old Master drawings</h3><span class="where">National Gallery of Art, Washington; British Museum; Morgan Library; Copenhagen · exposed from 1978</span></div>
+  <div class="pair">
+   <div class="label as"><div class="t">Wall label</div><div class="art">Anthony van Dyck, <i>Christ Crowned with Thorns</i></div><div class="meta">Drawing. British Museum, bought from Colnaghi in 1970.<sup class="r"><a href="#s19">19</a></sup></div></div>
+   <div class="label lab"><div class="t">What gave it away</div><div class="art">One curator saw one hand behind two “different” Renaissance artists</div><div class="meta">Konrad Oberhuber, National Gallery of Art, Washington, 1970s.<sup class="r"><a href="#s18">18</a></sup></div>
+    <div class="tags"><span class="tag first c-eye">Eye · first</span><span class="tag c-tip">Confession</span></div></div>
+  </div>
+  <div class="body">
+   <p>Hebborn, a British artist, sold drawings through Colnaghi’s, Sotheby’s and Christie’s as the work of Old Masters. Copenhagen’s royal collection paid £16,000 for a “Piranesi”, by its curator’s account (Hebborn said £14,000)<sup class="r"><a href="#s18">18</a></sup>.</p>
+   <p>The break came from looking. Konrad Oberhuber, a curator at the National Gallery of Art in Washington, recognised one hand behind a “Cossa”, a “Sperandio” and a “de Roberti” that had passed through the trade, and traced them back to Hebborn<sup class="r"><a href="#s18">18</a></sup>. In 1978 the journalist Geraldine Norman’s reporting in <i>The Times</i> ended his career on the market<sup class="r"><a href="#s18">18</a></sup>. He was never charged<sup class="r"><a href="#s20">20</a></sup>.</p>
+   <p>Hebborn then made his name by boasting. In 1990 he wrote to say the British Museum’s Van Dyck was his, and in January 1991 the museum moved it to its fakes box<sup class="r"><a href="#s19">19</a></sup>. His memoir, <i>Drawn to Trouble</i>, appeared in 1991 and claimed about 1,100 forgeries; <i>The Art Newspaper</i>’s reviewer questioned the figure and counted about 40 that had surfaced since 1978<sup class="r"><a href="#s18">18</a></sup>. He was found in a Rome street with a severe head injury in 1996 and died; whether he was murdered has never been established<sup class="r"><a href="#s19">19</a></sup>.</p>
+   <div class="disc"><b>Sources differ</b>The tidy version says Oberhuber spotted two drawings from Colnaghi on the same paper. <i>The Art Newspaper</i>’s 1991 review says the “Cossa” came from a different dealer, Calmann, and that Oberhuber kept the “Sperandio” because it was on correct paper; what he recognised was the hand<sup class="r"><a href="#s18">18</a></sup>.</div>
+   <p class="status"><b>Now:</b> eight works registered as Hebborns are on the Art Loss Register<sup class="r"><a href="#s19">19</a></sup>.</p>
+  </div>
+ </article>
+
+ <!-- V -->
+ <article class="case" id="kouros" data-first="paper">
+  <div class="case-head"><span class="case-no">V</span><h3>The Getty kouros</h3><span class="where">J. Paul Getty Museum, Los Angeles · on approval 1983 · bought 1985 · unresolved</span></div>
+  <div class="pair">
+   <div class="label as"><div class="t">Wall label</div><div class="art">Kouros. Greek, about 530 BC, or modern forgery</div><div class="meta">Thasian dolomitic marble. Accession 85.AA.40. The Getty’s own catalogue record carries both dates.<sup class="r"><a href="#s24">24</a></sup><sup class="r"><a href="#s21">21</a></sup></div></div>
+   <div class="label lab"><div class="t">What gave it away (perhaps)</div><div class="art">A letter dated 1952 with a postcode introduced in 1972</div><div class="meta">Surface crust: first read as calcite, later found to be calcium oxalate. Inconclusive.<sup class="r"><a href="#s22">22</a></sup></div>
+    <div class="tags"><span class="tag first c-paper">Paper · strongest</span><span class="tag c-chem">Lab, ambiguous</span><span class="tag c-eye">Eye, divided</span></div></div>
+  </div>
+  <div class="body">
+   <p>A marble youth arrived at the Getty on approval in September 1983 from the dealer Gianfranco Becchina, with papers placing it in a Swiss collection<sup class="r"><a href="#s21">21</a></sup><sup class="r"><a href="#s22">22</a></sup>. The purchase was approved in January 1985 at a reported $9.5 million<sup class="r"><a href="#s21">21</a></sup> (another account says “nearly $9 million”<sup class="r"><a href="#s23">23</a></sup>), and the curator Marion True announced it publicly in 1987<sup class="r"><a href="#s21">21</a></sup><sup class="r"><a href="#s22">22</a></sup>.</p>
+   <p>Its papers said it had been in a Geneva collection since the 1930s. True herself later wrote that a German expert had found the photocopied letters to be “cleverly manufactured composites”, and that “though the letter is dated 1952, the postal code on the letter head did not come into existence until 1972”<sup class="r"><a href="#s22">22</a></sup>. In 1990 a fake kouros torso in the same kind of marble turned up; the Getty bought it as a study piece<sup class="r"><a href="#s22">22</a></sup>.</p>
+   <p>Here the laboratory did not settle anything. The geologist Stanley Margolis studied the surface, and his work was read as proof of an ancient calcite crust; later study found calcium oxalate, which the Getty’s conservator still thought pointed to long-term alteration, and which True noted can come from lichens but is also used for cleaning stone<sup class="r"><a href="#s22">22</a></sup>. A colloquium in Athens on 25–27 May 1992<sup class="r"><a href="#s22">22</a></sup> drew about 130 scholars and reached no consensus, although, <i>The Art Newspaper</i> reported, “none of the Greek scholars present considered the Kouros to be a genuine piece”<sup class="r"><a href="#s23">23</a></sup>.</p>
+   <p class="status"><b>Now:</b> the museum’s record still reads “about 530 BCE or modern forgery”<sup class="r"><a href="#s24">24</a></sup>. In 2018, according to a Los Angeles Times report cited by the archaeologist David Gill, it was taken off display; the director, Timothy Potts, was reported as saying it had not been formally downgraded<sup class="r"><a href="#s25">25</a></sup>.</p>
+  </div>
+ </article>
+
+ <!-- VI -->
+ <article class="case" id="drewe" data-first="tip">
+  <div class="case-head"><span class="case-no">VI</span><h3>John Drewe and John Myatt</h3><span class="where">Tate, V&amp;A and ICA archives; London and New York salerooms · c. 1987–1996</span></div>
+  <div class="pair">
+   <div class="label as"><div class="t">Wall label</div><div class="art">Works by Giacometti, Nicholson, Chagall, Dubuffet, de Staël and others</div><div class="meta">Provenance: Hanover Gallery, O’Hana Gallery; recorded in gallery papers held in the Tate archive.<sup class="r"><a href="#s26">26</a></sup><sup class="r"><a href="#s27">27</a></sup></div></div>
+   <div class="label lab"><div class="t">What gave it away</div><div class="art">A former partner took a stash of documents to the Tate and the police</div><div class="meta">The archive records themselves had been altered.<sup class="r"><a href="#s29">29</a></sup><sup class="r"><a href="#s26">26</a></sup></div>
+    <div class="tags"><span class="tag first c-tip">Informant · first</span><span class="tag c-paper">Paper</span></div></div>
+  </div>
+  <div class="body">
+   <p>This is the case where the forgery was the paperwork. John Myatt, a painter, placed an advertisement in <i>Private Eye</i> offering “genuine fakes”; Drewe answered it, and Myatt went on to paint pictures in the manner of Chagall, Giacometti, Dubuffet, Nicholson, de Staël and others<sup class="r"><a href="#s26">26</a></sup><sup class="r"><a href="#s27">27</a></sup>. What sold them was John Drewe’s paperwork.</p>
+   <p>The court heard that Drewe gave the Tate £20,000, was thanked in its annual report, and used his access to its archive to insert photographs of the fakes into the records of the Hanover and O’Hana galleries<sup class="r"><a href="#s26">26</a></sup><sup class="r"><a href="#s27">27</a></sup>. He put a fake O’Hana Gallery catalogue into the V&amp;A’s National Art Library<sup class="r"><a href="#s26">26</a></sup><sup class="r"><a href="#s28">28</a></sup>, and gave two fakes to the Institute of Contemporary Arts, which gave him access to its records<sup class="r"><a href="#s29">29</a></sup>. Scholars and estates accepted works, including Sir Alan Bowness for Nicholson and the Dubuffet Foundation<sup class="r"><a href="#s26">26</a></sup>.</p>
+   <p>The dealer Peter Nahum went to the police in 1995 and Christie’s grew suspicious in 1996<sup class="r"><a href="#s27">27</a></sup>, but the decisive evidence came from Bat-Sheva Goudsmid, who had lived with Drewe for years and, after they split, took documents she had found to the Tate and to the police<sup class="r"><a href="#s29">29</a></sup>. At Southwark Crown Court in February 1999 Drewe was convicted of conspiracy to defraud, forgery and other offences and jailed for six years; Myatt, who gave evidence, received one year and served four months<sup class="r"><a href="#s26">26</a></sup><sup class="r"><a href="#s27">27</a></sup><sup class="r"><a href="#s30">30</a></sup>. Scotland Yard called it “the biggest contemporary art fraud of the twentieth century”<sup class="r"><a href="#s26">26</a></sup>.</p>
+   <div class="disc"><b>Sources differ</b>Totals vary: about 200 fakes with about 60 traced<sup class="r"><a href="#s26">26</a></sup>; over 60 traced and “at least a further 110” unidentified, citing Scotland Yard in 1999<sup class="r"><a href="#s28">28</a></sup>; 60 traced and about 140 untraced<sup class="r"><a href="#s29">29</a></sup>. No later official count was found.</div>
+   <p class="status"><b>Now:</b> on the 1999 figures, well over a hundred of the paintings were never identified<sup class="r"><a href="#s28">28</a></sup>.</p>
+  </div>
+ </article>
+
+ <!-- VII -->
+ <article class="case" id="knoedler" data-first="chem">
+  <div class="case-head"><span class="case-no">VII</span><h3>Knoedler and the Rosales paintings</h3><span class="where">M. Knoedler &amp; Co., New York · 1994–2009 · gallery closed 2011</span></div>
+  <div class="pair">
+   <div class="label as"><div class="t">Sale record</div><div class="art">Mark Rothko, untitled</div><div class="meta">Oil on canvas. Sold by Knoedler in 2004 to Domenico and Eleanore De Sole for $8.3 million. Knoedler had paid $950,000.<sup class="r"><a href="#s48">48</a></sup></div></div>
+   <div class="label lab"><div class="t">What gave it away</div><div class="art">Two red pigments not used until the 1960s, in “Motherwells” said to date from the 1950s</div><div class="meta">Forensic analysis by James Martin, commissioned by the gallery.<sup class="r"><a href="#s50">50</a></sup></div>
+    <div class="tags"><span class="tag first c-chem">Lab · first</span><span class="tag c-paper">Paper</span><span class="tag c-eye">Eye</span></div></div>
+  </div>
+  <div class="body">
+   <p>Between 1994 and 2009 a Long Island dealer, Glafira Rosales, supplied more than 60 works presented as Pollocks, Rothkos, Motherwells and others, with a story about a collector who, prosecutors said, never existed<sup class="r"><a href="#s44">44</a></sup><sup class="r"><a href="#s45">45</a></sup>. According to the US Attorney’s Office, she sold them to two Manhattan galleries for about $33.2 million, and they resold them for more than $80 million<sup class="r"><a href="#s45">45</a></sup>. Knoedler, which had been trading for 165 years, was one of them<sup class="r"><a href="#s51">51</a></sup><sup class="r"><a href="#s48">48</a></sup>.</p>
+   <p>Some specialists doubted the works for years; Jack Flam said in 2007 that the Motherwells were not authentic<sup class="r"><a href="#s49">49</a></sup>, and in 2009, after forensic analysis, the Dedalus Foundation withdrew its endorsement of a Motherwell<sup class="r"><a href="#s52">52</a></sup>. The laboratory finding that later became central in court was Martin’s: two red pigments in the “Motherwells” that were not used until the 1960s. Martin testified in 2016 that a researcher working for the gallery asked him to delete those findings, and that “I refused to do that”<sup class="r"><a href="#s50">50</a></sup>. Knoedler closed abruptly in November 2011<sup class="r"><a href="#s51">51</a></sup>.</p>
+   <p>Rosales pleaded guilty in September 2013 to nine counts including wire fraud and money laundering, agreed to forfeit $33.2 million<sup class="r"><a href="#s45">45</a></sup>, and in 2017 was sentenced to time served and home detention<sup class="r"><a href="#s46">46</a></sup>. In 2014 prosecutors indicted Pei-Shen Qian, a painter in Queens, and two brothers on charges that included wire fraud conspiracy; Qian is believed to be in China, and the charges against him remain unproven<sup class="r"><a href="#s47">47</a></sup><sup class="r"><a href="#s46">46</a></sup>. She is the only person to have pleaded guilty<sup class="r"><a href="#s53">53</a></sup>.</p>
+   <p>The De Soles’ civil case against Knoedler and its former president, Ann Freedman, went to trial in Manhattan in 2016 and settled before a verdict, on undisclosed terms<sup class="r"><a href="#s48">48</a></sup><sup class="r"><a href="#s49">49</a></sup>. Freedman and the gallery denied knowingly selling fakes; her lawyer said she believed the paintings were “the most important discovery in art history”<sup class="r"><a href="#s49">49</a></sup>. No court has found that either knew.</p>
+   <p class="status"><b>Now:</b> the gallery is closed and the civil suits have settled<sup class="r"><a href="#s46">46</a></sup><sup class="r"><a href="#s51">51</a></sup>.</p>
+  </div>
+ </article>
+
+ <!-- VIII -->
+ <article class="case" id="bolton" data-first="eye">
+  <div class="case-head"><span class="case-no">VIII</span><h3>The Bolton “Amarna Princess”</h3><span class="where">Bolton Museum · bought 2003 · exposed 2006</span></div>
+  <div class="pair">
+   <div class="label as"><div class="t">Wall label</div><div class="art">Statue of a princess of the Amarna period</div><div class="meta">Egyptian, about 1350 BC. Alabaster. Bought 2003 for £440,000 with help from the National Heritage Memorial Fund and the Art Fund. Authenticated via Christie’s and the British Museum.<sup class="r"><a href="#s33">33</a></sup><sup class="r"><a href="#s31">31</a></sup></div></div>
+   <div class="label lab"><div class="t">What gave it away</div><div class="art">A different fake: “Assyrian” reliefs with the wrong horse harness and a spelling mistake in the script</div><div class="meta">Spotted by British Museum curators.<sup class="r"><a href="#s34">34</a></sup></div>
+    <div class="tags"><span class="tag first c-eye">Eye · first</span></div></div>
+  </div>
+  <div class="body">
+   <p>Shaun Greenhalgh made the princess in a garden shed in about three weeks<sup class="r"><a href="#s31">31</a></sup><sup class="r"><a href="#s35">35</a></sup>. His father, George, posed as the owner or heir of the objects the family sold<sup class="r"><a href="#s35">35</a></sup>. The statue passed through Christie’s and a British Museum report before Bolton bought it<sup class="r"><a href="#s33">33</a></sup><sup class="r"><a href="#s36">36</a></sup>.</p>
+   <p>The family overreached. They offered the British Museum a set of stone reliefs showing a bearded horseman leading two horses, for £500,000<sup class="r"><a href="#s32">32</a></sup>. Curators noticed the harnesses were atypical and that the ancient Mesopotamian inscription contained a spelling mistake, and they alerted Scotland Yard’s Art and Antiques Unit, which investigated for 18 months<sup class="r"><a href="#s34">34</a></sup><sup class="r"><a href="#s32">32</a></sup>. That inquiry led back to the Amarna figure, which was revealed as a fake in 2006<sup class="r"><a href="#s33">33</a></sup>.</p>
+   <p>At Bolton Crown Court the family admitted conspiring to defraud art institutions between 1989 and 2006 and laundering the proceeds, which were at least £850,000<sup class="r"><a href="#s31">31</a></sup><sup class="r"><a href="#s35">35</a></sup>. Shaun was jailed in November 2007; his mother, Olive, received a suspended sentence, and George a two-year suspended sentence in 2008<sup class="r"><a href="#s32">32</a></sup><sup class="r"><a href="#s35">35</a></sup>.</p>
+   <div class="disc"><b>Sources differ</b>Shaun Greenhalgh’s sentence is reported as four years eight months<sup class="r"><a href="#s32">32</a></sup><sup class="r"><a href="#s34">34</a></sup> and as four years<sup class="r"><a href="#s31">31</a></sup><sup class="r"><a href="#s33">33</a></sup>. Accounts date the British Museum approach to 2005<sup class="r"><a href="#s34">34</a></sup> or to February 2006<sup class="r"><a href="#s32">32</a></sup>.</div>
+   <p class="status"><b>Now:</b> Bolton displays the fake, openly, in its Egyptology gallery, reopened in 2018<sup class="r"><a href="#s36">36</a></sup>.</p>
+  </div>
+ </article>
+
+ <!-- IX -->
+ <article class="case" id="beltracchi" data-first="chem">
+  <div class="case-head"><span class="case-no">IX</span><h3>Beltracchi’s Campendonk</h3><span class="where">Lempertz, Cologne · sold 2006 · arrests 2010 · trial 2011</span></div>
+  <div class="pair">
+   <div class="label as"><div class="t">Sale record</div><div class="art">Heinrich Campendonk, <i>Red Picture with Horses</i> (<i>Rotes Bild mit Pferden</i>), 1914</div><div class="meta">Sold at Lempertz, Cologne, 2006, to a Maltese company, Trasteco, for about €2.9 million. Label: “Sammlung Flechtheim”.<sup class="r"><a href="#s37">37</a></sup><sup class="r"><a href="#s38">38</a></sup></div></div>
+   <div class="label lab"><div class="t">What gave it away</div><div class="art">Titanium white, a pigment not in use in 1914</div><div class="meta">Found in scientific analysis, later described by the scientist Nicholas Eastaugh. Titanium white came into use as an artists’ pigment only from the 1920s.<sup class="r"><a href="#s39">39</a></sup><sup class="r"><a href="#s41">41</a></sup></div>
+    <div class="tags"><span class="tag first c-chem">Lab · first</span><span class="tag c-paper">Paper</span></div></div>
+  </div>
+  <div class="body">
+   <p>Wolfgang Beltracchi’s fakes came dressed in provenance. Some carried stickers from the collection of Alfred Flechtheim, a celebrated dealer of the 1920s<sup class="r"><a href="#s40">40</a></sup>. The leading Max Ernst scholar, Werner Spies, had authenticated at least five of the Ernst fakes<sup class="r"><a href="#s40">40</a></sup><sup class="r"><a href="#s42">42</a></sup>.</p>
+   <p>When the Campendonk was analysed, it was found to contain titanium white, a pigment that “was not in use when the painting was purportedly created”<sup class="r"><a href="#s39">39</a></sup>. Investigators also noticed that Flechtheim had never produced stickers like the ones on the backs of the paintings<sup class="r"><a href="#s40">40</a></sup>. The defendants had been in custody since August 2010<sup class="r"><a href="#s42">42</a></sup>.</p>
+   <p>In October 2011 a Cologne court sentenced Wolfgang Beltracchi to six years and Helene to four, on charges covering 14 works that had brought in more than €10 million<sup class="r"><a href="#s37">37</a></sup><sup class="r"><a href="#s43">43</a></sup>. Police had listed 53 suspected fakes<sup class="r"><a href="#s40">40</a></sup>. In 2012 a Cologne court ordered Lempertz to pay damages, saying the painting should have been scientifically examined, and the case was settled that December<sup class="r"><a href="#s38">38</a></sup>. Beltracchi told Der Spiegel in 2012 that he had forged around 50 artists<sup class="r"><a href="#s43">43</a></sup>; that is his claim, and has not been tested in court.</p>
+   <div class="disc"><b>Sources differ</b>The Campendonk’s price is reported as about €2.9 million<sup class="r"><a href="#s37">37</a></sup><sup class="r"><a href="#s38">38</a></sup>, €2.8 million<sup class="r"><a href="#s41">41</a></sup> and €2.4 million<sup class="r"><a href="#s42">42</a></sup>, perhaps reflecting hammer price against price with fees.</div>
+   <p class="status"><b>Now:</b> both Beltracchis were released early<sup class="r"><a href="#s41">41</a></sup>.</p>
+  </div>
+ </article>
+
+ <!-- X -->
+ <article class="case" id="terrus" data-first="eye">
+  <div class="case-head"><span class="case-no">X</span><h3>The Musée Terrus</h3><span class="where">Elne, Pyrénées-Orientales · alarm raised 2017 · announced 2018</span></div>
+  <div class="pair">
+   <div class="label as"><div class="t">Wall label</div><div class="art">Étienne Terrus, landscapes of Roussillon</div><div class="meta">Collection of the town museum, bought over about 20 years. Terrus died in 1922.<sup class="r"><a href="#s54">54</a></sup><sup class="r"><a href="#s56">56</a></sup></div></div>
+   <div class="label lab"><div class="t">What gave it away</div><div class="art">A building in one landscape that went up decades after the painter died</div><div class="meta">NPR reported a structure built in 1958. Other signs: cotton supports instead of canvas, and a signature that came off under a white glove.<sup class="r"><a href="#s54">54</a></sup><sup class="r"><a href="#s55">55</a></sup></div>
+    <div class="tags"><span class="tag first c-eye">Eye · first</span><span class="tag c-chem">Materials</span></div></div>
+  </div>
+  <div class="body">
+   <p>The smallest museum here had the largest problem. The art historian Éric Forcada, hired to rehang the collection after the building’s restoration, raised the alarm in August 2017<sup class="r"><a href="#s56">56</a></sup>. A committee of experts then judged 82 of the museum’s works to be fakes, more than half the collection<sup class="r"><a href="#s54">54</a></sup><sup class="r"><a href="#s56">56</a></sup>.</p>
+   <p>The giveaway did not need a laboratory. Some of the landscapes showed buildings that did not exist before 1922; one, according to NPR, showed a structure built in 1958<sup class="r"><a href="#s54">54</a></sup>. The mayor, Yves Barniol, announced the findings at the reopening on 27 April 2018<sup class="r"><a href="#s56">56</a></sup>.</p>
+   <div class="disc"><b>Sources differ</b>The collection is given as 140 works<sup class="r"><a href="#s55">55</a></sup><sup class="r"><a href="#s56">56</a></sup> and as about 134<sup class="r"><a href="#s54">54</a></sup>. The cost to the town is given as about $200,000 spent on acquisitions<sup class="r"><a href="#s54">54</a></sup> and as €160,000 in estimated damage<sup class="r"><a href="#s56">56</a></sup>.</div>
+   <p class="status"><b>Now:</b> the town filed a complaint against persons unknown in 2018 and police seized the works for investigation; no forger had been publicly identified in the reports consulted<sup class="r"><a href="#s54">54</a></sup><sup class="r"><a href="#s56">56</a></sup>.</p>
+  </div>
+ </article>
+</section>
+
+<section class="wrap essay" aria-labelledby="eye-h"><div class="prose">
+ <h2 id="eye-h">Why the eye failed, and when it didn’t</h2>
+ <h3>The forger paints the expert’s idea of the artist</h3>
+ <p>Rouchomovsky copied his scenes from published picture books<sup class="r"><a href="#s1">1</a></sup><sup class="r"><a href="#s2">2</a></sup>: the tiara was assembled from published images of what ancient work was known to look like. A fake built from the reference books will tend to agree with the reference books. A connoisseur compares a new work with an internal picture of the artist. A forger who has studied the same books can aim at that picture.</p>
+ <h3>Paper builds belief faster than paint</h3>
+ <p>Myatt’s paintings were made convincing by archive records Drewe had doctored<sup class="r"><a href="#s26">26</a></sup>. Rosales’s works came with a collector prosecutors said never existed<sup class="r"><a href="#s45">45</a></sup>; Beltracchi’s with Flechtheim stickers that Flechtheim never made<sup class="r"><a href="#s40">40</a></sup>; the kouros with letters True later described as composites<sup class="r"><a href="#s22">22</a></sup>. Provenance is meant to be the sceptic’s tool. In these cases it was the forger’s.</p>
+ <h3>Institutions want the find</h3>
+ <p>“I can find nothing approaching it in importance,” wrote the Met’s agent of the Colossal Head<sup class="r"><a href="#s5">5</a></sup>. The French establishment treated Furtwängler’s objections to the tiara as jealousy<sup class="r"><a href="#s1">1</a></sup>. The Met had a dealer’s letter naming the forger in 1936 and kept the warriors on show for another 25 years<sup class="r"><a href="#s5">5</a></sup>. The doubters were usually there early. They were overruled.</p>
+ <h3>Chemistry answers a narrower question</h3>
+ <p>Analysis asks whether a material could have existed on the claimed date. When the answer is no, as with titanium white in a 1914 picture<sup class="r"><a href="#s39">39</a></sup> or 1960s reds in a 1950s canvas<sup class="r"><a href="#s50">50</a></sup>, it is close to decisive. When the forger uses period materials, or when the object is carved stone rather than paint, the answer can come back ambiguous for decades, as it has with the kouros<sup class="r"><a href="#s22">22</a></sup>. And a laboratory report only works if someone acts on it: Martin testified that he was asked to take his findings out<sup class="r"><a href="#s50">50</a></sup>.</p>
+ <h3>The eye still catches forgers</h3>
+ <p>Three of these ten were first exposed by people looking at the objects: a curator who recognised one hand behind several attributions<sup class="r"><a href="#s18">18</a></sup>, British Museum specialists who knew how Assyrian sculptors carved a harness<sup class="r"><a href="#s34">34</a></sup>, and an art historian hired to rehang a small museum who saw that much of its collection was wrong<sup class="r"><a href="#s55">55</a></sup><sup class="r"><a href="#s56">56</a></sup>.</p>
+</div></section>
+
+<section class="wrap sources" aria-labelledby="src-h">
+ <h2 id="src-h">Sources</h2>
+ <ol>
+  <li id="s1"><a href="https://archive.archaeology.org/online/features/hoaxes/saitaphernes_tiara.html">The Tiara of Saitaphernes</a> <span class="pub">Archaeology, Archaeological Institute of America</span></li>
+  <li id="s2"><a href="https://news.artnet.com/art-world/the-hunt-the-tiara-of-saitaphernes-2558944">The Ornate Tiara, and Fabulous Fake, That Fooled Even the Louvre</a> <span class="pub">Artnet News</span></li>
+  <li id="s3"><a href="https://www.actu-juridique.fr/culture/le-ministre-conclut-a-linauthenticite/">Le ministre conclut à l’inauthenticité (extract from Paul Eudel, Truc et truqueurs, 1907)</a> <span class="pub">Actu-Juridique</span></li>
+  <li id="s4"><a href="https://www.actu-juridique.fr/culture/et-la-tiare-resta-au-louvre/">Et la tiare resta au Louvre (extract from Paul Eudel, Truc et truqueurs, 1907)</a> <span class="pub">Actu-Juridique</span></li>
+  <li id="s5"><a href="https://archive.archaeology.org/online/features/hoaxes/warriors.html">Etruscan Warriors</a> <span class="pub">Archaeology, Archaeological Institute of America</span></li>
+  <li id="s6"><a href="https://time.com/archive/6624981/art-fallen-warriors/">Art: Fallen Warriors (1961)</a> <span class="pub">Time</span></li>
+  <li id="s7"><a href="https://libcat.library.tamu.edu/Record/in00001314260">D. von Bothmer and J. V. Noble, An Inquiry into the Forgery of the Etruscan Terracotta Warriors, Metropolitan Museum of Art Papers no. 11 (1961), catalogue record</a> <span class="pub">Texas A&amp;M University Libraries</span></li>
+  <li id="s8"><a href="https://www.boijmans.nl/en/collection/artworks/101464/the-men-at-emmaus">The Supper at Emmaus</a> <span class="pub">Museum Boijmans Van Beuningen</span></li>
+  <li id="s9"><a href="https://www.codart.nl/art-works/new-facts-on-forged-vermeer-painting/">New facts on forged Vermeer painting</a> <span class="pub">CODART</span></li>
+  <li id="s10"><a href="https://www.essentialvermeer.com/misc/van_meegeren.html">Han van Meegeren</a> <span class="pub">Essential Vermeer</span></li>
+  <li id="s11"><a href="https://www.essentialvermeer.com/fakes_thefts_school_of_delft_lost_sp/erroneously_attributed_vermeers_two.html">Erroneously attributed Vermeers (2)</a> <span class="pub">Essential Vermeer</span></li>
+  <li id="s12"><a href="https://britannica.com/biography/Han-van-Meegeren">Han van Meegeren</a> <span class="pub">Encyclopaedia Britannica</span></li>
+  <li id="s13"><a href="https://www.tweedewereldoorlog.nl/100voorwerpen/en/voorwerp/christ-and-the-adulteress/">Christ and the Adulteress</a> <span class="pub">100 Objects of the Second World War (tweedewereldoorlog.nl)</span></li>
+  <li id="s14"><a href="https://time.com/archive/6773737/art-the-price-of-forgery">Art: The Price of Forgery (18 November 1946)</a> <span class="pub">Time</span></li>
+  <li id="s15"><a href="https://www.chemistryworld.com/features/a-veneer-of-vermeer/9004.article">A veneer of Vermeer</a> <span class="pub">Chemistry World, Royal Society of Chemistry</span></li>
+  <li id="s16"><a href="https://core.ac.uk/download/127471107.pdf">B. Keisch, R. L. Feller, A. S. Levine and R. R. Edwards, Dating and Authenticating Works of Art by Measurement of Natural Alpha Emitters, Science 155 (1967)</a> <span class="pub">Science, via CORE</span></li>
+  <li id="s17"><a href="https://www.gutenberg.org/cache/epub/66082/pg66082.txt">Bernard Keisch, The Mysterious Box: Nuclear Science and Art</a> <span class="pub">US Atomic Energy Commission, via Project Gutenberg</span></li>
+  <li id="s18"><a href="https://www.theartnewspaper.com/1991/12/01/hebborn-the-fake-everything-we-learned-from-the-forgers-autobiography">Hebborn the fake: everything we learned from the forger’s autobiography</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s19"><a href="https://www.inkl.com/news/great-art-forger-continues-to-ridicule-experts-from-beyond-the-grave">Great art forger continues to ridicule experts from beyond the grave</a> <span class="pub">The Guardian, via inkl</span></li>
+  <li id="s20"><a href="https://web.colby.edu/copiesfakesforgeries/?p=247">Eric Hebborn (1934–96)</a> <span class="pub">Copies, Fakes and Forgeries, Colby College</span></li>
+  <li id="s21"><a href="https://traffickingculture.org/encyclopedia/case-studies/getty-kouros/">Getty Kouros</a> <span class="pub">Trafficking Culture, University of Glasgow</span></li>
+  <li id="s22"><a href="https://www.getty.edu/publications/resources/virtuallibrary/0892362634.pdf">The Getty Kouros Colloquium, Athens, 25–27 May 1992 (1993)</a> <span class="pub">J. Paul Getty Museum and Goulandris Foundation</span></li>
+  <li id="s23"><a href="https://www.theartnewspaper.com/1992/07/01/the-getty-kouros-the-masterpiece-versus-fake-debate-continues">The Getty kouros: the masterpiece-versus-fake debate continues</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s24"><a href="https://www.getty.edu/cona/CONAFullSubject.aspx?subid=700006605">Kouros, CONA record 700006605</a> <span class="pub">Getty Research Institute</span></li>
+  <li id="s25"><a href="https://lootingmatters.blogspot.com/2018/04/the-getty-kouros-modern-creation.html">The Getty kouros: a modern creation?</a> <span class="pub">Looting Matters (David Gill), citing the Los Angeles Times</span></li>
+  <li id="s26"><a href="https://www.theartnewspaper.com/1999/03/01/the-biggest-contemporary-art-fraud-of-the-century">The biggest contemporary art fraud of the century</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s27"><a href="https://www.theartnewspaper.com/1998/11/01/exploitation-of-the-tate-archives-trial-of-accused-paintings-fraudster">Exploitation of the Tate archives: trial of accused paintings fraudster</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s28"><a href="https://www.theartnewspaper.com/1999/10/01/the-modernist-fakes-mountain-how-many-john-drewe-forgeries-remain-unidentified">The modernist fakes mountain: how many John Drewe forgeries remain unidentified</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s29"><a href="https://archive.seattletimes.com/archive/19990216/2944578/art-scam-fooled-experts-for-years">Art Scam Fooled Experts For Years</a> <span class="pub">The Seattle Times</span></li>
+  <li id="s30"><a href="https://www.expressandstar.com/news/staffordshire/stafford/the-real-story-of-a-genuine-fake-6340277">The real story of a Genuine Fake</a> <span class="pub">Express &amp; Star</span></li>
+  <li id="s31"><a href="https://www.irishtimes.com/news/british-art-forger-jailed-for-four-years-1.814921">British art forger jailed for four years</a> <span class="pub">The Irish Times</span></li>
+  <li id="s32"><a href="https://www.irishtimes.com/news/it-s-a-fake-mother-and-son-sentenced-for-forging-artworks-1.983085">It’s a fake: mother and son sentenced for forging artworks</a> <span class="pub">The Irish Times</span></li>
+  <li id="s33"><a href="https://www.theartnewspaper.com/2011/03/01/boltons-fake-egyptian-princess-returns-to-the-duped-museum">Bolton’s fake Egyptian princess returns to the duped museum</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s34"><a href="https://nzherald.co.nz/world/family-of-forgers-fool-art-world-with-beautifully-crafted-fakes/YTBPBGWFQ4OSKA4CDYWUT3T2VI">Family of forgers fool art world with beautifully crafted fakes</a> <span class="pub">New Zealand Herald</span></li>
+  <li id="s35"><a href="https://www.irishexaminer.com/world/arid-20053825.html">‘Artful Codger’ avoids time in prison</a> <span class="pub">Irish Examiner</span></li>
+  <li id="s36"><a href="https://www.bolton.gov.uk/news/article/549/boltons-master-forger-returns-to-bolton-museum">Bolton’s master forger returns to Bolton Museum</a> <span class="pub">Bolton Council</span></li>
+  <li id="s37"><a href="https://artfixdaily.com/news_feed/2011/10/30/5267-art-forgers-receive-light-sentence-in-german-court">Art Forgers Receive Light Sentence in German Court</a> <span class="pub">Artfix Daily</span></li>
+  <li id="s38"><a href="https://www.lto.de/recht/nachrichten/n/gefaelschter-campendonk-auktion-schadensersatz-rotes-bild-mit-pferden-beltracchi">Beltracchi muss Schadensersatz leisten</a> <span class="pub">Legal Tribune Online</span></li>
+  <li id="s39"><a href="https://www.theartnewspaper.com/2012/12/01/how-the-detection-of-titanium-white-gave-away-beltracchi">How the detection of titanium white gave away Beltracchi</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s40"><a href="https://www.theartnewspaper.com/2011/12/01/true-scale-of-alleged-beltracchi-forgeries-revealed">True scale of alleged Beltracchi forgeries revealed</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s41"><a href="https://abc17news.com/entertainment/cnn-style/2023/02/07/the-husband-and-wife-forgers-who-fooled-the-art-market-and-made-millions/">The husband and wife forgers who fooled the art market and made millions</a> <span class="pub">CNN Style, via ABC17</span></li>
+  <li id="s42"><a href="https://www.thenationalnews.com/world/europe/fraud-case-involving-50-allegedly-forged-modern-paintings-exposes-art-world-gullibility-1.418797">Fraud case involving 50 allegedly forged modern paintings exposes art world gullibility</a> <span class="pub">The National</span></li>
+  <li id="s43"><a href="https://www.theartnewspaper.com/2012/04/01/beltracchi-admits-to-faking-the-work-of-an-estimated-50-artists-in-german-interview">Beltracchi admits to faking the work of an estimated 50 artists in German interview</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s44"><a href="https://www.justice.gov/usao-sdny/pr/long-island-art-dealer-indicted-massive-art-fraud-money-laundering-and-tax-scheme">Long Island art dealer indicted for massive art fraud, money laundering and tax scheme</a> <span class="pub">US Attorney’s Office, Southern District of New York</span></li>
+  <li id="s45"><a href="https://www.justice.gov/usao-sdny/pr/art-dealer-pleads-guilty-manhattanfederal-court-80-million-fake-art-scammoney">Art dealer pleads guilty in Manhattan federal court to $80 million fake art scam</a> <span class="pub">US Attorney’s Office, Southern District of New York</span></li>
+  <li id="s46"><a href="https://www.theartnewspaper.com/news/no-further-jail-time-for-glafira-rosales-for-her-role-in-dollar80m-knoedler-forgery-scandal">No further jail time for Glafira Rosales for her role in $80m Knoedler forgery scandal</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s47"><a href="https://www.justice.gov/archive/usao/nys/pressreleases/April14/BergantinosDiazandQianIndictment.php">Bergantiños Diaz and Qian indictment</a> <span class="pub">US Attorney’s Office, Southern District of New York</span></li>
+  <li id="s48"><a href="https://www.insurancejournal.com/news/east/2016/02/11/398395.htm">New York art gallery settles lawsuit over fake Rothko</a> <span class="pub">Insurance Journal (Associated Press)</span></li>
+  <li id="s49"><a href="https://www.theartnewspaper.com/news/parties-settle-in-knoedler-case-as-court-hears-fakes-helped-keep-business-afloat">Parties settle in Knoedler case as court hears fakes helped keep business afloat</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s50"><a href="https://www.theartnewspaper.com/2016/02/05/knoedler-asked-forensic-conservator-to-revise-negative-report">Knoedler asked forensic conservator to revise negative report</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s51"><a href="https://www.theartnewspaper.com/archive/who-sued-whom-a-comprehensive-timeline-of-the-knoedler-lawsuits">Who sued whom: a comprehensive timeline of the Knoedler lawsuits</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s52"><a href="https://www.theartnewspaper.com/2012/01/01/knoedler-forgery-scandal-grows">Knoedler forgery scandal grows</a> <span class="pub">The Art Newspaper</span></li>
+  <li id="s53"><a href="https://news.artnet.com/market/knoedler-forgery-trial-settles-424367">Knoedler forgery trial settles</a> <span class="pub">Artnet News</span></li>
+  <li id="s54"><a href="https://www.npr.org/2018/04/29/606919098/french-museum-discovers-more-than-half-its-collection-is-forged">French Museum Discovers More Than Half Its Collection Is Forged</a> <span class="pub">NPR</span></li>
+  <li id="s55"><a href="https://news.artnet.com/art-world/france-terrus-museum-fake-art-1275536">Terrus museum fake art</a> <span class="pub">Artnet News</span></li>
+  <li id="s56"><a href="https://theartnewspaper.com/news/french-museum-discovers-more-than-half-of-its-collection-is-fake">French museum discovers more than half of its collection is fake</a> <span class="pub">The Art Newspaper</span></li>
+ </ol>
+</section>
+</main>
+
+<footer><div class="wrap">
+ <p>Published 22 November 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+ <p><a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20The%20Forgery%20Casebook&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-22-the-forgery-casebook%2F">Spot an error? Suggest a correction</a></p>
+ <p><a href="/daily/">← Back to Daily</a></p>
+</div></footer>
+
+<script>
+(function(){
+ var btns=document.querySelectorAll('.filters button'),cases=document.querySelectorAll('.case'),count=document.getElementById('count');
+ var names={eye:'the eye',paper:'the paper trail',chem:'the laboratory',tip:'an informant or confession'};
+ btns.forEach(function(b){b.addEventListener('click',function(){
+  var f=b.getAttribute('data-f'),n=0;
+  btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+  cases.forEach(function(c){var show=f==='all'||c.getAttribute('data-first')===f;c.hidden=!show;if(show)n++;});
+  count.textContent=f==='all'?'Showing all ten cases, roughly in the order they were first accepted.':'Showing '+n+' case'+(n===1?'':'s')+' first broken by '+names[f]+'.';
+ });});
+})();
+</script>
+</body>
+</html>

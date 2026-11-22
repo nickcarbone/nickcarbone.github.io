@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Forgery Casebook (writer’s casebook)
-Ten art forgeries that fooled museums, from Van Meegeren’s fake Vermeers to the Knoedler Gallery’s fake Rothkos. Cover how each one was finally caught, whether by lead isotopes, canvas weave, a pigment that hadn’t been invented yet or a mistake in the provenance. Explain why connoisseurs’ eyes failed where chemistry didn’t.
-
 Ten Ideas That Change How You See a Room (field guide)
 Ten ideas from philosophy, each applied to something ordinary. Stoic control applies to a delayed flight, the ship of Theseus to a renovated house, Rawls’s veil of ignorance to a city budget, and Wittgenstein’s language games to an office meeting. Give each idea its original source, the strongest objection, and a question to carry with you for a day.
 
