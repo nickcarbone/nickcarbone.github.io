@@ -196,17 +196,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://nickcarbone.github.io/scoop-tracker/</loc>
+    <lastmod>2026-11-22</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://nickcarbone.github.io/household/</loc>
     <lastmod>2026-11-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nickcarbone.github.io/encore/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/scoop-tracker/</loc>
     <lastmod>2026-11-22</lastmod>
     <priority>0.8</priority>
   </url>
