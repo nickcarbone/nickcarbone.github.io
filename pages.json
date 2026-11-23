@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-23T13:14:58.673Z",
+  "generated": "2026-11-23T13:15:30.442Z",
   "count": 90,
   "pages": [
     {
@@ -34,11 +34,15 @@
       "slug": "next-train",
       "url": "https://nickcarbone.github.io/next-train/",
       "title": "Next Train",
-      "description": "Live metro arrival screens from cities around the world, each in the style of its own platform displays.",
+      "description": "",
       "updated": "2026-11-23T13:13:14Z",
       "created": "2026-11-22T06:28:32Z",
-      "category": "Unsorted",
-      "tags": []
+      "category": "Live",
+      "tags": [
+        "trains",
+        "metro",
+        "cities"
+      ]
     },
     {
       "slug": "open-channel",
@@ -58,11 +62,15 @@
       "slug": "onward",
       "url": "https://nickcarbone.github.io/onward/",
       "title": "Onward",
-      "description": "An ambient departure board for a second monitor: real departures from rail stations and airports, each in its own country's signage style.",
+      "description": "Real departures from rail stations and airports around the world, each in its own country’s signage style.",
       "updated": "2026-11-21T04:25:55Z",
       "created": "2026-11-20T03:44:58Z",
-      "category": "Unsorted",
-      "tags": []
+      "category": "Live",
+      "tags": [
+        "trains",
+        "flights",
+        "departures"
+      ]
     },
     {
       "slug": "encore",
@@ -177,11 +185,15 @@
       "slug": "world-in-motion",
       "url": "https://nickcarbone.github.io/world-in-motion/",
       "title": "The World in Motion",
-      "description": "A private wall of live public views of airports, ports and railways around the world.",
+      "description": "",
       "updated": "2026-11-22T14:37:35Z",
       "created": "2026-10-21T18:36:40Z",
-      "category": "Unsorted",
-      "tags": []
+      "category": "Live",
+      "tags": [
+        "webcams",
+        "transport",
+        "world"
+      ]
     },
     {
       "slug": "brewed-with",
@@ -461,8 +473,10 @@
       "description": "",
       "updated": "2026-11-23T03:14:00Z",
       "created": "2026-07-29T17:12:53Z",
-      "category": "Unsorted",
-      "tags": []
+      "category": "Live",
+      "tags": [
+        "radio"
+      ]
     },
     {
       "slug": "deadline-clock",
