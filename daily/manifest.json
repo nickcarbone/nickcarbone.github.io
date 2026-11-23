@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 37,
+      "slug": "2026-11-23-ten-ideas-that-change-how-you-see-a-room",
+      "date": "2026-11-23",
+      "title": "Ten Ideas That Change How You See a Room",
+      "dek": "Ten ideas from philosophy, oldest first, each set loose on something ordinary in your day, with where it came from, the best argument against it and a question to carry until bedtime.",
+      "kind": "Field guide",
+      "readingMinutes": 19,
+      "design": "Young Serif, Atkinson Hyperlegible; two-ink risograph: federal blue and fluorescent pink overprint on grey-green stock; numbered line-drawn room hero, tear-off question tickets.",
+      "source": "queue",
+      "brief": "Ten Ideas That Change How You See a Room (field guide)\nTen ideas from philosophy, each applied to something ordinary. Stoic control applies to a delayed flight, the ship of Theseus to a renovated house, Rawls’s veil of ignorance to a city budget, and Wittgenstein’s language games to an office meeting. Give each idea its original source, the strongest objection, and a question to carry with you for a day.",
+      "factcheck": {
+        "claims": 85,
+        "fixed": 16
+      },
+      "corrections": []
+    },
+    {
       "no": 36,
       "slug": "2026-11-22-the-forgery-casebook",
       "date": "2026-11-22",

@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-Ten Ideas That Change How You See a Room (field guide)
-Ten ideas from philosophy, each applied to something ordinary. Stoic control applies to a delayed flight, the ship of Theseus to a renovated house, Rawls’s veil of ignorance to a city budget, and Wittgenstein’s language games to an office meeting. Give each idea its original source, the strongest objection, and a question to carry with you for a day.
-
 The Night Sky Over Twenty Cities (filterable atlas)
 What each city has lost to light pollution and what you’d see from the nearest real dark site. Include how to get there, the best month to go, and the constellations or the Milky Way core visible from each. Add a short guide to reading the sky without an app.
 
