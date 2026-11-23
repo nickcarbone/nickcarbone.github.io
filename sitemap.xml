@@ -191,8 +191,8 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/elsewhere-tv/</loc>
-    <lastmod>2026-11-23</lastmod>
+    <loc>https://nickcarbone.github.io/open-channel/</loc>
+    <lastmod>2026-11-20</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -201,33 +201,8 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/scoop-tracker/</loc>
-    <lastmod>2026-11-23</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/evening-edition/</loc>
-    <lastmod>2026-11-23</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/household/</loc>
-    <lastmod>2026-11-22</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/open-channel/</loc>
-    <lastmod>2026-11-20</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://nickcarbone.github.io/three-countries-three-hours/</loc>
     <lastmod>2026-11-18</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/new-networks/</loc>
-    <lastmod>2026-11-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -251,6 +226,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://nickcarbone.github.io/elsewhere-tv/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://nickcarbone.github.io/first-light/</loc>
     <lastmod>2026-10-22</lastmod>
     <priority>0.8</priority>
@@ -263,6 +243,16 @@
   <url>
     <loc>https://nickcarbone.github.io/one-pound/</loc>
     <lastmod>2026-10-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nickcarbone.github.io/evening-edition/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nickcarbone.github.io/new-networks/</loc>
+    <lastmod>2026-11-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -356,6 +346,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://nickcarbone.github.io/drivetime-tesla.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://nickcarbone.github.io/extreme-bars/</loc>
     <lastmod>2026-07-17</lastmod>
     <priority>0.8</priority>
@@ -381,12 +376,32 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://nickcarbone.github.io/headend.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nickcarbone.github.io/primetime.html</loc>
+    <lastmod>2026-07-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nickcarbone.github.io/scoop-tracker/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://nickcarbone.github.io/sms-blaster/</loc>
     <lastmod>2026-07-08</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://nickcarbone.github.io/reading-list/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nickcarbone.github.io/signal.html</loc>
     <lastmod>2026-07-06</lastmod>
     <priority>0.8</priority>
   </url>
@@ -401,11 +416,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/europe-flats/</loc>
-    <lastmod>2026-07-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://nickcarbone.github.io/slop-bowl/</loc>
     <lastmod>2026-07-01</lastmod>
     <priority>0.8</priority>
@@ -416,16 +426,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/europe-pieds-a-terre-2/</loc>
-    <lastmod>2026-07-01</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/europe-pieds-a-terre/</loc>
-    <lastmod>2026-06-30</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://nickcarbone.github.io/porsche/</loc>
     <lastmod>2026-06-30</lastmod>
     <priority>0.8</priority>
@@ -433,11 +433,6 @@
   <url>
     <loc>https://nickcarbone.github.io/the-undriven/</loc>
     <lastmod>2026-06-29</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/mobile-concepts/</loc>
-    <lastmod>2026-06-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -452,11 +447,6 @@
   </url>
   <url>
     <loc>https://nickcarbone.github.io/hop-guide-v2/</loc>
-    <lastmod>2026-06-19</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/hop-guide-v1/</loc>
     <lastmod>2026-06-19</lastmod>
     <priority>0.8</priority>
   </url>
@@ -501,11 +491,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/2026-family-calendar/</loc>
-    <lastmod>2026-06-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://nickcarbone.github.io/rotisserie/</loc>
     <lastmod>2026-06-07</lastmod>
     <priority>0.8</priority>
@@ -526,17 +511,12 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/discoverer/</loc>
-    <lastmod>2026-06-07</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/world-cup/</loc>
+    <loc>https://nickcarbone.github.io/free-body/</loc>
     <lastmod>2026-06-06</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/free-body/</loc>
+    <loc>https://nickcarbone.github.io/world-cup/</loc>
     <lastmod>2026-06-06</lastmod>
     <priority>0.8</priority>
   </url>
@@ -561,18 +541,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/open-loops/</loc>
-    <lastmod>2026-06-05</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://nickcarbone.github.io/devices/</loc>
     <lastmod>2026-06-05</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/nola/</loc>
-    <lastmod>2026-05-23</lastmod>
+    <loc>https://nickcarbone.github.io/discoverer/</loc>
+    <lastmod>2026-06-07</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -583,16 +558,6 @@
   <url>
     <loc>https://nickcarbone.github.io/elite/</loc>
     <lastmod>2026-04-09</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/chase/</loc>
-    <lastmod>2026-03-31</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/playbook/</loc>
-    <lastmod>2026-03-27</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -631,28 +596,18 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nickcarbone.github.io/ragu/</loc>
-    <lastmod>2026-03-23</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://nickcarbone.github.io/michelin/</loc>
     <lastmod>2026-03-21</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://nickcarbone.github.io/ragu/</loc>
+    <lastmod>2026-03-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://nickcarbone.github.io/pub-guide/</loc>
     <lastmod>2026-03-21</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/business-plans/</loc>
-    <lastmod>2026-03-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nickcarbone.github.io/daily-recipes/</loc>
-    <lastmod>2026-03-08</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>

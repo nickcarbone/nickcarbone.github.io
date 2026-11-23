@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>\n    <link rel="icon" type="image/svg+xml" href="/favicon.svg">\n    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">\n    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">\n    <link rel="shortcut icon" href="/favicon.ico">\n    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Publisher — nickcarbone.github.io</title>
@@ -162,6 +167,14 @@
     textarea::placeholder {
       color: var(--text-muted);
     }
+
+    select { cursor: pointer; }
+    select:focus { border-color: var(--amber); box-shadow: 0 0 0 2px var(--amber-dim); }
+    .check-row {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--text-dim); cursor: pointer;
+    }
+    .check-row input { accent-color: var(--amber); width: 14px; height: 14px; }
 
     .input-row {
       display: flex;
@@ -533,6 +546,24 @@
         <p class="hint">→ <span class="hl" id="url-preview">nickcarbone.github.io/…</span></p>
       </div>
 
+      <div class="field-group">
+        <label class="field-label" for="cat-input">Category</label>
+        <select id="cat-input">
+          <option value="">Choose a category…</option>
+        </select>
+        <p class="hint" id="cat-hint">One per page. Sets where it sits on the landing page.</p>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="tags-input">Tags</label>
+        <input type="text" id="tags-input" placeholder="e.g. beer, europe, field guide" />
+        <p class="hint">Optional, comma-separated, as many as you like.</p>
+      </div>
+
+      <div class="field-group">
+        <label class="check-row"><input type="checkbox" id="hide-input"> Keep off the landing page (the URL still works)</label>
+      </div>
+
     </div>
   </div>
 
@@ -679,10 +710,13 @@ function onTitleInput () {
   const s = slugify(document.getElementById('title-input').value);
   document.getElementById('slug-input').value = s;
   updateUrlPreview(s);
+  prefillFromCatalog(s);
 }
 
 function onSlugInput () {
-  updateUrlPreview(document.getElementById('slug-input').value.trim());
+  const s = document.getElementById('slug-input').value.trim();
+  updateUrlPreview(s);
+  prefillFromCatalog(s);
 }
 
 function updateUrlPreview (s) {
@@ -723,6 +757,78 @@ function loadFile (file) {
   r.readAsText(file, 'UTF-8');
 }
 
+// ── Landing-page catalogue (catalog.json in the root repo) ──
+const ROOT_REPO = `${OWNER}.github.io`;
+let _catalog = null;
+let _prefilled = '';   // slug whose catalogue entry is currently shown in the form
+
+async function loadCatalog () {
+  try {
+    const r = await fetch('/catalog.json?v=' + Date.now(), { cache: 'no-store' });
+    _catalog = await r.json();
+  } catch { _catalog = { categories: [], pages: [] }; }
+  const sel = document.getElementById('cat-input');
+  (_catalog.categories || []).forEach(c => {
+    const o = document.createElement('option'); o.value = c; o.textContent = c; sel.appendChild(o);
+  });
+}
+
+// Updating a page that's already catalogued: show what it has now
+function prefillFromCatalog (slug) {
+  if (!_catalog) return;
+  const e = (_catalog.pages || []).find(p => p.slug === slug);
+  const hint = document.getElementById('cat-hint');
+  if (!e) {
+    hint.textContent = 'One per page. Sets where it sits on the landing page.';
+    if (_prefilled) {           // moved off an existing page: don't carry its tags over
+      document.getElementById('cat-input').value = '';
+      document.getElementById('tags-input').value = '';
+      document.getElementById('hide-input').checked = false;
+      _prefilled = '';
+    }
+    return;
+  }
+  _prefilled = slug;
+  document.getElementById('cat-input').value  = e.category || '';
+  document.getElementById('tags-input').value = (e.tags || []).join(', ');
+  document.getElementById('hide-input').checked = !!e.hidden;
+  hint.textContent = 'Already catalogued; change it here if you like.';
+}
+
+function parseTags (s) {
+  return [...new Set(s.split(',').map(t => t.trim().toLowerCase()).filter(Boolean))];
+}
+
+function b64decode (str) { return decodeURIComponent(escape(atob(str.replace(/\n/g, '')))); }
+
+// Read-modify-write catalog.json; retries once if it changed underneath us
+async function saveCatalogEntry (entry) {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const cur = await gh('GET', `/repos/${OWNER}/${ROOT_REPO}/contents/catalog.json`);
+    if (cur.status !== 200) throw new Error(`Read catalog.json: ${cur.data.message || cur.status}`);
+    const cat = JSON.parse(b64decode(cur.data.content));
+    const pages = cat.pages || (cat.pages = []);
+    const i = pages.findIndex(p => p.slug === entry.slug);
+    const merged = i >= 0 ? { ...pages[i], ...entry } : entry;
+    if (i >= 0) pages[i] = merged; else pages.push(merged);
+    pages.sort((a, b) => a.slug.localeCompare(b.slug));
+    const put = await gh('PUT', `/repos/${OWNER}/${ROOT_REPO}/contents/catalog.json`, {
+      message : `catalog: ${entry.slug} → ${entry.category}${entry.hidden ? ' (hidden)' : ''}`,
+      content : b64(JSON.stringify(cat, null, 2) + '\n'),
+      sha     : cur.data.sha,
+      branch  : 'main'
+    });
+    if (put.status === 200 || put.status === 201) { _catalog = cat; return; }
+    if (put.status !== 409 && put.status !== 422) throw new Error(`Save catalog.json: ${put.data.message || put.status}`);
+  }
+  throw new Error('catalog.json kept changing; try again.');
+}
+
+function titleFromHtml (html) {
+  const m = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  return m ? m[1].replace(/\s+/g, ' ').trim().split(/\s+[—|·]\s+/)[0] : '';
+}
+
 // ── GitHub API ──────────────────────────────────────────────
 async function gh (method, path, body) {
   const opts = {
@@ -747,7 +853,7 @@ function b64 (str) { return btoa(unescape(encodeURIComponent(str))); }
 function sleep (ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // ── Core deploy flow ─────────────────────────────────────────
-async function deploy (slug, html) {
+async function deploy (slug, html, meta) {
   log('info', `Target: github.com/${OWNER}/${slug}`);
 
   // 1. Does the repo exist?
@@ -803,6 +909,17 @@ async function deploy (slug, html) {
     log('info', 'GitHub Pages already active.');
   }
 
+  // 4. File it in the landing-page catalogue (this push also rebuilds the index)
+  log('info', `Cataloguing as ${meta.category}${meta.hidden ? ', hidden' : ''}…`);
+  await saveCatalogEntry({
+    slug,
+    title    : meta.title || titleFromHtml(html) || slug,
+    category : meta.category,
+    tags     : meta.tags,
+    hidden   : meta.hidden
+  });
+  log('ok', 'catalog.json updated; landing page rebuilds in a minute or two.');
+
   const url = `https://${OWNER}.github.io/${slug}/`;
   log('ok', `Deploy complete → ${url}`);
   log('info', 'Pages build usually takes 30–90 seconds after first enable.');
@@ -852,6 +969,14 @@ async function handleDeploy () {
     if (!html) { showErr('Paste area is empty.'); return; }
   }
 
+  const meta = {
+    title    : document.getElementById('title-input').value.trim(),
+    category : document.getElementById('cat-input').value,
+    tags     : parseTags(document.getElementById('tags-input').value),
+    hidden   : document.getElementById('hide-input').checked
+  };
+  if (!meta.category) { showErr('Choose a category before deploying.'); return; }
+
   const btn = document.getElementById('deploy-btn');
   btn.disabled    = true;
   btn.textContent = '⟳  DEPLOYING…';
@@ -861,7 +986,7 @@ async function handleDeploy () {
   log('info', `Deploy started  ${now()}`);
 
   try {
-    const url = await deploy(slug, html);
+    const url = await deploy(slug, html, meta);
     _deployUrl = url;
     showResult(url);
     pollPages(slug, url);
@@ -928,6 +1053,7 @@ function openUrl () { if (_deployUrl) window.open(_deployUrl, '_blank'); }
 
 // ── Init ──────────────────────────────────────────────────────
 refreshTokenUI();
+loadCatalog();
 log('info', 'Publisher ready.');
 </script>
 </body>

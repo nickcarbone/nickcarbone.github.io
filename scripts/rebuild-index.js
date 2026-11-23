@@ -55,7 +55,9 @@ function toTitle(slug) {
 function cleanDescription(raw) {
   if (!raw) return '';
   // "Published via Publisher · https://nickcarbone.github.io/slug/" → ''
-  return raw.replace(/^Published via Publisher\s*[·•·]\s*(https?:\/\/[^\s]*)?\s*/i, '').trim();
+  // The Publisher writes the URL with or without a scheme; strip either form
+  const out = raw.replace(/^Published via Publisher\s*[·•]?\s*(?:https?:\/\/)?(?:\S*github\.io\S*)?\s*/i, '').trim();
+  return /^(?:https?:\/\/)?\S*github\.io\/\S*$/i.test(out) ? '' : out;
 }
 
 // ── Repos to always exclude from the page list ───────────────────────────────
@@ -81,6 +83,75 @@ function dailyUrls() {
     entry(`${BASE_URL}/daily/`, latest, '0.9'),
     ...pieces.map(p => entry(`${BASE_URL}/daily/${p.slug}/`, p.date, '0.7')),
   ];
+}
+
+// ── Catalogue: categories, tags and hidden flags (catalog.json) ──────────────
+function loadCatalog() {
+  let cat = { categories: [], pages: [] };
+  try { cat = JSON.parse(fs.readFileSync('catalog.json', 'utf8')); }
+  catch (e) { console.log('  ! catalog.json missing or invalid; every page is Unsorted'); }
+  const bySlug = new Map((cat.pages || []).map(e => [e.slug, e]));
+  const rootPages = (cat.pages || []).filter(e => e.url);
+  return { categories: cat.categories || [], bySlug, rootPages };
+}
+
+function applyEntry(page, entry, categories) {
+  return {
+    ...page,
+    title:       entry.title || page.title,
+    description: entry.description || page.description || '',
+    category:    categories.includes(entry.category) ? entry.category : 'Unsorted',
+    tags:        Array.isArray(entry.tags) ? entry.tags : [],
+  };
+}
+
+// ── For pages not in the catalogue: read the page's own meta tags ────────────
+function fetchText(url, redirects = 3) {
+  return new Promise(resolve => {
+    const req = https.get(url, { headers: { 'User-Agent': 'rebuild-index-action' }, timeout: 15000 }, res => {
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location && redirects > 0) {
+        res.resume();
+        return resolve(fetchText(new URL(res.headers.location, url).href, redirects - 1));
+      }
+      if (res.statusCode !== 200) { res.resume(); return resolve(''); }
+      let body = '';
+      res.setEncoding('utf8');
+      res.on('data', c => { body += c; if (body.length > 300000) req.destroy(); });
+      res.on('end', () => resolve(body));
+      res.on('close', () => resolve(body));
+    });
+    req.on('timeout', () => req.destroy());
+    req.on('error', () => resolve(''));
+  });
+}
+
+function decodeEntities(s) {
+  return s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&nbsp;/g, ' ');
+}
+
+function metaContent(html, name) {
+  const tags = html.match(/<meta\b[^>]*>/gi) || [];
+  for (const tag of tags) {
+    const n = tag.match(/\b(?:name|property)\s*=\s*["']([^"']+)["']/i);
+    if (!n || n[1].toLowerCase() !== name) continue;
+    const c = tag.match(/\bcontent\s*=\s*"([^"]*)"|\bcontent\s*=\s*'([^']*)'/i);
+    if (c) return decodeEntities((c[1] ?? c[2]).trim());
+  }
+  return '';
+}
+
+async function readPageMeta(url) {
+  const html = await fetchText(url);
+  const title = (html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || '';
+  const category = metaContent(html, 'nc:category');
+  return {
+    category: category ? category.charAt(0).toUpperCase() + category.slice(1).toLowerCase() : '',
+    tags: metaContent(html, 'nc:tags').split(',').map(t => t.trim().toLowerCase()).filter(Boolean),
+    hidden: /^(true|yes|1)$/i.test(metaContent(html, 'nc:hidden')),
+    title: decodeEntities(title.replace(/\s+/g, ' ').trim()).split(/\s+[—|·]\s+/)[0],
+    description: metaContent(html, 'description') || metaContent(html, 'og:description'),
+  };
 }
 
 // ── Main ─────────────────────────────────────────────────────────────────────
@@ -130,9 +201,44 @@ async function main() {
     results.push(...checks.filter(Boolean));
   }
 
-  // 4. Sort newest-first
-  results.sort((a, b) => new Date(b.updated) - new Date(a.updated));
   console.log(`  ${results.length} pages with GitHub Pages enabled`);
+
+  // 4. Classify every page from catalog.json, falling back to the page's own
+  //    <meta name="nc:category"> / <meta name="nc:tags">, then to Unsorted.
+  const { categories, bySlug, rootPages } = loadCatalog();
+  const classified = [];
+  for (const p of results) {
+    const entry = bySlug.get(p.slug);
+    if (entry) {
+      if (entry.hidden) continue;
+      classified.push(applyEntry(p, entry, categories));
+      continue;
+    }
+    const meta = await readPageMeta(p.url);
+    if (meta.hidden) continue;
+    classified.push({
+      ...p,
+      title:       meta.title || p.title,
+      description: p.description || meta.description || '',
+      category:    categories.includes(meta.category) ? meta.category : 'Unsorted',
+      tags:        meta.tags,
+    });
+  }
+  // Pages that live as files in this repo, which repo discovery can't see
+  for (const entry of rootPages) {
+    if (entry.hidden) continue;
+    classified.push(applyEntry({
+      slug: entry.slug, url: entry.url, title: entry.title, description: '',
+      updated: entry.created, created: entry.created,
+    }, entry, categories));
+  }
+  results.length = 0;
+  results.push(...classified);
+
+  // 5. Sort newest-first by creation date (a bot commit shouldn't reorder)
+  results.sort((a, b) => new Date(b.created) - new Date(a.created));
+  const unsorted = results.filter(p => p.category === 'Unsorted').map(p => p.slug);
+  console.log(`  ${results.length} pages listed, ${unsorted.length} unsorted${unsorted.length ? ': ' + unsorted.join(', ') : ''}`);
 
   // ── Write pages.json ───────────────────────────────────────────────────────
   const pagesJson = {

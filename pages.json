@@ -1,30 +1,156 @@
 {
-  "generated": "2026-11-23T03:12:46.333Z",
-  "count": 93,
+  "generated": "2026-11-23T03:52:17.086Z",
+  "count": 84,
   "pages": [
     {
-      "slug": "elsewhere-tv",
-      "url": "https://nickcarbone.github.io/elsewhere-tv/",
-      "title": "Elsewhere Tv",
-      "description": "",
-      "updated": "2026-11-23T03:09:02Z",
-      "created": "2026-11-10T18:34:00Z"
+      "slug": "open-channel",
+      "url": "https://nickcarbone.github.io/open-channel/",
+      "title": "Open Channel",
+      "description": "A receive-only radio for the second monitor: live air traffic control, oceanic, marine, rail, fire and weather radio from around the world.",
+      "updated": "2026-11-20T12:13:39Z",
+      "created": "2026-11-20T12:11:00Z",
+      "category": "Live",
+      "tags": [
+        "radio",
+        "aviation",
+        "maritime"
+      ]
     },
     {
       "slug": "encore",
       "url": "https://nickcarbone.github.io/encore/",
       "title": "Encore",
-      "description": "",
+      "description": "Live concerts, jazz and news bulletins from public broadcasters around the world, timed to each city",
       "updated": "2026-11-23T03:08:58Z",
-      "created": "2026-11-19T18:09:45Z"
+      "created": "2026-11-19T18:09:45Z",
+      "category": "Live",
+      "tags": [
+        "radio",
+        "music",
+        "world"
+      ]
     },
     {
-      "slug": "scoop-tracker",
-      "url": "https://nickcarbone.github.io/scoop-tracker/",
-      "title": "Scoop Tracker",
+      "slug": "three-countries-three-hours",
+      "url": "https://nickcarbone.github.io/three-countries-three-hours/",
+      "title": "Three Countries, Three Hours",
       "description": "",
-      "updated": "2026-11-23T03:08:56Z",
-      "created": "2026-07-10T01:19:16Z"
+      "updated": "2026-11-18T20:09:26Z",
+      "created": "2026-11-18T20:09:14Z",
+      "category": "Drink",
+      "tags": [
+        "bars",
+        "trains",
+        "europe"
+      ]
+    },
+    {
+      "slug": "irreverent-mobile-carriers",
+      "url": "https://nickcarbone.github.io/irreverent-mobile-carriers/",
+      "title": "Loudmouths",
+      "description": "Twenty-five of the most ostentatious, brash and irreverent mobile network brands in the world: why they shout, whether it worked, and how their rivals responded.",
+      "updated": "2026-11-11T18:30:29Z",
+      "created": "2026-11-11T18:30:21Z",
+      "category": "Mobile",
+      "tags": [
+        "brands",
+        "field guide"
+      ]
+    },
+    {
+      "slug": "disappeared-places-casebook",
+      "url": "https://nickcarbone.github.io/disappeared-places-casebook/",
+      "title": "Disappeared Places Casebook",
+      "description": "An interactive investigation into six places that were demolished, evacuated, erased or mythologised: who lived there, who decided, what the record shows, and what remains.",
+      "updated": "2026-11-11T03:45:04Z",
+      "created": "2026-11-11T03:44:57Z",
+      "category": "Culture",
+      "tags": [
+        "history",
+        "places",
+        "casebook"
+      ]
+    },
+    {
+      "slug": "europes-living-heritage",
+      "url": "https://nickcarbone.github.io/europes-living-heritage/",
+      "title": "Still Practised",
+      "description": "",
+      "updated": "2026-11-11T03:43:15Z",
+      "created": "2026-11-11T03:43:03Z",
+      "category": "Culture",
+      "tags": [
+        "europe",
+        "heritage",
+        "field guide"
+      ]
+    },
+    {
+      "slug": "michelin-atlas",
+      "url": "https://nickcarbone.github.io/michelin-atlas/",
+      "title": "The Michelin Menu Atlas",
+      "description": "Fifteen Michelin-starred restaurants in fifteen countries, investigated through their menus. Pilot edition with three complete investigations.",
+      "updated": "2026-11-11T02:53:58Z",
+      "created": "2026-11-11T02:53:47Z",
+      "category": "Food",
+      "tags": [
+        "restaurants",
+        "investigation"
+      ]
+    },
+    {
+      "slug": "elsewhere-tv",
+      "url": "https://nickcarbone.github.io/elsewhere-tv/",
+      "title": "ELSEWHERE TV",
+      "description": "A hotel-room window onto everyday television around the world.",
+      "updated": "2026-11-23T03:09:02Z",
+      "created": "2026-11-10T18:34:00Z",
+      "category": "Live",
+      "tags": [
+        "tv",
+        "world"
+      ]
+    },
+    {
+      "slug": "first-light",
+      "url": "https://nickcarbone.github.io/first-light/",
+      "title": "First Light",
+      "description": "Follow the sunrise around the world: a webcam where the sun has just come up, with the sound of that place",
+      "updated": "2026-10-22T17:03:48Z",
+      "created": "2026-10-21T20:37:01Z",
+      "category": "Live",
+      "tags": [
+        "webcams",
+        "sound",
+        "world"
+      ]
+    },
+    {
+      "slug": "brewed-with",
+      "url": "https://nickcarbone.github.io/brewed-with/",
+      "title": "Brewed With",
+      "description": "Twelve savoury dishes from twelve countries in which beer is part of the cooking, with sources, alcohol facts and US prices.",
+      "updated": "2026-10-21T03:12:15Z",
+      "created": "2026-10-21T03:12:04Z",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "beer",
+        "world"
+      ]
+    },
+    {
+      "slug": "one-pound",
+      "url": "https://nickcarbone.github.io/one-pound/",
+      "title": "One Pound",
+      "description": "Ten global weeknight and weekend dinners, each built on one pound of supermarket mince.",
+      "updated": "2026-10-21T03:11:39Z",
+      "created": "2026-10-21T03:11:22Z",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "weeknight"
+      ]
     },
     {
       "slug": "evening-edition",
@@ -32,623 +158,831 @@
       "title": "Evening Edition",
       "description": "",
       "updated": "2026-11-23T03:08:54Z",
-      "created": "2026-10-20T14:56:45Z"
-    },
-    {
-      "slug": "household",
-      "url": "https://nickcarbone.github.io/household/",
-      "title": "Household",
-      "description": "",
-      "updated": "2026-11-22T06:32:02Z",
-      "created": "2026-11-22T05:30:19Z"
-    },
-    {
-      "slug": "open-channel",
-      "url": "https://nickcarbone.github.io/open-channel/",
-      "title": "Open Channel",
-      "description": "",
-      "updated": "2026-11-20T12:13:39Z",
-      "created": "2026-11-20T12:11:00Z"
-    },
-    {
-      "slug": "three-countries-three-hours",
-      "url": "https://nickcarbone.github.io/three-countries-three-hours/",
-      "title": "Three Countries Three Hours",
-      "description": "nickcarbone.github.io/three-countries-three-hours/",
-      "updated": "2026-11-18T20:09:26Z",
-      "created": "2026-11-18T20:09:14Z"
+      "created": "2026-10-20T14:56:45Z",
+      "category": "Live",
+      "tags": [
+        "tv",
+        "news",
+        "world"
+      ]
     },
     {
       "slug": "new-networks",
       "url": "https://nickcarbone.github.io/new-networks/",
       "title": "New Networks",
-      "description": "",
+      "description": "A slow gazette of mobile network codes assigned and withdrawn worldwide, from the ITU Operational Bulletin, checked against national registries.",
       "updated": "2026-11-16T10:58:32Z",
-      "created": "2026-10-20T14:53:19Z"
-    },
-    {
-      "slug": "irreverent-mobile-carriers",
-      "url": "https://nickcarbone.github.io/irreverent-mobile-carriers/",
-      "title": "Irreverent Mobile Carriers",
-      "description": "nickcarbone.github.io/irreverent-mobile-carriers/",
-      "updated": "2026-11-11T18:30:29Z",
-      "created": "2026-11-11T18:30:21Z"
-    },
-    {
-      "slug": "disappeared-places-casebook",
-      "url": "https://nickcarbone.github.io/disappeared-places-casebook/",
-      "title": "Disappeared Places Casebook",
-      "description": "nickcarbone.github.io/disappeared-places-casebook/",
-      "updated": "2026-11-11T03:45:04Z",
-      "created": "2026-11-11T03:44:57Z"
-    },
-    {
-      "slug": "europes-living-heritage",
-      "url": "https://nickcarbone.github.io/europes-living-heritage/",
-      "title": "Europes Living Heritage",
-      "description": "nickcarbone.github.io/europes-living-heritage/",
-      "updated": "2026-11-11T03:43:15Z",
-      "created": "2026-11-11T03:43:03Z"
-    },
-    {
-      "slug": "michelin-atlas",
-      "url": "https://nickcarbone.github.io/michelin-atlas/",
-      "title": "Michelin Atlas",
-      "description": "nickcarbone.github.io/michelin-atlas/",
-      "updated": "2026-11-11T02:53:58Z",
-      "created": "2026-11-11T02:53:47Z"
-    },
-    {
-      "slug": "first-light",
-      "url": "https://nickcarbone.github.io/first-light/",
-      "title": "First Light",
-      "description": "",
-      "updated": "2026-10-22T17:03:48Z",
-      "created": "2026-10-21T20:37:01Z"
-    },
-    {
-      "slug": "brewed-with",
-      "url": "https://nickcarbone.github.io/brewed-with/",
-      "title": "Brewed With",
-      "description": "nickcarbone.github.io/brewed-with/",
-      "updated": "2026-10-21T03:12:15Z",
-      "created": "2026-10-21T03:12:04Z"
-    },
-    {
-      "slug": "one-pound",
-      "url": "https://nickcarbone.github.io/one-pound/",
-      "title": "One Pound",
-      "description": "nickcarbone.github.io/one-pound/",
-      "updated": "2026-10-21T03:11:39Z",
-      "created": "2026-10-21T03:11:22Z"
+      "created": "2026-10-20T14:53:19Z",
+      "category": "Mobile",
+      "tags": [
+        "networks",
+        "gazette"
+      ]
     },
     {
       "slug": "europe-dining-cars",
       "url": "https://nickcarbone.github.io/europe-dining-cars/",
-      "title": "Europe Dining Cars",
-      "description": "nickcarbone.github.io/europe-dining-cars/",
+      "title": "Europe’s Dining Cars",
+      "description": "A verbatim, sourced collection of on-board dining menus from 35 European train services across 16 countries — scheduled and luxury, in their original languages, with English glosses and cultural notes.",
       "updated": "2026-09-28T01:00:44Z",
-      "created": "2026-09-28T01:00:31Z"
+      "created": "2026-09-28T01:00:31Z",
+      "category": "Food",
+      "tags": [
+        "menus",
+        "trains",
+        "europe"
+      ]
     },
     {
       "slug": "ten-global-weeknight-dinners",
       "url": "https://nickcarbone.github.io/ten-global-weeknight-dinners/",
-      "title": "Ten Global Weeknight Dinners",
-      "description": "nickcarbone.github.io/ten-global-weeknight-dinners/",
+      "title": "Ten Weeknights",
+      "description": "",
       "updated": "2026-09-25T01:00:32Z",
-      "created": "2026-09-25T01:00:23Z"
+      "created": "2026-09-25T01:00:23Z",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "weeknight",
+        "world"
+      ]
     },
     {
       "slug": "ten-global-lunches",
       "url": "https://nickcarbone.github.io/ten-global-lunches/",
-      "title": "Ten Global Lunches",
-      "description": "nickcarbone.github.io/ten-global-lunches/",
+      "title": "Ten Lunches",
+      "description": "",
       "updated": "2026-09-25T00:59:52Z",
-      "created": "2026-09-25T00:59:43Z"
+      "created": "2026-09-25T00:59:43Z",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "quick",
+        "world"
+      ]
     },
     {
       "slug": "schengen-lunch",
       "url": "https://nickcarbone.github.io/schengen-lunch/",
-      "title": "Schengen Lunch",
-      "description": "nickcarbone.github.io/schengen-lunch/",
+      "title": "Schengen Showdown: The Weeknight Volume",
+      "description": "Fifteen European national dishes you can actually cook after work — priced in-country and in US substitutes, with sourced histories.",
       "updated": "2026-09-24T01:10:06Z",
-      "created": "2026-09-24T01:09:54Z"
+      "created": "2026-09-24T01:09:54Z",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "europe",
+        "weeknight"
+      ]
     },
     {
       "slug": "one-tap-nation",
       "url": "https://nickcarbone.github.io/one-tap-nation/",
       "title": "One Tap Nation",
-      "description": "nickcarbone.github.io/one-tap-nation/",
+      "description": "A field guide to 20 apps that swallowed a country: how they began, what they do, what they mean to the people who use them, and who pays for the convenience.",
       "updated": "2026-09-18T04:51:03Z",
-      "created": "2026-09-18T04:50:54Z"
+      "created": "2026-09-18T04:50:54Z",
+      "category": "Mobile",
+      "tags": [
+        "apps",
+        "field guide",
+        "world"
+      ]
     },
     {
       "slug": "corner-stores-of-the-world",
       "url": "https://nickcarbone.github.io/corner-stores-of-the-world/",
-      "title": "Corner Stores Of The World",
-      "description": "nickcarbone.github.io/corner-store-of-the-world/",
+      "title": "Corner of the World",
+      "description": "",
       "updated": "2026-09-18T04:07:03Z",
-      "created": "2026-09-18T04:06:58Z"
+      "created": "2026-09-18T04:06:58Z",
+      "category": "Food",
+      "tags": [
+        "shops",
+        "field guide",
+        "world"
+      ]
     },
     {
       "slug": "fast-food-local-legends",
       "url": "https://nickcarbone.github.io/fast-food-local-legends/",
-      "title": "Fast Food Local Legends",
-      "description": "nickcarbone.github.io/fast-food-local-legends/",
+      "title": "Local Legends: 20 Fast-Food Chains the World Loves",
+      "description": "",
       "updated": "2026-09-18T02:42:33Z",
-      "created": "2026-09-18T02:42:24Z"
+      "created": "2026-09-18T02:42:24Z",
+      "category": "Food",
+      "tags": [
+        "chains",
+        "field guide",
+        "world"
+      ]
     },
     {
       "slug": "menu-cabinet",
       "url": "https://nickcarbone.github.io/menu-cabinet/",
-      "title": "Menu Cabinet",
-      "description": "nickcarbone.github.io/menu-cabinet/",
+      "title": "The Menu Cabinet",
+      "description": "",
       "updated": "2026-09-01T11:41:53Z",
-      "created": "2026-09-01T11:38:26Z"
+      "created": "2026-09-01T11:38:26Z",
+      "category": "Food",
+      "tags": [
+        "menus",
+        "archive",
+        "history"
+      ]
     },
     {
       "slug": "the-long-armistice",
       "url": "https://nickcarbone.github.io/the-long-armistice/",
       "title": "The Long Armistice",
-      "description": "nickcarbone.github.io/the-long-armistice/",
+      "description": "",
       "updated": "2026-08-21T21:39:30Z",
-      "created": "2026-08-21T21:39:22Z"
+      "created": "2026-08-21T21:39:22Z",
+      "category": "Books",
+      "tags": [
+        "reading list",
+        "history"
+      ]
     },
     {
       "slug": "pdo-cookbook",
       "url": "https://nickcarbone.github.io/pdo-cookbook/",
-      "title": "Pdo Cookbook",
-      "description": "nickcarbone.github.io/pdo-cookbook/",
+      "title": "The Register",
+      "description": "",
       "updated": "2026-08-21T21:17:09Z",
-      "created": "2026-08-21T20:58:41Z"
+      "created": "2026-08-21T20:58:41Z",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "europe"
+      ]
     },
     {
       "slug": "midnight-sun",
       "url": "https://nickcarbone.github.io/midnight-sun/",
-      "title": "Midnight Sun",
-      "description": "nickcarbone.github.io/midnight-sun/",
+      "title": "Nothing Sets",
+      "description": "",
       "updated": "2026-08-21T03:14:14Z",
-      "created": "2026-08-21T03:14:05Z"
+      "created": "2026-08-21T03:14:05Z",
+      "category": "Travel",
+      "tags": [
+        "field guide",
+        "nature"
+      ]
     },
     {
       "slug": "the-snug",
       "url": "https://nickcarbone.github.io/the-snug/",
       "title": "The Snug",
-      "description": "",
+      "description": "A reader for Project Gutenberg plain text and EPUB files.",
       "updated": "2026-08-10T00:27:58Z",
-      "created": "2026-08-08T04:08:07Z"
+      "created": "2026-08-08T04:08:07Z",
+      "category": "Books",
+      "tags": [
+        "reader",
+        "tool"
+      ]
     },
     {
       "slug": "schengen-showdown-cooking",
       "url": "https://nickcarbone.github.io/schengen-showdown-cooking/",
-      "title": "Schengen Showdown Cooking",
-      "description": "nickcarbone.github.io/schengen-showdown-cooking/",
+      "title": "Schengen Showdown",
+      "description": "",
       "updated": "2026-08-03T14:18:48Z",
-      "created": "2026-08-03T14:18:38Z"
+      "created": "2026-08-03T14:18:38Z",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "europe"
+      ]
     },
     {
       "slug": "ad-gallery",
       "url": "https://nickcarbone.github.io/ad-gallery/",
-      "title": "Ad Gallery",
+      "title": "Full Page",
       "description": "",
       "updated": "2026-08-02T02:35:47Z",
-      "created": "2026-08-02T01:43:56Z"
+      "created": "2026-08-02T01:43:56Z",
+      "category": "Culture",
+      "tags": [
+        "advertising",
+        "archive",
+        "history"
+      ]
     },
     {
       "slug": "1600s-vice-books",
       "url": "https://nickcarbone.github.io/1600s-vice-books/",
-      "title": "1600s Vice Books",
-      "description": "nickcarbone.github.io/1600s-vice-books/",
+      "title": "The Bottle, the Pipe, the Table, the Town",
+      "description": "",
       "updated": "2026-08-02T00:56:49Z",
-      "created": "2026-08-02T00:56:41Z"
+      "created": "2026-08-02T00:56:41Z",
+      "category": "Books",
+      "tags": [
+        "reading list",
+        "history"
+      ]
     },
     {
       "slug": "far-literature",
       "url": "https://nickcarbone.github.io/far-literature/",
-      "title": "Far Literature",
-      "description": "nickcarbone.github.io/far-literature/",
+      "title": "Far Countries & Painefull Peregrinations",
+      "description": "",
       "updated": "2026-08-01T21:32:33Z",
-      "created": "2026-08-01T21:32:24Z"
+      "created": "2026-08-01T21:32:24Z",
+      "category": "Books",
+      "tags": [
+        "reading list",
+        "history"
+      ]
     },
     {
       "slug": "deadline-clock",
       "url": "https://nickcarbone.github.io/deadline-clock/",
-      "title": "Deadline Clock",
-      "description": "nickcarbone.github.io/deadline-clock/",
+      "title": "DEADLINE",
+      "description": "",
       "updated": "2026-07-28T23:47:12Z",
-      "created": "2026-07-28T23:47:04Z"
+      "created": "2026-07-28T23:47:04Z",
+      "category": "Live",
+      "tags": [
+        "news",
+        "clock"
+      ]
     },
     {
       "slug": "provenance",
       "url": "https://nickcarbone.github.io/provenance/",
-      "title": "Provenance",
-      "description": "nickcarbone.github.io/provenance/",
+      "title": "PROVENANCE",
+      "description": "",
       "updated": "2026-07-28T23:46:44Z",
-      "created": "2026-07-28T23:46:29Z"
+      "created": "2026-07-28T23:46:29Z",
+      "category": "News",
+      "tags": [
+        "verification",
+        "tool"
+      ]
+    },
+    {
+      "slug": "drivetime-tesla",
+      "url": "https://nickcarbone.github.io/drivetime-tesla.html",
+      "title": "Drivetime",
+      "description": "Drive a city on video with its own live local radio playing.",
+      "updated": "2026-07-25",
+      "created": "2026-07-25",
+      "category": "Live",
+      "tags": [
+        "radio",
+        "driving",
+        "cities"
+      ]
     },
     {
       "slug": "extreme-bars",
       "url": "https://nickcarbone.github.io/extreme-bars/",
-      "title": "Extreme Bars",
-      "description": "nickcarbone.github.io/extreme-bars/",
+      "title": "Field Dossier: The World's Most Extreme Bars",
+      "description": "",
       "updated": "2026-07-17T04:09:01Z",
-      "created": "2026-07-17T04:08:53Z"
+      "created": "2026-07-17T04:08:53Z",
+      "category": "Drink",
+      "tags": [
+        "bars",
+        "world"
+      ]
     },
     {
       "slug": "contrarian-wine-cellar",
       "url": "https://nickcarbone.github.io/contrarian-wine-cellar/",
-      "title": "Contrarian Wine Cellar",
-      "description": "nickcarbone.github.io/contrarian-wine-cellar/",
+      "title": "The Contrarian Cellar",
+      "description": "",
       "updated": "2026-07-17T04:08:28Z",
-      "created": "2026-07-17T04:08:20Z"
+      "created": "2026-07-17T04:08:20Z",
+      "category": "Drink",
+      "tags": [
+        "wine",
+        "world"
+      ]
     },
     {
       "slug": "no-service-mvp",
       "url": "https://nickcarbone.github.io/no-service-mvp/",
-      "title": "No Service Mvp",
-      "description": "nickcarbone.github.io/no-service-mvp/",
+      "title": "NO SERVICE",
+      "description": "A weekly intelligence dispatch on mobile networks as instruments of power: who builds them, who switches them off, and what that decides.",
       "updated": "2026-07-17T03:36:09Z",
-      "created": "2026-07-17T03:36:02Z"
+      "created": "2026-07-17T03:36:02Z",
+      "category": "Mobile",
+      "tags": [
+        "geopolitics",
+        "newsletter"
+      ]
     },
     {
       "slug": "m-pesa",
       "url": "https://nickcarbone.github.io/m-pesa/",
-      "title": "M Pesa",
-      "description": "nickcarbone.github.io/m-pesa/",
+      "title": "Dial *334#",
+      "description": "",
       "updated": "2026-07-12T14:09:12Z",
-      "created": "2026-07-12T14:09:05Z"
+      "created": "2026-07-12T14:09:05Z",
+      "category": "Money",
+      "tags": [
+        "mobile",
+        "finance",
+        "field guide"
+      ]
     },
     {
       "slug": "hawala",
       "url": "https://nickcarbone.github.io/hawala/",
-      "title": "Hawala",
-      "description": "nickcarbone.github.io/hawala/",
+      "title": "The Money That Never Moves",
+      "description": "",
       "updated": "2026-07-12T13:59:50Z",
-      "created": "2026-07-12T13:59:43Z"
+      "created": "2026-07-12T13:59:43Z",
+      "category": "Money",
+      "tags": [
+        "finance",
+        "field guide"
+      ]
+    },
+    {
+      "slug": "headend",
+      "url": "https://nickcarbone.github.io/headend.html",
+      "title": "Headend",
+      "description": "",
+      "updated": "2026-07-12",
+      "created": "2026-07-12",
+      "category": "Live",
+      "tags": [
+        "tv",
+        "control"
+      ]
+    },
+    {
+      "slug": "primetime",
+      "url": "https://nickcarbone.github.io/primetime.html",
+      "title": "Primetime",
+      "description": "",
+      "updated": "2026-07-12",
+      "created": "2026-07-12",
+      "category": "Live",
+      "tags": [
+        "tv"
+      ]
+    },
+    {
+      "slug": "scoop-tracker",
+      "url": "https://nickcarbone.github.io/scoop-tracker/",
+      "title": "Scoop Tracker",
+      "description": "",
+      "updated": "2026-11-23T03:08:56Z",
+      "created": "2026-07-10T01:19:16Z",
+      "category": "Live",
+      "tags": [
+        "journalism",
+        "tool"
+      ]
     },
     {
       "slug": "sms-blaster",
       "url": "https://nickcarbone.github.io/sms-blaster/",
-      "title": "Sms Blaster",
-      "description": "nickcarbone.github.io/sms-blaster/",
+      "title": "The Tower in the Suitcase",
+      "description": "",
       "updated": "2026-07-08T02:40:10Z",
-      "created": "2026-07-08T02:40:03Z"
+      "created": "2026-07-08T02:40:03Z",
+      "category": "Mobile",
+      "tags": [
+        "crime",
+        "investigation"
+      ]
     },
     {
       "slug": "reading-list",
       "url": "https://nickcarbone.github.io/reading-list/",
-      "title": "Reading List",
-      "description": "nickcarbone.github.io/reading-list/",
+      "title": "Reading Assignment",
+      "description": "",
       "updated": "2026-07-06T02:46:31Z",
-      "created": "2026-07-06T02:46:24Z"
+      "created": "2026-07-06T02:46:24Z",
+      "category": "Books",
+      "tags": [
+        "reading list",
+        "classics"
+      ]
+    },
+    {
+      "slug": "signal",
+      "url": "https://nickcarbone.github.io/signal.html",
+      "title": "Signal",
+      "description": "Global situational-awareness dashboard: consequence-ranked events from live feeds (USGS, GDACS, NASA FIRMS and more).",
+      "updated": "2026-07-06",
+      "created": "2026-07-06",
+      "category": "Live",
+      "tags": [
+        "news",
+        "dashboard"
+      ]
     },
     {
       "slug": "elsewhere-location-analysis",
       "url": "https://nickcarbone.github.io/elsewhere-location-analysis/",
-      "title": "Elsewhere Location Analysis",
-      "description": "nickcarbone.github.io/elsewhere-location-analysis/",
+      "title": "Elsewhere: Flagship Location Case Study",
+      "description": "",
       "updated": "2026-07-05T18:42:28Z",
-      "created": "2026-07-05T18:42:21Z"
+      "created": "2026-07-05T18:42:21Z",
+      "category": "Ideas",
+      "tags": [
+        "beer",
+        "brewery",
+        "business"
+      ]
     },
     {
       "slug": "brewing-itinerary",
       "url": "https://nickcarbone.github.io/brewing-itinerary/",
-      "title": "Brewing Itinerary",
-      "description": "nickcarbone.github.io/brewing-itinerary/",
+      "title": "Ten Cities for a Brewing Education",
+      "description": "",
       "updated": "2026-07-03T01:39:59Z",
-      "created": "2026-07-03T01:39:50Z"
-    },
-    {
-      "slug": "europe-flats",
-      "url": "https://nickcarbone.github.io/europe-flats/",
-      "title": "Europe Flats",
-      "description": "nickcarbone.github.io/europe-flats/",
-      "updated": "2026-07-02T01:12:08Z",
-      "created": "2026-07-02T01:11:58Z"
+      "created": "2026-07-03T01:39:50Z",
+      "category": "Drink",
+      "tags": [
+        "beer",
+        "education",
+        "world"
+      ]
     },
     {
       "slug": "slop-bowl",
       "url": "https://nickcarbone.github.io/slop-bowl/",
-      "title": "Slop Bowl",
-      "description": "nickcarbone.github.io/slop-bowl/",
+      "title": "In Defense of the Slop Bowl",
+      "description": "",
       "updated": "2026-07-01T20:38:04Z",
-      "created": "2026-07-01T20:37:54Z"
+      "created": "2026-07-01T20:37:54Z",
+      "category": "Essays",
+      "tags": [
+        "food",
+        "gonzo"
+      ]
     },
     {
       "slug": "performance-spaces",
       "url": "https://nickcarbone.github.io/performance-spaces/",
       "title": "Performance Spaces",
-      "description": "nickcarbone.github.io/performance-spaces/",
+      "description": "",
       "updated": "2026-07-01T02:24:15Z",
-      "created": "2026-07-01T02:24:06Z"
-    },
-    {
-      "slug": "europe-pieds-a-terre-2",
-      "url": "https://nickcarbone.github.io/europe-pieds-a-terre-2/",
-      "title": "Europe Pieds A Terre 2",
-      "description": "nickcarbone.github.io/europe-pieds-a-terre-2/",
-      "updated": "2026-07-01T02:13:07Z",
-      "created": "2026-07-01T02:09:19Z"
-    },
-    {
-      "slug": "europe-pieds-a-terre",
-      "url": "https://nickcarbone.github.io/europe-pieds-a-terre/",
-      "title": "Europe Pieds A Terre",
-      "description": "nickcarbone.github.io/europe-pieds-a-terre/",
-      "updated": "2026-06-30T17:37:07Z",
-      "created": "2026-06-30T17:34:00Z"
+      "created": "2026-07-01T02:24:06Z",
+      "category": "Money",
+      "tags": [
+        "property",
+        "luxury"
+      ]
     },
     {
       "slug": "porsche",
       "url": "https://nickcarbone.github.io/porsche/",
-      "title": "Porsche",
-      "description": "nickcarbone.github.io/porsche/",
+      "title": "The Garage in the Sky",
+      "description": "",
       "updated": "2026-06-30T02:24:42Z",
-      "created": "2026-06-30T02:24:33Z"
+      "created": "2026-06-30T02:24:33Z",
+      "category": "Money",
+      "tags": [
+        "property",
+        "luxury",
+        "cars"
+      ]
     },
     {
       "slug": "the-undriven",
       "url": "https://nickcarbone.github.io/the-undriven/",
-      "title": "The Undriven",
-      "description": "nickcarbone.github.io/the-undriven/",
+      "title": "THE UNDRIVEN",
+      "description": "",
       "updated": "2026-06-29T23:21:34Z",
-      "created": "2026-06-29T23:21:22Z"
-    },
-    {
-      "slug": "mobile-concepts",
-      "url": "https://nickcarbone.github.io/mobile-concepts/",
-      "title": "Mobile Concepts",
-      "description": "nickcarbone.github.io/mobile-concepts/",
-      "updated": "2026-06-27T22:11:23Z",
-      "created": "2026-06-27T22:11:15Z"
+      "created": "2026-06-29T23:21:22Z",
+      "category": "Money",
+      "tags": [
+        "cars",
+        "investigation"
+      ]
     },
     {
       "slug": "dark-floors",
       "url": "https://nickcarbone.github.io/dark-floors/",
-      "title": "Dark Floors",
-      "description": "nickcarbone.github.io/dark-floors/",
+      "title": "The Dark Floors",
+      "description": "",
       "updated": "2026-06-21T14:53:03Z",
-      "created": "2026-06-21T14:52:54Z"
+      "created": "2026-06-21T14:52:54Z",
+      "category": "Money",
+      "tags": [
+        "property",
+        "investigation"
+      ]
     },
     {
       "slug": "wirecard",
       "url": "https://nickcarbone.github.io/wirecard/",
-      "title": "Wirecard",
-      "description": "nickcarbone.github.io/wirecard/",
+      "title": "The Great Pretender",
+      "description": "",
       "updated": "2026-06-21T14:20:03Z",
-      "created": "2026-06-21T14:19:55Z"
+      "created": "2026-06-21T14:19:55Z",
+      "category": "Money",
+      "tags": [
+        "fraud",
+        "investigation"
+      ]
     },
     {
       "slug": "hop-guide-v2",
       "url": "https://nickcarbone.github.io/hop-guide-v2/",
-      "title": "Hop Guide V2",
-      "description": "nickcarbone.github.io/hop-guide-v2/",
+      "title": "The Hop Atlas",
+      "description": "",
       "updated": "2026-06-19T23:03:51Z",
-      "created": "2026-06-19T23:03:46Z"
-    },
-    {
-      "slug": "hop-guide-v1",
-      "url": "https://nickcarbone.github.io/hop-guide-v1/",
-      "title": "Hop Guide V1",
-      "description": "nickcarbone.github.io/hop-guide-v1/",
-      "updated": "2026-06-19T18:40:44Z",
-      "created": "2026-06-19T18:40:36Z"
+      "created": "2026-06-19T23:03:46Z",
+      "category": "Drink",
+      "tags": [
+        "beer",
+        "hops",
+        "itinerary"
+      ]
     },
     {
       "slug": "arete",
       "url": "https://nickcarbone.github.io/arete/",
-      "title": "Arete",
-      "description": "nickcarbone.github.io/arete/",
+      "title": "Arête",
+      "description": "",
       "updated": "2026-06-19T17:51:27Z",
-      "created": "2026-06-19T17:51:19Z"
+      "created": "2026-06-19T17:51:19Z",
+      "category": "Lifestyle",
+      "tags": [
+        "manual",
+        "self-improvement"
+      ]
     },
     {
       "slug": "pink-panthers",
       "url": "https://nickcarbone.github.io/pink-panthers/",
-      "title": "Pink Panthers",
-      "description": "nickcarbone.github.io/pink-panthers/",
+      "title": "The House Always Loses",
+      "description": "",
       "updated": "2026-06-16T12:42:18Z",
-      "created": "2026-06-16T12:42:10Z"
+      "created": "2026-06-16T12:42:10Z",
+      "category": "Money",
+      "tags": [
+        "crime",
+        "investigation"
+      ]
     },
     {
       "slug": "gonzo-decemberists",
       "url": "https://nickcarbone.github.io/gonzo-decemberists/",
-      "title": "Gonzo Decemberists",
-      "description": "nickcarbone.github.io/gonzo-decemberists/",
+      "title": "The Truest Love Song Ever Written",
+      "description": "",
       "updated": "2026-06-13T14:37:09Z",
-      "created": "2026-06-13T14:37:02Z"
+      "created": "2026-06-13T14:37:02Z",
+      "category": "Essays",
+      "tags": [
+        "music",
+        "gonzo"
+      ]
     },
     {
       "slug": "fathers-day-guide",
       "url": "https://nickcarbone.github.io/fathers-day-guide/",
-      "title": "Fathers Day Guide",
-      "description": "nickcarbone.github.io/fathers-day-guide/",
+      "title": "The Father's Day Field Guide 2026",
+      "description": "",
       "updated": "2026-06-12T20:24:45Z",
-      "created": "2026-06-12T20:24:35Z"
+      "created": "2026-06-12T20:24:35Z",
+      "category": "Lifestyle",
+      "tags": [
+        "gifts",
+        "guide"
+      ]
     },
     {
       "slug": "white-wine",
       "url": "https://nickcarbone.github.io/white-wine/",
-      "title": "White Wine",
-      "description": "nickcarbone.github.io/white-wine/",
+      "title": "The White Wine Field Guide",
+      "description": "",
       "updated": "2026-06-10T01:45:17Z",
-      "created": "2026-06-10T01:45:09Z"
+      "created": "2026-06-10T01:45:09Z",
+      "category": "Drink",
+      "tags": [
+        "wine",
+        "guide"
+      ]
     },
     {
       "slug": "mobile-field-guide",
       "url": "https://nickcarbone.github.io/mobile-field-guide/",
-      "title": "Mobile Field Guide",
-      "description": "nickcarbone.github.io/mobile-field-guide/",
+      "title": "The Traveler's Communications Field Manual",
+      "description": "",
       "updated": "2026-06-10T01:44:58Z",
-      "created": "2026-06-10T01:44:51Z"
+      "created": "2026-06-10T01:44:51Z",
+      "category": "Mobile",
+      "tags": [
+        "travel",
+        "manual"
+      ]
     },
     {
       "slug": "hidden-carry",
       "url": "https://nickcarbone.github.io/hidden-carry/",
-      "title": "Hidden Carry",
-      "description": "nickcarbone.github.io/hidden-carry/",
+      "title": "The Hidden Layer",
+      "description": "",
       "updated": "2026-06-09T12:19:53Z",
-      "created": "2026-06-09T12:19:45Z"
+      "created": "2026-06-09T12:19:45Z",
+      "category": "Mobile",
+      "tags": [
+        "devices",
+        "kit"
+      ]
     },
     {
       "slug": "private-dining",
       "url": "https://nickcarbone.github.io/private-dining/",
-      "title": "Private Dining",
-      "description": "nickcarbone.github.io/private-dining/",
+      "title": "Private Dining Intelligence",
+      "description": "A guide to accessing chef",
       "updated": "2026-06-09T12:18:57Z",
-      "created": "2026-06-09T12:18:48Z"
-    },
-    {
-      "slug": "2026-family-calendar",
-      "url": "https://nickcarbone.github.io/2026-family-calendar/",
-      "title": "2026 Family Calendar",
-      "description": "nickcarbone.github.io/2026-family-calendar/",
-      "updated": "2026-06-08T00:19:37Z",
-      "created": "2026-06-08T00:19:33Z"
+      "created": "2026-06-09T12:18:48Z",
+      "category": "Food",
+      "tags": [
+        "restaurants",
+        "manual"
+      ]
     },
     {
       "slug": "rotisserie",
       "url": "https://nickcarbone.github.io/rotisserie/",
-      "title": "Rotisserie",
-      "description": "nickcarbone.github.io/rotisserie/",
+      "title": "The Rotisserie Chicken Playbook",
+      "description": "",
       "updated": "2026-06-07T23:55:20Z",
-      "created": "2026-06-07T23:55:13Z"
+      "created": "2026-06-07T23:55:13Z",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "weeknight"
+      ]
     },
     {
       "slug": "bond-like-life",
       "url": "https://nickcarbone.github.io/bond-like-life/",
-      "title": "Bond Like Life",
-      "description": "nickcarbone.github.io/bond-like-life/",
+      "title": "The Operative Gentleman",
+      "description": "",
       "updated": "2026-06-07T23:53:33Z",
-      "created": "2026-06-07T23:53:26Z"
+      "created": "2026-06-07T23:53:26Z",
+      "category": "Lifestyle",
+      "tags": [
+        "manual",
+        "self-improvement"
+      ]
     },
     {
       "slug": "crystal-radio",
       "url": "https://nickcarbone.github.io/crystal-radio/",
-      "title": "Crystal Radio",
-      "description": "nickcarbone.github.io/crystal-radio/",
+      "title": "The Invisible Broadcast",
+      "description": "",
       "updated": "2026-06-07T23:46:51Z",
-      "created": "2026-06-07T23:46:44Z"
+      "created": "2026-06-07T23:46:44Z",
+      "category": "Culture",
+      "tags": [
+        "radio",
+        "how-to"
+      ]
     },
     {
       "slug": "world-table",
       "url": "https://nickcarbone.github.io/world-table/",
-      "title": "World Table",
-      "description": "nickcarbone.github.io/world-table/",
-      "updated": "2026-06-07T23:43:42Z",
-      "created": "2026-06-07T23:43:34Z"
-    },
-    {
-      "slug": "discoverer",
-      "url": "https://nickcarbone.github.io/discoverer/",
-      "title": "Discoverer",
+      "title": "The World Table",
       "description": "",
-      "updated": "2026-06-07T22:13:00Z",
-      "created": "2026-06-05T03:54:18Z"
-    },
-    {
-      "slug": "world-cup",
-      "url": "https://nickcarbone.github.io/world-cup/",
-      "title": "World Cup",
-      "description": "nickcarbone.github.io/world-cup/",
-      "updated": "2026-06-06T21:20:46Z",
-      "created": "2026-06-06T01:27:06Z"
+      "updated": "2026-06-07T23:43:42Z",
+      "created": "2026-06-07T23:43:34Z",
+      "category": "Food",
+      "tags": [
+        "database",
+        "world"
+      ]
     },
     {
       "slug": "free-body",
       "url": "https://nickcarbone.github.io/free-body/",
-      "title": "Free Body",
-      "description": "nickcarbone.github.io/free-body/",
+      "title": "The Body Must Be Working",
+      "description": "",
       "updated": "2026-06-06T02:27:32Z",
-      "created": "2026-06-06T02:27:24Z"
+      "created": "2026-06-06T02:27:24Z",
+      "category": "Essays",
+      "tags": [
+        "gonzo"
+      ]
+    },
+    {
+      "slug": "world-cup",
+      "url": "https://nickcarbone.github.io/world-cup/",
+      "title": "FIFA World Cup 2026",
+      "description": "",
+      "updated": "2026-06-06T21:20:46Z",
+      "created": "2026-06-06T01:27:06Z",
+      "category": "Culture",
+      "tags": [
+        "football",
+        "reference"
+      ]
     },
     {
       "slug": "jet-lag-gonzo",
       "url": "https://nickcarbone.github.io/jet-lag-gonzo/",
-      "title": "Jet Lag Gonzo",
-      "description": "nickcarbone.github.io/jet-lag-gonzo/",
+      "title": "The Thing With Teeth",
+      "description": "",
       "updated": "2026-06-05T18:46:50Z",
-      "created": "2026-06-05T18:22:59Z"
+      "created": "2026-06-05T18:22:59Z",
+      "category": "Essays",
+      "tags": [
+        "gonzo",
+        "travel"
+      ]
     },
     {
       "slug": "open-loops-gonzo",
       "url": "https://nickcarbone.github.io/open-loops-gonzo/",
-      "title": "Open Loops Gonzo",
-      "description": "nickcarbone.github.io/open-loops-gonzo/",
+      "title": "In Defense of the Open Loop",
+      "description": "",
       "updated": "2026-06-05T04:36:27Z",
-      "created": "2026-06-05T04:36:20Z"
+      "created": "2026-06-05T04:36:20Z",
+      "category": "Essays",
+      "tags": [
+        "gonzo"
+      ]
     },
     {
       "slug": "why-would-i-now",
       "url": "https://nickcarbone.github.io/why-would-i-now/",
-      "title": "Why Would I Now",
-      "description": "nickcarbone.github.io/why-would-i-now/",
+      "title": "Why Would I Now?",
+      "description": "",
       "updated": "2026-06-05T04:35:43Z",
-      "created": "2026-06-05T04:35:35Z"
+      "created": "2026-06-05T04:35:35Z",
+      "category": "Essays",
+      "tags": [
+        "music",
+        "criticism"
+      ]
     },
     {
       "slug": "content-publishing",
       "url": "https://nickcarbone.github.io/content-publishing/",
-      "title": "Content Publishing",
-      "description": "nickcarbone.github.io/content-publishing/",
+      "title": "Content Distribution: Beyond the Default Stack",
+      "description": "",
       "updated": "2026-06-05T04:26:59Z",
-      "created": "2026-06-05T04:26:50Z"
-    },
-    {
-      "slug": "open-loops",
-      "url": "https://nickcarbone.github.io/open-loops/",
-      "title": "Open Loops",
-      "description": "nickcarbone.github.io/open-loops/",
-      "updated": "2026-06-05T04:22:10Z",
-      "created": "2026-06-05T04:21:58Z"
+      "created": "2026-06-05T04:26:50Z",
+      "category": "News",
+      "tags": [
+        "distribution",
+        "memo"
+      ]
     },
     {
       "slug": "devices",
       "url": "https://nickcarbone.github.io/devices/",
-      "title": "Devices",
+      "title": "Signal Brief",
       "description": "",
       "updated": "2026-06-05T03:57:05Z",
-      "created": "2026-06-05T03:56:54Z"
+      "created": "2026-06-05T03:56:54Z",
+      "category": "Ideas",
+      "tags": [
+        "devices",
+        "brief"
+      ]
     },
     {
-      "slug": "nola",
-      "url": "https://nickcarbone.github.io/nola/",
-      "title": "NOLA",
+      "slug": "discoverer",
+      "url": "https://nickcarbone.github.io/discoverer/",
+      "title": "The Professional Discoverer",
       "description": "",
-      "updated": "2026-05-23T14:11:11Z",
-      "created": "2026-05-23T14:10:50Z"
+      "updated": "2026-06-07T22:13:00Z",
+      "created": "2026-06-05T03:54:18Z",
+      "category": "Lifestyle",
+      "tags": [
+        "careers",
+        "report"
+      ]
     },
     {
       "slug": "local-beach",
       "url": "https://nickcarbone.github.io/local-beach/",
-      "title": "Local Beach",
+      "title": "Where the Locals Go",
       "description": "",
       "updated": "2026-05-21T19:35:20Z",
-      "created": "2026-05-21T18:30:39Z"
+      "created": "2026-05-21T18:30:39Z",
+      "category": "Travel",
+      "tags": [
+        "beaches",
+        "field guide"
+      ]
     },
     {
       "slug": "elite",
       "url": "https://nickcarbone.github.io/elite/",
-      "title": "Elite",
+      "title": "The Considered Life",
       "description": "",
       "updated": "2026-04-09T02:18:32Z",
-      "created": "2026-04-09T02:18:11Z"
-    },
-    {
-      "slug": "chase",
-      "url": "https://nickcarbone.github.io/chase/",
-      "title": "Chase",
-      "description": "",
-      "updated": "2026-03-31T20:32:49Z",
-      "created": "2026-03-31T20:32:32Z"
-    },
-    {
-      "slug": "playbook",
-      "url": "https://nickcarbone.github.io/playbook/",
-      "title": "Playbook",
-      "description": "",
-      "updated": "2026-03-27T12:03:56Z",
-      "created": "2026-03-27T12:03:41Z"
+      "created": "2026-04-09T02:18:11Z",
+      "category": "Lifestyle",
+      "tags": [
+        "manual",
+        "self-improvement"
+      ]
     },
     {
       "slug": "source-matcher",
@@ -656,47 +990,79 @@
       "title": "Source Matcher",
       "description": "",
       "updated": "2026-03-26T15:35:38Z",
-      "created": "2026-03-26T15:34:31Z"
+      "created": "2026-03-26T15:34:31Z",
+      "category": "News",
+      "tags": [
+        "verification",
+        "tool"
+      ]
     },
     {
       "slug": "third-eye-brewing",
       "url": "https://nickcarbone.github.io/third-eye-brewing/",
-      "title": "Third Eye Brewing",
+      "title": "Third Eye Brewing Co.",
       "description": "",
       "updated": "2026-03-26T03:00:50Z",
-      "created": "2026-03-26T03:00:33Z"
+      "created": "2026-03-26T03:00:33Z",
+      "category": "Ideas",
+      "tags": [
+        "beer",
+        "brewery",
+        "concept"
+      ]
     },
     {
       "slug": "familiar",
       "url": "https://nickcarbone.github.io/familiar/",
-      "title": "Familiar",
+      "title": "Strangely Familiar",
       "description": "",
       "updated": "2026-03-25T17:35:02Z",
-      "created": "2026-03-25T17:34:40Z"
+      "created": "2026-03-25T17:34:40Z",
+      "category": "Food",
+      "tags": [
+        "pantry",
+        "field guide",
+        "world"
+      ]
     },
     {
       "slug": "five-ideas",
       "url": "https://nickcarbone.github.io/five-ideas/",
-      "title": "Five Ideas",
+      "title": "Five Ideas That Should Exist",
       "description": "",
       "updated": "2026-03-25T01:48:43Z",
-      "created": "2026-03-25T01:48:34Z"
+      "created": "2026-03-25T01:48:34Z",
+      "category": "Ideas",
+      "tags": [
+        "concepts"
+      ]
     },
     {
       "slug": "cucina",
       "url": "https://nickcarbone.github.io/cucina/",
-      "title": "Cucina",
+      "title": "The Poor Kitchen",
       "description": "",
       "updated": "2026-03-25T01:48:07Z",
-      "created": "2026-03-25T01:47:41Z"
+      "created": "2026-03-25T01:47:41Z",
+      "category": "Food",
+      "tags": [
+        "atlas",
+        "world"
+      ]
     },
     {
       "slug": "elsewhere",
       "url": "https://nickcarbone.github.io/elsewhere/",
-      "title": "Elsewhere",
+      "title": "Elsewhere Brewing & Experience Co.",
       "description": "",
       "updated": "2026-03-24T01:10:05Z",
-      "created": "2026-03-24T01:09:45Z"
+      "created": "2026-03-24T01:09:45Z",
+      "category": "Ideas",
+      "tags": [
+        "beer",
+        "brewery",
+        "concept"
+      ]
     },
     {
       "slug": "signal-lost",
@@ -704,47 +1070,52 @@
       "title": "Signal Lost",
       "description": "",
       "updated": "2026-03-24T01:09:01Z",
-      "created": "2026-03-24T01:08:40Z"
-    },
-    {
-      "slug": "ragu",
-      "url": "https://nickcarbone.github.io/ragu/",
-      "title": "Ragu",
-      "description": "",
-      "updated": "2026-03-23T19:03:56Z",
-      "created": "2026-03-21T10:46:13Z"
+      "created": "2026-03-24T01:08:40Z",
+      "category": "Ideas",
+      "tags": [
+        "podcast",
+        "pitch"
+      ]
     },
     {
       "slug": "michelin",
       "url": "https://nickcarbone.github.io/michelin/",
-      "title": "Michelin",
+      "title": "Stars Without Suits",
       "description": "",
       "updated": "2026-03-21T19:13:32Z",
-      "created": "2026-03-21T14:17:54Z"
+      "created": "2026-03-21T14:17:54Z",
+      "category": "Food",
+      "tags": [
+        "restaurants",
+        "guide"
+      ]
+    },
+    {
+      "slug": "ragu",
+      "url": "https://nickcarbone.github.io/ragu/",
+      "title": "A Ragu Through Europe & Elsewhere",
+      "description": "",
+      "updated": "2026-03-23T19:03:56Z",
+      "created": "2026-03-21T10:46:13Z",
+      "category": "Food",
+      "tags": [
+        "recipe",
+        "europe"
+      ]
     },
     {
       "slug": "pub-guide",
       "url": "https://nickcarbone.github.io/pub-guide/",
-      "title": "Pub Guide",
+      "title": "Last Orders & Lasting History",
       "description": "",
       "updated": "2026-03-21T03:41:17Z",
-      "created": "2026-03-21T03:30:49Z"
-    },
-    {
-      "slug": "business-plans",
-      "url": "https://nickcarbone.github.io/business-plans/",
-      "title": "Business Plans",
-      "description": "",
-      "updated": "2026-03-08T18:18:12Z",
-      "created": "2026-03-08T18:10:01Z"
-    },
-    {
-      "slug": "daily-recipes",
-      "url": "https://nickcarbone.github.io/daily-recipes/",
-      "title": "Daily Recipes",
-      "description": "",
-      "updated": "2026-03-08T17:49:35Z",
-      "created": "2026-03-08T17:40:46Z"
+      "created": "2026-03-21T03:30:49Z",
+      "category": "Drink",
+      "tags": [
+        "pubs",
+        "britain",
+        "itinerary"
+      ]
     }
   ]
 }

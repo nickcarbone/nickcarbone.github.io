@@ -1,0 +1,1036 @@
+{
+  "_readme": "Landing-page catalogue. One entry per page: category is one of the categories list; tags are free, short, lowercase; hidden keeps a page off the landing page (its URL still works). Pages not listed here are classified from <meta name=\"nc:category\"> and <meta name=\"nc:tags\"> in the page itself, or shown as Unsorted.",
+  "categories": [
+    "Live",
+    "News",
+    "Mobile",
+    "Food",
+    "Drink",
+    "Travel",
+    "Culture",
+    "Money",
+    "Books",
+    "Essays",
+    "Lifestyle",
+    "Ideas"
+  ],
+  "pages": [
+    {
+      "slug": "1600s-vice-books",
+      "title": "The Bottle, the Pipe, the Table, the Town",
+      "category": "Books",
+      "tags": [
+        "reading list",
+        "history"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "2026-family-calendar",
+      "title": "Family Weekend Calendar 2026",
+      "category": "Lifestyle",
+      "tags": [
+        "family",
+        "calendar"
+      ],
+      "hidden": true,
+      "description": "29-weekend family activity guide for Old Town Alexandria and the DC metro area, June–December 2026."
+    },
+    {
+      "slug": "ad-gallery",
+      "title": "Full Page",
+      "category": "Culture",
+      "tags": [
+        "advertising",
+        "archive",
+        "history"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "arete",
+      "title": "Arête",
+      "category": "Lifestyle",
+      "tags": [
+        "manual",
+        "self-improvement"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "bond-like-life",
+      "title": "The Operative Gentleman",
+      "category": "Lifestyle",
+      "tags": [
+        "manual",
+        "self-improvement"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "brewed-with",
+      "title": "Brewed With",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "beer",
+        "world"
+      ],
+      "hidden": false,
+      "description": "Twelve savoury dishes from twelve countries in which beer is part of the cooking, with sources, alcohol facts and US prices."
+    },
+    {
+      "slug": "brewing-itinerary",
+      "title": "Ten Cities for a Brewing Education",
+      "category": "Drink",
+      "tags": [
+        "beer",
+        "education",
+        "world"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "business-plans",
+      "title": "Business Plans",
+      "category": "Ideas",
+      "tags": [
+        "business"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "chase",
+      "title": "CSR Benefits Playbook",
+      "category": "Money",
+      "tags": [
+        "credit cards",
+        "personal"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "content-publishing",
+      "title": "Content Distribution: Beyond the Default Stack",
+      "category": "News",
+      "tags": [
+        "distribution",
+        "memo"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "contrarian-wine-cellar",
+      "title": "The Contrarian Cellar",
+      "category": "Drink",
+      "tags": [
+        "wine",
+        "world"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "corner-stores-of-the-world",
+      "title": "Corner of the World",
+      "category": "Food",
+      "tags": [
+        "shops",
+        "field guide",
+        "world"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "crystal-radio",
+      "title": "The Invisible Broadcast",
+      "category": "Culture",
+      "tags": [
+        "radio",
+        "how-to"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "cucina",
+      "title": "The Poor Kitchen",
+      "category": "Food",
+      "tags": [
+        "atlas",
+        "world"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "daily-recipes",
+      "title": "Daily Recipes",
+      "category": "Food",
+      "tags": [
+        "recipes"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "dark-floors",
+      "title": "The Dark Floors",
+      "category": "Money",
+      "tags": [
+        "property",
+        "investigation"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "deadline-clock",
+      "title": "DEADLINE",
+      "category": "Live",
+      "tags": [
+        "news",
+        "clock"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "devices",
+      "title": "Signal Brief",
+      "category": "Ideas",
+      "tags": [
+        "devices",
+        "brief"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "disappeared-places-casebook",
+      "title": "Disappeared Places Casebook",
+      "category": "Culture",
+      "tags": [
+        "history",
+        "places",
+        "casebook"
+      ],
+      "hidden": false,
+      "description": "An interactive investigation into six places that were demolished, evacuated, erased or mythologised: who lived there, who decided, what the record shows, and what remains."
+    },
+    {
+      "slug": "discoverer",
+      "title": "The Professional Discoverer",
+      "category": "Lifestyle",
+      "tags": [
+        "careers",
+        "report"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "drivetime-tesla",
+      "title": "Drivetime",
+      "category": "Live",
+      "tags": [
+        "radio",
+        "driving",
+        "cities"
+      ],
+      "hidden": false,
+      "url": "https://nickcarbone.github.io/drivetime-tesla.html",
+      "created": "2026-07-25",
+      "description": "Drive a city on video with its own live local radio playing."
+    },
+    {
+      "slug": "elite",
+      "title": "The Considered Life",
+      "category": "Lifestyle",
+      "tags": [
+        "manual",
+        "self-improvement"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "elsewhere",
+      "title": "Elsewhere Brewing & Experience Co.",
+      "category": "Ideas",
+      "tags": [
+        "beer",
+        "brewery",
+        "concept"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "elsewhere-location-analysis",
+      "title": "Elsewhere: Flagship Location Case Study",
+      "category": "Ideas",
+      "tags": [
+        "beer",
+        "brewery",
+        "business"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "elsewhere-tv",
+      "title": "ELSEWHERE TV",
+      "category": "Live",
+      "tags": [
+        "tv",
+        "world"
+      ],
+      "hidden": false,
+      "description": "A hotel-room window onto everyday television around the world."
+    },
+    {
+      "slug": "encore",
+      "title": "Encore",
+      "category": "Live",
+      "tags": [
+        "radio",
+        "music",
+        "world"
+      ],
+      "hidden": false,
+      "description": "Live concerts, jazz and news bulletins from public broadcasters around the world, timed to each city"
+    },
+    {
+      "slug": "europe-dining-cars",
+      "title": "Europe’s Dining Cars",
+      "category": "Food",
+      "tags": [
+        "menus",
+        "trains",
+        "europe"
+      ],
+      "hidden": false,
+      "description": "A verbatim, sourced collection of on-board dining menus from 35 European train services across 16 countries — scheduled and luxury, in their original languages, with English glosses and cultural notes."
+    },
+    {
+      "slug": "europe-flats",
+      "title": "European Pied-à-Terre",
+      "category": "Travel",
+      "tags": [
+        "property",
+        "europe"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "europe-pieds-a-terre",
+      "title": "Pied-à-Terre Prospect File",
+      "category": "Travel",
+      "tags": [
+        "property",
+        "europe"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "europe-pieds-a-terre-2",
+      "title": "Second Tier",
+      "category": "Travel",
+      "tags": [
+        "property",
+        "europe"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "europes-living-heritage",
+      "title": "Still Practised",
+      "category": "Culture",
+      "tags": [
+        "europe",
+        "heritage",
+        "field guide"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "evening-edition",
+      "title": "Evening Edition",
+      "category": "Live",
+      "tags": [
+        "tv",
+        "news",
+        "world"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "extreme-bars",
+      "title": "Field Dossier: The World's Most Extreme Bars",
+      "category": "Drink",
+      "tags": [
+        "bars",
+        "world"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "familiar",
+      "title": "Strangely Familiar",
+      "category": "Food",
+      "tags": [
+        "pantry",
+        "field guide",
+        "world"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "far-literature",
+      "title": "Far Countries & Painefull Peregrinations",
+      "category": "Books",
+      "tags": [
+        "reading list",
+        "history"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "fast-food-local-legends",
+      "title": "Local Legends: 20 Fast-Food Chains the World Loves",
+      "category": "Food",
+      "tags": [
+        "chains",
+        "field guide",
+        "world"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "fathers-day-guide",
+      "title": "The Father's Day Field Guide 2026",
+      "category": "Lifestyle",
+      "tags": [
+        "gifts",
+        "guide"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "first-light",
+      "title": "First Light",
+      "category": "Live",
+      "tags": [
+        "webcams",
+        "sound",
+        "world"
+      ],
+      "hidden": false,
+      "description": "Follow the sunrise around the world: a webcam where the sun has just come up, with the sound of that place"
+    },
+    {
+      "slug": "five-ideas",
+      "title": "Five Ideas That Should Exist",
+      "category": "Ideas",
+      "tags": [
+        "concepts"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "free-body",
+      "title": "The Body Must Be Working",
+      "category": "Essays",
+      "tags": [
+        "gonzo"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "gonzo-decemberists",
+      "title": "The Truest Love Song Ever Written",
+      "category": "Essays",
+      "tags": [
+        "music",
+        "gonzo"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "hawala",
+      "title": "The Money That Never Moves",
+      "category": "Money",
+      "tags": [
+        "finance",
+        "field guide"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "headend",
+      "title": "Headend",
+      "category": "Live",
+      "tags": [
+        "tv",
+        "control"
+      ],
+      "hidden": false,
+      "url": "https://nickcarbone.github.io/headend.html",
+      "created": "2026-07-12"
+    },
+    {
+      "slug": "hidden-carry",
+      "title": "The Hidden Layer",
+      "category": "Mobile",
+      "tags": [
+        "devices",
+        "kit"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "hop-guide-v1",
+      "title": "The Hop Atlas (first version)",
+      "category": "Drink",
+      "tags": [
+        "beer",
+        "hops",
+        "itinerary"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "hop-guide-v2",
+      "title": "The Hop Atlas",
+      "category": "Drink",
+      "tags": [
+        "beer",
+        "hops",
+        "itinerary"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "household",
+      "title": "Month at a Glance",
+      "category": "Lifestyle",
+      "tags": [
+        "budget"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "irreverent-mobile-carriers",
+      "title": "Loudmouths",
+      "category": "Mobile",
+      "tags": [
+        "brands",
+        "field guide"
+      ],
+      "hidden": false,
+      "description": "Twenty-five of the most ostentatious, brash and irreverent mobile network brands in the world: why they shout, whether it worked, and how their rivals responded."
+    },
+    {
+      "slug": "jet-lag-gonzo",
+      "title": "The Thing With Teeth",
+      "category": "Essays",
+      "tags": [
+        "gonzo",
+        "travel"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "local-beach",
+      "title": "Where the Locals Go",
+      "category": "Travel",
+      "tags": [
+        "beaches",
+        "field guide"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "m-pesa",
+      "title": "Dial *334#",
+      "category": "Money",
+      "tags": [
+        "mobile",
+        "finance",
+        "field guide"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "menu-cabinet",
+      "title": "The Menu Cabinet",
+      "category": "Food",
+      "tags": [
+        "menus",
+        "archive",
+        "history"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "michelin",
+      "title": "Stars Without Suits",
+      "category": "Food",
+      "tags": [
+        "restaurants",
+        "guide"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "michelin-atlas",
+      "title": "The Michelin Menu Atlas",
+      "category": "Food",
+      "tags": [
+        "restaurants",
+        "investigation"
+      ],
+      "hidden": false,
+      "description": "Fifteen Michelin-starred restaurants in fifteen countries, investigated through their menus. Pilot edition with three complete investigations."
+    },
+    {
+      "slug": "midnight-sun",
+      "title": "Nothing Sets",
+      "category": "Travel",
+      "tags": [
+        "field guide",
+        "nature"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "mobile-concepts",
+      "title": "Mobile Intelligence",
+      "category": "Mobile",
+      "tags": [
+        "business",
+        "concepts"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "mobile-field-guide",
+      "title": "The Traveler's Communications Field Manual",
+      "category": "Mobile",
+      "tags": [
+        "travel",
+        "manual"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "new-networks",
+      "title": "New Networks",
+      "category": "Mobile",
+      "tags": [
+        "networks",
+        "gazette"
+      ],
+      "hidden": false,
+      "description": "A slow gazette of mobile network codes assigned and withdrawn worldwide, from the ITU Operational Bulletin, checked against national registries."
+    },
+    {
+      "slug": "no-service-mvp",
+      "title": "NO SERVICE",
+      "category": "Mobile",
+      "tags": [
+        "geopolitics",
+        "newsletter"
+      ],
+      "hidden": false,
+      "description": "A weekly intelligence dispatch on mobile networks as instruments of power: who builds them, who switches them off, and what that decides."
+    },
+    {
+      "slug": "nola",
+      "title": "NOLA → Panhandle",
+      "category": "Travel",
+      "tags": [
+        "family",
+        "road trip"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "one-pound",
+      "title": "One Pound",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "weeknight"
+      ],
+      "hidden": false,
+      "description": "Ten global weeknight and weekend dinners, each built on one pound of supermarket mince."
+    },
+    {
+      "slug": "one-tap-nation",
+      "title": "One Tap Nation",
+      "category": "Mobile",
+      "tags": [
+        "apps",
+        "field guide",
+        "world"
+      ],
+      "hidden": false,
+      "description": "A field guide to 20 apps that swallowed a country: how they began, what they do, what they mean to the people who use them, and who pays for the convenience."
+    },
+    {
+      "slug": "open-channel",
+      "title": "Open Channel",
+      "category": "Live",
+      "tags": [
+        "radio",
+        "aviation",
+        "maritime"
+      ],
+      "hidden": false,
+      "description": "A receive-only radio for the second monitor: live air traffic control, oceanic, marine, rail, fire and weather radio from around the world."
+    },
+    {
+      "slug": "open-loops",
+      "title": "In Defense of the Open Loop (earlier version)",
+      "category": "Essays",
+      "tags": [
+        "gonzo"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "open-loops-gonzo",
+      "title": "In Defense of the Open Loop",
+      "category": "Essays",
+      "tags": [
+        "gonzo"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "pdo-cookbook",
+      "title": "The Register",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "europe"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "performance-spaces",
+      "title": "Performance Spaces",
+      "category": "Money",
+      "tags": [
+        "property",
+        "luxury"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "pink-panthers",
+      "title": "The House Always Loses",
+      "category": "Money",
+      "tags": [
+        "crime",
+        "investigation"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "playbook",
+      "title": "Personal Optimization Dossier",
+      "category": "Lifestyle",
+      "tags": [
+        "manual",
+        "personal"
+      ],
+      "hidden": true
+    },
+    {
+      "slug": "porsche",
+      "title": "The Garage in the Sky",
+      "category": "Money",
+      "tags": [
+        "property",
+        "luxury",
+        "cars"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "primetime",
+      "title": "Primetime",
+      "category": "Live",
+      "tags": [
+        "tv"
+      ],
+      "hidden": false,
+      "url": "https://nickcarbone.github.io/primetime.html",
+      "created": "2026-07-12"
+    },
+    {
+      "slug": "private-dining",
+      "title": "Private Dining Intelligence",
+      "category": "Food",
+      "tags": [
+        "restaurants",
+        "manual"
+      ],
+      "hidden": false,
+      "description": "A guide to accessing chef"
+    },
+    {
+      "slug": "provenance",
+      "title": "PROVENANCE",
+      "category": "News",
+      "tags": [
+        "verification",
+        "tool"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "pub-guide",
+      "title": "Last Orders & Lasting History",
+      "category": "Drink",
+      "tags": [
+        "pubs",
+        "britain",
+        "itinerary"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "ragu",
+      "title": "A Ragu Through Europe & Elsewhere",
+      "category": "Food",
+      "tags": [
+        "recipe",
+        "europe"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "reading-list",
+      "title": "Reading Assignment",
+      "category": "Books",
+      "tags": [
+        "reading list",
+        "classics"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "rotisserie",
+      "title": "The Rotisserie Chicken Playbook",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "weeknight"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "schengen-lunch",
+      "title": "Schengen Showdown: The Weeknight Volume",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "europe",
+        "weeknight"
+      ],
+      "hidden": false,
+      "description": "Fifteen European national dishes you can actually cook after work — priced in-country and in US substitutes, with sourced histories."
+    },
+    {
+      "slug": "schengen-showdown-cooking",
+      "title": "Schengen Showdown",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "europe"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "scoop-tracker",
+      "title": "Scoop Tracker",
+      "category": "Live",
+      "tags": [
+        "journalism",
+        "tool"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "signal",
+      "title": "Signal",
+      "category": "Live",
+      "tags": [
+        "news",
+        "dashboard"
+      ],
+      "hidden": false,
+      "url": "https://nickcarbone.github.io/signal.html",
+      "created": "2026-07-06",
+      "description": "Global situational-awareness dashboard: consequence-ranked events from live feeds (USGS, GDACS, NASA FIRMS and more)."
+    },
+    {
+      "slug": "signal-lost",
+      "title": "Signal Lost",
+      "category": "Ideas",
+      "tags": [
+        "podcast",
+        "pitch"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "slop-bowl",
+      "title": "In Defense of the Slop Bowl",
+      "category": "Essays",
+      "tags": [
+        "food",
+        "gonzo"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "sms-blaster",
+      "title": "The Tower in the Suitcase",
+      "category": "Mobile",
+      "tags": [
+        "crime",
+        "investigation"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "source-matcher",
+      "title": "Source Matcher",
+      "category": "News",
+      "tags": [
+        "verification",
+        "tool"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "ten-global-lunches",
+      "title": "Ten Lunches",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "quick",
+        "world"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "ten-global-weeknight-dinners",
+      "title": "Ten Weeknights",
+      "category": "Food",
+      "tags": [
+        "cookbook",
+        "weeknight",
+        "world"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "the-long-armistice",
+      "title": "The Long Armistice",
+      "category": "Books",
+      "tags": [
+        "reading list",
+        "history"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "the-snug",
+      "title": "The Snug",
+      "category": "Books",
+      "tags": [
+        "reader",
+        "tool"
+      ],
+      "hidden": false,
+      "description": "A reader for Project Gutenberg plain text and EPUB files."
+    },
+    {
+      "slug": "the-undriven",
+      "title": "THE UNDRIVEN",
+      "category": "Money",
+      "tags": [
+        "cars",
+        "investigation"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "third-eye-brewing",
+      "title": "Third Eye Brewing Co.",
+      "category": "Ideas",
+      "tags": [
+        "beer",
+        "brewery",
+        "concept"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "three-countries-three-hours",
+      "title": "Three Countries, Three Hours",
+      "category": "Drink",
+      "tags": [
+        "bars",
+        "trains",
+        "europe"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "white-wine",
+      "title": "The White Wine Field Guide",
+      "category": "Drink",
+      "tags": [
+        "wine",
+        "guide"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "why-would-i-now",
+      "title": "Why Would I Now?",
+      "category": "Essays",
+      "tags": [
+        "music",
+        "criticism"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "wirecard",
+      "title": "The Great Pretender",
+      "category": "Money",
+      "tags": [
+        "fraud",
+        "investigation"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "world-cup",
+      "title": "FIFA World Cup 2026",
+      "category": "Culture",
+      "tags": [
+        "football",
+        "reference"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "world-table",
+      "title": "The World Table",
+      "category": "Food",
+      "tags": [
+        "database",
+        "world"
+      ],
+      "hidden": false
+    }
+  ]
+}

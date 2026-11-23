@@ -435,6 +435,59 @@
       footer { padding: 24px 20px; flex-direction: column; gap: 16px; align-items: flex-start; }
       .nav-links { gap: 18px; }
     }
+
+    /* ── FILTER BAR ── */
+    .filters {
+      display: flex; flex-direction: column; gap: 14px;
+      margin-bottom: 28px;
+      opacity: 0; animation: fadeUp .5s ease .45s forwards;
+    }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .chip {
+      font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--text-dim); background: transparent;
+      border: 1px solid var(--border); border-radius: 999px;
+      padding: 6px 12px; cursor: pointer; transition: all .15s;
+    }
+    .chip:hover { border-color: var(--border-hi); color: var(--cream); }
+    .chip[aria-pressed="true"] { border-color: var(--amber); color: var(--amber-lt); background: var(--amber-dim); }
+    .chip .n { color: var(--text-muted); margin-left: 6px; }
+    .chip[aria-pressed="true"] .n { color: var(--amber); }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .controls input, .controls select {
+      font-family: var(--mono); font-size: 12px; color: var(--text);
+      background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+      padding: 8px 10px; outline: none;
+    }
+    .controls input { flex: 1 1 220px; min-width: 0; }
+    .controls input:focus, .controls select:focus { border-color: var(--amber); }
+    .controls select { cursor: pointer; }
+    .clear {
+      font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--amber); background: none; border: none; cursor: pointer; padding: 6px 4px;
+    }
+    .clear[hidden], .filters[hidden] { display: none; }
+    .card-cat {
+      font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--amber);
+    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .tag {
+      font-family: var(--mono); font-size: 10px; color: var(--text-muted);
+      border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px;
+      background: none; cursor: pointer;
+    }
+    .tag:hover { color: var(--amber-lt); border-color: var(--border-hi); }
+    .card { display: flex; flex-direction: column; }
+    .card-footer { margin-top: auto; }
+    .no-match { grid-column: 1 / -1; }
+    .section-title, .section-count, .section-updated { white-space: nowrap; }
+    @media (max-width: 620px) {
+      #cats { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 -20px; padding: 0 20px 2px; }
+      #cats::-webkit-scrollbar { display: none; }
+      .chip { flex: 0 0 auto; }
+      .controls select { flex: 1 1 40%; }
+    }
   </style>
 </head>
 <body>
@@ -466,6 +519,20 @@
     <span class="section-count" id="count"></span>
     <span class="section-spacer"></span>
     <span class="section-updated" id="last-updated"></span>
+  </div>
+
+  <div class="filters" id="filters" hidden>
+    <div class="filter-row" id="cats" role="group" aria-label="Category"></div>
+    <div class="controls">
+      <input id="q" type="search" placeholder="Search titles, descriptions, tags" aria-label="Search">
+      <select id="tag" aria-label="Tag"><option value="">Any tag</option></select>
+      <select id="sort" aria-label="Sort">
+        <option value="new">Newest</option>
+        <option value="updated">Recently updated</option>
+        <option value="az">A–Z</option>
+      </select>
+      <button class="clear" id="clear" hidden>Clear</button>
+    </div>
   </div>
 
   <div id="repo-container">
@@ -514,62 +581,42 @@
 <script>
 'use strict';
 
-const OWNER   = 'nickcarbone';
-const EXCLUDE = ['nickcarbone.github.io'];
-// Pages that live as a file inside THIS repo (not a separate GitHub Pages
-// repo), so they're invisible to the has_pages auto-discovery below.
-// Each entry renders identically to an auto-discovered card.
-const MANUAL_CARDS = [
-  {
-    name: 'Signal',
-    url: `https://${OWNER}.github.io/signal.html`,
-    desc: 'Global situational-awareness dashboard — consequence-ranked events from live feeds (USGS, GDACS, NASA FIRMS, and more).',
-    dateLabel: 'Actively updated'
-  },
-  {
-    id: 'daily',
-    name: 'Daily',
-    url: `https://${OWNER}.github.io/daily/`,
-    desc: 'A new researched piece every morning.',
-    dateLabel: 'New every morning'
-  }
-];
+const OWNER = 'nickcarbone';
 
-// ── Daily: hub card details + pieces sent to this index ─────
-// Reads the Daily hub's manifest and the list of pieces Nick has ticked
-// "Send to main index" on (daily/promoted.json, written from the hub).
-async function loadDaily() {
-  const bust = '?v=' + Date.now();
-  const get = (path, fallback) => fetch(path + bust, { cache: 'no-store' })
-    .then(r => r.ok ? r.json() : fallback).catch(() => fallback);
-  const [m, p] = await Promise.all([
-    get('/daily/manifest.json', { pieces: [] }),
-    get('/daily/promoted.json', { slugs: [] })
-  ]);
-  const pieces = m.pieces || [];
-  const promoted = new Set(p.slugs || []);
-  return {
-    latest: pieces[0] || null,
-    promoted: pieces.filter(x => promoted.has(x.slug)).map(x => ({
-      name: x.title,
-      url: `https://${OWNER}.github.io/daily/${x.slug}/`,
-      desc: x.dek || '',
-      when: `${x.date}T00:00:00`
-    }))
-  };
+// The Daily hub is pinned above the grid. Its pieces live only on the hub.
+const DAILY_CARD = {
+  title: 'Daily',
+  url: `https://${OWNER}.github.io/daily/`,
+  description: 'A new researched piece every morning.',
+  dateLabel: 'New every morning'
+};
+
+// pages.json is rebuilt by the Rebuild Index action from every GitHub Pages
+// repo plus catalog.json (categories, tags, hidden pages).
+async function loadPages() {
+  const res = await fetch('/pages.json?v=' + Date.now(), { cache: 'no-store' });
+  if (!res.ok) throw new Error(`pages.json: ${res.status}`);
+  const data = await res.json();
+  return { pages: data.pages || [], generated: data.generated };
 }
+
+async function loadDailyLatest() {
+  try {
+    const r = await fetch('/daily/manifest.json?v=' + Date.now(), { cache: 'no-store' });
+    if (!r.ok) return null;
+    const m = await r.json();
+    return (m.pieces || [])[0] || null;
+  } catch (e) { return null; }
+}
+
 // ── Helpers ──────────────────────────────────────────────────
 
-function deSlug(s) {
-  const UP = { nola:'NOLA', nyc:'NYC', dc:'DC', la:'LA', usa:'USA', uk:'UK', ai:'AI' };
-  return s.split('-')
-    .map(w => UP[w.toLowerCase()] || (w.charAt(0).toUpperCase() + w.slice(1)))
-    .join(' ');
-}
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 function relTime(iso) {
   const d = Math.floor((Date.now() - new Date(iso)) / 86400000);
-  if (d === 0) return 'Today';
+  if (d <= 0) return 'Today';
   if (d === 1) return 'Yesterday';
   if (d < 7)  return `${d}d ago`;
   if (d < 30) return `${Math.floor(d/7)}w ago`;
@@ -577,166 +624,214 @@ function relTime(iso) {
   return `${Math.floor(d/365)}y ago`;
 }
 
-function isAutoDesc(s) {
-  if (!s) return true;
-  return s.includes('Published via Publisher') || s === '';
+function fmtDate(iso) {
+  return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
-function pad2(n) { return String(n).padStart(2, '0'); }
+const pad2 = n => String(n).padStart(2, '0');
 
-// ── Fetch repos ──────────────────────────────────────────────
+// ── State (kept in the URL hash so a filtered view can be linked) ──
 
-async function loadRepos() {
-  const token = localStorage.getItem('nc_pub_token');
-  const headers = {
-    'Accept': 'application/vnd.github+json',
-    'X-GitHub-Api-Version': '2022-11-28'
-  };
-  if (token) headers['Authorization'] = `Bearer ${token}`;
+const state = { cat: '', tag: '', q: '', sort: 'new' };
 
-  // Paginate to get all repos (handles > 100)
-  let all = [], page = 1;
-  while (true) {
-    const res = await fetch(
-      `https://api.github.com/users/${OWNER}/repos?type=public&per_page=100&sort=pushed&page=${page}`,
-      { headers }
-    );
-    if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
-    const batch = await res.json();
-    all = all.concat(batch);
-    if (batch.length < 100) break;
-    page++;
-  }
+function readHash() {
+  const p = new URLSearchParams(location.hash.slice(1));
+  state.cat  = p.get('cat')  || '';
+  state.tag  = p.get('tag')  || '';
+  state.q    = p.get('q')    || '';
+  state.sort = p.get('sort') || 'new';
+}
 
-  return all
-    .filter(r => r.has_pages && !EXCLUDE.includes(r.name))
-    .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
+function writeHash() {
+  const p = new URLSearchParams();
+  if (state.cat) p.set('cat', state.cat);
+  if (state.tag) p.set('tag', state.tag);
+  if (state.q) p.set('q', state.q);
+  if (state.sort !== 'new') p.set('sort', state.sort);
+  const h = p.toString();
+  history.replaceState(null, '', h ? '#' + h : location.pathname);
 }
 
 // ── Render ───────────────────────────────────────────────────
 
-function renderCard(repo, index) {
-  const url   = `https://${OWNER}.github.io/${repo.name}/`;
-  const title = deSlug(repo.name);
-  const desc  = isAutoDesc(repo.description) ? '' : repo.description;
-  const date  = relTime(repo.pushed_at);
-  const num   = pad2(index + 1);
-  const delay = (0.55 + index * 0.06).toFixed(2);
+let PAGES = [];
+let CATS = [];
 
-  const a = document.createElement('a');
-  a.href    = url;
-  a.target  = '_blank';
-  a.rel     = 'noopener noreferrer';
-  a.className = 'card';
-  a.style.animationDelay = `${delay}s`;
-
-  a.innerHTML = `
+function cardHTML(p, num, dateLabel) {
+  const tags = (p.tags || []).map(t =>
+    `<button class="tag" data-tag="${esc(t)}" type="button">${esc(t)}</button>`).join('');
+  return `
     <div class="card-top">
-      <span class="card-num">${num}</span>
+      <span class="card-num">${num}${p.category ? ` <span class="card-cat">· ${esc(p.category)}</span>` : ''}</span>
       <span class="card-arrow">↗</span>
     </div>
-    <div class="card-title">${title}</div>
-    ${desc ? `<p class="card-desc">${desc}</p>` : ''}
+    <div class="card-title">${esc(p.title)}</div>
+    ${p.description ? `<p class="card-desc">${esc(p.description)}</p>` : ''}
+    ${tags ? `<div class="card-tags">${tags}</div>` : ''}
     <div class="card-footer">
-      <span class="card-date">${date}</span>
+      <span class="card-date">${esc(dateLabel)}</span>
       <span class="card-link">View →</span>
-    </div>
-  `;
-
-return a;
+    </div>`;
 }
 
-function renderManualCard(item, index) {
-  const num   = pad2(index + 1);
-  const delay = (0.55 + index * 0.06).toFixed(2);
-
+function makeCard(p, index, dateLabel) {
   const a = document.createElement('a');
-  a.href    = item.url;
-  a.target  = '_blank';
-  a.rel     = 'noopener noreferrer';
+  a.href = p.url;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
   a.className = 'card';
-  a.style.animationDelay = `${delay}s`;
-
-  a.innerHTML = `
-    <div class="card-top">
-      <span class="card-num">${num}</span>
-      <span class="card-arrow">↗</span>
-    </div>
-    <div class="card-title">${item.name}</div>
-    ${item.desc ? `<p class="card-desc">${item.desc}</p>` : ''}
-    <div class="card-footer">
-      <span class="card-date">${item.dateLabel}</span>
-      <span class="card-link">View →</span>
-    </div>
-  `;
-
+  a.style.animationDelay = `${Math.min(0.1 + index * 0.03, 0.8).toFixed(2)}s`;
+  a.innerHTML = cardHTML(p, pad2(index + 1), dateLabel);
   return a;
 }
 
-function showEmpty() {
-  document.getElementById('skeleton').style.display = 'none';
-  document.getElementById('grid').style.display = 'none';
-  document.getElementById('repo-container').innerHTML = `
-    <div class="state-msg">
-      <h3>Nothing published yet.</h3>
-      <p>Use the Publisher to deploy your first page.</p>
-    </div>
-  `;
+function matches(p) {
+  if (state.cat && p.category !== state.cat) return false;
+  if (state.tag && !(p.tags || []).includes(state.tag)) return false;
+  if (state.q) {
+    const hay = [p.title, p.description, p.category, p.slug.replace(/-/g, ' '), ...(p.tags || [])].join(' ').toLowerCase();
+    if (!state.q.toLowerCase().split(/\s+/).filter(Boolean).every(w => hay.includes(w))) return false;
+  }
+  return true;
+}
+
+function sorted(list) {
+  const out = list.slice();
+  if (state.sort === 'az') out.sort((a, b) => a.title.localeCompare(b.title, 'en', { sensitivity: 'base' }));
+  else if (state.sort === 'updated') out.sort((a, b) => new Date(b.updated) - new Date(a.updated));
+  else out.sort((a, b) => new Date(b.created) - new Date(a.created));
+  return out;
+}
+
+function renderChips() {
+  const counts = {};
+  PAGES.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
+  const cats = CATS.filter(c => counts[c]);
+  if (counts.Unsorted) cats.push('Unsorted');
+  const box = document.getElementById('cats');
+  box.innerHTML = [['', 'All', PAGES.length], ...cats.map(c => [c, c, counts[c]])]
+    .map(([v, label, n]) =>
+      `<button class="chip" type="button" data-cat="${esc(v)}" aria-pressed="${state.cat === v}">${esc(label)}<span class="n">${n}</span></button>`)
+    .join('');
+}
+
+function renderTagOptions() {
+  // Tags offered are those used in the current category, most used first
+  const counts = {};
+  PAGES.filter(p => !state.cat || p.category === state.cat)
+    .forEach(p => (p.tags || []).forEach(t => { counts[t] = (counts[t] || 0) + 1; }));
+  if (state.tag && !counts[state.tag]) counts[state.tag] = 0;
+  const tags = Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b));
+  const sel = document.getElementById('tag');
+  sel.innerHTML = '<option value="">Any tag</option>' +
+    tags.map(t => `<option value="${esc(t)}">${esc(t)} (${counts[t]})</option>`).join('');
+  sel.value = state.tag;
+}
+
+let dailyLatest = null;
+
+function render() {
+  renderChips();
+  renderTagOptions();
+  const qEl = document.getElementById('q');
+  if (document.activeElement !== qEl) qEl.value = state.q;
+  document.getElementById('sort').value = state.sort;
+  const filtered = !!(state.cat || state.tag || state.q);
+  document.getElementById('clear').hidden = !filtered;
+
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  let idx = 0;
+
+  if (!filtered) {
+    const d = { ...DAILY_CARD };
+    if (dailyLatest) {
+      d.description = `A new researched piece every morning. Latest: ${dailyLatest.title}`;
+      d.dateLabel = relTime(`${dailyLatest.date}T00:00:00`);
+    }
+    grid.appendChild(makeCard(d, idx++, d.dateLabel));
+  }
+
+  const list = sorted(PAGES.filter(matches));
+  list.forEach(p => {
+    const label = state.sort === 'updated' ? 'Updated ' + relTime(p.updated).toLowerCase() : fmtDate(p.created);
+    grid.appendChild(makeCard(p, idx++, label));
+  });
+
+  if (!list.length) {
+    grid.insertAdjacentHTML('beforeend',
+      '<div class="state-msg no-match"><h3>Nothing matches.</h3><p>Try another category or tag, or clear the filters.</p></div>');
+  }
+
+  document.getElementById('count').textContent = filtered
+    ? `${list.length} of ${PAGES.length}`
+    : `${PAGES.length} pages`;
+  grid.style.display = 'grid';
+}
+
+// ── Events ───────────────────────────────────────────────────
+
+function bind() {
+  document.getElementById('cats').addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    state.cat = b.dataset.cat;
+    state.tag = '';
+    writeHash(); render();
+  });
+  document.getElementById('tag').addEventListener('change', e => { state.tag = e.target.value; writeHash(); render(); });
+  document.getElementById('sort').addEventListener('change', e => { state.sort = e.target.value; writeHash(); render(); });
+  let t;
+  document.getElementById('q').addEventListener('input', e => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      state.q = e.target.value.trim(); writeHash(); render();
+    }, 150);
+  });
+  document.getElementById('clear').addEventListener('click', () => {
+    state.cat = ''; state.tag = ''; state.q = ''; writeHash(); render();
+  });
+  // A tag on a card filters by that tag instead of opening the page
+  document.getElementById('grid').addEventListener('click', e => {
+    const b = e.target.closest('.tag'); if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    state.tag = b.dataset.tag; state.cat = '';
+    writeHash(); render();
+    document.getElementById('filters').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  window.addEventListener('hashchange', () => { readHash(); render(); });
 }
 
 function showError(msg) {
   document.getElementById('skeleton').style.display = 'none';
-  document.getElementById('grid').style.display = 'none';
-  document.getElementById('repo-container').innerHTML = `
-    <div class="state-msg">
-      <h3>Couldn't load pages.</h3>
-      <p>${msg}</p>
-    </div>
-  `;
+  document.getElementById('repo-container').insertAdjacentHTML('afterbegin',
+    `<div class="state-msg"><h3>Couldn't load pages.</h3><p>${esc(msg)}</p></div>`);
 }
 
 // ── Init ─────────────────────────────────────────────────────
 
 (async () => {
-  document.getElementById('skeleton').style.display = 'none';
-  const grid = document.getElementById('grid');
+  readHash();
+  const latestP = loadDailyLatest();
+  let data;
+  try { data = await loadPages(); }
+  catch (err) { showError(err.message || 'pages.json could not be read.'); return; }
+  dailyLatest = await latestP;
 
-  const dailyP = loadDaily();
-  let repos = [];
+  PAGES = data.pages.map(p => ({ ...p, tags: p.tags || [], category: p.category || 'Unsorted' }));
   try {
-    repos = await loadRepos();
-  } catch (err) {
-    // Even if the GitHub API call fails (rate limit, network), the manually
-    // pinned cards should still render — they don't depend on that call.
-    if (!MANUAL_CARDS.length) { showError(err.message || 'GitHub API request failed.'); return; }
-  }
-  const daily = await dailyP;
-
-  // Fill in the Daily hub card from its manifest.
-  const dailyCard = MANUAL_CARDS.find(c => c.id === 'daily');
-  if (dailyCard && daily.latest) {
-    dailyCard.desc = `A new researched piece every morning. Latest: ${daily.latest.title}`;
-    dailyCard.dateLabel = relTime(`${daily.latest.date}T00:00:00`);
+    const c = await fetch('/catalog.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.json());
+    CATS = c.categories || [];
+  } catch (e) {
+    CATS = [...new Set(PAGES.map(p => p.category))].filter(c => c !== 'Unsorted');
   }
 
-  // Repos and promoted Daily pieces share one newest-first feed.
-  const feed = [
-    ...repos.map(repo => ({ t: new Date(repo.pushed_at), el: i => renderCard(repo, i) })),
-    ...daily.promoted.map(item => ({ t: new Date(item.when), el: i => renderManualCard({ ...item, dateLabel: 'Daily · ' + relTime(item.when) }, i) }))
-  ].sort((a, b) => b.t - a.t);
-
-  const total = feed.length + MANUAL_CARDS.length;
-  if (!total) { showEmpty(); return; }
-
-  document.getElementById('count').textContent = `${total} item${total !== 1 ? 's' : ''}`;
-  document.getElementById('last-updated').textContent = feed.length
-    ? `Updated ${relTime(feed[0].t.toISOString()).toLowerCase()}`
-    : '';
-
-  let idx = 0;
-  MANUAL_CARDS.forEach(item => grid.appendChild(renderManualCard(item, idx++)));
-  feed.forEach(f => grid.appendChild(f.el(idx++)));
-  grid.style.display = 'grid';
+  document.getElementById('skeleton').style.display = 'none';
+  document.getElementById('filters').hidden = false;
+  if (data.generated) {
+    document.getElementById('last-updated').textContent = `Index rebuilt ${relTime(data.generated).toLowerCase()}`;
+  }
+  bind();
+  render();
 })();
 </script>
 
