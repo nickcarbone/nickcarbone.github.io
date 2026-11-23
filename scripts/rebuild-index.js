@@ -173,8 +173,9 @@ async function main() {
   // 2. Filter obvious non-page repos before hitting Pages API
   const candidates = allRepos.filter(r =>
     !EXCLUDE.has(r.name) &&
+    // JavaScript is allowed: a web app whose script outweighs its HTML
+    // (e.g. frequency-atlas) is still a page. Pages-enabled is checked next.
     r.language !== 'Python' &&
-    r.language !== 'JavaScript' &&
     r.language !== 'Ruby'
   );
   console.log(`  ${candidates.length} candidates after language filter`);

@@ -437,6 +437,18 @@
       "hidden": false
     },
     {
+      "slug": "frequency-atlas",
+      "title": "The Frequency Atlas",
+      "category": "Live",
+      "tags": [
+        "radio",
+        "shortwave",
+        "world"
+      ],
+      "hidden": false,
+      "description": "An observatory of the world's unusual radio: numbers stations, polar broadcasts, time signals, natural radio and transmission art."
+    },
+    {
       "slug": "gonzo-decemberists",
       "title": "The Truest Love Song Ever Written",
       "category": "Essays",
@@ -529,6 +541,18 @@
         "travel"
       ],
       "hidden": false
+    },
+    {
+      "slug": "late-check-out-radio",
+      "title": "Late Check-Out",
+      "category": "Live",
+      "tags": [
+        "radio",
+        "hotels",
+        "world"
+      ],
+      "hidden": false,
+      "description": "Imagined hotel rooms around the world, each played by a real radio station."
     },
     {
       "slug": "local-beach",

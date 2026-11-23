@@ -2,7 +2,7 @@ name: Rebuild Index
 
 on:
   schedule:
-    - cron: '0 */6 * * *'   # Every 6 hours
+    - cron: '23 * * * *'    # Hourly, so pages uploaded straight to GitHub appear within the hour
   workflow_dispatch:          # Manual trigger + callable from publish.html
   push:
     branches: [main]
