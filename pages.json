@@ -1,22 +1,38 @@
 {
-  "generated": "2026-11-22T19:18:39.180Z",
+  "generated": "2026-11-23T03:12:46.333Z",
   "count": 93,
   "pages": [
     {
-      "slug": "evening-edition",
-      "url": "https://nickcarbone.github.io/evening-edition/",
-      "title": "Evening Edition",
+      "slug": "elsewhere-tv",
+      "url": "https://nickcarbone.github.io/elsewhere-tv/",
+      "title": "Elsewhere Tv",
       "description": "",
-      "updated": "2026-11-22T17:23:29Z",
-      "created": "2026-10-20T14:56:45Z"
+      "updated": "2026-11-23T03:09:02Z",
+      "created": "2026-11-10T18:34:00Z"
+    },
+    {
+      "slug": "encore",
+      "url": "https://nickcarbone.github.io/encore/",
+      "title": "Encore",
+      "description": "",
+      "updated": "2026-11-23T03:08:58Z",
+      "created": "2026-11-19T18:09:45Z"
     },
     {
       "slug": "scoop-tracker",
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-11-22T15:48:55Z",
+      "updated": "2026-11-23T03:08:56Z",
       "created": "2026-07-10T01:19:16Z"
+    },
+    {
+      "slug": "evening-edition",
+      "url": "https://nickcarbone.github.io/evening-edition/",
+      "title": "Evening Edition",
+      "description": "",
+      "updated": "2026-11-23T03:08:54Z",
+      "created": "2026-10-20T14:56:45Z"
     },
     {
       "slug": "household",
@@ -25,14 +41,6 @@
       "description": "",
       "updated": "2026-11-22T06:32:02Z",
       "created": "2026-11-22T05:30:19Z"
-    },
-    {
-      "slug": "encore",
-      "url": "https://nickcarbone.github.io/encore/",
-      "title": "Encore",
-      "description": "",
-      "updated": "2026-11-22T05:52:17Z",
-      "created": "2026-11-19T18:09:45Z"
     },
     {
       "slug": "open-channel",
@@ -49,14 +57,6 @@
       "description": "nickcarbone.github.io/three-countries-three-hours/",
       "updated": "2026-11-18T20:09:26Z",
       "created": "2026-11-18T20:09:14Z"
-    },
-    {
-      "slug": "elsewhere-tv",
-      "url": "https://nickcarbone.github.io/elsewhere-tv/",
-      "title": "Elsewhere Tv",
-      "description": "",
-      "updated": "2026-11-16T13:47:54Z",
-      "created": "2026-11-10T18:34:00Z"
     },
     {
       "slug": "new-networks",
