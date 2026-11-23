@@ -452,6 +452,9 @@
     .chip:hover { border-color: var(--border-hi); color: var(--cream); }
     .chip[aria-pressed="true"] { border-color: var(--amber); color: var(--amber-lt); background: var(--amber-dim); }
     .chip .n { color: var(--text-muted); margin-left: 6px; }
+    .chip-unsorted { border-style: dashed; }
+    .chip-unsorted:not(.empty) { border-color: var(--amber); color: var(--amber-lt); border-style: solid; }
+    .chip-unsorted.empty { opacity: .55; }
     .chip[aria-pressed="true"] .n { color: var(--amber); }
     .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .controls input, .controls select {
@@ -707,11 +710,11 @@ function renderChips() {
   const counts = {};
   PAGES.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
   const cats = CATS.filter(c => counts[c]);
-  if (counts.Unsorted) cats.push('Unsorted');
   const box = document.getElementById('cats');
-  box.innerHTML = [['', 'All', PAGES.length], ...cats.map(c => [c, c, counts[c]])]
+  // Unsorted always leads the row, so new uncategorised pages are one tap away
+  box.innerHTML = [['Unsorted', 'Unsorted', counts.Unsorted || 0], ['', 'All', PAGES.length], ...cats.map(c => [c, c, counts[c]])]
     .map(([v, label, n]) =>
-      `<button class="chip" type="button" data-cat="${esc(v)}" aria-pressed="${state.cat === v}">${esc(label)}<span class="n">${n}</span></button>`)
+      `<button class="chip${v === 'Unsorted' ? ' chip-unsorted' : ''}${v === 'Unsorted' && !n ? ' empty' : ''}" type="button" data-cat="${esc(v)}" aria-pressed="${state.cat === v}">${esc(label)}<span class="n">${n}</span></button>`)
     .join('');
 }
 
@@ -760,7 +763,9 @@ function render() {
 
   if (!list.length) {
     grid.insertAdjacentHTML('beforeend',
-      '<div class="state-msg no-match"><h3>Nothing matches.</h3><p>Try another category or tag, or clear the filters.</p></div>');
+      state.cat === 'Unsorted' && !state.tag && !state.q
+        ? '<div class="state-msg no-match"><h3>Nothing unsorted.</h3><p>Every page has a category.</p></div>'
+        : '<div class="state-msg no-match"><h3>Nothing matches.</h3><p>Try another category or tag, or clear the filters.</p></div>');
   }
 
   document.getElementById('count').textContent = filtered
