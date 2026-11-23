@@ -649,6 +649,17 @@
       "description": "A slow gazette of mobile network codes assigned and withdrawn worldwide, from the ITU Operational Bulletin, checked against national registries."
     },
     {
+      "slug": "next-train",
+      "title": "Next Train",
+      "category": "Live",
+      "tags": [
+        "trains",
+        "metro",
+        "cities"
+      ],
+      "hidden": false
+    },
+    {
       "slug": "no-service-mvp",
       "title": "NO SERVICE",
       "category": "Mobile",
@@ -691,6 +702,18 @@
       ],
       "hidden": false,
       "description": "A field guide to 20 apps that swallowed a country: how they began, what they do, what they mean to the people who use them, and who pays for the convenience."
+    },
+    {
+      "slug": "onward",
+      "title": "Onward",
+      "category": "Live",
+      "tags": [
+        "trains",
+        "flights",
+        "departures"
+      ],
+      "hidden": false,
+      "description": "Real departures from rail stations and airports around the world, each in its own country’s signage style."
     },
     {
       "slug": "open-channel",
@@ -833,6 +856,15 @@
       "tags": [
         "reading list",
         "classics"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "receiver",
+      "title": "Receiver",
+      "category": "Live",
+      "tags": [
+        "radio"
       ],
       "hidden": false
     },
@@ -1043,6 +1075,17 @@
       "tags": [
         "football",
         "reference"
+      ],
+      "hidden": false
+    },
+    {
+      "slug": "world-in-motion",
+      "title": "The World in Motion",
+      "category": "Live",
+      "tags": [
+        "webcams",
+        "transport",
+        "world"
       ],
       "hidden": false
     },
