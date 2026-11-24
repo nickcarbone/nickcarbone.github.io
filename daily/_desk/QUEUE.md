@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Night Sky Over Twenty Cities (filterable atlas)
-What each city has lost to light pollution and what you’d see from the nearest real dark site. Include how to get there, the best month to go, and the constellations or the Milky Way core visible from each. Add a short guide to reading the sky without an app.
-
 The Smell of a Place (field guide)
 Twenty places defined by a scent: Grasse’s jasmine fields, the creosote smell of desert rain, Kyoto incense makers, the Seville orange season, the peat smoke on Islay. Explain the chemistry of each smell, why scent memory is so strong, and how perfumers build a smell from parts.
 

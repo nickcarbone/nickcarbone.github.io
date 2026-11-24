@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 38,
+      "slug": "2026-11-24-the-night-sky-over-twenty-cities",
+      "date": "2026-11-24",
+      "title": "The Night Sky Over Twenty Cities",
+      "dek": "For twenty cities, what light pollution has taken from the sky, the nearest properly dark site and how to reach it, when to go, and what you’ll see when you get there, plus a short guide to finding your way round the stars without an app.",
+      "kind": "Filterable atlas",
+      "readingMinutes": 26,
+      "design": "IM Fell English, Figtree, Fragment Mono; sodium-orange skyglow fading to night blue-black, red-light mode; star-loss slider hero, observing-log entries with core-altitude domes and darkness calendars.",
+      "source": "queue",
+      "brief": "The Night Sky Over Twenty Cities (filterable atlas)\nWhat each city has lost to light pollution and what you’d see from the nearest real dark site. Include how to get there, the best month to go, and the constellations or the Milky Way core visible from each. Add a short guide to reading the sky without an app.",
+      "factcheck": {
+        "claims": 190,
+        "fixed": 24
+      },
+      "corrections": []
+    },
+    {
       "no": 37,
       "slug": "2026-11-23-ten-ideas-that-change-how-you-see-a-room",
       "date": "2026-11-23",
