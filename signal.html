@@ -1,4 +1,4 @@
-<!-- SIGNAL_BUILD_UTC: 2026-11-24T05:26:20Z -->
+<!-- SIGNAL_BUILD_UTC: 2026-11-24T05:28:01Z -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1192,7 +1192,7 @@ function proxied(url) {
   return CONFIG.CORS_PROXY_URL + "?url=" + encodeURIComponent(url);
 }
 // Direct first; if the browser blocks the read (CORS) or the network call
-// fails outright — both surface as a TypeError — retry through the Worker,
+// fails outright (a TypeError) or times out — retry through the Worker,
 // but only for hosts listed in CONFIG.PROXY_FALLBACK_HOSTS.
 async function fetchCorsAware(url, opts) {
   try {
@@ -1200,7 +1200,9 @@ async function fetchCorsAware(url, opts) {
   } catch (err) {
     const host = new URL(url).hostname;
     const eligible = CONFIG.CORS_PROXY_URL && CONFIG.PROXY_FALLBACK_HOSTS.indexOf(host) !== -1;
-    if (!eligible || !(err instanceof TypeError)) throw err;
+    // A readable HTTP error (e.g. a 500 from the origin) isn't a CORS problem —
+    // only blocked reads, network failures and timeouts fall through to the proxy.
+    if (!eligible || /^HTTP \d/.test(err.message)) throw err;
     try {
       return await safeFetch(proxied(url), opts);
     } catch (proxyErr) {
@@ -1337,6 +1339,8 @@ async function fetchGDACS() {
   }).filter(Boolean);
 }
 
+// VIIRS reports detection confidence as a single letter.
+const FIRMS_CONF_LABEL = { l: "low confidence", n: "nominal confidence", h: "high confidence" };
 async function fetchFIRMS() {
   if (!CONFIG.FIRMS_MAP_KEY || CONFIG.FIRMS_MAP_KEY.indexOf("PASTE_") === 0) {
     throw new Error("No FIRMS key configured");
@@ -1402,10 +1406,10 @@ async function fetchFIRMS() {
       // heat signatures, which include gas flares, volcanoes, and industrial
       // sites, not only fires. Overclaiming this as a confirmed wildfire
       // would be a factual precision issue, not just a wording nitpick.
-      title: "Thermal anomaly (possible fire) — confidence " + conf,
+      title: "Thermal anomaly (possible fire) — " + (FIRMS_CONF_LABEL[conf] || ("confidence " + conf)),
       url: "https://firms.modaps.eosdis.nasa.gov/map/",
       severity: severity,
-      meta: "FRP " + frp.toFixed(1) + "MW · confidence " + conf + (satIdx !== -1 ? " · sat " + cols[satIdx] : ""),
+      meta: "FRP " + frp.toFixed(1) + "MW · " + (FIRMS_CONF_LABEL[conf] || ("confidence " + conf)) + (satIdx !== -1 ? " · sat " + cols[satIdx] : ""),
       criticalWindowEnd: t + 2 * 86400000, // 48h — satellite detections are point-in-time
     });
   }
