@@ -1,4 +1,4 @@
-<!-- SIGNAL_BUILD_UTC: 2026-11-24T05:36:14Z -->
+<!-- SIGNAL_BUILD_UTC: 2026-11-24T05:41:02Z -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1420,12 +1420,18 @@ async function fetchFIRMS() {
       fires.push({ lat: d.lat, lon: d.lon, frp: d.frp, conf: d.conf, latest: d.time, n: 1, sats: sats });
     }
   });
+  const usedIds = {};
   return fires.map(function(f) {
     const confLabel = FIRMS_CONF_LABEL[f.conf] || ("confidence " + f.conf);
+    // Id from a ~11km grid cell, so the same fire keeps its id across polls
+    // even when its strongest pixel shifts slightly (avoids repeat toasts).
+    // Two separate fires can share a cell; the weaker gets a suffix (fires
+    // are already ordered strongest-first, so that assignment is stable).
+    let id = uid("firms", f.lat.toFixed(1) + "_" + f.lon.toFixed(1));
+    usedIds[id] = (usedIds[id] || 0) + 1;
+    if (usedIds[id] > 1) id += "_" + usedIds[id];
     return {
-      // Id from a ~11km grid cell, so the same fire keeps its id across polls
-      // even when its strongest pixel shifts slightly (avoids repeat toasts).
-      id: uid("firms", f.lat.toFixed(1) + "_" + f.lon.toFixed(1)),
+      id: id,
       source: "firms",
       lat: f.lat, lon: f.lon,
       time: f.latest,
