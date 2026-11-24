@@ -196,6 +196,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://nickcarbone.github.io/lamplight/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://nickcarbone.github.io/frequency-atlas/</loc>
     <lastmod>2026-11-23</lastmod>
     <priority>0.8</priority>
@@ -252,7 +257,7 @@
   </url>
   <url>
     <loc>https://nickcarbone.github.io/elsewhere-tv/</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -422,7 +427,7 @@
   </url>
   <url>
     <loc>https://nickcarbone.github.io/scoop-tracker/</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <priority>0.8</priority>
   </url>
   <url>

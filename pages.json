@@ -1,7 +1,23 @@
 {
-  "generated": "2026-11-24T03:57:11.737Z",
-  "count": 90,
+  "generated": "2026-11-24T05:28:22.023Z",
+  "count": 91,
   "pages": [
+    {
+      "slug": "lamplight",
+      "url": "https://nickcarbone.github.io/lamplight/",
+      "title": "Lamplight",
+      "description": "Public-domain short stories read aloud, from a different city each night.",
+      "updated": "2026-11-24T05:01:55Z",
+      "created": "2026-11-24T04:21:04Z",
+      "category": "Audio",
+      "tags": [
+        "stories",
+        "sleep",
+        "literature",
+        "world",
+        "public domain"
+      ]
+    },
     {
       "slug": "frequency-atlas",
       "url": "https://nickcarbone.github.io/frequency-atlas/",
@@ -159,7 +175,7 @@
       "url": "https://nickcarbone.github.io/elsewhere-tv/",
       "title": "ELSEWHERE TV",
       "description": "A hotel-room window onto everyday television around the world.",
-      "updated": "2026-11-23T18:22:34Z",
+      "updated": "2026-11-24T05:28:12Z",
       "created": "2026-11-10T18:34:00Z",
       "category": "Live",
       "tags": [
@@ -614,7 +630,7 @@
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-11-23T19:42:13Z",
+      "updated": "2026-11-24T04:32:39Z",
       "created": "2026-07-10T01:19:16Z",
       "category": "Live",
       "tags": [
