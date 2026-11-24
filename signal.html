@@ -1,4 +1,4 @@
-<!-- SIGNAL_BUILD_UTC: 2026-11-24T05:28:01Z -->
+<!-- SIGNAL_BUILD_UTC: 2026-11-24T05:41:02Z -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1080,7 +1080,7 @@ const SOURCES = {
   usgs:      { label: "USGS",       badge: "badge-usgs",      color: "#3ECF8E", verified: "Instrumented — automatic", describes: "Earthquakes worldwide — instrumented, near real-time (US Geological Survey)" },
   emsc:      { label: "EMSC",       badge: "badge-emsc",      color: "#3ECF8E", verified: "Instrumented — automatic", describes: "Earthquakes, Europe/Mediterranean focus — instrumented, near real-time (Euro-Med Seismological Centre)" },
   gdacs:     { label: "GDACS",      badge: "badge-gdacs",     color: "#E8A33D", verified: "Expert-reviewed (GDO)", describes: "Multi-hazard disasters — cyclones, floods, volcanoes, drought, wildfire (expert-reviewed alert levels)" },
-  firms:     { label: "FIRMS",      badge: "badge-firms",     color: "#E8703D", verified: "Satellite thermal detection (VIIRS NOAA-20/21)", describes: "Thermal anomalies (possible fires, also gas flares/industrial heat) from VIIRS on NOAA-20 and NOAA-21 — top 1,500 by radiative power, last ~48h (NASA FIRMS)" },
+  firms:     { label: "FIRMS",      badge: "badge-firms",     color: "#E8703D", verified: "Satellite thermal detection (VIIRS NOAA-20/21)", describes: "High-intensity thermal anomalies (FRP over 150 MW; possible fires, also gas flares/industrial heat) from VIIRS on NOAA-20 and NOAA-21, last ~48h, detections within 5km merged into one fire. Only the 8 most intense reach the priority rail (NASA FIRMS)" },
   nws:       { label: "NWS",        badge: "badge-nws",       color: "#4C8DFF", verified: "Official government alert", describes: "Severe weather alerts — tornadoes, floods, storms — US only (National Weather Service)" },
   launch:    { label: "LAUNCH",     badge: "badge-launch",    color: "#A78BFA", verified: "Official schedule (LL2)", describes: "Scheduled rocket launches worldwide (The Space Devs / Launch Library 2)" },
   gdelt:     { label: "GDELT",      badge: "badge-gdelt",     color: "#7C8B99", verified: "Auto-coded from news — unverified", describes: "Global news headlines — auto-coded from worldwide media, not human-verified (GDELT)" },
@@ -1340,6 +1340,15 @@ async function fetchGDACS() {
 }
 
 // VIIRS reports detection confidence as a single letter.
+const FIRMS_HIGH_FRP_MW = 150;   // Signal's long-standing "high" threshold for FIRMS
+const FIRMS_CLUSTER_KM = 5;
+function haversineKm(lat1, lon1, lat2, lon2) {
+  const toRad = Math.PI / 180;
+  const dLat = (lat2 - lat1) * toRad, dLon = (lon2 - lon1) * toRad;
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * toRad) * Math.cos(lat2 * toRad) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  return 6371 * 2 * Math.asin(Math.sqrt(a));
+}
 const FIRMS_CONF_LABEL = { l: "low confidence", n: "nominal confidence", h: "high confidence" };
 async function fetchFIRMS() {
   if (!CONFIG.FIRMS_MAP_KEY || CONFIG.FIRMS_MAP_KEY.indexOf("PASTE_") === 0) {
@@ -1378,76 +1387,152 @@ async function fetchFIRMS() {
   const dateIdx = header.indexOf("acq_date");
   const timeIdx = header.indexOf("acq_time");
   const satIdx = header.indexOf("satellite");
-  // Sample the top ~1500 detections by radiative power (FRP) rather than by
-  // row position. The old approach (every Nth row) let the same fire pixel
-  // drift in and out of the sample between polls just because total row
-  // count shifted slightly — which would have caused it to falsely fire a
-  // "new" notification repeatedly. Sorting by FRP keeps genuinely
-  // significant, persistent fires consistently in the sample across polls.
-  const parsed = rows.map(function(r) { return r.split(","); });
-  parsed.sort(function(a, b) { return (parseFloat(b[frpIdx]) || 0) - (parseFloat(a[frpIdx]) || 0); });
-  const sampled = parsed.slice(0, 1500);
-  const out = [];
-  for (const cols of sampled) {
-    const conf = cols[confIdx];
+  // Editorial rule (Nov 2026): only detections at Signal's "high" tier —
+  // FRP above FIRMS_HIGH_FRP_MW — are kept. Below that, the layer was mostly
+  // agricultural burning and industrial heat that drowned out everything else.
+  const strong = [];
+  for (const r of rows) {
+    const cols = r.split(",");
     const frp = parseFloat(cols[frpIdx]) || 0;
-    let severity = "low";
-    if (conf === "h" || frp > 50) severity = "mid";
-    if (frp > 150) severity = "high";
+    if (frp <= FIRMS_HIGH_FRP_MW) continue;
     const timeStr = String(cols[timeIdx]).padStart(4, "0").replace(/(\d{2})(\d{2})/, "$1:$2");
-    const t = new Date(cols[dateIdx] + "T" + timeStr + ":00Z").getTime();
-    out.push({
-      id: uid("firms", cols[latIdx] + cols[lonIdx] + cols[dateIdx] + cols[timeIdx]),
-      source: "firms",
-      lat: parseFloat(cols[latIdx]),
-      lon: parseFloat(cols[lonIdx]),
-      time: t,
-      // "Thermal anomaly" rather than "Wildfire" is deliberate: VIIRS detects
-      // heat signatures, which include gas flares, volcanoes, and industrial
-      // sites, not only fires. Overclaiming this as a confirmed wildfire
-      // would be a factual precision issue, not just a wording nitpick.
-      title: "Thermal anomaly (possible fire) — " + (FIRMS_CONF_LABEL[conf] || ("confidence " + conf)),
-      url: "https://firms.modaps.eosdis.nasa.gov/map/",
-      severity: severity,
-      meta: "FRP " + frp.toFixed(1) + "MW · " + (FIRMS_CONF_LABEL[conf] || ("confidence " + conf)) + (satIdx !== -1 ? " · sat " + cols[satIdx] : ""),
-      criticalWindowEnd: t + 2 * 86400000, // 48h — satellite detections are point-in-time
+    strong.push({
+      lat: parseFloat(cols[latIdx]), lon: parseFloat(cols[lonIdx]), frp: frp,
+      conf: cols[confIdx], sat: satIdx !== -1 ? cols[satIdx] : "",
+      time: new Date(cols[dateIdx] + "T" + timeStr + ":00Z").getTime(),
     });
   }
-  return out;
+  // De-duplicate. One fire shows up many times: as several adjacent 375m
+  // pixels in one pass, and again when NOAA-20 and NOAA-21 pass ~50 min apart.
+  // Greedy clustering, strongest first: each detection joins the first kept
+  // fire within FIRMS_CLUSTER_KM, otherwise it starts a new one. Sampled on
+  // live data 24 Nov 2026: 253 detections -> 93 fires at 5km (103 at 2km, 89 at 10km).
+  strong.sort(function(a, b) { return b.frp - a.frp; });
+  const fires = [];
+  strong.forEach(function(d) {
+    const home = fires.find(function(f) { return haversineKm(f.lat, f.lon, d.lat, d.lon) < FIRMS_CLUSTER_KM; });
+    if (home) {
+      home.n++;
+      if (d.time > home.latest) home.latest = d.time;
+      if (d.sat) home.sats[d.sat] = true;
+    } else {
+      const sats = {}; if (d.sat) sats[d.sat] = true;
+      fires.push({ lat: d.lat, lon: d.lon, frp: d.frp, conf: d.conf, latest: d.time, n: 1, sats: sats });
+    }
+  });
+  const usedIds = {};
+  return fires.map(function(f) {
+    const confLabel = FIRMS_CONF_LABEL[f.conf] || ("confidence " + f.conf);
+    // Id from a ~11km grid cell, so the same fire keeps its id across polls
+    // even when its strongest pixel shifts slightly (avoids repeat toasts).
+    // Two separate fires can share a cell; the weaker gets a suffix (fires
+    // are already ordered strongest-first, so that assignment is stable).
+    let id = uid("firms", f.lat.toFixed(1) + "_" + f.lon.toFixed(1));
+    usedIds[id] = (usedIds[id] || 0) + 1;
+    if (usedIds[id] > 1) id += "_" + usedIds[id];
+    return {
+      id: id,
+      source: "firms",
+      lat: f.lat, lon: f.lon,
+      time: f.latest,
+      frp: f.frp,
+      // "Thermal anomaly" rather than "Wildfire" is deliberate: VIIRS detects
+      // heat signatures, which include gas flares, volcanoes, and industrial
+      // sites, not only fires.
+      title: "Thermal anomaly (possible fire)" + (f.n > 1 ? " — " + f.n + " detections" : ""),
+      url: "https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@" + f.lon.toFixed(3) + "," + f.lat.toFixed(3) + ",10.0z",
+      severity: "high",
+      meta: "peak FRP " + f.frp.toFixed(0) + "MW · " + confLabel + " · " + Object.keys(f.sats).join("+") +
+        (f.n > 1 ? " · " + f.n + " detections within " + FIRMS_CLUSTER_KM + "km merged" : ""),
+      criticalWindowEnd: f.latest + 2 * 86400000, // 48h — satellite detections are point-in-time
+    };
+  });
+}
+
+// NWS issues most warnings by forecast/marine ZONE rather than drawing a
+// polygon — 63 of 72 Severe/Extreme alerts on 24 Nov 2026 had geometry: null,
+// and the old fetcher silently dropped every one. Those alerts list their
+// zones in properties.affectedZones; each zone URL returns that zone's shape.
+// Zone shapes don't change, so they're fetched once per session and cached.
+// (The bulk /zones?id=... endpoint was tested and returns no geometry, so
+// zones have to be fetched individually — ~220 small requests on first load.)
+const NWS_ZONE_CENTROIDS = new Map(); // zone URL -> {lat, lon} | null (failed)
+function ringCentroid(ring) {
+  let lat = 0, lon = 0;
+  ring.forEach(function(c) { lon += c[0]; lat += c[1]; });
+  return { lat: lat / ring.length, lon: lon / ring.length };
+}
+function geometryCentroid(g) {
+  if (!g) return null;
+  // Polygon: outer ring. MultiPolygon: mean of each part's outer ring.
+  const rings = g.type === "Polygon" ? [g.coordinates[0]]
+    : g.type === "MultiPolygon" ? g.coordinates.map(function(p) { return p[0]; })
+    : null;
+  if (!rings || rings.length === 0) return null;
+  const pts = rings.map(ringCentroid);
+  return {
+    lat: pts.reduce(function(s, p) { return s + p.lat; }, 0) / pts.length,
+    lon: pts.reduce(function(s, p) { return s + p.lon; }, 0) / pts.length,
+  };
+}
+async function resolveNwsZones(urls) {
+  const todo = urls.filter(function(u) { return !NWS_ZONE_CENTROIDS.has(u); });
+  let next = 0;
+  async function worker() {
+    while (next < todo.length) {
+      const u = todo[next++];
+      try {
+        const res = await safeFetch(u, { headers: { "Accept": "application/geo+json" } });
+        const z = await res.json();
+        NWS_ZONE_CENTROIDS.set(u, geometryCentroid(z.geometry));
+      } catch (e) {
+        NWS_ZONE_CENTROIDS.set(u, null); // don't retry a broken zone every poll this session
+      }
+    }
+  }
+  const workers = [];
+  for (let i = 0; i < 6; i++) workers.push(worker()); // polite concurrency for api.weather.gov
+  await Promise.all(workers);
 }
 
 async function fetchNWS() {
   const url = "https://api.weather.gov/alerts/active?severity=Extreme,Severe";
   const res = await safeFetch(url, { headers: { "Accept": "application/geo+json" } });
   const data = await res.json();
-  return (data.features || []).map(function(f) {
+  const features = data.features || [];
+
+  const zoneUrls = new Set();
+  features.forEach(function(f) {
+    if (!f.geometry) (f.properties.affectedZones || []).forEach(function(z) { zoneUrls.add(z); });
+  });
+  await resolveNwsZones(Array.from(zoneUrls));
+
+  return features.map(function(f) {
     const p = f.properties;
-    let lat, lon;
-    if (f.geometry && f.geometry.type === "Polygon") {
-      const ring = f.geometry.coordinates[0];
-      lat = ring.reduce(function(s, c) { return s + c[1]; }, 0) / ring.length;
-      lon = ring.reduce(function(s, c) { return s + c[0]; }, 0) / ring.length;
-    } else {
-      return null;
+    let pt = geometryCentroid(f.geometry);
+    let located = "alert polygon";
+    if (!pt) {
+      const zs = (p.affectedZones || []).map(function(z) { return NWS_ZONE_CENTROIDS.get(z); }).filter(Boolean);
+      if (zs.length === 0) return null;
+      pt = {
+        lat: zs.reduce(function(s, z) { return s + z.lat; }, 0) / zs.length,
+        lon: zs.reduce(function(s, z) { return s + z.lon; }, 0) / zs.length,
+      };
+      located = "centre of " + zs.length + " NWS zone" + (zs.length === 1 ? "" : "s");
     }
     return {
       id: uid("nws", p.id),
       source: "nws",
-      lat: lat, lon: lon,
+      lat: pt.lat, lon: pt.lon,
       time: new Date(p.sent).getTime(),
       title: p.event + " — " + (p.areaDesc || "").split(";")[0],
       // alerts.weather.gov was permanently decommissioned by NWS on Dec 2, 2025
-      // (Service Change Notice 25-73); it now returns NXDOMAIN. NWS's own
-      // decommissioning notice directs users to weather.gov instead. There is
-      // no per-alert deep link available on the replacement page — it's a
-      // client-rendered shell with no URL-addressable anchor per record — so
-      // this points to the live active-alerts listing rather than a dead or
-      // fabricated per-item URL.
+      // (Service Change Notice 25-73). No per-alert deep link exists on the
+      // replacement page, so this points to the live active-alerts listing.
       url: "https://www.weather.gov/alerts",
       severity: p.severity === "Extreme" ? "high" : "mid",
-      meta: p.severity + " · " + p.urgency + " · " + p.certainty,
-      // NWS alerts carry their own authoritative expiry — use it directly
-      // rather than guessing a window.
+      meta: p.severity + " · " + p.urgency + " · " + p.certainty + " · " + (p.senderName || "") + " · located by " + located,
+      // NWS alerts carry their own authoritative expiry — use it directly.
       criticalWindowEnd: p.expires ? new Date(p.expires).getTime() : (Date.now() + 6 * 3600000),
     };
   }).filter(Boolean);
@@ -1862,9 +1947,26 @@ function sourcesStillLoading() {
   });
 }
 
+// Per-source ceiling in the Highest-Priority rail, so one prolific source
+// can't take every slot. Events past the cap stay on the map and timeline.
+// FIRMS: the N most intense fires (by peak FRP) make the rail.
+const RAIL_SOURCE_CAP = { firms: 8 };
+function railAllowedIds() {
+  const allowed = new Set();
+  Object.keys(RAIL_SOURCE_CAP).forEach(function(src) {
+    STATE.events
+      .filter(function(e) { return e.source === src && isStillCritical(e); })
+      .sort(function(a, b) { return (b.frp || 0) - (a.frp || 0); })
+      .slice(0, RAIL_SOURCE_CAP[src])
+      .forEach(function(e) { allowed.add(e.id); });
+  });
+  return allowed;
+}
 function renderCritical() {
+  const capped = railAllowedIds();
   const list = STATE.events
     .filter(function(e) { return (e.severity === "high" || e.severity === "mid") && isStillCritical(e); })
+    .filter(function(e) { return !(e.source in RAIL_SOURCE_CAP) || capped.has(e.id); })
     .sort(function(a, b) {
       const ra = a.severity === "high" ? 0 : 1;
       const rb = b.severity === "high" ? 0 : 1;
