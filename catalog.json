@@ -2,6 +2,7 @@
   "_readme": "Landing-page catalogue. One entry per page: category is one of the categories list; tags are free, short, lowercase; hidden keeps a page off the landing page (its URL still works). Pages not listed here are classified from <meta name=\"nc:category\"> and <meta name=\"nc:tags\"> in the page itself, or shown as Unsorted.",
   "categories": [
     "Live",
+    "Audio",
     "News",
     "Mobile",
     "Food",
@@ -1098,6 +1099,20 @@
         "world"
       ],
       "hidden": false
+    },
+    {
+      "slug": "lamplight",
+      "title": "Lamplight",
+      "category": "Audio",
+      "tags": [
+        "stories",
+        "sleep",
+        "literature",
+        "world",
+        "public domain"
+      ],
+      "hidden": false,
+      "description": "Public-domain short stories read aloud, from a different city each night."
     }
   ]
 }
