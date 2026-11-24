@@ -1,4 +1,4 @@
-<!-- SIGNAL_BUILD_UTC: 1970-01-01T00:00:00Z (placeholder — deploy.sh overwrites this on every push; if you're seeing this literal placeholder, the file was saved/uploaded outside deploy.sh) -->
+<!-- SIGNAL_BUILD_UTC: 2026-11-24T05:28:01Z -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -975,6 +975,33 @@ const CONFIG = {
   // ALLOWED_HOSTS in the Worker file and redeploy, no new infrastructure.
   CORS_PROXY_URL: "https://signal-cors-proxy.carbonen.workers.dev/",
 
+  // Sources whose servers have dropped (or never sent) a CORS header, or that
+  // fail outright from a browser. fetchCorsAware() tries them direct first and
+  // falls back to CORS_PROXY_URL on a network/CORS failure. Each hostname must
+  // ALSO be on the Worker's ALLOWED_HOSTS list — until it is, the proxy answers
+  // 403 "Host not in allowlist" and the health strip shows that message.
+  //   rapidmapping.emergency.copernicus.eu — CORS header gone as of Nov 2026
+  //   api.gdeltproject.org — answers 429 with no CORS header when throttled
+  PROXY_FALLBACK_HOSTS: ["rapidmapping.emergency.copernicus.eu", "api.gdeltproject.org"],
+
+  // Basemap. CARTO's raster tiles (the original Dark Matter look) began
+  // returning an "API KEY REQUIRED" watermark tile for keyless requests in
+  // Aug–Sep 2026 — HTTP 200, so nothing errors, the map just goes blank. A
+  // free key from https://carto.com/basemaps/apikey/ restores it: paste it
+  // here (and restrict it to nickcarbone.github.io in CARTO's dashboard,
+  // since this file is public). With no key, Signal uses Esri's Dark Gray
+  // Canvas, which needs no key (legacy service, in mature support).
+  CARTO_BASEMAP_KEY: "",
+
+  // FIRMS satellite products to merge. Suomi-NPP (VIIRS_SNPP_NRT) stopped
+  // producing new data on 2 Nov 2026 (NASA Earthdata notice) — the API still
+  // answers 200 with a header row and nothing else, which is why the FIRMS
+  // layer went silently empty. NOAA-20 and NOAA-21 carry the same VIIRS
+  // 375m active-fire product on a similar orbit schedule.
+  FIRMS_PRODUCTS: ["VIIRS_NOAA20_NRT", "VIIRS_NOAA21_NRT"],
+
+  FETCH_TIMEOUT_MS: 20_000,
+
   REFRESH: {
     usgs: 60_000,
     emsc: 60_000,
@@ -982,7 +1009,7 @@ const CONFIG = {
     firms: 10 * 60_000,
     nws: 2 * 60_000,
     launch: 30 * 60_000,
-    gdelt: 60_000,
+    gdelt: 5 * 60_000,   // GDELT's doc index updates every 15 min; polling every 60s mostly earned 429s
     copernicus_ems: 10 * 60_000, // activations update over hours/days between products, not seconds
     effis: 10 * 60_000,
     eonet: 15 * 60_000,  // NASA's own curation cadence is slow relative to raw satellite feeds
@@ -1044,6 +1071,7 @@ const STATE = {
   toasts: [],           // transient toast queue: {id, title, source, severity, expiresAt}
   weatherLocations: [], // current-conditions snapshot for CONFIG.WEATHER_LOCATIONS, refreshed on a timer
   queryMode: false,     // true while "Click map for conditions" is toggled on
+  dataVersion: 0,         // bumped on every successful source refresh; renderMap() skips rebuilds when nothing changed
   openPopupEventId: null, // event id whose map popup is currently open, so renderMap() can
                           // reopen it on the freshly-rebuilt marker instead of silently closing it
 };
@@ -1052,7 +1080,7 @@ const SOURCES = {
   usgs:      { label: "USGS",       badge: "badge-usgs",      color: "#3ECF8E", verified: "Instrumented — automatic", describes: "Earthquakes worldwide — instrumented, near real-time (US Geological Survey)" },
   emsc:      { label: "EMSC",       badge: "badge-emsc",      color: "#3ECF8E", verified: "Instrumented — automatic", describes: "Earthquakes, Europe/Mediterranean focus — instrumented, near real-time (Euro-Med Seismological Centre)" },
   gdacs:     { label: "GDACS",      badge: "badge-gdacs",     color: "#E8A33D", verified: "Expert-reviewed (GDO)", describes: "Multi-hazard disasters — cyclones, floods, volcanoes, drought, wildfire (expert-reviewed alert levels)" },
-  firms:     { label: "FIRMS",      badge: "badge-firms",     color: "#E8703D", verified: "Satellite thermal detection", describes: "Wildfire / heat-source detections via satellite (NASA FIRMS)" },
+  firms:     { label: "FIRMS",      badge: "badge-firms",     color: "#E8703D", verified: "Satellite thermal detection (VIIRS NOAA-20/21)", describes: "Thermal anomalies (possible fires, also gas flares/industrial heat) from VIIRS on NOAA-20 and NOAA-21 — top 1,500 by radiative power, last ~48h (NASA FIRMS)" },
   nws:       { label: "NWS",        badge: "badge-nws",       color: "#4C8DFF", verified: "Official government alert", describes: "Severe weather alerts — tornadoes, floods, storms — US only (National Weather Service)" },
   launch:    { label: "LAUNCH",     badge: "badge-launch",    color: "#A78BFA", verified: "Official schedule (LL2)", describes: "Scheduled rocket launches worldwide (The Space Devs / Launch Library 2)" },
   gdelt:     { label: "GDELT",      badge: "badge-gdelt",     color: "#7C8B99", verified: "Auto-coded from news — unverified", describes: "Global news headlines — auto-coded from worldwide media, not human-verified (GDELT)" },
@@ -1136,14 +1164,62 @@ function timeAgo(ts) {
 function fmtUTC(ts) {
   return new Date(ts).toISOString().replace('T', ' ').substring(0, 19) + " UTC";
 }
+// Every request gets a timeout: GDELT in particular can hang 10s+ before the
+// browser gives up, which stalls that source's status in "pending".
 async function safeFetch(url, opts) {
-  opts = opts || {};
-  const res = await fetch(url, opts);
-  if (!res.ok) throw new Error("HTTP " + res.status);
+  opts = Object.assign({}, opts || {});
+  const ctrl = new AbortController();
+  const timer = setTimeout(function() { ctrl.abort(); }, CONFIG.FETCH_TIMEOUT_MS);
+  opts.signal = ctrl.signal;
+  let res;
+  try {
+    res = await fetch(url, opts);
+  } catch (err) {
+    if (err.name === "AbortError") throw new Error("timed out after " + (CONFIG.FETCH_TIMEOUT_MS / 1000) + "s");
+    throw err;
+  } finally {
+    clearTimeout(timer);
+  }
+  if (!res.ok) {
+    // The proxy explains its refusals in plain text — surface that, not a bare status code.
+    let detail = "";
+    try { detail = (await res.text()).slice(0, 80); } catch (e) {}
+    throw new Error("HTTP " + res.status + (detail ? " — " + detail : ""));
+  }
   return res;
 }
-function markStatus(key, status, error) {
-  STATE.sourceStatus[key] = { status: status, lastFetch: Date.now(), error: error || null };
+function proxied(url) {
+  return CONFIG.CORS_PROXY_URL + "?url=" + encodeURIComponent(url);
+}
+// Direct first; if the browser blocks the read (CORS) or the network call
+// fails outright (a TypeError) or times out — retry through the Worker,
+// but only for hosts listed in CONFIG.PROXY_FALLBACK_HOSTS.
+async function fetchCorsAware(url, opts) {
+  try {
+    return await safeFetch(url, opts);
+  } catch (err) {
+    const host = new URL(url).hostname;
+    const eligible = CONFIG.CORS_PROXY_URL && CONFIG.PROXY_FALLBACK_HOSTS.indexOf(host) !== -1;
+    // A readable HTTP error (e.g. a 500 from the origin) isn't a CORS problem —
+    // only blocked reads, network failures and timeouts fall through to the proxy.
+    if (!eligible || /^HTTP \d/.test(err.message)) throw err;
+    try {
+      return await safeFetch(proxied(url), opts);
+    } catch (proxyErr) {
+      throw new Error("direct blocked (CORS/network); proxy: " + proxyErr.message);
+    }
+  }
+}
+// "live" with zero items is how a dead feed hid for three weeks (FIRMS after
+// Suomi-NPP shut down). Sources that should never legitimately be empty are
+// flagged "stale" instead, so the health strip goes amber rather than green.
+const EXPECT_NONEMPTY = { usgs: true, emsc: true, firms: true, eonet: true, swpc: true, effis: false, gdelt: true, copernicus_ems: true, odin: true, launch: true, gdacs: true, nws: false };
+function markStatus(key, status, error, count) {
+  if (status === "live" && count === 0 && EXPECT_NONEMPTY[key]) {
+    status = "stale";
+    error = "responded, but returned 0 items";
+  }
+  STATE.sourceStatus[key] = { status: status, lastFetch: Date.now(), error: error || null, count: (typeof count === "number") ? count : null };
   renderHealthStrip();
 }
 
@@ -1156,7 +1232,9 @@ async function fetchUSGS() {
   const url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson";
   const res = await safeFetch(url);
   const data = await res.json();
-  return data.features.map(function(f) {
+  return data.features.filter(function(f) {
+    return f.properties && typeof f.properties.mag === "number" && f.geometry;
+  }).map(function(f) {
     const p = f.properties;
     let severity = "low";
     if (p.alert === "red" || p.mag >= 6.5) severity = "high";
@@ -1170,7 +1248,7 @@ async function fetchUSGS() {
       title: "Earthquake M" + p.mag.toFixed(1) + " — " + p.place,
       url: p.url,
       severity: severity,
-      meta: "M" + p.mag.toFixed(1) + " · depth " + f.geometry.coordinates[2].toFixed(0) + "km" + (p.alert ? " · PAGER: " + p.alert : ""),
+      meta: "M" + p.mag.toFixed(1) + " · depth " + Number(f.geometry.coordinates[2] || 0).toFixed(0) + "km" + (p.alert ? " · PAGER: " + p.alert : ""),
       criticalWindowEnd: p.time + 3 * 86400000, // earthquakes: 72h aftermath window
     };
   });
@@ -1261,6 +1339,8 @@ async function fetchGDACS() {
   }).filter(Boolean);
 }
 
+// VIIRS reports detection confidence as a single letter.
+const FIRMS_CONF_LABEL = { l: "low confidence", n: "nominal confidence", h: "high confidence" };
 async function fetchFIRMS() {
   if (!CONFIG.FIRMS_MAP_KEY || CONFIG.FIRMS_MAP_KEY.indexOf("PASTE_") === 0) {
     throw new Error("No FIRMS key configured");
@@ -1272,19 +1352,32 @@ async function fetchFIRMS() {
   // the existing top-1500-by-FRP sampling below already keeps the result set
   // to genuinely significant detections, so the wider window doesn't dilute
   // anything, it just avoids a false "empty" reading around each day rollover.
-  const url = "https://firms.modaps.eosdis.nasa.gov/api/area/csv/" + CONFIG.FIRMS_MAP_KEY + "/VIIRS_SNPP_NRT/world/2";
-  const res = await safeFetch(url);
-  const text = await res.text();
-  const lines = text.trim().split("\n");
-  if (lines.length < 2) return [];
-  const header = lines[0].split(",");
+  // Products are fetched in parallel and merged; one failing doesn't sink the
+  // other. If ALL fail, the first error is thrown so the health strip shows it.
+  const settled = await Promise.allSettled(CONFIG.FIRMS_PRODUCTS.map(function(product) {
+    const url = "https://firms.modaps.eosdis.nasa.gov/api/area/csv/" + CONFIG.FIRMS_MAP_KEY + "/" + product + "/world/2";
+    return safeFetch(url).then(function(res) { return res.text(); });
+  }));
+  const ok = settled.filter(function(r) { return r.status === "fulfilled"; });
+  if (ok.length === 0) throw settled[0].reason;
+  // All VIIRS NRT products share one column layout; take the header from the
+  // first non-empty response and append every product's data rows.
+  let header = null;
+  const rows = [];
+  ok.forEach(function(r) {
+    const lines = r.value.trim().split("\n");
+    if (lines.length < 2) return;
+    if (!header) header = lines[0].split(",");
+    for (let i = 1; i < lines.length; i++) rows.push(lines[i]);
+  });
+  if (!header) return [];
   const latIdx = header.indexOf("latitude");
   const lonIdx = header.indexOf("longitude");
   const confIdx = header.indexOf("confidence");
   const frpIdx = header.indexOf("frp");
   const dateIdx = header.indexOf("acq_date");
   const timeIdx = header.indexOf("acq_time");
-  const rows = lines.slice(1);
+  const satIdx = header.indexOf("satellite");
   // Sample the top ~1500 detections by radiative power (FRP) rather than by
   // row position. The old approach (every Nth row) let the same fire pixel
   // drift in and out of the sample between polls just because total row
@@ -1313,10 +1406,10 @@ async function fetchFIRMS() {
       // heat signatures, which include gas flares, volcanoes, and industrial
       // sites, not only fires. Overclaiming this as a confirmed wildfire
       // would be a factual precision issue, not just a wording nitpick.
-      title: "Thermal anomaly (possible fire) — confidence " + conf,
+      title: "Thermal anomaly (possible fire) — " + (FIRMS_CONF_LABEL[conf] || ("confidence " + conf)),
       url: "https://firms.modaps.eosdis.nasa.gov/map/",
       severity: severity,
-      meta: "FRP " + frp.toFixed(1) + "MW · confidence " + conf,
+      meta: "FRP " + frp.toFixed(1) + "MW · " + (FIRMS_CONF_LABEL[conf] || ("confidence " + conf)) + (satIdx !== -1 ? " · sat " + cols[satIdx] : ""),
       criticalWindowEnd: t + 2 * 86400000, // 48h — satellite detections are point-in-time
     });
   }
@@ -1385,7 +1478,7 @@ async function fetchGDELT() {
   if (sinceLast < 5500) await new Promise(function(r) { setTimeout(r, 5500 - sinceLast); });
   gdeltLastCall = Date.now();
   const url = "https://api.gdeltproject.org/api/v2/doc/doc?query=sourcelang:english&mode=artlist&maxrecords=40&format=json&timespan=3h&sort=datedesc";
-  const res = await safeFetch(url);
+  const res = await fetchCorsAware(url);
   const text = await res.text();
   let data;
   try { data = JSON.parse(text); }
@@ -1416,7 +1509,7 @@ async function fetchGDELT() {
 // drop-in, unlike EFFIS below.
 async function fetchCopernicusEMS() {
   const url = "https://rapidmapping.emergency.copernicus.eu/backend/dashboard-api/public-activations-info/?limit=60";
-  const res = await safeFetch(url);
+  const res = await fetchCorsAware(url);
   const data = await res.json();
   return (data.results || []).map(function(a) {
     // centroid arrives as WKT text, e.g. "POINT (5.338 44.702)" — lon then lat.
@@ -1445,7 +1538,7 @@ async function fetchEFFIS() {
   if (!CONFIG.EFFIS_ENABLED) throw new Error("EFFIS disabled — see CONFIG.EFFIS_ENABLED");
   if (!CONFIG.CORS_PROXY_URL) throw new Error("EFFIS needs the CORS proxy Worker deployed — see CONFIG.CORS_PROXY_URL");
   const upstream = "https://api.effis.emergency.copernicus.eu/rest/2/burntareas/current/?format=json&limit=200&ordering=-firedate";
-  const url = CONFIG.CORS_PROXY_URL + "?url=" + encodeURIComponent(upstream);
+  const url = proxied(upstream);
   const res = await safeFetch(url);
   const data = await res.json();
   return (data.results || []).map(function(f) {
@@ -1636,7 +1729,8 @@ async function refreshSource(key) {
     const events = await FETCHERS[key]();
     markSeenAndQueueToasts(key, events);
     STATE.events = STATE.events.filter(function(e) { return e.source !== key; }).concat(events);
-    markStatus(key, "live");
+    STATE.dataVersion++;
+    markStatus(key, "live", null, events.length);
   } catch (err) {
     markStatus(key, "error", err.message);
   }
@@ -1694,12 +1788,14 @@ function renderHealthStrip() {
   for (const key in STATE.sourceStatus) {
     const s = STATE.sourceStatus[key];
     const dot = document.createElement("div");
-    dot.className = "health-dot " + (s.status === "live" ? "live" : s.status === "error" ? "error" : "");
+    dot.className = "health-dot " + (s.status === "live" ? "live" : s.status === "error" ? "error" : s.status === "stale" ? "stale" : "");
     strip.appendChild(dot);
     const row = document.createElement("div");
     const label = SOURCES[key].label;
-    const statusText = s.status === "live" ? timeAgo(s.lastFetch) : (s.error || "pending");
-    row.innerHTML = "<span>" + label + "</span><span>" + statusText + "</span>";
+    const statusText = s.status === "live"
+      ? (timeAgo(s.lastFetch) + (s.count != null ? " · " + s.count : ""))
+      : (s.error || "pending");
+    row.innerHTML = "<span>" + label + "</span><span>" + escapeHtml(statusText) + "</span>";
     tip.appendChild(row);
   }
 }
@@ -1789,7 +1885,7 @@ function renderCritical() {
     return '<div class="crit-card sev-' + e.severity + (isRecentlyNew(e) ? ' is-new' : '') + '" onclick="openSourceCard(\'' + e.id + '\')">' +
       '<div class="src-badge">' + SOURCES[e.source].label + '</div>' +
       '<div class="title">' + escapeHtml(e.title) + '</div>' +
-      '<div class="meta"><span>' + (e.meta || "") + '</span><span>' + timeAgo(e.time) + '</span></div>' +
+      '<div class="meta"><span>' + escapeHtml(e.meta) + '</span><span>' + timeAgo(e.time) + '</span></div>' +
     '</div>';
   }).join("");
 }
@@ -1855,7 +1951,7 @@ function renderUpcoming() {
     return '<div class="tl-item' + (isRecentlyNew(e) ? ' is-new' : '') + '">' +
       '<div class="row1"><span class="src ' + src.badge + '">' + src.label + '</span><span class="time">' + timeAgo(e.time) + '</span></div>' +
       '<div class="title">' + escapeHtml(e.title) + '</div>' +
-      '<div class="verify">' + (e.meta || "") + '</div>' +
+      '<div class="verify">' + escapeHtml(e.meta) + '</div>' +
       '<a class="src-link" href="#" onclick="openSourceCard(\'' + e.id + '\'); return false;">source →</a>' +
     '</div>';
   }).join("");
@@ -1873,7 +1969,7 @@ function renderTicker() {
   const track = document.getElementById("tickerTrack");
   if (list.length === 0) return;
   const items = list.map(function(e) {
-    return '<a href="' + e.url + '" target="_blank" rel="noopener"><b>' + SOURCES[e.source].label + '</b> ' + escapeHtml(e.title) + '</a>';
+    return '<a href="' + safeUrl(e.url) + '" target="_blank" rel="noopener"><b>' + SOURCES[e.source].label + '</b> ' + escapeHtml(e.title) + '</a>';
   }).join("");
   track.innerHTML = items + items;
 }
@@ -1937,7 +2033,7 @@ async function fetchWeatherBatch() {
 async function refreshWeather() {
   try {
     STATE.weatherLocations = await fetchWeatherBatch();
-    markStatus("weather", "live");
+    markStatus("weather", "live", null, STATE.weatherLocations.length);
   } catch (err) {
     markStatus("weather", "error", err.message);
   }
@@ -2012,15 +2108,36 @@ async function queryPointWeather(lat, lon) {
 }
 
 let map, layerGroups = {};
+
+// See CONFIG.CARTO_BASEMAP_KEY for why there are two paths.
+function addBasemap() {
+  if (CONFIG.CARTO_BASEMAP_KEY) {
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}{r}.png?key=" + encodeURIComponent(CONFIG.CARTO_BASEMAP_KEY), {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, © <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: "abcd", maxZoom: 19,
+    }).addTo(map);
+    return;
+  }
+  const esri = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/";
+  L.tileLayer(esri + "World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+    attribution: "Esri, HERE, Garmin, © OpenStreetMap contributors, and the GIS user community",
+    maxZoom: 16,
+  }).addTo(map);
+  // Labels sit in their own pane above the base but below event markers,
+  // and ignore pointer events so they never swallow marker clicks.
+  map.createPane("labels");
+  map.getPane("labels").style.zIndex = 350;
+  map.getPane("labels").style.pointerEvents = "none";
+  L.tileLayer(esri + "World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}", {
+    pane: "labels", maxZoom: 16,
+  }).addTo(map);
+}
 function initMap() {
   // zoomControl lives bottom-right so it never overlaps the layer toggle
   // panel, which stays top-left.
   map = L.map("map", { zoomControl: false, worldCopyJump: true, attributionControl: true }).setView([20, 10], 2);
   L.control.zoom({ position: "bottomright" }).addTo(map);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-    attribution: '© OpenStreetMap, © CARTO',
-    maxZoom: 18,
-  }).addTo(map);
+  addBasemap();
 
   for (const key of Object.keys(SOURCES)) {
     layerGroups[key] = L.layerGroup().addTo(map);
@@ -2122,6 +2239,7 @@ function sevColor(sev, fallback) {
   return fallback;
 }
 
+let lastMapRenderKey = null;
 function renderMap() {
   if (!map) return;
   // This function runs on a 2s interval (purely to fade the "new" glow —
@@ -2138,6 +2256,15 @@ function renderMap() {
   // that event still exists after rebuilding, reopen its popup on the new
   // marker in this same synchronous pass — before the browser paints — so
   // visually it never actually closes.
+  // Rebuilding ~800 SVG markers every 2s was the single heaviest thing the
+  // page did. Now it only rebuilds when data changed or when the set of
+  // "pulsing" (recently new) events changed — which is what the 2s tick is
+  // actually for.
+  const pulseKey = STATE.events.filter(isRecentlyNew).map(function(e) { return e.id; }).join("|");
+  const renderKey = STATE.dataVersion + "#" + pulseKey;
+  if (renderKey === lastMapRenderKey) return;
+  lastMapRenderKey = renderKey;
+
   const reopenId = STATE.openPopupEventId;
   let reopenMarker = null;
 
@@ -2159,9 +2286,9 @@ function renderMap() {
     marker.bindPopup(
       '<div class="pop-src">' + SOURCES[e.source].label + '</div>' +
       '<div class="pop-title">' + escapeHtml(e.title) + '</div>' +
-      '<div class="pop-meta">' + (e.meta || "") + '</div>' +
+      '<div class="pop-meta">' + escapeHtml(e.meta) + '</div>' +
       '<div class="pop-meta">' + fmtUTC(e.time) + '</div>' +
-      '<a href="' + e.url + '" target="_blank" rel="noopener">Open source →</a>'
+      '<a href="' + safeUrl(e.url) + '" target="_blank" rel="noopener">Open source →</a>'
     );
     // Track open/close on THIS event's id (not the marker object, which
     // gets thrown away every render) so a rebuild elsewhere in this
@@ -2212,9 +2339,14 @@ function renderToasts() {
 }
 
 function escapeHtml(str) {
-  const d = document.createElement("div");
-  d.textContent = str || "";
-  return d.innerHTML;
+  return String(str == null ? "" : str)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+// Every URL here comes from a third-party feed (GDELT's is any article on
+// the web). Only http(s) links are allowed through to an href.
+function safeUrl(u) {
+  return /^https?:\/\//i.test(String(u || "")) ? escapeHtml(u) : "#";
 }
 
 // ============================================================
@@ -2241,7 +2373,7 @@ function openSourceCard(id) {
     (hasCoords ? '<div class="sc-row"><span class="sc-k">Coordinates</span><span class="sc-v">' + e.lat.toFixed(3) + ', ' + e.lon.toFixed(3) + '</span></div>' : '') +
     '<div class="sc-actions">' +
       (hasCoords ? '<button type="button" class="sc-btn" id="scViewMap">View on map</button>' : '') +
-      '<a class="sc-btn sc-btn-primary" href="' + e.url + '" target="_blank" rel="noopener">Open source ↗</a>' +
+      '<a class="sc-btn sc-btn-primary" href="' + safeUrl(e.url) + '" target="_blank" rel="noopener">Open source ↗</a>' +
     '</div>';
   document.getElementById("sourceCardOverlay").classList.add("open");
   if (hasCoords) {
