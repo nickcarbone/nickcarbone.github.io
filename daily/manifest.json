@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 39,
+      "slug": "2026-11-25-the-smell-of-a-place",
+      "date": "2026-11-25",
+      "title": "The Smell of a Place",
+      "dek": "Twenty places with a scent of their own, the molecules that make each one, why a smell can carry you back decades and how perfumers build one from parts.",
+      "kind": "Field guide",
+      "readingMinutes": 25,
+      "design": "Italiana, Libre Caslon Text, Jost; lilac-grey mist, blotter-paper white, seven scent-family inks; perfumer’s-organ bottle hero, mouillette-strip entries, molecule cards, rose odour-share chart.",
+      "source": "queue",
+      "brief": "The Smell of a Place (field guide)\nTwenty places defined by a scent: Grasse’s jasmine fields, the creosote smell of desert rain, Kyoto incense makers, the Seville orange season, the peat smoke on Islay. Explain the chemistry of each smell, why scent memory is so strong, and how perfumers build a smell from parts.",
+      "factcheck": {
+        "claims": 195,
+        "fixed": 24
+      },
+      "corrections": []
+    },
+    {
       "no": 38,
       "slug": "2026-11-24-the-night-sky-over-twenty-cities",
       "date": "2026-11-24",

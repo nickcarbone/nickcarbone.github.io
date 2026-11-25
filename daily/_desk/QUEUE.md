@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The Smell of a Place (field guide)
-Twenty places defined by a scent: Grasse’s jasmine fields, the creosote smell of desert rain, Kyoto incense makers, the Seville orange season, the peat smoke on Islay. Explain the chemistry of each smell, why scent memory is so strong, and how perfumers build a smell from parts.
-
 How Economies Remember (explainer with dossiers)
 Why some regions stay rich or poor for centuries. Cover the evidence on medieval trade routes, colonial institutions, old railway lines and even which crops were planted, and what that research can and can’t prove. Add six case-study regions where history is still readable in today’s incomes. It’s a sequel in spirit to The Ghosts of Empires.
 
