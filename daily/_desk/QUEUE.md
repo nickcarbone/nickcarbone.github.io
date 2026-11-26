@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-How Economies Remember (explainer with dossiers)
-Why some regions stay rich or poor for centuries. Cover the evidence on medieval trade routes, colonial institutions, old railway lines and even which crops were planted, and what that research can and can’t prove. Add six case-study regions where history is still readable in today’s incomes. It’s a sequel in spirit to The Ghosts of Empires.
-
 The World's Most Outrageous Airlines
 Investigate airlines that have built their identities around irreverence, eccentricity, flamboyant advertising, unusual liveries, or deliberately provocative business models. Think Ryanair, Spirit, Wizz Air, AirAsia, Cebu Pacific and some of the more unusual regional carriers. Explore their slogans, advertising campaigns, distinctive uniforms, onboard experiences, rivalries, and the personalities behind their brands.
 

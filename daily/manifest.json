@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 40,
+      "slug": "2026-11-26-how-economies-remember",
+      "date": "2026-11-26",
+      "title": "How Economies Remember",
+      "dek": "What economists have found about why some places stay richer or poorer for centuries, what that evidence can and can’t prove, and six regions where the past still shows in today’s incomes.",
+      "kind": "Explainer with dossiers",
+      "readingMinutes": 17,
+      "design": "Gloock, Source Serif 4, Sometype Mono; geological strata ochre, sienna, umber, slate, basalt under river-teal surface; borehole cross-section hero, core-log dossiers.",
+      "source": "queue",
+      "brief": "How Economies Remember (explainer with dossiers)\nWhy some regions stay rich or poor for centuries. Cover the evidence on medieval trade routes, colonial institutions, old railway lines and even which crops were planted, and what that research can and can’t prove. Add six case-study regions where history is still readable in today’s incomes. It’s a sequel in spirit to The Ghosts of Empires.",
+      "factcheck": {
+        "claims": 58,
+        "fixed": 5
+      },
+      "corrections": []
+    },
+    {
       "no": 39,
       "slug": "2026-11-25-the-smell-of-a-place",
       "date": "2026-11-25",

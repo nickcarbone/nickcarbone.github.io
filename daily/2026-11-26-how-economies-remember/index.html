@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Economies Remember · Daily</title>
+<meta name="description" content="What economists have found about why some places stay richer or poorer for centuries, what that evidence can and can’t prove, and six regions where the past still shows in today’s incomes.">
+<meta property="og:title" content="How Economies Remember">
+<meta property="og:description" content="What economists have found about why some places stay richer or poorer for centuries, what that evidence can and can’t prove, and six regions where the past still shows in today’s incomes.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-26-how-economies-remember/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-26-how-economies-remember/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Sometype+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3efe4;
+  --paper-2:#e9e2d0;
+  --ink:#24211c;
+  --ink-2:#4d463b;
+  --rule:#b9ad93;
+  --surface:#1f5a57;   /* today: river-teal survey ink */
+  --s1:#c7a25a;        /* ochre */
+  --s2:#a5673f;        /* burnt sienna */
+  --s3:#7a5a45;        /* umber */
+  --s4:#5d6670;        /* slate */
+  --s5:#3c3a40;        /* basalt */
+  --mark:#a13a2a;      /* survey red */
+  --serif:"Source Serif 4", Georgia, serif;
+  --display:"Gloock", Georgia, serif;
+  --mono:"Sometype Mono", ui-monospace, Menlo, monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.col{max-width:700px}
+a{color:var(--surface);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--mark)}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1;margin:0}
+.mono{font-family:var(--mono)}
+
+/* top strip */
+.topstrip{border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+.topstrip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.topstrip a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);text-decoration:none;font-weight:600}
+.topstrip span{color:var(--ink-2)}
+
+/* hero */
+.hero{padding:40px 0 28px;display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:end}
+.kicker{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--mark);margin:0 0 14px}
+.hero h1{font-size:clamp(46px,8vw,92px);letter-spacing:-.01em}
+.dek{font-size:21px;line-height:1.45;color:var(--ink-2);margin:20px 0 0;max-width:34em}
+.byline{font-family:var(--mono);font-size:13px;color:var(--ink-2);margin-top:20px}
+.section-fig{width:100%;height:auto;display:block}
+.section-fig text{font-family:var(--mono)}
+.figcap{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);margin-top:8px;line-height:1.5}
+
+/* body text */
+.lede p:first-child::first-letter{font-family:var(--display);float:left;font-size:4.2em;line-height:.85;padding:6px 10px 0 0;color:var(--surface)}
+article p{margin:0 0 1.05em}
+.sec{padding:36px 0;border-top:1px solid var(--rule)}
+.sec-label{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin:0 0 10px}
+.sec h2{font-size:clamp(32px,5vw,48px);margin-bottom:18px}
+a.ref{font-family:var(--mono);font-size:12px;vertical-align:super;line-height:0;text-decoration:none;display:inline-block;padding:20px 4px;margin:-20px 0;min-width:24px;text-align:center}
+
+/* legend of layers (channels) */
+.legend{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--ink);margin:22px 0 8px}
+.layer{padding:18px 20px 16px;border-bottom:1px solid var(--ink);position:relative;background:var(--paper)}
+.layer:nth-child(odd){border-right:1px solid var(--ink)}
+.layer:nth-last-child(-n+2){border-bottom:0}
+.layer .sw{display:block;height:14px;margin:-18px -20px 14px;background:var(--c);background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.18) 0 2px,transparent 2px 7px)}
+.layer h3{font-size:25px;margin-bottom:6px}
+.layer .tag{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink-2);text-transform:uppercase;margin-bottom:8px}
+.layer p{font-size:17px;margin:0 0 .6em}
+
+/* dossiers: core logs */
+.cores{display:grid;gap:30px;margin-top:20px}
+.core{display:grid;grid-template-columns:118px 1fr;gap:26px;background:var(--paper-2);border:1px solid var(--rule);padding:22px 24px 22px 22px}
+.log{display:flex;flex-direction:column;border:1.5px solid var(--ink);background:var(--paper)}
+.log .bit{flex:1;min-height:42px;display:flex;align-items:flex-end;padding:4px 6px;font-family:var(--mono);font-size:11.5px;line-height:1.2;color:#fff;border-top:1px solid rgba(0,0,0,.35)}
+.log .bit:first-child{border-top:0}
+.log .bit.today{background:var(--surface)}
+.log .bit.mid{background:var(--s4)}
+.log .bit.deep{background:var(--s3)}
+.log .bit.deeper{background:var(--s5)}
+.log .bit.hatch{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.14) 0 2px,transparent 2px 8px)}
+.core-head .no{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;color:var(--mark);text-transform:uppercase}
+.core h3{font-size:clamp(28px,4vw,38px);margin:4px 0 4px}
+.core .where{font-family:var(--mono);font-size:13px;color:var(--ink-2);margin-bottom:14px}
+.reading{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 16px}
+.reading div{background:var(--paper);border-left:4px solid var(--surface);padding:8px 12px;min-width:150px;flex:1}
+.reading b{display:block;font-family:var(--display);font-weight:400;font-size:30px;line-height:1.05;color:var(--surface)}
+.reading span{font-family:var(--mono);font-size:12px;line-height:1.35;color:var(--ink-2);display:block;margin-top:4px}
+.core dl{margin:0}
+.core dt{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-top:10px}
+.core dd{margin:2px 0 0;font-size:17px}
+.method{display:inline-block;font-family:var(--mono);font-size:12px;border:1px solid var(--ink-2);padding:2px 8px;margin-top:12px;color:var(--ink-2)}
+
+/* limits */
+.limits{counter-reset:lim;list-style:none;padding:0;margin:18px 0 0}
+.limits li{counter-increment:lim;position:relative;padding:0 0 18px 56px;margin-bottom:18px;border-bottom:1px dashed var(--rule)}
+.limits li::before{content:counter(lim,decimal-leading-zero);position:absolute;left:0;top:-4px;font-family:var(--display);font-size:34px;color:var(--mark)}
+.limits h3{font-size:24px;margin-bottom:6px}
+
+/* glossary table */
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--ink);margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:16px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--rule)}
+th{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--paper);font-weight:600}
+tr:last-child td{border-bottom:0}
+td:first-child{font-family:var(--display);font-size:19px;white-space:nowrap}
+
+/* sources */
+.sources ol{padding-left:0;list-style:none;counter-reset:src;margin:0}
+.sources li{counter-increment:src;display:grid;grid-template-columns:42px 1fr;gap:6px;padding:6px 0;border-bottom:1px solid var(--rule);font-size:16px}
+.sources li::before{content:counter(src);font-family:var(--mono);font-size:13px;color:var(--mark);padding-top:10px}
+.sources a{display:inline-flex;align-items:center;min-height:40px}
+.sources .pub{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);display:block}
+
+footer{background:var(--ink);color:var(--paper);padding:34px 0 46px;margin-top:40px;font-family:var(--mono);font-size:13.5px}
+footer a{color:#9fd3cc;display:inline-flex;align-items:center;min-height:44px}
+footer p{margin:0 0 4px}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;gap:26px;padding-top:28px}
+  .legend{grid-template-columns:1fr}
+  .layer:nth-child(odd){border-right:0}
+  .layer:nth-last-child(2){border-bottom:1px solid var(--ink)}
+  .core{grid-template-columns:1fr;gap:14px;padding:18px 16px}
+  .log{flex-direction:row-reverse;height:auto}
+  .log .bit{min-height:48px;border-top:0;border-left:1px solid rgba(0,0,0,.35)}
+  .log .bit:last-child{border-left:0}
+}
+@media (max-width:480px){
+  body{font-size:17px}
+  .wrap{padding:0 16px}
+  .dek{font-size:19px}
+  .log .bit{font-size:10.5px;padding:4px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .section-fig .drift{animation:drift 9s ease-in-out infinite alternate}
+  @keyframes drift{from{transform:translateX(0)}to{transform:translateX(-6px)}}
+}
+</style>
+</head>
+<body>
+<div class="topstrip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 040 · Thursday 26 November 2026</span></div></div>
+
+<article>
+<header class="wrap hero">
+  <div>
+    <p class="kicker">Explainer · six dossiers</p>
+    <h1>How Economies Remember</h1>
+    <p class="dek">What economists have found about why some places stay richer or poorer for centuries, what that evidence can and can’t prove, and six regions where the past still shows in today’s incomes.</p>
+    <p class="byline">By Nick Carbone · 26 November 2026 · about 17 minutes</p>
+  </div>
+  <figure style="margin:0">
+    <svg class="section-fig" viewBox="0 0 520 380" role="img" aria-labelledby="hero-t hero-d">
+      <title id="hero-t">A cross-section of the ground under an economy</title>
+      <desc id="hero-d">Stylised geological strata. The surface is labelled incomes today. Below it, dated layers: a 1930 railway branch line, the 1793 Permanent Settlement in Bengal, the 1573 Peruvian mita, the 1176 Lombard League, and medieval Indian Ocean trade.</desc>
+      <rect x="0" y="0" width="520" height="380" fill="#e9e2d0"/>
+      <!-- surface -->
+      <path d="M0 62 C70 52 120 70 190 60 S320 46 390 58 S480 70 520 56 L520 92 C450 100 380 86 300 96 S150 104 0 94Z" fill="#1f5a57"/>
+      <text x="16" y="84" font-size="12.5" fill="#f3efe4" letter-spacing="1">SURFACE · INCOMES TODAY</text>
+      <!-- towns on surface -->
+      <g fill="#24211c"><rect x="96" y="40" width="7" height="18"/><rect x="106" y="34" width="9" height="24"/><rect x="118" y="44" width="6" height="14"/><rect x="352" y="36" width="8" height="20"/><rect x="363" y="30" width="10" height="26"/><rect x="376" y="40" width="6" height="16"/></g>
+      <!-- layer 1 -->
+      <path d="M0 94 C150 104 300 96 380 86 S470 100 520 92 L520 150 C440 160 360 140 260 152 S80 160 0 148Z" fill="#c7a25a"/>
+      <text x="16" y="128" font-size="12" fill="#24211c">1896–1930 · Kenya’s railway and its branch lines</text>
+      <!-- layer 2 -->
+      <path d="M0 148 C80 160 260 152 360 140 S440 160 520 150 L520 210 C430 220 330 198 230 212 S60 214 0 206Z" fill="#a5673f"/>
+      <text x="16" y="185" font-size="12" fill="#f3efe4">1793 · Permanent Settlement, Bengal</text>
+      <!-- layer 3 -->
+      <path d="M0 206 C60 214 230 212 330 198 S430 220 520 210 L520 270 C420 280 300 258 200 272 S40 270 0 264Z" fill="#7a5a45"/>
+      <text x="16" y="243" font-size="12" fill="#f3efe4">1573–1812 · the mita, Peru and Bolivia</text>
+      <!-- layer 4 -->
+      <path d="M0 264 C40 270 200 272 300 258 S420 280 520 270 L520 326 C410 334 300 316 190 328 S40 324 0 320Z" fill="#5d6670"/>
+      <text x="16" y="300" font-size="12" fill="#f3efe4">1176 · Lombard League, northern Italy</text>
+      <!-- layer 5 -->
+      <path d="M0 320 C40 324 190 328 300 316 S410 334 520 326 L520 380 L0 380Z" fill="#3c3a40"/>
+      <text x="16" y="356" font-size="12" fill="#f3efe4">Medieval · Indian Ocean trading ports</text>
+      <!-- borehole -->
+      <g class="drift">
+        <line x1="452" y1="20" x2="452" y2="372" stroke="#a13a2a" stroke-width="2" stroke-dasharray="5 4"/>
+        <circle cx="452" cy="20" r="5" fill="#a13a2a"/>
+        <text x="440" y="14" font-size="11" fill="#a13a2a" text-anchor="end">BOREHOLE</text>
+      </g>
+    </svg>
+    <figcaption class="figcap">Schematic. The layers are the historical shocks examined below; the depths are not to scale.</figcaption>
+  </figure>
+</header>
+
+<div class="wrap">
+<div class="col lede">
+<p>Somewhere in the Peruvian Andes there is a line on the map that nobody alive drew. On one side of it, Spanish colonial officials once required villages to send a share of their men to the silver mines of Potosí and the mercury mines of Huancavelica. On the other side, they did not. The system ended in 1812. Two centuries later, households on the conscripted side consume about a quarter less, and their children are measurably more likely to be stunted.<a class="ref" href="#s1">1</a><a class="ref" href="#s2">2</a></p>
+<p>That finding, published by the economist Melissa Dell in 2010, belongs to a body of research sometimes called the economics of persistence. Its question is old: why are some places rich and others poor, and why does the ranking change so slowly? Its method is newer. Instead of comparing whole countries, which differ in a thousand ways at once, researchers hunt for borders, routes and accidents that split otherwise similar places into two groups, then measure what happened to each group over hundreds of years.</p>
+<p>The results can be startling. Medieval trading ports, colonial land laws, a railway laid across East Africa and the kind of plough a society once used all appear to leave marks on incomes, schooling and even attitudes that can be read today. The research also has serious, unresolved problems, which this piece sets out after the case files.</p>
+</div>
+</div>
+
+<section class="sec wrap" id="layers">
+  <p class="sec-label">Part one</p>
+  <h2>Four ways the past gets into the ground</h2>
+  <div class="col">
+  <p>The studies are varied, but most of them trace a historical event through one of a few channels. Think of them as the kinds of rock a borehole can pass through.</p>
+  </div>
+  <div class="legend">
+    <div class="layer" style="--c:var(--s5)"><span class="sw"></span>
+      <div class="tag">Layer · trade</div>
+      <h3>Routes and ports</h3>
+      <p>Trade creates places where strangers have reasons to cooperate, and the rules they invent to do it can outlast the trade itself. Saumitra Jha studied towns in India that were medieval ports on the Indian Ocean, where Muslim merchants held particular advantages in shipping and Hindu and Muslim traders depended on each other.<a class="ref" href="#s17">17</a></p>
+      <p>Those ports were more ethnically mixed, yet between 1850 and 1950 they were five times less prone to Hindu–Muslim riots than other towns, and from 1950 to 1995 they were still half as prone. Jha links the difference to local institutions that grew up to support trade between the communities.<a class="ref" href="#s17">17</a></p>
+    </div>
+    <div class="layer" style="--c:var(--s3)"><span class="sw"></span>
+      <div class="tag">Layer · institutions</div>
+      <h3>Colonial rules</h3>
+      <p>One of the most cited papers in the field is Daron Acemoglu, Simon Johnson and James Robinson’s 2001 argument that Europeans set up very different colonies depending on whether they could survive in them. Where settlers died in large numbers, they were more likely to build extractive institutions; where they could settle, they built institutions that protected property.<a class="ref" href="#s13">13</a></p>
+      <p>Using historical death rates among soldiers, bishops and sailors as their lever, the authors estimated that institutions explain about three-quarters of the income gaps between former colonies.<a class="ref" href="#s13">13</a> That number has been fiercely contested (see part three). Nathan Nunn, working on a different channel, found a robust negative relationship between the number of people taken from an African country in the slave trades and its economic performance today.<a class="ref" href="#s15">15</a></p>
+    </div>
+    <div class="layer" style="--c:var(--s1)"><span class="sw"></span>
+      <div class="tag">Layer · infrastructure</div>
+      <h3>Lines and junctions</h3>
+      <p>Transport decides where people gather, and once they have gathered, the gathering becomes its own reason to stay. Cities that grew up at a portage or a railhead keep their people after the river traffic stops or the trains run less often.</p>
+      <p>Economists call this path dependence: an advantage that has disappeared still decides the map, because the houses, roads, firms and workers are already in place and it would cost too much to coordinate a move somewhere else. Two of the dossiers below, on the American fall line and on Kenya, are about exactly this.<a class="ref" href="#s5">5</a><a class="ref" href="#s7">7</a></p>
+    </div>
+    <div class="layer" style="--c:var(--s2)"><span class="sw"></span>
+      <div class="tag">Layer · farming</div>
+      <h3>What was planted, and how</h3>
+      <p>The Danish economist Ester Boserup argued that societies which farmed with the plough, a heavy tool needing upper-body strength, came to see field work as men’s work. Alberto Alesina, Paola Giuliano and Nathan Nunn tested the idea in 2013.<a class="ref" href="#s16">16</a></p>
+      <p>Descendants of societies that traditionally used the plough have lower rates of female participation in work, politics and entrepreneurship today, and hold attitudes more favourable to gender inequality. The pattern shows up even among the American-born children of immigrants, which suggests that something cultural travelled with the families.<a class="ref" href="#s16">16</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap" id="dossiers">
+  <p class="sec-label">Part two</p>
+  <h2>Six core samples</h2>
+  <div class="col"><p>Each dossier reads like a borehole log: the deepest layer is the historical shock, the layers above are how it was carried forward, and the surface is what can be measured now. Figures come from the studies themselves and describe the places and years those studies examined.</p></div>
+
+  <div class="cores">
+
+  <!-- 1 Peru -->
+  <div class="core" id="peru">
+    <div class="log" aria-hidden="true">
+      <div class="bit today">Today</div>
+      <div class="bit mid hatch">Roads, schools</div>
+      <div class="bit deep">Few haciendas</div>
+      <div class="bit deeper hatch">1573 mita</div>
+    </div>
+    <div>
+      <div class="core-head"><span class="no">Dossier 01 · forced labour</span></div>
+      <h3>The mita line</h3>
+      <div class="where">Southern Peru · the boundary of the colonial mining draft</div>
+      <div class="reading">
+        <div><b>≈25%</b><span>lower household consumption in districts once subject to the mita</span></div>
+        <div><b>≈6 pts</b><span>higher prevalence of stunted growth in children</span></div>
+      </div>
+      <dl>
+        <dt>Deep layer</dt>
+        <dd>From 1573 to 1812, the Spanish required about 200 communities in the region to send one-seventh of their workers to the mines. In any given year, around 3 per cent of all adult men in Peru were conscripted.<a class="ref" href="#s2">2</a></dd>
+        <dt>How it was carried</dt>
+        <dd>Dell finds that the mita districts historically had fewer large landowners and lower educational attainment. Today they are less integrated into road networks, and residents are substantially more likely to be subsistence farmers. Her reading is that the effect ran through land tenure and the provision of public goods.<a class="ref" href="#s1">1</a></dd>
+        <dt>Why it’s convincing</dt>
+        <dd>The comparison is made across the mita boundary itself, between places that are otherwise alike in geography and altitude, so it does not rest on comparing the Andes with the coast.<a class="ref" href="#s1">1</a></dd>
+      </dl>
+      <span class="method">Method: regression discontinuity at a colonial border</span>
+    </div>
+  </div>
+
+  <!-- 2 Java -->
+  <div class="core" id="java">
+    <div class="log" aria-hidden="true">
+      <div class="bit today">Today</div>
+      <div class="bit mid hatch">Rail, schools</div>
+      <div class="bit deep">Village land</div>
+      <div class="bit deeper hatch">1830s sugar</div>
+    </div>
+    <div>
+      <div class="core-head"><span class="no">Dossier 02 · extraction that built things</span></div>
+      <h3>Java’s sugar factories</h3>
+      <div class="where">Java, Indonesia · the Dutch Cultivation System</div>
+      <div class="reading">
+        <div><b>94</b><span>sugar-processing factories built by the Dutch from the 1830s</span></div>
+        <div><b>+1 yr</b><span>more schooling, on average, near the old factories</span></div>
+        <div><b>2×</b><span>railway density within 1 km of a factory, compared with places 5–20 km away</span></div>
+      </div>
+      <dl>
+        <dt>Deep layer</dt>
+        <dd>From the 1830s to the 1870s the colonial government forced villages to grow sugar cane for 94 factories. At one point in the mid-nineteenth century, sugar provided a third of the Dutch government’s revenues and 4 per cent of Dutch GDP.<a class="ref" href="#s4">4</a></dd>
+        <dt>How it was carried</dt>
+        <dd>The factories needed roads, railways and processing, and those stayed. Areas near the old factories are today 25 to 30 percentage points less agricultural, more industrialised and better educated than similar places that could have hosted a factory but did not. Villages forced to grow cane also have more village-owned land and more schools.<a class="ref" href="#s3">3</a><a class="ref" href="#s4">4</a></dd>
+        <dt>Why it matters</dt>
+        <dd>This is the awkward counterpart to the mita. Both were coercive colonial systems; one left places poorer and the other, on these measures, left them richer. Dell and Olken’s point is that what the extraction built locally matters as much as the coercion.<a class="ref" href="#s3">3</a></dd>
+      </dl>
+      <span class="method">Method: spatial regression discontinuity around factory catchments</span>
+    </div>
+  </div>
+
+  <!-- 3 Fall line -->
+  <div class="core" id="fall-line">
+    <div class="log" aria-hidden="true">
+      <div class="bit today">Today</div>
+      <div class="bit mid hatch">Mills</div>
+      <div class="bit deep">Portage</div>
+      <div class="bit deeper hatch">Falls</div>
+    </div>
+    <div>
+      <div class="core-head"><span class="no">Dossier 03 · path dependence</span></div>
+      <h3>The fall line</h3>
+      <div class="where">Southern and Mid-Atlantic United States · Richmond, Augusta, Columbus, Macon</div>
+      <div class="reading">
+        <div><b>c.1855</b><span>commercial river traffic at Augusta and Columbus has essentially ended, a few decades after the railways arrived</span></div>
+      </div>
+      <dl>
+        <dt>Deep layer</dt>
+        <dd>The fall line is the boundary between the Piedmont and the coastal plain, marking the last falls or rapids on a river before it reaches the Atlantic or the Gulf of Mexico. Boats had to stop there and goods were hauled overland, so commerce and services gathered at the portage. Where the falls could power machinery, manufacturing followed.<a class="ref" href="#s5">5</a><a class="ref" href="#s6">6</a></dd>
+        <dt>How it was carried</dt>
+        <dd>Canals, locks and then railways in the early and middle 1800s removed the need to unload at the falls.<a class="ref" href="#s6">6</a> Hoyt Bleakley and Jeffrey Lin show that the historical portage sites nonetheless remain important concentrations of people, long after their original advantages became obsolete.<a class="ref" href="#s5">5</a></dd>
+        <dt>Why it’s convincing</dt>
+        <dd>The falls are a fact of geology, and they stopped mattering for transport long ago. That makes them a cleaner test than most: anything that persists cannot be explained by the falls still being useful.</dd>
+      </dl>
+      <span class="method">Method: natural experiment from geography</span>
+    </div>
+  </div>
+
+  <!-- 4 Kenya -->
+  <div class="core" id="kenya">
+    <div class="log" aria-hidden="true">
+      <div class="bit today">Cities</div>
+      <div class="bit mid hatch">Settlers left</div>
+      <div class="bit deep">Settlers</div>
+      <div class="bit deeper hatch">1896 rail</div>
+    </div>
+    <div>
+      <div class="core-head"><span class="no">Dossier 04 · cities that outlived their reason</span></div>
+      <h3>The Uganda Railway</h3>
+      <div class="where">Kenya · Mombasa to Nairobi to Kisumu on Lake Victoria</div>
+      <div class="reading">
+        <div><b>5 → 247</b><span>localities over 2,000 people, 1901 and 2009</span></div>
+        <div><b>1896–1901</b><span>main line built from the coast to Lake Victoria</span></div>
+      </div>
+      <dl>
+        <dt>Deep layer</dt>
+        <dd>When construction began, Mombasa was Kenya’s largest town, with about 15,000 inhabitants. Nairobi began as a railway depot in 1899. Branch lines followed until 1930; none was built after that.<a class="ref" href="#s8">8</a></dd>
+        <dt>How it was carried</dt>
+        <dd>Rémi Jedwab, Edward Kerby and Alexander Moradi find that the railway decided where European settlers went, and the settlers decided where the main cities were at independence. After 1963 the railways declined, through mismanagement and the spread of sealed roads, and the settlers left. The cities stayed, and those places remain more urban and developed today.<a class="ref" href="#s7">7</a><a class="ref" href="#s8">8</a></dd>
+        <dt>Why it matters</dt>
+        <dd>The authors argue the persistence is not explained by today’s roads. The railway towns kept growing because their early start coordinated where later investment went, which is path dependence in a developing country rather than in nineteenth-century America.<a class="ref" href="#s8">8</a></dd>
+      </dl>
+      <span class="method">Method: comparison of rail and non-rail locations over time</span>
+    </div>
+  </div>
+
+  <!-- 5 India -->
+  <div class="core" id="india">
+    <div class="log" aria-hidden="true">
+      <div class="bit today">Today</div>
+      <div class="bit mid hatch">Policy</div>
+      <div class="bit deep">Landlords</div>
+      <div class="bit deeper hatch">1793</div>
+    </div>
+    <div>
+      <div class="core-head"><span class="no">Dossier 05 · who collected the rent</span></div>
+      <h3>Landlord districts</h3>
+      <div class="where">India · Bengal, Bihar, Orissa and parts of Madras against the cultivator districts</div>
+      <div class="reading">
+        <div><b>23%</b><span>higher average wheat yields in non-landlord districts</span></div>
+        <div><b>40%</b><span>lower infant mortality in non-landlord districts</span></div>
+      </div>
+      <dl>
+        <dt>Deep layer</dt>
+        <dd>Land revenue made up 60 per cent of the British government’s revenue in India in 1841. In some regions the British collected it through landlords, whose obligations were fixed “in perpetuity” under the Permanent Settlement of 1793. Elsewhere, following arguments made by Sir Thomas Munro in Madras, they dealt directly with individual cultivators.<a class="ref" href="#s10">10</a></dd>
+        <dt>How it was carried</dt>
+        <dd>Abhijit Banerjee and Lakshmi Iyer find that former landlord areas had significantly lower agricultural investment and productivity after independence, and lower investment in health and education. They argue the difference probably arose because the old institutions led to different policy choices.<a class="ref" href="#s9">9</a></dd>
+        <dt>Why it’s convincing</dt>
+        <dd>The choice of system was not random, so the authors use timing: districts that came under British revenue control between 1820 and 1856 were much more likely to get the cultivator system, for reasons that had to do with fashions in colonial administration rather than the land itself.<a class="ref" href="#s10">10</a></dd>
+      </dl>
+      <span class="method">Method: instrumental variable from the date of conquest</span>
+    </div>
+  </div>
+
+  <!-- 6 Italy -->
+  <div class="core" id="italy">
+    <div class="log" aria-hidden="true">
+      <div class="bit today">Today</div>
+      <div class="bit mid hatch">Civic habits</div>
+      <div class="bit deep">Self-rule</div>
+      <div class="bit deeper hatch">1176</div>
+    </div>
+    <div>
+      <div class="core-head"><span class="no">Dossier 06 · civic memory</span></div>
+      <h3>The free cities</h3>
+      <div class="where">Northern Italy · the medieval communes</div>
+      <div class="reading">
+        <div><b>+25%</b><span>more voluntary associations in cities that were once free city-states</span></div>
+        <div><b>≥50%</b><span>of the North–South gap in social capital attributed to the South’s lack of free cities</span></div>
+      </div>
+      <dl>
+        <dt>Deep layer</dt>
+        <dd>In the eleventh and twelfth centuries, many northern Italian cities won self-government. The study takes 1176, when the Lombard League defeated the Emperor Frederick I, as one reference date and 1300, when the movement was at its height, as another. In the South, Norman rule prevented city-states from forming.<a class="ref" href="#s11">11</a><a class="ref" href="#s12">12</a></dd>
+        <dt>How it was carried</dt>
+        <dd>Luigi Guiso, Paola Sapienza and Luigi Zingales test an idea of the political scientist Robert Putnam: that self-government bred a civic culture passed down through families. They measure it today with the number of non-profit organisations, the presence of an organ-donation association and the rate of cheating in a national maths exam, and find former free cities score better on all three than similar cities nearby. Schoolchildren in former free cities also report stronger beliefs in their own ability to change things.<a class="ref" href="#s12">12</a></dd>
+        <dt>Why it’s debated</dt>
+        <dd>Culture is the hardest channel to pin down, because it overlaps with income, education and politics. The authors use features such as whether a city had a bishop in the year 1000 as instruments for later self-rule.<a class="ref" href="#s11">11</a></dd>
+      </dl>
+      <span class="method">Method: within-North comparison with historical instruments</span>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+<section class="sec wrap" id="limits">
+  <p class="sec-label">Part three</p>
+  <h2>What the borehole can’t tell you</h2>
+  <div class="col">
+  <p>Persistence studies have become a fixture of the top economics journals, and their critics are mostly economists too. The problems they raise are specific.</p>
+  <ol class="limits">
+    <li><h3>The data underneath can be thin</h3>
+    <p>David Albouy re-examined the settler-mortality figures behind the 2001 colonial-origins paper. He found that 36 of the 64 countries in the sample were assigned death rates taken from other countries, often on mistaken or conflicting evidence, and that rates from labourers, bishops and soldiers, often on campaign, had been combined in a way that favoured the hypothesis. Once he controlled for those issues, the key relationship lost robustness and the estimates became unreliable.<a class="ref" href="#s14">14</a> The original authors published a reply disputing his critique, and the argument has not been settled.<a class="ref" href="#s20">20</a></p></li>
+    <li><h3>Maps flatter statistics</h3>
+    <p>Places close to each other tend to resemble each other on almost everything. Morgan Kelly, an economist at University College Dublin, argued in 2019 that many persistence regressions suffer severe spatial autocorrelation, which can inflate their apparent significance by orders of magnitude. In a striking test, he found that replacing the historical variable with random spatial noise often fitted the data as well or better.<a class="ref" href="#s18">18</a> In a later paper he proposed judging each historical variable by whether it beats synthetic noise with the same spatial pattern, and applied the test to twenty published studies.<a class="ref" href="#s19">19</a> Kelly’s critique does not say every finding is wrong. It says the stated precision of many of them cannot be taken at face value.</p></li>
+    <li><h3>A correlation over centuries is still a correlation</h3>
+    <p>The best studies, such as the mita and Java papers, compare places separated by a line drawn for reasons unrelated to their prospects. Most of the field cannot do that, and has to argue that nothing else explains the pattern. Banerjee and Iyer, for example, use the timing of British conquest because the choice of land system was not random.<a class="ref" href="#s10">10</a> Each of those arguments can be challenged.</p></li>
+    <li><h3>Knowing that is easier than knowing why</h3>
+    <p>Even a clean result says little about the mechanism. The Kenyan cities could persist through buildings, networks of firms or simply people’s expectations about where others will be. The Italian result could be culture, or the institutions that culture produced. The authors generally offer a preferred story; the data often fit several.</p></li>
+    <li><h3>Memory is not destiny</h3>
+    <p>The same coercive colonial project left Peruvian districts poorer and Javanese ones richer. Persistence is a tendency, measured on average across many places, and plenty of places break it. A study showing that history weighs on a region today is also a study of how much else must have mattered to account for everything history does not explain.</p></li>
+  </ol>
+  </div>
+</section>
+
+<section class="sec wrap" id="methods">
+  <p class="sec-label">Field glossary</p>
+  <h2>The instruments</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Term</th><th>What it does</th><th>Used in</th></tr></thead>
+    <tbody>
+      <tr><td>Regression discontinuity</td><td>Compares places just either side of a boundary, assuming they were alike before the boundary was drawn.</td><td>Peru, Java</td></tr>
+      <tr><td>Instrumental variable</td><td>Uses a factor that affected the history but should not otherwise affect outcomes today, to isolate cause from coincidence.</td><td>India, Italy, colonial origins, plough</td></tr>
+      <tr><td>Natural experiment</td><td>Treats an accident of geography or history as if it had randomly assigned places to two groups.</td><td>Fall line, Kenya</td></tr>
+      <tr><td>Path dependence</td><td>An early, temporary advantage that keeps deciding outcomes after it has gone.</td><td>Fall line, Kenya</td></tr>
+      <tr><td>Spatial autocorrelation</td><td>Neighbouring places resembling one another, which can make a pattern look more significant than it is.</td><td>The critique of the field</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="sec wrap sources" id="sources">
+  <p class="sec-label">Sources</p>
+  <h2>Sources</h2>
+  <ol>
+    <li id="s1"><div><a href="https://econometricsociety.org/publications/econometrica/2010/11/01/persistent-effects-perus-mining">Melissa Dell, “The Persistent Effects of Peru’s Mining Mita”, Econometrica 78(6), 2010</a><span class="pub">The Econometric Society</span></div></li>
+    <li id="s2"><div><a href="https://news.mit.edu/2010/inequality-roots-0416">Peter Dizikes, “The deep roots of inequality”, 16 April 2010</a><span class="pub">MIT News</span></div></li>
+    <li id="s3"><div><a href="https://www.nber.org/papers/w24009">Melissa Dell and Benjamin Olken, “The Development Effects of the Extractive Colonial Economy: The Dutch Cultivation System in Java”, Working Paper 24009 (Review of Economic Studies, 2020)</a><span class="pub">National Bureau of Economic Research</span></div></li>
+    <li id="s4"><div><a href="https://news.mit.edu/2020/sugar-factories-colonial-indonesia-olken-dell-0206">Peter Dizikes, “The complex effects of colonial rule in Indonesia”, 5 February 2020</a><span class="pub">MIT News</span></div></li>
+    <li id="s5"><div><a href="https://econpapers.repec.org/RePEc:oup:qjecon:v:127:y:2012:i:2:p:587-644">Hoyt Bleakley and Jeffrey Lin, “Portage and Path Dependence”, Quarterly Journal of Economics 127(2), 2012</a><span class="pub">EconPapers / Oxford University Press</span></div></li>
+    <li id="s6"><div><a href="https://www.philadelphiafed.org/-/media/FRBP/Assets/working-papers/2011/wp11-38.pdf">Hoyt Bleakley and Jeffrey Lin, “Portage and Path Dependence”, Working Paper 11-38, 2011</a><span class="pub">Federal Reserve Bank of Philadelphia</span></div></li>
+    <li id="s7"><div><a href="https://econpapers.repec.org/RePEc:wly:econjl:v:127:y:2017:i:603:p:1467-1494">Rémi Jedwab, Edward Kerby and Alexander Moradi, “History, Path Dependence and Development: Evidence from Colonial Railways, Settlers and Cities in Kenya”, Economic Journal 127(603), 2017</a><span class="pub">EconPapers / Royal Economic Society</span></div></li>
+    <li id="s8"><div><a href="https://iiep.gwu.edu/history-path-dependence-and-development-evidence-colonial-railroads-settlers-and-cities-kenya">Jedwab, Kerby and Moradi, IIEP Working Paper 2014-2</a><span class="pub">Institute for International Economic Policy, George Washington University</span></div></li>
+    <li id="s9"><div><a href="https://ideas.repec.org/a/aea/aecrev/v95y2005i4p1190-1213.html">Abhijit Banerjee and Lakshmi Iyer, “History, Institutions, and Economic Performance: The Legacy of Colonial Land Tenure Systems in India”, American Economic Review 95(4), 2005</a><span class="pub">IDEAS/RePEc</span></div></li>
+    <li id="s10"><div><a href="https://pages.nyu.edu/debraj/Courses/Readings/BanerjeeIyer.pdf">Banerjee and Iyer, full article (course copy)</a><span class="pub">American Economic Association, via New York University</span></div></li>
+    <li id="s11"><div><a href="https://nber.org/papers/w14278">Luigi Guiso, Paola Sapienza and Luigi Zingales, “Long Term Persistence”, Working Paper 14278</a><span class="pub">National Bureau of Economic Research</span></div></li>
+    <li id="s12"><div><a href="https://www.kellogg.northwestern.edu/faculty/sapienza/htm/LTP_final.pdf">Guiso, Sapienza and Zingales, “Long-Term Persistence”, Journal of the European Economic Association 14(6), 2016</a><span class="pub">Kellogg School of Management, Northwestern University</span></div></li>
+    <li id="s13"><div><a href="https://www.nber.org/papers/w7771">Daron Acemoglu, Simon Johnson and James Robinson, “The Colonial Origins of Comparative Development: An Empirical Investigation”, Working Paper 7771 (American Economic Review, 2001)</a><span class="pub">National Bureau of Economic Research</span></div></li>
+    <li id="s14"><div><a href="https://econpapers.repec.org/RePEc:aea:aecrev:v:102:y:2012:i:6:p:3059-76">David Albouy, “The Colonial Origins of Comparative Development: An Empirical Investigation: Comment”, American Economic Review 102(6), 2012</a><span class="pub">EconPapers / American Economic Association</span></div></li>
+    <li id="s15"><div><a href="https://econpapers.repec.org/RePEc:oup:qjecon:v:123:y:2008:i:1:p:139-176.">Nathan Nunn, “The Long-Term Effects of Africa’s Slave Trades”, Quarterly Journal of Economics 123(1), 2008</a><span class="pub">EconPapers / Oxford University Press</span></div></li>
+    <li id="s16"><div><a href="https://www.nber.org/papers/w17098">Alberto Alesina, Paola Giuliano and Nathan Nunn, “On the Origins of Gender Roles: Women and the Plough”, Working Paper 17098 (Quarterly Journal of Economics, 2013)</a><span class="pub">National Bureau of Economic Research</span></div></li>
+    <li id="s17"><div><a href="https://ideas.repec.org/a/cup/apsrev/v107y2013i04p806-832_00.html">Saumitra Jha, “Trade, Institutions, and Ethnic Tolerance: Evidence from South Asia”, American Political Science Review 107(4), 2013</a><span class="pub">IDEAS/RePEc / Cambridge University Press</span></div></li>
+    <li id="s18"><div><a href="https://marginalrevolution.com/marginalrevolution/2019/06/beware-of-persistence-studies.html">Tyler Cowen, “Beware of persistence studies”, 14 June 2019, quoting Morgan Kelly, “The Standard Errors of Persistence”</a><span class="pub">Marginal Revolution</span></div></li>
+    <li id="s19"><div><a href="https://ideas.repec.org/p/cpr/ceprdp/16609.html">Morgan Kelly, “Persistence, Randomization, and Spatial Noise”, Discussion Paper 16609, 2021</a><span class="pub">Centre for Economic Policy Research, via IDEAS/RePEc</span></div></li>
+    <li id="s20"><div><a href="https://doi.org/10.1257/aer.102.6.3077">Daron Acemoglu, Simon Johnson and James Robinson, “The Colonial Origins of Comparative Development: An Empirical Investigation: Reply”, American Economic Review 102(6), 2012</a><span class="pub">American Economic Association</span></div></li>
+  </ol>
+</section>
+</article>
+
+<footer><div class="wrap">
+<p>Published 26 November 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+<p><a href="/daily/">← Back to Daily</a></p>
+<p><a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20How%20Economies%20Remember&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-26-how-economies-remember%2F">Spot an error? Suggest a correction</a></p>
+</div></footer>
+</body>
+</html>
