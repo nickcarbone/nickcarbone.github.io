@@ -1,7 +1,27 @@
 {
-  "generated": "2026-11-27T12:50:01.335Z",
-  "count": 93,
+  "generated": "2026-11-27T22:09:31.132Z",
+  "count": 95,
   "pages": [
+    {
+      "slug": "far-stands",
+      "url": "https://nickcarbone.github.io/far-stands/",
+      "title": "The Far Stands",
+      "description": "",
+      "updated": "2026-11-27T21:44:26Z",
+      "created": "2026-11-27T21:41:55Z",
+      "category": "Unsorted",
+      "tags": []
+    },
+    {
+      "slug": "turndown",
+      "url": "https://nickcarbone.github.io/turndown/",
+      "title": "Turndown",
+      "description": "",
+      "updated": "2026-11-27T16:34:33Z",
+      "created": "2026-11-27T14:55:51Z",
+      "category": "Unsorted",
+      "tags": []
+    },
     {
       "slug": "night-window",
       "url": "https://nickcarbone.github.io/night-window/",
@@ -222,7 +242,7 @@
       "url": "https://nickcarbone.github.io/world-in-motion/",
       "title": "The World in Motion",
       "description": "",
-      "updated": "2026-11-26T16:56:56Z",
+      "updated": "2026-11-27T16:42:23Z",
       "created": "2026-10-21T18:36:40Z",
       "category": "Live",
       "tags": [
@@ -263,7 +283,7 @@
       "url": "https://nickcarbone.github.io/evening-edition/",
       "title": "Evening Edition",
       "description": "",
-      "updated": "2026-11-27T11:25:13Z",
+      "updated": "2026-11-27T20:19:28Z",
       "created": "2026-10-20T14:56:45Z",
       "category": "Live",
       "tags": [
@@ -650,7 +670,7 @@
       "url": "https://nickcarbone.github.io/scoop-tracker/",
       "title": "Scoop Tracker",
       "description": "",
-      "updated": "2026-11-27T05:24:48Z",
+      "updated": "2026-11-27T13:22:03Z",
       "created": "2026-07-10T01:19:16Z",
       "category": "Live",
       "tags": [
