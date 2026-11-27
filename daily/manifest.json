@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 41,
+      "slug": "2026-11-27-the-worlds-most-outrageous-airlines",
+      "date": "2026-11-27",
+      "title": "The Outrageous Airlines",
+      "dek": "Seventeen airlines that sold seats with stunts, cheeky adverts, painted fish and public feuds, what each one actually did, and what became of them.",
+      "kind": "Safety-card field guide",
+      "readingMinutes": 14,
+      "design": "Unbounded, Spectral; cabin navy, life-vest yellow, slide red on cool card stock; fold-out safety card hero with apron of tail fins, filterable seat-row cards.",
+      "source": "queue",
+      "brief": "The World's Most Outrageous Airlines\nInvestigate airlines that have built their identities around irreverence, eccentricity, flamboyant advertising, unusual liveries, or deliberately provocative business models. Think Ryanair, Spirit, Wizz Air, AirAsia, Cebu Pacific and some of the more unusual regional carriers. Explore their slogans, advertising campaigns, distinctive uniforms, onboard experiences, rivalries, and the personalities behind their brands.",
+      "factcheck": {
+        "claims": 150,
+        "fixed": 9
+      },
+      "corrections": []
+    },
+    {
       "no": 40,
       "slug": "2026-11-26-how-economies-remember",
       "date": "2026-11-26",

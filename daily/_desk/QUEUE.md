@@ -24,9 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-The World's Most Outrageous Airlines
-Investigate airlines that have built their identities around irreverence, eccentricity, flamboyant advertising, unusual liveries, or deliberately provocative business models. Think Ryanair, Spirit, Wizz Air, AirAsia, Cebu Pacific and some of the more unusual regional carriers. Explore their slogans, advertising campaigns, distinctive uniforms, onboard experiences, rivalries, and the personalities behind their brands.
-
 Telecom's Most Unusual Experiments
 Explore mobile operators that have done something genuinely unconventional: free mobile data, radically different pricing, unusual customer ownership models, mobile-money ecosystems, unlimited plans, or deliberately disruptive network launches. Investigate the business logic, advertising, customer reception, and what happened afterward.
 Avoid: the brash carrier brands already profiled in the Irreverent Mobile Carriers page (Un-carrier, Free Mobile, WOM, Rakuten and the rest). Keep to the experiments themselves: pricing, ownership, mobile money and network launches.

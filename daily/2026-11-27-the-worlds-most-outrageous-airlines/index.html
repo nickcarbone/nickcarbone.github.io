@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Outrageous Airlines · Daily</title>
+<meta name="description" content="Seventeen airlines that sold seats with stunts, cheeky adverts, painted fish and public feuds, what each one actually did, and what became of them.">
+<meta property="og:title" content="The Outrageous Airlines">
+<meta property="og:description" content="Seventeen airlines that sold seats with stunts, cheeky adverts, painted fish and public feuds, what each one actually did, and what became of them.">
+<meta property="og:url" content="https://nickcarbone.github.io/daily/2026-11-27-the-worlds-most-outrageous-airlines/">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://nickcarbone.github.io/daily/2026-11-27-the-worlds-most-outrageous-airlines/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --card:#e7edf1;      /* safety-card stock, cool grey */
+  --card-2:#d6e0e7;
+  --ink:#13263a;       /* cabin navy */
+  --ink-2:#3d5266;
+  --blue:#2f6596;      /* seat-fabric blue */
+  --yellow:#f3c318;    /* life-vest yellow */
+  --red:#b8301c;       /* evacuation-slide red */
+  --white:#fbfcfd;
+  --display:"Unbounded",system-ui,sans-serif;
+  --body:"Spectral",Georgia,serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--card);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6}
+a{color:var(--blue);text-underline-offset:2px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.measure{max-width:40em}
+
+/* top strip */
+.strip{background:var(--ink);color:var(--white);font-family:var(--display);font-size:12.5px;letter-spacing:.02em}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.strip a{color:var(--yellow);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+
+/* hero: the fold-out card */
+.hero{padding:34px 0 10px}
+.fold{background:var(--white);border:2px solid var(--ink);border-radius:18px;overflow:hidden;position:relative}
+.fold-head{display:grid;grid-template-columns:1fr auto;gap:16px;padding:26px 26px 8px;align-items:start}
+.fold-head .notice{font-family:var(--display);font-size:12px;background:var(--yellow);color:var(--ink);padding:6px 10px;border-radius:6px;font-weight:600;white-space:nowrap}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(36px,7.4vw,84px);line-height:.98;letter-spacing:-.03em;margin:0}
+.dek{font-size:clamp(18px,2.1vw,22px);max-width:34em;margin:14px 26px 20px;color:var(--ink-2)}
+.apron{display:block;width:100%;height:auto;background:var(--card-2);border-top:2px solid var(--ink)}
+.apron a{cursor:pointer}
+.apron a:focus-visible rect.hit{stroke:var(--red);stroke-width:4}
+.apron text{font-family:var(--display);font-size:11px;fill:var(--ink)}
+.apron-cap{font-family:var(--display);font-size:12.5px;padding:10px 26px 14px;margin:0;color:var(--ink-2);border-top:1px dashed var(--ink-2);background:var(--white)}
+
+/* intro */
+.intro{padding:36px 0 8px}
+.intro p{margin:0 0 1em}
+
+/* pictogram rules */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border:2px solid var(--ink);border-radius:14px;background:var(--white);margin:28px 0 10px;overflow:hidden}
+.rule{padding:18px 18px 16px;border-right:1px solid var(--card-2);border-bottom:1px solid var(--card-2)}
+.rule svg{width:54px;height:54px;display:block;margin-bottom:8px}
+.rule h3{font-family:var(--display);font-size:15px;margin:0 0 6px;font-weight:600}
+.rule p{margin:0;font-size:16px;line-height:1.5}
+
+/* filter */
+.filter{position:sticky;top:0;z-index:5;background:var(--card);padding:10px 0;border-bottom:2px solid var(--ink);margin-top:30px}
+.filter .wrap{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filter .lab{font-family:var(--display);font-size:13px;margin-right:4px}
+.filter button{font-family:var(--display);font-size:13px;min-height:42px;padding:0 14px;border-radius:999px;border:2px solid var(--ink);background:var(--white);color:var(--ink);cursor:pointer}
+.filter button[aria-pressed="true"]{background:var(--ink);color:var(--yellow)}
+.filter .count{font-family:var(--display);font-size:12.5px;color:var(--ink-2);margin-left:auto}
+.no-js .filter{display:none}
+
+/* entries */
+.entries{padding:20px 0 10px}
+.entry{display:grid;grid-template-columns:150px 1fr;gap:0;background:var(--white);border:2px solid var(--ink);border-radius:14px;margin:26px 0;overflow:hidden}
+.entry[hidden]{display:none}
+.entry .side{background:var(--ink);color:var(--white);padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.entry .side svg{width:110px;height:110px}
+.row{font-family:var(--display);font-size:12px;color:var(--yellow)}
+.era{font-family:var(--display);font-size:13px;line-height:1.35}
+.entry .main{padding:22px 26px 20px;min-width:0}
+.entry h2{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.2vw,34px);line-height:1.08;margin:0 0 4px;letter-spacing:-.02em}
+.entry .base{font-style:italic;color:var(--ink-2);margin:0 0 12px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;padding:0;list-style:none}
+.tags li{font-family:var(--display);font-size:11.5px;padding:3px 9px;border-radius:5px;background:var(--card-2);color:var(--ink)}
+.entry p{margin:0 0 .85em}
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px dashed var(--card-2);margin-top:14px;padding-top:12px}
+.panel div{padding-right:16px}
+.panel h3{font-family:var(--display);font-size:12.5px;font-weight:600;margin:0 0 4px;color:var(--red)}
+.panel p{font-size:16.5px;line-height:1.5;margin:0}
+.quote{border-left:5px solid var(--yellow);padding:4px 0 4px 14px;margin:14px 0;font-style:italic}
+sup a{font-family:var(--display);font-size:10.5px;text-decoration:none;padding:0 2px}
+sup{line-height:0}
+
+/* timeline */
+.time{padding:30px 0 10px}
+.time h2,.notes h2,.sources h2,.after h2{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.4vw,34px);margin:0 0 14px;letter-spacing:-.02em}
+.tl{list-style:none;margin:0;padding:0;border-left:4px solid var(--ink);margin-left:8px}
+.tl li{position:relative;padding:0 0 16px 22px;font-size:16.5px;line-height:1.5}
+.tl li::before{content:"";position:absolute;left:-11px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--yellow);border:3px solid var(--ink)}
+.tl b{font-family:var(--display);font-size:13px;display:block}
+
+.after{padding:24px 0 6px}
+.after p{margin:0 0 1em}
+
+/* sources */
+.sources{padding:30px 0 20px;border-top:2px solid var(--ink);margin-top:30px}
+.sources ol{padding-left:2.2em;margin:0;font-size:15.5px;line-height:1.45;columns:2;column-gap:36px}
+.sources li{margin:0 0 9px;break-inside:avoid;overflow-wrap:anywhere}
+.sources .pub{display:block;color:var(--ink-2);font-style:italic}
+.sources li:target{background:var(--yellow)}
+
+footer{background:var(--ink);color:var(--white);padding:30px 0 40px;margin-top:30px;font-family:var(--display);font-size:13px}
+footer p{margin:0 0 4px}
+footer a{color:var(--yellow);display:inline-flex;align-items:center;min-height:44px}
+
+@media (max-width:760px){
+  .entry{grid-template-columns:1fr}
+  .entry .side{flex-direction:row;justify-content:flex-start;text-align:left;padding:12px 16px}
+  .entry .side svg{width:64px;height:64px;flex:none}
+  .entry .main{padding:18px 18px 16px}
+  .panel{grid-template-columns:1fr;gap:12px}
+  .sources ol{columns:1}
+  .fold-head{grid-template-columns:1fr;padding:20px 18px 6px}
+  .fold-head .notice{justify-self:start}
+  .dek{margin:12px 18px 18px}
+  .apron-cap{padding:10px 18px 14px}
+  .filter{position:static}
+  .filter .wrap{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px}
+  .filter button{flex:none}
+  .filter .count{margin-left:6px;white-space:nowrap}
+}
+@media (prefers-reduced-motion:no-preference){
+  .apron .fin{transition:transform .25s ease}
+  .apron a:hover .fin,.apron a:focus .fin{transform:translateY(-6px)}
+  html{scroll-behavior:smooth}
+}
+</style>
+</head>
+<body class="no-js">
+<script>document.body.classList.remove('no-js')</script>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="fin" viewBox="0 0 100 100"><path d="M8 96 L46 10 Q50 4 58 4 L80 4 Q86 4 84 10 L70 96 Z"/></symbol>
+    <symbol id="band" viewBox="0 0 100 100"><path d="M27 54 L77 30 L74 46 L22 68 Z"/></symbol>
+    <symbol id="cap" viewBox="0 0 100 100"><path d="M46 10 Q50 4 58 4 L80 4 Q86 4 84 10 L82 24 L40 24 Z"/></symbol>
+  </defs>
+</svg>
+
+<div class="strip"><div class="wrap"><a href="/daily/">← Daily</a><span>No. 041 · Friday 27 November 2026</span></div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="fold">
+    <div class="fold-head">
+      <h1>The Outrageous Airlines</h1>
+      <span class="notice">Please read before take-off</span>
+    </div>
+    <p class="dek">Seventeen airlines that sold seats with stunts, cheeky adverts, painted fish and public feuds: what each one actually did, and what became of them.</p>
+    <svg class="apron" viewBox="0 0 1020 140" role="img" aria-labelledby="apronT">
+      <title id="apronT">Seventeen tail fins parked in a row, one per airline, each painted in that airline's signature colours. Each links to its entry.</title>
+      <rect x="0" y="110" width="1020" height="30" fill="#b9c7d2"/>
+      <g id="apronFins"></g>
+      <noscript><text x="20" y="150">Entries are listed below.</text></noscript>
+    </svg>
+    <p class="apron-cap">On the apron, in order of when the mischief started. Tap a fin to jump to its card. Colours are approximate and drawn by hand; no logos are reproduced.</p>
+  </div>
+</div></header>
+
+<main>
+<section class="intro"><div class="wrap measure">
+  <p>Most airlines spend fortunes trying to look calm. A handful have gone the other way, deciding that the cheapest seat on a plane is attention, and that the quickest way to get it is to be rude, odd or loud.</p>
+  <p>This is a guide to those carriers, from Braniff’s 1960s colour-bomb to Ryanair’s running feud with Elon Musk. Some of the noise was a business model: if you can’t outspend the flag carrier on advertising, you can get the newspapers to cover your advert for free. Some of it was simply the personality of the person at the top. Several of the loudest names no longer fly, and that is part of the story too.</p>
+  <p>Each card gives the stunt or habit that made the airline famous, the context, and where things stand. Statuses are as of 27 November 2026. Everything is sourced; the numbers in the text link to the list at the end.</p>
+</div></section>
+
+<div class="wrap">
+  <div class="rules" aria-label="Four kinds of outrage">
+    <div class="rule">
+      <svg viewBox="0 0 54 54" aria-hidden="true"><rect x="5" y="9" width="44" height="30" rx="3" fill="none" stroke="#13263a" stroke-width="3"/><path d="M14 47h26M27 39v8" stroke="#13263a" stroke-width="3"/><path d="M15 19h24M15 27h14" stroke="#b8301c" stroke-width="3"/></svg>
+      <h3>The advert</h3><p>Copy designed to be complained about, so the complaint becomes the coverage.</p>
+    </div>
+    <div class="rule">
+      <svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="12" r="6" fill="#f3c318" stroke="#13263a" stroke-width="3"/><path d="M27 18v16M27 34l-9 14M27 34l9 14M14 24l13 2 13-6" stroke="#13263a" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+      <h3>The stunt</h3><p>Arm-wrestling, cross-dressing, boarding a rival’s first flight in a boiler suit.</p>
+    </div>
+    <div class="rule">
+      <svg viewBox="0 0 54 54" aria-hidden="true"><path d="M6 50 L22 10 Q24 6 28 6 L42 6 Q46 6 45 10 L36 50Z" fill="#f3c318" stroke="#13263a" stroke-width="3"/><path d="M14 36 L42 22" stroke="#b8301c" stroke-width="5"/></svg>
+      <h3>The paint job</h3><p>Liveries and uniforms meant to be photographed: pink jets, a 129-foot salmon, labels on the toilets.</p>
+    </div>
+    <div class="rule">
+      <svg viewBox="0 0 54 54" aria-hidden="true"><path d="M8 40h38M14 40V24M24 40V16M34 40V28M44 40V20" stroke="#13263a" stroke-width="3"/><circle cx="14" cy="18" r="4" fill="#b8301c"/></svg>
+      <h3>The price</h3><p>Fares, fees and passes so stripped-back they became a joke the airline told about itself.</p>
+    </div>
+  </div>
+</div>
+
+<nav class="filter" aria-label="Filter airlines"><div class="wrap">
+  <span class="lab" id="flab">Show</span>
+  <button type="button" data-f="all" aria-pressed="true">All</button>
+  <button type="button" data-f="ads" aria-pressed="false">Adverts</button>
+  <button type="button" data-f="stunts" aria-pressed="false">Stunts</button>
+  <button type="button" data-f="paint" aria-pressed="false">Paint and uniforms</button>
+  <button type="button" data-f="price" aria-pressed="false">Pricing</button>
+  <button type="button" data-f="gone" aria-pressed="false">No longer flying</button>
+  <span class="count" id="count" aria-live="polite">17 airlines</span>
+</div></nav>
+
+<section class="entries"><div class="wrap" id="entries">
+
+<article class="entry" id="braniff" data-tags="ads paint gone" data-c1="#e8762c" data-c2="#3aa6c8" data-label="Braniff">
+  <div class="side"><span class="row">Row 1</span><span class="era">Makeover 1965, grounded 1982</span></div>
+  <div class="main">
+    <h2>Braniff International</h2>
+    <p class="base">Dallas, Texas</p>
+    <ul class="tags"><li>Paint and uniforms</li><li>Adverts</li><li>No longer flying</li></ul>
+    <p>In 1965 a staid Texas carrier hired the agency Jack Tinker &amp; Partners, where Mary Wells was working, and came out the other side as “The End of the Plain Plane”. The designer Alexander Girard painted the fleet in seven solid colours and reworked roughly 17,000 details, from the interiors down to the soap packets and playing cards.<sup><a href="#s1">1</a>,<a href="#s3">3</a></sup> Emilio Pucci dressed the stewardesses in space-age outfits that included plastic bubble helmets to protect hairdos on windy aprons, with layers designed to come off as the flight went on.<sup><a href="#s2">2</a>,<a href="#s3">3</a></sup></p>
+    <p>Braniff then commissioned Alexander Calder to paint a DC-8-62 in 1973 (“Flying Colors”) and a Boeing 727 for the American Bicentennial.<sup><a href="#s2">2</a></sup> Its 1968 “When You Got It, Flaunt It” television campaign sat unlikely pairs side by side in the cabin: Andy Warhol with the boxer Sonny Liston, Salvador Dalí with the baseball pitcher Whitey Ford.<sup><a href="#s4">4</a></sup></p>
+    <div class="panel">
+      <div><h3>The people behind it</h3><p>Wells founded Wells Rich Greene in 1966 with Braniff as its first client, and married the airline’s president, Harding Lawrence, in 1967.<sup><a href="#s3">3</a></sup></p></div>
+      <div><h3>What happened</h3><p>After deregulation Braniff expanded hard, and it stopped flying on 12 May 1982, the first major US airline to go bankrupt in 20 years.<sup><a href="#s95">95</a>,<a href="#s5">5</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="psa" data-tags="paint gone" data-c1="#e04a7a" data-c2="#f29b38" data-label="PSA">
+  <div class="side"><span class="row">Row 2</span><span class="era">1949–1988</span></div>
+  <div class="main">
+    <h2>Pacific Southwest Airlines</h2>
+    <p class="base">San Diego, California</p>
+    <ul class="tags"><li>Paint and uniforms</li><li>No longer flying</li></ul>
+    <p>PSA started in San Diego in 1949 with a single leased DC-3 to Oakland, and became California’s commuter airline.<sup><a href="#s6">6</a></sup> Its signature was a smile painted under the nose of every jet, which appeared in the late 1960s.<sup><a href="#s6">6</a></sup> Stewardesses wore miniskirts from 1966, and later hot-pink outfits with go-go boots; the airline called itself “The World’s Friendliest Airline” and let its pilots joke over the PA.<sup><a href="#s6">6</a>,<a href="#s7">7</a></sup></p>
+    <div class="panel">
+      <div><h3>The comeback</h3><p>In 2006 US Airways painted the smile back on the nose of a retro-liveried jet.<sup><a href="#s92">92</a></sup></p></div>
+      <div><h3>What happened</h3><p>USAir agreed to buy PSA in December 1986 for $400 million, and its last flight was on 8 April 1988.<sup><a href="#s93">93</a>,<a href="#s8">8</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="southwest" data-tags="stunts price" data-c1="#304cb2" data-c2="#e0262d" data-label="Southwest">
+  <div class="side"><span class="row">Row 3</span><span class="era">1971–</span></div>
+  <div class="main">
+    <h2>Southwest Airlines</h2>
+    <p class="base">Dallas, Texas</p>
+    <ul class="tags"><li>Stunts</li><li>Pricing</li></ul>
+    <p>Herb Kelleher and Rollin King sketched the airline’s first route, a triangle between Dallas, Houston and San Antonio, on a cocktail napkin; it started flying in 1971 with three aircraft.<sup><a href="#s9">9</a></sup> When it listed on the New York Stock Exchange in 1977 it took the ticker LUV, a nod to its Love Field base.<sup><a href="#s79">79</a></sup></p>
+    <p>Its best-known stunt was a trademark dispute settled by arm-wrestling. Both Southwest and Stevens Aviation, an aircraft-maintenance firm, were using “Plane Smart” slogans. On 20 March 1992, at the Dallas Sportatorium, Kelleher, then 61, took on Stevens’s chief executive Kurt Herwald in “Malice in Dallas”. Kelleher lost, Herwald let Southwest keep using the slogan anyway, and both companies gave money to charity.<sup><a href="#s10">10</a>,<a href="#s11">11</a></sup></p>
+    <p class="quote">“We take our competition seriously, but not ourselves.” Kelleher’s line on the episode.<sup><a href="#s10">10</a></sup></p>
+    <div class="panel">
+      <div><h3>The habit</h3><p>Southwest cabin crew became known for comic safety announcements, one of which went viral in 2014.<sup><a href="#s80">80</a></sup></p></div>
+      <div><h3>Where it stands</h3><p>Still flying, but less unusual: free checked bags ended for tickets bought from 28 May 2025, and open seating ended on 27 January 2026.<sup><a href="#s12">12</a>,<a href="#s13">13</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="virgin" data-tags="stunts" data-c1="#c8102e" data-c2="#6d2077" data-label="Virgin Atlantic">
+  <div class="side"><span class="row">Row 4</span><span class="era">1984–</span></div>
+  <div class="main">
+    <h2>Virgin Atlantic</h2>
+    <p class="base">Crawley, England</p>
+    <ul class="tags"><li>Stunts</li></ul>
+    <p>Richard Branson’s airline began on 22 June 1984 with one Boeing 747, “Maiden Voyager”, flying from Gatwick to Newark with the cricketer Ian Botham among the guests.<sup><a href="#s14">14</a></sup> From then on the founder was much of the advertising, and needling British Airways was a speciality.</p>
+    <p>The rivalry turned serious in the “dirty tricks” case. In January 1993 BA agreed to pay £610,000 in libel damages, £500,000 of it to Branson personally, and its chairman Lord King apologised.<sup><a href="#s15">15</a>,<a href="#s16">16</a></sup> Virgin kept up the teasing for years: in 1999, when the BA-sponsored London Eye ran into trouble being raised, Virgin flew an airship over it reading “BA can’t get it up!!”.<sup><a href="#s17">17</a>,<a href="#s18">18</a></sup></p>
+    <div class="panel">
+      <div><h3>The other stunt</h3><p>Branson’s most memorable shift in uniform was on someone else’s airline: see AirAsia, below.</p></div>
+      <div><h3>Where it stands</h3><p>Still flying; Delta Air Lines is a shareholder, and Virgin joined the SkyTeam alliance in 2023.<sup><a href="#s19b">19</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="ryanair" data-tags="ads stunts price" data-c1="#073590" data-c2="#f1c933" data-label="Ryanair">
+  <div class="side"><span class="row">Row 5</span><span class="era">1985–</span></div>
+  <div class="main">
+    <h2>Ryanair</h2>
+    <p class="base">Dublin, Ireland</p>
+    <ul class="tags"><li>Adverts</li><li>Stunts</li><li>Pricing</li></ul>
+    <p>Ryanair’s first scheduled service, from Waterford to Gatwick on 8 July 1985, used a 15-seat Embraer Bandeirante.<sup><a href="#s20">20</a>,<a href="#s21">21</a></sup> It grew into a carrier of more than 200 million passengers a year,<sup><a href="#s28">28</a></sup> and its chief executive Michael O’Leary turned provocation into a free marketing channel.</p>
+    <p>In February 2009 he told the BBC that Ryanair was looking at putting coin slots on toilet doors, so that passengers “might actually have to spend a pound to spend a penny”; the company later said there were no immediate plans.<sup><a href="#s22">22</a></sup> In 2010 he floated standing-room “vertical seats” at the back of the cabin.<sup><a href="#s23">23</a></sup> Neither happened. The adverts have drawn regulators too: the UK Advertising Standards Authority banned a “Red hot fares &amp; crew” ad in 2012 for causing widespread offence, and in 2021 ruled the “Jab &amp; Go” Covid-vaccine ad misleading after 2,370 complaints.<sup><a href="#s24">24</a>,<a href="#s25">25</a></sup></p>
+    <p>In January 2026, after O’Leary dismissed fitting Starlink wi-fi and Musk called him an “utter idiot” and mused online about buying the airline, Ryanair answered with a 100,000-seat sale aimed, it said, at “idiots on X”. O’Leary’s verdict: “I suspect he’s a bigger idiot than me.”<sup><a href="#s26">26</a>,<a href="#s27">27</a></sup></p>
+    <div class="panel">
+      <div><h3>The method</h3><p>Say something outrageous, let it run for a news cycle, then quietly confirm it isn’t happening.</p></div>
+      <div><h3>Where it stands</h3><p>Ryanair reported 208.4 million passengers in the year to 31 March 2026, with a fleet of 647 aircraft.<sup><a href="#s28">28</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="easyjet" data-tags="ads stunts price" data-c1="#ff6600" data-c2="#ffffff" data-label="easyJet">
+  <div class="side"><span class="row">Row 6</span><span class="era">1995–</span></div>
+  <div class="main">
+    <h2>easyJet</h2>
+    <p class="base">Luton, England</p>
+    <ul class="tags"><li>Adverts</li><li>Stunts</li><li>Pricing</li></ul>
+    <p>Stelios Haji-Ioannou’s airline flew its first service, Luton to Glasgow, on 10 November 1995, at a launch fare of £29: pitched as the price of a pair of jeans.<sup><a href="#s29">29</a>,<a href="#s30">30</a></sup> Booking was by phone only, with no tickets.<sup><a href="#s31">31</a></sup></p>
+    <p>On 22 May 1998, when British Airways launched its own low-cost offshoot, Go, Stelios and six colleagues bought seats on its first flight, turned up in orange boiler suits and offered every passenger a free easyJet flight.<sup><a href="#s32">32</a></sup> In 2003 easyJet ran a cleavage advert reading “Discover weapons of mass distraction”, and an unauthorised David Beckham ad (“Hair today… gone tomorrow?”) that ended with his agents asking for a charity donation.<sup><a href="#s33">33</a>,<a href="#s34">34</a></sup></p>
+    <div class="panel">
+      <div><h3>The rival</h3><p>In 2010 Ryanair ran ads giving Stelios a long, Pinocchio-style nose; it apologised and paid him £50,100 in libel damages.<sup><a href="#s35">35</a></sup></p></div>
+      <div><h3>Where it stands</h3><p>Still flying, still orange.</p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="airasia" data-tags="stunts price" data-c1="#e8202a" data-c2="#ffffff" data-label="AirAsia">
+  <div class="side"><span class="row">Row 7</span><span class="era">Fernandes era from 2001</span></div>
+  <div class="main">
+    <h2>AirAsia</h2>
+    <p class="base">Kuala Lumpur, Malaysia</p>
+    <ul class="tags"><li>Stunts</li><li>Pricing</li></ul>
+    <p>Tony Fernandes, a former music-industry executive, bought the loss-making AirAsia in 2001 for a token one ringgit, taking on its debts and two ageing Boeing 737s.<sup><a href="#s36">36</a>,<a href="#s37">37</a></sup> The slogan was “Now Everyone Can Fly”, and in 2009 a “1 Million Free Seats” sale sold, by the airline’s own count, 402,222 seats in 24 hours.<sup><a href="#s38">38</a></sup></p>
+    <p>In 2010 Fernandes and Branson, who both owned Formula One teams, bet that whichever team finished lower would send its owner to work as a flight attendant on the other’s airline. Branson’s team lost. On 12 May 2013 he worked a charity flight from Perth to Kuala Lumpur in a red AirAsia skirt, serving drinks and spilling some on Fernandes.<sup><a href="#s39">39</a>,<a href="#s40">40</a></sup></p>
+    <div class="panel">
+      <div><h3>The look</h3><p>Red everything: aircraft, uniforms and, for one day, Branson.</p></div>
+      <div><h3>Where it stands</h3><p>Still flying.</p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="norwegian" data-tags="paint" data-c1="#d81939" data-c2="#ffffff" data-label="Norwegian">
+  <div class="side"><span class="row">Row 8</span><span class="era">Tail heroes since 2002</span></div>
+  <div class="main">
+    <h2>Norwegian</h2>
+    <p class="base">Oslo, Norway</p>
+    <ul class="tags"><li>Paint and uniforms</li></ul>
+    <p>Norwegian’s outrage was gentle and permanent: since its first jet in 2002, each aircraft has carried a portrait of a “tail-fin hero” on its tail.<sup><a href="#s68">68</a></sup> The heroes reflected its markets. Freddie Mercury joined the British set in 2017, alongside Roald Dahl, Bobby Moore, Amy Johnson and Freddie Laker; in March 2019 it added a group of British women including Ada Lovelace, Emmeline Pankhurst, Florence Nightingale and Mary Seacole.<sup><a href="#s69">69</a>,<a href="#s70">70</a></sup> The San Francisco politician Harvey Milk became an American hero the same year.<sup><a href="#s68">68</a></sup></p>
+    <div class="panel">
+      <div><h3>The effect</h3><p>Every aircraft became a conversation starter, and every new face a press release.</p></div>
+      <div><h3>Where it stands</h3><p>Still flying, though it abandoned long-haul in January 2021.<sup><a href="#s71">71</a></sup> The tails were redesigned in 2022.<sup><a href="#s72">72</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="hooters" data-tags="paint gone" data-c1="#f26722" data-c2="#ffffff" data-label="Hooters Air">
+  <div class="side"><span class="row">Row 9</span><span class="era">2003–2006</span></div>
+  <div class="main">
+    <h2>Hooters Air</h2>
+    <p class="base">Myrtle Beach, South Carolina</p>
+    <ul class="tags"><li>Paint and uniforms</li><li>No longer flying</li></ul>
+    <p>The restaurant chain’s chairman, Bob Brooks, bought a charter carrier and turned it into an airline whose first scheduled flight, Myrtle Beach to Atlanta, ran on 6 March 2003.<sup><a href="#s41">41</a>,<a href="#s42">42</a></sup> The jets were orange and white, and Hooters Girls flew on board to run games and trivia, alongside the certified cabin crew.<sup><a href="#s94">94</a></sup> At its peak, in summer 2005, it served 15 destinations, including Nassau.<sup><a href="#s41">41</a></sup></p>
+    <div class="panel">
+      <div><h3>The verdict</h3><p>“I’ve got a fair amount of money, but I don’t have enough to fix this animal,” Brooks said as he grounded it.<sup><a href="#s42">42</a></sup></p></div>
+      <div><h3>What happened</h3><p>Brooks grounded the airline in April 2006, three years after its first flight.<sup><a href="#s42">42</a>,<a href="#s41">41</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="wizz" data-tags="paint price" data-c1="#c6007e" data-c2="#06038d" data-label="Wizz Air">
+  <div class="side"><span class="row">Row 10</span><span class="era">2004–</span></div>
+  <div class="main">
+    <h2>Wizz Air</h2>
+    <p class="base">Budapest, Hungary</p>
+    <ul class="tags"><li>Paint and uniforms</li><li>Pricing</li></ul>
+    <p>Founded in September 2003 by József Váradi, a former Malév chief executive, Wizz flew its first service from Katowice in Poland on 19 May 2004.<sup><a href="#s43">43</a>,<a href="#s44">44</a></sup> Its aircraft are hard to mistake: “Wizz Pink” was kept when the brand was refreshed in 2015, with the earlier purple replaced by cobalt blue.<sup><a href="#s45">45</a></sup></p>
+    <p>In August 2024 it launched an “All You Can Fly” subscription: €499 for a year at first, limited to 10,000 members, with flights bookable only within 72 hours of departure and a €9.99 fee per flight.<sup><a href="#s46">46</a></sup></p>
+    <div class="panel">
+      <div><h3>The catch</h3><p>The pass was unlimited in name; the 72-hour booking window and per-flight fee did the limiting.<sup><a href="#s46">46</a></sup></p></div>
+      <div><h3>Where it stands</h3><p>Still flying; it closed its Abu Dhabi subsidiary from 1 September 2025.<sup><a href="#s47">47</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="alaska" data-tags="paint" data-c1="#d9534f" data-c2="#2b5a7a" data-label="Alaska Airlines">
+  <div class="side"><span class="row">Row 11</span><span class="era">Salmon jets 2005–2023</span></div>
+  <div class="main">
+    <h2>Alaska Airlines</h2>
+    <p class="base">Seattle, Washington</p>
+    <ul class="tags"><li>Paint and uniforms</li></ul>
+    <p>Alaska is otherwise a sober airline, which makes its fish more surprising. On 1 October 2005 it unveiled “Salmon-Thirty-Salmon”, a Boeing 737-400 painted nose to tail as a king salmon by the artist Mark Boyle. Thirty painters took 24 days over it; an ordinary 737 takes about a week.<sup><a href="#s48">48</a></sup> A second fish, on a 737-800 and nearly 129 feet long, followed in 2012; Alaska called it among the most intricately painted commercial aircraft in the world.<sup><a href="#s49">49</a>,<a href="#s50">50</a></sup></p>
+    <div class="panel">
+      <div><h3>Who paid</h3><p>The work was a promotion with the Alaska Seafood Marketing Institute.<sup><a href="#s49">49</a></sup></p></div>
+      <div><h3>What happened</h3><p>The second salmon flew its farewell in April 2023 and was succeeded in May by “Xáat Kwáani” (Salmon People) by the Tlingit artist Crystal Worl.<sup><a href="#s51">51</a>,<a href="#s52">52</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="spirit" data-tags="ads paint price gone" data-c1="#ffe400" data-c2="#111111" data-label="Spirit">
+  <div class="side"><span class="row">Row 12</span><span class="era">Ads from 2008; wound down 2026</span></div>
+  <div class="main">
+    <h2>Spirit Airlines</h2>
+    <p class="base">Florida</p>
+    <ul class="tags"><li>Adverts</li><li>Paint and uniforms</li><li>Pricing</li><li>No longer flying</li></ul>
+    <p>Spirit’s adverts ran on innuendo. In 2008 a “Many Islands Low Fares” sale drew a complaint from the flight attendants’ union; the president, Ben Baldanza, replied that the only thing Spirit found obscene was its competitors’ fares.<sup><a href="#s84">84</a></sup> In June 2010, during the BP oil spill in the Gulf of Mexico, it ran “Check Out The Oil On Our Beaches”, showing women in bikinis, and stood by it.<sup><a href="#s85">85</a></sup></p>
+    <p>In 2014 it formalised the model as the “Bare Fare”, covering a passenger and one personal item, with everything else extra, and repainted its planes a bright all-over yellow.<sup><a href="#s86">86</a>,<a href="#s87">87</a></sup></p>
+    <div class="panel">
+      <div><h3>The decline</h3><p>Spirit filed for Chapter 11 in November 2024, emerged in March 2025, and filed again in August 2025.<sup><a href="#s88">88</a>,<a href="#s89">89</a></sup></p></div>
+      <div><h3>What happened</h3><p>On 2 May 2026 it began an orderly wind-down, effective immediately, after rescue talks failed; a bankruptcy court approved the wind-down days later.<sup><a href="#s90">90</a>,<a href="#s91">91</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="airnz" data-tags="ads paint" data-c1="#111111" data-c2="#00a9ce" data-label="Air New Zealand">
+  <div class="side"><span class="row">Row 13</span><span class="era">Safety films since 2009</span></div>
+  <div class="main">
+    <h2>Air New Zealand</h2>
+    <p class="base">Auckland, New Zealand</p>
+    <ul class="tags"><li>Adverts</li><li>Paint and uniforms</li></ul>
+    <p>Air New Zealand turned the safety video, the one part of a flight nobody watches, into its advertising. In June 2009 “Bare Essentials” showed pilots, cabin crew and the chief executive Rob Fyfe wearing nothing but body paint in the shape of their uniforms, to promote domestic fares with “nothing to hide”.<sup><a href="#s53">53</a></sup> In 2011 the fitness instructor Richard Simmons led crew in neon lycra in “Fit to Fly”.<sup><a href="#s54">54</a></sup></p>
+    <p>Then came Middle-earth. “An Unexpected Briefing” (2012), with Gollum and a cameo from Peter Jackson, passed 9 million views in eight days by the airline’s count, and the 2014 “Most Epic Safety Video Ever Made”, directed by Taika Waititi with Elijah Wood, reached 16 million in a week.<sup><a href="#s55">55</a>,<a href="#s56">56</a>,<a href="#s57">57</a></sup></p>
+    <div class="panel">
+      <div><h3>The trick</h3><p>A captive audience of every passenger, on every flight, plus everyone online.</p></div>
+      <div><h3>Where it stands</h3><p>Still flying.</p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="kulula" data-tags="ads paint gone" data-c1="#7ac143" data-c2="#ffffff" data-label="kulula.com">
+  <div class="side"><span class="row">Row 14</span><span class="era">Flying 101, 2010; grounded 2022</span></div>
+  <div class="main">
+    <h2>kulula.com</h2>
+    <p class="base">Johannesburg, South Africa</p>
+    <ul class="tags"><li>Adverts</li><li>Paint and uniforms</li><li>No longer flying</li></ul>
+    <p>South Africa’s lime-green budget airline treated its planes as joke books. Its “Flying 101” Boeing 737-800, rolled out in January 2010, was covered in arrows and labels: the exit rows were the “throne zone”, the registration was the “secret agent code”, and the toilets were marked with a reference to the mile-high club.<sup><a href="#s58">58</a>,<a href="#s59">59</a>,<a href="#s60">60</a></sup></p>
+    <p>In the run-up to the 2010 World Cup, kulula called itself the “Unofficial National Carrier of the You-Know-What”. FIFA’s lawyers objected to what they called an unauthorised association, kulula withdrew the ad, and the row did the publicity work for it.<sup><a href="#s61">61</a></sup></p>
+    <div class="panel">
+      <div><h3>The parent</h3><p>kulula was the low-cost brand of Comair, which had flown since 1946.<sup><a href="#s62">62</a></sup></p></div>
+      <div><h3>What happened</h3><p>Comair grounded all flights, kulula’s included, on 1 June 2022 and moved into liquidation days later.<sup><a href="#s62">62</a>,<a href="#s63">63</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="cebu" data-tags="stunts" data-c1="#ffd200" data-c2="#0067b1" data-label="Cebu Pacific">
+  <div class="side"><span class="row">Row 15</span><span class="era">Dance video 2010</span></div>
+  <div class="main">
+    <h2>Cebu Pacific</h2>
+    <p class="base">Manila, Philippines</p>
+    <ul class="tags"><li>Stunts</li></ul>
+    <p>In September 2010 a video of Cebu Pacific cabin crew dancing a safety demonstration to a mash-up of Lady Gaga and Katy Perry went round the world, passing 6 million views within days.<sup><a href="#s64">64</a>,<a href="#s65">65</a></sup> The airline said a standard demonstration was still given before take-off and called the dance part of its “fun culture”; a flight attendants’ association and the women’s group Gabriela called it demeaning.<sup><a href="#s65">65</a></sup></p>
+    <p>The airline also built a reputation for in-flight games, from crew-led “bring me” contests to quizzes run over social media.<sup><a href="#s66">66</a></sup> Its campaigns play on Juan, the Filipino everyman, as in #EveryJuanWillFlyAgain in 2020.<sup><a href="#s67">67</a></sup></p>
+    <div class="panel">
+      <div><h3>The argument</h3><p>Fun for passengers, or a gimmick at the cabin crew’s expense: both views were aired in 2010.<sup><a href="#s65">65</a></sup></p></div>
+      <div><h3>Where it stands</h3><p>Still flying.</p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="vietjet" data-tags="paint stunts" data-c1="#e01e26" data-c2="#ffd400" data-label="Vietjet">
+  <div class="side"><span class="row">Row 16</span><span class="era">2011–</span></div>
+  <div class="main">
+    <h2>Vietjet</h2>
+    <p class="base">Hanoi, Vietnam</p>
+    <ul class="tags"><li>Paint and uniforms</li><li>Stunts</li></ul>
+    <p>Vietjet flew its first service, Ho Chi Minh City to Hanoi, on 25 December 2011.<sup><a href="#s73">73</a></sup> It soon became known abroad as the “bikini airline”. In 2012 Vietnam’s civil aviation authority fined it for an unapproved in-flight show, a bikini performance to celebrate a new route to the beach resort of Nha Trang.<sup><a href="#s74">74</a></sup> In 2018 models in bikinis performed on the flight carrying the national under-23 football team home, and the regulator fined the airline again; its founder Nguyen Thi Phuong Thao apologised.<sup><a href="#s75">75</a></sup></p>
+    <p class="quote">“We don’t mind people associating the airline with the bikini image… If that makes people happy, then we are happy.” Nguyen Thi Phuong Thao, quoted in Fortune.<sup><a href="#s76">76</a></sup></p>
+    <div class="panel">
+      <div><h3>The founder</h3><p>Bloomberg reported in 2016 that the image had helped make Thao Vietnam’s first woman billionaire.<sup><a href="#s77">77</a></sup></p></div>
+      <div><h3>Where it stands</h3><p>Still flying.</p></div>
+    </div>
+  </div>
+</article>
+
+<article class="entry" id="wow" data-tags="paint price gone" data-c1="#a1007d" data-c2="#ffffff" data-label="WOW air">
+  <div class="side"><span class="row">Row 17</span><span class="era">2012–2019</span></div>
+  <div class="main">
+    <h2>WOW air</h2>
+    <p class="base">Reykjavík, Iceland</p>
+    <ul class="tags"><li>Paint and uniforms</li><li>Pricing</li><li>No longer flying</li></ul>
+    <p>Skúli Mogensen founded WOW in 2011 and painted its Airbus fleet purple. The pitch was transatlantic flights via Reykjavík at fares from $99.<sup><a href="#s78">78</a>,<a href="#s81">81</a></sup> The marketing matched: a “Purple Friday” sale, and in 2018 a summer “travel guide” job paying $4,500 a month to tour Iceland and post about it.<sup><a href="#s82">82</a></sup></p>
+    <div class="panel">
+      <div><h3>The numbers</h3><p>In 2018 it carried 3.5 million passengers with 11 aircraft.<sup><a href="#s83">83</a></sup></p></div>
+      <div><h3>What happened</h3><p>After rescue talks with Icelandair and the investor Indigo Partners fell through, WOW stopped flying on 28 March 2019, stranding passengers.<sup><a href="#s78">78</a>,<a href="#s83">83</a></sup></p></div>
+    </div>
+  </div>
+</article>
+
+</div></section>
+
+<section class="time"><div class="wrap measure">
+  <h2>The flight log</h2>
+  <ol class="tl">
+    <li><b>1965</b>Braniff launches “The End of the Plain Plane”.<sup><a href="#s1">1</a></sup></li>
+    <li><b>1973</b>Calder’s “Flying Colors” DC-8 joins Braniff’s fleet.<sup><a href="#s2">2</a></sup></li>
+    <li><b>1992</b>“Malice in Dallas”: Kelleher arm-wrestles for a slogan, and loses.<sup><a href="#s10">10</a></sup></li>
+    <li><b>1993</b>BA pays libel damages to Branson and Virgin in the “dirty tricks” case.<sup><a href="#s15">15</a></sup></li>
+    <li><b>1998</b>easyJet’s boiler-suited crew board the first Go flight.<sup><a href="#s32">32</a></sup></li>
+    <li><b>2005</b>Alaska’s first flying salmon is unveiled.<sup><a href="#s48">48</a></sup></li>
+    <li><b>2009</b>Ryanair floats pay toilets; Air New Zealand’s crew strip to body paint.<sup><a href="#s22">22</a>,<a href="#s53">53</a></sup></li>
+    <li><b>2010</b>kulula’s “Flying 101” jet; Cebu Pacific’s dancing crew; Spirit’s oil-spill ad.<sup><a href="#s58">58</a>,<a href="#s64">64</a>,<a href="#s85">85</a></sup></li>
+    <li><b>2013</b>Branson pays his F1 debt in a red AirAsia skirt.<sup><a href="#s39">39</a></sup></li>
+    <li><b>2019</b>WOW air stops flying.<sup><a href="#s78">78</a></sup></li>
+    <li><b>2022</b>kulula grounded with Comair.<sup><a href="#s62">62</a></sup></li>
+    <li><b>2026</b>Ryanair’s seat sale for “idiots on X”; Southwest ends open seating; Spirit winds down.<sup><a href="#s26">26</a>,<a href="#s13">13</a>,<a href="#s90">90</a></sup></li>
+  </ol>
+</div></section>
+
+<section class="after"><div class="wrap measure">
+  <h2>What the noise was for</h2>
+  <p>The pattern across these cards is that outrage was cheapest for the airlines with the least money. Braniff’s makeover came while US fares were still set by regulators, so image was one of the few things an airline could compete on. Ryanair, easyJet, Spirit and kulula used provocation because a row with a regulator, a rival or FIFA bought coverage that a newcomer could not afford to buy outright.</p>
+  <p>It did not guarantee survival. Of the seventeen, six no longer fly: Braniff, PSA, Hooters Air, kulula, WOW and Spirit. The ones still going tend to have kept the joke and dropped the parts that cost money: Southwest now charges for bags and assigns seats, and Ryanair’s toilet coin slots and standing seats stayed in the newspapers.<sup><a href="#s12">12</a>,<a href="#s13">13</a>,<a href="#s22">22</a></sup></p>
+</div></section>
+
+<section class="sources" id="sources"><div class="wrap">
+  <h2>Sources</h2>
+  <ol>
+    <li id="s1"><a href="https://www.thehenryford.org/collections/explore/articles/the-end-of-the-plain-plane-campaign">The “End of the Plain Plane” Campaign</a><span class="pub">The Henry Ford</span></li>
+    <li id="s2"><a href="https://www.smithsonianmag.com/air-space-magazine/the-end-of-the-plain-plane-91607421/">The End of the Plain Plane</a><span class="pub">Smithsonian Air &amp; Space</span></li>
+    <li id="s3"><a href="https://avgeekery.com/?p=30271">Mary Wells and Braniff International’s Flying Colors</a><span class="pub">AvGeekery</span></li>
+    <li id="s4"><a href="https://www.openculture.com/2012/07/andy_warhol_and_salvador_dali_in_classic_1968_braniff_commercials_when_you_got_it_flaunt_it.html">Andy Warhol and Salvador Dalí in Classic 1968 Braniff Commercials</a><span class="pub">Open Culture</span></li>
+    <li id="s5"><a href="https://www.csmonitor.com/1982/0514/051477.html">Why Braniff International’s colorful career has ended (14 May 1982)</a><span class="pub">Christian Science Monitor</span></li>
+    <li id="s6"><a href="https://sandiegoairandspace.org/newsletters/article/pacific-southwest-airlines-psa-a-san-diego-icon">Pacific Southwest Airlines (PSA): A San Diego Icon</a><span class="pub">San Diego Air &amp; Space Museum</span></li>
+    <li id="s7"><a href="https://www.californiasun.co/pilots-telling-jokes-stewardesses-in-go-go-boots-martinis-the-worlds-friendliest-airline-started-in-california/">Pilots telling jokes, stewardesses in go-go boots…</a><span class="pub">California Sun</span></li>
+    <li id="s8"><a href="https://sandiegoairandspace.org/exhibits/online-exhibit-page/the-end-of-an-era">The End of an Era</a><span class="pub">San Diego Air &amp; Space Museum</span></li>
+    <li id="s9"><a href="https://history.southwest.com/about-herb/">About Herb</a><span class="pub">Southwest Airlines History</span></li>
+    <li id="s10"><a href="https://southwest50.com/our-stories/armed-and-dangerous-the-malice-in-dallas">Armed and Dangerous: The Malice in Dallas</a><span class="pub">Southwest Airlines</span></li>
+    <li id="s11"><a href="https://www.dallasnews.com/arts-entertainment/2016/03/30/dallas-sportatorium-s-best-moments-from-southwest-airlines-ceo-wrestling-to-elvis-to-beastie-boys">Dallas Sportatorium’s best moments</a><span class="pub">Dallas Morning News</span></li>
+    <li id="s12"><a href="https://www.npr.org/2025/03/11/nx-s1-5324669/southwest-airlines-will-stop-flying-bags-for-free-for-most-customers">Southwest Airlines will stop flying bags for free for most customers</a><span class="pub">NPR</span></li>
+    <li id="s13"><a href="https://abc7.com/post/southwest-officially-ends-open-seating-what-know-new-policy-boarding/18485139/">Southwest officially ends open seating</a><span class="pub">ABC7</span></li>
+    <li id="s14"><a href="https://www.businesstraveller.com/features/snapshot-15/">Snapshot: launch of Virgin Atlantic, 1984</a><span class="pub">Business Traveller</span></li>
+    <li id="s15"><a href="https://gulfnews.com/today-history/january-11-1993-virgin-wins-battle-against-british-airways-1.2155065">January 11, 1993: Virgin wins battle against British Airways</a><span class="pub">Gulf News</span></li>
+    <li id="s16"><a href="https://www.caymancompass.com/1993/01/25/king-apologises-to-virgin">King apologises to Virgin (25 January 1993)</a><span class="pub">Cayman Compass</span></li>
+    <li id="s17"><a href="https://cipr.co.uk/CIPR/CIPR/About_Us/Campaigns/Virgin_Atlantic_vs_British_Airways.aspx">Virgin Atlantic vs British Airways</a><span class="pub">Chartered Institute of Public Relations</span></li>
+    <li id="s18"><a href="https://londonist.com/2015/12/london-s-greatest-publicity-stunts">London’s Greatest Publicity Stunts</a><span class="pub">Londonist</span></li>
+    <li id="s19b"><a href="https://www.prnewswire.com/news-releases/its-our-party-and-well-fly-how-we-want-to-virgin-atlantic-celebrates-ruby-anniversary-302167917.html">Virgin Atlantic celebrates ruby anniversary (2024)</a><span class="pub">Virgin Atlantic, via PR Newswire</span></li>
+    <li id="s20"><a href="https://www.irishtimes.com/life-and-style/travel/fly-in-considerable-luxury-ryanair-s-first-ads-in-1985-1.3953719">Fly in considerable luxury: Ryanair’s first ads in 1985</a><span class="pub">The Irish Times</span></li>
+    <li id="s21"><a href="https://www.rte.ie/archives/2015/0707/713260-ryanairs-first-flight">Ryanair’s first flight</a><span class="pub">RTÉ Archives</span></li>
+    <li id="s22"><a href="https://www.rte.ie/news/2009/0227/114541-ryanair">Ryanair considers toilet charges (27 February 2009)</a><span class="pub">RTÉ News</span></li>
+    <li id="s23"><a href="https://bdaily.co.uk/articles/2010/06/30/standing-room-only-in-fiver-flight-plan">Standing room only in fiver flight plan (30 June 2010)</a><span class="pub">Bdaily</span></li>
+    <li id="s24"><a href="https://www.asa.org.uk/rulings/ryanair-ltd-a11-178486.html">Ruling on Ryanair Ltd, A11-178486 (2012)</a><span class="pub">Advertising Standards Authority</span></li>
+    <li id="s25"><a href="https://www.asa.org.uk/rulings/ryanair-dac-g20-1089921-ryanair-dac.html">Ruling on Ryanair DAC, G20-1089921 (2021)</a><span class="pub">Advertising Standards Authority</span></li>
+    <li id="s26"><a href="https://www.cbsnews.com/news/elon-musk-ryanair-tweet-michael-oleary-idiot">Ryanair CEO says Musk is a “bigger idiot than me”</a><span class="pub">CBS News</span></li>
+    <li id="s27"><a href="https://www.gulftoday.ae/news/2026/01/21/irish-airline-ryanair-launches-big-idiot-seat-sale-as-spat-with-elon-musk-intensifies">Ryanair launches ‘Big Idiot’ seat sale as spat with Elon Musk intensifies (21 January 2026)</a><span class="pub">Gulf Today</span></li>
+    <li id="s28"><a href="https://corporate.ryanair.com/news/ryanair-2025-26-pat-rises-40-to-e2-26bn-pre-except-traffic-grows-4-to-208m-despite-boeing-delays/">Ryanair 2025/26 full-year results</a><span class="pub">Ryanair</span></li>
+    <li id="s29"><a href="https://www.easyjet.com/en/news/airline/story/the-easyjet-effect-new-report-from-easyjet-on-its-30th-birthday-reveals">The easyJet effect: report on its 30th birthday</a><span class="pub">easyJet</span></li>
+    <li id="s30"><a href="https://finance.yahoo.com/news/easyjet-nearly-stelair-other-secrets-173806667.html">How easyJet was nearly ‘Stelair’ (Simon Calder)</a><span class="pub">The Independent, via Yahoo Finance</span></li>
+    <li id="s31"><a href="https://www.businesstraveller.com/news/airlines/from-the-archive-december-1995/">From the archive: December 1995</a><span class="pub">Business Traveller</span></li>
+    <li id="s32"><a href="https://www.irishtimes.com/business/airline-mocks-its-rival-in-cut-price-war-1.155890">Airline mocks its rival in cut-price war (23 May 1998)</a><span class="pub">The Irish Times</span></li>
+    <li id="s33"><a href="https://www.travelmole.com/news/easyjet-hit-by-its-own-weapons-of-mass-distraction">easyJet hit by its own weapons of mass distraction (2003)</a><span class="pub">TravelMole</span></li>
+    <li id="s34"><a href="https://marketinglaw.osborneclarke.com/marketing-techniques/easyjet-not-becks-favourite-airline/">easyJet not Becks’ favourite airline (2003)</a><span class="pub">Osborne Clarke Marketing Law</span></li>
+    <li id="s35"><a href="https://pressgazette.co.uk/news/easyjet-libel-payout-lucky-for-guardian-and-telegraph-stelios-did-not-sue-them">Easyjet libel payout… (15 July 2010)</a><span class="pub">Press Gazette</span></li>
+    <li id="s36"><a href="https://www.irishtimes.com/news/world/asia-pacific/airasia-tycoon-followed-in-richard-branson-s-footsteps-1.2049869">AirAsia tycoon followed in Richard Branson’s footsteps</a><span class="pub">The Irish Times</span></li>
+    <li id="s37"><a href="https://www.businessinsider.in/AirAsia-CEO-Tony-Fernandes-Turned-A-29-Cent-Investment-Into-A-Billion-Dollar-Empire/articleshow/45679741.cms">Tony Fernandes turned a 29-cent investment into a billion-dollar empire</a><span class="pub">Business Insider India</span></li>
+    <li id="s38"><a href="https://newsroom-airasia.squarespace.com/stories/airasia-celebrates-20-years-of-transformation">airasia celebrates 20 years</a><span class="pub">AirAsia newsroom</span></li>
+    <li id="s39"><a href="https://www.scmp.com/news/world/article/1236121/richard-branson-serves-airasia-stewardess-after-losing-bet">Richard Branson serves as AirAsia stewardess after losing bet</a><span class="pub">South China Morning Post</span></li>
+    <li id="s40"><a href="https://www.itv.com/news/2013-05-12/lady-in-red-branson-joins-cabin-crew-as-hostess">Lady in red Branson joins cabin crew as hostess (12 May 2013)</a><span class="pub">ITV News</span></li>
+    <li id="s41"><a href="https://www.aviationpros.com/home/news/10401305/hooters-air-calls-it-quits">Hooters Air calls it quits (29 March 2006)</a><span class="pub">AviationPros / Associated Press</span></li>
+    <li id="s42"><a href="https://www.nbcnews.com/news/amp/wbna12070042">Hooters Air to be grounded in April</a><span class="pub">NBC News / Associated Press</span></li>
+    <li id="s43"><a href="https://wizzair.com/en-gb/information-and-services/about-us/news/2015/05/19/wizz-air-celebrates-11th-anniversary-with-refreshed-brand-and-livery">Wizz Air celebrates 11th anniversary with refreshed brand and livery</a><span class="pub">Wizz Air</span></li>
+    <li id="s44"><a href="https://uk.style.yahoo.com/bigger-ba-20-other-things-070000291.html">Bigger than BA: 20 things you didn’t know about Wizz Air</a><span class="pub">The Telegraph, via Yahoo</span></li>
+    <li id="s45"><a href="https://www.designweek.co.uk/wizz-air-aims-for-the-sky-with-new-visual-identity/">Wizz Air aims for the sky with new visual identity</a><span class="pub">Design Week</span></li>
+    <li id="s46"><a href="https://www.euronews.com/2024/08/14/wizz-air-has-launched-an-unlimited-flight-subscription-service-but-whats-the-catch">Wizz Air has launched an unlimited flight subscription service (14 August 2024)</a><span class="pub">Euronews</span></li>
+    <li id="s47"><a href="https://www.euronews.com/2025/07/14/wizz-air-halts-abu-dhabi-operations-as-instability-threatens-profits">Wizz Air halts Abu Dhabi operations (14 July 2025)</a><span class="pub">Euronews</span></li>
+    <li id="s48"><a href="https://www.spokesman.com/stories/2005/oct/02/its-a-fish-its-a-plane-its-a-flying-billboard">It’s a fish, it’s a plane, it’s a flying billboard (2 October 2005)</a><span class="pub">The Spokesman-Review</span></li>
+    <li id="s49"><a href="https://news.alaskaair.com/newsroom/alaska-airlines-and-the-alaska-seafood-marketing-institute-unveil-129-foot-salmon/">Alaska Airlines and the Alaska Seafood Marketing Institute unveil 129-foot salmon</a><span class="pub">Alaska Airlines</span></li>
+    <li id="s50"><a href="https://www.aviationpros.com/aircraft/commercial-airline/news/10814147/alaska-airlines-introduces-new-salmon-thirty-salmon-ii-design">Alaska Airlines introduces new ‘Salmon-Thirty-Salmon II’ design (15 October 2012)</a><span class="pub">AviationPros</span></li>
+    <li id="s51"><a href="https://alaskapublic.org/news/2023-03-01/alaska-airlines-flying-salmon-is-about-to-be-extinct">Alaska Airlines’ flying salmon is about to be extinct</a><span class="pub">Alaska Public Media</span></li>
+    <li id="s52"><a href="https://www.adn.com/alaska-news/aviation/2023/05/11/alaska-airlines-unveils-new-plane-design-honoring-salmon-by-juneau-artist-crystal-worl">Alaska Airlines unveils new plane design honoring salmon by Juneau artist Crystal Worl</a><span class="pub">Anchorage Daily News</span></li>
+    <li id="s53"><a href="https://www.scoop.co.nz/stories/BU0906/S00645/safety-in-flight-the-bare-essentials.htm">Safety in flight: the bare essentials (June 2009)</a><span class="pub">Air New Zealand, via Scoop</span></li>
+    <li id="s54"><a href="https://www.businesstraveller.com/airlines/air-new-zealand/2011/03/29/anz-launches-fit-to-fly-safety-video/">ANZ launches Fit to Fly safety video (2011)</a><span class="pub">Business Traveller</span></li>
+    <li id="s55"><a href="https://www.cbsnews.com/news/the-hobbit-takes-flight-in-air-new-zealand-safety-video">The Hobbit takes flight in Air New Zealand safety video (2 November 2012)</a><span class="pub">CBS News</span></li>
+    <li id="s56"><a href="https://m.scoop.co.nz/stories/CU1211/S00194/more-than-1-million-per-day-watch-an-unexpected-briefing.htm">More than 1 million per day watch An Unexpected Briefing (9 November 2012)</a><span class="pub">Air New Zealand, via Scoop</span></li>
+    <li id="s57"><a href="https://www.scoop.co.nz/stories/BU1410/S01027/air-new-zealands-epic-safety-video-the-most-popular-yet.htm">Air New Zealand’s epic safety video the most popular yet (29 October 2014)</a><span class="pub">Air New Zealand, via Scoop</span></li>
+    <li id="s58"><a href="https://worldairlinenews.com/2010/01/19/kululas-latest-logojet-flying-101/">Kulula’s latest logojet “Flying 101” (19 January 2010)</a><span class="pub">World Airline News</span></li>
+    <li id="s59"><a href="https://www.dezeen.com/2013/10/12/kulula-airline-livery/">Kulula airline livery</a><span class="pub">Dezeen</span></li>
+    <li id="s60"><a href="https://www.snopes.com/fact-check/flying-101">Flying 101</a><span class="pub">Snopes</span></li>
+    <li id="s61"><a href="https://www.nbcnews.com/news/amp/wbna35954728">S. African airline drops ad after FIFA complaint (2010)</a><span class="pub">NBC News / Associated Press</span></li>
+    <li id="s62"><a href="https://www.voaafrica.com/a/comair-comes-to-a-halt/6609871.html">Comair comes to a halt (June 2022)</a><span class="pub">VOA Africa</span></li>
+    <li id="s63"><a href="https://www.businesstraveller.com/business-travel/2022/06/10/british-airways-franchisee-comair-enters-liquidation/">British Airways franchisee Comair enters liquidation (10 June 2022)</a><span class="pub">Business Traveller</span></li>
+    <li id="s64"><a href="https://globalvoices.org/2010/10/06/philippines-dancing-flight-attendants/">Philippines: Dancing flight attendants (6 October 2010)</a><span class="pub">Global Voices</span></li>
+    <li id="s65"><a href="https://www.nbcnews.com/news/amp/wbna39558299">Dancing flight crew’s viral video surprises airline (2010)</a><span class="pub">NBC News / Associated Press</span></li>
+    <li id="s66"><a href="https://www.philstar.com/business/business-as-usual/2012/07/09/825836/bring-me-parlor-games-high-tech-fun-cebu-pacific/amp/">From ‘bring me’ parlor games to high-tech fun at Cebu Pacific (9 July 2012)</a><span class="pub">Philstar</span></li>
+    <li id="s67"><a href="https://www.jgsummit.com.ph/impact/cebu-pacific-promotes-philippine-tourism-with-juan-love-campaign-20200929">Cebu Pacific promotes Philippine tourism with the “Juan Love” campaign (2020)</a><span class="pub">JG Summit Holdings</span></li>
+    <li id="s68"><a href="https://www.mynewsdesk.com/uk/norwegian/pressreleases/harvey-milk-takes-to-the-skies-as-norwegians-latest-tail-fin-hero-2861546">Harvey Milk takes to the skies as Norwegian’s latest tail fin hero (16 April 2019)</a><span class="pub">Norwegian</span></li>
+    <li id="s69"><a href="https://media.uk.norwegian.com/pressreleases/its-a-kind-of-magic-as-freddie-mercury-announced-as-norwegians-latest-british-tail-fin-hero-2043110">It’s a kind of magic as Freddie Mercury announced as Norwegian’s latest British tail fin hero (2017)</a><span class="pub">Norwegian</span></li>
+    <li id="s70"><a href="https://media.uk.norwegian.com/pressreleases/norwegian-honour-10-iconic-british-women-2845162">Norwegian honour 10 iconic British women (March 2019)</a><span class="pub">Norwegian</span></li>
+    <li id="s71"><a href="https://www.lonelyplanet.com/news/norwegian-long-haul-flights">Norwegian ends long-haul flights (15 January 2021)</a><span class="pub">Lonely Planet</span></li>
+    <li id="s72"><a href="https://www.norwegian.com/uk/about/our-story/tail-fin-heroes/">Tail fin heroes</a><span class="pub">Norwegian</span></li>
+    <li id="s73"><a href="https://airwaysmag.com/vietjet-air-operates-its-maiden-flight">12/25/2011: VietJet Air operates its maiden flight</a><span class="pub">Airways Magazine</span></li>
+    <li id="s74"><a href="https://www.businesstraveller.com/news/2012/08/10/airline-fined-for-in-flight-bikini-contest/">Airline fined for in-flight bikini contest (10 August 2012)</a><span class="pub">Business Traveller</span></li>
+    <li id="s75"><a href="https://www.cbsnews.com/news/vietjet-airline-vietnam-sorry-bikini-flight-stewardess-performance-soccer-team">Airline apologizes for risqué in-flight “performance” (30 January 2018)</a><span class="pub">CBS News</span></li>
+    <li id="s76"><a href="https://fortune.com/2017/04/14/vietjet-bikini-billionaire/">Vietjet’s bikini billionaire (14 April 2017)</a><span class="pub">Fortune</span></li>
+    <li id="s77"><a href="https://www.bloomberg.com/news/articles/2016-03-23/how-bikini-airline-helped-to-create-vietnam-s-first-woman-billionaire">How ‘Bikini Airline’ helped to create Vietnam’s first woman billionaire (23 March 2016)</a><span class="pub">Bloomberg</span></li>
+    <li id="s78"><a href="https://www.euronews.com/2019/03/28/flights-grounded-after-icelands-wow-air-ceases-operations">Flights grounded after Iceland’s WOW air ceases operations (28 March 2019)</a><span class="pub">Euronews</span></li>
+    <li id="s79"><a href="https://community.southwest.com/t5/Blog/Southwest-Airlines-and-the-New-York-Stock-Exchange/m-p/13877">Southwest Airlines and the New York Stock Exchange</a><span class="pub">Southwest Airlines Community</span></li>
+    <li id="s80"><a href="https://time.com/62077/watch-flight-attendant-gives-the-funniest-in-flight-safety-demo-ever">Watch: flight attendant gives the funniest in-flight safety demo ever (15 April 2014)</a><span class="pub">TIME</span></li>
+    <li id="s81"><a href="https://www.npr.org/2019/03/28/707553739/wow-indeed-wow-air-ceases-operations-stranding-travelers">Wow indeed: WOW air ceases operations, stranding travelers (28 March 2019)</a><span class="pub">NPR</span></li>
+    <li id="s82"><a href="https://www.cbsnews.com/losangeles/news/wow-air-travel-guide-iceland-summer-job">WOW air travel guide summer job (26 April 2018)</a><span class="pub">CBS Los Angeles</span></li>
+    <li id="s83"><a href="https://www.cnbc.com/2019/03/28/icelandic-airline-wow-air-collapses-and-cancels-all-flights.html">Icelandic airline WOW air collapses and cancels all flights (28 March 2019)</a><span class="pub">CNBC</span></li>
+    <li id="s84"><a href="https://www.npr.org/2013/09/03/218625844/spirit-airlines-sees-business-take-off-with-raunchy-ads">Spirit Airlines sees business take off with raunchy ads (3 September 2013)</a><span class="pub">NPR</span></li>
+    <li id="s85"><a href="https://www.cbsnews.com/news/new-spirit-airlines-ad-makes-light-of-bp-oil-spill">New Spirit Airlines ad makes light of BP oil spill (2010)</a><span class="pub">CBS News</span></li>
+    <li id="s86"><a href="https://www.globenewswire.com/news-release/2014/05/07/633899/15631/en/Strip-Down-and-Save-With-Spirit-s-Bare-Fare-TM.html">Strip down and save with Spirit’s Bare Fare (7 May 2014)</a><span class="pub">Spirit Airlines, via GlobeNewswire</span></li>
+    <li id="s87"><a href="https://www.dallasnews.com/business/airlines/2014/09/16/spirit-airlines-has-a-new-airplane-livery-too">Spirit Airlines has a new airplane livery, too (16 September 2014)</a><span class="pub">Dallas Morning News</span></li>
+    <li id="s88"><a href="https://www.ksat.com/business/2025/03/13/spirit-airlines-exits-bankruptcy-protection-as-travel-demand-slows/">Spirit Airlines exits bankruptcy protection (13 March 2025)</a><span class="pub">Associated Press, via KSAT</span></li>
+    <li id="s89"><a href="https://www.theracetothebottom.org/rttb/2026/11/18/grounded-spirit-airlines-and-chapter-11-creditor-obligations">Grounded: Spirit Airlines and Chapter 11 creditor obligations (18 November 2026)</a><span class="pub">The Race to the Bottom</span></li>
+    <li id="s90"><a href="https://www.npr.org/2026/05/02/nx-s1-5807933/spirit-airlines-ceases-operations-folds">Spirit Airlines ceases operations (2 May 2026)</a><span class="pub">NPR</span></li>
+    <li id="s91"><a href="https://octus.com/resources/articles/spirit-airlines-wind-down-approved/">Court approves Spirit Airlines wind-down procedures</a><span class="pub">Octus</span></li>
+  <li id="s92"><a href="https://www.sandiegoreader.com/news/2006/apr/13/smiles-miles/">Smiles &amp; miles (13 April 2006)</a><span class="pub">San Diego Reader</span></li>
+    <li id="s93"><a href="https://www.fundinguniverse.com/company-histories/us-airways-group-inc-history/">US Airways Group, Inc. history</a><span class="pub">FundingUniverse (International Directory of Company Histories)</span></li>
+    <li id="s94"><a href="https://www.businessinsider.in/The-rise-and-fall-of-Hooters-Air/articleshow/63050715.cms">The rise and fall of Hooters Air</a><span class="pub">Business Insider India</span></li>
+    <li id="s95"><a href="https://www.ebsco.com/research-starters/history/braniff-international-suspends-flight-operations">Braniff International suspends flight operations</a><span class="pub">EBSCO Research Starters</span></li>
+  
+  </ol>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<p>Published 27 November 2026 in <a href="/daily/">Daily</a> by Nick Carbone · Researched and designed with Claude</p>
+<p><a href="/daily/">← Back to Daily</a></p>
+<p><a href="https://github.com/nickcarbone/nickcarbone.github.io/issues/new?template=daily-correction.yml&amp;title=Correction%3A%20The%20Outrageous%20Airlines&amp;page=https%3A%2F%2Fnickcarbone.github.io%2Fdaily%2F2026-11-27-the-worlds-most-outrageous-airlines%2F">Spot an error? Suggest a correction</a></p>
+</div></footer>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  var entries=[].slice.call(document.querySelectorAll('.entry'));
+  function fin(c1,c2,size){
+    var s=document.createElementNS(NS,'svg');
+    s.setAttribute('viewBox','0 0 100 100');s.setAttribute('aria-hidden','true');
+    if(size){s.setAttribute('width',size);s.setAttribute('height',size);}
+    s.innerHTML='<use href="#fin" fill="'+c1+'" stroke="#13263a" stroke-width="3"/><use href="#band" fill="'+c2+'"/><use href="#cap" fill="'+c2+'" opacity=".85"/>';
+    return s;
+  }
+  // side fins
+  entries.forEach(function(e){
+    var side=e.querySelector('.side');
+    side.insertBefore(fin(e.dataset.c1,e.dataset.c2),side.firstChild.nextSibling);
+  });
+  // apron
+  var g=document.getElementById('apronFins');
+  var step=1020/entries.length;
+  entries.forEach(function(e,i){
+    var a=document.createElementNS(NS,'a');
+    a.setAttribute('href','#'+e.id);
+    a.setAttribute('aria-label',e.dataset.label);
+    var x=i*step+4,w=step-8,h=Math.min(100,w*1.7),y=112-h;
+    var grp=document.createElementNS(NS,'g');grp.setAttribute('class','fin');
+    grp.innerHTML='<rect class="hit" x="'+x+'" y="4" width="'+w+'" height="132" fill="transparent"/>'+
+      '<svg x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" viewBox="0 0 100 100" preserveAspectRatio="none"><use href="#fin" fill="'+e.dataset.c1+'" stroke="#13263a" stroke-width="3"/><use href="#band" fill="'+e.dataset.c2+'"/><use href="#cap" fill="'+e.dataset.c2+'" opacity=".85"/></svg>';
+    a.appendChild(grp);g.appendChild(a);
+  });
+  // filter
+  var btns=[].slice.call(document.querySelectorAll('.filter button'));
+  var count=document.getElementById('count');
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    var f=b.dataset.f,n=0;
+    btns.forEach(function(o){o.setAttribute('aria-pressed',o===b?'true':'false')});
+    entries.forEach(function(e){var show=f==='all'||e.dataset.tags.split(' ').indexOf(f)>-1;e.hidden=!show;if(show)n++;});
+    count.textContent=n+(n===1?' airline':' airlines');
+  })});
+})();
+</script>
+</body>
+</html>
