@@ -24,10 +24,6 @@ Look: something like a licensing ledger
 
 # Ideas
 
-Telecom's Most Unusual Experiments
-Explore mobile operators that have done something genuinely unconventional: free mobile data, radically different pricing, unusual customer ownership models, mobile-money ecosystems, unlimited plans, or deliberately disruptive network launches. Investigate the business logic, advertising, customer reception, and what happened afterward.
-Avoid: the brash carrier brands already profiled in the Irreverent Mobile Carriers page (Un-carrier, Free Mobile, WOM, Rakuten and the rest). Keep to the experiments themselves: pricing, ownership, mobile money and network launches.
-
 The World's Most Eccentric Supermarkets
 Investigate grocery retailers that have developed almost cult-like identities: Trader Joe's, Wegmans, Eataly, Mercadona, Aldi, H Mart, Erewhon, and unusual regional chains. Examine private-label empires, cult products, pricing strategies, store design, employee culture, and the strange things that make people fiercely loyal to particular supermarkets.
 

@@ -1,6 +1,23 @@
 {
   "pieces": [
     {
+      "no": 42,
+      "slug": "2026-11-28-telecoms-most-unusual-experiments",
+      "date": "2026-11-28",
+      "title": "The Airtime Experiments",
+      "dek": "Seventeen times mobile operators tried something strange with pricing, ownership, free access, money or a whole new network, and what became of each.",
+      "kind": "Experiment ledger",
+      "readingMinutes": 17,
+      "design": "Bricolage Grotesque, Lora, VT323; LCD pea-green handset menu hero, scratch-card foil, five category inks; perforated top-up voucher entries with scratch-to-reveal outcomes.",
+      "source": "queue",
+      "brief": "Telecom's Most Unusual Experiments\nExplore mobile operators that have done something genuinely unconventional: free mobile data, radically different pricing, unusual customer ownership models, mobile-money ecosystems, unlimited plans, or deliberately disruptive network launches. Investigate the business logic, advertising, customer reception, and what happened afterward.\nAvoid: the brash carrier brands already profiled in the Irreverent Mobile Carriers page (Un-carrier, Free Mobile, WOM, Rakuten and the rest). Keep to the experiments themselves: pricing, ownership, mobile money and network launches.",
+      "factcheck": {
+        "claims": 110,
+        "fixed": 16
+      },
+      "corrections": []
+    },
+    {
       "no": 41,
       "slug": "2026-11-27-the-worlds-most-outrageous-airlines",
       "date": "2026-11-27",
